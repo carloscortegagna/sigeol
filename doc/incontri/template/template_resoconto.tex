@@ -1,0 +1,34 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{graphicx}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[italian]{babel}
+
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.6pt}
+% impostazione dello stile per le pagine interne del documento
+\fancypagestyle{plain} {
+\lhead{\textit{data}}
+\chead{}
+\rhead{\includegraphics[scale=0.15]{logo.png} }
+\lfoot{Incontro con il  - interno}
+\cfoot{}
+\rfoot{\thepage \ di \pageref{LastPage}}
+}
+\headheight = 46pt
+\title{Resoconto dell'incontro con il committente - interno obbligatorio - interno facoltativo}
+\author{Autore1 \\ Autore2}
+\date{data}
+\pagestyle{plain}
+\begin{document}
+\maketitle
+\section{Scopo dell'incontro}
+\section{Membri presenti}
+\section{Resoconto dettagliato}
+
+\end{document}
