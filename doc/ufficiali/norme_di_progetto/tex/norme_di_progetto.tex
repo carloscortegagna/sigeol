@@ -1,0 +1,238 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{graphicx}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[italian]{babel}
+
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.6pt}
+% impostazione dello stile per le pagine interne del documento
+\lhead{\leftmark}
+\chead{}
+\rhead{\includegraphics[scale=0.15]{logo.png} }
+\lfoot{Norme di Progetto v0.1.0}
+\cfoot{}
+\rfoot{\thepage \ di \pageref{LastPage}}
+% ridefinizione dello stile plain per il frontespizio
+\fancypagestyle{plain}{
+\fancyhf
+}
+% impostazione dello stile per l'indice
+\fancypagestyle{indice}{
+\lhead{\leftmark}
+\chead{}
+\rhead{\includegraphics[scale=0.15]{logo.png}}
+\lfoot{Norme di Progetto v0.1.0}
+\cfoot{}
+\rfoot{}
+}
+\headheight = 46pt
+%definizione del comando "\modfiche" per la creazione del diario delle modifiche
+\newcommand{\modifiche} 
+{
+\newpage
+\begin{center}
+\textbf{Diario delle modifiche} \\
+\bigskip
+\begin{tabular}{|c|c|p{0.69\textwidth}|}
+\hline
+\textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
+\hline
+\hline
+\textit{27-11-2008} & 0.1.0 & Prima stesura del documento \\
+\hline
+\end{tabular}
+\end{center}
+}
+%definizione del comando "\info" per la creazione delle informazioni del documento
+\newcommand{\info} {
+\bigskip
+\begin{tabbing}
+	\hspace*{0.3\textwidth} \= \hspace*{0.5\textwidth} \kill
+	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Freo Matteo} \\
+	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Grosselle Alessandro} \\
+	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Preliminare} \\
+	\parbox{0.3\textwidth}{\textbf{Uso: }} \> \parbox{0.5\textwidth}{Interno} \\
+	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{QuiXoft} \\
+\end{tabbing}
+}
+%definizione del comando "\frontespizio" per la creazione del frontespizio
+\newcommand{\frontespizio} {
+\thispagestyle{plain}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Norme di Progetto \\ v0.1.0}}
+\author{Redazione: Carlo Scortegagna}
+\maketitle
+\medskip
+\begin{center}
+\includegraphics[scale=0.5]{logo.png} \\
+\textit{quixoft.sol@gmail.com}
+\end{center}
+\medskip
+\info
+\newpage
+}
+%definizione del comando "\indice" per la creazione dell'indice
+\newcommand{\indice} {
+\thispagestyle{indice}
+\tableofcontents
+\newpage
+}
+\pagestyle{fancy}
+\begin{document}
+\frontespizio
+\indice
+\setcounter{page}{1}
+\section{Scopo del documento}
+Lo scopo del presente documento è quello di fissare linee guida e norme precise per quanto riguarda la comunicazione aziendale, la stesura della documentazione, la codifica su calcolatore e l'amministrazione del progetto denominato ''SIGEOL''.
+
+Ogni membro del team QuiXoft è tenuto a leggere con attenzione il presente documento e applicarne in modo più coerente possibile il contenuto, al fine di ottimizzare il lavoro in team e le risorse a disposizione.
+
+Sarà compito del Responsabile di Progetto verificare che tali norme vengano applicate ed, eventualmente, notificare all'Amministrazione di Progetto qualsiasi insubordinazione che mini il corretto procedere del progetto.
+\section{Definizioni}
+Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti  possono essere trovate nel documento ''Glossario'' al fine di eliminare ogni ambiguità e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione è disponibile all'interno del Glossario verrà marcato con una \underline{sottolineatura}.
+\section{Comunicazioni}
+\subsection{Interne}
+Le comunicazioni interne ufficiali (quali incontri, scadenze, appuntamenti obbligatori o altre comunicazioni ritenute importanti) si appoggiano al portale \textit{http://www.assembla.com}, che mette a disposizione del team una bacheca messaggi.
+Ogni nuova comunicazione pubblicata nella bacheca verrà notificata automaticamente via e-mail ai membri del team Quixoft.
+La notifica del messaggio verrà inviata a tutti i membri, qualsiasi ruolo essi ricoprano; spetta invece solamente al Responsabile pubblicare i messaggi in bacheca.
+
+E' messo a disposizione anche un forum per tutte le altre comunicazioni interne al team.
+La struttura del forum è decisa preventivamente dall'amministratore di progetto, mentre ogni membro del team ha la possibilità di discutere di qualsiasi argomento che possa in qualsiasi modo giovare al proseguimento del progetto.
+
+Sono sconsigliate, ma non vietate, le comunicazioni dirette tra singoli membri del team tramite qualsivoglia metodo: ogni comunicazione inerente al progetto potrebbe infatti tornare utile a qualche altro membro del gruppo, oppure tornare utile in futuro.
+E' consigliabile quindi che ogni comunicazione sia fatta usando i metodi sopra elencati.
+Nonostante ciò, sono a disposizione gli indirizzi e-mail e i recapiti telefonici di ogni singolo membro del team Quixoft.
+\subsection{Esterne}
+Ogni comunicazione con il commitente o con altri soggetti esterni al team QuiXoft potrà essere proposta da qualsiasi membro del gruppo, e spetterà al Responsabile deciderne l'utilità e la fattibilità.
+In caso di responso positivo, al termine di ogni comunicazione esterna dovrà essere redatto un resoconto che ne elenchi sinteticamente i risultati. Per le modalità di creazione e diffuzione di tale resoconto, si faccia riferimento a quanto spiegato in seguito per i resoconti di incontro con il committente.
+
+Il committente o altri soggetti esterni potranno invece comunicare con il team QuiXoft tramite l'indirizzo e-mail \textit{quixoft.sol@gmail.com}.
+\section{Convocazioni ed incontri}
+Ogni incontro, sia esso interno o esterno, dovrà essere preceduto da un annuncio in bacheca e dall'approvazione del Responsabile.
+Al termine di qualsiasi incontro dovrà essere redatto un resoconto che contenga sinteticamente i risultati o i problemi emersi durante la discussione.
+Per ulteriori informazioni sui documenti di resoconto di un incontro consultare i paragrafi 6.1.1 e 6.1.2.
+\subsection{Interni}
+\subsubsection{Obbligatori}
+La cadenza degli incontri interni obbligatori è fissata dal Responsabile e comunicata ai membri del team QuiXoft tramite segnalazione con messaggio in bacheca.
+Notifica via e-mail della convocazione verrà automaticamente mandata a tutti i membri del gruppo.
+Riunioni di questo genere implicano la presenza obbligatoria di tutti i componenti del gruppo.
+
+Il Responsabile si occuperà di volta in volta di selezionare l'ordine del giorno appropriato e di controllare il corretto svolgimento dell'incontro.
+Gli argomenti da discutere e da inserire nell'ordine del giorno potranno essere proposti da qualsiasi membro del gruppo e saranno inseriti nell'annuncio di convocazione in bacheca, previa approvazione del Responsabile.
+\subsubsection{Facoltativi}
+La cadenza degli incontri facoltativi non è fissata a priori ed è legata a particolari necessità di uno o più membri del team.
+Gli interessati dovranno richiedere la possibilità di svolgere tale incontro al Responsabile, il quale provvederà all'eventuale approvazione.
+Sarà poi compito del Responsabile stesso comunicare, tramite pubblicazione sulla bacheca, gli estremi di svolgimento dell'incontro.
+
+Riunioni di questo tipo non implicano la presenza obbligatoria di tutti i componenti, ma solamente dei ruoli interessati e specificati nel messaggio di convocazione in bacheca; non si esclude comunque la presenza degli altri elementi.
+\subsection{Esterni}
+\subsubsection{Incontri con il committente}
+Ogni membro del gruppo ha facoltà di richiedere al Responsabile un incontro con il Commitente.
+Spetta al Responsabile valutare la richiesta e, se lo ritiene opportuno e utile al progetto, approvare l'incontro.
+
+Per formalizzare l'incontro dovrà essere pubblicato in bacheca il messaggio di convocazione, la cui notifica arriverà a tutti i membri del team.
+All'incontro è obbligatoria solamente la presenza del richiedente, ma non si esclude la presenza di qualsiasi altro membro del gruppo che reputi di interesse tale incontro con il Committente.
+\subsubsection{Altri incontri esterni}
+Oltre che con il commitente, è data la possibilità di organizzare incontri con altri soggetti esterni al team QuiXoft, per qualsiasi argomento che possa aiutare il proseguimento del progetto.
+La procedura di richiesta di tale tipo di incontro è analoga a quella sopra citata per gli Incontri con il Commitente.
+\section{Repository}
+Tutto il materiale prodotto dal team QuiXoft è disponibile online all'indirizzo \textit{http://trac.assembla.com/sigeol/browser}.
+
+Il software utilizzato per il versionamento dei file è Subversion.
+Ogni commit effettuata da un qualsiasi membro del team QuiXoft deve essere accompagnata da una chiara e sintetica descrizione. Tale descrizione deve contenere traccia della nuova versione dei file che vengono aggiornati o aggiunti.
+
+Ogni file o documento infatti deve essere accompagnato dalla sua relativa versione. Si useranno 3 cifre (es: 0.1.0): la prima cifra sta ad indicare il rilascio di una nuova versione del file, la seconda cifra rappresenta una modifica e la terza cifra indica una correzione. La versione di un documento, oltre che nel commento alla commit, deve assolutamente essere presente all'interno di ogni file di testo creato dal team QuiXoft, sia esso un documento o un file di codice.
+\section{Documentazione}
+\subsection{Template documenti}
+Ogni documento redatto dal team QuiXoft dovrà essere creato utilizzando il relativo template Latex e successivamente esportato in Pdf per garantirne la giusta portabilità.
+
+Se il template non dovesse più calzare con le esigenze di documentazione del team QuiXoft, qualsiasi componente potrà richiederne la modifica al Responsabile di Progetto.
+\subsubsection{Documenti di resoconto incontri}
+I documenti di resoconto incontri dovranno essere creati usando il template \textit{template\_resoconto.tex} disponibile nella cartella \textit{/doc/incontri/template/} all'interno del repository. Non saranno ammesse modifiche al layout e alla formattazione di tale template.
+\subsubsection{Documenti ufficiali interni ed esterni}
+I documenti ufficiali interni ed esterni prodotti durante le varie attività aziendali dovranno essere redatti usando il template \textit{template\_ufficiale.tex} disponibile nella cartella \textit{/doc/ufficiali/template/}.
+Come sopra, si raccomanda di aderire coerentemente al template, completando tutti i campi richiesti, senza apportare alcuna modifica.
+\subsection{Nominazione dei file di documentazione}
+\subsubsection{Resoconto incontri interni ed esterni}
+Ogni documento di resoconto di un incontro dovrà essere salvato sul repository del team QuiXoft in doppio formato:
+\begin{itemize}
+	\item in formato Pdf nella cartella \textit{/doc/incontri/pdf}, con estensione .pdf
+	\item in formato sorgente Latex nella cartella \textit{/doc/incontri/tex}, con estensione .tex
+\end{itemize}
+Al fine di non creare incongruenze, file con estensioni diverse da quelle sopra indicate saranno eliminati dal repository.
+
+I file dovranno essere nominati secondo i seguenti criteri: \\
+
+\{data\}\_\{sigla\} \\
+
+dove:
+
+\begin{itemize}
+	\item \{data\} indica, nel formato AAAA-MM-GG, la data dell'incontro
+	\item \{sigla\} indica il tipo di incontro
+\end{itemize}
+
+I tipi di resoconto degli incontri che è possibile organizzare sono caratterizzati dalle seguenti sigle:
+
+\begin{itemize}
+	\item RIO: resoconto incontro interno obbligatorio
+	\item RIF: resoconto incontro interno facoltativo
+	\item RIC: resoconto incontro con il committente
+	\item RIE: resoconto altri incontri esterni
+\end{itemize}
+\subsubsection{Documenti ufficiali interni ed esterni}
+I documenti ufficiali prodotti dal team QuiXoft dovranno essere salvati sul repository in due modi:
+\begin{itemize}
+	\item in formato Pdf nella cartella \textit{/doc/ufficiali/\{nome\_documento\}/pdf}, con estensione .pdf
+	\item in sorgente Latex nella cartella \textit{/doc/ufficiali/\{nome\_documento\}/tex}, con estensione .tex. Insieme al file sorgente Latex dovranno essere inseriti nella medesima cartella anche tutti gli altri file necessari alla compilazione (immagini che differiscano da quelle usate nel template, grafici, ecc...)
+\end{itemize}
+I file dei documenti ufficiali interni ed esterni dovranno essere composti solamente dal nome del documento e dalla relativa estensione. Si potrà risalire alla versione consultando l'intestazione del file o il registro delle modifiche.
+\subsection{Approvazione e verifica documentazione}
+Una volta redatto, un qualsiasi documento deve essere marcato come ''Preliminare'' nel campo ''Stato'' del relativo template Latex.
+
+In seguito tale documento deve essere sottoposto ad una fase di controllo da parte del Verificatore, il cui compito è quello di notificare eventuali incongruenze al redattore del documento.
+Spetta a quest'ultimo apportare le dovute modifiche e sottoporre nuovamente al Verificatore il documento.
+Una volta che il Verificatore avrà segnalato come ''verificato'' il documento, il Responsabile provvederà all'approvazione ed al cambio di stato in ''Formale''.
+\section{Codice}
+\subsection{Intestazione}
+Ogni file di codice prodotto dal team QuiXoft durante lo sviluppo del progetto ''SIGEOL'' dovrà contenere un intestazione che ne certifichi l'origine e le modifiche per facilitarne la tracciabilità e le operazioni di manutenzione.
+Tale intestazione deve essere cosi formattata: \\
+
+\textit{QuiXoft - Progetto ''SIGEOL''}
+
+\textit{NOME FILE: \{nome del file, completo di estensione\}}
+
+\textit{AUTORE: \{cognome e nome dell'autore del file\}}
+
+\textit{DATA CREAZIONE: \{data di creazione nel formato GG-MM-AAAA\}}
+
+\textit{REGISTRO DELLE MODIFICHE:}
+
+\textit{\{data e resoconto delle modifiche, in ordine cronologico decrescente\}}
+\subsection{Altre convenzioni}
+Altre norme riguardanti i file sorgente verranno decise dal responsabile del team QuiXoft al momento della scelta dell'ambiente di sviluppo e dei linguaggi di programmazione utilizzati. Questo perchè alcuni linguaggi (es: Ruby) ed alcuni ambienti di programmazione possiedono già delle regole prestabilite. Le norme che saranno decise nelle fasi successive dello sviluppo riguarderanno:
+\begin{itemize}
+	\item struttura e posizionamento dei commenti
+	\item nomi di variabili, classi, metodi, costanti, ecc...
+	\item lunghezza massima delle righe
+	\item lunghezza delle indentazioni
+	\item posizionamento delle parentesi
+	\item spaziature
+\end{itemize}
+\section{Compiti}
+\subsection{Ticket}
+Appoggiandosi al portale \textit{http://www.assembla.com} il Responsabile dovrà creare un ticket per ogni singolo compito da assegnare ad uno o più membri del team QuiXoft, comprese le operazioni di verifica.
+Sarà poi cura di quest'ultimo accettare o rifiutare il ticket.
+
+Una volta completato, il ticket assegnato dovrà essere marcato come ''Close as fixed''.
+\subsection{Milestone}
+I ticket assegnati ai vari membri del team QuiXoft sono raggruppati in milestone e gestiti sempre attraverso il portale \textit{http://www.assembla.com}.
+
+Il raggiungimento di un milestone rappresenta il completamento di uno degli obiettivi che il Responsabile ha stabilito in fase di definizione del progetto stesso.
+\modifiche
+\end{document}
