@@ -1,0 +1,58 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{graphicx}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[italian]{babel}
+
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.6pt}
+% impostazione dello stile per le pagine interne del documento
+\fancypagestyle{plain} {
+\lhead{\textit{25 novembre 2008}}
+\chead{}
+\rhead{\includegraphics[scale=0.15]{logo.png} }
+\lfoot{Incontro con il committente}
+\cfoot{}
+\rfoot{\thepage \ di \pageref{LastPage}}
+}
+\headheight = 46pt
+\title{Resoconto dell'incontro con il committente}
+\author{Beggiato Andrea \\ Scarpa Davide}
+\date{25 novembre 2008}
+\pagestyle{plain}
+\begin{document}
+\maketitle
+\section{Scopo dell'incontro}
+L'incontro svoltosi con il committente ha avuto come scopo la presentazione del capitolato ed il chiarimento di
+alcune domande poste dai possibili gruppi fornitori.
+\section{Membri presenti}
+Erano presenti, come rappresentanza del team QuiXoft, Beggiato Andrea e Scarpa Davide nel ruolo di Analista.
+
+Erano inoltre presenti membri di altri possibili gruppi fornitori, nonchè il committente Prof. Rossi Francesca.
+\section{Resoconto dettagliato}
+Nella prima parte dell'incontro il committente ha presentato il capitolato descrivendo gli utenti che utilizzeranno il sistema \textit{SIGEOL} e le relative funzioni. In questa prima fase non è stata riscontrata nessuna differenza sostanziale da ciò che si può trovare nel capitolato d'appalto.
+
+Successivamente il committente ha posto particolare attenzione a descrivere la differenza tra vincoli e preferenze: i primi devono essere necessariamente soddisfatti, mentre per le preferenze è necessario soddisfarne il più possibile. 
+
+Sono state presentate tre tipoligie di vincoli e preferenze distinti elencate di seguito:
+	\begin{description}
+	 \item \textit{Vincoli e preferenze di struttura}. Questi vincoli e preferenze riguardano la struttura generale del corso di laurea o della facoltà. Ad esempio l'indisponibilità di una certa aula per un certo periodo è considerato un vincolo di struttura, mentre la preferenza di non svolgere lezioni il venerdi pomeriggio è, appunto, una preferenza
+	\item \textit{Vincoli e preferenze di corso}. Questi vincoli e preferenze riguardano in modo particolare un determinato tipo di corso\footnote{inteso come corso di lezione, non come corso di laurea}. Ad esempio è considerato un vincolo la stima degli studenti, in altre parole non si può tenere un corso in un aula con capienza minore alla stima degli studenti.
+	\item \textit{Vincoli e preferenze di docente}. Questi vincoli e preferenze riguardano uno specifico docente. Ad esempio se un docente non è disponibile in un determinato periodo di tempo, questo è considerato un vincolo, mentre se un docente preferisce tenere lezione al pomeriggio, questo è considerato una preferenza.
+ 	\end{description}
+
+Si è poi posto l'accento sul fatto che il committente vuole permettere l'inserimento dei vincoli da parte dei docenti solo entro una certa finestra temporale.
+
+In particolare attenzione alle metodologie che dovranno essere utilizzare per la generazione dell'orario, il committente suggerisce degli approcci di ricerca sistematica\footnote{ad esempio il metodo Branch and Bound} o di ricerca locale. A tal scopo viene fornita una serie di riferimenti dove è possibile trovare informazioni sull'argomento.
+
+Per quanto concerne le domande poste dai possibili gruppi fornitori, il committente ha lasciato quasi totale libertà. In particolare si può assumere che il server dove sarà installato il sistema \textit{SIGEOL} sia configurabile a piacere, che l'ambiente configurabile di prova citato nel capitolato d'appalto non è altro che una serie di prove con dati precaricati e che è necessario prevedere un qualche tipo di backup per garantire l'integrità dei dati.
+
+Dato che il sistema \textit{SIGEOL} deve essere totalmente configurabile (nuovi corsi, nuovi docenti, nuovo tipo di ordinamento, ecc.) è possibile svilupparlo per tutte le facoltà ed i corsi di laurea. Il committente, invece, preferisce che sia la segreteria ad invitare i docenti nel sistema e non di permettere la registrazione diretta.
+
+La Prof. Rossi Francesca si rende disponibile ad ulteriori incontri ed a rispondere a domande recapitabili via posta elettronica. Inoltre renderà disponibile il materiale utilizzato nella presentazione.
+\end{document}

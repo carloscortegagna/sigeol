@@ -15,7 +15,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Documento Interno v1.0.0}
+\lfoot{Documento v0.1.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +27,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Documento Interno v1.0.0}
+\lfoot{Documento v0.1.0}
 \cfoot{}
 \rfoot{}
 }
@@ -39,12 +39,12 @@
 \begin{center}
 \textbf{Diario delle modifiche} \\
 \bigskip
-\begin{tabular}{|c|p{0.69\textwidth}|}
+\begin{tabular}{|c|c|p{0.69\textwidth}|}
 \hline
-\textsc{Data} & \textsc{Modifica} \\
+\textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
-\textit{data} & modifica \\
+\textit{data} & versione & modifica \\
 \hline
 \end{tabular}
 \end{center}
@@ -54,19 +54,17 @@
 \bigskip
 \begin{tabbing}
 	\hspace*{0.3\textwidth} \= \hspace*{0.5\textwidth} \kill
-	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Verificatore1} \\
-												 \> \parbox{0.5\textwidth}{Verificatore2} \\
+	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Verificatore} \\
+	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Responsabile} \\
 	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Preliminare | Formale} \\
 	\parbox{0.3\textwidth}{\textbf{Uso: }} \> \parbox{0.5\textwidth}{Interno | Esterno} \\
-	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{Primo} \\
-													\> \parbox{0.5\textwidth}{Secondo} \\
-													\> \parbox{0.5\textwidth}{Terzo} \\
+	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{QuiXoft} \\
 \end{tabbing}
 }
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Documento Esterno \\ v1.0.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Documento \\ v0.1.0}}
 \author{Redazione: }
 \maketitle
 \medskip
