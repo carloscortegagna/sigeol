@@ -1,0 +1,44 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{graphicx}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[italian]{babel}
+
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.6pt}
+% impostazione dello stile per le pagine interne del documento
+\fancypagestyle{plain} {
+\lhead{\textit{28 novembre 2008}}
+\chead{}
+\rhead{\includegraphics[scale=0.15]{logo.png} }
+\lfoot{Incontro interno facoltativo}
+\cfoot{}
+\rfoot{\thepage \ di \pageref{LastPage}}
+}
+\headheight = 46pt
+\title{Resoconto dell'incontro interno facoltativo}
+\author{Beggiato Andrea}
+\date{28 novembre 2008}
+\pagestyle{plain}
+\begin{document}
+\maketitle
+\section{Scopo dell'incontro}
+L'incontro facoltativo svoltosi con gli analisti ha avuto come scopo la ripartizione dei ruoli per la redazione del documento ufficiale denominato \textit{Analisi dei requisiti}. Si è tenuto inoltre un \textit{brainstorming} per delineare i requisiti che il sistema \textit{SIGEOL} dovrà rispettare.
+\section{Membri presenti}
+Sono risultati presenti, nel ruolo di analisti, Beggiato Andrea, Scarpa Davide e Barbiero Mattia.
+\section{Resoconto dettagliato}
+La prima questione che si è trattata concerne la struttura del documento \textit{Analisi dei requisiti} che è stata risolta con la redazione dell'indice ed a questo proposito è stata creata la versione 0.1.0 del documento sopra citato; successivamente si è aggiornato il repository.
+
+Per quanto riguarda la ripartizione dei ruoli si è deciso all'unanimità quanto segue:
+\begin{description}
+ \item \textit{Beggiato Andrea} si occuperà della redazione dell'introduzione e della descrizione del prodotto;
+ \item \textit{Scarpa Davide} si occuperà della redazione della parte riguardante i requisiti;
+ \item \textit{Barbiero Mattia} si occuperà della redazione degli use cases.
+ \end{description}
+Inoltre si è deciso che al termine del proprio compito Beggiato Andrea e Scarpa Davide potranno assistere Barbiero Mattia a svolgere il proprio lavoro.
+\end{document}
