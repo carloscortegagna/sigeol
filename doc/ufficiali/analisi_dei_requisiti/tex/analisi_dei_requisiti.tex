@@ -15,7 +15,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Documento v0.1.0}
+\lfoot{Analisi dei requisiti v0.2.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +27,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Analisi dei requisiti v0.1.0}
+\lfoot{Analisi dei requisiti v0.2.0}
 \cfoot{}
 \rfoot{}
 }
@@ -43,6 +43,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{28 novembre 2008} & 0.2.0 & Stesura dell'introduzione \\
 \hline
 \textit{28 novembre 2008} & 0.1.0 & Stesura dell'indice \\
 \hline
@@ -64,7 +66,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Analisi dei requisiti \\ v0.1.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Analisi dei requisiti \\ v0.2.0}}
 \author{Redazione: Beggiato Andrea, Scarpa Davide, Barbiero Mattia }
 \maketitle
 \medskip
@@ -89,9 +91,19 @@
 \setcounter{page}{1}
 \section{Introduzione}
 \subsection{Scopo del documento}
+Il presente documento denominato \textit{Analisi dei requisiti} ha lo scopo di delineare tutti i bisogni espressi dal committente Prof. Rossi Francesca per il sistema \textit{SIGEOL}, nonchè tutti i requisiti intrinsechi nello sviluppo di un tale prodotto. 
 \subsection{Scopo del prodotto}
+Il progetto sotto analisi, denominato \textit{SIGEOL}, si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. Il committente richiede l'applicazione del sistema al solo corso di laurea in informatica, ma, constatato che la complessità non aumenta notevolmente, il team QuiXoft prevede lo sviluppo e la messa in opera dell'applicazione per tutti i corsi di laurea dell' Università degli studi di Padova.
+
+Il prodotto sarà implementato come un servizio web portabile, facilmente manutenibile ed accessibile agli utenti da una qualsiasi postazione con accesso alla rete Internet.
 \subsection{Glossario}
+Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti possono essere trovate nel documento ''Glossario'' al fine di eliminare ogni ambiguità e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione è disponibile all’interno del Glossario verrà marcato con una \underline{sottolineatura}.
 \subsection{Riferimenti}
+\begin{itemize}
+ \item Capitolato d'appalto reperibile all'indirizzo: \\ http://www.math.unipd.it/~tullio/IS-1/2008/Progetti/SIGEOL.html
+ \item Statuto di Ateneo reperibile all'indirizzo \\ http://www.unipd.it/organizzazione/statuto/statuto.htm
+\end{itemize}
+
 \section{Descrizione generale}
 \subsection{Contesto d'uso del prodotto}
 \subsection{Funzioni del prodotto}
