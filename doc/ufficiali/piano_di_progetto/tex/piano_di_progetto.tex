@@ -1,0 +1,151 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{graphicx}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[italian]{babel}
+
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.6pt}
+% impostazione dello stile per le pagine interne del documento
+\lhead{\leftmark}
+\chead{}
+\rhead{\includegraphics[scale=0.15]{logo.png} }
+\lfoot{Piano di Progetto v0.1.0}
+\cfoot{}
+\rfoot{\thepage \ di \pageref{LastPage}}
+% ridefinizione dello stile plain per il frontespizio
+\fancypagestyle{plain}{
+\fancyhf
+}
+% impostazione dello stile per l'indice
+\fancypagestyle{indice}{
+\lhead{\leftmark}
+\chead{}
+\rhead{\includegraphics[scale=0.15]{logo.png}}
+\lfoot{Piano di Progetto v0.1.0}
+\cfoot{}
+\rfoot{}
+}
+\headheight = 46pt
+%definizione del comando "\modfiche" per la creazione del diario delle modifiche
+\newcommand{\modifiche} 
+{
+\newpage
+\begin{center}
+\textbf{Diario delle modifiche} \\
+\bigskip
+\begin{tabular}{|c|c|p{0.69\textwidth}|}
+\hline
+\textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
+\hline
+\hline
+\textit{29-11-2008} & 0.1.0 & Prima bozza del documento \\
+\hline
+\end{tabular}
+\end{center}
+}
+%definizione del comando "\info" per la creazione delle informazioni del documento
+\newcommand{\info} {
+\bigskip
+\begin{tabbing}
+	\hspace*{0.3\textwidth} \= \hspace*{0.5\textwidth} \kill
+	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Freo Matteo} \\
+	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Grosselle Alessandro} \\
+	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Preliminare} \\
+	\parbox{0.3\textwidth}{\textbf{Uso: }} \> \parbox{0.5\textwidth}{Esterno} \\
+	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{QuiXoft} \\
+	\> \parbox{0.5\textwidth}{Rossi Francesca} \\
+	\> \parbox{0.5\textwidth}{Vardanega Tullio} \\
+\end{tabbing}
+}
+%definizione del comando "\frontespizio" per la creazione del frontespizio
+\newcommand{\frontespizio} {
+\thispagestyle{plain}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Progetto \\ v0.1.0}}
+\author{Redazione: Grosselle Alessandro}
+\maketitle
+\medskip
+\begin{center}
+\includegraphics[scale=0.5]{logo.png} \\
+\textit{quixoft.sol@gmail.com}
+\end{center}
+\medskip
+\info
+\newpage
+}
+%definizione del comando "\indice" per la creazione dell'indice
+\newcommand{\indice} {
+\thispagestyle{indice}
+\tableofcontents
+\newpage
+}
+\pagestyle{fancy}
+\begin{document}
+\frontespizio
+\indice
+\setcounter{page}{1}
+\section{Introduzione}
+\subsection{Scopo del prodotto}
+Lo scopo del prodotto ''SIGEOL'' è di fornire un sistema software per la gestione dell’orario di lezione a uso del CCS di Informatica.
+\subsection{Scopo del documento}
+Questo documento espone la pianificazione del progetto ''SIGEOL''.
+Al suo interno è possibile trovare una stima delle tempistiche e dei costi del progetto; il tutto è illustrato attraverso l’utilizzo di tabelle e del diagramma di Gantt.
+La ripartizione dei ruoli tiene conto del fatto che tutti devono avere circa lo stesso carico di lavoro.
+\subsection{Glossario}
+Il glossario è unico per tutti i documenti relativi al progetto di sviluppo del prodotto e viene fornito come allegato nel file Glossario.pdf.
+\section{Organigramma}
+\subsection{Accettazione delle componenti}
+
+TABELLA
+
+\subsection{Descrizione delle componenti}
+
+TABELLA
+
+\subsection{Criteri di assegnazione}
+In ogni fase, tutti i membri assumeranno due ruoli.
+Il cambio del ruolo avverrà a metà di ogni fase e in quel momento ogni componente dovrà aver speso tutte le ore assegnateli per svolgere il ruolo dato.
+Al fine di evitare che un verificatore si trovi nella condizione di dover controllare il proprio operato, in ogni fase del progetto saranno presenti almeno due verificatori.
+Si ipotizzano le seguenti date:\\
+
+TABELLA\\
+
+La tabella di seguito riportata mostra come è stata pianificata la rotazione interna dei ruoli.
+I numeri tra parentesi vicini al ruolo sono le ore che la risorsa deve fare in quella fase.
+Nell’ultima fase non tutti i componenti del team dovranno effettuare il cambio di ruolo.\\
+
+TABELLA
+
+\section{Pianificazione}
+\subsection{Diagramma di Gantt}
+
+DIAGRAMMA
+
+\subsection{Ore stimate nel progetto per ruolo}
+La tabella sottostante mostra la suddivisione delle ore di ogni ruolo per ogni fase.\\
+
+TABELLA
+
+\subsection{Impegno individuale per ogni ruolo}
+La tabella sottostante rappresenta le ore di ogni componente del team in relazione al ruolo ricoperto.\\
+
+TABELLA
+
+\section{Conto economico preventivo}
+\subsection{Costi stimati nel progetto per ruolo}
+Dalla precedente pianificazione si può redigere la seguente tabella:\\
+
+TABELLA
+
+\subsection{Costi stimati nel progetto per risorsa}
+La tabella sottostante rappresenta i costi di ogni componente del team in relazione al ruolo ricoperto:\\
+
+TABELLA
+
+\modifiche
+\end{document}
