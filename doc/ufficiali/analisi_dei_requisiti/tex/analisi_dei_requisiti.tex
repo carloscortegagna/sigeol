@@ -15,7 +15,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Analisi dei requisiti v0.3.0}
+\lfoot{Analisi dei requisiti v0.4.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -32,7 +32,7 @@
 \rfoot{}
 }
 \headheight = 46pt
-%definizione del comando "\modfiche" per la creazione del diario delle modifiche
+%definizione del comando "\modifiche" per la creazione del diario delle modifiche
 \newcommand{\modifiche} 
 {
 \newpage
@@ -43,6 +43,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{30 novembre 2008} & 0.4.0 & Stesura dei requisiti \\
 \hline
 \textit{29 novembre 2008} & 0.3.0 & Inizio stesura della descrizione del prodotto \\
 \hline
@@ -68,7 +70,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Analisi dei requisiti \\ v0.3.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Analisi dei requisiti \\ v0.4.0}}
 \author{Redazione: Beggiato Andrea, Scarpa Davide, Barbiero Mattia }
 \maketitle
 \medskip
@@ -113,7 +115,7 @@ Le definizioni dei termini specialistici usati nella stesura di questo e di tutt
 \subsubsection{Processi produttivi e modalità d'uso}
 Il funzionamento del sistema \textit{SIGEOL}, a processo produttivo concluso, sarà in grado di guidare ogni singolo utilizzatore (confronta sezione \ref{utenti}) allo svolgimento delle proprie azioni (confronta sezione \ref{funzioni}). In altre parole sarà disponibile un servizio che offrirà, dopo un'opportuna autenticazione, un insieme di strumenti che permetteranno l'inserimento guidato dei dati che serviranno al fine ultimo di generare un orario per le lezioni.
 \subsubsection{Piattaforma d’esecuzione ed interfacciamento con l’ambiente di installazione e uso}
-Il prodotto sarà realizzato tramite un'applicazione web supportata da un database e dovrà essere accessibile da un qualsiasi tipo di browser. Data la mancanza di un applicativo preesistente al quale aggiungere le funzioni del sistema \textit{SIGEOL}, il team QuiXoft dovrà definirne ogni aspetto creando un prodotto che sia accessibile, manutenibile, portabile e soprattutto sicuro. A tal scopo verranno adottate tecnologie gratuite e moderne per lo svilippo di pagine dinamiche e sarà necessario disporre di un server affidabile.
+Il prodotto sarà realizzato tramite un'applicazione web supportata da un database e dovrà essere accessibile da un qualsiasi tipo di browser. Data la mancanza di un applicativo preesistente al quale aggiungere le funzioni del sistema \textit{SIGEOL}, il team QuiXoft dovrà definirne ogni aspetto creando un prodotto che sia accessibile, manutenibile, portabile e soprattutto sicuro. A tal scopo verranno adottate tecnologie gratuite e moderne per lo sviluppo di pagine dinamiche e sarà necessario disporre di un server affidabile.
 \subsection{Funzioni del prodotto} \label{funzioni}
 
 \subsection{Caratteristiche degli utenti} \label{utenti} 
@@ -121,8 +123,113 @@ Il prodotto sarà realizzato tramite un'applicazione web supportata da un databa
 \subsection{Assunzioni e dipendenze}
 \section{Requisiti}
 \subsection{Requisiti funzionali}
+\subsubsection{Requisiti funzionali per la segreteria generale}
+\begin{itemize}
+\item \textbf{OBBLIGATORI}
+\begin{enumerate}
+\item Possibilità di login/logout
+\item Possibilità di inserimento delle facoltà
+\item Possibilità di invitare via e-mail le singole facoltà ad inserire i dati
+\item Possibilità di consultare lo schema d'orario di ogni corso di laurea
+\end{enumerate}
+\item \textbf{DESIDERABILI}
+\begin{enumerate}
+\item Possibilità di impostare la frequenza con cui avviene il backup automatico dei dati
+\end{enumerate}
+\end{itemize}
+\subsubsection{Requisiti funzionali per la segreteria didattica}
+\begin{itemize}
+\item \textbf{OBBLIGATORI}
+\begin{enumerate}
+\item Possibilità di login/logout
+\item Possibilità di inserimento e modifica, all'interno della propria facoltà, per ogni corso, del nome, dei relativi CFU, dell'\underline{anno} di appartenenza, del \underline{periodo}, dello \underline{stato}, del numero di ore in aula e in laboratorio (se previsto), del docente di riferimento che lo tiene, di eventuali assistenti e della stima del numero di studenti che lo seguiranno
+\item Possibilità di inserimento e modifica, all'interno della propria facoltà, per ogni aula disponibile, del nome, della capienza, delle ore e dei periodi di non disponibilità
+\item Possibilità di inserimento e modifica dell'\underline{anno accademico}
+\item Possibilità di inserimento e modifica delle \underline{ore da usare}
+\item Possibilità di impostare \underline{linee guida} per la creazione dell'orario
+\item Possibilità di modifica dei dati dei docenti preventivamente inseriti dal Presidente del CCS
+\item Possibilità di invitare via e-mail i presidenti del CCS di ogni corso di laurea ad inserire i dati
+\end{enumerate}
+\item \textsc{DESIDERABILI}
+\begin{enumerate}
+\item Possibilità di generazione dello schema d'orario in formato pdf e html
+\item Possibilità di scegliere vincoli da rilassare e soluzioni subottime, proposti dal sistema, in caso di soluzione inesistente
+\item Possibilità di consultare lo schema d'orario di ogni corso di laurea della propria facoltà
+\end{enumerate}
+\end{itemize}
+\subsubsection{Requisiti funzionali per il Presidente del CCS}
+\begin{itemize}
+\item \textbf{OBBLIGATORI}
+\begin{enumerate}
+\item Possibilità di login/logout
+\item Possibilità di inserimento e modifica, all'interno del proprio corso di laurea, per ogni corso, del nome, dei relativi CFU, dell'\underline{anno} di appartenenza, del \underline{periodo}, dello \underline{stato}, del numero di ore in aula e in laboratorio (se previsto), del docente di riferimento che lo tiene, di eventuali assistenti e della stima del numero di studenti che lo seguiranno
+\item Possibilità di inserimento e modifica, all'interno del proprio corso di laurea, per ogni aula disponibile, del nome, della capienza, delle ore e dei periodi di non disponibilità
+\item Possibilità di inserimento e modifica, all'interno del proprio corso di laurea, dei nomi e delle e-mail dei docenti
+\item Possibilità di inserimento e modifica dell'\underline{anno accademico}
+\item Possibilità di inserimento e modifica delle \underline{ore da usare}
+\item Possibilità di impostare \underline{linee guida} per la creazione dell'orario
+\item Possibilità di generazione dello schema d'orario in formato pdf e html
+\item Possibilità di scegliere vincoli da rilassare e soluzioni subottime, proposti dal sistema, in caso di soluzione inesistente
+\item Possibilità di consultare lo schema d'orario
+\item Possibilità di inserimento di vincoli e preferenze relativi ai corsi
+\item Possibilità di inserimento e modifica di indirizzi diversi appartenenti allo stesso corso di laurea
+\end{enumerate}
+\item \textbf{DESIDERABILI}
+\begin{enumerate}
+\item Possibilità di notificare il mancato inserimento di un docente o di un corso d'insegnamento di un altro corso di laurea
+\item Possibilità di impostare una data limite per l'inserimento dei vincoli da parte dei docenti, con segnalazione della scadenza via e-mail
+\item Possibilità di modifica manuale dello schema d'orario specificato
+\end{enumerate}
+\end{itemize}
+\subsubsection{Requisiti funzionali per i docenti}
+\begin{itemize}
+\item \textsc{OBBLIGATORI}
+\begin{enumerate}
+\item Possibilità di inserimento e modifica dei propri giorni e ore di indisponibilità, con relativa motivazione
+\item Possibilità di inserimento e modifica delle proprie preferenze su orari e giorni di lezione, con relativa motivazione
+\item Possibilità di modifica dei propri dati personali
+\end{enumerate}
+\end{itemize}
 \subsection{Requisiti di qualità}
+\begin{itemize}
+\item \textbf{OBBLIGATORI}
+\begin{enumerate}
+\item Accessibilità del sistema
+\item Garanzie sull'integrità dei dati
+\item Gestione in sicurezza degli account
+\item Manutenibilità del sistema
+\item Interfaccia utente semplice e intuitiva
+\item Presenza di manuali d'uso, di installazione, configurazione e manutenzione del sistema
+\item Il prodotto dovrà essere consegnato assieme ad un ambiente di prova per verificarne il corretto funzionamento
+\end{enumerate}
+\item \textbf{DESIDERABILI}
+\begin{enumerate}
+\item Portabilità del sistema
+\item Completa interoperabilità dei dati memorizzati e trattati
+\item Pagine scritte in XHTML e CSS dovranno essere validate tramite strumenti forniti dal consorzio W3C
+\end{enumerate}
+\end{itemize}
 \subsection{Requisiti d'interfacciamento e d'ambiente}
+\subsubsection{Con l’ambiente di installazione ed uso}
+\begin{itemize}
+\item \textbf{OBBLIGATORI}
+\begin{enumerate}
+\item Le informazioni andranno memorizzate in modo permanente in una base di dati
+\end{enumerate}
+\item \textbf{DESIDERABILI}
+\begin{enumerate}
+\item Le tecnologie da adottare dovranno essere gratuite
+\end{enumerate}
+\end{itemize}
+\subsubsection{Con l’operatore}
+\begin{itemize}
+\item \textbf{OBBLIGATORI}
+\begin{enumerate}
+\item Le informazioni dovranno essere acquisite tramite un servizio web
+\item Il sistema distinguerà i vari tipi di utente tramite autenticazione
+\item Al fine di evitare errori il sistema dovrà il più possibile proporre all'utente i dati in modo automatico
+\end{enumerate}
+\end{itemize}
 \section{Use case e descrizioni narrative}
 \subsection{Use case generale}
 \modifiche
