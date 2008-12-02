@@ -1,0 +1,205 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{graphicx}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[italian]{babel}
+
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.6pt}
+% impostazione dello stile per le pagine interne del documento
+\lhead{QuiXoft - Progetto SIGEOL}
+\chead{}
+\rhead{\includegraphics[scale=0.15]{logo.png} }
+\lfoot{Glossario v0.1.0}
+\cfoot{}
+\rfoot{\thepage \ di \pageref{LastPage}}
+% ridefinizione dello stile plain per il frontespizio
+\fancypagestyle{plain}{
+\fancyhf
+}
+% impostazione dello stile per l'indice
+\fancypagestyle{indice}{
+\lhead{\leftmark}
+\chead{}
+\rhead{\includegraphics[scale=0.15]{logo.png}}
+\lfoot{Glossario v0.1.0}
+\cfoot{}
+\rfoot{}
+}
+\headheight = 46pt
+%definizione del comando "\modfiche" per la creazione del diario delle modifiche
+\newcommand{\modifiche} 
+{
+\newpage
+\begin{center}
+\textbf{Diario delle modifiche} \\
+\bigskip
+\begin{tabular}{|c|c|p{0.55\textwidth}|}
+\hline
+\textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
+\hline
+\hline
+\textit{02-12-2008} & 0.1.0 & Prima bozza del glossario \\
+\hline
+\end{tabular}
+\end{center}
+}
+%definizione del comando "\info" per la creazione delle informazioni del documento
+\newcommand{\info} {
+\bigskip
+\begin{tabbing}
+	\hspace*{0.3\textwidth} \= \hspace*{0.5\textwidth} \kill
+	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Freo Matteo} \\
+	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Grosselle Alessandro} \\
+	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Preliminare} \\
+	\parbox{0.3\textwidth}{\textbf{Uso: }} \> \parbox{0.5\textwidth}{Interno} \\
+	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{QuiXoft} \\
+\end{tabbing}
+}
+%definizione del comando "\frontespizio" per la creazione del frontespizio
+\newcommand{\frontespizio} {
+\thispagestyle{plain}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Glossario \\ v0.1.0}}
+\author{Redazione: Carlo Scortegagna}
+\maketitle
+\medskip
+\begin{center}
+\includegraphics[scale=0.5]{logo.png} \\
+\textit{quixoft.sol@gmail.com}
+\end{center}
+\medskip
+\info
+\newpage
+}
+%definizione del comando "\indice" per la creazione dell'indice
+\newcommand{\indice} {
+\thispagestyle{indice}
+\tableofcontents
+\newpage
+}
+\pagestyle{fancy}
+\begin{document}
+\frontespizio
+\setcounter{page}{1}
+\smallskip
+\flushleft \Huge A \bigskip
+\hrule
+\smallskip
+\normalsize
+\begin{description}
+	\item[Ambiente di sviluppo:] spiegazione definizione.
+	\item[Amministratore:] spiegazione definizione.
+	\item[Analista] spiegazione definizione.
+\end{description}
+\bigskip
+\Huge C \bigskip
+\hrule
+\smallskip
+\normalsize
+\begin{description}
+	\item[Commit:] spiegazione definizione.
+\end{description}
+\bigskip
+\Huge E \bigskip
+\hrule
+\smallskip
+\normalsize
+\begin{description}
+	\item[Estensione:] spiegazione definizione.
+\end{description}
+\bigskip
+\Huge F \bigskip
+\hrule
+\smallskip
+\normalsize
+\begin{description}
+	\item[Forum:] spiegazione definizione.
+\end{description}
+\bigskip
+\Huge C \bigskip
+\hrule
+\smallskip
+\normalsize
+\begin{description}
+	\item[Indentazione:] spiegazione definizione.
+	\item[Intestazione:] spiegazione definizione.
+\end{description}
+\bigskip
+\Huge L \bigskip
+\hrule
+\smallskip
+\normalsize
+\begin{description}
+	\item[Latex:] spiegazione definizione.
+	\item[Layout:] spiegazione definizione.
+	\item[Linguaggio di Programmazione:] spiegazione definizione.
+\end{description}
+\bigskip
+\Huge M \bigskip
+\hrule
+\smallskip
+\normalsize
+\begin{description}
+	\item[Manutenzione:] spiegazione definizione.
+	\item[Milestone:] spiegazione definizione.
+\end{description}
+\bigskip
+\Huge P \bigskip
+\hrule
+\smallskip
+\normalsize
+\begin{description}
+	\item[Pdf:] spiegazione definizione.
+	\item[Portabilità:] spiegazione definizione.
+	\item[Progettista:] spiegazione definizione.
+	\item[Programmatore:] spiegazione definizione.
+\end{description}
+\bigskip
+\Huge R \bigskip
+\hrule
+\smallskip
+\normalsize
+\begin{description}
+	\item[Repository:] spiegazione definizione.
+	\item[Responsabile:] spiegazione definizione.
+	\item[Ruby:] spiegazione definizione.
+\end{description}
+\bigskip
+\Huge S \bigskip
+\hrule
+\smallskip
+\normalsize
+\begin{description}
+	\item[Sigeol:] spiegazione definizione.
+	\item[Software:] spiegazione definizione.
+	\item[Sorgente:] spiegazione definizione.
+	\item[Subversion:] spiegazione definizione.
+\end{description}
+\bigskip
+\Huge T \bigskip
+\hrule
+\smallskip
+\normalsize
+\begin{description}
+	\item[Template:] spiegazione definizione.
+	\item[Ticket:] spiegazione definizione.
+	\item[Tracciabilità:] spiegazione definizione.
+\end{description}
+\bigskip
+\Huge V \bigskip
+\hrule
+\smallskip
+\normalsize
+\begin{description}
+	\item[Verificatore:] spiegazione definizione.
+	\item[Versionamento:] spiegazione definizione.
+	\item[Versione:] spiegazione definizione.
+\end{description}
+\bigskip
+\modifiche
+\end{document}
