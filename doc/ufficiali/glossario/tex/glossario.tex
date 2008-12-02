@@ -15,7 +15,7 @@
 \lhead{QuiXoft - Progetto SIGEOL}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Glossario v0.1.0}
+\lfoot{Glossario v0.2.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +27,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Glossario v0.1.0}
+\lfoot{Glossario v0.2.0}
 \cfoot{}
 \rfoot{}
 }
@@ -44,7 +44,9 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
-\textit{02-12-2008} & 0.1.0 & Prima bozza del glossario \\
+\textit{02-12-2008} & 0.2.0 & Aggiunta delle definizioni dell'analisi dei requisiti \\
+\hline
+\textit{01-12-2008} & 0.1.0 & Prima bozza del glossario \\
 \hline
 \end{tabular}
 \end{center}
@@ -64,7 +66,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Glossario \\ v0.1.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Glossario \\ v0.2.0}}
 \author{Redazione: Carlo Scortegagna}
 \maketitle
 \medskip
@@ -92,9 +94,19 @@
 \smallskip
 \normalsize
 \begin{description}
-	\item[Ambiente di sviluppo:] spiegazione definizione.
-	\item[Amministratore:] spiegazione definizione.
-	\item[Analista] spiegazione definizione.
+	\item[Accessibile:]
+	\item[Ambiente di sviluppo:] \underline{software} che serve a sviluppare altro software. Può essere costituito da semplici e singoli programmi fino a complesse suite di sviluppo (vedi anche \underline{framework}).
+	\item[Amministratore:] all'interno di un team è colui che è responsabile dell'efficienza e dell'operatività dell'\underline{ambiente di sviluppo}. Si occupa inoltre della redazione dei piani di Gestione per la Qualità, del controllo delle \underline{versioni} del prodotto, della gestione dell'archivio della documentazione di progetto. Partecipa inoltre alla redazione del Piano di Progetto e delle Norme di Progetto per conto del \underline{Responsabile}.
+	\item[Analista:] è colui che all'interno del team di occupa delle attività di analisi. Redige lo Studio di Fattibilità e l'Analisi dei Requisiti.
+	\item[Autenticazione:]
+\end{description}
+\bigskip
+\Huge B \bigskip
+\hrule
+\smallskip
+\normalsize
+\begin{description}
+	\item[Browser:]
 \end{description}
 \bigskip
 \Huge C \bigskip
@@ -102,7 +114,15 @@
 \smallskip
 \normalsize
 \begin{description}
-	\item[Commit:] spiegazione definizione.
+	\item[Commit:] operazione che si effettua quando si copiano le modifiche fatte su file locali nella corrispondente directory remota del \underline{repository}.
+\end{description}
+\bigskip
+\Huge D \bigskip
+\hrule
+\smallskip
+\normalsize
+\begin{description}
+	\item[Database:]
 \end{description}
 \bigskip
 \Huge E \bigskip
@@ -110,7 +130,7 @@
 \smallskip
 \normalsize
 \begin{description}
-	\item[Estensione:] spiegazione definizione.
+	\item[Estensione:] breve sequenza di caratteri alfanumerici aggiunti dopo il nome di un file e separati da quest'ultimo da un punto. L'estensione permette all'utente di un computer, ma anche ad alcuni programmi, di distinguere tra i vari formati di file.
 \end{description}
 \bigskip
 \Huge F \bigskip
@@ -118,16 +138,16 @@
 \smallskip
 \normalsize
 \begin{description}
-	\item[Forum:] spiegazione definizione.
+	\item[Forum:] struttura informatica contenente discussioni e messaggi scritti dagli utenti. Viene utilizzato per mettere in comunicazione i componenti del team e permette loro di reperire informazioni riguardanti il progetto.
 \end{description}
 \bigskip
-\Huge C \bigskip
+\Huge I \bigskip
 \hrule
 \smallskip
 \normalsize
 \begin{description}
-	\item[Indentazione:] spiegazione definizione.
-	\item[Intestazione:] spiegazione definizione.
+	\item[Indentazione:] inserimento di una certa quantità di spazio vuoto all'inizio di una riga di testo.
+	\item[Intestazione:] porzione di testo che si trova all'inizio di un file \underline{sorgente}. Contiene solitamente l'autore del file, la \underline{versione} e altre informazioni utili a descriverlo.
 \end{description}
 \bigskip
 \Huge L \bigskip
@@ -135,9 +155,9 @@
 \smallskip
 \normalsize
 \begin{description}
-	\item[Latex:] spiegazione definizione.
-	\item[Layout:] spiegazione definizione.
-	\item[Linguaggio di Programmazione:] spiegazione definizione.
+	\item[Latex:] linguaggio usato per la preparazione e formattazione di testi. Fornisce mezzi per l'automazione della maggior parte della composizione tipografica, inclusa la numerazione, i riferimenti incrociati, tabelle e figure, organizzazione delle pagine, bibliografie e molto altro.
+	\item[Layout:] impaginazione e la struttura grafica di un documento.
+	\item[Linguaggio di Programmazione:] linguaggio formale, dotato di una sintassi e di una semantica ben definite, utilizzabile per il controllo del comportamento di una computer.
 \end{description}
 \bigskip
 \Huge M \bigskip
@@ -145,8 +165,8 @@
 \smallskip
 \normalsize
 \begin{description}
-	\item[Manutenzione:] spiegazione definizione.
-	\item[Milestone:] spiegazione definizione.
+	\item[Manutenzione:] processo correttivo e di sviluppo che avviene dopo il rilascio del prodotto finale.
+	\item[Milestone:] traguardi intermedi nello svolgimento di un progetto che indicano il raggiungimento di obiettivi precedentemente stabiliti. Il raggiungimento delle milestones viene decretato tramite documenti ufficiali redatti dai vari componenti del team e grazie ad esse risulta possibile fornire una stima della bontà del progetto e del suo stato di avanzamento.
 \end{description}
 \bigskip
 \Huge P \bigskip
@@ -154,10 +174,10 @@
 \smallskip
 \normalsize
 \begin{description}
-	\item[Pdf:] spiegazione definizione.
-	\item[Portabilità:] spiegazione definizione.
-	\item[Progettista:] spiegazione definizione.
-	\item[Programmatore:] spiegazione definizione.
+	\item[Pdf:] il Portable Document Format, comunemente abbreviato Pdf, è un formato di file basato su un linguaggio di descrizione di pagina sviluppato da Adobe per rappresentare documenti in modo indipendente dall'hardware e dal \underline{software} utilizzati per generarli o per visualizzarli. Ogni documento redatto dal team QuiXoft viene esportato in questo formato.
+	\item[Portabilità:] adattamento o una modifica di un componente, volto a consentirne l'uso in un ambiente di esecuzione diverso da quello originale. In una più moderna accezione, si parla di portabilità di un componente \underline{software} o di un documento intendendo che può essere utilizzato su diverse piattaforme senza apportare alcuna modifica.
+	\item[Progettista:] è il responsabile delle attività di progettazione all'interno del team. Redige la Specifica Tecnica, la Definizione di Prodotto e la parte programmatica del Piano di Qualifica.
+	\item[Programmatore:] è responsabile delle attività di codifica miranti alla realizzazione del prodotto e delle componenti di ausilio necessarie per l'esecuzione delle prove di verifica e validazione.
 \end{description}
 \bigskip
 \Huge R \bigskip
@@ -165,9 +185,9 @@
 \smallskip
 \normalsize
 \begin{description}
-	\item[Repository:] spiegazione definizione.
-	\item[Responsabile:] spiegazione definizione.
-	\item[Ruby:] spiegazione definizione.
+	\item[Repository:] punto centrale in cui i dati vengono immagazzinati e manutenuti. Può essere un punto in cui sono localizzati database o file multipli per la distribuzione via rete, oppure una collocazione direttamente accessibile dall'utente. Utilizzato principalmente in un contesto di sviluppo concorrente.
+	\item[Responsabile:] è colui che si fa carico, per conto del suo team, dei risultati del progetto. Elabora ed emana piani e scadenze, approva l'emissione di documenti, coordina le attività del gruppo e si relaziona con il controllo di qualità interno al progetto. Redige Organigramma e Piano di Progetto e approva l'Offerta ed i relativi allegati.
+	\item[Ruby:] \underline{linguaggio di programmazione} completamente a oggetti ed interpretato.
 \end{description}
 \bigskip
 \Huge S \bigskip
@@ -175,10 +195,12 @@
 \smallskip
 \normalsize
 \begin{description}
-	\item[Sigeol:] spiegazione definizione.
-	\item[Software:] spiegazione definizione.
-	\item[Sorgente:] spiegazione definizione.
-	\item[Subversion:] spiegazione definizione.
+	\item[Server:]
+	\item[Servizio web:]
+	\item[Sigeol:] sistema software per la gestione dell'orario di lezione a uso del CCS di Informatica.
+	\item[Software:] vocabolo creato a partire da due termini della lingua inglese, soft (morbido) e ware (manufatto, oggetto) che sta ad indicare un programma o un insieme di programmi in grado di funzionare su un elaboratore.
+	\item[Sorgente:] insieme di istruzioni appartenenti ad un determinato \underline{linguaggio di programmazione}, utilizzato per realizzare un programma per computer.
+	\item[Subversion:] sistema di controllo versione, noto anche come Svn.
 \end{description}
 \bigskip
 \Huge T \bigskip
@@ -186,9 +208,8 @@
 \smallskip
 \normalsize
 \begin{description}
-	\item[Template:] spiegazione definizione.
-	\item[Ticket:] spiegazione definizione.
-	\item[Tracciabilità:] spiegazione definizione.
+	\item[Template:] documento o programma dove, come in un foglio semicompilato cartaceo, su una struttura generica o standard esistono spazi temporaneamente "bianchi" da riempire successivamente.
+	\item[Ticket:]
 \end{description}
 \bigskip
 \Huge V \bigskip
@@ -196,9 +217,8 @@
 \smallskip
 \normalsize
 \begin{description}
-	\item[Verificatore:] spiegazione definizione.
-	\item[Versionamento:] spiegazione definizione.
-	\item[Versione:] spiegazione definizione.
+	\item[Verificatore:] all'interno del team è responsabile delle attività di verifica. Redige la parte retrospettiva del Piano di Qualifica che illustra l'esito e la completezza delle verifiche e delle prove effettuate secondo il piano.
+	\item[Versionamento:] termine che sta ad indicare il controllo versione, la gestione cioè di versioni multiple di un insieme di informazioni.
 \end{description}
 \bigskip
 \modifiche
