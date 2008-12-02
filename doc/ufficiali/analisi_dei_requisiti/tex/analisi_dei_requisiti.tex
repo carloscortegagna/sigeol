@@ -15,7 +15,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Analisi dei requisiti v0.5.0}
+\lfoot{Analisi dei requisiti v0.6.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +27,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Analisi dei requisiti v0.5.0}
+\lfoot{Analisi dei requisiti v0.6.0}
 \cfoot{}
 \rfoot{}
 }
@@ -43,6 +43,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{2 dicembre 2008} & 0.6.0 & Completamento stesura della descrizione del prodotto \\
 \hline
 \textit{2 dicembre 2008} & 0.5.0 & Stesura degli use case \\
 \hline
@@ -74,7 +76,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Analisi dei requisiti \\ v0.5.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Analisi dei requisiti \\ v0.6.0}}
 \author{Redazione: Beggiato Andrea, Scarpa Davide, Barbiero Mattia }
 \maketitle
 \medskip
@@ -121,11 +123,39 @@ Il funzionamento del sistema \textit{SIGEOL}, a processo produttivo concluso, sa
 \subsubsection{Piattaforma d’esecuzione ed interfacciamento con l’ambiente di installazione e uso}
 Il prodotto sarà realizzato tramite un'applicazione web supportata da un database e dovrà essere accessibile da un qualsiasi tipo di browser. Data la mancanza di un applicativo preesistente al quale aggiungere le funzioni del sistema \textit{SIGEOL}, il team QuiXoft dovrà definirne ogni aspetto creando un prodotto che sia accessibile, manutenibile, portabile e soprattutto sicuro. A tal scopo verranno adottate tecnologie gratuite e moderne per lo sviluppo di pagine dinamiche e sarà necessario disporre di un server affidabile.
 \subsection{Funzioni del prodotto} \label{funzioni}
+Il prodotto consentirà, alle varie tipoligie di utenti, di fruire di un servizio che permetta la generazione e l'ottimizzazione di uno schema d'orario per le lezioni. Per raggiungere questo scopo i vari utenti dovranno inserire i dati di loro competenza richiesti dal sistema, tra i quali figurano vincoli e preferenze.
 
-\subsection{Caratteristiche degli utenti} \label{utenti} 
+L'applicazione dovrà soddisfare necessariamente i vincoli nel loro insieme, senza tralasciarne alcuno, mentre, per quanto riguarda il soddisfacimento delle preferenze, il sistema cercherà di tenerne conto il più possibile, restando consapevole di poterne tralasciare.
+
+Nel caso risulti impossibile soddisfare tutti i vincoli, il prodotto segnalerà una soluzione per raggiungere lo scopo della generazione dell'orario.
+
+Per informazioni più dettagliate confrontare la sezione \ref{requisiti}
+\subsection{Caratteristiche degli utenti} \label{utenti}
+Si prevedono quattro tipologie di utenti che usufruiranno del sistema:
+\begin{itemize}
+ \item Segreteria generale
+ \item Segreteria didattica
+ \item Presidente del CCS
+ \item Docente
+\end{itemize}
+
+La \textit{segreteria generale} si occupa dell'invito delle varie \textit{segreterie didattiche}, nonchè della preparazione della struttura delle varie facoltà.
+
+La \textit{segreteria didattica} ha, tra gli altri, il compito di invitare i \textit{presidenti del CCS} dei vari corsi di laurea e di inserire i corsi della facoltà di sua competenza.
+
+Il \textit{presidente del CCS} provvede, invece, all'invito dei vari \textit{docenti} che dovranno compilare i propri dati ed accettare il consenso al loro trattamento.
+
+Ogni tipologia potrà inserire i propri vincoli e preferenze e, dato che il sistema \textit{SIGEOL} guiderà nel modo più accurato possibile ogni utente, non sono richieste particolari conoscescenze ad eccezione dell'uso di un elaboratore connesso alla rete Internet.
 \subsection{Vincoli generali}
+Il sistema che si intende sviluppare cercherà di essere il più portabile ed indipendente possibile. Il team QuiXoft non esclude però che sia necessaria l'installazione di componenti software nel server dove il prodotto risiederà. Ad ogni modo non saranno in alcun modo utilizzate tecnologie soggette al pagamento di una qualche forma di licenza o altro.
 \subsection{Assunzioni e dipendenze}
-\section{Requisiti}
+Il prodotto che il team QuiXoft si impegna a sviluppare dipende da diversi fattori quali:
+\begin{itemize}
+ \item Documentazione fornita dal committente
+ \item Disponibilità del committente ad incontri e chiarimenti richiesti dal team.
+\end{itemize}
+Inoltre il team QuiXoft si rende consapevole della possibilità di cambiamento od aggiunta di aluni requisiti dal committente in corso d'opera.
+\section{Requisiti} \label{requisiti}
 \subsection{Requisiti funzionali}
 \subsubsection{Requisiti funzionali per la segreteria generale}
 \begin{itemize}
