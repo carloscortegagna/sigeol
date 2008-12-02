@@ -273,7 +273,7 @@ una migliore comprensione.
 \subsection{Use case generale}
 Il seguente diagramma illustra in modo generale le funzionalità offerte dal sistema SIGEOL.
 \begin{center}
- \includegraphics[scale=0.7]{UseCaseSistema.png}
+ \includegraphics[scale=0.5]{UseCaseSistema.png}
  % UseCaseSistema.png: 638x495 pixel, 72dpi, 22.51x17.46 cm, bb=0 0 638 495
 \end{center}
 
@@ -290,45 +290,178 @@ Il sistema è composto da otto parti principali:
 \end{enumerate}
 \textbf{Attori coinvolti:}
 Segreteria generale, segreteria didattica, presidente CCS, docente
+\subsection{Use case Autenticazione}
+\begin{center} 
+ \includegraphics[scale=0.5]{UseCaseAutenticazione.png}
+\end{center}
+\subsubsection*{Attori coinvolti:}
+Utente, Segreteria generale, Segreteria didattica, Docente, Presidente CCS
+\subsubsection*{Scopo e descrizione sintetica:}
+L'utente effettua l'accesso alla sua pagina personale inserendo il proprio indirizzo email nel campo 'username' e la propria password
+nel campo 'password'.
+L'utente autenticato esce dal sistema premendo sul pulsante di logout.
+\subsubsection*{Pre-condizioni:}
+L'utente accede alla pagina di login.
+\subsubsection*{Flusso base di eventi:}
+L'utente inserisce i suoi dati di accesso e viene effettuata la verifica dei dati immessi.
+\subsubsection*{Flussi alternativi:}
+L'utente esce dalla pagina di login.
+\subsubsection*{Post-condizioni:}
+\begin{itemize}
+ \item se i dati immessi sono corretti l'utente viene indirizzato alla propria pagina personale
+ \item se i dati immessi sono errati l'utente viene indirizzato alla pagina di login e viene visualizzato un messaggio di errore. 
+\end{itemize}
+
+\subsection{Use case Gestione notifiche}
+\begin{center} 
+ \includegraphics[scale=0.5]{UseCaseGestioneNotifiche.png} 
+\end{center}
+\subsubsection*{Attori coinvolti:}
+Utente autenticato, utente destinatario
+\subsubsection*{Scopo e descrizione sintetica:}
+L'utente autenticato invia una notifica all'utente destinatario. Il tipo di notifica varia in base alla funzione ad essa associata.
+\subsubsection*{Pre-condizioni:}
+L'utente autenticato preme il pulsante di invio notifica presente in una delle pagine che includono il modulo delle notifiche.
+\subsubsection*{Flusso base di eventi:}
+L'utente autenticato inserisce l'indirizzo email del destinatario.
+La notifica verrà inviata all'indirizzo email scelto.
+\subsubsection*{Flussi alternativi:}
+L'utente autenticato annulla l'invio della notificha.
+\subsubsection*{Post-condizioni:}
+La notifica arriva nella casella email del destinatario.
 
 \subsection{Use case Gestione facoltà}
 \begin{center} 
- \includegraphics[scale=0.7]{UseCaseGestioneFacolta.png}
+ \includegraphics[scale=0.5]{UseCaseGestioneFacolta.png}
  % UseCaseGestioneFacolta.png: 801x496 pixel, 72dpi, 28.26x17.50 cm, bb=0 0 801 496
 \end{center}
-
 \subsubsection*{Attori coinvolti:}
-Segreteria generale.
-
+Segreteria generale,Segreteria didattica.
 \subsubsection*{Scopo e descrizione sintetica:}
 L'utente 'Segreteria generale' inserisce, modifica ed elimina i dati relativi alle facoltà universitarie.
-
 \subsubsection*{Pre-condizioni:}
 L'utente 'Segreteria generale' accede dalla sua pagina personale alla sezione 'Gestione facoltà'.
-
 \subsubsection*{Flusso base di eventi:}
 \begin{enumerate}
- \item L'utente inserisce una nuova facoltà.
- \item L'utente invia una notifica alla segreteria didattica della facoltà inserita.
+ \item L'utente 'Segreteria generale' inserisce una nuova facoltà.
+ \item L'utente 'Segreteria generale' invia una notifica alla Segreteria didattica della facoltà inserita.
 \end{enumerate}
-
 \subsubsection*{Flussi alternativi:}
 \begin{enumerate}
- \item L'utente modifica i dati di una facoltà precedentemente inserita.
- \item L'utente elimina una facoltà.
- \item L'utente ritorna alla sua pagina personale
+ \item L'utente 'Segreteria generale' modifica i dati di una facoltà precedentemente inserita.
+ \item L'utente 'Segreteria generale' elimina una facoltà.
+ \item L'utente 'Segreteria generale' ritorna alla sua pagina personale
 \end{enumerate}
-
 \subsubsection*{Post-condizioni:}
-Le modifiche relative alle facoltà vengon oinserite nel SIGEOL database e le notifiche vengono correttamente 
-inviate alle varie segreterie didattiche.
+Le modifiche relative alle facoltà vengono inserite nel SIGEOL database e le notifiche vengono correttamente 
+inviate.
 
 \subsection{Use case Gestione corsi}
+\begin{center} 
+ \includegraphics[scale=0.5]{UseCaseGestioneCorsi.png}
+\end{center}
+\subsubsection*{Attori coinvolti:}
+Segreteria didattica, Presidente CCS, Docente
+\subsubsection*{Scopo e descrizione sintetica:}
+Gli utenti 'Segreteria didattica' e 'Presidente CSS' inseriscono, modificano ed eliminano i corsi e i dati ad essi appartenenti.
+\subsubsection*{Pre-condizioni:}
+Gli utenti 'Segreteria didattica' e 'Presidente CSS' accedono dalla loro pagina personale alla sezione 'Gestione corsi'.
+\subsubsection*{Flusso base di eventi:}
+\begin{enumerate}
+ \item L'utente inserisce un nuovo corso. 
+ \item L'utente modifica i dati di un corso precedentemente inserito.
+ \item L'utente elimina una corso già esistente.
+\end{enumerate}
+\subsubsection*{Flussi alternativi:}
+\begin{enumerate} 
+\item L'utente ritorna alla sua pagina personale
+\item L'utente invia una notifica ad un determinato docente a causa della sua mancata presenza nel database e quindi al momento non può essere associato al corso.
+\end{enumerate}
+\subsubsection*{Post-condizioni:}
+Le modifiche relative ai corsi vengono inserite nel SIGEOL database e le notifiche (se effettuate) vengono correttamente 
+inviate.
 \subsection{Use case Gestione aule}
+\subsubsection*{Attori coinvolti:}
+Segreteria didattica, Presidente CCS.
+\subsubsection*{Scopo e descrizione sintetica:}
+Gli utenti 'Segreteria didattica' e 'Presidente CSS' inseriscono, modificano ed eliminano le aule e i dati ad esse appartenenti.
+\subsubsection*{Pre-condizioni:}
+Gli utenti 'Segreteria didattica' e 'Presidente CSS' accedono dalla loro pagina personale alla sezione 'Gestione aule'.
+\subsubsection*{Flusso base di eventi:}
+\begin{enumerate}
+ \item L'utente inserisce una nuova aula. 
+ \item L'utente modifica i dati di un'aula precedentemente inserita.
+ \item L'utente elimina un' aula già esistente.
+\end{enumerate}
+\subsubsection*{Flussi alternativi:}
+\begin{enumerate} 
+\item L'utente ritorna alla sua pagina personale
+\end{enumerate}
+\subsubsection*{Post-condizioni:}
+Le modifiche relative alle aule vengono inserite nel SIGEOL database e le notifiche (se effettuate) vengono correttamente 
+inviate.
 \subsection{Use case Gestione docenti}
+\begin{center} 
+ \includegraphics[scale=0.5]{UseCaseGestioneDocenti.png}
+\end{center}
+\subsubsection*{Attori coinvolti:}
+Docente
+\subsubsection*{Scopo e descrizione sintetica:}
+Il Docente modifica i propri dati personale e le proprie preferenze
+\subsubsection*{Pre-condizioni:}
+Il Docente è nella propria pagina personale
+\subsubsection*{Flusso base di eventi:}
+\begin{enumerate}
+ \item Il Docente modifica i suoi dati. 
+ \item Il Docente inserisce e modifica le sue preferenze
+\end{enumerate}
+\subsubsection*{Flussi alternativi:}
+Il Docente esce dalla sua pagina personale
+\subsubsection*{Post-condizioni:}
+Le modifiche apportate vengono inserite nel SIGEOL database
 \subsection{Use case Gestione schema d'orario}
+\begin{center} 
+ \includegraphics[scale=0.5]{UseCaseGestioneSchemaOrario.png}
+\end{center}
+\subsubsection*{Attori coinvolti:}
+Segreteria didattica, Segreteria generale,Presidente CCS.
+\subsubsection*{Scopo e descrizione sintetica:}
+Gli utenti abilitati possono generare, visualizzare, esportare, impostare le preferenze e modificare lo schema d'orario.
+\subsubsection*{Pre-condizioni:}
+Gli utenti coinvolti sono nella pagina della gestione dello schema d'orario.
+\subsubsection*{Flusso base di eventi:}
+\begin{enumerate}
+ \item L'utente imposta le linee guida per la generazione dell'orario.
+ \item L'utente genera l'orario. 
+ \item L'utente modifica l'orario.
+ \item L'utente esporta lo schema dell'orario.
+\end{enumerate}
+\subsubsection*{Flussi alternativi:}
+\begin{enumerate}
+ \item L'utente visualizza lo schema dell'orario.
+ \item L'utente esce dalla pagina di gestione dello schema d'orario.
+\end{enumerate}
+\subsubsection*{Post-condizioni:}
+\begin{enumerate}
+ \item Le modifiche alle preferenze e vincoli vengono salvate nel database.
+ \item L'orario viene esportato nel formato scelto.
+ \item L'orario viene visualizzato.
+\end{enumerate}  
 \subsection{Use case Gestione backup}
-\subsection{Use case Autenticazione}
-\subsection{Use case Gestione notifiche}
+\begin{center} 
+ \includegraphics[scale=0.5]{UseCaseGestioneBackup.png}
+\end{center}
+\subsubsection*{Attori coinvolti:}
+Segreteria generale, Presidente CCS
+\subsubsection*{Scopo e descrizione sintetica:}
+Impostare le preferenze per la generazione dei backup del database
+\subsubsection*{Pre-condizioni:}
+La Segreteria generale o il Presidente CCS è nella pagina delle impostazioni di backup.
+\subsubsection*{Flusso base di eventi:}
+La Segreteria generale o il Presidente CCS modificano le impostazioni di backup.
+\subsubsection*{Flussi alternativi:}
+La Segreteria generale o il Presidente CCS escono dalla pagina delle impostazioni.
+\subsubsection*{Post-condizioni:}
+I cambiamenti alle impostazioni vengono salvati.
 \modifiche
 \end{document}
