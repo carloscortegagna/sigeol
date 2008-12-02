@@ -15,7 +15,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Analisi dei requisiti v0.4.1}
+\lfoot{Analisi dei requisiti v0.5.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +27,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Analisi dei requisiti v0.4.1}
+\lfoot{Analisi dei requisiti v0.5.0}
 \cfoot{}
 \rfoot{}
 }
@@ -43,6 +43,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{2 dicembre 2008} & 0.5.0 & Stesura degli use case \\
 \hline
 \textit{1 dicembre 2008} & 0.4.1 & Correzione dei requisiti \\
 \hline
@@ -72,7 +74,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Analisi dei requisiti \\ v0.4.1}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Analisi dei requisiti \\ v0.5.0}}
 \author{Redazione: Beggiato Andrea, Scarpa Davide, Barbiero Mattia }
 \maketitle
 \medskip
@@ -233,6 +235,70 @@ Il prodotto sarà realizzato tramite un'applicazione web supportata da un databa
 \end{enumerate}
 \end{itemize}
 \section{Use case e descrizioni narrative}
+In questo capitolo verranno illustrati i diagrammi use-case che rappresentano
+i requisiti funzionali del prodotto. 
+
+I diagrammi verrano accompagnati dalle loro descrizioni narrative per consentirne
+una migliore comprensione.
 \subsection{Use case generale}
+Il seguente diagramma illustra in modo generale le funzionalità offerte dal sistema SIGEOL.
+\begin{center}
+ \includegraphics[scale=0.7]{UseCaseSistema.png}
+ % UseCaseSistema.png: 638x495 pixel, 72dpi, 22.51x17.46 cm, bb=0 0 638 495
+\end{center}
+
+Il sistema è composto da otto parti principali:
+\begin{enumerate}
+\item Gestione facoltà: modulo per la gestione dei dati relativi alle facoltà. 
+\item Gestione corsi: modulo per la gestione dei dati relativi ai corsi.
+\item Gestione aule: modulo per la gestione dei dati relativi alle aule.
+\item Gestione docenti: modulo per la gestione dei dati relativi ai docenti.
+\item Gestione schema d'orario: modulo per la gestione e la generazione dello schema d'orario.
+\item Gestione backup: modulo per la gestione dei backup del SIGEOL database.
+\item Autenticazione: modulo utilizzato per autenticare le varie tipologie di utenti.
+\item Gestione notifiche: modulo per la gestione delle notifiche.
+\end{enumerate}
+\textbf{Attori coinvolti:}
+Segreteria generale, segreteria didattica, presidente CCS, docente
+
+\subsection{Use case Gestione facoltà}
+\begin{center} 
+ \includegraphics[scale=0.7]{UseCaseGestioneFacolta.png}
+ % UseCaseGestioneFacolta.png: 801x496 pixel, 72dpi, 28.26x17.50 cm, bb=0 0 801 496
+\end{center}
+
+\subsubsection*{Attori coinvolti:}
+Segreteria generale.
+
+\subsubsection*{Scopo e descrizione sintetica:}
+L'utente 'Segreteria generale' inserisce, modifica ed elimina i dati relativi alle facoltà universitarie.
+
+\subsubsection*{Pre-condizioni:}
+L'utente 'Segreteria generale' accede dalla sua pagina personale alla sezione 'Gestione facoltà'.
+
+\subsubsection*{Flusso base di eventi:}
+\begin{enumerate}
+ \item L'utente inserisce una nuova facoltà.
+ \item L'utente invia una notifica alla segreteria didattica della facoltà inserita.
+\end{enumerate}
+
+\subsubsection*{Flussi alternativi:}
+\begin{enumerate}
+ \item L'utente modifica i dati di una facoltà precedentemente inserita.
+ \item L'utente elimina una facoltà.
+ \item L'utente ritorna alla sua pagina personale
+\end{enumerate}
+
+\subsubsection*{Post-condizioni:}
+Le modifiche relative alle facoltà vengon oinserite nel SIGEOL database e le notifiche vengono correttamente 
+inviate alle varie segreterie didattiche.
+
+\subsection{Use case Gestione corsi}
+\subsection{Use case Gestione aule}
+\subsection{Use case Gestione docenti}
+\subsection{Use case Gestione schema d'orario}
+\subsection{Use case Gestione backup}
+\subsection{Use case Autenticazione}
+\subsection{Use case Gestione notifiche}
 \modifiche
 \end{document}

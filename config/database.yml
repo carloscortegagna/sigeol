@@ -20,7 +20,9 @@ development:
   database: sigeol_development
   username: root
   password:
-  socket: /var/run/mysqld/mysqld.sock
+  # JRuby doesn't support socket:
+  host: 127.0.0.1
+  #socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as 'test' will be erased and
 # re-generated from your development database when you run 'rake'.
@@ -31,7 +33,9 @@ test:
   database: sigeol_test
   username: root
   password:
-  socket: /var/run/mysqld/mysqld.sock
+  # JRuby doesn't support socket:
+  host: 127.0.0.1
+  #socket: /var/run/mysqld/mysqld.sock
 
 production:
   adapter: mysql
@@ -39,4 +43,6 @@ production:
   database: sigeol_production
   username: root
   password: 
-  socket: /var/run/mysqld/mysqld.sock
+  # JRuby doesn't support socket:
+  host: 127.0.0.1
+  #socket: /var/run/mysqld/mysqld.sock
