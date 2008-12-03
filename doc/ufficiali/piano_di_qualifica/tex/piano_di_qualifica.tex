@@ -1,0 +1,118 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{graphicx}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[italian]{babel}
+
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.6pt}
+% impostazione dello stile per le pagine interne del documento
+\lhead{\leftmark}
+\chead{}
+\rhead{\includegraphics[scale=0.15]{logo.png} }
+\lfoot{Piano di Qualifica v0.1.0}
+\cfoot{}
+\rfoot{\thepage \ di \pageref{LastPage}}
+% ridefinizione dello stile plain per il frontespizio
+\fancypagestyle{plain}{
+\fancyhf
+}
+% impostazione dello stile per l'indice
+\fancypagestyle{indice}{
+\lhead{\leftmark}
+\chead{}
+\rhead{\includegraphics[scale=0.15]{logo.png}}
+\lfoot{Piano di Qualifica v0.1.0}
+\cfoot{}
+\rfoot{}
+}
+\headheight = 46pt
+%definizione del comando "\modfiche" per la creazione del diario delle modifiche
+\newcommand{\modifiche} 
+{
+\newpage
+\begin{center}
+\textbf{Diario delle modifiche} \\
+\bigskip
+\begin{tabular}{|c|c|p{0.51\textwidth}|}
+\hline
+\textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
+\hline
+\hline
+\textit{03-12-2008} & 0.1.0 & Prima stesura del documento \\
+\hline
+\end{tabular}
+\end{center}
+}
+%definizione del comando "\info" per la creazione delle informazioni del documento
+\newcommand{\info} {
+\bigskip
+\begin{tabbing}
+	\hspace*{0.3\textwidth} \= \hspace*{0.5\textwidth} \kill
+	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Freo Matteo} \\
+	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Grosselle Alessandro} \\
+	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Preliminare} \\
+	\parbox{0.3\textwidth}{\textbf{Uso: }} \> \parbox{0.5\textwidth}{Esterno} \\
+	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{QuiXoft} \\
+	\> \parbox{0.5\textwidth}{Rossi Francesca} \\
+	\> \parbox{0.5\textwidth}{Vardanega Tullio} \\
+\end{tabbing}
+}
+%definizione del comando "\frontespizio" per la creazione del frontespizio
+\newcommand{\frontespizio} {
+\thispagestyle{plain}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Qualifica \\ v0.1.0}}
+\author{Redazione: Carlo Scortegagna}
+\maketitle
+\medskip
+\begin{center}
+\includegraphics[scale=0.5]{logo.png} \\
+\textit{quixoft.sol@gmail.com}
+\end{center}
+\medskip
+\info
+\newpage
+}
+%definizione del comando "\indice" per la creazione dell'indice
+\newcommand{\indice} {
+\thispagestyle{indice}
+\tableofcontents
+\newpage
+}
+\pagestyle{fancy}
+\begin{document}
+\frontespizio
+\indice
+\setcounter{page}{1}
+\section{Introduzione}
+	\subsection{Scopo del documento}
+	\subsection{Scopo del prodotto}
+	Il prodotto sotto analisi, denominato ''SIGEOL'', si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. Per ulteriori informazioni riguardanti scopi e funzioni del prodotto si prega di fare riferimento al documento ''Analisi dei Requisiti''.
+	\subsection{Glossario} 
+	Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti possono essere trovate nel documento ''Glossario'' al fine di eliminare ogni ambiguità e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione è disponibile all'interno del Glossario verrà marcato con una \underline{sottolineatura}.
+	\subsection{Riferimenti}
+		\subsubsection{Normativi}
+		\subsubsection{Informativi}
+\section{Visione generale della strategia di verifica}
+	\subsection{Organizzazione, pianificazione strategica e temporale, responsabilità}
+	\subsection{Risorse necessarie, risorse disponibili}
+	\subsection{Strumenti, tecniche, metodi}
+\section{Gestione amministrativa della revisione}
+	\subsection{Comunicazione e risoluzione di anomalie}
+	\subsection{Trattamento delle discrepanze}
+	\subsection{Procedure di controllo di qualità di processo}
+\section{Resoconto delle attività di verifica}
+	\subsection{Tracciamento componenti - requisiti}
+	\subsection{Dettaglio delle verifiche tramite analisi}
+	\subsection{Dettaglio delle verifiche tramite prove (test)}
+	\subsection{Dettaglio dell'esito delle revisioni}
+\section{Pianificazione ed esecuzione del collaudo}
+	\subsection{Specifica della campagna di validazione (collaudo incluso)}
+	\subsection{Dettaglio dell'esito della campagna di validazione}
+\modifiche
+\end{document}
