@@ -15,7 +15,7 @@
 \lhead{QuiXoft - Progetto SIGEOL}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Glossario v0.2.0}
+\lfoot{Glossario v0.2.1}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +27,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Glossario v0.2.0}
+\lfoot{Glossario v0.2.1}
 \cfoot{}
 \rfoot{}
 }
@@ -43,6 +43,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{03-12-2008} & 0.2.1 & Aggiornamento di alcune definizioni \\
 \hline
 \textit{02-12-2008} & 0.2.0 & Aggiunta delle definizioni dell'analisi dei requisiti \\
 \hline
@@ -66,7 +68,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Glossario \\ v0.2.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Glossario \\ v0.2.1}}
 \author{Redazione: Carlo Scortegagna}
 \maketitle
 \medskip
@@ -94,11 +96,11 @@
 \smallskip
 \normalsize
 \begin{description}
-	\item[Accessibile:]
-	\item[Ambiente di sviluppo:] \underline{software} che serve a sviluppare altro software. Può essere costituito da semplici e singoli programmi fino a complesse suite di sviluppo (vedi anche \underline{framework}).
-	\item[Amministratore:] all'interno di un team è colui che è responsabile dell'efficienza e dell'operatività dell'\underline{ambiente di sviluppo}. Si occupa inoltre della redazione dei piani di Gestione per la Qualità, del controllo delle \underline{versioni} del prodotto, della gestione dell'archivio della documentazione di progetto. Partecipa inoltre alla redazione del Piano di Progetto e delle Norme di Progetto per conto del \underline{Responsabile}.
+	\item[Accessibile:] capacità di un servizio d'essere fruibile con facilità da una qualsiasi categoria d'utente. 
+	\item[Ambiente di sviluppo:] software che serve a sviluppare altro software. Può essere costituito da semplici e singoli programmi fino a complesse suite di sviluppo (vedi anche framework).
+	\item[Amministratore:] all'interno di un team è colui che è responsabile dell'efficienza e dell'operatività dell'ambiente di sviluppo. Si occupa inoltre della redazione dei piani di Gestione per la Qualità, del controllo delle versioni del prodotto, della gestione dell'archivio della documentazione di progetto. Partecipa inoltre alla redazione del Piano di Progetto e delle Norme di Progetto per conto del Responsabile.
 	\item[Analista:] è colui che all'interno del team di occupa delle attività di analisi. Redige lo Studio di Fattibilità e l'Analisi dei Requisiti.
-	\item[Autenticazione:]
+	\item[Autenticazione:] processo tramite il quale un computer, un software o un utente verifica la corretta identità di un altro computer, software o utente che vuole comunicare attraverso una connessione. Un sistema di elaborazione, progettato per essere usato soltanto da utenti autorizzati, deve essere in grado di rilevare ed escludere i non autorizzati. L'accesso ad esso, dunque, viene garantito solo dopo aver eseguito con successo una procedura di autenticazione, di solito attraverso una username e una password personale.
 \end{description}
 \bigskip
 \Huge B \bigskip
@@ -106,7 +108,7 @@
 \smallskip
 \normalsize
 \begin{description}
-	\item[Browser:]
+	\item[Browser:] software che consente agli utenti di visualizzare e interagire con testi, immagini e altre informazioni, tipicamente contenute in una pagina web di un sito. Il browser è in grado di interpretare il codice HTML (e più recentemente XHTML) e visualizzarlo in forma di ipertesto. L'HTML è il codice col quale la maggioranza delle pagine web nel mondo sono composte: il web browser consente perciò la navigazione nel web.
 \end{description}
 \bigskip
 \Huge C \bigskip
@@ -114,7 +116,7 @@
 \smallskip
 \normalsize
 \begin{description}
-	\item[Commit:] operazione che si effettua quando si copiano le modifiche fatte su file locali nella corrispondente directory remota del \underline{repository}.
+	\item[Commit:] operazione che si effettua quando si copiano le modifiche fatte su file locali nella corrispondente directory remota del repository.
 \end{description}
 \bigskip
 \Huge D \bigskip
@@ -122,7 +124,7 @@
 \smallskip
 \normalsize
 \begin{description}
-	\item[Database:]
+	\item[Database:] archivio strutturato in modo tale da consentire la gestione de dati (l'inserimento, la ricerca, la cancellazione ed il loro aggiornamento) da parte di applicazioni software. Informalmente e impropriamente, la parola "database" viene spesso usata come abbreviazione dell'espressione Database Management System (DBMS), che si riferisce a una vasta categoria di sistemi software che consentono la creazione e la manipolazione efficiente di database.
 \end{description}
 \bigskip
 \Huge E \bigskip
@@ -139,6 +141,7 @@
 \normalsize
 \begin{description}
 	\item[Forum:] struttura informatica contenente discussioni e messaggi scritti dagli utenti. Viene utilizzato per mettere in comunicazione i componenti del team e permette loro di reperire informazioni riguardanti il progetto.
+	\item[Framework:] struttura di supporto su cui un software può essere organizzato e progettato. Alla base di un framework c'è sempre una serie di librerie di codice utilizzabili con uno o più linguaggi di programmazione, spesso corredate da una serie di strumenti di supporto allo sviluppo del software ideati per aumentare la velocità di sviluppo del prodotto finito.
 \end{description}
 \bigskip
 \Huge I \bigskip
@@ -147,7 +150,7 @@
 \normalsize
 \begin{description}
 	\item[Indentazione:] inserimento di una certa quantità di spazio vuoto all'inizio di una riga di testo.
-	\item[Intestazione:] porzione di testo che si trova all'inizio di un file \underline{sorgente}. Contiene solitamente l'autore del file, la \underline{versione} e altre informazioni utili a descriverlo.
+	\item[Intestazione:] porzione di testo che si trova all'inizio di un file sorgente. Contiene solitamente l'autore del file, la versione e altre informazioni utili a descriverlo.
 \end{description}
 \bigskip
 \Huge L \bigskip
@@ -174,8 +177,8 @@
 \smallskip
 \normalsize
 \begin{description}
-	\item[Pdf:] il Portable Document Format, comunemente abbreviato Pdf, è un formato di file basato su un linguaggio di descrizione di pagina sviluppato da Adobe per rappresentare documenti in modo indipendente dall'hardware e dal \underline{software} utilizzati per generarli o per visualizzarli. Ogni documento redatto dal team QuiXoft viene esportato in questo formato.
-	\item[Portabilità:] adattamento o una modifica di un componente, volto a consentirne l'uso in un ambiente di esecuzione diverso da quello originale. In una più moderna accezione, si parla di portabilità di un componente \underline{software} o di un documento intendendo che può essere utilizzato su diverse piattaforme senza apportare alcuna modifica.
+	\item[Pdf:] il Portable Document Format, comunemente abbreviato Pdf, è un formato di file basato su un linguaggio di descrizione di pagina sviluppato da Adobe per rappresentare documenti in modo indipendente dall'hardware e dal software utilizzati per generarli o per visualizzarli. Ogni documento redatto dal team QuiXoft viene esportato in questo formato.
+	\item[Portabilità:] adattamento o una modifica di un componente, volto a consentirne l'uso in un ambiente di esecuzione diverso da quello originale. In una più moderna accezione, si parla di portabilità di un componente software o di un documento intendendo che può essere utilizzato su diverse piattaforme senza apportare alcuna modifica.
 	\item[Progettista:] è il responsabile delle attività di progettazione all'interno del team. Redige la Specifica Tecnica, la Definizione di Prodotto e la parte programmatica del Piano di Qualifica.
 	\item[Programmatore:] è responsabile delle attività di codifica miranti alla realizzazione del prodotto e delle componenti di ausilio necessarie per l'esecuzione delle prove di verifica e validazione.
 \end{description}
@@ -187,7 +190,7 @@
 \begin{description}
 	\item[Repository:] punto centrale in cui i dati vengono immagazzinati e manutenuti. Può essere un punto in cui sono localizzati database o file multipli per la distribuzione via rete, oppure una collocazione direttamente accessibile dall'utente. Utilizzato principalmente in un contesto di sviluppo concorrente.
 	\item[Responsabile:] è colui che si fa carico, per conto del suo team, dei risultati del progetto. Elabora ed emana piani e scadenze, approva l'emissione di documenti, coordina le attività del gruppo e si relaziona con il controllo di qualità interno al progetto. Redige Organigramma e Piano di Progetto e approva l'Offerta ed i relativi allegati.
-	\item[Ruby:] \underline{linguaggio di programmazione} completamente a oggetti ed interpretato.
+	\item[Ruby:] linguaggio di programmazione completamente a oggetti ed interpretato.
 \end{description}
 \bigskip
 \Huge S \bigskip
@@ -195,11 +198,11 @@
 \smallskip
 \normalsize
 \begin{description}
-	\item[Server:]
+	\item[Server:] componente informatica che fornisce servizi ad altre componenti (tipicamente chiamate client) attraverso una rete. Il termine server può essere riferito sia alla componente software che eroga il servizio sia alla componente hardware.
 	\item[Servizio web:]
 	\item[Sigeol:] sistema software per la gestione dell'orario di lezione a uso del CCS di Informatica.
 	\item[Software:] vocabolo creato a partire da due termini della lingua inglese, soft (morbido) e ware (manufatto, oggetto) che sta ad indicare un programma o un insieme di programmi in grado di funzionare su un elaboratore.
-	\item[Sorgente:] insieme di istruzioni appartenenti ad un determinato \underline{linguaggio di programmazione}, utilizzato per realizzare un programma per computer.
+	\item[Sorgente:] insieme di istruzioni appartenenti ad un determinato linguaggio di programmazione, utilizzato per realizzare un programma per computer.
 	\item[Subversion:] sistema di controllo versione, noto anche come Svn.
 \end{description}
 \bigskip
@@ -209,7 +212,7 @@
 \normalsize
 \begin{description}
 	\item[Template:] documento o programma dove, come in un foglio semicompilato cartaceo, su una struttura generica o standard esistono spazi temporaneamente "bianchi" da riempire successivamente.
-	\item[Ticket:]
+	\item[Ticket:] assegnazione di un determinato compito ad un componente del team di sviluppo.
 \end{description}
 \bigskip
 \Huge V \bigskip
