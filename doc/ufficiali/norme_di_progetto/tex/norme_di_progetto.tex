@@ -15,7 +15,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Norme di Progetto v0.1.1}
+\lfoot{Norme di Progetto v0.2.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +27,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Norme di Progetto v0.1.1}
+\lfoot{Norme di Progetto v0.2.0}
 \cfoot{}
 \rfoot{}
 }
@@ -43,6 +43,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{04-12-2008} & 0.2.0 & Aggiunta del sommario \\
 \hline
 \textit{28-11-2008} & 0.1.1 & Correzione di alcuni errori grammaticali riportati dal verificatore \\
 \hline
@@ -66,16 +68,20 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Norme di Progetto \\ v0.1.1}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Norme di Progetto \\ v0.2.0}}
 \author{Redazione: Carlo Scortegagna}
 \maketitle
 \medskip
 \begin{center}
 \includegraphics[scale=0.5]{logo.png} \\
-\textit{quixoft.sol@gmail.com}
+\textit{quixoft.sol@gmail.com} \\
 \end{center}
 \medskip
 \info
+\begin{center}
+\textbf{Sommario} \\
+Norme interne per il progetto \textit{SIGEOL}, necessarie per regolamentare lo svolgersi delle operazioni interne.
+\end{center}
 \newpage
 }
 %definizione del comando "\indice" per la creazione dell'indice
