@@ -15,7 +15,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Analisi dei requisiti v0.7.0}
+\lfoot{Analisi dei requisiti v0.7.1}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +27,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Analisi dei requisiti v0.7.0}
+\lfoot{Analisi dei requisiti v0.7.1}
 \cfoot{}
 \rfoot{}
 }
@@ -43,6 +43,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{4 dicembre 2008} & 0.7.1 & Selezione dei termini contenuti nel glossario \\
 \hline
 \textit{4 dicembre 2008} & 0.7.0 & Stesura del sommario \\
 \hline
@@ -78,7 +80,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Analisi dei requisiti \\ v0.7.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Analisi dei requisiti \\ v0.7.1}}
 \author{Redazione: Beggiato Andrea, Scarpa Davide, Barbiero Mattia }
 \maketitle
 \medskip
@@ -111,7 +113,7 @@ Il presente documento denominato \textit{Analisi dei requisiti} ha lo scopo di d
 \subsection{Scopo del prodotto}
 Il progetto sotto analisi, denominato \textit{SIGEOL}, si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. Il committente richiede l'applicazione del sistema al solo corso di laurea in informatica, ma, constatato che la complessità non aumenta notevolmente, il team QuiXoft prevede lo sviluppo e la messa in opera dell'applicazione per tutti i corsi di laurea dell' Università degli studi di Padova.
 
-Il prodotto sarà implementato come un servizio web portabile, facilmente manutenibile ed accessibile agli utenti da una qualsiasi postazione con accesso alla rete Internet.
+Il prodotto sarà implementato come un \underline{servizio web} \underline{portabile}, facilmente manutenibile ed \underline{accessibile} agli utenti da una qualsiasi postazione con accesso alla rete Internet.
 \subsection{Glossario}
 Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti possono essere trovate nel documento ''Glossario'' al fine di eliminare ogni ambiguità e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione è disponibile all’interno del Glossario verrà marcato con una \underline{sottolineatura}.
 \subsection{Riferimenti}
@@ -125,9 +127,9 @@ Le definizioni dei termini specialistici usati nella stesura di questo e di tutt
 \section{Descrizione generale}
 \subsection{Contesto d'uso del prodotto}
 \subsubsection{Processi produttivi e modalità d'uso}
-Il funzionamento del sistema \textit{SIGEOL}, a processo produttivo concluso, sarà in grado di guidare ogni singolo utilizzatore (confronta sezione \ref{utenti}) allo svolgimento delle proprie azioni (confronta sezione \ref{funzioni}). In altre parole sarà disponibile un servizio che offrirà, dopo un'opportuna autenticazione, un insieme di strumenti che permetteranno l'inserimento guidato dei dati che serviranno al fine ultimo di generare un orario per le lezioni.
+Il funzionamento del sistema \textit{SIGEOL}, a processo produttivo concluso, sarà in grado di guidare ogni singolo utilizzatore (confronta sezione \ref{utenti}) allo svolgimento delle proprie azioni (confronta sezione \ref{funzioni}). In altre parole sarà disponibile un servizio che offrirà, dopo un'opportuna \underline{autenticazione}, un insieme di strumenti che permetteranno l'inserimento guidato dei dati che serviranno al fine ultimo di generare un orario per le lezioni.
 \subsubsection{Piattaforma d’esecuzione ed interfacciamento con l’ambiente di installazione e uso}
-Il prodotto sarà realizzato tramite un'applicazione web supportata da un database e dovrà essere accessibile da un qualsiasi tipo di browser. Data la mancanza di un applicativo preesistente al quale aggiungere le funzioni del sistema \textit{SIGEOL}, il team QuiXoft dovrà definirne ogni aspetto creando un prodotto che sia accessibile, manutenibile, portabile e soprattutto sicuro. A tal scopo verranno adottate tecnologie gratuite e moderne per lo sviluppo di pagine dinamiche e sarà necessario disporre di un server affidabile.
+Il prodotto sarà realizzato tramite un'applicazione web supportata da un \underline{database} e dovrà essere accessibile da un qualsiasi tipo di \underline{browser}. Data la mancanza di un applicativo preesistente al quale aggiungere le funzioni del sistema \textit{SIGEOL}, il team QuiXoft dovrà definirne ogni aspetto creando un prodotto che sia \underline{accessibile}, manutenibile, \underline{portabile} e soprattutto sicuro. A tal scopo verranno adottate tecnologie gratuite e moderne per lo sviluppo di pagine dinamiche e sarà necessario disporre di un \underline{server} affidabile.
 \subsection{Funzioni del prodotto} \label{funzioni}
 Il prodotto consentirà, alle varie tipoligie di utenti, di fruire di un servizio che permetta la generazione e l'ottimizzazione di uno schema d'orario per le lezioni. Per raggiungere questo scopo i vari utenti dovranno inserire i dati di loro competenza richiesti dal sistema, tra i quali figurano vincoli e preferenze.
 
@@ -153,7 +155,7 @@ Il \textit{presidente del CCS} provvede, invece, all'invito dei vari \textit{doc
 
 Ogni tipologia potrà inserire i propri vincoli e preferenze e, dato che il sistema \textit{SIGEOL} guiderà nel modo più accurato possibile ogni utente, non sono richieste particolari conoscescenze ad eccezione dell'uso di un elaboratore connesso alla rete Internet.
 \subsection{Vincoli generali}
-Il sistema che si intende sviluppare cercherà di essere il più portabile ed indipendente possibile. Il team QuiXoft non esclude però che sia necessaria l'installazione di componenti software nel server dove il prodotto risiederà. Ad ogni modo non saranno in alcun modo utilizzate tecnologie soggette al pagamento di una qualche forma di licenza o altro.
+Il sistema che si intende sviluppare cercherà di essere il più \underline{portabile} ed indipendente possibile. Il team QuiXoft non esclude però che sia necessaria l'installazione di componenti software nel \underline{server} dove il prodotto risiederà. Ad ogni modo non saranno in alcun modo utilizzate tecnologie soggette al pagamento di una qualche forma di licenza o altro.
 \subsection{Assunzioni e dipendenze}
 Il prodotto che il team QuiXoft si impegna a sviluppare dipende da diversi fattori quali:
 \begin{itemize}
