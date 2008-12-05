@@ -15,7 +15,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Piano di Qualifica v0.2.0}
+\lfoot{Piano di Qualifica v0.3.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +27,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Piano di Qualifica v0.2.0}
+\lfoot{Piano di Qualifica v0.3.0}
 \cfoot{}
 \rfoot{}
 }
@@ -44,9 +44,11 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
+\textit{05-12-2008} & 0.3.0 & Inizio stesura della sezione tecniche e metodi di verifica \\
+\hline
 \textit{05-12-2008} & 0.2.0 & Prima stesura del documento \\
 \hline
-\textit{03-12-2008} & 0.1.0 & Prima stesura del documento \\
+\textit{03-12-2008} & 0.1.0 & Stesura dell'indice \\
 \hline
 \end{tabular}
 \end{center}
@@ -68,7 +70,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Qualifica \\ v0.2.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Qualifica \\ v0.3.0}}
 \author{Redazione: Carlo Scortegagna}
 \maketitle
 \medskip
@@ -167,7 +169,23 @@ I processi di revisione previsti saranno di due tipi:
 
 Per la pianificazione oraria delle attività di verifica durante le varie fasi del progetto e per le date delle revisioni si prega di consultare il documento \textsc{Piano di Progetto}.
 \subsection{Risorse} tempo a disposizione, ticket
-\subsection{Tecniche di analisi}
+\subsection{Tecniche e medoti di verifica}
+Il prodotto che il team QuiXoft intende sviluppare, nonchè ogni processo istanziato, saranno sottoposti a costante attività di verifica in ogni fase di lavoro descritta nel \textsc{Piano di progetto}. Di seguito sono riportate le metodologie per attuare questa attività.
+\subsubsection{Verifica del codice prodotto}
+L'intero sviluppo del sistema \textit{SIGEOL} sarà guidato dalla metodologia \textit{Test-Driven Development} (d'ora in poi TDD).
+
+La strategia di sviluppo TDD enfatizza in modo formidabile i test automatizzati per verificare la correttezza del codice. Invece di costruire una struttura di test alla fine dello sviluppo dell’applicazione, il TDD prevede che la scrittura del test sia la fase iniziale del processo. Quindi l’implementazione di una nuova funzionalità viene preceduta dalla definizione dei test che ne stabiliscono la correttezza formale e semantica. Questo approccio garantisce che il codice prodotto risulti naturalmente modulare ed i moduli possono essere testati in isolamento gli uni dagli altri.
+
+Il membri del team QuiXoft dovranno quindi, nella fase denominata \textit{Progettazione}, focalizzare la loro attenzione sulla scelta di un linguaggio di programmazione, un framework ed un insieme di plugin che facilitano ed incoraggino l'uso di una tale strategia. Sarà poi compito degli addetti alla fase denominata \textit{Realizzazione} aderire il più possibile a questa metodologia.
+
+Le diverse tipologie di test sono le seguenti:
+\begin{itemize}
+ \item[Test di Unità] ha lo scopo di verificare ogni unità software affinchè ́soddisfi i requisiti previsti mediante l’impiego di un insieme di dati in ingresso.
+ \item[Test di integrazione] ha lo scopo di verificare la cooperazione di più unità software
+ \item[Test di sistema] ha lo scopo di verificare il soddisfacimento dei requisiti di tutto il sistema, in relazione anche all'ambiente d'installazione.
+
+\end{itemize}
+\subsubsection{Verifica dei processi}
 \section{Gestione amministrativa}
 \subsection{Comunicazioni}
 Come spiegato nel documento \textsc{Norme di Progetto}, ad ogni prodotto del lavoro del team è assegnato un ticket, consultabile sul sito di appoggio \textit{http://www.assembla.com}. Per prodotto si intende ovviamente qualsiasi risultato del lavoro dei componenti del team QuiXoft (documentazione, codice sorgente, moduli o programmi completi, ecc...).
