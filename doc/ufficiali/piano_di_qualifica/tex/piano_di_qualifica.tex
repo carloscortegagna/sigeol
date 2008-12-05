@@ -15,7 +15,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Piano di Qualifica v0.3.0}
+\lfoot{Piano di Qualifica v0.4.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +27,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Piano di Qualifica v0.3.0}
+\lfoot{Piano di Qualifica v0.4.0}
 \cfoot{}
 \rfoot{}
 }
@@ -44,11 +44,13 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
-\textit{05-12-2008} & 0.3.0 & Inizio stesura della sezione tecniche e metodi di verifica \\
+\textit{05-12-2008} & 0.4.0 & Aggiunta delle sezione Gestione Amministrativa  \\
 \hline
-\textit{05-12-2008} & 0.2.0 & Prima stesura del documento \\
+\textit{05-12-2008} & 0.3.0 & Stesura della sottosezione Tecniche e metodi di verifica  \\
 \hline
-\textit{03-12-2008} & 0.1.0 & Stesura dell'indice \\
+\textit{04-12-2008} & 0.2.0 & Aggiunta delle sezione Visione Generale  \\
+\hline
+\textit{03-12-2008} & 0.1.0 & Prima stesura dell'indice del documento \\
 \hline
 \end{tabular}
 \end{center}
@@ -70,7 +72,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Qualifica \\ v0.3.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Qualifica \\ v0.4.0}}
 \author{Redazione: Carlo Scortegagna}
 \maketitle
 \medskip
@@ -113,6 +115,7 @@ Le definizioni dei termini specialistici usati nella stesura di questo e di tutt
  	\item Capitolato d'appalto reperibile all'indirizzo: \\ \textit{http://www.math.unipd.it/~tullio/IS-1/2008/Progetti/SIGEOL.html}
  	\item documento \textsc{Analisi dei Requisiti} alla sua ultima versione
 	\item \textsc{Norme di Progetto}
+	\item standard ISO/IEC 9126:2001
 \end{itemize}
 \section{Visione generale}
 \subsection{Organizzazione} 
@@ -124,31 +127,65 @@ Nelle fasi successive all'accettazione del prodotto la gestione qualità non sar
 
 Qualsiasi risultato prodotto dal team QuiXoft dovrà essere sottoposto a verifica, sia esso un documento ufficiale, un file di codice sorgente o un qualsiasi altro risultato del lavoro del team.
 
-Vista la natura del team di sviluppo, in cui tutti i componenti occuperanno a rotazione tutti i ruoli necessari, particolare attenzione sarà posta nel garantire l'assenza di conflitti di interesse: nessun Verificatore dovrà quindi trovarsi nella posizione di valutare un documento o un file sorgente prodotto da lui stesso in una precedente fase del progetto.	
+Vista la natura del team di sviluppo, in cui tutti i componenti occuperanno a rotazione tutti i ruoli necessari, particolare attenzione sarà posta nel garantire l'assenza di conflitti di interesse: nessun Verificatore dovrà quindi trovarsi nella posizione di valutare un documento o un file sorgente prodotto da lui stesso in una precedente fase del progetto.
+
+\subsection{Obiettivi}
+Il lavoro del team, dalla fase di consegna del capitolato all'accettazione del prodotto finale, dovrà essere fatto nell'ottica di ottenere un risultato che soddisfi le esigenze del committente. Sarà responsabilità di tutti i componenti ottenere un prodotto finale che soddisfi pienamente tutti i requisiti esposti del committente.
+
+L'obiettivo di ogni componente del team QuiXoft è di portare avanti le proprie mansioni nel miglior modo possibile, di rispettare le \textsc{Norme di Progetto}, di restare fedele a quanto prestabilito nel \textsc{Piano di Progetto} per quanto riguarda le ore massime di impegno personale e il tetto massimo di spesa per portare a compimento l'intero progetto.
+
+Ogni attività del team deve essere svolta puntando all'obiettivo finale di realizzare un prodotto di qualità, finalizzato al soddisfacimento:
+\begin{itemize}
+	\item \textbf{del committente,} realizzando un prodotto che soddisfi pienamente i requisiti, che sia funzionale, usabile e pratico, che sia affidabile, efficiente e sicuro;
+	\item \textbf{del team stesso,} realizzando un progetto qualitativamente alto che dia la prospettiva di sviluppi futuri, che possa essere riusato facilmente, che sia facilmente manutenibile, che sia portabile.
+\end{itemize}
+\subsection{Caratteristiche del prodotto}
+Il risultato dal lavoro del team QuiXoft dovrà il più possibile aderire ai parametri di qualità descritti nello standard ISO/IEC 9126:2001. Le principali caratteristiche che il prodotto dovrà garantire per essere considerato di qualità sia dal committente sia dal team stesso saranno:
+\begin{itemize}
+	\item \textbf{Funzionalità:} \\
+		- Utilità: \begin{small}fare esattamente quello per cui è stato progettato\\\end{small}
+		- Accuratezza: \begin{small}funzionare rispettando i requisiti\\\end{small}
+		- Interoperabilità: \begin{small}interagire facilmente con l'esterno\\\end{small}
+		- Conformità: \begin{small}conformarsi a norme e standard\\\end{small}
+		- Sicurezza: \begin{small}impedire accessi non autorizzati\end{small}
+	\item \textbf{Affidabilità:} \\
+		- Maturità: \begin{small}garantire una bassa frequenza di fallimenti dovuti a errori\\\end{small}
+		- Tolleranza ai guasti: \begin{small}mantenere le prestazioni prefissate in caso di errori\\\end{small}
+		- Ripristinabilità: \begin{small}ristabilire i dati perduti in caso di errori\end{small}
+	\item \textbf{Usabilità:} \\
+		- Comprensibilità: \begin{small}poco sforzo necessario per comprenderne l'uso \\\end{small}
+		- Apprendimento: \begin{small}facilitare la comprensione dell'utente \\\end{small}
+		- Operabilità: \begin{small}agevolare l'utente nel controllo del software \end{small}
+	\item \textbf{Efficienza:} \\
+		- Rispetto dei tempi di risposta e di esecuzione \\
+		- Rispetto delle risorse utilizzate
+	\item \textbf{Manutenibilità:} \\
+		- Analizzabilità: \begin{small}facilitare la diagnostica degli errori \\\end{small}
+		- Modificabilità: \begin{small}agevolare la manutenzione futura \\\end{small}
+		- Stabilità: \begin{small} rischi controllati in caso di modifica\\\end{small}
+		- Verificabilità: validazione semplificata dopo una manutenzione
+	\item \textbf{Portabilità:} \\
+		- Adattabilità: \begin{small}adattamento ad ambienti diversi senza modifiche aggiuntive\\\end{small}
+		- Installabilità: \begin{small}permette l'installazione in uno specifico ambiente \\\end{small}
+		- Conformità: \begin{small}aderire a standard, norme e convenzioni di portabilità \\\end{small}
+		- Sostituibilità: \begin{small}sostituire elementi dell'ambiente esterno \end{small}
+\end{itemize}
+Nel caso di sviluppo di prodotti che possiedono un interfaccia via pagina web, sarà altresì considerata caratteristica importante la validazione del codice tramite gli strumenti messi a disposizione dal consorzio W3C. Per maggiori informazioni si può visitare il sito \textit{http://www.w3.org}.
 \subsection{Responsabilità}
 Ogni componente del team QuiXoft è tenuto a svolgere il lavoro a lui assegnato con precisione, puntando a renderlo il più possibile esente da errori.
 Primo requisito per tenere alto il livello di qualità dei lavori svolti è quindi di leggere con attenzione le \textsc{Norme di Progetto}, e di applicarne alla lettera il contenuto.
 
-Di ogni prodotto, sia esso un documento o un file di codice sorgente, dovranno essere ben chiari i requisiti e gli obbiettivi.
-
-Il lavoro del team, dalla fase di consegna del capitolato alla consegna del prodotto, dovrà essere fatto nell'ottica di ottenere un risultato che soddisfi le esigenze del committente. Sarà responsabilità di tutti i componenti ottenere un prodotto finale che:
-\begin{itemize}
- 	\item soddisfi pienamente i requisiti del committente
- 	\item sia funzionale, usabile e chiaro
-	\item sia affidabile, efficiente, sicuro e manutenibile
-\end{itemize}
-
-Nonostante ciò, è ovviamente sempre presente una percentuale di incertezza sulla perfezione del lavoro svolto, ed è proprio compito del presente documento illustrare le procedure da seguire in caso di errori, imprecisioni o incongruenze.
+Nonostante ciò, è ovviamente sempre presente una percentuale di incertezza sulla perfezione del lavoro svolto, ed è proprio compito del presente documento illustrare le procedure da seguire in caso di errori, imprecisioni o incongruenze, al fine di ottenere il maggior livello qualitativo possibile.
 
 Le figure chiave per la gestione della qualità all'interno del team sono:
 \begin{itemize}
-	\item \textbf{Verificatore:} è colui che effettivamente controlla ed esegue i test sul materiale prodotto dai membri del team. Ogni documento, file o prodotto passa necessariamente attraverso le sue verifiche, e senza il suo responso positivo nulla può essere dichiarato ufficiale. Se durante una fase del progetto vi fosse la necessità di avere più di un verificatore, sarà compito del Responsabile eleggere un rappresentante che coordini le loro attività interne.
-	\item \textbf{Responsabile:} suo compito è di convalidare le modifiche proposte dai Verificatori e di controllarne l'operato.
+	\item \textbf{Verificatore:} è colui che effettivamente controlla ed esegue i test sul materiale prodotto dai membri del team. Ogni documento, file o prodotto passa necessariamente attraverso le sue verifiche, e senza il suo responso positivo nulla può essere dichiarato ufficiale. Se durante una fase del progetto vi fosse la necessità di avere più di un verificatore, sarà compito del Responsabile eleggere un rappresentante che coordini le loro attività interne;
+	\item \textbf{Responsabile:} suo compito è di convalidare le modifiche proposte dai Verificatori e di controllarne l'operato;
 	\item tutti gli altri ruoli previsti all'interno del team (Analista, Progettista, Programmatore, Amministratore) sono tenuti a sottoporre il proprio lavoro al verificatore per le fasi di controllo e test. E' loro responsabilità anche apportare le modifiche che il Verificatore avrà notificato essere necessarie e che il Responsabile avrà convalidato.
 \end{itemize}
 \subsection{Pianificazione}
 Come detto in precedenza, il controllo qualità parte già dall'inizio del progetto: anche le attività di analisi dei requisiti e di studio di fattibilità necessitano della verifica da parte di qualcuno estraneo alla redazione, per evitare errori o incongruenze.
-Tali attività di controllo del lavoro svolto continuano fino alla consegna del prodotto finale. 
+Tali attività di controllo del lavoro svolto continuano fino alla consegna del prodotto finale.
 
 Durante lo sviluppo del progetto saranno svolte delle revisioni per saggiarne lo stato di salute. In queste occasioni sarà possibile valutare, con il committente o con il docente di riferimento, il livello di qualità del lavoro svolto.
 
@@ -168,11 +205,16 @@ I processi di revisione previsti saranno di due tipi:
 \end{enumerate}
 
 Per la pianificazione oraria delle attività di verifica durante le varie fasi del progetto e per le date delle revisioni si prega di consultare il documento \textsc{Piano di Progetto}.
-\subsection{Risorse} tempo a disposizione, ticket
+\subsection{Risorse}
+La gestione qualità dell'intero progetto impegna risorse umane come tecnologiche, ed è compito dell'Amministratore coordinarne l'utilizzo.
+
+Una stima dei tempi che i Verificatori dedicheranno al controllo della qualità è consultabile sul \textsc{Piano di Progetto}. Nonostante ciò, non è da escludere che tali ipotesi di impegno siano inadeguate. Il livello di carico infatti varierà in base all'onerosità e alla tipologia del processo in esame, ed è arduo preventivare con precisione i tempi necessari per assicurare un corretto e preciso svolgimenti delle attività di verifica.
+
+Sarà compito dell'Amministratore gestire l'uso delle risorse umane e tecnologiche per garantire che siano sufficienti ed efficienti per consentire una verifica di buon livello.
 \subsection{Tecniche e medoti di verifica}
 Il prodotto che il team QuiXoft intende sviluppare, nonchè ogni processo istanziato, saranno sottoposti a costante attività di verifica in ogni fase di lavoro descritta nel \textsc{Piano di progetto}. Di seguito sono riportate le metodologie per attuare questa attività.
 \subsubsection{Verifica del codice prodotto}
-L'intero sviluppo del sistema \textit{SIGEOL} sarà guidato dalla metodologia \textit{Test-Driven Development} (d'ora in poi TDD).
+L'intero sviluppo del sistema ''SIGEOL'' sarà guidato dalla metodologia \textit{Test-Driven Development} (d'ora in poi TDD).
 
 La strategia di sviluppo TDD enfatizza in modo formidabile i test automatizzati per verificare la correttezza del codice. Invece di costruire una struttura di test alla fine dello sviluppo dell’applicazione, il TDD prevede che la scrittura del test sia la fase iniziale del processo. Quindi l’implementazione di una nuova funzionalità viene preceduta dalla definizione dei test che ne stabiliscono la correttezza formale e semantica. Questo approccio garantisce che il codice prodotto risulti naturalmente modulare ed i moduli possono essere testati in isolamento gli uni dagli altri.
 
@@ -180,29 +222,35 @@ Il membri del team QuiXoft dovranno quindi, nella fase denominata \textit{Proget
 
 Le diverse tipologie di test sono le seguenti:
 \begin{itemize}
- \item[Test di Unità] ha lo scopo di verificare ogni unità software affinchè ́soddisfi i requisiti previsti mediante l’impiego di un insieme di dati in ingresso.
- \item[Test di integrazione] ha lo scopo di verificare la cooperazione di più unità software
- \item[Test di sistema] ha lo scopo di verificare il soddisfacimento dei requisiti di tutto il sistema, in relazione anche all'ambiente d'installazione.
-
-Sarà compito del verificatore accertarsi della corretta applicazione di tale metodologia ed inoltre sarà incaricato di effettuare un'analisi del codice per evitare un'eccessiva ridondanza od una complessità elevata sia in termini di manutenibilità che riguardo all'efficenza. A tal scopo si cercheranno di utilizzare strumenti di benchmark che facilitano la misurazione delle performance del sistema.
+	\item \textbf{Test di Unità:} ha lo scopo di verificare ogni unità software affinchè soddisfi i requisiti previsti mediante l’impiego di un insieme di dati in ingresso;
+	\item \textbf{Test di integrazione:} ha lo scopo di verificare la cooperazione di più unità software;
+	\item \textbf{Test di sistema:} ha lo scopo di verificare il soddisfacimento dei requisiti di tutto il sistema, in relazione anche all'ambiente d'installazione.
 \end{itemize}
+Sarà compito del verificatore accertarsi della corretta applicazione di tale metodologia ed inoltre sarà incaricato di effettuare un'analisi del codice per evitare un'eccessiva ridondanza od una complessità elevata sia in termini di manutenibilità che riguardo all'efficenza. A tal scopo si cercheranno di utilizzare strumenti di benchmark che facilitano la misurazione delle performance del sistema.
+
 \subsubsection{Verifica dei processi}
 \section{Gestione amministrativa}
 \subsection{Comunicazioni}
 Come spiegato nel documento \textsc{Norme di Progetto}, ad ogni prodotto del lavoro del team è assegnato un ticket, consultabile sul sito di appoggio \textit{http://www.assembla.com}. Per prodotto si intende ovviamente qualsiasi risultato del lavoro dei componenti del team QuiXoft (documentazione, codice sorgente, moduli o programmi completi, ecc...).
 
-Al momento del completamento di un ticket accettato dovrà essere associato un altro ticket che ne richieda la verifica. Il nuovo ticket verrà assegnato all'unico Verificatore nel caso ce ne sia solo uno, oppure al rappresentante eletto nel caso ce ne siano più d'uno. Sarà compito di quest'ultimo completare la verifica richiesta o inoltrare il ticket a qualche suo sottoposto.
+Al momento del completamento di un ticket accettato dovrà esservi associato un altro ticket che ne richieda la verifica. Il nuovo ticket verrà assegnato all'unico Verificatore nel caso ce ne sia solo uno, oppure al rappresentante eletto nel caso ce ne siano più d'uno. Sarà compito di quest'ultimo completare la verifica richiesta o inoltrare il ticket a qualche suo sottoposto.
 
 Con questa procedura si assicura che ogni compito svolto verrà poi controllato dal Verificatore designato.
-\subsubsection{Risoluzine anomalie}
-Nel caso il Verificatore noti qualche anomalia nelle fasi di controllo e verifica, dovrà inserire i risultati all'interno del relativo ticket al momento della sua chiusura e del suo inoltro a colui che ha creato il prodotto in questione.
-La procedura appena descritta dovrà venir svolta finchè il verificatore 
+\subsubsection{Risoluzione anomalie}
+Nel caso il Verificatore noti qualche anomalia nelle fasi di controllo e verifica, dovrà inserire i risultati all'interno del relativo ticket e chiuderlo segnandolo come completato.
 
+Sarà cura del Reponsabile poi controllare le modifiche proposte dalla fase di verifica, e nel caso di approvazione creare un nuovo ticket all'autore del prodotto testato per fargli apportare i dovuti cambiamenti.
 
-\subsection{Trattamento delle discrepanze}
+La procedura appena descritta dovrà venir svolta finchè il verificatore non notificherà più errori nei suoi test.
+\subsubsection{Trattamento delle discrepanze}
+La procedura per il trattamento delle discepanze è formalmente equivalente a quella appena elencata per la risoluzione delle anomalie.
+
+L'unica differenza è nel fatto che il verificatore che la nota dovrà inserire, nel resoconto del ticket che conclude la sua fase di verifica, anche il prodotto da cui la discrepanza è nata.
+
+Se le discrepanze dovessero nascere frequentemente tra i documenti prodotti e le \textsc{Norme di Progetto}, il verificatore sarà tenuto a notificarlo all'Amministratore, il quale, in collaborazione con il Responsabile, procederà ai dovuti provvedimenti.
+
+Non è infatti tollerabile che del tempo venga sprecato per correggere e notificare errori che potrebbero essere facilmente evitati leggendo e seguendo con più attenzione le \textsc{Norme di Progetto}.
 \subsection{Procedure di controllo di qualità di processo}
-\section{Resoconto delle attività di verifica}
-\subsection{Tracciamento componenti - requisiti}
 
 \modifiche
 \end{document}
