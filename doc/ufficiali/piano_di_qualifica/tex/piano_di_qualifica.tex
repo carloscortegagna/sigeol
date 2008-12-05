@@ -15,7 +15,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Piano di Qualifica v0.1.0}
+\lfoot{Piano di Qualifica v0.2.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +27,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Piano di Qualifica v0.1.0}
+\lfoot{Piano di Qualifica v0.2.0}
 \cfoot{}
 \rfoot{}
 }
@@ -43,6 +43,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{05-12-2008} & 0.2.0 & Prima stesura del documento \\
 \hline
 \textit{03-12-2008} & 0.1.0 & Prima stesura del documento \\
 \hline
@@ -66,16 +68,20 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Qualifica \\ v0.1.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Qualifica \\ v0.2.0}}
 \author{Redazione: Carlo Scortegagna}
 \maketitle
 \medskip
 \begin{center}
 \includegraphics[scale=0.5]{logo.png} \\
-\textit{quixoft.sol@gmail.com}
+\textit{quixoft.sol@gmail.com} \\
 \end{center}
 \medskip
 \info
+\begin{center}
+\textbf{Sommario} \\
+Piano di Qualifica per il progetto ''SIGEOL'', necessario per regolamentare le operazioni di verifica, validazione e controllo qualità durante tutti i periodi di sviluppo.
+\end{center}
 \newpage
 }
 %definizione del comando "\indice" per la creazione dell'indice
@@ -90,29 +96,94 @@
 \indice
 \setcounter{page}{1}
 \section{Introduzione}
-	\subsection{Scopo del documento}
-	\subsection{Scopo del prodotto}
-	Il prodotto sotto analisi, denominato ''SIGEOL'', si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. Per ulteriori informazioni riguardanti scopi e funzioni del prodotto si prega di fare riferimento al documento ''Analisi dei Requisiti''.
-	\subsection{Glossario} 
-	Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti possono essere trovate nel documento ''Glossario'' al fine di eliminare ogni ambiguità e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione è disponibile all'interno del Glossario verrà marcato con una \underline{sottolineatura}.
-	\subsection{Riferimenti}
-		\subsubsection{Normativi}
-		\subsubsection{Informativi}
-\section{Visione generale della strategia di verifica}
-	\subsection{Organizzazione, pianificazione strategica e temporale, responsabilità}
-	\subsection{Risorse necessarie, risorse disponibili}
-	\subsection{Strumenti, tecniche, metodi}
-\section{Gestione amministrativa della revisione}
-	\subsection{Comunicazione e risoluzione di anomalie}
-	\subsection{Trattamento delle discrepanze}
-	\subsection{Procedure di controllo di qualità di processo}
+\subsection{Scopo del documento}
+Lo scopo di questo documento è di definire e pianificare le procedure che il team QuiXoft adotterà per garantire la qualità del prodotto denominato ''SIGEOL''. Requisito fondamentale per garantire un adeguato livello qualitativo è il rispettare le specifiche definite in fase di analisi del progetto.
+
+Particolare attenzione verrà posta anche nella definizione delle attività di verifica e validazione del materiale prodotto e nella descrizione degli ambienti di prova e di collaudo.
+\subsection{Scopo del prodotto}
+Il prodotto ''SIGEOL'' si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. 
+
+Per ulteriori informazioni riguardanti scopi e funzioni del prodotto si prega di fare riferimento al documento \textsc{Analisi dei Requisiti}.
+\subsection{Glossario} 
+Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti possono essere trovate nel documento \textsc{Glossario} al fine di eliminare ogni ambiguità e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione è disponibile all'interno del glossario verrà marcato con una \underline{sottolineatura}.
+\subsection{Riferimenti}
+\begin{itemize}
+ 	\item Capitolato d'appalto reperibile all'indirizzo: \\ \textit{http://www.math.unipd.it/~tullio/IS-1/2008/Progetti/SIGEOL.html}
+ 	\item documento \textsc{Analisi dei Requisiti} alla sua ultima versione
+	\item \textsc{Norme di Progetto}
+\end{itemize}
+\section{Visione generale}
+\subsection{Organizzazione} 
+Le attività finalizzate a garantire la qualità del prodotto''SIGEOL'' inizieranno in concomitanza con l'inizio della fase di analisi del progetto, per garantire sin dall'inizio l'assenza di errori o incongruenze.
+
+Il controllo della qualità continuerà quindi per tutta la durata del progetto, sino alla consegna e all'accettazione del prodotto finito. Durante tale periodo di tempo sarà compito dei membri del team QuiXoft aggiornare il presente documento con i risultati aggiornati dei test e delle verifiche a cui il progetto verrà sottoposto. Al momento della consegna del prodotto, sarà compito del committente valutarne le conclusioni ed esaminare se i risultati rispetteranno appieno i requisiti stilati durante l'iniziale fase di analisi.
+
+Nelle fasi successive all'accettazione del prodotto la gestione qualità non sarà più compito del team QuiXoft: per ulteriori informazioni sulla fase di manutenzione si prega di consultare il documento \textsc{Piano di Progetto}.
+
+Qualsiasi risultato prodotto dal team QuiXoft dovrà essere sottoposto a verifica, sia esso un documento ufficiale, un file di codice sorgente o un qualsiasi altro risultato del lavoro del team.
+
+Vista la natura del team di sviluppo, in cui tutti i componenti occuperanno a rotazione tutti i ruoli necessari, particolare attenzione sarà posta nel garantire l'assenza di conflitti di interesse: nessun Verificatore dovrà quindi trovarsi nella posizione di valutare un documento o un file sorgente prodotto da lui stesso in una precedente fase del progetto.	
+\subsection{Responsabilità}
+Ogni componente del team QuiXoft è tenuto a svolgere il lavoro a lui assegnato con precisione, puntando a renderlo il più possibile esente da errori.
+Primo requisito per tenere alto il livello di qualità dei lavori svolti è quindi di leggere con attenzione le \textsc{Norme di Progetto}, e di applicarne alla lettera il contenuto.
+
+Di ogni prodotto, sia esso un documento o un file di codice sorgente, dovranno essere ben chiari i requisiti e gli obbiettivi.
+
+Il lavoro del team, dalla fase di consegna del capitolato alla consegna del prodotto, dovrà essere fatto nell'ottica di ottenere un risultato che soddisfi le esigenze del committente. Sarà responsabilità di tutti i componenti ottenere un prodotto finale che:
+\begin{itemize}
+ 	\item soddisfi pienamente i requisiti del committente
+ 	\item sia funzionale, usabile e chiaro
+	\item sia affidabile, efficiente, sicuro e manutenibile
+\end{itemize}
+
+Nonostante ciò, è ovviamente sempre presente una percentuale di incertezza sulla perfezione del lavoro svolto, ed è proprio compito del presente documento illustrare le procedure da seguire in caso di errori, imprecisioni o incongruenze.
+
+Le figure chiave per la gestione della qualità all'interno del team sono:
+\begin{itemize}
+	\item \textbf{Verificatore:} è colui che effettivamente controlla ed esegue i test sul materiale prodotto dai membri del team. Ogni documento, file o prodotto passa necessariamente attraverso le sue verifiche, e senza il suo responso positivo nulla può essere dichiarato ufficiale. Se durante una fase del progetto vi fosse la necessità di avere più di un verificatore, sarà compito del Responsabile eleggere un rappresentante che coordini le loro attività interne.
+	\item \textbf{Responsabile:} suo compito è di convalidare le modifiche proposte dai Verificatori e di controllarne l'operato.
+	\item tutti gli altri ruoli previsti all'interno del team (Analista, Progettista, Programmatore, Amministratore) sono tenuti a sottoporre il proprio lavoro al verificatore per le fasi di controllo e test. E' loro responsabilità anche apportare le modifiche che il Verificatore avrà notificato essere necessarie e che il Responsabile avrà convalidato.
+\end{itemize}
+\subsection{Pianificazione}
+Come detto in precedenza, il controllo qualità parte già dall'inizio del progetto: anche le attività di analisi dei requisiti e di studio di fattibilità necessitano della verifica da parte di qualcuno estraneo alla redazione, per evitare errori o incongruenze.
+Tali attività di controllo del lavoro svolto continuano fino alla consegna del prodotto finale. 
+
+Durante lo sviluppo del progetto saranno svolte delle revisioni per saggiarne lo stato di salute. In queste occasioni sarà possibile valutare, con il committente o con il docente di riferimento, il livello di qualità del lavoro svolto.
+
+I processi di revisione previsti saranno di due tipi:
+\begin{enumerate}
+ 	\item Revisioni formali:
+	\begin{itemize}
+		\item revisione dei requisiti (RR)
+		\item revisione di accettazione (RA)
+	\end{itemize}
+ 	\item Revisione informali:
+	\begin{itemize}
+		\item revisione del progetto preliminare (RPP)
+		\item revisione del progetto definitivo (RPD)
+		\item revisione di qualifica (RQ)
+	\end{itemize}
+\end{enumerate}
+
+Per la pianificazione oraria delle attività di verifica durante le varie fasi del progetto e per le date delle revisioni si prega di consultare il documento \textsc{Piano di Progetto}.
+\subsection{Risorse} tempo a disposizione, ticket
+\subsection{Tecniche di analisi}
+\section{Gestione amministrativa}
+\subsection{Comunicazioni}
+Come spiegato nel documento \textsc{Norme di Progetto}, ad ogni prodotto del lavoro del team è assegnato un ticket, consultabile sul sito di appoggio \textit{http://www.assembla.com}. Per prodotto si intende ovviamente qualsiasi risultato del lavoro dei componenti del team QuiXoft (documentazione, codice sorgente, moduli o programmi completi, ecc...).
+
+Al momento del completamento di un ticket accettato dovrà essere associato un altro ticket che ne richieda la verifica. Il nuovo ticket verrà assegnato all'unico Verificatore nel caso ce ne sia solo uno, oppure al rappresentante eletto nel caso ce ne siano più d'uno. Sarà compito di quest'ultimo completare la verifica richiesta o inoltrare il ticket a qualche suo sottoposto.
+
+Con questa procedura si assicura che ogni compito svolto verrà poi controllato dal Verificatore designato.
+\subsubsection{Risoluzine anomalie}
+Nel caso il Verificatore noti qualche anomalia nelle fasi di controllo e verifica, dovrà inserire i risultati all'interno del relativo ticket al momento della sua chiusura e del suo inoltro a colui che ha creato il prodotto in questione.
+La procedura appena descritta dovrà venir svolta finchè il verificatore 
+
+
+\subsection{Trattamento delle discrepanze}
+\subsection{Procedure di controllo di qualità di processo}
 \section{Resoconto delle attività di verifica}
-	\subsection{Tracciamento componenti - requisiti}
-	\subsection{Dettaglio delle verifiche tramite analisi}
-	\subsection{Dettaglio delle verifiche tramite prove (test)}
-	\subsection{Dettaglio dell'esito delle revisioni}
-\section{Pianificazione ed esecuzione del collaudo}
-	\subsection{Specifica della campagna di validazione (collaudo incluso)}
-	\subsection{Dettaglio dell'esito della campagna di validazione}
+\subsection{Tracciamento componenti - requisiti}
+
 \modifiche
 \end{document}
