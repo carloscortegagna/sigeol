@@ -6,16 +6,16 @@
 \usepackage{lastpage}
 \usepackage{graphicx}
 \usepackage{ucs}
-\usepackage[utf8x]{inputenc}
+\usepackage[ansinew]{inputenc}
 \usepackage[italian]{babel}
-
+\usepackage{eurosym}
 \renewcommand{\headrulewidth}{0.6pt}
 \renewcommand{\footrulewidth}{0.6pt}
 % impostazione dello stile per le pagine interne del documento
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Piano di Progetto v0.2.0}
+\lfoot{Piano di Progetto v0.3.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +27,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Piano di Progetto v0.2.0}
+\lfoot{Piano di Progetto v0.3.0}
 \cfoot{}
 \rfoot{}
 }
@@ -43,11 +43,14 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\textit{05-12-2008} & 0.3.0 & Inserimento del modello di ciclo di vita e dei ruoli \\
 \hline
-\textit{29-11-2008} & 0.1.0 & Prima bozza del documento \\
 \hline
 \hline
 \textit{02-12-2008} & 0.2.0 & Inserimento tabelle e Gantt \\
+\hline
+\hline
+\textit{29-11-2008} & 0.1.0 & Prima bozza del documento \\
 \hline
 \end{tabular}
 \end{center}
@@ -94,172 +97,201 @@
 \setcounter{page}{1}
 \section{Introduzione}
 \subsection{Scopo del prodotto}
-Lo scopo del prodotto ''SIGEOL'' Ã¨ di fornire un sistema software per la gestione dellâ€™orario di lezione a uso del CCS di Informatica.
+Il prodotto sotto analisi, denominato ''SIGEOL'', si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. Per ulteriori informazioni riguardanti scopi e funzioni del prodotto si prega di fare riferimento al documento ''Analisi dei Requisiti''.
 \subsection{Scopo del documento}
 Questo documento espone la pianificazione del progetto ''SIGEOL''.
-Al suo interno Ã¨ possibile trovare una stima delle tempistiche e dei costi del progetto; il tutto Ã¨ illustrato attraverso lâ€™utilizzo di tabelle e del diagramma di Gantt.
-La ripartizione dei ruoli tiene conto del fatto che tutti devono avere circa lo stesso carico di lavoro.
+Al suo interno è possibile trovare una stima delle tempistiche e dei costi del progetto; il tutto è illustrato attraverso l'utilizzo di tabelle e del diagramma di Gantt.
+Si mostrerà anche come è stata pianificata la rotazione dei ruoli per ogni fase del progetto e la ripartizione del carico di lavoro individuale.
+Il piano si evolve di pari passo col progetto e inizialmente il documento conterrà solamente previsioni e stime.
+Data la scarsa esperienza del team QuiXoft non si esclude la possibilià che il piano di progetto potrà essere rivisto e rimodellato in corso d'opera. 
 \subsection{Glossario}
-Il glossario Ã¨ unico per tutti i documenti relativi al progetto di sviluppo del prodotto e viene fornito come allegato nel file Glossario.pdf.
-\section{Organigramma}
-\subsection{Accettazione delle componenti}
-
-\begin{tabular}{|c|c|c|}
+Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti possono essere trovate nel documento ''Glossario'' al fine di eliminare ogni ambiguità  e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione è disponibile all'interno del Glossario verrà  marcato con una \underline{sottolineatura}.
+\subsection{Vincoli}
+Il progetto è soggetto a determinati vincoli da rispettare tassativamente:
+\subsubsection{Equa ripartizione del carico di lavoro}
+Il piano di progetto prevede un'equa ripartizione del carico di lavoro tra tutti i componenti del team.
+In linea di massima, le ore fatte in corso d'attività dovranno essere paragonabili a quelle attribuite a ciascun componente del gruppo nel piano.
+\subsubsection{Budget Economico}
+Il limite inferiore del progetto è di 13000\euro. Si prevede che il team QuiXoft spenderà per il progetto ''SIGEOL'' 13.065\euro. 
+Per maggiori informazioni sul costo andare alla sezione 5.
+\subsubsection{Licenza}
+ Passata la revisione di accettazione il software prodotto verrà rilasciato con licenza libera GNU GPL versione 2.0.
+ Come ogni licenza di software libero, essa concede ai licenziatari (da qui in poi indicati come utenti) il permesso di modificare il programma, di copiarlo e di ridistribuirlo con o senza modifiche, gratuitamente o a pagamento.
+   
+\section{Panoramica di progetto}
+\subsection{Componenti}
+Il team QuiXoft è formata da i seguenti componenti:
+\begin{itemize}
+\item Barbiero Mattia
+\item Beggiato Andrea
+\item Freo Matteo
+\item Grosselle Alessandro
+\item Beggiato Andrea
+\item Scarpa davide
+\item Scortegagna Carlo 
+\end{itemize}
+Ogni componente soddisfa i vincoli di propedeuticità e quindi tutti i componenti possono essere ammessi alla revisione dei requisiti. 
+\subsection{Ruoli}
+Il progetto prevede i seguenti ruoli:
+\begin{itemize}
+\item Responsabile: Rappresenta il progetto e partecipa al progetto per tutta la sua vita. 
+E' responsabile della pianificazione di progetto, coordinando le attività del gruppo.
+\item Amministratore: E' responsabile della redazione e attuazione di piani e procedure di gestione per la qualità. Gestisce la documentazione di progetto e controlla versioni e configurazioni del prodotto. 
+\item Analista: Ha grande impatto sul successo del progetto poichè è responsabile dell'attività di analisi. Solitamente questo ruolo è data a persona con cospicua esperienza professionale. 
+\item Progettista: Ha forte impatto sugli aspetti tecnici e tecnologici del progetto. E' responsabile delle attività di progettazione.
+\item Programmatore: Ha compentenze tecniche e convertono il progetto di dettaglio in codice. E' responsabile della realizzazione di componenti di ausilio, necessarie per l'esecuzione delle prove di verifica e validazione. 
+\item Verificatore:  partecipano all'intero ciclo di vita ed è responsabile alla verifica dei processi e della validazione del prodotto. Hanno capacità di giudizio e di relazione.
+\end{itemize}
+\subsection{costo di ogni ruolo}
+Nella tabella sottostante vengono riportati il costo che ogni ruolo ha nel progetto.
+\begin{center}
+\begin{tabular}{|c|c|}
 \hline
-Nominativo  & Data & Firma(leggibile) \\ \hline
-Barbiero Mattia & 12/11/08 & \multicolumn{1}{l|}{} \\ \hline
-Beggiato Andrea & 12/11/08 &  \\ \hline
-Freo Matteo & 12/11/08 &  \\ \hline
-Grosselle Alessandro & 12/11/08 &  \\ \hline
-Scarpa Davide & 12/11/08 &  \\ \hline
-Scortecagna Carlo & 12/11/08 &  \\ \hline
+Ruolo & Costo in \euro \\ \hline
+Responsabile & 30 \\ \hline
+Amministratore & 20 \\ \hline
+Analista & 25 \\ \hline
+Progettista & 22 \\ \hline
+Programmatore & 16 \\ \hline
+Verificatore & 16 \\ \hline
 \end{tabular}
-
-
-\subsection{Descrizione delle componenti}
-
-\begin{tabular}{|c|c|c|}
-\hline
-Nominativo  & Matricola & e-mail \\ \hline
-Barbiero Mattia & 540546 & barraemme@gmail.com \\ \hline
-Beggiato Andrea & 541738 & saprus@hotmail.it \\ \hline
-Freo Matteo & 560838 & tizzy369@hotmail.it \\ \hline
-Grosselle Alessandro & 540501 & ale7forever@gmail.com \\ \hline
-Scarpa Davide & 544006 & goldmagic@libero.it \\ \hline
-Scortecagna Carlo & 545070 & carloscortecagna@gmail.com \\ \hline
-\end{tabular}
-
-\subsection{Criteri di assegnazione}
-In ogni fase, tutti i membri assumeranno due ruoli.
-Il cambio del ruolo avverrÃ  a metÃ  di ogni fase e in quel momento ogni componente dovrÃ  aver speso tutte le ore assegnateli per svolgere il ruolo dato.
-Si ipotizzano le seguenti date:\\
-
-\begin{tabular}{|c|c|c|}
-\hline
-Fase & Inizio  & Termine \\ \hline
-Analisi dei requisiti & 17/11/08 & 23/12/08 \\ \hline
-Progettazione & 07/01/09 & 14/02/09 \\ \hline
-Codifica & 16/02/09 & 11/03/09 \\ \hline
-Verifica e validazione & 17/03/09 & 24/03/09 \\ \hline
-\end{tabular}
-\\
-
-La tabella di seguito mostra come Ã¨ stata pianificata la rotazione interna dei ruoli.
-I numeri tra parentesi vicini al ruolo sono le ore che la risorsa deve spendere in quella fase.
-
-\begin{tabular}{|l|}
-\hline
-Legenda: \\ \hline
-Re=Responsabile \\ \hline
-Am=Amministratore \\ \hline
-An=Analista \\ \hline
-Prog=Progettista \\ \hline
-Progr=Programmatore \\ \hline
-Ver=Verificatore \\ \hline
-\end{tabular}\\\\
-
-\begin{tabular}{|c|c|c|}
-\hline
- & Analisi dei requisiti & Progettazione \\ \hline
-Barbiero Mattia & An(20)/Ver(5) & Am(13,5)/ Prog(21,5) \\ \hline
-Beggiato Andrea & An(20)/Re(11) & Prog(21)/Am(6,5) \\ \hline
-Freo Matteo & Ver(5)/An(20) & Re(5)/Prog(22) \\ \hline
-Grosselle Alessandro & Am(14)/An(20) & Ver(10)/ Prog(22) \\ \hline
-Scarpa Davide & An(20)/Am(5) & Prog(21,5)/Re(9) \\ \hline
-Scortecagna Carlo & Re(11)/An(20) & Prog(22)/Ver(10) \\ \hline
-\end{tabular}\\\\
-
-\begin{tabular}{|c|c|c|}
-\hline
- & Codifica & Ver. \& val. \\ \hline
-Barbiero Mattia & Re(5)/Progr(19) & Ver(15)/Re(6) \\ \hline
-Beggiato Andrea & Progr(18)/Am(13,5) & Re(6)/Ver(15) \\ \hline
-Freo Matteo & Progr(18,5)/Ver(10) & Ver(10)/Am(8) \\ \hline
-Grosselle Alessandro & Progr(13)/Re(9,5) & Progr(5)/Ver(10) \\ \hline
-Scarpa Davide & Ver(10)/Progr(18,5) & Am(9)/Ver(10) \\ \hline
-Scortecagna Carlo & Am(13)/Progr(13) & Ver(10)/Progr(5) \\ \hline
-\end{tabular}
-
+\end{center}
 
 \section{Pianificazione}
+Verranno ora descritti gli aspetti riguardanti la pianificazione del progetto, come il tipo di ciclo di vita e le stime sulla durata delle fasi.
+Per calcolo di quest'ultime si sono anche utilizzate le date delle revisioni del precedente anno accademico.
+A metà di ogni fase è prevista tassativamente una rotazione dei ruoli.
+E' possibile che qualche componente possa esercitare due ruoli contemporaneamente; è garantita la completa assenza di interessi tra i compiti assunti.
+\subsection{Modello di ciclo di vita}
+Il modello scelto dal team QuiXoft è il modello a cascata.
+Questo è una progressione sequenziale (in cascata) di fasi, senza ricicli, al fine di meglio controllare tempi e costi.
+Con questo modello rigidamente sequienziale la pianificazione è molto precisa ma presenta uno spiacevole incoveniente: assume che i requisiti possano essere congelati alla fine della fase di analisi.
+Data la poca esperienza del team QuiXoft è molto difficile che tutti i requisiti siano chiari alla fine dell'analisi.
+Per questo motivo si è scelto di utilizzare una variante del modello a cascata prevedendo eventuali prototipazioni allo scopo di capire meglio i requisiti.
+Oltretutto i committenti non escludono possibili variazioni ai requisiti e quindi a maggior ragione il modello a cascata con protipazione risulta particolarmente adatto.
+Il modello a cascata prevede le seguenti fasi:
+\begin{itemize}
+\item Analisi
+\item Progettazione
+\item Realizzazione
+\item Manutenzione
+\end{itemize}
+La fase di manutenzione non verrà fatta dal team QuiXoft poichè il progetto terminerà alla fine della fase di realizzazione con l'accettazione del prodotto da parte del committente.    
+\subsection{Analisi}
+In questa fase avviene la definizione di vincoli,funzioni e di qualsiasi altra caratteristica che il sistema dovrà soddisfare.
+L'individuazione dei requisiti si basa sul capitolato d'appalto e su eventuali ''interviste'' al commitente.
+La data d'inizio di tale fase è il 17/11/2008, data del primo incontro del team QuiXoft. Si prevede di terminare l'analisi il 09/01/09.
+La rotazione è prevista per la data 8/12/2008. 
+Verso metà di tale fase il team dovrà affrontare la revisione dei requisiti condotta dal committente. 
+Per questa revisione è previsto il documento contenente la classificazione e discussione dei requisiti, chiamato Analisi dei requisiti e una prima redazione del piano di qualifica. 
+Si riporta ora la rotazione dei ruoli in questa fase. Affianco ad ogni ruolo sono riportate tra parentesi le ore stimate da esercitare.
+\\\\
+\begin{tabular}{|c|c|c|}
+\hline
+Componenti & Prima Parte & Seconda Parte \\ \hline
+Barberio Mattia & Analista(20) & Responsabile(11) \\ \hline
+Beggiato Andrea & Analista(20) & Verificatore(10) \\ \hline
+Freo Matteo & Verificatore(10) & Analista(20) \\ \hline
+Grosselle Alessandro & Amministratore(13,5) & Analista(20) \\ \hline
+Scarpa Davide & Analista(20) & Amministratore(13,5) \\ \hline
+Scortegagna Carlo & Responsabile(10) & Analista(20) \\ \hline
+\end{tabular}
+\subsection{Progettazione}
+La fase di progettazione prevede inizialmente la definizione dell'architettura di sistema, cioè le componenti che caratterizzano il sistema e le relazioni tra queste.
+Successivamente vi sarà la definizione delle struttura interna di ciascun componente.
+la data di inizio progettazione è stimata intorno al 12/01/2009; la data di fine invece intorno al 13/02/2009.
+la rotazione è prevista per il 27/01/2009.
+Verso la fine della fase il team affronterà la prima revisione interna(Revisione del Progetto Preliminare)che mostrerà al committente una visione ad alto livello del sistema. Il team per tale scopo, dovrà produrre un documento chiamato specifica tecnica e dovrà aggiornare il piano di qualifica. Se la revisione andrà a buon fine si attiverà la fase realizzativa del prodotto.
+Si riporta ora la rotazione dei ruoli in questa fase. Affianco ad ogni ruolo sono riportate tra parentesi le ore stimate da esercitare.\\\\
+\begin{tabular}{|c|c|c|}
+\hline
+Componenti & Prima Parte & Seconda Parte \\ \hline
+Barberio Mattia & Progettista(21,5) & Verificatore(20) \\ \hline
+Beggiato Andrea & Amministatore(13,5)/Verificatore(10) & Progettista(22) \\ \hline
+Freo Matteo & Progettista(21) & Responsabile(10,5) \\ \hline
+Grosselle Alessandro & Verificatore(20) & Progettista(22) \\ \hline
+Scarpa Davide & Responsabile(10) & Progettista(21,5) \\ \hline
+Scortegagna Carlo & Progettista(22) & Amministratore(13,5) \\ \hline
+\end{tabular}
+
+\subsection{Realizzazione}
+La fase di realizzazione ha lo scopo di implementare i vari componenti definiti nella progettazione e di definire ed eseguire 'casi di prova' sia per i singoli moduli che per l'intero sistema con l'intento di rilevare malfunzionamenti.
+la data di inizio realizzazione è stimata intorno al 16/02/2009; la data di fine invece intorno al 24/03/2009.
+la rotazione è prevista per il 02/03/2009.
+All'inizio della fase è prevista la seconda revisione interna(Revisione del progetto definitivo) che informerà il committente sulle caratteristiche effettive e finali del prodotto realizzato. Il team prevede di effettuare anche questa revisione che comporta alla redazione di un documento chiamato Definizione del prodotto. Si è scelto di fare anche la seconda revisione interna per avere un'ulteriore valutazione sul nostro operato e di individuare eventuali problemi e discrepanze con le aspettative del committente.
+A tre quarti fase è prevista la revisione di qualifica che ha lo scopo di approvare l'esito finale della verifica. In questa fase si dovrà portare la versione definitiva del piano di qualifica e la versione iniziale del manuale utente.
+A fine fase ci sarà la revisione di accettazione in cui vi sarà il collaudo del sistema da parte del committente e l'accertamento di soddisfacimento di tutti i requisiti previsti. Se la revisione andrà a buon fine il prodotto verrà accettato e il progetto terminato.    
+Si riporta ora la rotazione dei ruoli in questa fase. Affianco ad ogni ruolo sono riportate tra parentesi le ore stimate da esercitare.\\\\
+\begin{tabular}{|c|c|c|}
+\hline
+Componenti & Prima Parte & Seconda Parte \\ \hline
+Barberio Mattia & Programmatore(18) & Amministratore(14) \\ \hline
+Beggiato Andrea & Programmatore(18) & Responsabile(11) \\ \hline
+Freo Matteo & Amministratore(14,5) & Programmatore(18,5)/Verificatore(10) \\ \hline
+Grosselle Alessandro & Responsabile(10) & Programmatore(18) \\ \hline
+Scarpa Davide & Programmatore(19,5) & Verificatore(20) \\ \hline
+Scortegagna Carlo & Verificatore(20) & Programmatore(18) \\ \hline
+\end{tabular}
+\subsection{Riassunto delle ore}
+Viene ora riportata una tabella che mostra la suddivisione del carico di lavoro(espresso in ore) ad ogni componente del team.
+Si è cercato di suddividere il carico nel modo più equo possibile, stando attenti a non andare oltre le 105 ore a persona.
+\\\\
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+Ruoli & Barbiero & Beggiato & Freo & Grosselle & Scarpa & Scortegagna \\ \hline
+Responsabile & 11 & 11 & 10,5 & 10 & 10 & 10 \\ \hline
+Amministratore & 14 & 13,5 & 14,5 & 13,5 & 13,5 & 13,5 \\ \hline
+Analista & 20 & 20 & 20 & 20 & 20 & 20 \\ \hline
+Progettista & 21,5 & 22 & 21 & 22 & 21,5 & 22 \\ \hline
+Progettista & 21,5 & 22 & 21 & 22 & 21,5 & 22 \\ \hline
+Verificatore & 20 & 20 & 20 & 20 & 20 & 20 \\ \hline
+Progettista & 21,5 & 22 & 21 & 22 & 21,5 & 22 \\ \hline
+Totale & 104,5 & 104,5 & 104,5 & 103,5 & 104,5 & 103,5 \\ \hline
+\end{tabular}
 \subsection{Diagramma di Gantt}
-
-\includegraphics[scale=0.5]{gantt.png} \\
-
-\subsection{Ore stimate nel progetto per ruolo}
-La tabella sottostante mostra la suddivisione delle ore di ogni ruolo per ogni fase.\\
-
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
- & Analisi & Progettazione & Codifica & Ver.\&Val. & Totale \\ \hline
-Responsabile & 22 & 14 & 14,5 & 12 & 62,5 \\ \hline
-Amministratore & 19 & 20 & 26,5 & 17 & 82,5 \\ \hline
-Analista & 120 & 0 & 0 & 0 & 120 \\ \hline
-Progettista & 0 & 130 & 0 & 0 & 130 \\ \hline
-Programmatore & 0 & 0 & 100 & 10 & 110 \\ \hline
-Verificatore & 10 & 20 & 20 & 70 & 120 \\ \hline
-\end{tabular}
-\\
-
-\subsection{Impegno individuale per ogni ruolo}
-La tabella sottostante rappresenta le ore di ogni componente del team in relazione al ruolo ricoperto.\\
-
-\begin{tabular}{|c|c|c|c|c|c|c|c|}
-\hline
- & Barbiero & Beggiato & Freo & Grosselle & Scarpa & Scortecagna & Totale \\ \hline
-Responsabile & 11 & 11 & 11 & 9,5 & 9 & 11 & 62,5 \\ \hline
-Amministratore & 13,5 & 13,5 & 14,5 & 14 & 14 & 13 & 82,5 \\ \hline
-Analista & 20 & 20 & 20 & 20 & 20 & 20 & 120 \\ \hline
-Progettista & 21,5 & 22 & 21 & 22 & 21,5 & 22 & 130 \\ \hline
-Programmatore & 19 & 18 & 18,5 & 18 & 18,5 & 18 & 110 \\ \hline
-Verificatore & 20 & 20 & 20 & 20 & 20 & 20 & 120 \\ \hline
-\end{tabular}
-
+Si mostra ora la rappresentazione grafica del calendario delle fasi utile al fine:
+DIGRAMMA
 \section{Analisi dei rischi}
 \subsection{Assenza componente per medio/lungo periodo}
 Ogni componente ha sempre un determinato ruolo in tutte le fasi del progetto.
-Se un componente risultasse indisponibile per un lasso di tempo piu' o meno lungo causerebbe un rallentamento del progetto se non addirittura uno stallo.
-E' compito dell'amministratore riassegnare il determinato ruolo ad uno o piu' componenti del team e modificare il piano di progetto cercando di mantenere inalterati i costi e la data di fine progetto.
+Se un componente risultasse indisponibile per un lasso di tempo più o meno lungo causerebbe un rallentamento del progetto se non addirittura uno stallo.
+E' compito dell'amministratore riassegnare il determinato ruolo ad uno o più componenti del team e modificare il piano di progetto cercando di mantenere inalterati i costi e la data di fine progetto.
 \subsection{Mancanza di conoscenze tecniche}
-Si utilizzeranno strumenti e tecnologie che per alcuni utenti risulteranno nuove.
-L'amministratore mettera' a disposizione guide e manuali per poter formare il team. Lo studio e' personale e non e' previsto nel piano di progetto. Tuttavia se dovesse essere necessario verra' fatta una riunione che delineara' i concetti di massima dello strumento o tecnologia.   
-\subsection{Calendario delle attivita' inneficiente}
-Le attivita', viste la scarsa esperienza, sono state pianificate basandosi su precedenti calendari di altri gruppi.
-E' compito dell'amministratore correggere eventuali errori di pianificazione, cercando di mantenere inalterati i costi e la data di fine progetto.
+Si utilizzeranno strumenti e tecnologie che per alcuni componenti risulteranno nuove.
+L'amministratore metterà a disposizione guide e manuali per poter formare il team. Lo studio è personale e non è previsto nel piano di progetto. Tuttavia se dovesse essere necessario verrà fatta una riunione che delinearà i concetti di massima dell'eventuale strumento o tecnologia.   
+\subsection{Calendario delle attività inneficiente}
+Le attività, vista la scarsa esperienza, sono state pianificate basandosi su precedenti calendari di altri gruppi.
+è compito dell'amministratore correggere eventuali errori di pianificazione, cercando di mantenere inalterati i costi e la data di fine progetto.
 \subsection{Analisi dei requisiti inefficiente}
-Nella prima fase avviene lo studio approfondito dei requisiti. Finita questa fase, inizia quella di progettazione. Data la scarsa esperienza del team QuiXoft il rischio di variazione dei requisiti, dopo il loro studio esiste. Tuttavia si cerca di renderlo il piu' basso possibile ruotando il ruolo di analista e rendendo la ricerca dei requisiti il piu' completa ed efficiente possibile.
-\subsection{Gestione della qualita' inadeguata}
-L'accertamento della qualita' del processo e del prodotto e' garantita dalla presenza del ruolo del Verificatore per tutto il periodo di concezione e sviluppo del progetto. Se le ore necessarie al verificatore in una determinata fase dovessero essere troppo poche, verra' immediatamente avvisato l'amministratore che modifichera' il piano di progetto. 
-
+Nella prima fase avviene lo studio approfondito dei requisiti. Finita questa fase, inizia quella di progettazione. Data la scarsa esperienza del team QuiXoft il rischio di variazione dei requisiti dopo il loro studio esiste. Tuttavia si cerca di renderlo il più basso possibile ruotando il ruolo di analista e rendendo la ricerca dei requisiti il più completa ed efficiente possibile. 
+\subsection{Gestione della qualità inadeguata}
+L'accertamento della qualità del processo e del prodotto è garantita dalla presenza del ruolo del Verificatore per tutto il periodo di concezione e sviluppo del progetto. Se le ore necessarie al verificatore in una determinata fase dovessero essere troppo poche, verrà immediatamente avvisato l'amministratore che modificherà il piano di progetto, aumentando le ore al verificatore. 
 \section{Conto economico preventivo}
 \subsection{Costi stimati nel progetto per ruolo}
-Dalla precedente pianificazione si puÃ² redigere la seguente tabella:\\
-
-\begin{tabular}{|c|c|c|c|c|c|}
+Dalla precedente pianificazione si può redigere la seguente tabella:\\\\
+\begin{tabular}{|c|c|c|c|c|}
 \hline
- & Analisi & Progettazione & Codifica & Verifica\&Valid. & Totale \\ \hline
-Responsabile & 660 & 420 & 435 & 360 & 1875 \\ \hline
-Amministratore & 380 & 400 & 530 & 340 & 1650 \\ \hline
-Analista & 3000 & 0 & 0 & 0 & 3000 \\ \hline
-Progettista & 0 & 2860 & 0 & 0 & 2860 \\ \hline
-Programmatore & 0 & 0 & 1600 & 160 & 1760 \\ \hline
-Verificatore & 160 & 320 & 320 & 1120 & 1920 \\ \hline
-Totale & 4200 & 4000 & 3045 & 1820 & 13065 \\ \hline
+Componenti & Analisi & Progettazione & Realizzazione & Totale \\ \hline
+Responsabile & 630 & 615 & 630 & 1875 \\ \hline
+Amministratore & 540 & 540 & 570 & 1650 \\ \hline
+Analista & 3000 & 0 & 0 & 3000 \\ \hline
+Progettista & 0 & 2860 & 0 & 2860 \\ \hline
+Programmatore & 0 & 0 & 1760 & 1760 \\ \hline
+Verificatore & 320 & 800 & 800 & 1920 \\ \hline
+Totale & 4490 & 4815 & 3760 & 13065 \\ \hline
 \end{tabular}
-
 \subsection{Costi stimati nel progetto per risorsa}
-La tabella sottostante rappresenta i costi di ogni componente del team in relazione al ruolo ricoperto:\\
-
+La tabella sottostante rappresenta i costi di ogni componente del team in relazione al ruolo ricoperto:\\\\
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
-\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{        Barbiero} & \multicolumn{1}{l|}{          Beggiato} & \multicolumn{1}{l|}{              Freo} & \multicolumn{1}{l|}{               Grosselle} & \multicolumn{1}{l|}{          Scarpa} & \multicolumn{1}{l|}{  Scortecagna} \\ \hline
-Responsabile & 330 & 330 & 330 & 285 & 270 & 330 \\ \hline
-Amministratore & 270 & 270 & 290 & 280 & 280 & 260 \\ \hline
+Ruoli & Barbiero & Beggiato & Freo & Grosselle & Scarpa & Scortegagna \\ \hline
 Analista & 500 & 500 & 500 & 500 & 500 & 500 \\ \hline
-Progettista & 473 & 484 & 462 & 484 & 473 & 484 \\ \hline
-Programmatore & 304 & 288 & 296 & 288 & 296 & 288 \\ \hline
 Verificatore & 320 & 320 & 320 & 320 & 320 & 320 \\ \hline
-Totale & 2197 & 2192 & 2198 & 2157 & 2139 & 2182 \\ \hline
+Responsabile & 330 & 330 & 315 & 300 & 300 & 300 \\ \hline
+Amministratore & 280 & 270 & 290 & 270 & 270 & 270 \\ \hline
+Progettista & 473 & 484 & 462 & 484 & 473 & 484 \\ \hline
+Programmatore & 288 & 288 & 296 & 288 & 312 & 288 \\ \hline
+Totale & 2191 & 2192 & 2183 & 2162 & 2175 & 2162 \\ \hline
 \end{tabular}
 \modifiche
 \end{document}
