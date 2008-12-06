@@ -15,7 +15,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Piano di Qualifica v0.4.0}
+\lfoot{Piano di Qualifica v0.4.1}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +27,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Piano di Qualifica v0.4.0}
+\lfoot{Piano di Qualifica v0.4.1}
 \cfoot{}
 \rfoot{}
 }
@@ -39,10 +39,12 @@
 \begin{center}
 \textbf{Diario delle modifiche} \\
 \bigskip
-\begin{tabular}{|c|c|p{0.51\textwidth}|}
+\begin{tabular}{|c|c|p{0.62\textwidth}|}
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{06-12-2008} & 0.4.1 & Varie correzioni grammaticali  \\
 \hline
 \textit{05-12-2008} & 0.4.0 & Aggiunta delle sezione Gestione Amministrativa  \\
 \hline
@@ -67,12 +69,13 @@
 	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{QuiXoft} \\
 	\> \parbox{0.5\textwidth}{Rossi Francesca} \\
 	\> \parbox{0.5\textwidth}{Vardanega Tullio} \\
+	\> \parbox{0.5\textwidth}{Conte Renato} \\
 \end{tabbing}
 }
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Qualifica \\ v0.4.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Qualifica \\ v0.4.1}}
 \author{Redazione: Carlo Scortegagna}
 \maketitle
 \medskip
@@ -84,7 +87,7 @@
 \info
 \begin{center}
 \textbf{Sommario} \\
-Piano di Qualifica per il progetto ''SIGEOL'', necessario per regolamentare le operazioni di verifica, validazione e controllo qualità durante tutti i periodi di sviluppo.
+Piano di Qualifica per il progetto ''SIGEOL'', necessario per regolamentare le operazioni di verifica, validazione e controllo qualità durante il periodio di sviluppo.
 \end{center}
 \newpage
 }
@@ -103,7 +106,7 @@ Piano di Qualifica per il progetto ''SIGEOL'', necessario per regolamentare le o
 \subsection{Scopo del documento}
 Lo scopo di questo documento è di definire e pianificare le procedure che il team QuiXoft adotterà per garantire la qualità del prodotto denominato ''SIGEOL''. Requisito fondamentale per garantire un adeguato livello qualitativo è il rispettare le specifiche definite in fase di analisi del progetto.
 
-Particolare attenzione verrà posta anche nella definizione delle attività di verifica e validazione del materiale prodotto e nella descrizione degli ambienti di prova e di collaudo.
+Particolare attenzione verrà posta anche nella definizione delle attività di verifica e validazione del materiale prodotto e, col procedere dello sviluppo, nella descrizione degli ambienti di prova e di collaudo.
 \subsection{Scopo del prodotto}
 Il prodotto ''SIGEOL'' si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. 
 
@@ -163,7 +166,7 @@ Il risultato dal lavoro del team QuiXoft dovrà il più possibile aderire ai par
 		- Analizzabilità: \begin{small}facilitare la diagnostica degli errori \\\end{small}
 		- Modificabilità: \begin{small}agevolare la manutenzione futura \\\end{small}
 		- Stabilità: \begin{small} rischi controllati in caso di modifica\\\end{small}
-		- Verificabilità: validazione semplificata dopo una manutenzione
+		- Verificabilità: \begin{small}validazione semplificata dopo una manutenzione\end{small}
 	\item \textbf{Portabilità:} \\
 		- Adattabilità: \begin{small}adattamento ad ambienti diversi senza modifiche aggiuntive\\\end{small}
 		- Installabilità: \begin{small}permette l'installazione in uno specifico ambiente \\\end{small}
