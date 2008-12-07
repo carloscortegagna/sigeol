@@ -6,16 +6,17 @@
 \usepackage{lastpage}
 \usepackage{graphicx}
 \usepackage{ucs}
-\usepackage[ansinew]{inputenc}
+\usepackage[utf8x]{inputenc}
 \usepackage[italian]{babel}
 \usepackage{eurosym}
-\renewcommand{\headrulewidth}{0.6pt}
+
+% \renewcommand{\headrulewidth}{0.6pt}
 \renewcommand{\footrulewidth}{0.6pt}
 % impostazione dello stile per le pagine interne del documento
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Piano di Progetto v0.4.0}
+\lfoot{Piano di Progetto v0.5.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Piano di Progetto v0.4.0}
+\lfoot{Piano di Progetto v0.5.0}
 \cfoot{}
 \rfoot{}
 }
@@ -39,19 +40,20 @@
 \begin{center}
 \textbf{Diario delle modifiche} \\
 \bigskip
-\begin{tabular}{|c|c|p{0.69\textwidth}|}
+\begin{tabular}{|c|c|p{0.62\textwidth}|}
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
-\textit{06-12-2008} & 0.4.0 & Inserimento delle revisioni \\
 \hline
+\textit{07-12-2008} & 0.5.0 & Aggiunti i riferimenti e le fasi \\
+\hline
+\textit{07-12-2008} & 0.4.1 & Correzioni varie \\
+\hline
+\textit{06-12-2008} & 0.4.0 & Inserimento delle revisioni \\
 \hline
 \textit{05-12-2008} & 0.3.0 & Inserimento del modello di ciclo di vita e dei ruoli \\
 \hline
-\hline
-\hline
 \textit{02-12-2008} & 0.2.0 & Inserimento tabelle e Gantt \\
-\hline
 \hline
 \textit{29-11-2008} & 0.1.0 & Prima bozza del documento \\
 \hline
@@ -70,13 +72,14 @@
 	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{QuiXoft} \\
 	\> \parbox{0.5\textwidth}{Rossi Francesca} \\
 	\> \parbox{0.5\textwidth}{Vardanega Tullio} \\
+	\> \parbox{0.5\textwidth}{Conte Renato} \\
 \end{tabbing}
 }
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Progetto \\ v0.3.0}}
-\author{Redazione: Grosselle Alessandro}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Progetto \\ v0.5.0}}
+\author{Redazione: Scortegagna Carlo}
 \maketitle
 \medskip
 \begin{center}
@@ -87,7 +90,7 @@
 \info
 \begin{center}
 \textbf{Sommario} \\
-Documento contenente il piano di progetto \textit{SIGEOL} commissionato dalla prof. Rossi Francesca.
+Documento contenente il piano di progetto \textit{SIGEOL}, commissionato dalla prof. Rossi Francesca.
 \end{center}
 \newpage
 }
@@ -103,31 +106,44 @@ Documento contenente il piano di progetto \textit{SIGEOL} commissionato dalla pr
 \indice
 \setcounter{page}{1}
 \section{Introduzione}
-\subsection{Scopo del prodotto}
-Il prodotto sotto analisi, denominato ''SIGEOL'', si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. Per ulteriori informazioni riguardanti scopi e funzioni del prodotto si prega di fare riferimento al documento ''Analisi dei Requisiti''.
 \subsection{Scopo del documento}
-Questo documento espone la pianificazione del progetto ''SIGEOL''.
-Al suo interno Ë possibile trovare una stima delle tempistiche e dei costi del progetto; il tutto Ë illustrato attraverso l'utilizzo di tabelle e del diagramma di Gantt.
-Si mostrer‡ anche come Ë stata pianificata la rotazione dei ruoli per ogni fase del progetto e la ripartizione del carico di lavoro individuale.
-Il piano si evolve di pari passo col progetto e inizialmente il documento conterr‡ solamente previsioni e stime.
-Data la scarsa esperienza del team QuiXoft non si esclude la possibili‡ che il piano di progetto potr‡ essere rivisto e rimodellato in corso d'opera. 
-\subsection{Glossario}
-Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti possono essere trovate nel documento ''Glossario'' al fine di eliminare ogni ambiguit‡  e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione Ë disponibile all'interno del Glossario verr‡  marcato con una \underline{sottolineatura}.
+Questo documento espone la pianificazione dello sviluppo del progetto denominato ''SIGEOL''.
+Al suo interno √® possibile trovare una stima delle tempistiche e dei costi del progetto, il tutto illustrato attraverso l'utilizzo di tabelle e del diagramma di Gantt.
+
+Si mostrer√† anche come √® stata pianificata la rotazione dei ruoli per ogni fase del progetto e la ripartizione del carico di lavoro individuale.
+Il piano si evolve di pari passo col progetto e inizialmente il documento conterr√† solamente previsioni e stime.
+
+Data la scarsa esperienza del team QuiXoft non si esclude la possibilit√† che il piano di progetto potr√† essere rivisto e rimodellato in corso d'opera.
+\subsection{Scopo del prodotto}
+Il prodotto ''SIGEOL'' si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. 
+
+Per ulteriori informazioni riguardanti scopi e funzioni del prodotto si prega di fare riferimento al documento \textsc{Analisi dei Requisiti}.
+\subsection{Riferimenti}
+\begin{itemize}
+ 	\item Il ciclo di vita del software \\ \textit{http://www.math.unipd.it/~tullio/IS-1/2008/Dispense/P04.pdf}
+ 	\item Gantt \\ \textit{http://gates.comm.virginia.edu/rrn2n/teaching/gantt.htm}
+	\item GNU General Public License 2.0 \\ \textit{http://www.gnu.org/licenses/gpl-2.0.html}
+	\item \textsc{Norme di Progetto}
+\end{itemize}
+\subsection{Glossario} 
+Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti possono essere trovate nel documento \textsc{Glossario} al fine di eliminare ogni ambiguit√† e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione √® disponibile all'interno del glossario verr√† marcato con una \underline{sottolineatura}.
+\section{Panoramica di progetto}
 \subsection{Vincoli}
-Il progetto Ë soggetto a determinati vincoli da rispettare tassativamente:
+Il progetto, per essere considerato accettabile dal committente, dovr√† tassativamente rispettare i seguenti vincoli.
 \subsubsection{Equa ripartizione del carico di lavoro}
 Il piano di progetto prevede un'equa ripartizione del carico di lavoro tra tutti i componenti del team.
-In linea di massima, le ore fatte in corso d'attivit‡ dovranno essere paragonabili a quelle attribuite a ciascun componente del gruppo nel piano. Il piano di progetto di fase in fase verr‡ aggiornato inserendo le ore consuntive di ogni ruolo. 
-E' stato pianificato che ogni componente avr‡ un carico di lavoro poco inferiore alle 105 ore. Per maggiori informazioni andare alla sezione 4.
+In linea di massima, le ore fatte in corso d'attivit√† dovranno essere paragonabili a quelle attribuite a ciascun componente del gruppo nel piano.
+
+Il piano di progetto di fase in fase verr√† aggiornato inserendo le ore consuntive di ogni ruolo.
+E' stato pianificato che ogni componente avr√† un carico di lavoro poco inferiore alle 105 ore. Per maggiori informazioni si prega di consultare la sezione 4.
 \subsubsection{Budget Economico}
-Il progetto dovr‡ affrontare una spesa pari ad almeno 13000\euro.   
+Il progetto dovr√† affrontare una spesa pari ad almeno 13000\euro.
 \subsubsection{Licenza}
- Passata la revisione di accettazione il software prodotto verr‡ rilasciato con licenza libera GNU GPL versione 2.0.
- Come ogni licenza di software libero, essa concede ai licenziatari (da qui in poi indicati come utenti) il permesso di modificare il programma, di copiarlo e di ridistribuirlo con o senza modifiche, gratuitamente o a pagamento.
-   
-\section{Panoramica di progetto}
+Passata la revisione di accettazione il software prodotto verr√† rilasciato con licenza libera GNU GPL versione 2.0.
+
+Come ogni licenza di software libero, essa concede ai licenziatari (da qui in poi indicati come utenti) il permesso di modificare il programma, di copiarlo e di ridistribuirlo con o senza modifiche, gratuitamente o a pagamento.
 \subsection{Componenti}
-Il team QuiXoft Ë formata da i seguenti componenti:
+Il team QuiXoft √® formato dai seguenti componenti:
 \begin{itemize}
 \item Barbiero Mattia
 \item Beggiato Andrea
@@ -136,24 +152,25 @@ Il team QuiXoft Ë formata da i seguenti componenti:
 \item Scarpa davide
 \item Scortegagna Carlo 
 \end{itemize}
-Ogni componente soddisfa i vincoli di propedeuticit‡ e quindi tutti i componenti possono essere ammessi alla revisione dei requisiti. 
+Ogni componente soddisfa i vincoli di propedeuticit√† ed √® quindi libero di partecipare alla revisione dei requisiti.
 \subsection{Ruoli}
 Il progetto prevede i seguenti ruoli:
 \begin{itemize}
-\item Responsabile: Rappresenta il progetto e partecipa al progetto per tutta la sua vita. 
-E' responsabile della pianificazione di progetto, coordinando le attivit‡ del gruppo.
-\item Amministratore: E' responsabile della redazione e attuazione di piani e procedure di gestione per la qualit‡. Gestisce la documentazione di progetto e controlla versioni e configurazioni del prodotto. 
-\item Analista: Ha grande impatto sul successo del progetto poichË Ë responsabile dell'attivit‡ di analisi. Solitamente questo ruolo Ë data a persona con cospicua esperienza professionale. 
-\item Progettista: Ha forte impatto sugli aspetti tecnici e tecnologici del progetto. E' responsabile delle attivit‡ di progettazione.
-\item Programmatore: Ha compentenze tecniche e convertono il progetto di dettaglio in codice. E' responsabile della realizzazione di componenti di ausilio, necessarie per l'esecuzione delle prove di verifica e validazione. 
-\item Verificatore:  partecipano all'intero ciclo di vita ed Ë responsabile alla verifica dei processi e della validazione del prodotto. Hanno capacit‡ di giudizio e di relazione.
+\item \textbf{Responsabile:} √® colui che si fa carico, per conto del suo team, dei risultati del progetto. Elabora ed emana piani e scadenze, approva l'emissione di documenti, coordina le attivit√† del gruppo e si relaziona con il controllo di qualit√† interno al progetto.
+E' responsabile della pianificazione di progetto, coordinando le attivit√† del gruppo.
+\item \textbf{Amministratore:} √® responsabile della redazione e attuazione di piani e procedure di gestione per la qualit√†.
+Gestisce la documentazione di progetto e controlla versioni e configurazioni del prodotto.
+\item \textbf{Analista:} ha grande impatto sul successo del progetto poich√® √® responsabile dell'attivit√† di analisi.
+\item \textbf{Progettista:} ha forte impatto sugli aspetti tecnici e tecnologici del progetto. E' responsabile delle attivit√† di progettazione.
+\item \textbf{Programmatore:} √® responsabile delle attivit√† di codifica miranti alla realizzazione del prodotto e delle componenti di ausilio necessarie per l'esecuzione delle prove di verifica e validazione.
+\item \textbf{Verificatore:}  partecipa all'intero ciclo di vita ed √® responsabile alla verifica dei processi e della validazione del prodotto.
 \end{itemize}
-\subsection{costo di ogni ruolo}
-Nella tabella sottostante vengono riportati il costo che ogni ruolo ha nel progetto.
+\subsection{Costo dei ruoli}
+Ogni ruolo all'interno del team QuiXoft ha un determinato costo orario. Nella tabella sottostante ne vengono riportati i dettagli:
 \begin{center}
 \begin{tabular}{|c|c|}
 \hline
-Ruolo & Costo in \euro \\ \hline
+\textsc{Ruolo} & \textsc{\euro \ / ora}\\ \hline \hline
 Responsabile & 30 \\ \hline
 Amministratore & 20 \\ \hline
 Analista & 25 \\ \hline
@@ -162,20 +179,40 @@ Programmatore & 16 \\ \hline
 Verificatore & 16 \\ \hline
 \end{tabular}
 \end{center}
-
 \section{Pianificazione}
 Verranno ora descritti gli aspetti riguardanti la pianificazione del progetto, come il tipo di ciclo di vita e le stime sulla durata delle fasi.
-Per il calcolo di quest'ultime si sono anche utilizzate le date delle revisioni del precedente anno accademico.
-A met‡ di ogni fase Ë prevista tassativamente una rotazione dei ruoli.
-E' possibile che qualche componente possa esercitare due ruoli contemporaneamente; Ë garantita la completa assenza di interessi tra i compiti assunti.
-In questa sezione si parler‡ di revisioni; Per maggiori dettagli su queste visionare la sezione 3.4.  
+A met√† di ogni fase √® prevista tassativamente una rotazione dei ruoli.
+E' possibile che qualche componente possa esercitare due ruoli contemporaneamente; √® garantita la completa assenza di interessi tra i compiti assunti.
+
+In questa sezione si parler√† di revisioni; Per maggiori dettagli su queste visionare la sezione 3.4.
+
+Per adattare alcune tabelle al documento, i nominativi dei ruoli verranno cos√¨ abbreviati:
+\begin{itemize}
+\item Responsabile: Res
+\item Amministratore: Amm
+\item Analista: An
+\item Progettista: Prog
+\item Programmatore: Progr
+\item Verificatore: Ver
+\end{itemize}
+Per lo stesso motivo anche i nominativi delle risorse verranno cos√¨ abbravviati:
+\begin{itemize}
+\item Beggiato Andrea: BA
+\item Barbiero Mattia: BM
+\item Freo Matteo: FM
+\item Grosselle Alessandro: GA
+\item Scarpa Davide: SD
+\item Scortegagna Carlo: SC
+\end{itemize}
 \subsection{Modello di ciclo di vita}
-Il modello scelto dal team QuiXoft Ë il modello a cascata.
-Questo Ë una progressione sequenziale (in cascata) di fasi, senza ricicli, al fine di meglio controllare tempi e costi.
-Con questo modello rigidamente sequienziale la pianificazione Ë molto precisa ma presenta uno spiacevole incoveniente: assume che i requisiti possano essere congelati alla fine della fase di analisi.
-Data la poca esperienza del team QuiXoft Ë molto difficile che tutti i requisiti siano chiari alla fine dell'analisi.
-Per questo motivo si Ë scelto di utilizzare una variante del modello a cascata prevedendo eventuali prototipazioni allo scopo di capire meglio i requisiti.
-Oltretutto i committenti non escludono possibili variazioni ai requisiti e quindi a maggior ragione il modello a cascata con protipazione risulta particolarmente adatto.
+Il modello scelto dal team QuiXoft √® il modello a cascata.
+Questo √® una progressione sequenziale (in cascata) di fasi, senza ricicli, al fine di meglio controllare tempi e costi.
+Con questo modello rigidamente sequienziale la pianificazione √® molto precisa ma presenta uno spiacevole incoveniente: assume che i requisiti possano essere congelati alla fine della fase di analisi.
+
+Data la poca esperienza del team QuiXoft √® molto difficile che tutti i requisiti siano chiari alla fine dell'analisi.
+Per questo motivo si √® scelto di utilizzare una variante del modello a cascata prevedendo eventuali prototipazioni allo scopo di capire meglio i requisiti.
+Oltretutto i committenti non escludono possibili variazioni alle richieste e quindi a maggior ragione il modello a cascata con protipazione risulta particolarmente adatto.
+\subsection{Fasi}
 Il modello a cascata prevede le seguenti fasi:
 \begin{itemize}
 \item Analisi
@@ -183,65 +220,78 @@ Il modello a cascata prevede le seguenti fasi:
 \item Realizzazione
 \item Manutenzione
 \end{itemize}
-La fase di manutenzione non verr‡ fatta dal team QuiXoft poichË il progetto terminer‡ alla fine della fase di realizzazione con l'accettazione del prodotto da parte del committente.    
-\subsection{Analisi}
-In questa fase avviene la definizione di vincoli,funzioni e di qualsiasi altra caratteristica che il sistema dovr‡ soddisfare.
+La fase di manutenzione non verr√† tenuta dal team QuiXoft perch√® il progetto terminer√† alla fine della fase di realizzazione con l'accettazione del prodotto da parte del committente alla revisione di accettazione.
+\subsubsection{Analisi}
+In questa fase avviene la definizione di vincoli,funzioni e di qualsiasi altra caratteristica che il sistema dovr√† soddisfare.
 L'individuazione dei requisiti si basa sul capitolato d'appalto e su eventuali ''interviste'' al commitente.
-La data d'inizio di tale fase Ë il 17/11/2008, data del primo incontro del team QuiXoft. Si prevede di terminare l'analisi il 09/01/09.
-La rotazione Ë prevista per la data 8/12/2008. 
-Verso met‡ di tale fase il team dovr‡ affrontare la revisione dei requisiti condotta dal committente. 
-Per questa revisione Ë previsto il documento contenente la classificazione e discussione dei requisiti, chiamato Analisi dei requisiti e una prima redazione del piano di qualifica. Per maggiori informazioni su questo processo di revisione 
-Si riporta ora la rotazione dei ruoli in questa fase. Affianco ad ogni ruolo sono riportate tra parentesi le ore stimate da esercitare.
+
+La data d'inizio di tale fase √® il 17/11/2008, data del primo incontro del team QuiXoft. Si prevede di terminare l'analisi il 09/01/09.
+La rotazione √® prevista per la data 9/12/2008. 
+Verso met√† di tale fase il team dovr√† affrontare la revisione dei requisiti condotta dal committente. 
+
+Per questa revisione √® previsto il documento contenente la classificazione e discussione dei requisiti, chiamato \textsc{Analisi dei Requisiti} e una prima redazione del \textsc{Piano di Qualifica}. 
+
+Si riporta ora la rotazione dei ruoli in questa fase; affianco ad ogni ruolo sono riportate tra parentesi le ore stimate da esercitare.
 \\\\
 \begin{tabular}{|c|c|c|}
 \hline
-Componenti & Prima Parte & Seconda Parte \\ \hline
-Barberio Mattia & Analista(20) & Responsabile(11) \\ \hline
-Beggiato Andrea & Analista(20) & Verificatore(10) \\ \hline
-Freo Matteo & Verificatore(10) & Analista(20) \\ \hline
-Grosselle Alessandro & Amministratore(13,5) & Analista(20) \\ \hline
-Scarpa Davide & Analista(20) & Amministratore(13,5) \\ \hline
-Scortegagna Carlo & Responsabile(10) & Analista(20) \\ \hline
+\textsc{Componenti} & \textsc{Prima Parte} & \textsc{Seconda Parte} \\ \hline \hline
+Barberio Mattia & An(20) & Res(11) \\ \hline
+Beggiato Andrea & An(20) & Ver(10) \\ \hline
+Freo Matteo & Ver(10) & An(20) \\ \hline
+Grosselle Alessandro & Amm(13,5) & An(20) \\ \hline
+Scarpa Davide & An(20) & Amm(13,5) \\ \hline
+Scortegagna Carlo & Res(10) & An(20) \\ \hline
 \end{tabular}
-\subsection{Progettazione}
-La fase di progettazione prevede inizialmente la definizione dell'architettura di sistema, cioË le componenti che caratterizzano il sistema e le relazioni tra queste.
-Successivamente vi sar‡ la definizione delle struttura interna di ciascun componente.
-la data di inizio progettazione Ë stimata intorno al 12/01/2009; la data di fine invece intorno al 13/02/2009.
-la rotazione Ë prevista per il 27/01/2009.
-Verso la fine della fase il team affronter‡ la prima revisione interna(Revisione del Progetto Preliminare)che mostrer‡ al committente una visione ad alto livello del sistema. Il team per tale scopo, dovr‡ produrre un documento chiamato specifica tecnica e dovr‡ aggiornare il piano di qualifica. Se la revisione andr‡ a buon fine si attiver‡ la fase realizzativa del prodotto.
-Si riporta ora la rotazione dei ruoli in questa fase. Affianco ad ogni ruolo sono riportate tra parentesi le ore stimate da esercitare.\\\\
-\begin{tabular}{|c|c|c|}
-\hline
-Componenti & Prima Parte & Seconda Parte \\ \hline
-Barberio Mattia & Progettista(21,5) & Verificatore(20) \\ \hline
-Beggiato Andrea & Amministatore(13,5)/Verificatore(10) & Progettista(22) \\ \hline
-Freo Matteo & Progettista(21) & Responsabile(10,5) \\ \hline
-Grosselle Alessandro & Verificatore(20) & Progettista(22) \\ \hline
-Scarpa Davide & Responsabile(10) & Progettista(21,5) \\ \hline
-Scortegagna Carlo & Progettista(22) & Amministratore(13,5) \\ \hline
-\end{tabular}
+\subsubsection{Progettazione}
+La fase di progettazione prevede inizialmente la definizione dell'architettura di sistema, cio√® le componenti che lo caratterizzano e le relazioni tra queste(progettazione architetturale).
+Successivamente vi sar√† la definizione delle struttura interna di ciascun componente(progettazione di dettaglio).
 
-\subsection{Realizzazione}
-La fase di realizzazione ha lo scopo di implementare i vari componenti definiti nella progettazione e di definire ed eseguire 'casi di prova' sia per i singoli moduli che per l'intero sistema con l'intento di rilevare malfunzionamenti.
-la data di inizio realizzazione Ë stimata intorno al 16/02/2009; la data di fine invece intorno al 24/03/2009.
-la rotazione Ë prevista per il 02/03/2009.
-A tre quarti fase Ë prevista la revisione di qualifica che ha lo scopo di approvare l'esito finale della verifica. In questa fase si dovr‡ portare la versione definitiva del piano di qualifica e la versione iniziale del manuale utente.
-A fine fase ci sar‡ la revisione di accettazione in cui vi sar‡ il collaudo del sistema da parte del committente e l'accertamento di soddisfacimento di tutti i requisiti previsti. Se la revisione andr‡ a buon fine il prodotto verr‡ accettato e il progetto terminato.    
-Si riporta ora la rotazione dei ruoli in questa fase. Affianco ad ogni ruolo sono riportate tra parentesi le ore stimate da esercitare.\\\\
+La data di inizio progettazione √® stimata intorno al 12/01/2009; la data di fine invece intorno al 13/02/2009.
+la rotazione √® prevista per il 27/01/2009.
+
+Verso la fine della fase il team affronter√† la prima revisione interna(Revisione del Progetto Preliminare)che mostrer√† al committente una visione ad alto livello del sistema. Il team per tale scopo, dovr√† produrre un documento chiamato specifica tecnica e dovr√† aggiornare il \textsc{Piano di Qualifica}. Se la revisione andr√† a buon fine si attiver√† la fase realizzativa del prodotto.
+
+Si riporta ora la rotazione dei ruoli in questa fase; affianco ad ogni ruolo sono riportate tra parentesi le ore stimate da esercitare.\\\\
 \begin{tabular}{|c|c|c|}
 \hline
-Componenti & Prima Parte & Seconda Parte \\ \hline
-Barberio Mattia & Programmatore(18) & Amministratore(14) \\ \hline
-Beggiato Andrea & Programmatore(18) & Responsabile(11) \\ \hline
-Freo Matteo & Amministratore(14,5) & Programmatore(18,5)/Verificatore(10) \\ \hline
-Grosselle Alessandro & Responsabile(10) & Programmatore(18) \\ \hline
-Scarpa Davide & Programmatore(19,5) & Verificatore(20) \\ \hline
-Scortegagna Carlo & Verificatore(20) & Programmatore(18) \\ \hline
+\textsc{Componenti} & \textsc{Prima Parte} & \textsc{Seconda Parte} \\ \hline \hline
+Barberio Mattia & Prog(21,5) & Ver(20) \\ \hline
+Beggiato Andrea & Amm(13,5)/Ver(10) & Prog(22) \\ \hline
+Freo Matteo & Prog(21) & Res(10,5) \\ \hline
+Grosselle Alessandro & Ver(20) & Prog(22) \\ \hline
+Scarpa Davide & Res(10) & Prog(21,5) \\ \hline
+Scortegagna Carlo & Prog(22) & Amm(13,5) \\ \hline
+\end{tabular}
+\subsubsection{Realizzazione}
+La fase di realizzazione ha lo scopo di implementare i vari componenti definiti nella progettazione e di definire ed eseguire 'casi di prova' sia per i singoli moduli che per l'intero sistema con l'intento di rilevare malfunzionamenti.
+Ogni volta che il modulo di un componente vieni istanziato, questo viene collaudato e se l'esito √® positivo viene integrato al componente altrimenti verr√† segnalato al programmatore il malfunzionamento. Per la gestione dei malfunzionamenti vedere il documento \textsc{Piano di Qualifica}.
+Non appena tutte le componenti saranno pronte, verranno a loro volta integrate tra loro e si avvier√† la fase di collaudo dell'intero sistema.  
+La data di inizio realizzazione √® stimata intorno al 16/02/2009; la data di fine invece intorno al 24/03/2009.
+la rotazione √® prevista per il 02/03/2009.
+
+A tre quarti fase √® prevista la revisione di qualifica che ha lo scopo di approvare l'esito finale della verifica. In questa fase si dovr√† portare la versione definitiva del \textsc{Piano di Qualifica} e la versione iniziale del \textsc{Manuale Utente}.
+
+A fine fase ci sar√† la revisione di accettazione in cui vi sar√† il collaudo del sistema da parte del committente e l'accertamento di soddisfacimento di tutti i requisiti previsti. Se la revisione andr√† a buon fine il prodotto verr√† accettato e il progetto terminato.    
+
+Si riporta ora la rotazione dei ruoli in questa fase; affianco ad ogni ruolo sono riportate tra parentesi le ore stimate da esercitare.\\\\
+\begin{tabular}{|c|c|c|}
+\hline
+\textsc{Componenti} & \textsc{Prima Parte} & \textsc{Seconda Parte} \\ \hline \hline
+Barberio Mattia & Progr(18) & Amm(14) \\ \hline
+Beggiato Andrea & Progr(18) & Res(11) \\ \hline
+Freo Matteo & Amm(14,5) & Progr(18,5)/Ver(10) \\ \hline
+Grosselle Alessandro & Res(10) & Progr(18) \\ \hline
+Scarpa Davide & Progr(19,5) & Ver(20) \\ \hline
+Scortegagna Carlo & Ver(20) & Progr(18) \\ \hline
 \end{tabular}
 \subsection{Panoramica delle revisioni}
-Il team QuiXoft dovr‡ sostenere quattro revisioni; la prima e l'ultima sono esterne e saranno condotte del cliente. Le altre due sono interne al team, con il coinvolgimento del committente.
-Lo scopo di una revisione interna Ë quello di mostrare il progresso del progetto al cliente, determinando se esistono, nuovi bisogni e di identificare eventuali correzioni da fare. Questo tipo di revisione non ha effetto sanzionatorio.
-In una revisione esterna il cliente esaminer‡ e valuter‡ tutte le attivit‡ svolte dal team in quella determinata fase evidenziando, se esistono, le problemiche trovate. Questo tipo di revisione ha effetto sanzionatorio. 
+Il team QuiXoft dovr√† sostenere quattro revisioni; la prima e l'ultima sono esterne e saranno condotte del cliente. Le altre due sono interne al team, con il coinvolgimento del committente.
+
+Lo scopo di una revisione interna √® quello di mostrare il progresso del progetto al cliente, determinando se esistono, nuovi bisogni e correzioni da fare. Questo tipo di revisione non ha effetto sanzionatorio.
+
+In una revisione esterna il cliente esaminer√† e valuter√† tutte le attivit√† svolte dal team in quella determinata fase evidenziando, se esistono, le problemiche trovate. Questo tipo di revisione ha effetto sanzionatorio. 
+
 Le revisioni sono le seguenti:
 \begin{itemize}
 \item Revisione dei requisiti(RR)
@@ -250,40 +300,44 @@ Le revisioni sono le seguenti:
 \item Revisione di accettazione(RA)
 \end{itemize}
 \subsubsection{Revisione dei requisiti(RR)}
-In questa revisione vi sar‡ una discussione tra cliente e fornitore dei requisiti del sistema, allo scopo di verificare se entrambe le parti condividono una stessa visione generale del prodotto.
-La fine della fase di Analisi non coincide con la revisione dei requisiti; per questo motivo tutti i prodotti portati a questa revisione sono da considerarsi parziali.
-Per questa fase il team dovr‡ produrre tre documenti:
+In questa revisione vi sar√† una discussione tra cliente e fornitore dei requisiti del sistema, allo scopo di verificare se entrambe le parti condividono una stessa visione generale del prodotto.
+La fine della fase di analisi non coincide con la revisione dei requisiti; per questo motivo tutti i prodotti portati a questa revisione sono da considerarsi parziali.
+
+Per questa fase il team dovr√† produrre tre documenti:
 \begin{itemize}
-\item Analisi dei requisiti: mostra la definizione e classificazione dei requisiti. Il file in formato pdf del documento Ë nominato analisi\_dei\_requisiti.pdf. 
-\item Piano di qualifica: delinea la strategia generale di verifica e validazione. Il file in formato pdf del documento Ë nominato piano\_di\_qualifica.pdf.  
-\item Piano di progetto: mostra la pianificazione del progetto(vedi scopo del documento, sezione 1). Il file in formato pdf del documento Ë piano\_di\_progetto.pdf. 
+\item \textsc{Analisi dei Requisiti}: mostra la definizione e classificazione dei requisiti. Il file in formato pdf del documento √® nominato analisi\_dei\_requisiti.pdf. 
+\item \textsc{Piano di Qualifica}: delinea la strategia generale di verifica e validazione. Il file in formato pdf del documento √® nominato piano\_di\_qualifica.pdf.  
+\item Piano di progetto: mostra la pianificazione del progetto(vedi scopo del documento, sezione 1). Il file in formato pdf del documento √® piano\_di\_progetto.pdf. 
 \end{itemize}
 \subsubsection{Revisione del progetto preliminare(RPP)}
-Il fornitore in questa fase mostrer‡ al cliente una visione ad alto livello del sistema attraverso l'uso di diagrammi delle classi e altre rappresentazioni architetturali.
-Se la revisione andr‡ a buon fine si attiver‡ la fase realizzativa del prodotto.
-Oltre a questo, il fornitore dovr‡ mostrare l'esistenza di strategie,tecnologie adeguate per l'implementazione del progetto.
-Per questa fase si dovr‡ aggiornare il piano di qualifica,il piano di progetto e produrre un nuovo documento:
+Il fornitore in questa fase mostrer√† al cliente una visione ad alto livello del sistema attraverso l'uso di diagrammi delle classi e altre rappresentazioni architetturali.
+Se la revisione andr√† a buon fine si attiver√† la fase realizzativa del prodotto.
+Oltre a questo, il fornitore dovr√† mostrare l'esistenza di strategie,tecnologie adeguate per l'implementazione del progetto.
+
+Per questa fase si dovr√† aggiornare il \textsc{Piano di Qualifica}, il piano di progetto e produrre un nuovo documento:
 \begin{itemize}
-\item Specifica tecnica: presenta l'archittetura generale del sistema identificando e descrivendo le sue componenti di alto livello. Il file in formato pdf del documento Ë specifica\_tecnica.pdf. 
+\item Specifica tecnica: presenta l'archittetura generale del sistema identificando e descrivendo le sue componenti di alto livello. Il file in formato pdf del documento √® specifica\_tecnica.pdf. 
 \end{itemize}
 \subsubsection{Revisione di qualifica(RQ)}
-La funzione di questa revisione Ë approvare l'esito finale della verifica.
-Per questa fase si dovr‡ aggiornare il piano di qualifica, inserendo il resoconto definitivo della campagna di verifica e la descrizione delle prove proposte per il collaudo. Si dovr‡ poi produrre in modo parziale un nuovo documento:
+La funzione di questa revisione √® approvare l'esito finale della verifica.
+
+Per questa fase si dovr√† aggiornare il \textsc{Piano di Qualifica}, inserendo il resoconto definitivo della campagna di verifica e la descrizione delle prove proposte per il collaudo. Si dovr√† poi produrre in modo parziale un nuovo documento:
 \begin{itemize}
-\item Manuale utente: Descrive le istruzioni per l'uso del sistema. Il file in formato pdf del documento Ë manuale\_utente.pdf.
+\item \textsc{Manuale Utente}: Descrive le istruzioni per l'uso del sistema. Il file in formato pdf del documento √® manuale\_utente.pdf.
 \end{itemize}
 \subsubsection{Revisione di accettazione(RA)}
-In questa revisione il sistema verr‡ collaudato dal committente e di conseguenza accettato o meno. 
-Inoltre vi sar‡ anche l'accertamento di soddisfacimento di tutti i requisiti pattuiti.
-Per questa fase si dovranno aggiornare in modo definitivo il piano di qualifica e il manuale utente.
-Se la revisione andr‡ a buon fine il prodetto verr‡ accettato e il progetto sar‡ terminato.
+In questa revisione il sistema verr√† collaudato dal committente e di conseguenza accettato o meno. 
+Inoltre vi sar√† anche l'accertamento di soddisfacimento di tutti i requisiti pattuiti.
+
+Per questa fase si dovranno aggiornare in modo definitivo il \textsc{Piano di Qualifica} e il \textsc{Manuale Utente}.
+Se la revisione andr√† a buon fine il prodetto verr√† accettato e il progetto sar√† terminato.
 \subsection{Riassunto delle ore}
 Viene ora riportata una tabella che mostra la suddivisione del carico di lavoro(espresso in ore) ad ogni componente del team.
-Si Ë cercato di suddividere il carico nel modo pi˘ equo possibile, stando attenti a non andare oltre le 105 ore a persona.
+Si √® cercato di suddividere il carico nel modo pi√π equo possibile, stando attenti a non andare oltre le 105 ore a persona.
 \\\\
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
-Ruoli & Barbiero & Beggiato & Freo & Grosselle & Scarpa & Scortegagna \\ \hline
+\textsc{Ruoli} & \textsc{BM} & \textsc{BA} & \textsc{FM} & \textsc{GA} & \textsc{SD} & \textsc{SC} \\ \hline \hline
 Responsabile & 11 & 11 & 10,5 & 10 & 10 & 10 \\ \hline
 Amministratore & 14 & 13,5 & 14,5 & 13,5 & 13,5 & 13,5 \\ \hline
 Analista & 20 & 20 & 20 & 20 & 20 & 20 \\ \hline
@@ -294,44 +348,45 @@ Progettista & 21,5 & 22 & 21 & 22 & 21,5 & 22 \\ \hline
 Totale & 104,5 & 104,5 & 104,5 & 103,5 & 104,5 & 103,5 \\ \hline
 \end{tabular}
 \subsection{Diagramma di Gantt}
-Si mostra ora la rappresentazione grafica del calendario delle fasi utile al fine:
-DIGRAMMA
+Assieme a questo documento viene allegato il file diagramma\_di\_gantt.png che mostra la pianificazione delle attivit√† per ogni fase. 
+
 \section{Analisi dei rischi}
 \subsection{Assenza componente per medio/lungo periodo}
 Ogni componente ha sempre un determinato ruolo in tutte le fasi del progetto.
-Se un componente risultasse indisponibile per un lasso di tempo pi˘ o meno lungo causerebbe un rallentamento del progetto se non addirittura uno stallo.
-E' compito dell'amministratore riassegnare il determinato ruolo ad uno o pi˘ componenti del team e modificare il piano di progetto cercando di mantenere inalterati i costi e la data di fine progetto.
+Se un componente risultasse indisponibile per un lasso di tempo pi√π o meno lungo causerebbe un rallentamento del progetto se non addirittura uno stallo.
+E' compito dell'amministratore riassegnare il determinato ruolo ad uno o pi√π componenti del team e modificare il piano di progetto cercando di mantenere inalterati i costi e la data di fine progetto.
 \subsection{Mancanza di conoscenze tecniche}
 Si utilizzeranno strumenti e tecnologie che per alcuni componenti risulteranno nuove.
-L'amministratore metter‡ a disposizione guide e manuali per poter formare il team. Lo studio Ë personale e non Ë previsto nel piano di progetto. Tuttavia se dovesse essere necessario verr‡ fatta una riunione che delinear‡ i concetti di massima dell'eventuale strumento o tecnologia.   
-\subsection{Calendario delle attivit‡ inneficiente}
-Le attivit‡, vista la scarsa esperienza, sono state pianificate basandosi su precedenti calendari di altri gruppi.
-Ë compito dell'amministratore correggere eventuali errori di pianificazione, cercando di mantenere inalterati i costi e la data di fine progetto.
+L'amministratore metter√† a disposizione guide e manuali per poter formare il team. Lo studio √® personale e non √® previsto nel piano di progetto. Tuttavia se dovesse essere necessario verr√† fatta una riunione che delinear√† i concetti di massima dell'eventuale strumento o tecnologia.
+\subsection{Calendario delle attivit√† inneficiente}
+Le attivit√†, vista la scarsa esperienza, sono state pianificate basandosi su precedenti calendari di altri gruppi.
+√® compito dell'amministratore correggere eventuali errori di pianificazione, cercando di mantenere inalterati i costi e la data di fine progetto.
 \subsection{Analisi dei requisiti inefficiente}
-Nella prima fase avviene lo studio approfondito dei requisiti. Finita questa fase, inizia quella di progettazione. Data la scarsa esperienza del team QuiXoft il rischio di variazione dei requisiti dopo il loro studio esiste. Tuttavia si cerca di renderlo il pi˘ basso possibile ruotando il ruolo di analista e rendendo la ricerca dei requisiti il pi˘ completa ed efficiente possibile. 
-\subsection{Gestione della qualit‡ inadeguata}
-L'accertamento della qualit‡ del processo e del prodotto Ë garantita dalla presenza del ruolo del Verificatore per tutto il periodo di concezione e sviluppo del progetto. Se le ore necessarie al verificatore in una determinata fase dovessero essere troppo poche, verr‡ immediatamente avvisato l'amministratore che modificher‡ il piano di progetto, aumentando le ore al verificatore. 
+Nella prima fase avviene lo studio approfondito dei requisiti. Finita questa fase, inizia quella di progettazione. Data la scarsa esperienza del team QuiXoft il rischio di variazione dei requisiti dopo il loro studio esiste. Tuttavia si cerca di renderlo il pi√π basso possibile ruotando il ruolo di analista e rendendo la ricerca dei requisiti il pi√π completa ed efficiente possibile. 
+\subsection{Gestione della qualit√† inadeguata}
+L'accertamento della qualit√† del processo e del prodotto √® garantita dalla presenza del ruolo del Verificatore per tutto il periodo di concezione e sviluppo del progetto. Se le ore necessarie al verificatore in una determinata fase dovessero essere troppo poche, verr√† immediatamente avvisato l'amministratore che modificher√† il piano di progetto, aumentando le ore al verificatore. 
 \section{Conto economico preventivo}
 \subsection{Costi stimati nel progetto per ruolo}
-Dalla precedente pianificazione si puÚ redigere la seguente tabella che mostra i costi stimati(in \euro) di ogni ruolo.
-Il costo del progetto Ë stato stimato intorno ai 13065\euro, in pieno rispetto al vincolo ''Budget economico''.
+Dalla precedente pianificazione si pu√≤ redigere la seguente tabella che mostra i costi stimati(in \euro) di ogni ruolo.
+Il costo del progetto √® stato stimato intorno ai 13065\euro, in pieno rispetto al vincolo ''Budget economico''.
 \\\\
 \begin{tabular}{|c|c|c|c|c|}
 \hline
-Componenti & Analisi & Progettazione & Realizzazione & Totale \\ \hline
+\textsc{Componenti}& \textsc{Analisi} & \textsc{Progettazione} & \textsc{Realizzazione} & \textsc{Tot.} \\ \hline \hline
 Responsabile & 630 & 615 & 630 & 1875 \\ \hline
 Amministratore & 540 & 540 & 570 & 1650 \\ \hline
 Analista & 3000 & 0 & 0 & 3000 \\ \hline
 Progettista & 0 & 2860 & 0 & 2860 \\ \hline
 Programmatore & 0 & 0 & 1760 & 1760 \\ \hline
 Verificatore & 320 & 800 & 800 & 1920 \\ \hline
-Totale & 4490 & 4815 & 3760 & 13065 \\ \hline
+Tot. & 4490 & 4815 & 3760 & 13065 \\ \hline
 \end{tabular}
 \subsection{Costi stimati nel progetto per risorsa}
-La tabella sottostante rappresenta i costi(in \euro) di ogni componente del team in relazione al ruolo ricoperto:\\\\
+La tabella sottostante rappresenta i costi(in \euro) di ogni componente del team in relazione al ruolo ricoperto.
+Per maggiori informazioni sulle abbreviazioni vedere la sezione 3.\\\\
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
-Ruoli & Barbiero & Beggiato & Freo & Grosselle & Scarpa & Scortegagna \\ \hline
+\textsc{Ruoli} & \textsc{BM} & \textsc{BA} & \textsc{FM} & \textsc{GA} & \textsc{SD} & \textsc{SC} \\ \hline \hline
 Analista & 500 & 500 & 500 & 500 & 500 & 500 \\ \hline
 Verificatore & 320 & 320 & 320 & 320 & 320 & 320 \\ \hline
 Responsabile & 330 & 330 & 315 & 300 & 300 & 300 \\ \hline
