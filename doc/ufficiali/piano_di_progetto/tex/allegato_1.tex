@@ -1,0 +1,31 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{graphicx}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[italian]{babel}
+
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.6pt}
+% impostazione dello stile per le pagine interne del documento
+\fancypagestyle{plain} {
+\lhead{\textit{5 dicembre 2008}}
+\chead{}
+\rhead{\includegraphics[scale=0.15]{logo.png} }
+\lfoot{Diagramma di Gantt}
+\cfoot{}
+\rfoot{\thepage \ di \pageref{LastPage}}
+}
+\headheight = 46pt
+\title{Diagramma di Gantt}
+\author{Grosselle Alessandro}
+\date{05 dicembre 2008}
+\pagestyle{plain}
+\begin{document}
+\maketitle
+\includegraphics[scale=0.75]{gantt.png}
+\end{document}
