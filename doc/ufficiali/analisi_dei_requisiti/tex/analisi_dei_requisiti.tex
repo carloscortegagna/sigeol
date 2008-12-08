@@ -15,7 +15,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Analisi dei requisiti v0.7.2}
+\lfoot{Analisi dei requisiti v0.7.3}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +27,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Analisi dei requisiti v0.7.2}
+\lfoot{Analisi dei requisiti v0.7.3}
 \cfoot{}
 \rfoot{}
 }
@@ -43,6 +43,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{7 dicembre 2008} & 0.7.3 & Correzione di errori di forma e sintassi\\
 \hline
 \textit{6 dicembre 2008} & 0.7.2 & Correzione degli use case \\
 \hline
@@ -72,17 +74,20 @@
 \bigskip
 \begin{tabbing}
 	\hspace*{0.3\textwidth} \= \hspace*{0.5\textwidth} \kill
-	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Verificatore} \\
-	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Responsabile} \\
-	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Preliminare} \\
+	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Freo Matteo} \\
+	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Scortegagna Carlo} \\
+	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Formale} \\
 	\parbox{0.3\textwidth}{\textbf{Uso: }} \> \parbox{0.5\textwidth}{Esterno} \\
 	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{QuiXoft} \\
+							\> \parbox{0.5\textwidth}{Rossi Francesca} \\
+							\> \parbox{0.5\textwidth}{Vardanega Tullio} \\
+							\> \parbox{0.5\textwidth}{Conte Renato} \\
 \end{tabbing}
 }
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Analisi dei requisiti \\ v0.7.2}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Analisi dei requisiti \\ v0.7.3}}
 \author{Redazione: Beggiato Andrea, Scarpa Davide, Barbiero Mattia }
 \maketitle
 \medskip
@@ -94,7 +99,7 @@
 \info
 \begin{center}
 \textbf{Sommario} \\
-Documento contenente l'analisi dei requisiti per il progetto \textit{SIGEOL} commissionato dalla prof. Rossi Francesca.
+Documento contenente l'analisi dei requisiti per il progetto ``SIGEOL'' commissionato dalla prof. Rossi Francesca.
 \end{center}
 \newpage
 }
@@ -111,13 +116,15 @@ Documento contenente l'analisi dei requisiti per il progetto \textit{SIGEOL} com
 \setcounter{page}{1}
 \section{Introduzione}
 \subsection{Scopo del documento}
-Il presente documento denominato \textit{Analisi dei requisiti} ha lo scopo di delineare tutti i bisogni espressi dal committente Prof. Rossi Francesca per il sistema \textit{SIGEOL}, nonchè tutti i requisiti intrinsechi nello sviluppo di un tale prodotto. 
+Il presente documento denominato \textsc{Analisi dei requisiti} ha lo scopo di delineare tutti i bisogni espressi dal committente Prof. Rossi Francesca per il sistema ``SIGEOL'', nonchè tutti i requisiti intrinsechi nello sviluppo di un tale prodotto.
+
+Nel caso in cui la proposta venga ritenuta adeguata il seguente documento avrà valenza contrattuale e concretizzerà un legame di reciproco interesse tra il team QuiXoft ed il cliente al quale il documento è rivolto.
 \subsection{Scopo del prodotto}
-Il progetto sotto analisi, denominato \textit{SIGEOL}, si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. Il committente richiede l'applicazione del sistema al solo corso di laurea in informatica, ma, constatato che la complessità non aumenta notevolmente, il team QuiXoft prevede lo sviluppo e la messa in opera dell'applicazione per tutti i corsi di laurea dell' Università degli studi di Padova.
+Il progetto sotto analisi, denominato \textit{SIGEOL}, si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. Il committente richiede l'applicazione del sistema al solo corso di laurea in Informatica, ma, constatato che la complessità non aumenta notevolmente, il team QuiXoft prevede lo sviluppo e la messa in opera dell'applicazione per tutti i corsi di laurea dell' Università degli studi di Padova.
 
 Il prodotto sarà implementato come un \underline{servizio web} \underline{portabile}, facilmente manutenibile ed \underline{accessibile} agli utenti da una qualsiasi postazione con accesso alla rete Internet.
 \subsection{Glossario}
-Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti possono essere trovate nel documento ''Glossario'' al fine di eliminare ogni ambiguità e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione è disponibile all’interno del Glossario verrà marcato con una \underline{sottolineatura}.
+Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti possono essere trovate nel documento \textsc{Glossario} al fine di eliminare ogni ambiguità e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione è disponibile all’interno del Glossario verrà marcato con una \underline{sottolineatura}.
 \subsection{Riferimenti}
 \begin{itemize}
  \item Capitolato d'appalto reperibile all'indirizzo: \\ http://www.math.unipd.it/~tullio/IS-1/2008/Progetti/SIGEOL.html
@@ -141,12 +148,13 @@ Nel caso risulti impossibile soddisfare tutti i vincoli, il prodotto segnalerà 
 
 Per informazioni più dettagliate confrontare la sezione \ref{requisiti}
 \subsection{Caratteristiche degli utenti} \label{utenti}
-Si prevedono quattro tipologie di utenti che usufruiranno del sistema:
+Si prevedono cinque tipologie di utenti che usufruiranno del sistema:
 \begin{itemize}
  \item Segreteria generale
  \item Segreteria didattica
  \item Presidente del CCS
  \item Docente
+ \item Utente non autenticato
 \end{itemize}
 
 La \textit{segreteria generale} si occupa dell'invito delle varie \textit{segreterie didattiche}, nonchè della preparazione della struttura delle varie facoltà.
@@ -155,7 +163,9 @@ La \textit{segreteria didattica} ha, tra gli altri, il compito di invitare i \te
 
 Il \textit{presidente del CCS} provvede, invece, all'invito dei vari \textit{docenti} che dovranno compilare i propri dati ed accettare il consenso al loro trattamento.
 
-Ogni tipologia potrà inserire i propri vincoli e preferenze e, dato che il sistema \textit{SIGEOL} guiderà nel modo più accurato possibile ogni utente, non sono richieste particolari conoscescenze ad eccezione dell'uso di un elaboratore connesso alla rete Internet.
+L' \textit{utente non autenticato} sarà in grado di consultare le informazioni che verranno rese disponibili dal sistema, quali schemi d'orario, informazioni su docenti, aule, corsi di laurea e corsi.
+
+Ogni tipologia potrà inserire i propri vincoli e preferenze (esclusi gli utenti non autenticati) e, dato che il sistema ``SIGEOL'' guiderà nel modo più accurato possibile ogni utente, non sono richieste particolari conoscescenze ad eccezione dell'uso di un elaboratore connesso alla rete Internet.
 \subsection{Vincoli generali}
 Il sistema che si intende sviluppare cercherà di essere il più \underline{portabile} ed indipendente possibile. Il team QuiXoft non esclude però che sia necessaria l'installazione di componenti software nel \underline{server} dove il prodotto risiederà. Ad ogni modo non saranno in alcun modo utilizzate tecnologie soggette al pagamento di una qualche forma di licenza o altro.
 \subsection{Assunzioni e dipendenze}
@@ -164,65 +174,70 @@ Il prodotto che il team QuiXoft si impegna a sviluppare dipende da diversi fatto
  \item Documentazione fornita dal committente
  \item Disponibilità del committente ad incontri e chiarimenti richiesti dal team.
 \end{itemize}
-Inoltre il team QuiXoft si rende consapevole della possibilità di cambiamento od aggiunta di aluni requisiti dal committente in corso d'opera.
+Inoltre il team QuiXoft si rende consapevole della possibilità di cambiamento od aggiunta di aluni requisiti da parte del committente in corso d'opera.
 \section{Requisiti} \label{requisiti}
+In questa sezione verranno elencati i requisiti del prodotto, organizzati per tipologia di utente per facilitarne la lettura. Sarà inoltre utilizzata una distinzione tra requisiti obbligatori, desiderabili ed opzionali.
 \subsection{Requisiti funzionali}
 \subsubsection{Requisiti funzionali per la segreteria generale}
 \begin{itemize}
 \item \textbf{OBBLIGATORI}
 \begin{enumerate}
-\item Possibilità di login/logout
+\item Possibilità di \underline{autenticazione}
 \item Possibilità di inserimento delle facoltà
 \item Possibilità di invitare via e-mail le singole facoltà ad inserire i dati
 \item Possibilità di consultare lo schema d'orario di ogni corso di laurea
 \end{enumerate}
 \item \textbf{DESIDERABILI}
 \begin{enumerate}
-\item Possibilità di impostare la frequenza con cui avviene il backup automatico dei dati
+\item Possibilità di impostare la frequenza con cui avviene il \underline{backup} automatico dei dati
+\item Possibilità di ripristinare i dati relativi alle facoltà da un \underline{backup} scelto
+\item Possibilità di consultare le informazioni relative a docenti, aule, corsi di laurea e corsi.
 \end{enumerate}
 \end{itemize}
 \subsubsection{Requisiti funzionali per la segreteria didattica}
 \begin{itemize}
 \item \textbf{OBBLIGATORI}
 \begin{enumerate}
-\item Possibilità di login/logout
-\item Possibilità di inserimento e modifica, all'interno della propria facoltà, per ogni corso, del nome, dei relativi CFU, dell'anno di appartenenza, del periodo, dello stato, del numero di ore in aula e in laboratorio (se previsto), del docente di riferimento che lo tiene, di eventuali assistenti e della stima del numero di studenti che lo seguiranno
-\item Possibilità di inserimento e modifica, all'interno della propria facoltà, per ogni aula disponibile, del nome, della capienza, delle ore e dei periodi di non disponibilità
+\item Possibilità di \underline{autenticazione}
+\item Possibilità di inserimento e modifica per ogni corso, all'interno della propria facoltà, del nome, dei relativi CFU, dell'anno di appartenenza, del periodo, dello stato, del numero di ore in aula e in laboratorio (se previsto), del docente di riferimento che lo tiene, di eventuali assistenti e della stima del numero di studenti che lo seguiranno
+\item Possibilità di inserimento e modifica per ogni aula disponibile, all'interno della propria facoltà, del nome, della capienza, delle ore e dei periodi di non disponibilità
 \item Possibilità di inserimento e modifica dell'anno accademico
-\item Possibilità di inserimento e modifica delle ore da usare
-\item Possibilità di impostare linee guida per la creazione dell'orario
+\item Possibilità di impostare vincoli e preferenze per ogni corso di laurea
 \item Possibilità di modifica dei dati dei docenti preventivamente inseriti dal Presidente del CCS
 \item Possibilità di invitare via e-mail i presidenti del CCS di ogni corso di laurea ad inserire i dati
+\item Possibilità di ripristinare i dati relativi ai corsi di laurea da un \underline{backup} scelto
 \end{enumerate}
 \item \textsc{DESIDERABILI}
 \begin{enumerate}
-\item Possibilità di generazione dello schema d'orario in formato pdf e html
-\item Possibilità di scegliere vincoli da rilassare e soluzioni subottime, proposti dal sistema, in caso di soluzione inesistente
-\item Possibilità di consultare lo schema d'orario di ogni corso di laurea della propria facoltà
+\item Possibilità di generazione dello schema d'orario in formato \underline{pdf} e \underline{html}
+\item Possibilità di scegliere vincoli da rilassare proposti dal sistema in caso di soluzione inesistente
+\item Possibilità di consultare lo schema d'orario di ogni corso di laurea
+\item Possibilità di consultare le informazioni relative a docenti, aule, corsi di laurea e corsi
 \end{enumerate}
 \end{itemize}
 \subsubsection{Requisiti funzionali per il Presidente del CCS}
 \begin{itemize}
 \item \textbf{OBBLIGATORI}
 \begin{enumerate}
-\item Possibilità di login/logout
-\item Possibilità di inserimento e modifica, all'interno del proprio corso di laurea, per ogni corso, del nome, dei relativi CFU, dell'anno di appartenenza, del periodo, dello stato, del numero di ore in aula e in laboratorio (se previsto), del docente di riferimento che lo tiene, di eventuali assistenti e della stima del numero di studenti che lo seguiranno
-\item Possibilità di inserimento e modifica, all'interno del proprio corso di laurea, per ogni aula disponibile, del nome, della capienza, delle ore e dei periodi di non disponibilità
-\item Possibilità di inserimento e modifica, all'interno del proprio corso di laurea, dei nomi e delle e-mail dei docenti
+\item Possibilità di \underline{autenticazione}
+\item Possibilità di inserimento e modifica per ogni corso, all'interno del proprio corso di laurea, del nome, dei relativi CFU, dell'anno di appartenenza, del periodo, dello stato, del numero di ore in aula e in laboratorio (se previsto), del docente di riferimento che lo tiene, di eventuali assistenti e della stima del numero di studenti che lo seguiranno
+\item Possibilità di inserimento e modifica per ogni aula disponibile, all'interno del proprio corso di laurea, del nome, della capienza, delle ore e dei periodi di non disponibilità
+\item Possibilità di inserimento e modifica, all'interno del proprio corso di laurea, dei dati dei docenti
 \item Possibilità di inserimento e modifica dell'anno accademico
-\item Possibilità di inserimento e modifica delle ore da usare
-\item Possibilità di impostare linee guida per la creazione dell'orario
-\item Possibilità di generazione dello schema d'orario in formato pdf e html
-\item Possibilità di scegliere vincoli da rilassare e soluzioni subottime, proposti dal sistema, in caso di soluzione inesistente
+\item Possibilità di impostare vincoli e preferenze per ogni corso
+\item Possibilità di generazione dello schema d'orario in formato \underline{pdf} e \underline{html}
+\item Possibilità di scegliere vincoli da rilassare proposti dal sistema in caso di soluzione inesistente
 \item Possibilità di consultare lo schema d'orario
-\item Possibilità di inserimento di vincoli e preferenze relativi ai corsi
 \item Possibilità di inserimento e modifica di indirizzi diversi appartenenti allo stesso corso di laurea
+\item Possibilità di ripristinare i dati relativi ai corsi da un \underline{backup} scelto
+\item Possibilità di notificare i docenti nel caso di vincoli e preferenze non soddisfatti
 \end{enumerate}
 \item \textbf{DESIDERABILI}
 \begin{enumerate}
 \item Possibilità di notificare il mancato inserimento di un docente o di un corso d'insegnamento di un altro corso di laurea
-\item Possibilità di impostare una data limite per l'inserimento dei vincoli da parte dei docenti, con segnalazione della scadenza via e-mail
+\item Possibilità di impostare una data limite per l'inserimento dei vincoli da parte dei docenti, con notifica della scadenza.
 \item Possibilità di modifica manuale dello schema d'orario specificato
+\item Possibilità di consultare le informazioni relative a docenti, aule, corsi di laurea e corsi
 \end{enumerate}
 \end{itemize}
 \subsubsection{Requisiti funzionali per i docenti}
@@ -233,14 +248,26 @@ Inoltre il team QuiXoft si rende consapevole della possibilità di cambiamento o
 \item Possibilità di inserimento e modifica delle proprie preferenze su orari e giorni di lezione, con relativa motivazione
 \item Possibilità di modifica dei propri dati personali
 \end{enumerate}
+\item \textbf{DESIDERABILI}
+\begin{enumerate}
+\item Possibilità di consultare le informazioni relative a docenti, aule, corsi di laurea e corsi
+\end{enumerate}
+\end{itemize}
+\subsubsection{Requisiti funzionali per l'Utente non autenticato}
+\begin{itemize}
+\item \textbf{DESIDERABILI}
+\begin{enumerate}
+\item Possibilità di consultare lo schema d'orario
+\item Possibilità di consultare le informazioni relative a docenti, aule, corsi di laurea e corsi
+\end{enumerate}
 \end{itemize}
 \subsection{Requisiti di qualità}
 \begin{itemize}
 \item \textbf{OBBLIGATORI}
 \begin{enumerate}
-\item Accessibilità del sistema
+\item \underline{Accessibilità} del sistema
 \item Garanzie sull'integrità dei dati
-\item Gestione in sicurezza degli account
+\item Gestione in sicurezza degli \underline{account}
 \item Manutenibilità del sistema
 \item Interfaccia utente semplice e intuitiva
 \item Presenza di manuali d'uso, di installazione, configurazione e manutenzione del sistema
@@ -250,7 +277,7 @@ Inoltre il team QuiXoft si rende consapevole della possibilità di cambiamento o
 \begin{enumerate}
 \item Portabilità del sistema
 \item Completa interoperabilità dei dati memorizzati e trattati
-\item Pagine scritte in XHTML e CCS dovranno essere validate tramite strumenti forniti dal consorzio W3C
+\item Pagine scritte in \underline{XHTML} e \underline{CCS} dovranno essere validate tramite strumenti forniti dal consorzio \underline{W3C}
 \end{enumerate}
 \end{itemize}
 \subsection{Requisiti d'interfacciamento e d'ambiente}
@@ -258,7 +285,7 @@ Inoltre il team QuiXoft si rende consapevole della possibilità di cambiamento o
 \begin{itemize}
 \item \textbf{OBBLIGATORI}
 \begin{enumerate}
-\item Le informazioni andranno memorizzate in modo permanente in una base di dati
+\item Le informazioni andranno memorizzate in modo permanente in un \underline{database}
 \end{enumerate}
 \item \textbf{DESIDERABILI}
 \begin{enumerate}
@@ -269,19 +296,19 @@ Inoltre il team QuiXoft si rende consapevole della possibilità di cambiamento o
 \begin{itemize}
 \item \textbf{OBBLIGATORI}
 \begin{enumerate}
-\item Le informazioni dovranno essere acquisite tramite un servizio web
-\item Il sistema distinguerà i vari tipi di utente tramite autenticazione
+\item Le informazioni dovranno essere acquisite tramite un \underline{servizio web}
+\item Il sistema distinguerà i vari tipi di utente tramite \underline{autenticazione}
 \item Al fine di evitare errori il sistema dovrà il più possibile proporre all'utente i dati in modo automatico
 \end{enumerate}
 \end{itemize}
 \section{Use case e descrizioni narrative}
-In questo capitolo verranno illustrati i diagrammi use-case che rappresentano
-i requisiti funzionali del prodotto. 
+In questo capitolo verranno illustrati i \underline{diagrammi use-case} che rappresentano
+i requisiti funzionali del prodotto.
 
 I diagrammi verrano accompagnati dalle loro descrizioni narrative per consentirne
 una migliore comprensione.
 \subsection{Use case generale}
-Il seguente diagramma illustra in modo generale le funzionalità offerte dal sistema SIGEOL.
+Il seguente diagramma illustra in modo generale le funzionalità offerte dal sistema ``SIGEOL'' .
 \begin{center}
  \includegraphics[scale=0.5]{UseCaseSistema.png}
  % UseCaseSistema.png: 638x495 pixel, 72dpi, 22.51x17.46 cm, bb=0 0 638 495
@@ -295,8 +322,8 @@ Il sistema è composto da dieci parti principali:
 \item Gestione aule: modulo per la gestione dei dati relativi alle aule.
 \item Gestione docenti: modulo per la gestione dei dati relativi ai docenti.
 \item Gestione schema d'orario: modulo per la gestione e la generazione dello schema d'orario.
-\item Gestione backup: modulo per la gestione dei backup del SIGEOL database.
-\item Autenticazione: modulo utilizzato per autenticare le varie tipologie di utenti.
+\item Gestione backup: modulo per la gestione dei \underline{backup} del SIGEOL \underline{database}.
+\item Autenticazione: modulo utilizzato per \underline{autenticare} le varie tipologie di utenti.
 \item Gestione notifiche: modulo per la gestione delle notifiche.
 \item Gestione consultazione: modulo per la visualizzazione delle informazione relative ai corsi di laurea, corsi di lezione, docenti, aule e schema d'orario
 \end{enumerate}
@@ -311,17 +338,17 @@ utente, Utente autenticato
 \subsubsection*{Scopo e descrizione sintetica:}
 l'utente effettua l'accesso alla sua pagina personale inserendo il proprio indirizzo email nel campo 'username' e la propria password
 nel campo 'password'.
-L'utente autenticato esce dal sistema premendo sul pulsante di logout.
+L'utente autenticato esce dal sistema premendo sul pulsante di \underline{logout}.
 \subsubsection*{Pre-condizioni:}
-l'utente accede alla pagina di login.
+l'utente accede alla pagina di \underline{login}.
 \subsubsection*{Flusso base di eventi:}
 l'utente inserisce i suoi dati di accesso e viene effettuata la verifica dei dati immessi.
 \subsubsection*{Flussi alternativi:}
-l'utente esce dalla pagina di login.
+l'utente esce dalla pagina di \underline{login}.
 \subsubsection*{Post-condizioni:}
 \begin{itemize}
- \item se i dati immessi sono corretti l'utente risulta autenticato e viene indirizzato alla propria pagina personale
- \item se i dati immessi sono errati l'utente viene indirizzato alla pagina di login e viene visualizzato un messaggio di errore. 
+ \item se i dati immessi sono corretti l'utente risulta {autenticato} e viene indirizzato alla propria pagina personale
+ \item se i dati immessi sono errati l'utente viene indirizzato alla pagina di \underline{login} e viene visualizzato un messaggio di errore. 
 \end{itemize}
 
 \subsection{Use case Gestione notifiche}
@@ -343,7 +370,7 @@ l'utente si trova in una delle pagine relative alla gestione dati.
 \begin{itemize}
  \item segreteria generale, segreteria didattica, presidente CCS invitano nel sistema un utente
 \begin{enumerate}
- \item generazione del link di invito
+ \item generazione del \underline{link} di invito
 \item invio dell'invito
 \end{enumerate}
 \item segreteria generale, segreteria didattica, presidente CCS scelgono di inviare una notifica ad un utente
@@ -385,7 +412,7 @@ la segreteria generale accede alla pagina della gestione facoltà
  \item la segreteria generale esce dalla pagina
 \end{enumerate}
 \subsubsection*{Post-condizioni:}
-Le modifiche relative alle facoltà vengono inserite nel SIGEOL database
+Le modifiche relative alle facoltà vengono inserite nel SIGEOL \underline{database}
 
 \subsection{Use case Gestione corsi di laurea}
 \begin{center} 
@@ -408,7 +435,7 @@ la segreteria didattica accede alla pagina della gestione corsi di laurea
 \item segreteria didattica esce dalla pagina
 \end{enumerate}
 \subsubsection*{Post-condizioni:}
-le modifiche relative ai corsi vengono inserite nel SIGEOL database
+le modifiche relative ai corsi vengono inserite nel SIGEOL \underline{database}
 
 \subsection{Use case Gestione corsi}
 \begin{center} 
@@ -429,10 +456,10 @@ segreteria didattica e il presidente CCS accedono alla pagina della gestione cor
 \subsubsection*{Flussi alternativi:}
 \begin{enumerate} 
 \item segreteria didattica e il presidente CCS escono dalla pagina
-\item segreteria didattica e il presidente CCS inviano una notifica ad un determinato docente a causa della sua mancata presenza nel database e quindi al momento non può essere associato al corso
+\item segreteria didattica e il presidente CCS inviano una notifica ad un determinato docente a causa della sua mancata presenza nel \underline{database} e quindi al momento non può essere associato al corso
 \end{enumerate}
 \subsubsection*{Post-condizioni:}
-le modifiche relative ai corsi vengono inserite nel SIGEOL database e le notifiche (se effettuate) vengono correttamente 
+le modifiche relative ai corsi vengono inserite nel SIGEOL \underline{database} e le notifiche (se effettuate) vengono correttamente 
 inviate
 
 \subsection{Use case Gestione aule}
@@ -453,7 +480,7 @@ segreteria didattica e il presidente CCS accedono alla pagina della gestione aul
 \item segreteria didattica e il presidente CCS escono dalla pagina
 \end{enumerate}
 \subsubsection*{Post-condizioni:}
-le modifiche relative alle aule vengono inserite nel SIGEOL database
+le modifiche relative alle aule vengono inserite nel SIGEOL \underline{database}
 \subsection{Use case Gestione docenti}
 \begin{center} 
  \includegraphics[scale=0.5]{UseCaseGestioneDocenti.png}
@@ -472,7 +499,7 @@ docente è nella propria pagina personale
 \subsubsection*{Flussi alternativi:}
 docente esce dalla sua pagina personale
 \subsubsection*{Post-condizioni:}
-le modifiche apportate vengono inserite nel SIGEOL database
+le modifiche apportate vengono inserite nel SIGEOL \underline{database}
 \subsection{Use case Gestione schema d'orario}
 \begin{center} 
  \includegraphics[scale=0.5]{UseCaseGestioneSchemaOrario.png}
@@ -494,7 +521,7 @@ segreteria didattica, presidente CCS accedono alla pagina della gestione dello s
 \subsubsection*{Post-condizioni:}
 \begin{enumerate}
  \item l'orario viene esportato nel formato scelto.
- \item l'orario viene salvato nel SIGEOL database
+ \item l'orario viene salvato nel SIGEOL \underline{database}
 \end{enumerate}  
 
 \subsection{Use case Gestione consultazione}
@@ -519,22 +546,22 @@ utente autenticato, utente non autenticato visualizzano le informazioni relative
 \subsubsection*{Attori coinvolti:}
 segreteria generale, segreteria didattica, presidente CCS
 \subsubsection*{Scopo e descrizione sintetica:}
-segreteria generale, segreteria didattica, presidente CCS impostare le preferenze per la generazione dei backup, generano il backup e ripristinano precedenti backup del SIGEOL database
+segreteria generale, segreteria didattica, presidente CCS impostare le preferenze per la generazione dei \underline{backup}, generano il \underline{backup} e ripristinano precedenti \underline{backup} del SIGEOL \underline{database}
 \subsubsection*{Pre-condizioni:}
-segreteria generale, segreteria didattica, presidente CCS sono nella pagina della gestione dei backup
+segreteria generale, segreteria didattica, presidente CCS sono nella pagina della gestione dei \underline{backup}
 \subsubsection*{Flusso base di eventi:}
 \begin{itemize}
- \item segreteria generale, segreteria didattica, presidente CCS modificano le impostazioni di backup
- \item segreteria generale, segreteria didattica, presidente CCS generano un backup
- \item segreteria generale, segreteria didattica, presidente CCS ripristinano un backup già esistente
+ \item segreteria generale, segreteria didattica, presidente CCS modificano le impostazioni di \underline{backup}
+ \item segreteria generale, segreteria didattica, presidente CCS generano un \underline{backup}
+ \item segreteria generale, segreteria didattica, presidente CCS ripristinano un \underline{backup} già esistente
 \end{itemize}
 \subsubsection*{Flussi alternativi:}
-segreteria generale, segreteria didattica, presidente CCS escono dalla pagina della gestione dei backup
+segreteria generale, segreteria didattica, presidente CCS escono dalla pagina della gestione dei \underline{backup}
 \subsubsection*{Post-condizioni:}
 \begin{itemize}
 \item le impostazioni vengono salvate
-\item il backup viene generato
-\item viene ripristinato il database con un backup precedente
+\item il \underline{backup} viene generato
+\item viene ripristinato il database con un \underline{backup} precedente
 \end{itemize}
 
 \modifiche
