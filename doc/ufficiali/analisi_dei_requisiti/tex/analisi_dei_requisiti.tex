@@ -328,27 +328,31 @@ Il sistema è composto da dieci parti principali:
 \item Gestione consultazione: modulo per la visualizzazione delle informazione relative ai corsi di laurea, corsi di lezione, docenti, aule e schema d'orario
 \end{enumerate}
 \textbf{Attori coinvolti:}
-segreteria generale, segreteria didattica, presidente CCS, docente, utente non autenticato
+\textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS}, \textit{docente}, \textit{utente non autenticato}, \textit{SIGEOL \underline{database}}
 \subsection{Use case Autenticazione}
 \begin{center} 
  \includegraphics[scale=0.5]{UseCaseAutenticazione.png}
 \end{center}
 \subsubsection*{Attori coinvolti:}
-utente, Utente autenticato
+\textit{utente non autenticato}, \textit{utente autenticato}, \textit{SIGEOL \underline{database}}
 \subsubsection*{Scopo e descrizione sintetica:}
-l'utente effettua l'accesso alla sua pagina personale inserendo il proprio indirizzo email nel campo 'username' e la propria password
+l'\textit{utente non autenticato} effettua l'accesso alla sua pagina personale inserendo il proprio indirizzo email nel campo 'username' e la propria password
 nel campo 'password'.
-L'utente autenticato esce dal sistema premendo sul pulsante di \underline{logout}.
+L'\textit{utente autenticato} esce dal sistema premendo sul pulsante di \underline{logout}.
 \subsubsection*{Pre-condizioni:}
-l'utente accede alla pagina di \underline{login}.
+l'\textit{utente non autenticato} accede alla pagina di \underline{login}.
 \subsubsection*{Flusso base di eventi:}
-l'utente inserisce i suoi dati di accesso e viene effettuata la verifica dei dati immessi.
+\begin{itemize}
+ \item l'\textit{utente non autenticato} inserisce i suoi dati di accesso e viene effettuata la verifica dei dati immessi
+\item l'\textit{utente autenticato} effettua il logout 
+\end{itemize}
 \subsubsection*{Flussi alternativi:}
-l'utente esce dalla pagina di \underline{login}.
+l'\textit{utente non autenticato} esce dalla pagina di \underline{login}.
 \subsubsection*{Post-condizioni:}
 \begin{itemize}
- \item se i dati immessi sono corretti l'utente risulta {autenticato} e viene indirizzato alla propria pagina personale
- \item se i dati immessi sono errati l'utente viene indirizzato alla pagina di \underline{login} e viene visualizzato un messaggio di errore. 
+ \item se i dati immessi sono corretti l'\textit{utente non autenticato} risulta {autenticato} e viene indirizzato alla propria pagina personale
+ \item se i dati immessi sono errati l'\textit{utente non autenticato} viene indirizzato alla pagina di \underline{login} e viene visualizzato un messaggio di errore. 
+\item l'\textit{utente autenticato} diventa \textit{utente non autenticato}
 \end{itemize}
 
 \subsection{Use case Gestione notifiche}
@@ -356,33 +360,33 @@ l'utente esce dalla pagina di \underline{login}.
  \includegraphics[scale=0.5]{UseCaseGestioneNotifiche.png} 
 \end{center}
 \subsubsection*{Attori coinvolti:}
-segreteria generale, segreteria didattica, presidente CCS, docente, destinatario
+\textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS}, \textit{docente}
 \subsubsection*{Scopo e descrizione sintetica:}
-l'utente autenticato invia una notifica all'utente destinatario. Il tipo di notifica varia in base alla funzione ad essa associata.
+\textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS}, \textit{docente} inviano una notifica o invitano un'altro utente ad entrare nel sistema. Il tipo di notifica varia in base alla funzione ad essa associata.
 \subsubsection*{Pre-condizioni:}
-l'utente si trova in una delle pagine relative alla gestione dati.
+\textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS}, \textit{docente} si trovano in una delle pagine relative alla gestione dati.
 \begin{itemize}
- \item segreteria generale, segreteria didattica, presidente CCS scelgono di invitare nel sistema un utente
-\item segreteria generale, segreteria didattica, presidente CCS scelgono di inviare una notifica ad un utente
-\item  segreteria generale, segreteria didattica, presidente CCS, docente ricevono un'invito o una notifica
+ \item \textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS} scelgono di invitare nel sistema un utente
+\item \textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS} scelgono di inviare una notifica ad un utente
+\item  \textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS}, \textit{docente} ricevono un'invito o una notifica
 \end{itemize}
 
 \begin{itemize}
- \item segreteria generale, segreteria didattica, presidente CCS invitano nel sistema un utente
+ \item \textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS} invitano nel sistema un utente
 \begin{enumerate}
  \item generazione del \underline{link} di invito
 \item invio dell'invito
 \end{enumerate}
-\item segreteria generale, segreteria didattica, presidente CCS scelgono di inviare una notifica ad un utente
+\item \textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS} scelgono di inviare una notifica ad un utente
 \begin{enumerate}
- \item invio della notifica all'utente destinatario
+ \item invio della notifica
  \item segnalazione della notifica nella pagina personale del destinatario
 \end{enumerate}
 \end{itemize}
 \subsubsection*{Flussi alternativi:}
 \begin{itemize}
- \item segreteria generale, segreteria didattica, presidente CCS annullano l'invito
-\item  segreteria generale, segreteria didattica, presidente CCS, docente annullano l'invio della notifica
+ \item \textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS} annullano l'invito
+\item  \textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS}, \textit{docente} annullano l'invio della notifica
 \end{itemize}
 \subsubsection*{Post-condizioni:}
 \begin{enumerate}
@@ -396,132 +400,132 @@ l'utente si trova in una delle pagine relative alla gestione dati.
  % UseCaseGestioneFacolta.png: 801x496 pixel, 72dpi, 28.26x17.50 cm, bb=0 0 801 496
 \end{center}
 \subsubsection*{Attori coinvolti:}
-segreteria generale
+\textit{segreteria generale}, \textit{SIGEOL \underline{database}}
 \subsubsection*{Scopo e descrizione sintetica:}
-la segreteria generale inserisce, modifica ed elimina i dati relativi alle facoltà universitarie
+la \textit{segreteria generale} inserisce, modifica ed elimina i dati relativi alle facoltà universitarie
 \subsubsection*{Pre-condizioni:}
-la segreteria generale accede alla pagina della gestione facoltà
+la \textit{segreteria generale} accede alla pagina della gestione facoltà
 \subsubsection*{Flusso base di eventi:}
 \begin{itemize}
- \item la segreteria generale inserisce una nuova facoltà
- \item la segreteria generale modifica i dati di una facoltà precedentemente inserita
- \item la segreteria generale elimina una facoltà
+ \item la \textit{segreteria generale} inserisce una nuova facoltà
+ \item la \textit{segreteria generale} modifica i dati di una facoltà precedentemente inserita
+ \item la \textit{segreteria generale} elimina una facoltà
 \end{itemize}
 \subsubsection*{Flussi alternativi:}
 \begin{enumerate} 
- \item la segreteria generale esce dalla pagina
+ \item la \textit{segreteria generale} esce dalla pagina
 \end{enumerate}
 \subsubsection*{Post-condizioni:}
-Le modifiche relative alle facoltà vengono inserite nel SIGEOL \underline{database}
+Le modifiche relative alle facoltà vengono inserite nel \textit{SIGEOL \underline{database}}
 
 \subsection{Use case Gestione corsi di laurea}
 \begin{center} 
  \includegraphics[scale=0.5]{UseCaseGestioneCorsiLaurea.png}
 \end{center}
 \subsubsection*{Attori coinvolti:}
-segreteria didattica
+\textit{segreteria didattica}, \textit{SIGEOL \underline{database}}
 \subsubsection*{Scopo e descrizione sintetica:}
-la segreteria didattica inserisce, modifica ed elimina i corsi di laurea e i dati ad essi appartenenti
+la \textit{segreteria didattica} inserisce, modifica ed elimina i corsi di laurea e i dati ad essi appartenenti
 \subsubsection*{Pre-condizioni:}
-la segreteria didattica accede alla pagina della gestione corsi di laurea
+la \textit{segreteria didattica} accede alla pagina della gestione corsi di laurea
 \subsubsection*{Flusso base di eventi:}
 \begin{enumerate}
- \item segreteria didattica inserisce un nuovo corso di laurea
- \item segreteria didattica modifica i dati di un corso di laurea precedentemente inserito
- \item segreteria didattica elimina una corso di laurea già esistente
+ \item \textit{segreteria didattica} inserisce un nuovo corso di laurea
+ \item \textit{segreteria didattica} modifica i dati di un corso di laurea precedentemente inserito
+ \item \textit{segreteria didattica} elimina una corso di laurea già esistente
 \end{enumerate}
 \subsubsection*{Flussi alternativi:}
 \begin{enumerate} 
-\item segreteria didattica esce dalla pagina
+\item \textit{segreteria didattica} esce dalla pagina
 \end{enumerate}
 \subsubsection*{Post-condizioni:}
-le modifiche relative ai corsi vengono inserite nel SIGEOL \underline{database}
+le modifiche relative ai corsi vengono inserite nel \textit{SIGEOL \underline{database}}
 
 \subsection{Use case Gestione corsi}
 \begin{center} 
  \includegraphics[scale=0.5]{UseCaseGestioneCorsi.png}
 \end{center}
 \subsubsection*{Attori coinvolti:}
-presidente CCS, docente
+\textit{presidente CCS}, \textit{docente},\textit{SIGEOL \underline{database}}
 \subsubsection*{Scopo e descrizione sintetica:}
-presidente CCS e docente inseriscono, modificano ed eliminano i corsi e i dati ad essi appartenenti
+\textit{presidente CCS} e \textit{docente} inseriscono, modificano ed eliminano i corsi e i dati ad essi appartenenti
 \subsubsection*{Pre-condizioni:}
-segreteria didattica e il presidente CCS accedono alla pagina della gestione corsi
+\textit{segreteria didattica} e il \textit{presidente CCS} accedono alla pagina della gestione corsi
 \subsubsection*{Flusso base di eventi:}
 \begin{enumerate}
- \item segreteria didattica e il presidente CCS inseriscono un nuovo corso 
- \item segreteria didattica e il presidente CCS modificano i dati di un corso precedentemente inserito.
- \item segreteria didattica e il presidente CCS eliminano una corso già esistente.
+ \item \textit{segreteria didattica} e il \textit{presidente CCS} inseriscono un nuovo corso 
+ \item \textit{segreteria didattica} e il \textit{presidente CCS} modificano i dati di un corso precedentemente inserito
+ \item \textit{segreteria didattica} e il \textit{presidente CCS} eliminano una corso già esistente
 \end{enumerate}
 \subsubsection*{Flussi alternativi:}
 \begin{enumerate} 
-\item segreteria didattica e il presidente CCS escono dalla pagina
-\item segreteria didattica e il presidente CCS inviano una notifica ad un determinato docente a causa della sua mancata presenza nel \underline{database} e quindi al momento non può essere associato al corso
+\item \textit{segreteria didattica} e il \textit{presidente CCS} escono dalla pagina
+\item \textit{segreteria didattica} e il \textit{presidente CCS} inviano una notifica ad un determinato \textit{docente} a causa della sua mancata presenza nel \textit{SIGEOL \underline{database}} e quindi al momento non può essere associato al corso
 \end{enumerate}
 \subsubsection*{Post-condizioni:}
-le modifiche relative ai corsi vengono inserite nel SIGEOL \underline{database} e le notifiche (se effettuate) vengono correttamente 
+le modifiche relative ai corsi vengono inserite nel \textit{SIGEOL \underline{database}} e le notifiche (se effettuate) vengono correttamente 
 inviate
 
 \subsection{Use case Gestione aule}
 \subsubsection*{Attori coinvolti:}
-segreteria didattica, presidente CCS
+\textit{segreteria didattica}, \textit{presidente CCS}, \textit{SIGEOL \underline{database}}
 \subsubsection*{Scopo e descrizione sintetica:}
-la segreteria didattica e il presidente CCS inseriscono, modificano ed eliminano le aule e i dati ad esse appartenenti.
+la \textit{segreteria didattica} e il \textit{presidente CCS} inseriscono, modificano ed eliminano le aule e i dati ad esse appartenenti.
 \subsubsection*{Pre-condizioni:}
-segreteria didattica e il presidente CCS accedono alla pagina della gestione aule
+\textit{segreteria didattica} e il \textit{presidente CCS} accedono alla pagina della gestione aule
 \subsubsection*{Flusso base di eventi:}
 \begin{enumerate}
- \item segreteria didattica e il presidente CCS inseriscono una nuova aula
- \item segreteria didattica e il presidente CCS modificano i dati di un'aula precedentemente inserita
- \item segreteria didattica e il presidente CCS eliminano un'aula già esistente
+ \item \textit{segreteria didattica} e il \textit{presidente CCS} inseriscono una nuova aula
+ \item \textit{segreteria didattica} e il \textit{presidente CCS} modificano i dati di un'aula precedentemente inserita
+ \item \textit{segreteria didattica} e il \textit{presidente CCS} eliminano un'aula già esistente
 \end{enumerate}
 \subsubsection*{Flussi alternativi:}
 \begin{enumerate} 
-\item segreteria didattica e il presidente CCS escono dalla pagina
+\item \textit{segreteria didattica} e il \textit{presidente CCS} escono dalla pagina
 \end{enumerate}
 \subsubsection*{Post-condizioni:}
-le modifiche relative alle aule vengono inserite nel SIGEOL \underline{database}
+le modifiche relative alle aule vengono inserite nel \textit{SIGEOL \underline{database}}
 \subsection{Use case Gestione docenti}
 \begin{center} 
  \includegraphics[scale=0.5]{UseCaseGestioneDocenti.png}
 \end{center}
 \subsubsection*{Attori coinvolti:}
-docente
+\textit{docente}, \textit{SIGEOL \underline{database}}
 \subsubsection*{Scopo e descrizione sintetica:}
-il docente modifica i propri dati personale e le proprie preferenze
+il \textit{docente} modifica i propri dati personale e le proprie preferenze
 \subsubsection*{Pre-condizioni:}
-docente è nella propria pagina personale
+\textit{docente} è nella propria pagina personale
 \subsubsection*{Flusso base di eventi:}
 \begin{enumerate}
- \item docente modifica i suoi dati 
- \item docente inserisce e modifica le sue preferenze
+ \item \textit{docente} modifica i suoi dati 
+ \item \textit{docente} inserisce e modifica le sue preferenze
 \end{enumerate}
 \subsubsection*{Flussi alternativi:}
-docente esce dalla sua pagina personale
+\textit{docente} esce dalla sua pagina personale
 \subsubsection*{Post-condizioni:}
-le modifiche apportate vengono inserite nel SIGEOL \underline{database}
+le modifiche apportate vengono inserite nel \textit{SIGEOL \underline{database}}
 \subsection{Use case Gestione schema d'orario}
 \begin{center} 
  \includegraphics[scale=0.5]{UseCaseGestioneSchemaOrario.png}
 \end{center}
 \subsubsection*{Attori coinvolti:}
-segreteria didattica, presidente CCS
+\textit{segreteria didattica}, \textit{presidente CCS}, \textit{SIGEOL \underline{database}}
 \subsubsection*{Scopo e descrizione sintetica:}
-segreteria didattica, presidente CCS possono generare, esportare e modificare lo schema d'orario
+\textit{segreteria didattica}, \textit{presidente CCS} possono generare, esportare e modificare lo schema d'orario
 \subsubsection*{Pre-condizioni:}
-segreteria didattica, presidente CCS accedono alla pagina della gestione dello schema d'orario.
+\textit{segreteria didattica}, \textit{presidente CCS} accedono alla pagina della gestione dello schema d'orario.
 \subsubsection*{Flusso base di eventi:}
 \begin{enumerate} 
- \item segreteria didattica, presidente CCS generano lo schema d'orario
- \item segreteria didattica, presidente CCS modificano lo schema d'orario
- \item segreteria didattica, presidente CCS esportano lo schema dell'orario.
+ \item \textit{segreteria didattica}, \textit{presidente CCS} generano lo schema d'orario
+ \item \textit{segreteria didattica}, \textit{presidente CCS} modificano lo schema d'orario
+ \item \textit{segreteria didattica}, \textit{presidente CCS} esportano lo schema dell'orario.
 \end{enumerate}
 \subsubsection*{Flussi alternativi:}
- segreteria didattica, presidente CCS escono dalla pagina di gestione dello schema d'orario.
+ \textit{segreteria didattica}, \textit{presidente CCS} escono dalla pagina di gestione dello schema d'orario.
 \subsubsection*{Post-condizioni:}
 \begin{enumerate}
  \item l'orario viene esportato nel formato scelto.
- \item l'orario viene salvato nel SIGEOL \underline{database}
+ \item l'orario viene salvato nel \textit{SIGEOL \underline{database}}
 \end{enumerate}  
 
 \subsection{Use case Gestione consultazione}
@@ -529,39 +533,39 @@ segreteria didattica, presidente CCS accedono alla pagina della gestione dello s
  \includegraphics[scale=0.5]{UseCaseGestioneConsultazione.png}
 \end{center}
 \subsubsection*{Attori coinvolti:}
-utente autenticato, utente non autenticato
+\textit{utente autenticato}, \textit{utente non autenticato}
 \subsubsection*{Scopo e descrizione sintetica:}
-utente autenticato, utente non autenticato possono visualizzare le informazioni relative ai corsi di laurea, corsi di lezione, docenti, aule e schema d'orario
+\textit{utente autenticato}, \textit{utente non autenticato} possono visualizzare le informazioni relative ai corsi di laurea, corsi di lezione, docenti, aule e schema d'orario
 \subsubsection*{Pre-condizioni:}
-utente autenticato, utente non autenticato accedono alla pagina della gestione consultazioni
+\textit{utente autenticato}, \textit{utente non autenticato} accedono alla pagina della gestione consultazioni
 \subsubsection*{Flusso base di eventi:}
-utente autenticato, utente non autenticato visualizzano le informazioni relative ai corsi di laurea, corsi di lezione, docenti, aule e schema d'orario
+\textit{utente autenticato}, \textit{utente non autenticato} visualizzano le informazioni relative ai corsi di laurea, corsi di lezione, docenti, aule e schema d'orario
 \subsubsection*{Flussi alternativi:}
- utente autenticato, utente non autenticato escono dalla pagina di gestione consultazione
+ \textit{utente autenticato}, \textit{utente non autenticato} escono dalla pagina di gestione consultazione
 
 \subsection{Use case Gestione backup}
 \begin{center} 
  \includegraphics[scale=0.5]{UseCaseGestioneBackup.png}
 \end{center}
 \subsubsection*{Attori coinvolti:}
-segreteria generale, segreteria didattica, presidente CCS
+\textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS}, \textit{SIGEOL \underline{database}}
 \subsubsection*{Scopo e descrizione sintetica:}
-segreteria generale, segreteria didattica, presidente CCS impostare le preferenze per la generazione dei \underline{backup}, generano il \underline{backup} e ripristinano precedenti \underline{backup} del SIGEOL \underline{database}
+\textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS} impostare le preferenze per la generazione dei \underline{backup}, generano il \underline{backup} e ripristinano precedenti \underline{backup} del \textit{SIGEOL \underline{database}}
 \subsubsection*{Pre-condizioni:}
-segreteria generale, segreteria didattica, presidente CCS sono nella pagina della gestione dei \underline{backup}
+\textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS} sono nella pagina della gestione dei \underline{backup}
 \subsubsection*{Flusso base di eventi:}
 \begin{itemize}
- \item segreteria generale, segreteria didattica, presidente CCS modificano le impostazioni di \underline{backup}
- \item segreteria generale, segreteria didattica, presidente CCS generano un \underline{backup}
- \item segreteria generale, segreteria didattica, presidente CCS ripristinano un \underline{backup} già esistente
+ \item \textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS} modificano le impostazioni di \underline{backup}
+ \item \textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS} generano un \underline{backup}
+ \item \textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS} ripristinano un \underline{backup} già esistente
 \end{itemize}
 \subsubsection*{Flussi alternativi:}
-segreteria generale, segreteria didattica, presidente CCS escono dalla pagina della gestione dei \underline{backup}
+\textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS} escono dalla pagina della gestione dei \underline{backup}
 \subsubsection*{Post-condizioni:}
 \begin{itemize}
 \item le impostazioni vengono salvate
 \item il \underline{backup} viene generato
-\item viene ripristinato il database con un \underline{backup} precedente
+\item viene ripristinato il \textit{SIGEOL \underline{database}} con un \underline{backup} precedente
 \end{itemize}
 
 \modifiche
