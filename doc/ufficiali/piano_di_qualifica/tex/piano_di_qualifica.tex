@@ -15,7 +15,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Piano di Qualifica v0.5.1}
+\lfoot{Piano di Qualifica v1.0.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +27,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Piano di Qualifica v0.5.1}
+\lfoot{Piano di Qualifica v1.0.0}
 \cfoot{}
 \rfoot{}
 }
@@ -39,10 +39,12 @@
 \begin{center}
 \textbf{Diario delle modifiche} \\
 \bigskip
-\begin{tabular}{|c|c|p{0.62\textwidth}|}
+\begin{tabular}{|c|c|p{0.51\textwidth}|}
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{09-12-2008} & 0.5.1 & Approvazione del Responsabile e passaggio di stato in ``formale''  \\
 \hline
 \textit{08-12-2008} & 0.5.1 & Correzioni varie  \\
 \hline
@@ -79,7 +81,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Qualifica \\ v0.5.1}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Qualifica \\ v1.0.0}}
 \author{Redazione: Carlo Scortegagna}
 \maketitle
 \medskip
@@ -108,9 +110,9 @@ Piano di Qualifica per il progetto ''SIGEOL'', necessario per regolamentare le o
 \setcounter{page}{1}
 \section{Introduzione}
 \subsection{Scopo del documento}
-Lo scopo di questo documento è di definire e pianificare le procedure che il team QuiXoft adotterà per garantire la qualità del prodotto denominato ''SIGEOL''. Requisito fondamentale per garantire un adeguato livello qualitativo è il rispettare le specifiche definite in fase di analisi del progetto.
+Lo scopo di questo documento è di definire e pianificare le procedure che il team QuiXoft adotterà per garantire la qualità del prodotto denominato ''SIGEOL''. Requisito fondamentale per garantire un adeguato livello qualitativo è il rispetto delle specifiche definite in fase di analisi del progetto.
 
-Particolare attenzione verrà posta anche nella definizione delle attività di verifica e validazione del materiale prodotto e, col procedere dello sviluppo, nella descrizione degli ambienti di prova e di \underline{collaudo}.
+Particolare attenzione verrà posta anche nella definizione delle attività di verifica e validazione del materiale prodotto e, col procedere dello sviluppo, nella descrizione degli \underline{ambienti di prova} e di \underline{collaudo}.
 \subsection{Scopo del prodotto}
 Il prodotto ''SIGEOL'' si prefigge di automatizzare la generazione, la gestio\-ne, l'ottimizzazione e la consultazione degli orari di lezione. 
 
@@ -126,20 +128,20 @@ Le definizioni dei termini specialistici usati nella stesura di questo e di tutt
 \end{itemize}
 \section{Visione generale}
 \subsection{Organizzazione} 
-Le attività finalizzate a garantire la qualità del prodotto''SIGEOL'' inizieranno in concomitanza con l'inizio della fase di analisi del progetto, per garantire sin dall'inizio l'assenza di errori o incongruenze.
+Le attività finalizzate a garantire la qualità del prodotto ''SIGEOL'' inizieranno in concomitanza con l'inizio della fase di analisi del progetto, per garantire immediatamente l'assenza di errori o incongruenze.
 
-Il controllo della qualità continuerà quindi per tutta la durata del progetto, sino alla consegna e all'accettazione del prodotto finito. Durante tale periodo di tempo sarà compito dei membri del team QuiXoft aggiornare il presente documento con i risultati aggiornati dei test e delle verifiche a cui il progetto verrà sottoposto. Al momento della consegna del prodotto, sarà compito del committente valutarne le conclusioni ed esaminare se i risultati rispetteranno appieno i requisiti stilati durante l'iniziale fase di analisi.
+Il controllo della qualità continuerà quindi per tutta la durata del progetto, sino alla consegna ed all'accettazione del prodotto finito. Durante tale periodo di tempo sarà compito dei membri del team QuiXoft aggiornare il presente documento con i risultati aggiornati dei test e delle verifiche a cui il progetto verrà sottoposto. Al momento della consegna del prodotto, sarà compito del committente valutarne le conclusioni ed esaminare se i risultati rispetteranno appieno i requisiti stilati durante l'iniziale fase di analisi.
 
 Nelle fasi successive all'accettazione del prodotto la gestione qualità non sarà più compito del team QuiXoft: per ulteriori informazioni sulla fase di \underline{manutenzione} si prega di consultare il documento \textsc{Piano di Progetto}.
 
 Qualsiasi risultato prodotto dal team QuiXoft dovrà essere sottoposto a verifica, sia esso un documento ufficiale, un file di codice \underline{sorgente} o un qualsiasi altro risultato del lavoro del team.
 
-Vista la natura del team di sviluppo, in cui tutti i componenti occuperanno a rotazione tutti i ruoli necessari, particolare attenzione sarà posta nel garantire l'assenza di conflitti di interesse: nessun Verificatore dovrà quindi trovarsi nella posizione di valutare un documento o un file \underline{sorgente} prodotto da lui stesso in una precedente fase del progetto.
+Vista la natura del team di sviluppo, in cui tutti i componenti occuperanno a rotazione tutti i ruoli necessari, particolare attenzione sarà posta nel garantire l'assenza di conflitti di interesse: nessun \underline{Verificatore} dovrà quindi trovarsi nella posizione di valutare un documento o un file \underline{sorgente} prodotto da lui stesso in una precedente fase del progetto.
 
 \subsection{Obiettivi}
-Il lavoro del team, dalla fase di consegna del capitolato all'accettazione del prodotto finale, dovrà essere svolto nell'ottica di ottenere un risultato che soddisfi le esigenze del committente. Sarà responsabilità di tutti i componenti ottenere un prodotto finale che soddisfi pienamente tutti i requisiti esposti del committente.
+Il lavoro del team, dalla fase di consegna del capitolato all'accettazione del prodotto finale, dovrà essere svolto nell'ottica di ottenere un risultato che soddisfi le esigenze del committente. Sarà responsabilità di tutti i componenti ottenere un prodotto finale che soddisfi pienamente tutti i requisiti esposti.
 
-L'obiettivo di ogni componente del team QuiXoft è di portare avanti le proprie mansioni nel miglior modo possibile, di rispettare le \textsc{Norme di Progetto}, di restare fedele a quanto prestabilito nel \textsc{Piano di Progetto} per quanto riguarda le ore massime di impegno personale e il tetto massimo di spesa per portare a compimento l'intero progetto.
+L'obiettivo di ogni componente del team QuiXoft è di completare le proprie mansioni nel miglior modo possibile, di rispettare le \textsc{Norme di Progetto}, di restare fedele a quanto prestabilito nel \textsc{Piano di Progetto} per quanto riguarda le ore massime di impegno personale ed il tetto massimo di spesa per portare a compimento l'intero progetto.
 
 Ogni attività del team deve essere svolta puntando all'obiettivo finale di realizzare un prodotto di qualità, finalizzato al soddisfacimento:
 \begin{itemize}
@@ -186,9 +188,9 @@ Nonostante ciò, è ovviamente sempre presente una percentuale di incertezza sul
 
 Le figure chiave per la gestione della qualità all'interno del team sono:
 \begin{itemize}
-	\item \textbf{\underline{Verificatore}:} è colui che effettivamente controlla ed esegue i test sul materiale prodotto dai membri del team. Ogni documento, file o prodotto passa necessariamente attraverso le sue verifiche, e senza il suo responso positivo nulla può essere dichiarato ufficiale. Se durante una fase del progetto vi fosse la necessità di avere più di un verificatore, sarà compito del Responsabile eleggere un rappresentante che coordini le loro attività interne;
-	\item \textbf{\underline{Responsabile}:} suo compito è di convalidare le modifiche proposte dai Verificatori e di controllarne l'operato;
-	\item tutti gli altri ruoli previsti all'interno del team (\underline{Analista}, \underline{Progettista}, \underline{Programmatore}, \underline{Amministratore}) sono tenuti a sottoporre il proprio lavoro al verificatore per le fasi di controllo e test. E' loro responsabilità anche apportare le modifiche che il Verificatore avrà segnalato essere necessarie e che il Responsabile avrà convalidato.
+	\item \textbf{\underline{Verificatore}:} è colui che effettivamente controlla ed esegue i test sul materiale prodotto dai membri del team. Ogni documento, file o prodotto passa necessariamente attraverso le sue verifiche, e senza il suo responso positivo nulla può essere dichiarato ufficiale. Se durante una fase del progetto vi fosse la necessità di avere più di un \underline{verificatore}, sarà compito del \underline{Responsabile} eleggere un rappresentante che coordini le loro attività interne;
+	\item \textbf{\underline{Responsabile}:} suo compito è di convalidare le modifiche proposte dai \underline{Verificatori} e di controllarne l'operato;
+	\item tutti gli altri ruoli previsti all'interno del team (\underline{Analista}, \underline{Progettista}, \underline{Programmatore}, \underline{Amministratore}) sono tenuti a sottoporre il proprio lavoro al \underline{Verificatore} per le fasi di controllo e test. E' loro responsabilità anche apportare le modifiche che il \underline{Verificatore} avrà segnalato essere necessarie e che il \underline{Responsabile} avrà convalidato.
 \end{itemize}
 \subsection{Pianificazione}
 Come detto in precedenza, il controllo qualità parte già dall'inizio del progetto: anche le attività di analisi dei requisiti e di studio di fattibilità necessitano della verifica da parte di qualcuno estraneo alla redazione, per evitare errori o incongruenze.
@@ -215,11 +217,11 @@ Le revisioni informali invece verranno svolte in presenza del docente di riferim
 
 Per la pianificazione oraria delle attività di verifica durante le varie fasi del progetto e per le date delle revisioni si prega di consultare il documento \textsc{Piano di Progetto}.
 \subsection{Risorse}
-La gestione qualità dell'intero progetto impegna risorse umane come tecnologiche, ed è compito dell'Amministratore coordinarne l'utilizzo.
+La gestione qualità dell'intero progetto impegna risorse umane come tecnologiche, ed è compito dell'\underline{Amministratore} coordinarne l'utilizzo.
 
-Una stima dei tempi che i Verificatori dedicheranno al controllo della qualità è consultabile sul \textsc{Piano di Progetto}. Nonostante ciò, non è da escludere che tali ipotesi di impegno siano inadeguate. Il livello di carico infatti varierà in base all'onerosità e alla tipologia del processo in esame, ed è arduo preventivare con precisione i tempi necessari per assicurare un corretto e preciso svolgimenti delle attività di verifica.
+Una stima dei tempi che i \underline{Verificatori} dedicheranno al controllo della qualità è consultabile sul \textsc{Piano di Progetto}. Nonostante ciò, non è da escludere che tali ipotesi di impegno siano inadeguate. Il livello di carico infatti varierà in base all'onerosità e alla tipologia del processo in esame, ed è arduo preventivare con precisione i tempi necessari per assicurare un corretto e preciso svolgimento delle attività di verifica.
 
-Sarà compito dell'Amministratore gestire l'uso delle risorse umane e tecnologiche per garantire che siano sufficienti ed efficienti per consentire una verifica di buon livello.
+Sarà compito dell'\underline{Amministratore} gestire l'uso delle risorse umane e tecnologiche per garantire che siano sufficienti ed efficienti per consentire una verifica di buon livello.
 \subsection{Tecniche e medoti di verifica}
 La qualità dei processi è critica per la qualità del prodotto, quindi il team QuiXoft si impegna a garantire e migliorare la qualità dei propri processi.
 
@@ -227,9 +229,9 @@ Per far ciò il prodotto che si intende sviluppare, nonchè ogni processo istanz
 \subsubsection{Verifica del codice prodotto}
 L'intero sviluppo del sistema ''SIGEOL'' sarà guidato dalla metodologia \textit{Test-Driven Development} (d'ora in poi TDD).
 
-La strategia di sviluppo TDD enfatizza in modo formidabile i test automatizzati per verificare la correttezza del codice. Invece di costruire una struttura di test alla fine dello sviluppo dell’applicazione, il TDD prevede che la scrittura del test sia la fase iniziale del processo. Quindi l’implementazione di una nuova funzionalità viene preceduta dalla definizione dei test che ne stabiliscono la correttezza formale e semantica. Questo approccio garantisce che il codice prodotto risulti naturalmente modulare ed i moduli possono essere testati in isolamento gli uni dagli altri.
+La strategia di sviluppo TDD enfatizza in modo formidabile i test automatizzati per verificare la correttezza del codice. Invece di costruire una struttura di test alla fine dello sviluppo dell’applicazione, il TDD prevede che la scrittura del test sia la fase iniziale del processo. Quindi l’implementazione di una nuova funzionalità viene preceduta dalla definizione dei test che ne stabiliscono la correttezza formale e semantica. Questo approccio garantisce che il codice prodotto risulti naturalmente modulare ed i moduli possano essere testati in isolamento gli uni dagli altri.
 
-Il membri del team QuiXoft dovranno quindi, nella fase denominata \textit{Proget\-tazione}, focalizzare la loro attenzione sulla scelta di un \underline{linguaggio di} \underline{programmazione}, un \underline{framework} ed un insieme di \underline{plugin} che facilitano ed incoraggino l'uso di una tale strategia. Sarà poi compito degli addetti alla fase denominata \textit{Realizzazione} aderire il più possibile a questa metodologia.
+Il membri del team QuiXoft dovranno quindi, nella fase denominata \textit{Proget\-tazione}, focalizzare la loro attenzione sulla scelta di un \underline{linguaggio di} \underline{programmazione}, un \underline{framework} ed un insieme di \underline{plugin} che facilitino ed incoraggino l'uso di una tale strategia. Sarà poi compito degli addetti alla fase denominata \textit{Realizzazione} aderire il più possibile a questa metodologia.
 
 Le diverse tipologie di test sono le seguenti:
 \begin{itemize}
@@ -237,32 +239,32 @@ Le diverse tipologie di test sono le seguenti:
 	\item \textbf{Test di integrazione:} ha lo scopo di verificare la cooperazione di più unità \underline{software};
 	\item \textbf{Test di sistema:} ha lo scopo di verificare il soddisfacimento dei requisiti di tutto il sistema, in relazione anche all'ambiente d'installazione.
 \end{itemize}
-Sarà compito del verificatore accertarsi della corretta applicazione di tale metodologia ed inoltre sarà incaricato di effettuare un'analisi del codice per evitare un'eccessiva \underline{ridondanza} od una complessità elevata sia in termini di manutenibilità che riguardo all'efficenza. A tal scopo si cercheranno di utilizzare strumenti di \underline{benchmark} che facilitano la misurazione delle performance del sistema.
+Sarà compito del \underline{Verificatore} accertarsi della corretta applicazione di tale metodologia ed inoltre sarà incaricato di effettuare un'analisi del codice per evitare un'eccessiva \underline{ridondanza} od una complessità elevata sia in termini di manutenibilità che riguardo all'efficenza. A tal scopo si cercheranno di utilizzare strumenti di \underline{benchmark} che facilitino la misurazione delle performance del sistema.
 \subsubsection{Verifica della documentazione}
 L'incaricato alla verifica di ogni documento dovrà accertarsi che gli argomenti trattati siano comformi a quanto presente nel \textit{Sommario} e nella sezione \textit{Scopo del documento} e che il contenuto di ogni sezione rispetti il titolo assegnato alla stessa.
 
 Inoltre dovrà segnalare parti del documento che risultino poco chiare od ambigue, eliminare porzioni di testo ritenute superflue e privare il documento di ogni errore ortografico, grammaticale o dattilografico. 
 \subsubsection{Ambienti di prova e di collaudo}
-Con il procedere del progetto, come anche specificato nell' \textsc{Analisi dei requisiti}, si renderà necessario organizzare degli ambienti di prova e di \underline{collaudo} per il \underline{software} prodotto, per rilevare errori o inconsistenze nei dati. Nei prossimi rilasci del presente documento ne verranno specificate le caratteristiche e le funzionalità.
+Con il procedere del progetto, come anche specificato nell' \textsc{Analisi dei requisiti}, si renderà necessario organizzare degli \underline{ambienti di prova} e di \underline{collaudo} per il \underline{software} prodotto, per rilevare errori o inconsistenze nei dati. Nei prossimi rilasci del presente documento ne verranno specificate le caratteristiche e le funzionalità.
 \section{Gestione amministrativa}
 \subsection{Comunicazioni}
 Come spiegato nel documento \textsc{Norme di Progetto}, ad ogni prodotto del lavoro del team è assegnato un \underline{ticket}, consultabile sul sito di appoggio \textit{http://www.assembla.com}. Per prodotto si intende ovviamente qualsiasi risultato del lavoro dei componenti del team QuiXoft (documentazione, codice \underline{sorgente}, moduli o programmi completi, ecc...).
 
-Al momento del completamento di un \underline{ticket} accettato dovrà esservi associato un altro \underline{ticket} che ne richieda la verifica. Il nuovo \underline{ticket} verrà assegnato all'unico Verificatore nel caso ce ne sia solo uno, oppure al rappresentante eletto nel caso ce ne siano più d'uno. Sarà compito di quest'ultimo completare la verifica richiesta o inoltrare il \underline{ticket} a qualche suo sottoposto.
+Al momento del completamento di un \underline{ticket} accettato dovrà esservi associato un altro \underline{ticket} che ne richieda la verifica. Il nuovo \underline{ticket} verrà assegnato all'unico \underline{Verificatore} nel caso ce ne sia solo uno, oppure al rappresentante eletto nel caso ce ne siano più d'uno. Sarà compito di quest'ultimo completare la verifica richiesta o inoltrare il \underline{ticket} a qualche suo sottoposto.
 
-Con questa procedura si assicura che ogni compito svolto verrà poi controllato dal Verificatore designato.
+Con questa procedura si assicura che ogni compito svolto verrà poi controllato dal \underline{Verificatore} designato.
 \subsection{Risoluzione anomalie}
-Nel caso il Verificatore noti qualche anomalia nelle fasi di controllo e verifica, dovrà inserire i risultati all'interno del relativo \underline{ticket} e chiuderlo segnandolo come completato.
+Nel caso il \underline{Verificatore} noti qualche anomalia nelle fasi di controllo e verifica, dovrà inserire i risultati all'interno del relativo \underline{ticket} e chiuderlo segnandolo come completato.
 
-Sarà cura del Reponsabile poi controllare le modifiche proposte dalla fase di verifica, e nel caso di approvazione creare un nuovo \underline{ticket} all'autore del prodotto testato per fargli apportare i dovuti cambiamenti.
+Sarà cura del \underline{Responsabile} poi controllare le modifiche proposte dalla fase di verifica, e nel caso di approvazione creare un nuovo \underline{ticket} all'autore del prodotto testato per fargli apportare i dovuti cambiamenti.
 
-La procedura appena descritta dovrà venir svolta finchè il verificatore non notificherà più errori nei suoi test.
+La procedura appena descritta dovrà venir svolta finchè il \underline{Verificatore} non notificherà più errori nei suoi test.
 \subsection{Trattamento delle discrepanze}
 La procedura per il trattamento delle discepanze è formalmente equivalente a quella appena elencata per la risoluzione delle anomalie.
 
-L'unica differenza risiede nel fatto che il verificatore che la nota dovrà inserire, nel resoconto del \underline{ticket} che conclude la sua fase di verifica, anche il prodotto da cui la discrepanza è nata.
+L'unica differenza risiede nel fatto che il \underline{Verificatore} che la nota dovrà inserire, nel resoconto del \underline{ticket} che conclude la sua fase di verifica, anche il prodotto da cui la discrepanza è nata.
 
-Se delle discrepanze dovessero presentarsi frequentemente tra i documenti prodotti e le \textsc{Norme di Progetto}, il verificatore sarà tenuto a notificarlo all'Amministratore, il quale, in collaborazione con il Responsabile, procederà ai dovuti provvedimenti.
+Se delle discrepanze dovessero presentarsi frequentemente tra i documenti prodotti e le \textsc{Norme di Progetto}, il \underline{Verificatore} sarà tenuto a notificarlo all'\underline{Amministratore}, il quale, in collaborazione con il \underline{Responsabile}, procederà ai dovuti provvedimenti.
 
 Non è infatti tollerabile che del tempo venga sprecato per correggere e notificare errori che potrebbero essere facilmente evitati leggendo e seguendo con più attenzione le \textsc{Norme di Progetto}.
 \modifiche
