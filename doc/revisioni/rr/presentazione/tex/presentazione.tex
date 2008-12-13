@@ -2,7 +2,7 @@
 
 \usetheme{Copenhagen}
 \usepackage[italian]{babel}
-\usepackage[ansinew]{inputenc}
+\usepackage[utf8x]{inputenc}
 \usepackage {eurosym}
 \setbeamercovered{transparent}
 
@@ -86,8 +86,8 @@
 	\frametitle{Introduzione}
   \framesubtitle{Contesto d'uso del prodotto}
   \begin{itemize}
-  \item Processi produttivi e modalità  d'uso: Il funzionamento del sistema \textit{SIGEOL}, a processo produttivo concluso, sarà in grado di guidare ogni singolo utilizzatore allo svolgimento delle proprie azioni. In altre parole sarà disponibile un servizio che offrirà , dopo un'opportuna autenticazione, un insieme di strumenti che permetteranno l'inserimento guidato dei dati che serviranno al fine ultimo di generare un orario per le lezioni.
-  \item Piattaforma d'esecuzione ed interfacciamento con l'ambiente di installazione e uso: Il prodotto sarà  realizzato tramite un'applicazione web supportata da un database e dovrà  essere accessibile da un qualsiasi tipo di browser. 
+  \item<1-> Processi produttivi e modalità  d'uso: Il funzionamento del sistema \textit{SIGEOL}, a processo produttivo concluso, sarà in grado di guidare ogni singolo utilizzatore allo svolgimento delle proprie azioni. In altre parole sarà disponibile un servizio che offrirà , dopo un'opportuna autenticazione, un insieme di strumenti che permetteranno l'inserimento guidato dei dati che serviranno al fine ultimo di generare un orario per le lezioni.
+  \item<2-> Piattaforma d'esecuzione ed interfacciamento con l'ambiente di installazione e uso: Il prodotto sarà  realizzato tramite un'applicazione web supportata da un database e dovrà  essere accessibile da un qualsiasi tipo di browser. 
   \end{itemize}
   \transsplitverticalin
 	 }
@@ -134,6 +134,8 @@
 \subsection{Requisiti Funzionali}
 \subsubsection{Requisiti Funzionali per la segreteria generale}
 \frame{
+  \frametitle{Requisiti Funzionali}
+  \framesubtitle{Requisiti Funzionali per la segreteria generale}
   \begin{enumerate}
    \item Possibilità di autenticazione
    \item Possibilità di inserimento delle facoltà 
@@ -144,38 +146,58 @@
   }
 \subsubsection{Requisiti funzionali per la segreteria didattica}
 \frame{
+ \frametitle{Requisiti Funzionali}
+ \framesubtitle{Requisiti Funzionali per la segreteria didattica}
  \begin{enumerate}
  \item Possibilità di autenticazione
  \item Possibilità di inserimento e modifica per ogni corso, all'interno della propria facoltà , del nome, dei relativi CFU,   dell'anno di appartenenza, del periodo, dello stato, del numero di ore in aula e in laboratorio (se previsto), del docente di  riferimento che lo tiene, di eventuali assistenti e della stima del numero di studenti che lo seguiranno
  \item Possibilità di inserimento e modifica per ogni aula disponibile, all'interno della propria facoltà , del nome, della capienza, delle ore e dei periodi di non disponibilità 
  \item Possibilità di inserimento e modifica dell'anno accademico
- \item Possibilità di impostare vincoli e preferenze per ogni corso di laurea
- \item Possibilità di modifica dei dati dei docenti preventivamente inseriti dal Presidente del CCS
- \item Possibilità di invitare via e-mail i presidenti del CCS di ogni corso di laurea ad inserire i dati
- \item Possibilità di ripristinare i dati relativi ai corsi di laurea da un backup scelto
  \end{enumerate}
+ \transsplitverticalin
+ }
+\frame{
+ \frametitle{Requisiti Funzionali}
+ \framesubtitle{Requisiti Funzionali per la segreteria didattica}
+ \begin{enumerate}
+   \item Possibilità di impostare vincoli e preferenze per ogni corso di laurea
+   \item Possibilità di modifica dei dati dei docenti preventivamente inseriti dal Presidente del CCS
+   \item Possibilità di invitare via e-mail i presidenti del CCS di ogni corso di laurea ad inserire i dati
+   \item Possibilità di ripristinare i dati relativi ai corsi di laurea da un backup scelto
+ \end{enumerate}  
  \transsplitverticalin
  }
 \subsubsection{Requisiti funzionali per il Presidente del CCS}
 \frame{
-\begin{enumerate}
+ \frametitle{Requisiti Funzionali}
+ \framesubtitle{Requisiti Funzionali per il Presidente del CCS}
+ \begin{enumerate}
 \item Possibilità autenticazione
 \item Possibilità di inserimento e modifica per ogni corso, all'interno del proprio corso di laurea, del nome, dei relativi CFU, dell'anno di appartenenza, del periodo, dello stato, del numero di ore in aula e in laboratorio (se previsto), del docente di riferimento che lo tiene, di eventuali assistenti e della stima del numero di studenti che lo seguiranno
 \item Possibilità  di inserimento e modifica per ogni aula disponibile, all'interno del proprio corso di laurea, del nome, della capienza, delle ore e dei periodi di non disponibilità 
 \item Possibilità di inserimento e modifica, all'interno del proprio corso di laurea, dei dati dei docenti
-\item Possibilità di inserimento e modifica dell'anno accademico
-\item Possibilità di impostare vincoli e preferenze per ogni corso
-\item Possibilità di generazione dello schema d'orario in formato pdf e html
-\item Possibilità di scegliere vincoli da rilassare proposti dal sistema in caso di soluzione inesistente
-\item Possibilità di consultare lo schema d'orario
-\item Possibilità di inserimento e modifica di indirizzi diversi appartenenti allo stesso corso di laurea
-\item Possibilità di ripristinare i dati relativi ai corsi da un backup scelto
-\item Possibilità di notificare i docenti nel caso di vincoli e preferenze non soddisfatti.
 \end{enumerate}
 }
+\frame{
+ \frametitle{Requisiti Funzionali}
+ \framesubtitle{Requisiti Funzionali per il Presidente del CCS}
+ \begin{enumerate}
+  \item Possibilità di inserimento e modifica dell'anno accademico
+  \item Possibilità di impostare vincoli e preferenze per ogni corso
+  \item Possibilità di generazione dello schema d'orario in formato pdf e html
+  \item Possibilità di scegliere vincoli da rilassare proposti dal sistema in caso di soluzione inesistente
+  \item Possibilità di consultare lo schema d'orario
+  \item Possibilità di inserimento e modifica di indirizzi diversi appartenenti allo stesso corso di laurea
+  \item Possibilità di ripristinare i dati relativi ai corsi da un backup scelto
+  \item Possibilità di notificare i docenti nel caso di vincoli e preferenze non soddisfatti.
+  \end{enumerate}
+  }
+
 \subsubsection{Requisiti funzionali per i docenti}
 \frame{
-\begin{enumerate}
+ \frametitle{Requisiti Funzionali}
+ \framesubtitle{Requisiti Funzionali per i docenti}
+ \begin{enumerate}
 \item Possibilità di inserimento e modifica dei propri giorni e ore di indisponibilità , con relativa motivazione
 \item Possibilità di inserimento e modifica delle proprie preferenze su orari e giorni di lezione, con relativa motivazione
 \item Possibilità di modifica dei propri dati personali
@@ -183,14 +205,17 @@
 }
 \subsubsection{Requisiti funzionali(desiderabili) per l'utente non autenticato}
 \frame{
-\begin{enumerate}
+ \frametitle{Requisiti Funzionali}
+ \framesubtitle{Requisiti Funzionali(desiderabili) per l'utente non autenticato}
+ \begin{enumerate}
 \item Possibilità di consultare lo schema d'orario
 \item Possibilità di consultare le informazioni relative a docenti, aule, corsi di laurea e corsi
 \end{enumerate}
 }
 \subsection{Requisiti di qualità}
 \frame{
-	\begin{enumerate}
+	\frametitle{Requisiti di qualità}
+ 	\begin{enumerate}
    \item Accessibilità del sistema
    \item Garanzie sull'integrità  dei dati
    \item Gestione in sicurezza degli account
@@ -203,8 +228,9 @@
 	 }
 \subsection{Requisiti d'interfacciamento e d'ambiente}
 \frame{
-	\begin{enumerate}
-   \item Le informazioni andranno memorizzate in modo permanente in un \underline{database}
+	\frametitle{Requisiti d'interfacciamento e d'ambiente}
+ 	\begin{enumerate}
+  \item Le informazioni andranno memorizzate in modo permanente in un \underline{database}
   \end{enumerate}
  \transsplitverticalin
 	 }
