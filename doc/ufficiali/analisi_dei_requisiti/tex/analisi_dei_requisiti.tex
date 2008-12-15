@@ -161,7 +161,7 @@ Si prevedono cinque tipologie di utenti che usufruiranno del sistema:
 
 La \textit{segreteria generale} si occupa dell'invito delle varie \textit{segreterie didattiche}, nonchè della preparazione della struttura delle varie facoltà.
 
-La \textit{segreteria didattica} ha, tra gli altri, il compito di invitare i \textit{presidenti del CCS} dei vari corsi di laurea e di inserire i corsi della facoltà di sua competenza.
+La \textit{segreteria didattica} ha, tra gli altri, il compito di invitare i \textit{presidenti del CCS} dei vari corsi di laurea e di inserire i corsi della facoltà di sua competenza (invito docenti).
 
 Il \textit{presidente del CCS} provvede, invece, all'invito dei vari \textit{docenti} che dovranno compilare i propri dati ed accettare il consenso al loro trattamento.
 
@@ -204,8 +204,8 @@ In questa sezione verranno elencati i requisiti del prodotto, organizzati per ti
 \item Possibilità di inserimento e modifica per ogni corso, all'interno della propria facoltà, del nome, dei relativi CFU, dell'anno di appartenenza, del periodo, dello stato, del numero di ore in aula e in laboratorio (se previsto), del docente di riferimento che lo tiene, di eventuali assistenti e della stima del numero di studenti che lo seguiranno
 \item Possibilità di inserimento e modifica per ogni aula disponibile, all'interno della propria facoltà, del nome, della capienza, delle ore e dei periodi di non disponibilità
 \item Possibilità di inserimento e modifica dell'anno accademico
-\item Possibilità di impostare vincoli e preferenze per ogni corso di laurea
-\item Possibilità di modifica dei dati dei docenti preventivamente inseriti dal Presidente del CCS
+\item Possibilità di impostare vincoli e preferenze per la struttura dell'orario %da sistemare
+%\item Possibilità di modifica dei dati dei docenti preventivamente inseriti dal Presidente del CCS
 \item Possibilità di invitare via e-mail i presidenti del CCS di ogni corso di laurea ad inserire i dati
 \item Possibilità di ripristinare i dati relativi ai corsi di laurea da un \underline{backup} scelto
 \end{enumerate}
@@ -224,7 +224,7 @@ In questa sezione verranno elencati i requisiti del prodotto, organizzati per ti
 \item Possibilità di \underline{autenticazione}
 \item Possibilità di inserimento e modifica per ogni corso, all'interno del proprio corso di laurea, del nome, dei relativi CFU, dell'anno di appartenenza, del periodo, dello stato, del numero di ore in aula e in laboratorio (se previsto), del docente di riferimento che lo tiene, di eventuali assistenti e della stima del numero di studenti che lo seguiranno
 \item Possibilità di inserimento e modifica per ogni aula disponibile, all'interno del proprio corso di laurea, del nome, della capienza, delle ore e dei periodi di non disponibilità
-\item Possibilità di inserimento e modifica, all'interno del proprio corso di laurea, dei dati dei docenti
+%\item Possibilità di inserimento e modifica, all'interno del proprio corso di laurea, dei dati dei docenti
 \item Possibilità di inserimento e modifica dell'anno accademico
 \item Possibilità di impostare vincoli e preferenze per ogni corso
 \item Possibilità di generazione dello schema d'orario in formato \underline{pdf} e \underline{html}
@@ -279,7 +279,7 @@ In questa sezione verranno elencati i requisiti del prodotto, organizzati per ti
 \begin{enumerate}
 \item Portabilità del sistema
 \item Completa interoperabilità dei dati memorizzati e trattati
-\item Pagine scritte in \underline{XHTML} e \underline{CCS} dovranno essere validate tramite strumenti forniti dal consorzio \underline{W3C}
+\item Pagine scritte in \underline{XHTML} e \underline{CSS} dovranno essere validate tramite strumenti forniti dal consorzio \underline{W3C}
 \end{enumerate}
 \end{itemize}
 \subsection{Requisiti d'interfacciamento e d'ambiente}
@@ -338,8 +338,7 @@ Il sistema è composto da dieci parti principali:
 \subsubsection*{Attori coinvolti:}
 \textit{utente non autenticato}, \textit{utente autenticato}, \textit{SIGEOL \underline{database}}
 \subsubsection*{Scopo e descrizione sintetica:}
-l'\textit{utente non autenticato} effettua l'accesso alla sua pagina personale inserendo il proprio indirizzo email nel campo 'username' e la propria password
-nel campo 'password'.
+l'\textit{utente non autenticato} effettua l'accesso alla sua pagina personale inserendo il proprio indirizzo email nel campo 'username' e la propria password nel campo 'password'.
 L'\textit{utente autenticato} esce dal sistema premendo sul pulsante di \underline{logout}.
 \subsubsection*{Pre-condizioni:}
 l'\textit{utente non autenticato} accede alla pagina di \underline{login}.
