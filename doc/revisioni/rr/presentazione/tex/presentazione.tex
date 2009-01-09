@@ -11,15 +11,12 @@
 %
 \setbeamertemplate{footline}{
 \hfill \begin{center}
-\textbf{Pagina \insertframenumber, di \inserttotalframenumber }
+ \textbf{Pagina \insertframenumber, di \inserttotalframenumber }
 \end{center}
-}
-\pgfdeclareimage[height=5mm]{logo}{logo.png}
-\logo{\pgfuseimage{logo}}
 
+}
 \title{Revisione dei requisiti}
-\titlegraphic{\pgfuseimage{logo}}
-\author{Grosselle Alessandro, Barbiero Mattia}
+\author{Team QuiXoft}
 \date{12 Dicembre 2008}
 
 
@@ -28,38 +25,11 @@
 
 \frame{
 	\transsplitverticalin
-	\titlepage }
-
-
-\section*{Sommario}
-
-\subsection{1a Parte: Introduzione}
-
-\frame{
-  \transsplitverticalin
-  \nameslide{outline}
-  \frametitle{Introduzione}
-  \tableofcontents[pausesections,part=1]
+	\titlepage 
+\begin{center}
+ \includegraphics[scale=0.20]{logo.png}
+\end{center}
 }
-
-\subsection{2a Parte: Requisiti}
-
-\frame{
-  \transsplitverticalin
-  \nameslide{outline}
-  \frametitle{Descrizione requisiti}
-  \tableofcontents[pausesections,part=2]
-}
-
-\subsection{3a Parte: Use case del sistema}
-
-\frame{
-  \transsplitverticalin
-  \nameslide{outline}
-  \frametitle{Use case del sistema}
-  \tableofcontents[pausesections,part=3]
-}
-
 \part{Introduzione}
 
 \frame{
@@ -67,60 +37,40 @@
 	\partpage }
 
 \section{Introduzione}
-\subsection{Capitolato d'appalto}
-\frame{
-	\frametitle{Introduzione}
-  \framesubtitle{Capitolato d'appalto: ''SIGEOL''}
-  \emph{Azienda Committente}: Prof.ssa Rossi, rappresentata dai docenti prof. Vardanega e Conte.
-  
-  
-  Il presente capitolato ha per oggetto l'affidamento della fornitura di un sistema software per la gestione dell'orario di lezione a uso del presidente del CCS di Informatica.
-  
-  \transsplitverticalin
-	 }
 \subsection{Scopo del prodotto}
 \frame{
 	\frametitle{Introduzione}
   \framesubtitle{Scopo del prodotto}
-  Il progetto sotto analisi, denominato \textit{SIGEOL}, si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. Il committente richiede l'applicazione del sistema al solo corso di laurea in Informatica, ma, constatato che la complessità non aumenta notevolmente, il team QuiXoft prevede lo sviluppo e la messa in opera dell'applicazione per tutti i corsi di laurea dell' Università degli studi di Padova.
-  \transsplitverticalin
-	 }
-\subsection{Contesto d'uso del prodotto}
-\frame{
-	\frametitle{Introduzione}
-  \framesubtitle{Contesto d'uso del prodotto}
-  \begin{itemize}
+  Il progetto sotto analisi, denominato \textit{SIGEOL}, si prefigge di automatizzare 
 
-  \item Processi produttivi e modalità d'uso: Il funzionamento del sistema \textit{SIGEOL}, a processo produttivo concluso, sarà in grado di guidare ogni singolo utilizzatore allo svolgimento delle proprie azioni. In altre parole sarà disponibile un servizio che offrirà, dopo un'opportuna autenticazione, un insieme di strumenti che permetteranno l'inserimento guidato dei dati che serviranno al fine ultimo di generare un orario per le lezioni.
-  \item Piattaforma d'esecuzione ed interfacciamento con l'ambiente di installazione e uso: Il prodotto sarà realizzato tramite un'applicazione web supportata da un database e dovrà essere accessibile da un qualsiasi tipo di browser. 
-  \end{itemize}
+\begin{itemize}
+ \item Generazione
+ \item Gestione
+ \item Ottimizzazione 
+ \item Consultazione
+\end{itemize}
+% Il committente richiede l'applicazione del sistema al solo corso di laurea in Informatica, ma, constatato che la complessità non aumenta notevolmente, il team QuiXoft prevede lo sviluppo e la messa in opera dell'applicazione per tutti i corsi di laurea dell' Università degli studi di Padova.
   \transsplitverticalin
 	 }
+
 \subsection{Caratteristiche degli utenti}
 \frame{
 	\frametitle{Introduzione}
   \framesubtitle{Caratteristiche degli utenti}
   Si prevedono cinque tipologie di utenti che usufruiranno del sistema:
 \begin{itemize}
- \item Segreteria generale: si occupa dell'invito delle varie \textit{segreterie didattiche}, nonchè della preparazione della struttura delle varie facoltà
- \item Segreteria didattica: ha, tra gli altri, il compito di invitare i \textit{presidenti del CCS} dei vari corsi di laurea e di inserire i corsi della facoltà di sua competenza.
- \item Presidente del CCS: provvede, invece, all'invito dei vari \textit{docenti}. 
- \item Docente: dovranno compilare i propri dati ed accettare il consenso al loro trattamento. 
- \item Utente non autenticato: sarà in grado di consultare le informazioni che verranno rese disponibili dal sistema, quali schemi d'orario, informazioni su docenti, aule, corsi di laurea e corsi.
+ \item Segreteria generale
+%si occupa dell'invito delle varie \textit{segreterie didattiche}, nonchè della preparazione della struttura delle varie facoltà
+ \item Segreteria didattica
+%ha, tra gli altri, il compito di invitare i \textit{presidenti del CCS} dei vari corsi di laurea e di inserire i corsi della facoltà di sua competenza.
+ \item Presidente del CCS
+%provvede, invece, all'invito dei vari \textit{docenti}. 
+ \item Docente
+%dovranno compilare i propri dati ed accettare il consenso al loro trattamento. 
+ \item Utente non autenticato
+%sarà in grado di consultare le informazioni che verranno rese disponibili dal sistema, quali schemi d'orario, informazioni su docenti, aule, corsi di laurea e corsi.
 \end{itemize}
   \transsplitverticalin
-	 }
-
-\subsection{Stime sul prodotto}
-\frame{
-	 \frametitle{Introduzione}
-   \framesubtitle{Stime sul prodotto}
-   \begin{itemize}
-   \item Costo del Prodotto: Il costo del prodotto è stato stimato intorno a 13065\euro.
-   \item Data di termine: Si prevede di terminare il progetto entro il 23 Marzo 2009.
-   \item Ore per risora: Ogni componente del gruppo avrà un carico di lavoro compreso tra le 103.5 e le 104.5 ore 
-   \transsplitverticalin
-	 \end{itemize}
 	 }
 
 \part{Descrizione dei requisiti}
@@ -240,7 +190,7 @@
 \frame{
 	\frametitle{Schema generale}
 	\begin{center}
- \includegraphics[scale=0.3]{PresentazioneGenerali.jpg}
+ \includegraphics{PresentazioneGenerali2.pdf}
  % PresentazioneGenerali.jpg: 794x1123 pixel, 72dpi, 28.01x39.62 cm, bb=0 0 794 1123
 \end{center}
 
@@ -251,53 +201,159 @@
 	\frametitle{Gestione delle notifiche}
 
 \begin{center}
- \includegraphics[scale=0.3]{PresentazioneNotifiche.jpg}
+ \includegraphics{PresentazioneNotifiche.pdf}
  % PresentazioneNotifiche.jpg: 794x1123 pixel, 72dpi, 28.01x39.62 cm, bb=0 0 794 1123
 \end{center}
 	\transsplitverticalin
 	 }
-\subsection{Gestione dei corsi}
-\frame{
-	\frametitle{Gestione dei corsi}
 
-\begin{center}
- \includegraphics[scale=0.3]{PresentazioneCorsi.jpg}
- % PresentazioneCorsi.jpg: 794x1123 pixel, 72dpi, 28.01x39.62 cm, bb=0 0 794 1123
-\end{center}
 
-	\transsplitverticalin
-	 }
-\subsection{Gestione dei docenti}
-\frame{
-	\frametitle{Gestione dei docenti}
-\begin{center}
- \includegraphics[scale=0.3]{PresentazioneDocenti.jpg}
- % PresentazioneDocenti.jpg: 794x1123 pixel, 72dpi, 28.01x39.62 cm, bb=0 0 794 1123
-\end{center}
-
-	\transsplitverticalin
-	 }
-\subsection{Gestione delle aule}
-\frame{
-	\frametitle{Gestione delle aule}
-
-\begin{center}
- \includegraphics[scale=0.3]{PresentazioneAule.jpg}
- % PresentazioneAule.jpg: 794x1123 pixel, 72dpi, 28.01x39.62 cm, bb=0 0 794 1123
-\end{center}
-
-	\transsplitverticalin
-	 }
 \subsection{Generazione dello schema d'orario}
 \frame{
 	\frametitle{Generazione dello schema d'orario}
 
 \begin{center}
 
- \includegraphics[scale=0.3]{PresentazioneSchemaOrario.jpg}
+ \includegraphics{PresentazioneSchemaOrario.pdf}
  % PresentazioneSchemaOrario.jpg: 794x1123 pixel, 72dpi, 28.01x39.62 cm, bb=0 0 794 1123
 \end{center}
 
 	\transsplitverticalin
 	 }
+
+\part{Vincoli e preferenze}
+
+\frame{
+	\transsplitverticalin
+	\partpage }
+
+\section{Vincoli e preferenze}
+\subsection{Definizioni}
+\frame{
+\frametitle{Vincoli e preferenze}
+   \framesubtitle{Definizioni}
+   \begin{itemize}
+    \item Vincoli \bigskip
+   \item Preferenze (vincoli soft) \bigskip
+   \transsplitverticalin
+	 \end{itemize}
+	 }
+\subsection{Suddivisione e approccio}
+\frame{
+	 \frametitle{Vincoli e Preferenze}
+   \framesubtitle{Suddivisione e approccio}
+   \begin{itemize}
+   \item Suddivisione INDISPENSABILE \bigskip
+   \item Pesare le preferenze \bigskip
+   \item Cercare la soluzione migliore (rilassamento vincoli, soluzioni subottime) attraverso algoritmi noti \bigskip
+   \item Impossibilità di trovare la soluzione ottimale \bigskip
+   \transsplitverticalin
+   \end{itemize}
+	 }
+\subsection{Alcuni esempi}
+\frame{
+	 \frametitle{Vincoli e preferenze}
+   \framesubtitle{Alcuni Esempi}
+   \begin{itemize}
+   \item Vincolo: lo stesso docente non puo’ avere lezioni diverse nello
+  stesso orario
+   \item Vincolo: capienza delle aule rispetto al numero degli studenti
+   \item Preferenza: lezioni sempre di due ore
+   \item Preferenza: lezioni di un corso nella stessa aula
+   \item ...
+   \transsplitverticalin
+   \end{itemize}
+	 }
+
+\part{Qualità e verifica}
+
+\frame{
+	\transsplitverticalin
+	\partpage }
+
+\section{Qualità e verifica}
+\subsection{Verifica codice sorgente}
+\frame{
+	 \frametitle{Qualità e verifica}
+   \framesubtitle{Verifica codice sorgente}
+   \begin{itemize}
+    \item Analisi Statica \bigskip
+   \item Metodologia Test-Driven Development \bigskip
+   \item Benchmark
+   \transsplitverticalin
+	 \end{itemize}
+	 }
+\subsection{Controllo qualità}
+\frame{
+	 \frametitle{Qualità e verifica}
+   \framesubtitle{Controllo qualità}
+   \begin{itemize}
+   \item Funzionale \bigskip
+   \item Affidabile \bigskip
+   \item Sicuro \bigskip
+   \item Manutenibile \bigskip
+   \item Portabile \bigskip
+   \transsplitverticalin
+	 \end{itemize}
+	 }
+\subsection{Revisioni}
+\frame{
+	 \frametitle{Qualità e verifica}
+   \framesubtitle{Revisioni}
+   \begin{itemize}
+   \item Revisioni formali
+	\begin{itemize}
+ 		\item Revisione dei requisiti
+		\item Revisione di accettazione
+	\end{itemize}
+\bigskip
+   \item Revisioni informali
+	\begin{itemize}
+ 		\item Revisione di progetto preliminare
+		\item Revisione di qualifica
+	\end{itemize}
+   \transsplitverticalin
+	 \end{itemize}
+	 }
+\part{Gestione Interna}
+
+\frame{
+	\transsplitverticalin
+	\partpage }
+
+\section{Gestione Interna}
+\subsection{Stime sul prodotto}
+\frame{
+	 \frametitle{Gestione Interna}
+   \framesubtitle{Stime sul prodotto}
+   \begin{itemize}
+   \item Costo del Prodotto: Il costo del prodotto è stato stimato approssimativamente a 13065\euro. \bigskip
+   \item Ore per risora: Ogni componente del gruppo avrà un carico di lavoro compreso tra le 93.5 e le 94 ore 
+   \transsplitverticalin
+	 \end{itemize}
+	 }
+
+\subsection{Rotazione dei ruoli}
+\frame{
+	\frametitle{Gestione Interna}
+	\framesubtitle{Rotazione dei ruoli}
+	\begin{itemize}
+		\item Copertura di ogni ruolo per ogni componente \bigskip
+		\item Equa ripartizione del carico di lavoro \bigskip
+ 		\item Assenza di conflitti di interesse  \bigskip
+	\end{itemize}
+	\transsplitverticalin
+
+}
+\subsection{Strumenti}
+\frame{
+	\frametitle{Gestione Interna}
+	\framesubtitle{Strumenti}
+	\begin{itemize}
+ 		\item Sistema di versionamento: SVN \bigskip
+		\item Forum di discussione \bigskip
+		\item Norme di progetto
+	\end{itemize}
+	\transsplitverticalin
+}
 \end{document}

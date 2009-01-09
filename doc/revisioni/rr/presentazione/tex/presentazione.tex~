@@ -11,7 +11,7 @@
 %
 \setbeamertemplate{footline}{
 \hfill \begin{center}
-\textbf{Pagina \insertframenumber di \inserttotalframenumber }
+\textbf{Pagina \insertframenumber, di \inserttotalframenumber }
 \end{center}
 }
 \pgfdeclareimage[height=5mm]{logo}{logo.png}
@@ -240,7 +240,7 @@
 \frame{
 	\frametitle{Schema generale}
 	\begin{center}
- \includegraphics[scale=0.3]{PresentazioneGenerali.jpg}
+ \includegraphics{PresentazioneGenerali2.pdf}
  % PresentazioneGenerali.jpg: 794x1123 pixel, 72dpi, 28.01x39.62 cm, bb=0 0 794 1123
 \end{center}
 
@@ -251,7 +251,7 @@
 	\frametitle{Gestione delle notifiche}
 
 \begin{center}
- \includegraphics[scale=0.3]{PresentazioneNotifiche.jpg}
+ \includegraphics[scale=0.3]{PresentazioneNotifiche.pdf}
  % PresentazioneNotifiche.jpg: 794x1123 pixel, 72dpi, 28.01x39.62 cm, bb=0 0 794 1123
 \end{center}
 	\transsplitverticalin
