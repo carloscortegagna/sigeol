@@ -15,7 +15,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Norme di Progetto v1.0.0}
+\lfoot{Norme di Progetto v1.1.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +27,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Norme di Progetto v1.0.0}
+\lfoot{Norme di Progetto v1.1.0}
 \cfoot{}
 \rfoot{}
 }
@@ -43,6 +43,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{18-01-2009} & 1.1.0 & Aggiunta la sezione sulle presentazioni, correzioni varie\\
 \hline
 \textit{09-12-2008} & 1.0.0 & Approvazione del Responsabile e passaggio di stato in ''Formale''\\
 \hline
@@ -64,8 +66,8 @@
 \bigskip
 \begin{tabbing}
 	\hspace*{0.3\textwidth} \= \hspace*{0.5\textwidth} \kill
-	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Freo Matteo} \\
-	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Scortegagna Carlo} \\
+	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Grosselle Alessandro} \\
+	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Scarpa Davide} \\
 	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Formale} \\
 	\parbox{0.3\textwidth}{\textbf{Uso: }} \> \parbox{0.5\textwidth}{Interno} \\
 	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{QuiXoft} \\
@@ -74,8 +76,8 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Norme di Progetto \\ v1.0.0}}
-\author{Redazione: Grosselle Alessandro}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Norme di Progetto \\ v1.1.0}}
+\author{Redazione: Scortegagna Carlo}
 \maketitle
 \medskip
 \begin{center}
@@ -231,6 +233,30 @@ Una volta redatto, un qualsiasi documento deve essere marcato come ''Preliminare
 In seguito tale documento deve essere sottoposto ad una fase di controllo da parte del \underline{Verificatore}, il cui compito è quello di notificare eventuali incongruenze al redattore del documento.
 Spetta a quest'ultimo apportare le dovute modifiche e sottoporre nuovamente al \underline{Verificatore} il documento.
 Una volta che il \underline{Verificatore} avrà segnalato come ''verificato'' il documento, il \underline{Responsabile} provvederà all'approvazione ed al cambio di stato in ''Formale''.
+\section{Presentazioni}
+In occasione di ogni revisione, sia formale sia informale, deve essere organizzata una presentazione che illustri il proseguimento del progetto al committente o al docente di riferimento.
+
+Ogni membro del team QuiXoft è tenuto a partecipare alle revisioni ed a esporre la sua parte dei contenuti richiesti.
+Tutti i componenti devono dare il loro contributo alla presentazione: il carico temporale durante la presentazione deve essere equamente distribuito tra tutti i presenti.
+
+Assenze a tali revisioni dovranno essere giustamente motivate.
+
+Il tempo massimo che una presentazione può occupare è fissato in 20 minuti: il superamento di tale limite avrà effetto sanatorio sul risultato del gruppo.
+Se la presentazione dovesse durare meno di 20 minuti, sarà dato spazio alle domande del committente o del docente di riferimento per colmare le eventuali lacune lasciate dall'esposizione.
+\subsection{Template presentazioni}
+Per ogni revisione a cui il team QuiXoft parteciperà dovrà essere creata una presentazione che, con una serie di slide, accompagni il proseguimento dell'esposizione dei contenuti.
+
+Le presentazioni dovranno essere create usando il relativo \underline{template} \LaTeX \space messo a disposizione nel repository del team.
+Dovranno poi essere esportate in \underline{Pdf} e mostrate agli interessati tramite proiettore.
+L'elaboratore usato per tale operazione sarà di volta in volta messo a disposizione da uno dei membri del team.
+
+La scrittura dei contenuti dovrà seguire le norme tipografiche usate per la creazione della documentazione.
+Particolare attenzione dovrà essere posta nel limitare la quantità di testo presente in ogni slide: dovrà essere data priorità alla presenza di concetti e parole chiave, che poi saranno adeguatamente spiegati dal relatore.
+
+E' consigliato l'uso di figure e illustrazioni, che aiutino a rendere più agevole la comprensione dei concetti discussi.
+
+Non è fissato a priori un numero massimo di slide per ogni presentazione. Si tenga comunque conto del limite temporale sopra illustrato.
+Caratteristica obbligatoria è la presenza del numero della slide corrente e del totale, per dare modo al docente o al committente di quantificare i tempi.
 \section{Codice}
 \subsection{Intestazione}
 Ogni file di codice prodotto dal team QuiXoft durante lo sviluppo del progetto ''\underline{SIGEOL}'' dovrà contenere un \underline{intestazione} che ne certifichi l'origine e le modifiche per facilitarne la tracciabilità e le operazioni di \underline{manutenzione}.
