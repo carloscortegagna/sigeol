@@ -15,7 +15,7 @@
 \lhead{QuiXoft - Progetto SIGEOL}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Glossario v1.0.0}
+\lfoot{Glossario v1.1.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +27,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Glossario v1.0.0}
+\lfoot{Glossario v1.1.0}
 \cfoot{}
 \rfoot{}
 }
@@ -43,6 +43,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{18-01-2009} & 1.1.0 & Eliminazione di alcuni termini ritenuti superflui\\
 \hline
 \textit{09-12-2008} & 1.0.0 & Approvazione del Responsabile e passaggio di stato in ''Formale''\\
 \hline
@@ -79,7 +81,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Glossario \\ v1.0.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Glossario \\ v1.1.0}}
 \author{Redazione: Carlo Scortegagna}
 \maketitle
 \medskip
@@ -114,8 +116,6 @@ Documento che definisce i termini usati nei documenti ufficiali dell’azienda Q
 	\item[Accessibile:] capacità di un servizio d'essere fruibile con facilità da una qualsiasi categoria d'utente. 
 	\item[Account:] insieme di funzionalità, strumenti e contenuti attribuiti ad un utente in determinati contesti operativi. In informatica, attraverso il meccanismo dell'account, il sistema mette a disposizione dell'utente un ambiente con contenuti e funzionalità personalizzabili, oltre ad un conveniente grado di isolamento dalle altre utenze parallele.
 	\item[Ambiente di sviluppo:] software che serve a sviluppare altro software. Può essere costituito da semplici e singoli programmi fino a complesse suite di sviluppo (vedi anche framework).
-	\item[Amministratore:] all'interno di un team è colui che è responsabile dell'efficienza e dell'operatività dell'ambiente di sviluppo. Si occupa inoltre della redazione dei piani di Gestione per la Qualità, del controllo delle versioni del prodotto, della gestione dell'archivio della documentazione di progetto. Partecipa inoltre alla redazione del Piano di Progetto e delle Norme di Progetto per conto del Responsabile.
-	\item[Analista:] è colui che all'interno del team di occupa delle attività di analisi. Redige lo Studio di Fattibilità e l'Analisi dei Requisiti.
 	\item[Autenticazione:] processo tramite il quale un computer, un software o un utente verifica la corretta identità di un altro computer, software o utente che vuole comunicare attraverso una connessione. Un sistema di elaborazione, progettato per essere usato soltanto da utenti autorizzati, deve essere in grado di rilevare ed escludere i non autorizzati. L'accesso ad esso, dunque, viene garantito solo dopo aver eseguito con successo una procedura di autenticazione, di solito attraverso una username e una password personale.
 \end{description}
 \bigskip
@@ -145,7 +145,7 @@ Documento che definisce i termini usati nei documenti ufficiali dell’azienda Q
 \normalsize
 \begin{description}
 	\item[Database:] archivio strutturato in modo tale da consentire la gestione de dati (l'inserimento, la ricerca, la cancellazione ed il loro aggiornamento) da parte di applicazioni software. Informalmente e impropriamente, la parola "database" viene spesso usata come abbreviazione dell'espressione Database Management System (DBMS), che si riferisce a una vasta categoria di sistemi software che consentono la creazione e la manipolazione efficiente di database.
-	\item[Diagramma use-case]: diagramma dedicato alla descrizione delle funzioni o servizi offerti da un sistema, così come sono percepiti e utilizzati dagli attori che interagiscono col sistema stesso.
+	\item[Diagramma use-case:] diagramma dedicato alla descrizione delle funzioni o servizi offerti da un sistema, così come sono percepiti e utilizzati dagli attori che interagiscono col sistema stesso.
 \end{description}
 \bigskip
 \Huge E \bigskip
@@ -191,8 +191,8 @@ Documento che definisce i termini usati nei documenti ufficiali dell’azienda Q
 	\item[Layout:] impaginazione e la struttura grafica di un documento.
 	\item[Linguaggio di Programmazione:] linguaggio formale, dotato di una sintassi e di una semantica ben definite, utilizzabile per il controllo del comportamento di una computer.
 	\item[Link:] letteralmente indica un collegamento. In informatica è usato per indicare l'indirizzo web di una risorsa.
-	\item[login]: termine inglese più esatto per indicare la procedura di accesso ad un sistema o un'applicazione informatica.
-	\item[logout]: termine inglese più esatto per indicare la procedura di uscita da un sistema o un'applicazione informatica.
+	\item[Login:] termine inglese per indicare la procedura di accesso ad un sistema o un'applicazione informatica.
+	\item[Logout:] termine inglese per indicare la procedura di uscita da un sistema o un'applicazione informatica.
 \end{description}
 \bigskip
 \Huge M \bigskip
@@ -212,8 +212,6 @@ Documento che definisce i termini usati nei documenti ufficiali dell’azienda Q
 	\item[Pdf:] il Portable Document Format, comunemente abbreviato Pdf, è un formato di file basato su un linguaggio di descrizione di pagina sviluppato da Adobe per rappresentare documenti in modo indipendente dall'hardware e dal software utilizzati per generarli o per visualizzarli. Ogni documento redatto dal team QuiXoft viene esportato in questo formato.
 	\item[Plugin:] programma non autonomo che interagisce con un altro programma per ampliarne le funzioni.
 	\item[Portabilità:] adattamento o una modifica di un componente, volto a consentirne l'uso in un ambiente di esecuzione diverso da quello originale. In una più moderna accezione, si parla di portabilità di un componente software o di un documento intendendo che può essere utilizzato su diverse piattaforme senza apportare alcuna modifica.
-	\item[Progettista:] è il responsabile delle attività di progettazione all'interno del team. Redige la Specifica Tecnica, la Definizione di Prodotto e la parte programmatica del Piano di Qualifica.
-	\item[Programmatore:] è responsabile delle attività di codifica miranti alla realizzazione del prodotto e delle componenti di ausilio necessarie per l'esecuzione delle prove di verifica e validazione.
 \end{description}
 \bigskip
 \Huge R \bigskip
@@ -222,7 +220,6 @@ Documento che definisce i termini usati nei documenti ufficiali dell’azienda Q
 \normalsize
 \begin{description}
 	\item[Repository:] punto centrale in cui i dati vengono immagazzinati e manutenuti. Può essere un punto in cui sono localizzati database o file multipli per la distribuzione via rete, oppure una collocazione direttamente accessibile dall'utente. Utilizzato principalmente in un contesto di sviluppo concorrente.
-	\item[Responsabile:] è colui che si fa carico, per conto del suo team, dei risultati del progetto. Elabora ed emana piani e scadenze, approva l'emissione di documenti, coordina le attività del gruppo e si relaziona con il controllo di qualità interno al progetto. Redige Organigramma e Piano di Progetto e approva l'Offerta ed i relativi allegati.
 	\item[Ridondanza:] presenza di ripetizioni e duplicazioni all'interno della medesima struttura. Può essere vista in accezione negativa se rilevata all'interno di un database (duplicazione inutile di dati) oppure all'interno di un file sorgente (ereditarietà mal gestita, per esempio).
 	\item[Ruby:] linguaggio di programmazione completamente a oggetti ed interpretato.
 \end{description}
@@ -234,7 +231,6 @@ Documento che definisce i termini usati nei documenti ufficiali dell’azienda Q
 \begin{description}
 	\item[Server:] componente informatica che fornisce servizi ad altre componenti (tipicamente chiamate client) attraverso una rete. Il termine server può essere riferito sia alla componente software che eroga il servizio sia alla componente hardware.
 	\item[Servizio web:] sistema software progettato per supportare l'interoperabilità tra diversi elaboratori su di una medesima rete. Caratteristica fondamentale di un servizio web è quella di offrire un'interfaccia software utilizzando la quale altri sistemi possono interagire con il servizio web stesso attivando le operazioni descritte nell'interfaccia tramite appositi messaggi.
-	\item[Sigeol:] sistema software per la gestione dell'orario di lezione a uso del CCS di Informatica.
 	\item[Software:] vocabolo creato a partire da due termini della lingua inglese, soft (morbido) e ware (manufatto, oggetto) che sta ad indicare un programma o un insieme di programmi in grado di funzionare su un elaboratore.
 	\item[Sorgente:] insieme di istruzioni appartenenti ad un determinato linguaggio di programmazione, utilizzato per realizzare un programma per computer.
 	\item[Subversion:] sistema di controllo versione, noto anche come Svn.
@@ -254,7 +250,6 @@ Documento che definisce i termini usati nei documenti ufficiali dell’azienda Q
 \smallskip
 \normalsize
 \begin{description}
-	\item[Verificatore:] all'interno del team è responsabile delle attività di verifica. Redige la parte retrospettiva del Piano di Qualifica che illustra l'esito e la completezza delle verifiche e delle prove effettuate secondo il piano.
 	\item[Versionamento:] termine che sta ad indicare il controllo versione, la gestione cioè di versioni multiple di un insieme di informazioni.
 \end{description}
 \bigskip
