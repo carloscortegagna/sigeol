@@ -8,7 +8,6 @@
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
 \usepackage[italian]{babel}
-\usepackage[colorlinks=true,linkcolor=black]{hyperref}
 
 \renewcommand{\headrulewidth}{0.6pt}
 \renewcommand{\footrulewidth}{0.6pt}
@@ -16,7 +15,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Analisi dei requisiti v1.0.0}
+\lfoot{Specifica tecnica v0.0.1}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -80,7 +79,7 @@
 \info
 \begin{center}
 \textbf{Sommario} \\
-Documento contenente la specifica tecnica per il progetto ``SIGEOL'' commissionato dalla prof. Rossi Francesca.
+Documento contenente la specifica tecnica per il progetto ''SIGEOL'' commissionato dalla prof. Rossi Francesca.
 \end{center}
 \newpage
 }
@@ -97,11 +96,33 @@ Documento contenente la specifica tecnica per il progetto ``SIGEOL'' commissiona
 \setcounter{page}{1}
 \section{Introduzione}
 \subsection{Scopo del documento}
+Il presente documento denominato \textsc{Specifica tecnica} ha lo scopo di mostrare la struttura del progetto \textit{SIGEOL} e descrivere i componenti che fanno parte. 
 \subsection{Scopo del prodotto}
+Il progetto sotto analisi, denominato \textit{SIGEOL}, si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. 
 \subsection{Glossario}
+Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti possono essere trovate nel documento \textsc{Glossario} al fine di eliminare ogni ambiguità e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione è disponibile all’interno del Glossario verrà marcato con una \underline{sottolineatura}.
+
 \section{Definizione del prodotto}
 \subsection{Metodo e formalismo di specifica}
+Lo strumento principale nel redarre la specifica tecnica sarà il linguaggio \underline{UML}, che permetterà di realizzare i diagrammi delle classi, di sequenza, di collaborazione e di attivita'.
+
+
+La decomposizione architetturale utilizzata sara' di tipo \underline{Top-down}.
+E' prevista una descrizione generale dell’architettura del sistema, alla quale seguiranno le specifiche dettagliate dei suoi componenti.
+
+
+Per semplificare la progettazione, si utilizzaranno i seguenti pattern:
+\begin{itemize}
+ \item MVC: si basa sulla separazione tra i componenti software del sistema, che gestiscono il modo in cui presentare i dati e i componenti che gestiscono i dati stessi. 
+ \item Facade:permette attraverso un'interfaccia più semplice, l'accesso a sottosistemi che espongono interfacce complesse e molto diverse tra loro, nonché a blocchi di codice complessi.
+\end{itemize}
+
+
+Il sistema verrà implementato utilizzando Ruby on rails, un framework la cui architettura è fortemente ispirata al paradigma Model-View-Controller. 
 \subsection{Presentazione dell'architettura generele del sistema}
+Per presentare l'architettura generale del sistema \textit{Sigeol} si utilizzerà il pattern Model-View-Controller(MVC).
+
+
 \section{Descrizione dei singoli componenti}
 \subsection{Obiettivo,struttura e funzione dei componenti}
 \subsection{Relazioni d'uso di altre componenti}
