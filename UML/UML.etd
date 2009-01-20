@@ -2304,4 +2304,8 @@
 <UML:Multiplicity xmi.id="DCE.B6560963-E638-C684-B6C4-A9A4F224A144"/></UML:TypedElement.multiplicity></UML:AssociationEnd>
 <UML:AssociationEnd xmi.id="DCE.3E4C1335-D8E1-2251-8EED-4B4A06E6ABD6" visibility="private" association="DCE.03D51EC6-DBDC-FEBC-23B9-ADFFE0C18B9D" type="DCE.6B927332-39BC-9C2B-98EF-83E9B04BAE83"><UML:TypedElement.multiplicity>
 <UML:Multiplicity xmi.id="DCE.B0D3E3EC-4946-A4B8-3AFB-0F21501D9725"/></UML:TypedElement.multiplicity></UML:AssociationEnd></UML:Association.end><UML:Element.presentation>
-</UML:Element.presentation></UML:Association></UML:Element.ownedElement></UML:Project></XMI.content> </XMI>
+</UML:Element.presentation></UML:Association>
+<UML:StateMachine xmi.id="DCE.1A797283-795D-E535-176B-E6A9F5CAF303" name="State Diagram 1" owner="DCE.3200727D-4EDB-E6F2-0BA4-D61A2617D758"><UML:Element.ownedElement>
+<UML:Region xmi.id="DCE.FD71A54A-BAD3-6871-2DEF-9D7CB137B016" name="Unnamed" owner="DCE.1A797283-795D-E535-176B-E6A9F5CAF303"/></UML:Element.ownedElement></UML:StateMachine>
+<UML:Interaction xmi.id="DCE.32509D43-736C-FBAC-84C6-FA538AFE45D4" name="Sequence Diagram 1" owner="DCE.3200727D-4EDB-E6F2-0BA4-D61A2617D758"/>
+<UML:Activity xmi.id="DCE.46A8C939-9250-A5DE-617A-D76A0DA24252" name="Activity Diagram 1" owner="DCE.3200727D-4EDB-E6F2-0BA4-D61A2617D758"/></UML:Element.ownedElement></UML:Project></XMI.content> </XMI>
