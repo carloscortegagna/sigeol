@@ -113,10 +113,18 @@ E' prevista una descrizione generale dell’architettura del sistema, alla quale
 
 
 Per semplificare la progettazione, si utilizzaranno i seguenti pattern:
-\begin{itemize}
- \item MVC: si basa sulla separazione tra i componenti software del sistema, che gestiscono il modo in cui presentare i dati e i componenti che gestiscono i dati stessi. 
- \item Facade:permette attraverso un'interfaccia più semplice, l'accesso a sottosistemi che espongono interfacce complesse e molto diverse tra loro, nonché a blocchi di codice complessi.
-\end{itemize}
+\begin{description}
+ \item[MVC]
+ 
+Il pattern MVC (Model View Controller)si basa sulla separazione tra i componenti software del sistema, che gestiscono il modo in cui presentare i dati e i componenti che gestiscono i dati stessi. 
+ \item[Facade]
+
+permette attraverso un'interfaccia più semplice, l'accesso a sottosistemi che espongono interfacce complesse e molto diverse tra loro, nonché a blocchi di codice complessi.
+\item[Rest]
+Representational state transfer (REST) è un tipo di architettura software per i sistemi di ipertesto distribuiti come il World Wide Web. 
+REST si riferisce ad un insieme di principi di architetture di rete, i quali delineano come le risorse sono definite e indirizzate.
+
+\end{description}
 
 
 Il sistema verrà implementato utilizzando Ruby on rails, un framework la cui architettura è fortemente ispirata al paradigma Model-View-Controller. 
@@ -143,7 +151,7 @@ Questo componente ha la responsabilità di trasformare le interazioni dell'utent
  \textbf{View}
 \end{center}
 Definisce i dati e le operazioni che possono essere eseguite su questi. Quindi definisce le regole di business per l'interazione con i dati, esponendo alla View ed al Controller rispettivamente le funzionalità per l'accesso e l'aggiornamento.
-\includegraphics[scale=0.75]{Sigeol.png}
+\includegraphics[scale=0.75]{images/SIGEOL.png}
 
 
 \section{Descrizione dei singoli componenti}
