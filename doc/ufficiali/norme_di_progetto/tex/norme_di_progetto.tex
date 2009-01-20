@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Norme di Progetto v1.1.0}
+\lfoot{Norme di Progetto v1.2.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Norme di Progetto v1.1.0}
+\lfoot{Norme di Progetto v1.2.0}
 \cfoot{}
 \rfoot{}
 }
@@ -45,7 +45,9 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
-\textit{18-01-2009} & 1.1.0 & Aggiunta la sezione sulle presentazioni, correzioni varie\\
+\textit{20-01-2009} & 1.2.0 & Aggiunta la sezione ''Strumenti''\\
+\hline
+\textit{18-01-2009} & 1.1.0 & Aggiunta la sezione ''Presentazioni'', correzioni varie\\
 \hline
 \textit{09-12-2008} & 1.0.0 & Approvazione del Responsabile e passaggio di stato in ''Formale''\\
 \hline
@@ -77,7 +79,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Norme di Progetto \\ v1.1.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Norme di Progetto \\ v1.2.0}}
 \author{Redazione: Scortegagna Carlo}
 \maketitle
 \medskip
@@ -104,21 +106,22 @@ Norme interne per il progetto \textit{SIGEOL}, necessarie per regolamentare lo s
 \frontespizio
 \indice
 \setcounter{page}{1}
-\section{Scopo del documento}
-Lo scopo del presente documento è quello di fissare linee guida e norme precise per quanto riguarda la comunicazione aziendale, la stesura della documentazione, la codifica su calcolatore e l'amministrazione del progetto denominato ''\underline{SIGEOL}''.
+\section{Introduzione}
+\subsection{Scopo del documento}
+Lo scopo del presente documento è quello di fissare linee guida e norme precise per quanto riguarda la comunicazione aziendale, la stesura della documentazione, la codifica su calcolatore e l'amministrazione del progetto denominato SIGEOL.
 
 Ogni membro del team QuiXoft è tenuto a leggere con attenzione il presente documento e applicarne in modo più coerente possibile il contenuto, al fine di ottimizzare il lavoro in team e le risorse a disposizione.
 
-Sarà compito del \underline{Responsabile} verificare che tali norme vengano applicate ed, eventualmente, notificare all’Amministrazione di progetto qualsiasi insubordinazione che mini il corretto procedere dello stesso.
-\section{Definizioni}
+Sarà compito del Responsabile verificare che tali norme vengano applicate ed, eventualmente, notificare all’Amministrazione di progetto qualsiasi insubordinazione che mini il corretto procedere dello stesso.
+\subsection{Definizioni}
 Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti  possono essere trovate nel documento \textsc{Glossario} al fine di eliminare ogni ambiguità e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione è disponibile all'interno del glossario verrà marcato con una \underline{sottolineatura}.
 \section{Comunicazioni}
 \subsection{Interne}
 Le comunicazioni interne ufficiali (quali incontri, scadenze, appuntamenti obbligatori o altre comunicazioni ritenute importanti) si appoggiano al portale \textit{http://www.assembla.com}, che mette a disposizione del team una bacheca messaggi.
 
-Ogni nuova comunicazione pubblicata nella bacheca verrà notificata auto\-maticamente via e-mail a tutti membri del team QuiXoft, qualsiasi ruolo essi ricoprano; la pubblicazione della stessa, invece, spetta al \underline{Responsabile}.
+Ogni nuova comunicazione pubblicata nella bacheca verrà notificata auto\-maticamente via e-mail a tutti membri del team QuiXoft, qualsiasi ruolo essi ricoprano; la pubblicazione della stessa, invece, spetta al Responsabile.
 
-Per tutte le altre comunicazioni interne al team è inoltre a disposizione un \underline{forum}, raggiungibile all'indirizzo \textit{http://quixoft.forumup.it/}, la cui struttura è decisa preventivamente dall'\underline{Amministratore} di progetto.
+Per tutte le altre comunicazioni interne al team è inoltre a disposizione un \underline{forum}, raggiungibile all'indirizzo \textit{http://quixoft.forumup.it/}, la cui struttura è decisa preventivamente dall'Amministratore di progetto.
 
 All'interno di tale \underline{forum} ogni membro del team ha la possibilità di discu\-tere, liberamente, argomenti annessi al
 progetto, o che possano in qualsiasi modo giovare al proseguimento dello stesso.
@@ -127,32 +130,32 @@ Sono sconsigliate, ma non vietate, le comunicazioni dirette tra singoli membri d
 E' consigliabile quindi che ogni comunicazione sia fatta usando i metodi sopra elencati.
 Nonostante ciò, sono a disposizione gli indirizzi e-mail e i recapiti telefonici di ogni singolo membro del team QuiXoft.
 \subsection{Esterne}
-Ogni comunicazione con il commitente o con altri soggetti esterni al team QuiXoft potrà essere proposta da qualsiasi membro del gruppo, e spetterà al \underline{Responsabile} deciderne l'utilità e la fattibilità.
+Ogni comunicazione con il commitente o con altri soggetti esterni al team QuiXoft potrà essere proposta da qualsiasi membro del gruppo, e spetterà al Responsabile deciderne l'utilità e la fattibilità.
 In caso di responso positivo, al termine di ogni comunicazione esterna dovrà essere redatto un resoconto che ne elenchi sinteticamente i risultati. Per le modalità di creazione e diffuzione di tale resoconto, si faccia riferimento a quanto spiegato in seguito per i resoconti di incontro con il committente.
 
 Il committente o altri soggetti esterni potranno invece comunicare con il team QuiXoft tramite l'indirizzo e-mail \textit{quixoft.sol@gmail.com}.
 \section{Convocazioni ed incontri}
-Ogni incontro, sia esso interno o esterno, dovrà essere preceduto da un annuncio in bacheca e dall'approvazione del \underline{Responsabile}.
+Ogni incontro, sia esso interno o esterno, dovrà essere preceduto da un annuncio in bacheca e dall'approvazione del Responsabile.
 Al termine di qualsiasi incontro dovrà essere redatto un resoconto che contenga sinteticamente i risultati o i problemi emersi durante la discussione.
 Per ulteriori informazioni sui documenti di resoconto di un incontro consultare il paragrafo 6.1.1.
 \subsection{Interni}
 \subsubsection{Obbligatori}
-La cadenza degli incontri interni obbligatori è fissata dal \underline{Responsabile} e comunicata ai membri del team QuiXoft tramite segnalazione con messaggio in bacheca.
+La cadenza degli incontri interni obbligatori è fissata dal Responsabile e comunicata ai membri del team QuiXoft tramite segnalazione con messaggio in bacheca.
 Notifica via e-mail della convocazione verrà automaticamente mandata a tutti i membri del gruppo.
 Riunioni di questo genere implicano la presenza obbligatoria di tutti i componenti del gruppo.
 
-Il \underline{Responsabile} si occuperà di volta in volta di selezionare l'ordine del giorno appropriato e di controllare il corretto svolgimento dell'incontro.
-Gli argomenti da discutere e da inserire nell'ordine del giorno potranno essere proposti da qualsiasi membro del gruppo e saranno inseriti nell'annuncio di convocazione in bacheca, previa approvazione del \underline{Responsabile}.
+Il Responsabile si occuperà di volta in volta di selezionare l'ordine del giorno appropriato e di controllare il corretto svolgimento dell'incontro.
+Gli argomenti da discutere e da inserire nell'ordine del giorno potranno essere proposti da qualsiasi membro del gruppo e saranno inseriti nell'annuncio di convocazione in bacheca, previa approvazione del Responsabile.
 \subsubsection{Facoltativi}
 La cadenza degli incontri facoltativi non è fissata a priori ed è legata a particolari necessità di uno o più membri del team.
-Gli interessati dovranno richiedere la possibilità di svolgere tale incontro al \underline{Responsabile}, il quale provvederà all'eventuale approvazione.
-Sarà poi compito del \underline{Responsabile} stesso comunicare, tramite pubblicazione sulla bacheca, gli estremi di svolgimento dell'incontro.
+Gli interessati dovranno richiedere la possibilità di svolgere tale incontro al Responsabile, il quale provvederà all'eventuale approvazione.
+Sarà poi compito del Responsabile stesso comunicare, tramite pubblicazione sulla bacheca, gli estremi di svolgimento dell'incontro.
 
 Riunioni di questo tipo non implicano la presenza obbligatoria di tutti i componenti, ma solamente dei ruoli interessati e specificati nel messaggio di convocazione in bacheca; non si esclude comunque la presenza degli altri elementi.
 \subsection{Esterni}
 \subsubsection{Incontri con il committente}
-Ogni membro del gruppo ha facoltà di richiedere al \underline{Responsabile} un incontro con il Commitente.
-Spetta al \underline{Responsabile} valutare la richiesta e, se lo ritiene opportuno e utile al progetto, approvare l'incontro.
+Ogni membro del gruppo ha facoltà di richiedere al Responsabile un incontro con il Commitente.
+Spetta al Responsabile valutare la richiesta e, se lo ritiene opportuno e utile al progetto, approvare l'incontro.
 
 Per formalizzare l'incontro dovrà essere pubblicato in bacheca il messaggio di convocazione, la cui notifica arriverà a tutti i membri del team.
 All'incontro è obbligatoria solamente la presenza del richiedente, ma non si esclude la presenza di qualsiasi altro membro del gruppo che reputi di interesse tale incontro con il Committente.
@@ -170,7 +173,7 @@ Ogni file o documento deve essere accompagnato dalla sua relativa versione. Si u
 \subsection{Template documenti}
 Ogni documento redatto dal team QuiXoft dovrà essere creato utilizzando il relativo \underline{template} \LaTeX \space e successivamente esportato in \underline{Pdf} per garantirne la giusta \underline{portabilità}.
 
-Se il \underline{template} non dovesse più calzare con le esigenze di documentazione del team QuiXoft, qualsiasi componente potrà richiederne la modifica al \underline{Responsabile} di Progetto.
+Se il \underline{template} non dovesse più calzare con le esigenze di documentazione del team QuiXoft, qualsiasi componente potrà richiederne la modifica al Responsabile di Progetto.
 \subsubsection{Documenti di resoconto incontri}
 I documenti di resoconto incontri dovranno essere creati usando il \underline{template} \textsc{template\_resoconto.tex} disponibile all'interno del \underline{repository} nella car\-tella \textsc{/doc/incontri/template/}. Non saranno ammesse modifiche al \underline{layout} e alla formattazione di tale \underline{template}.
 \subsubsection{Documenti ufficiali interni ed esterni}
@@ -183,7 +186,6 @@ I documenti redatti, oltre che seguire la struttura  dei \underline{template} me
 \\ (esempio: \textit{http://www.assembla.com});
 	\item i riferimenti a documenti esterni o a file (comprensivi di \underline{estensione}) andranno scritti usando il comando \LaTeX \space /textsc 
 \\ (esempio: \textsc{template\_resoconto.tex});
-	\item i nomi propri di \underline{software}, di progetti o di altri componenti dovranno essere scritti tra virgolette (esempio: ''SIGEOL'');
 	\item i termini definiti nel glossario verranno contrassegnati da una sottolineatura con il comando \LaTeX \space /underline (esempio: \underline{template});
 	\item punto, virgola, punto e virgola, due punti, punto esclamativo e punto interrogativo sono attaccate alla parola che li precede, mentre sono separate con uno spazio dalla parola che li segue;
 	\item parentesi (di ogni tipo), virgolette e trattini sono sempre attaccate al testo che delimitano, e separate con uno spazio dal resto del testo;
@@ -231,9 +233,9 @@ I file dei documenti ufficiali interni ed esterni dovranno essere composti solam
 \subsection{Approvazione e verifica documentazione}
 Una volta redatto, un qualsiasi documento deve essere marcato come ''Preliminare'' nel campo ''Stato'' del relativo \underline{template} \LaTeX.
 
-In seguito tale documento deve essere sottoposto ad una fase di controllo da parte del \underline{Verificatore}, il cui compito è quello di notificare eventuali incongruenze al redattore del documento.
-Spetta a quest'ultimo apportare le dovute modifiche e sottoporre nuovamente al \underline{Verificatore} il documento.
-Una volta che il \underline{Verificatore} avrà segnalato come ''verificato'' il documento, il \underline{Responsabile} provvederà all'approvazione ed al cambio di stato in ''Formale''.
+In seguito tale documento deve essere sottoposto ad una fase di controllo da parte del Verificatore, il cui compito è quello di notificare eventuali incongruenze al redattore del documento.
+Spetta a quest'ultimo apportare le dovute modifiche e sottoporre nuovamente al Verificatore il documento.
+Una volta che il Verificatore avrà segnalato come ''verificato'' il documento, il Responsabile provvederà all'approvazione ed al cambio di stato in ''Formale''.
 \section{Presentazioni}
 In occasione di ogni revisione, sia formale sia informale, deve essere organizzata una presentazione che illustri il proseguimento del progetto al committente o al docente di riferimento.
 
@@ -260,7 +262,7 @@ Non è fissato a priori un numero massimo di slide per ogni presentazione. Si te
 Caratteristica obbligatoria è la presenza del numero della slide corrente e del totale, per dare modo al docente o al committente di quantificare i tempi.
 \section{Codice}
 \subsection{Intestazione}
-Ogni file di codice prodotto dal team QuiXoft durante lo sviluppo del progetto ''\underline{SIGEOL}'' dovrà contenere un \underline{intestazione} che ne certifichi l'origine e le modifiche per facilitarne la tracciabilità e le operazioni di \underline{manutenzione}.
+Ogni file di codice prodotto dal team QuiXoft durante lo sviluppo del progetto SIGEOL dovrà contenere un \underline{intestazione} che ne certifichi l'origine e le modifiche per facilitarne la tracciabilità e le operazioni di \underline{manutenzione}.
 Tale \underline{intestazione} deve essere cosi formattata: \\
 
 \textit{QuiXoft - Progetto ''SIGEOL''}
@@ -275,7 +277,7 @@ Tale \underline{intestazione} deve essere cosi formattata: \\
 
 \textit{\{data e resoconto delle modifiche, in ordine cronologico decrescente\}}
 \subsection{Altre convenzioni}
-Altre norme riguardanti i file \underline{sorgente} verranno decise dal \underline{Responsabile} del team QuiXoft al momento della scelta dell'\underline{ambiente di sviluppo} e dei linguaggi di programmazione utilizzati. Questo perchè alcuni linguaggi (es: ''\underline{Ruby}'') ed alcuni ambienti di programmazione possiedono già delle regole prestabilite. Le norme che saranno decise nelle fasi successive dello sviluppo riguarderanno:
+Altre norme riguardanti i file \underline{sorgente} verranno decise dal Responsabile del team QuiXoft al momento della scelta dell'\underline{ambiente di sviluppo} e dei linguaggi di programmazione utilizzati. Questo perchè alcuni linguaggi (es: ''\underline{Ruby}'') ed alcuni ambienti di programmazione possiedono già delle regole prestabilite. Le norme che saranno decise nelle fasi successive dello sviluppo riguarderanno:
 \begin{itemize}
 	\item struttura e posizionamento dei commenti
 	\item nomi di variabili, classi, metodi, costanti, ecc...
@@ -286,13 +288,39 @@ Altre norme riguardanti i file \underline{sorgente} verranno decise dal \underli
 \end{itemize}
 \section{Compiti}
 \subsection{Ticket}
-Appoggiandosi al portale \textit{http://www.assembla.com} il \underline{Responsabile} dovrà creare un \underline{ticket} per ogni singolo compito da assegnare ad uno o più membri del team QuiXoft, comprese le operazioni di verifica.
+Appoggiandosi al portale \textit{http://www.assembla.com} il Responsabile dovrà creare un \underline{ticket} per ogni singolo compito da assegnare ad uno o più membri del team QuiXoft, comprese le operazioni di verifica.
 Sarà poi cura di quest'ultimo accettare o rifiutare il \underline{ticket}.
 
-Una volta completato, il \underline{ticket} assegnato dovrà essere marcato come ''Close as fixed''.
+Al momento della creazione di ciascun \underline{ticket} è indispensabile stimare le ore necessarie per portarlo a termine e completare correttamente tutti i campi dati richiesti.
+
+Una volta completato, il \underline{ticket} assegnato dovrà essere marcato come ''Close as fixed''. Dovranno altresi essere indicate con precisione le ore che sono state necessarie al suo completamento.
+
+Caso particolare di tutto ciò appena elencato sono i ticket relativi al Responsabile: quest'ultimo dovrà crearli, accettarli e gestirli autonomamente, e segnalare le ore impiegate per portarli a compimento come qualsiasi altro membro del team QuiXoft.
+
+E' importante e necessario che tutti i ticket siano tracciati con le ore impiegate a completarli per tenere sotto controllo le risorse e i relativi costi e per non rischiare di sforare le stime illustrate nel \textsc{Piano di Progetto}.
 \subsection{Milestone}
 I \underline{ticket} assegnati ai vari membri del team QuiXoft sono raggruppati in \underline{milestone} e gestiti sempre attraverso il portale \textit{http://www.assembla.com}.
 
-Il raggiungimento di un \underline{milestone} rappresenta il completamento di uno degli obiettivi che il \underline{Responsabile} ha stabilito in fase di definizione del progetto stesso.
+Il raggiungimento di un \underline{milestone} rappresenta il completamento di uno degli obiettivi che il Responsabile ha stabilito in fase di definizione del progetto stesso.
+\section{Strumenti}
+Per facilitare il lavoro di tutti i membri del team QuiXoft e per rendere interoperabili i loro risultati saranno ora elencati gli strumenti da usare per svolgere i vari compiti assegnati.
+
+E' fatto obbligo lo sviluppo di tutto il progetto con i medesimi software e lo stesso sistema operativo, per non incappare nei vari problemi che sorgerebbero nell'usare una gran varietà di ambienti diversi.
+
+Tutti i software elencati dovranno essere aggiornati all'ultima versione stabile disponibile: non si escludono aggiornamenti anche in corso d'opera.
+
+Eccezione a quanto appena detto, durante la fase di collaudo del sistema SIGEOL sarà necessario testare il prodotto sotto vari sistemi operativi, per verificarne l'effettiva portabilità.
+\begin{itemize}
+ \item tutto il progetto dovrà necessariamente essere sviluppato all'interno di un sistema operativo \textbf{GNU/Linux}. La scelta di distribuzione e versione è lasciata ai singoli membri del team QuiXoft, ma è comunque consigliabile l'utilizzo di un sistema operativo basato su Debian (come, per esempio, l'ottimo Ubuntu) per la facilità di gestione e per la qualità dell'architettura e dell'infrastruttura.
+ \item per la scrittura e la compilazione di tutta la documentazione e delle presentazioni verrà usato il programma \textbf{Kile} (KDE Integrated LaTeX Environment). Per la compilazione dei sorgenti \LaTeX \space verrà utilizzato PDFLaTeX.
+ \item l'intero progetto verrà sviluppato usando \textbf{NetBeans} alla sua ultima versione. La scelta del linguaggio di programmazione e del relativo framework è caduta su \textbf{Ruby on Rails}, eccellente per le esigenze del progetto SIGEOL e perfettamente integrato all'interno di NetBeans. Quest'ultimo mette a disposizione notevoli caratteristiche cha facilitano lo sviluppo con Ruby on Rails. NetBeans verrà anche utilizzato come editor per la creazione di tutti gli schemi UML necessari.
+ \item il database management system (DBMS) scelto per contenere tutta la mole di dati del progetto è \textbf{MySQL}. Ci si potrà facilmente interfacciare a tale database fruttando le funzionalità offerte da Active Record, comoda libreria messa a disposizione per Ruby on Rails.
+\end{itemize}
+
+Per gli specifici strumenti da adottare per lo svolgimento delle attività di verifica, validazione e controllo qualità si prega di consultare il \textsc{Piano di qualifica} alla sua ultima versione.
+
+La lista appena conclusa è da intendersi provvisoria ed incompleta: col procedere dello sviluppo del progetto potranno sorgere ulteriori esigenze da parte del team QuiXoft, che dovranno essere soddisfatte con un aggiornamento o una estensione degli strumenti da utilizzare.
+
+
 \modifiche
 \end{document}
