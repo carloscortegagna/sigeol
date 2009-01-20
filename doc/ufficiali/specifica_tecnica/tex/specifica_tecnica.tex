@@ -124,8 +124,9 @@ permette attraverso un'interfaccia più semplice, l'accesso a sottosistemi che e
 Representational state transfer (REST) è un tipo di architettura software per i sistemi di ipertesto distribuiti come il World Wide Web. 
 REST si riferisce ad un insieme di principi di architetture di rete, i quali delineano come le risorse sono definite e indirizzate.
 \item[Convention Over Configuration]
+Convention Over Configuration è un paradigma di programmazione che prevede configurazione minima (o addirittura assente) per il programmatore che utilizza un framework che lo rispetti, obbligandolo a configurare solo gli aspetti che si differenziano dalle implementazioni standard o che non rispettano particolari convenzioni di denominazione o simili.
 \item[DRY]
-
+le definizioni devono essere poste una volta soltanto
 \end{description}
 
 
@@ -157,9 +158,10 @@ Viene gestito da una libreria chiamata ActiveRecord, che si occupa di tutta la l
 Questo componente ha la responsabilità di trasformare le interazioni dell'utente della View in azioni eseguite dal Model. Ma il Controller non rappresenta un semplice "ponte" tra View e Model. Realizzando la mappatura tra input dell'utente e processi eseguiti dal Model e selezionando le schermate della View richieste, il Controller implementa la logica di controllo dell'applicazione.
 I Controller sono rappresentati dalla libreria ActionController.
 Gestisce le richieste del browser e facilita la comunicazione fra Model e View. Tutti i controller creati dall'utente ereditano da ActionController. L'ApplicationController raccoglie funzionalita' condivise nell'intera applicazione.
+In particolare verranno inserite le azioni CRUD (Create-Read-Update-Delete) per l'oggetto e le varie funzioni che possono servirci per la nostra applicazione.
 
 
-\includegraphics[scale=0.75]{images/SIGEOL.png}
+\includegraphics[scale=0.50]{images/SIGEOL.png}
 
 
 \section{Descrizione dei singoli componenti}
