@@ -8,7 +8,6 @@
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
 \usepackage[italian]{babel}
-\usepackage[colorlinks=true,linkcolor=black]{hyperref}
 
 \renewcommand{\headrulewidth}{0.6pt}
 \renewcommand{\footrulewidth}{0.6pt}
@@ -125,7 +124,7 @@ Il presente documento denominato \textsc{Analisi dei requisiti} ha lo scopo di d
 
 Nel caso in cui la proposta venga ritenuta adeguata il seguente documento avrà valenza contrattuale e concretizzerà un legame di reciproco interesse tra il team QuiXoft ed il cliente al quale il documento è rivolto.
 \subsection{Scopo del prodotto}
-Il progetto sotto analisi, denominato \textit{SIGEOL}, si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. Il committente richiede l'applicazione del sistema al solo corso di laurea in Informatica, ma, constatato che la complessità non aumenta notevolmente, il team QuiXoft prevede lo sviluppo e la messa in opera dell'applicazione per tutti i corsi di laurea dell' Università degli studi di Padova.
+Il progetto sotto analisi, denominato \textit{SIGEOL}, si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. Come richiesto dal committente il sistema verrà applicato ai corsi di laurea in Informatica.
 
 Il prodotto sarà implementato come un \underline{servizio web} \underline{portabile}, facilmente manutenibile ed \underline{accessibile} agli utenti da una qualsiasi postazione con accesso alla rete Internet.
 \subsection{Glossario}
@@ -134,7 +133,10 @@ Le definizioni dei termini specialistici usati nella stesura di questo e di tutt
 \begin{itemize}
  \item Capitolato d'appalto reperibile all'indirizzo: \\ http://www.math.unipd.it/~tullio/IS-1/2008/Progetti/SIGEOL.html
  \item Statuto di Ateneo reperibile all'indirizzo \\ http://www.unipd.it/organizzazione/statuto/statuto.htm
- \item Informativa sulla privacy (Legge per il trattamento dei dati personali)
+ \item Informativa sulla privacy (Legge per    quisiti                                                             15
+4.1 RF. Requisiti funzionali . . . . . . . . . . . . . . . . . . . . . 16
+    4.1.1
+il trattamento dei dati personali)
  \item Incontri con il committente
 \end{itemize}
 
@@ -155,22 +157,23 @@ Per informazioni più dettagliate confrontare la sezione \ref{requisiti}
 \subsection{Caratteristiche degli utenti} \label{utenti}
 Si prevedono cinque tipologie di utenti che usufruiranno del sistema:
 \begin{itemize}
- \item Segreteria generale
  \item Segreteria didattica
  \item Presidente del CCS
  \item Docente
  \item Utente non autenticato
 \end{itemize}
 
-La \textit{segreteria generale} si occupa dell'invito delle varie \textit{segreterie didattiche}, nonchè della preparazione della struttura delle varie facoltà.
+La \textit{segreteria didattica} ha il compito principale di inserire i dati dei corsi e delle aule disponibili.
 
-La \textit{segreteria didattica} ha, tra gli altri, il compito di invitare i \textit{presidenti del CCS} dei vari corsi di laurea e di inserire i corsi della facoltà di sua competenza (invito docenti).
 
-Il \textit{presidente del CCS} provvede, invece, all'invito dei vari \textit{docenti} che dovranno compilare i propri dati ed accettare il consenso al loro trattamento.
+Il \textit{presidente del CCS} possiede le stesse funzionalità della \textit{segreteria didattica}. 
+
+
+Il compito di inserire i dati di interesse all`interno del sistema \textit{SIGEOL} sarà prevalentemente affidato alla \textit{segreteria didattica}. In mancanza di questa il \textit{presidente del CCS} potrà effettuare le operazioni di inserimento e modifica.
 
 L' \textit{utente non autenticato} sarà in grado di consultare le informazioni che verranno rese disponibili dal sistema, quali schemi d'orario, informazioni su docenti, aule, corsi di laurea e corsi.
 
-Ogni tipologia potrà inserire i propri vincoli e preferenze (esclusi gli utenti non autenticati) e, dato che il sistema ``SIGEOL'' guiderà nel modo più accurato possibile ogni utente, non sono richieste particolari conoscescenze ad eccezione dell'uso di un elaboratore connesso alla rete Internet.
+Ogni tipologia potrà inserire i propri vincoli e preferenze (esclusi gli utenti non autenticati) e, dato che il sistema \textit{SIGEOL} guiderà nel modo più accurato possibile ogni utente, non sono richieste particolari conoscenze ad eccezione dell'uso di un elaboratore connesso alla rete Internet.
 \subsection{Vincoli generali}
 Il sistema che si intende sviluppare cercherà di essere il più \underline{portabile} ed indipendente possibile. Il team QuiXoft non esclude però che sia necessaria l'installazione di componenti software nel \underline{server} dove il prodotto risiederà. Ad ogni modo non saranno in alcun modo utilizzate tecnologie soggette al pagamento di una qualche forma di licenza o altro.
 \subsection{Assunzioni e dipendenze}
@@ -181,11 +184,9 @@ Il prodotto che il team QuiXoft si impegna a sviluppare dipende da diversi fatto
 \end{itemize}
 Inoltre il team QuiXoft si rende consapevole della possibilità di cambiamento od aggiunta di aluni requisiti da parte del committente in corso d'opera.
 \section{Use case e descrizioni narrative}
-In questo capitolo verranno illustrati i \underline{diagrammi use-case} che rappresentano
-i requisiti funzionali del prodotto.
+In questo capitolo verranno illustrati i \underline{diagrammi use-case} che rappresentano i requisiti funzionali del prodotto.
 
-I diagrammi verrano accompagnati dalle loro descrizioni narrative per consentirne
-una migliore comprensione.
+I diagrammi verrano accompagnati dalle loro descrizioni narrative per consentirne una migliore comprensione.
 \subsection{Use case generale}
 Il seguente diagramma illustra in modo generale le funzionalità offerte dal sistema ``SIGEOL'' .
 \begin{center}
@@ -253,8 +254,8 @@ l'\textit{utente non autenticato} esce dalla pagina di \underline{login}.
 \end{itemize}
 \subsubsection*{Flussi alternativi:}
 \begin{itemize}
-\item \textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS} annullano l'invito
-\item  \textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS}, \textit{docente} annullano l'invio della notifica
+\item \textit{segreteria didattica}, \textit{presidente CCS} annullano l'invito
+\item \textit{segreteria didattica}, \textit{presidente CCS}, \textit{docente} annullano l'invio della notifica
 \end{itemize}
 \subsubsection*{Post-condizioni:}
 \begin{enumerate}
@@ -390,19 +391,19 @@ le modifiche apportate vengono inserite nel \textit{SIGEOL \underline{database}}
  \includegraphics[scale=0.5]{UseCaseGestioneBackup.png}
 \end{center}
 \subsubsection*{Attori coinvolti:}
-\textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS}, \textit{SIGEOL \underline{database}}
+\textit{segreteria didattica}, \textit{presidente CCS}, \textit{SIGEOL \underline{database}}
 \subsubsection*{Scopo e descrizione sintetica:}
-\textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS} impostare le preferenze per la generazione dei \underline{backup}, generano il \underline{backup} e ripristinano precedenti \underline{backup} del \textit{SIGEOL \underline{database}}
+\textit{segreteria didattica}, \textit{presidente CCS} impostare le preferenze per la generazione dei \underline{backup}, generano il \underline{backup} e ripristinano precedenti \underline{backup} del \textit{SIGEOL \underline{database}}
 \subsubsection*{Pre-condizioni:}
-\textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS} sono nella pagina della gestione dei \underline{backup}
+\textit{segreteria didattica}, \textit{presidente CCS} sono nella pagina della gestione dei \underline{backup}
 \subsubsection*{Flusso base di eventi:}
 \begin{itemize}
- \item \textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS} modificano le impostazioni di \underline{backup}
- \item \textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS} generano un \underline{backup}
- \item \textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS} ripristinano un \underline{backup} già esistente
+ \item \textit{segreteria didattica}, \textit{presidente CCS} modificano le impostazioni di \underline{backup}
+ \item \textit{segreteria didattica}, \textit{presidente CCS} generano un \underline{backup}
+ \item \textit{segreteria didattica}, \textit{presidente CCS} ripristinano un \underline{backup} già esistente
 \end{itemize}
 \subsubsection*{Flussi alternativi:}
-\textit{segreteria generale}, \textit{segreteria didattica}, \textit{presidente CCS} escono dalla pagina della gestione dei \underline{backup}
+\textit{segreteria didattica}, \textit{presidente CCS} escono dalla pagina della gestione dei \underline{backup}
 \subsubsection*{Post-condizioni:}
 \begin{itemize}
 \item le impostazioni vengono salvate
@@ -417,44 +418,49 @@ In questa sezione verranno elencati i requisiti del prodotto, organizzati per ti
 \item \textbf{OBBLIGATORI}
 \begin{enumerate}
 \item RFO0.0 Possibilità di \underline{autenticazione}
-\item RFO0.1 Possibilità di inserimento e modifica per ogni corso, all'interno della propria facoltà, del nome, dei relativi CFU, dell'anno di appartenenza, del periodo, dello stato, del numero di ore in aula e in laboratorio (se previsto), del docente di riferimento che lo tiene, di eventuali assistenti e della stima del numero di studenti che lo seguiranno
-\item RFO0.3 Possibilità di inserimento e modifica per ogni aula disponibile, all'interno della propria facoltà, del nome, della capienza, delle ore e dei periodi di non disponibilità
-\item RFO0.4 Possibilità di inserimento e modifica dell'anno accademico
-\item RFO0.5 Possibilità di impostare vincoli e preferenze per la struttura dell'orario %da sistemare
-\item RFO0.6 Possibilità di invitare via e-mail i presidenti del CCS di ogni corso di laurea ad inserire i dati
-\item RFO0.7 Possibilità di ripristinare i dati relativi ai corsi di laurea da un \underline{backup} scelto
+\item RFO0.1 Possibilità di inserimento e modifica per ogni corso, all'interno del proprio corso di laurea, del nome, dei relativi CFU, dell'anno di appartenenza, del periodo, dello stato, del numero di ore in aula e in laboratorio (se previsto), del docente di riferimento che lo tiene, di eventuali assistenti e della stima del numero di studenti che lo seguiranno
+\item RFO0.2 Possibilità di inserimento e modifica per ogni aula disponibile, all'interno del proprio corso di laurea, del nome, della capienza, delle ore e dei periodi di non disponibilità
+\item RFO0.3 Possibilità di inserimento e modifica, all'interno del proprio corso di laurea, dei dati dei docenti
+\item RFO0.4 Possibilità di inserimento e modifica per ogni aula disponibile, all'interno della propria facoltà, del nome, della capienza, delle ore e dei periodi di non disponibilità
+\item RFO0.5 Possibilità di inserimento e modifica dei dati relativi all'anno accademico
+\item RFO0.6 Possibilità di impostare vincoli e le preferenze per la struttura dell'orario
+\item RFO0.7 Possibilità di generazione dello schema d'orario in formato \underline{pdf} e \underline{html}
+\item RFO0.8 Possibilità di consultare lo schema d'orario di ogni corso di laurea
+\item RFO0.9 Possibilità di inserimento e modifica dei diversi indirizzi appartenenti allo stesso corso di laurea
+\item RFO0.10 Possibilità di ripristinare i dati relativi ai corsi di laurea da un \underline{backup} scelto
+\item RFO0.11 Possibilità di scegliere lo stato (rilassato o meno) dei vincoli, eventualmente modificati dal sistema al fine di generare uno schema d'orario nel caso in cui esso risulti inesistente
+\item RFO0.12 Possibilità di notificare i vincoli e le preferenze non soddisfatti ai docenti interessati
+\item RFO0.13 Possibilità di consultare le informazioni relative a docenti, aule, corsi di laurea e corsi
 \end{enumerate}
-\item \textsc{DESIDERABILI}
+\item \textbf{DESIDERABILI}
 \begin{enumerate}
-\item RFD0.1 Possibilità di generazione dello schema d'orario in formato \underline{pdf} e \underline{html}
-\item RFD0.2 Possibilità di scegliere vincoli da rilassare proposti dal sistema in caso di soluzione inesistente
-\item RFD0.3 Possibilità di consultare lo schema d'orario di ogni corso di laurea
-\item RFD0.4 Possibilità di consultare le informazioni relative a docenti, aule, corsi di laurea e corsi
+\item RFD0.0 Possibilità di notificare il mancato inserimento di un docente o di un corso d'insegnamento di un altro corso di laurea
+\item RFD0.1 Possibilità di impostare una data limite per l'inserimento dei vincoli da parte dei docenti, con notifica della scadenza. \item RFD0.2 Possibilità di modifica manuale dello schema d'orario specificato
 \end{enumerate}
 \end{itemize}
 \subsubsection{RF1 Requisiti funzionali per il Presidente del CCS}
 \begin{itemize}
 \item \textbf{OBBLIGATORI}
 \begin{enumerate}
-\item RFO1.0 Possibilità di \underline{autenticazione}
-\item RFO1.1 Possibilità di inserimento e modifica per ogni corso, all'interno del proprio corso di laurea, del nome, dei relativi CFU, dell'anno di appartenenza, del periodo, dello stato, del numero di ore in aula e in laboratorio (se previsto), del docente di riferimento che lo tiene, di eventuali assistenti e della stima del numero di studenti che lo seguiranno
-\item RFO1.1 Possibilità di inserimento e modifica per ogni aula disponibile, all'interno del proprio corso di laurea, del nome, della capienza, delle ore e dei periodi di non disponibilità
-%\item Possibilità di inserimento e modifica, all'interno del proprio corso di laurea, dei dati dei docenti
-\item RFO1.1 Possibilità di inserimento e modifica dell'anno accademico
-\item RFO1.1 Possibilità di impostare vincoli e preferenze per ogni corso
-\item RFO1.1 Possibilità di generazione dello schema d'orario in formato \underline{pdf} e \underline{html}
-\item RFO1.1 Possibilità di scegliere vincoli da rilassare proposti dal sistema in caso di soluzione inesistente
-\item RFO1.1 Possibilità di consultare lo schema d'orario
-\item RFO1.1 Possibilità di inserimento e modifica di indirizzi diversi appartenenti allo stesso corso di laurea
-\item RFO1.1 Possibilità di ripristinare i dati relativi ai corsi da un \underline{backup} scelto
-\item RFO1.1 Possibilità di notificare i docenti nel caso di vincoli e preferenze non soddisfatti
+\item RF10.0 Possibilità di \underline{autenticazione}
+\item RF10.1 Possibilità di inserimento e modifica per ogni corso, all'interno del proprio corso di laurea, del nome, dei relativi CFU, dell'anno di appartenenza, del periodo, dello stato, del numero di ore in aula e in laboratorio (se previsto), del docente di riferimento che lo tiene, di eventuali assistenti e della stima del numero di studenti che lo seguiranno
+\item RF10.2 Possibilità di inserimento e modifica per ogni aula disponibile, all'interno del proprio corso di laurea, del nome, della capienza, delle ore e dei periodi di non disponibilità
+\item RF10.3 Possibilità di inserimento e modifica, all'interno del proprio corso di laurea, dei dati dei docenti
+\item RF10.4 Possibilità di inserimento e modifica per ogni aula disponibile, all'interno della propria facoltà, del nome, della capienza, delle ore e dei periodi di non disponibilità
+\item RF10.5 Possibilità di inserimento e modifica dei dati relativi all'anno accademico
+\item RF10.6 Possibilità di impostare vincoli e le preferenze per la struttura dell'orario
+\item RF10.7 Possibilità di generazione dello schema d'orario in formato \underline{pdf} e \underline{html}
+\item RF10.8 Possibilità di consultare lo schema d'orario di ogni corso di laurea
+\item RF10.9 Possibilità di inserimento e modifica dei diversi indirizzi appartenenti allo stesso corso di laurea
+\item RF10.10 Possibilità di ripristinare i dati relativi ai corsi di laurea da un \underline{backup} scelto
+\item RF10.11 Possibilità di scegliere lo stato (rilassato o meno) dei vincoli, eventualmente modificati dal sistema al fine di generare uno schema d'orario nel caso in cui esso risulti inesistente
+\item RF10.12 Possibilità di notificare i vincoli e le preferenze non soddisfatti ai docenti interessati
+\item RF10.13 Possibilità di consultare le informazioni relative a docenti, aule, corsi di laurea e corsi
 \end{enumerate}
 \item \textbf{DESIDERABILI}
 \begin{enumerate}
-\item RFD1.1 Possibilità di notificare il mancato inserimento di un docente o di un corso d'insegnamento di un altro corso di laurea
-\item RFD1.1 Possibilità di impostare una data limite per l'inserimento dei vincoli da parte dei docenti, con notifica della scadenza.
-\item RFD1.1 Possibilità di modifica manuale dello schema d'orario specificato
-\item RFD1.1 Possibilità di consultare le informazioni relative a docenti, aule, corsi di laurea e corsi
+\item RFD1.0 Possibilità di notificare il mancato inserimento di un docente o di un corso d'insegnamento di un altro corso di laurea
+\item RFD1.1 Possibilità di impostare una data limite per l'inserimento dei vincoli da parte dei docenti, con notifica della scadenza. \item RFD1.2 Possibilità di modifica manuale dello schema d'orario specificato
 \end{enumerate}
 \end{itemize}
 \subsubsection{RF2 Requisiti funzionali per i docenti}
@@ -462,12 +468,12 @@ In questa sezione verranno elencati i requisiti del prodotto, organizzati per ti
 \item \textsc{OBBLIGATORI}
 \begin{enumerate}
 \item RFO2.1 Possibilità di inserimento e modifica dei propri giorni e ore di indisponibilità, con relativa motivazione
-\item RFO2.1 Possibilità di inserimento e modifica delle proprie preferenze su orari e giorni di lezione, con relativa motivazione
+\item RFO2.1 Possibilità di inserimento e modifica delle proprie preferenze su orari e giorni di lezione
 \item RFO2.1 Possibilità di modifica dei propri dati personali
 \end{enumerate}
 \item \textbf{DESIDERABILI}
 \begin{enumerate}
-\item RFO2.1 Possibilità di consultare le informazioni relative a docenti, aule, corsi di laurea e corsi
+\item RFO2.1 Possibilità di consultare le informazioni relative a docenti, aule, corsi di laurea e corsi d'insegnamento
 \end{enumerate}
 \end{itemize}
 \subsubsection{RF3 Requisiti funzionali per l'Utente non autenticato}
@@ -475,7 +481,7 @@ In questa sezione verranno elencati i requisiti del prodotto, organizzati per ti
 \item \textbf{DESIDERABILI}
 \begin{enumerate}
 \item RFO3.1 Possibilità di consultare lo schema d'orario
-\item RFO3.1 Possibilità di consultare le informazioni relative a docenti, aule, corsi di laurea e corsi
+\item RFO3.1 Possibilità di consultare le informazioni relative a docenti, aule, corsi di laurea e corsi d'insegnamento
 \end{enumerate}
 \end{itemize}
 \subsection{RQ Requisiti di qualità}
@@ -515,8 +521,9 @@ In questa sezione verranno elencati i requisiti del prodotto, organizzati per ti
 \begin{enumerate}
 \item RIO1.1 Le informazioni dovranno essere acquisite tramite un \underline{servizio web}
 \item RIO1.2 Il sistema distinguerà i vari tipi di utente tramite \underline{autenticazione}
-\item RIO1.3 Al fine di evitare errori il sistema dovrà il più possibile proporre all'utente i dati in modo automatico
+\item RIO1.3 Al fine di evitare errori e reinserimenti manuali il sistema dovrà il più possibile proporre all'utente i dati in modo automatico
 \end{enumerate}
 \end{itemize}
+\section{Tracciamento Requisiti-Use case}
 \modifiche
 \end{document}
