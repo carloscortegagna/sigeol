@@ -45,7 +45,7 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
-\textit{18 gennaio 2009} & 0.0.1 & Creazione dell'indice \\
+\textit{20 gennaio 2009} & 0.1.0 & Creazione dell'indice \\
 \hline
 \end{tabular}
 \end{center}
@@ -68,7 +68,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Specifica Tecnica \\ v0.0.1}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Specifica Tecnica \\ v0.1.0}}
 \author{Redazione: }
 \maketitle
 \medskip
@@ -123,34 +123,42 @@ permette attraverso un'interfaccia più semplice, l'accesso a sottosistemi che e
 \item[Rest]
 Representational state transfer (REST) è un tipo di architettura software per i sistemi di ipertesto distribuiti come il World Wide Web. 
 REST si riferisce ad un insieme di principi di architetture di rete, i quali delineano come le risorse sono definite e indirizzate.
+\item[Convention Over Configuration]
+\item[DRY]
 
 \end{description}
 
 
 Il sistema verrà implementato utilizzando Ruby on rails, un framework la cui architettura è fortemente ispirata al paradigma Model-View-Controller. 
-\subsection{Presentazione dell'architettura generele del sistema}
+Oltre a veicolare lo sviluppo di applicazioni secondo il pattern MVC, il RESTful Rails impone un’ulteriore disciplina nella codifica che garantisce maggiore compattezza, migliore leggibilità, “pretty-urling” e semplicità nella costruzione di API.
+
+\subsection{Presentazione dell'architettura generale del sistema}
 Per presentare l'architettura generale del sistema \textit{Sigeol} si utilizzerà il pattern Model-View-Controller(MVC).
 In questo modello i ruoli di presentazione, controllo ed accesso ai dati vengono affidati a componenti diversi e sono tra di loro disaccoppiati.
 
 
 \begin{center}
- \textbf{Model}
+ \textbf{View}
 \end{center}
 E' il primo livello che si incontra e contiene i componenti che costituiscono l'interfaccia grafica, tramite la quale l'utente interagisce con il sistema \textit{Sigeol}.
 La View delega al Controller l'esecuzione dei processi richiesti dall'utente dopo averne catturato gli input e la
 scelta delle eventuali schermate da presentare.
+ActionView gestisce l'aspetto delle pagine da restituire al client. Sono per lo piu' file .rhtml che contengono delle direttive scritte in Ruby immerse nel codice XHTML.
 
+\begin{center}
+ \textbf{Model}
+\end{center}
+Definisce i dati e le operazioni che possono essere eseguite su questi. Quindi definisce le regole di business per l'interazione con i dati, esponendo alla View ed al Controller rispettivamente le funzionalità per l'accesso e l'aggiornamento.
+Viene gestito da una libreria chiamata ActiveRecord, che si occupa di tutta la logica di business e che permette l'accesso a numerosi DataBase bastati su SQL. Con questa libreria si stabilisce un collegamento tra le classi scritte in Ruby e le tabelle del DB.
 
 \begin{center}
  \textbf{Controller}
 \end{center}
 Questo componente ha la responsabilità di trasformare le interazioni dell'utente della View in azioni eseguite dal Model. Ma il Controller non rappresenta un semplice "ponte" tra View e Model. Realizzando la mappatura tra input dell'utente e processi eseguiti dal Model e selezionando le schermate della View richieste, il Controller implementa la logica di controllo dell'applicazione.
+I Controller sono rappresentati dalla libreria ActionController.
+Gestisce le richieste del browser e facilita la comunicazione fra Model e View. Tutti i controller creati dall'utente ereditano da ActionController. L'ApplicationController raccoglie funzionalita' condivise nell'intera applicazione.
 
 
-\begin{center}
- \textbf{View}
-\end{center}
-Definisce i dati e le operazioni che possono essere eseguite su questi. Quindi definisce le regole di business per l'interazione con i dati, esponendo alla View ed al Controller rispettivamente le funzionalità per l'accesso e l'aggiornamento.
 \includegraphics[scale=0.75]{images/SIGEOL.png}
 
 
