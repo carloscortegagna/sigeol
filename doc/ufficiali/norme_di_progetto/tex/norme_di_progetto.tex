@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Norme di Progetto v1.2.0}
+\lfoot{Norme di Progetto v1.2.1}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Norme di Progetto v1.2.0}
+\lfoot{Norme di Progetto v1.2.1}
 \cfoot{}
 \rfoot{}
 }
@@ -44,6 +44,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{21-01-2009} & 1.2.1 & Correzioni varie\\
 \hline
 \textit{20-01-2009} & 1.2.0 & Aggiunta la sezione ''Strumenti''\\
 \hline
@@ -79,7 +81,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Norme di Progetto \\ v1.2.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Norme di Progetto \\ v1.2.1}}
 \author{Redazione: Scortegagna Carlo}
 \maketitle
 \medskip
@@ -305,16 +307,17 @@ Il raggiungimento di un \underline{milestone} rappresenta il completamento di un
 \section{Strumenti}
 Per facilitare il lavoro di tutti i membri del team QuiXoft e per rendere interoperabili i loro risultati saranno ora elencati gli strumenti da usare per svolgere i vari compiti assegnati.
 
-E' fatto obbligo lo sviluppo di tutto il progetto con i medesimi software e lo stesso sistema operativo, per non incappare nei vari problemi che sorgerebbero nell'usare una gran varietà di ambienti diversi.
+Salvo diverse indicazioni, è fatto obbligo lo sviluppo di tutto il progetto con i medesimi software e lo stesso sistema operativo, per non incappare nei vari problemi che sorgerebbero nell'usare una gran varietà di ambienti diversi.
 
 Tutti i software elencati dovranno essere aggiornati all'ultima versione stabile disponibile: non si escludono aggiornamenti anche in corso d'opera.
 
 Eccezione a quanto appena detto, durante la fase di collaudo del sistema SIGEOL sarà necessario testare il prodotto sotto vari sistemi operativi, per verificarne l'effettiva portabilità.
 \begin{itemize}
- \item tutto il progetto dovrà necessariamente essere sviluppato all'interno di un sistema operativo \textbf{GNU/Linux}. La scelta di distribuzione e versione è lasciata ai singoli membri del team QuiXoft, ma è comunque consigliabile l'utilizzo di un sistema operativo basato su Debian (come, per esempio, l'ottimo Ubuntu) per la facilità di gestione e per la qualità dell'architettura e dell'infrastruttura.
+ \item tutto il progetto dovrà necessariamente essere sviluppato all'interno di un sistema operativo \textbf{GNU/Linux}. La scelta di distribuzione e versione è lasciata ai singoli membri del team QuiXoft, ma è comunque consigliabile l'utilizzo di un sistema operativo basato su Debian (come, per esempio, Ubuntu) per la facilità di gestione e per la qualità dell'architettura e dell'infrastruttura.
  \item per la scrittura e la compilazione di tutta la documentazione e delle presentazioni verrà usato il programma \textbf{Kile} (KDE Integrated LaTeX Environment). Per la compilazione dei sorgenti \LaTeX \space verrà utilizzato PDFLaTeX.
  \item l'intero progetto verrà sviluppato usando \textbf{NetBeans} alla sua ultima versione. La scelta del linguaggio di programmazione e del relativo framework è caduta su \textbf{Ruby on Rails}, eccellente per le esigenze del progetto SIGEOL e perfettamente integrato all'interno di NetBeans. Quest'ultimo mette a disposizione notevoli caratteristiche cha facilitano lo sviluppo con Ruby on Rails. NetBeans verrà anche utilizzato come editor per la creazione di tutti gli schemi UML necessari.
- \item il database management system (DBMS) scelto per contenere tutta la mole di dati del progetto è \textbf{MySQL}. Ci si potrà facilmente interfacciare a tale database fruttando le funzionalità offerte da Active Record, comoda libreria messa a disposizione per Ruby on Rails.
+ \item il database management system (DBMS) usato durante lo sviluppo potrà essere scelto a piacimento da ognuno dei membri del team QuiXoft: è raccomandato l'uso di svariati DBMS proprio per evidenziare eventuali errori che potrebbero sfuggire se si decidesse di usare sempre lo stesso.
+Ci si potrà facilmente interfacciare ai vari DBMS scelti fruttando le funzionalità offerte da Active Record, comoda libreria messa a disposizione per Ruby on Rails. Il codice sorgente dell'applicazione SIGEOL sarà completamente indipendente dal DBMS scelto, rendendo possibile lo sviluppo, i test e l'installazione del prodotto finito lasciando la scelta finale del DBMS da usare al Committente. Si consiglia comunque la scelta di un database management system con licenza d'uso free oppure open source, per non gravare ulteriormente sul costo del progetto (come, per esempio, MySQL, PostgreSQL o SQLite).
 \end{itemize}
 
 Per gli specifici strumenti da adottare per lo svolgimento delle attività di verifica, validazione e controllo qualità si prega di consultare il \textsc{Piano di qualifica} alla sua ultima versione.
