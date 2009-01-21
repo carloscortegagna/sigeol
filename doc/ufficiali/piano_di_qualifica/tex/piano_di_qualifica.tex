@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Piano di Qualifica v1.1.0}
+\lfoot{Piano di Qualifica v1.2.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Piano di Qualifica v1.1.0}
+\lfoot{Piano di Qualifica v1.2.0}
 \cfoot{}
 \rfoot{}
 }
@@ -40,12 +40,14 @@
 \begin{center}
 \textbf{Diario delle modifiche} \\
 \bigskip
-\begin{tabular}{|c|c|p{0.51\textwidth}|}
+\begin{tabular}{|c|c|p{0.61\textwidth}|}
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
-\textit{21-01-2009} & 1.1.0 & Aggiunta la sezione Automazione delle attività di verifica  \\
+\textit{21-01-2009} & 1.2.0 & Aggiunta la sezione Resoconto delle attività di verifica  \\
+\hline
+\textit{20-01-2009} & 1.1.0 & Aggiunta la sezione Automazione delle attività di verifica  \\
 \hline
 \textit{09-12-2008} & 1.0.0 & Approvazione del Responsabile e passaggio di stato in ``formale''  \\
 \hline
@@ -84,7 +86,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Qualifica \\ v1.1.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Qualifica \\ v1.2.0}}
 \author{Redazione: Carlo Scortegagna}
 \maketitle
 \medskip
@@ -299,5 +301,49 @@ L'unica differenza risiede nel fatto che il \underline{Verificatore} che la nota
 Se delle discrepanze dovessero presentarsi frequentemente tra i documenti prodotti e le \textsc{Norme di Progetto}, il \underline{Verificatore} sarà tenuto a notificarlo all'\underline{Amministratore}, il quale, in collaborazione con il \underline{Responsabile}, procederà ai dovuti provvedimenti.
 
 Non è infatti tollerabile che del tempo venga sprecato per correggere e notificare errori che potrebbero essere facilmente evitati leggendo e seguendo con più attenzione le \textsc{Norme di Progetto}.
+\section{Resoconto delle attività di verifica}
+Ogni risultato ottenuto dalle attività di verifica, validazione e qualifica dovrà essere attentamente elencato in questa sezione, in modo da assicurare che tutti i problemi e le relative soluzioni siano tracciate per garantire la massima qualità possibile del prodotto finale.
+%\subsection{Tracciamento componenti - requisiti}
+\subsection{Dettaglio delle verifiche tramite analisi}
+\subsubsection{Documentazione consegnata}
+Tutta la documentazione prodotta per essere consegnata alle revisioni è accuratamente controllata dal Verificatore di turno.
+
+L'analisi statica effettuata su questi documenti si basa principalmente sull'accertarsi che le regole elencate nelle \textsc{Norme di Progetto} siano perfettamente rispettate, che non siano presenti errori grammaticali, che il testo sia scorrevole e di facile comprensione per il lettore e, infine, che non siano presenti errori di impaginazione o altri problemi che complichino la consultazione della documentazione.
+
+La seguente lista contiene un sunto dei risultati di tali verifiche, e verrà aggiornata al proseguire dello sviluppo del progetto.
+Per la lista completa degli errori rilevati e delle relative correzioni è sempre possibile consultare l'elenco dei ticket aperti e conclusi con successo dai vari Verificatori del team QuiXoft durante i vari periodi.
+
+\begin{itemize}
+ \item documentazione per la \textbf{Revisione dei Requisiti:} numerosi gli errori grammaticali e sintattici rilevati nella documentazione, corretti celermente dai rispettivi redattori. All'inizio del periodo grande sforzo è stato impiegato dai Verificatori nella segnalazione di gravi problemi di impaginazione della documentazione: ciò è dovuto alla poca esperienza nell'uso di \LaTeX \space e dei relativi template. Col procedere dei giorni tali problemi sono stati completamente risolti, ed ora i template sono ritenuti totalmente affidabili ed esenti da errori. Discorso similare riguardo le slide per la presentazione: dopo i primi giorni di incertezza dovuti all'instabilità del template, si è risolto il tutto ed anche questo template è da ritenersi affidabile.
+ \item documentazione per la \textbf{Revisione di Progetto Preliminare:} particolare attenzione è stata posta nel controllare con pari attenzione tutta la documentazione: in fase di Revisione dei Requisiti, infatti, sono stati trovati dal Committente banali errori grammaticali nel \textsc{Piano di Progetto}, che potevano benissimo essere evitati dedicando maggiore attenzione nella sua verifica. Anche in questa seconda fase di sviluppo sono stati segnalati errori ed incertezze grammaticali. Si è comunque rilevata una diminuzione rispetto al periodo precedente, indice di una maturazione ed una maggiore attenzione dei membri del team QuiXoft.
+\end{itemize}
+%\subsection{Dettaglio delle verifiche tramite prove (test)}
+\subsection{Dettaglio dell'esito delle revisioni}
+Per ciascuna revisione affrontata sarà qui riportato un resoconto dei risultati e dei problemi emersi. Tali dati dovranno essere usati come base per migliorare la qualità del progetto in visione della revisione successiva, con l'obiettivo finale di offrire un prodotto che soddisfi tutti i requisiti e che calzi con le esigenze del committente.
+\subsubsection{Revisione dei Requisiti}
+In data 7 Gennaio 2009 il team QuiXoft ha sostenuto la prima delle 4 revisioni che dovrà affrontare durante lo svolgimento del progetto: la Revisione dei Requisiti.
+L'offerta è stata accettata dal Committente, il quale ha ritenuto valide le idee e le proposte del team per lo sviluppo del progetto proposto.
+
+Sono però sorti alcuni problemi e perplessità, che dovranno essere sistemati entro la prossima revisione.
+Segue un elenco dei documenti consegnati e dei relativi problemi riscontrati:
+\begin{itemize}
+\item \textsc{Norme di Progetto:} auspicabile per l'immediato futuro una maggiore attenzione alle infrastrutture di supporto alla gestione di progetto e, soprattutto, all'automazione delle attività di qualifica.
+\item \textsc{Analisi dei Requisiti:} è necessario far precedere i diagrammi dei casi d'uso all'elencazione dei requisiti.
+Sono assenti l'elencazione con classificazione dei requisiti individuati e il tracciamento requisiti-casi d'uso.
+E' consigliata l'eliminazione della Segreteria Generale e di tutti i riferimenti ad essa, per non complicare ulteriormente il progetto.
+Va rivista la procedura di creazione degli account di Presidente del CCS e della segreteria didattica tramite inviti: consigliata la creazione di account ad hoc in fase di installazione del sistema. La procedura degli inviti può comunque considerarsi valida per gli account dei docenti.
+\item \textsc{Studio di Fattibilità:} Non appare alcuna minima considerazione fatta sugli altri capitolati.
+\item \textsc{Piano di Progetto:} Prestare attenzione all'eccessivo e fastidioso livello di ripetizione di testo tratto da documentazione esterna: meglio riferire che copiare.
+E' presente qualche sintomo di insufficiente sforzo o qualità di verifica.
+Non pare poi particolarmente previdente assumere che l'amministratore debba essere avvisato della rilevata insufficienza di risorse di verifica: provvedere a trovare una soluzione alternativa.
+\item \textsc{Piano di Qualifica:} insufficiente l'evidenza di dotazione di infrastrutture di supporto alla realizzazione del Piano di Qualifica e di procedure e norme che ne accompagnino l'esecuzione.
+\item \textsc{Glossario:} può essere allegerito, eliminando i termini scontati più comuni.
+\end{itemize}
+In fase di revisione sono inoltre stati segnalati i seguenti problemi, non legati ad un singolo documento ma comuni a tutta la consegna:
+\begin{itemize}
+\item Si suggerisce l'uso di indici ipertestuali nei documenti.
+\item Inserire nel nome dei file anche il numero di revisione del documento: risulta cosi distinguibile una versione dall'altra dello stesso documento.
+\item Si auspica un maggior controllo di quanto spedito via e-mail prima della revisione: erano infatti presenti all'interno dell'archivio decine di file di sistema, numerose cartelle inutili e altri file vuoti, di disturbo per il ricevente. Per la prossima revisione si dovrà prestare attenzione ad inviare solo i file essenziali in formato PDF, strutturati in cartelle utili alla lettura e comprensione del progetto.
+\end{itemize}
 \modifiche
 \end{document}
