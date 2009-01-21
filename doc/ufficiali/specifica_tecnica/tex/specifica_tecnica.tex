@@ -45,6 +45,9 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
+\textit{21 gennaio 2009} & 0.2.0 & Stesura Descrizione dei componenti \\
+\hline
+\hline
 \textit{20 gennaio 2009} & 0.1.0 & Creazione dell'indice \\
 \hline
 \end{tabular}
@@ -125,12 +128,20 @@ REST si riferisce ad un insieme di principi di architetture di rete, i quali del
 
 \item[\textbf{Convention Over Configuration}]
 Convention Over Configuration è un paradigma di programmazione che prevede configurazione minima (o addirittura assente) per il programmatore che utilizza un framework che lo rispetti, obbligandolo a configurare solo gli aspetti che si differenziano dalle implementazioni standard o che non rispettano particolari convenzioni di denominazione o simili.
+Significa che Rails prevede delle impostazioni di default per qualsiasi aspetto dell’applicazione. Utilizzando queste convenzioni sarà possibile velocizzare i tempi di sviluppo evitando di realizzare scomodi file di configurazione. L’esempio più chiaro del COC si può notare a livello di modelli: rispettando le convenzioni previste dal framework è possibile realizzare strutture di dati complesse con molte relazioni tra oggetti in pochissimo tempo, in maniera quasi meccanica e soprattutto senza definire nessuna configurazione. Questo concetto differenzia Rails da quei framework che prevedono centinaia di righe di configurazione per qualsiasi aspetto dell’applicazione. Con il COC tutto diventa più snello e più dinamico. Ovviamente per situazioni in cui le convenzioni non possano essere rispettate, Rails permette di utilizzare schemi funzionali diversi da quelli previsti.
 \item[\textbf{DRY}]
-Le definizioni devono essere poste una volta soltanto
+Questo concetto, fortemente filosofico, prevede che ciascun elemento di un’applicazione debba essere implementato solamente una volta e niente debba essere ripetuto. Questo significa che, tramite le funzionalità di Rails, è possibile gestire funzionalità ripetitive tramite una estrema fattorizzazione del codice (scrivo una volta e uso più volte) che facilita sia lo sviluppo iniziale che eventuali modifiche successive del prodotto.
 \item[\textbf{View Helper}]
 Questo pattern disaccoppia il Business Logic dallo strato View, il che facilita
 la manutenibilit`a. Aiuta a separare, in fase di sviluppo, la responsabilt`a
 del web designer e dello sviluppatore.
+\item[\textbf{Active Record}]
+Secondo il pattern Active Record esiste una relazione molto stretta fra tabella e classe, colonne e attributi della classe. 
+\begin{itemize}
+ \item una tabella di un database relazionale è gestita attraverso una classe
+\item una singola istanza della classe corrisponde ad una riga della tabella
+\item alla creazione di una nuova istanza viene creata una nuova riga all'interno della tabella, e modificando l'istanza la riga viene aggiornata
+\end{itemize}
 \end{description}
 
 
@@ -177,7 +188,7 @@ In particolare verranno inserite le azioni CRUD (Create-Read-Update-Delete) per 
 \end{center}
 Il modulo che gestisce la parte controller è contenuto all'interno del framework Ruby on rails ed è chiamato Action Controller.
 Questo, assieme all'Action View(vedi Parte view) è integrato all'interno di un pacchetto chiamato Action Pack.
-\includegraphics[scale=0.50]{images/SIGEOL.png}
+%\includegraphics[scale=0.50]{images/SIGEOL.png}
 
 
 Ogni controller è una normale classe, ed ogni metodo pubblico definito in questa classe corrisponde ad un'azione specifica.
@@ -195,6 +206,18 @@ Ad esempio, Dato un URL nel formato \textit{nomecontroller/azione/id}, viene ide
 \end{center}
  Il modulo Action View contenuto nel framework Ruby on Rails, offre meccanismi avanzati per il riutilizzo del codice, tramite l'uso di viste e di metodi helper pensati per generare ad esempio pagine XHTML.
 I metodi helper sono semplici metodi pubblici di una classe Controller.
+
+\subsubsection{Parte Model}
+L' ActiveRecord è il modulo di Ruby on Rails che gestisce la persistenza dei dati. 
+Il modulo è stato implementato seguendo il pattern Active Record facendo largo uso di convenzioni sui nomi da assegnare a tabelle, classi, colonne e attributi; se non sono presenti configurazioni particolari del modello, sono valide le seguenti convenzioni:
+\begin{itemize}
+ \item per ogni modello esiste una tabella avente come nome il nome del modello al plurale e in caratteri minuscoli;
+\item nel caso di modelli con nome composto di più parole, il nome del modello ha la prima lettera di ogni parola; maiuscola, mentre la tabella ha sempre il nome tutto in minuscolo e separa le parole con un trattino basso (underscore);
+\item per ogni colonna della tabella viene reso disponibile il relativo attributo con lo stesso nome;
+\item ogni tabella ha una colonna id (intero positivo) che identifica univocamente ogni record;
+\end{itemize}
+La classe è descritta in buona parte dalla tabella che rappresenta ed espone i metodi necessari per leggere e scrivere i record.
+Con ActiveRecord è possibile utilizzare diversi tipi di database: SQLite, MySQL, Postgresql, Oracle, IBM DB/2 ed è possibile scrivere driver personalizzati per altri database relazionali.
 
 \subsection{Relazioni d'uso di altre componenti}
 \subsection{Interfacce con e relazioni di uso da altre componenti}
