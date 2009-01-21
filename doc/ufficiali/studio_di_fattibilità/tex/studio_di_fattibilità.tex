@@ -7,8 +7,8 @@
 \usepackage{graphicx}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
-\usepackage[italian]{babel}
-\usepackage{eurosym}
+\usepackage[greek, italian]{babel}
+%\usepackage{eurosym}
 
 \renewcommand{\headrulewidth}{0.6pt}
 \renewcommand{\footrulewidth}{0.6pt}
@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Studio di fattibilità v1.0.0}
+\lfoot{Studio di fattibilità v1.1.1}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Studio di fattibilità v1.0.0}
+\lfoot{Studio di fattibilità v1.1.1}
 \cfoot{}
 \rfoot{}
 }
@@ -44,6 +44,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{21-01-2009} & 1.1.1 & Aggiunta della sezione ''Valutazione dei capitolati d'appalto'' e correzioni generali  \\
 \hline
 \textit{09-12-2008} & 1.0.0 & Approvazione del Responsabile e passaggio di stato in ''Formale''\\
 \hline
@@ -69,8 +71,8 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Studio di fattibilità \\ v1.0.0}}
-\author{Redazione: Grosselle Alessandro }
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Studio di fattibilità \\ v1.1.1}}
+\author{Redazione: Grosselle Alessandro, Scarpa Davide }
 \maketitle
 \medskip
 \begin{center}
@@ -98,25 +100,89 @@ Documento contenente lo studio di fattibilità per il progetto \textit{SIGEOL} c
 \setcounter{page}{1}
 \section{Introduzione}
 \subsection{Scopo del documento}
-Il presente documento è un report che stabilisce l'opportunità o meno di procedere allo sviluppo del sistema software denominato ''SIGEOL''.
+Il presente documento è un report che analizza in breve i capitolati d'appalto presentati dai committenti e stabilisce l'opportunità o meno di procedere allo sviluppo del sistema software scelto dal gruppo.
 \subsection{Glossario}
 Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti possono essere trovate nel documento \textsc{Glossario} al fine di eliminare ogni ambiguità  e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione è disponibile all'interno del glossario verrà  marcato con una \underline{sottolineatura}.
 \subsection{Riferimenti}
 \begin{itemize}
 \item Capitolato d'appalto reperibile all'indirizzo: \\ \textit{http://www.math.unipd.it/~tullio/IS-1/2008/Progetti/SIGEOL.html}
 \end{itemize}
-\section{Studio di fattibilità}
+\section{Valutazione dei capitolati d'appalto}
 In data 12 Novembre 2008 vengono diffusi cinque capitolati d'appalto, consultabili sul sito internet del corso di Ingegneria del Software all'indirizzo \\ \textit{http://www.math.unipd.it/~tullio/IS-1/2008/Progetti/Capitolati.html}.
+Il team QuiXoft ha analizzato aspetti positivi e negativi per ogni capitolato.
 
-Il team QuiXoft si propone come possibile fornitore per il C01, denomi\-nato ''SIGEOL'': tale progetto si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione.
+\subsection{C01: SIGEOL}
+Il capitolato C01 denominato ''SIGEOL'' si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione.
 
-Dal capitolato d'appalto si può intuire che il sistema dovrà essere un \underline{servizio web} accessibile tramite rete internet.
+\subsubsection{Aspetti positivi}
+
+\begin{itemize}
+ \item Il team reputa l'argomento del capitolato d'appalto interessante
+ \item Previsto un utilizzo ampio di tecnologie (sopratutto web) già viste
+ \item Soddisfazione personale dei membri del team nel vedere il software utilizzato nell'ambiente universitario
+ \item Capitolato d'appalto ritenuto chiaro
+\end{itemize}
+
+\subsection{C02: AUTOMATICEXPLORER}
+Il capitolato C02, denominato ''AUTOMATICEXPLORER'', si prefigge la realizzazione di un sistema software per simulare esplorazioni di superfici planetarie.
+
+\subsubsection{Aspetti positivi}
+
+\begin{itemize}
+ \item Il team giudica l'argomento del capitolato d'appalto interessante
+\end{itemize}
+
+\subsubsection{Aspetti negativi}
+
+\begin{itemize}
+ \item Non previsto l'utilizzo di tecnologie web
+\end{itemize}
+
+\subsection{C03: SQL\_Plug-out}
+Il capitolato C03, denominato ''SQL\_Plug-out'', si prefigge lo sviluppo di un sistema software per la generazione di codice dichiarativo SQL da un diagramma delle classi.
+
+\subsubsection{Aspetti negativi}
+
+\begin{itemize}
+ \item Il team reputa l'argomento del capitolato poco stimolante, troppo tecnico e limitato al linguaggio SQL
+ \item Il capitolato d'appalto è ritenuto poco esplicativo
+\end{itemize}
+
+\subsection{C04: AJAXDRAW}
+Il capitolato C04, denominato ''AJAXDRAW'', si prefigge la realizzazione di un sistema software per il disegno grafico in ambito web tramite browser.
+
+\subsubsection{Aspetti positivi}
+
+\begin{itemize}
+ \item Il team giudica l'argomento del capitolato d'appalto interessante
+ \item Previsto l'utilizzo di tecnologie web
+\end{itemize}
+
+\subsection{C05: AEG}
+Il capitolato C05, denominato ''AEG'', si prefigge lo sviluppo di un sistema software per la gestione delle risorse umane nell'ambito aziendale.
+
+\subsubsection{Aspetti positivi}
+
+\begin{itemize}
+ \item Il team reputa l'argomento del capitolato d'appalto interessante
+\end{itemize}
+
+\subsubsection{Aspetti negativi}
+
+\begin{itemize}
+ \item Il team giudica il capitolato d'appalto poco chiaro
+\end{itemize}
+
+\section{Studio di fattibilità}
+Analizzando gli aspetti positivi e negativi sopra descritti il team QuiXoft ha deciso di proporsi per la realizzazione del progetto denominato ''SIGEOL''. In particolare nella scelta finale tra il capitolato ''SIGEOL'' e il capitolato ''AJAXDRAW'' ha pesato molto la soddisfazione personale del team nel caso in cui il software realizzato venga utilizzato nell'ambiente universitario.
+
+Dal capitolato d'appalto si può evincere che il sistema dovrà essere realizzato tramite  \underline{servizio web}, accessibile da ogni postazione dotata di connessione Internet e browser.
 Tutti i componenti del team possiedono buone conoscenze di tecnologie web come html e css.
 In particolar modo alcuni hanno anche esperienza lavorative nello sviluppo e progettazione di \underline{software} e applicazioni web.
 
-Per la realizzazione di tale progetto è necessario avere anche conoscenze di utilizzo e gestione di \underline{database}: tutti i membri del team QuiXoft possiedono tali conoscenze, dimostrate anche dal pieno superamento degli esami di Basi dati e Sistemi informativi 1 e 2.
+Per la realizzazione di tale progetto è necessario avere anche conoscenze di utilizzo e gestione di \underline{database}: tutti i membri del team QuiXoft possiedono tali conoscenze, dimostrate anche dal pieno superamento degli esami di Basi di Dati e Sistemi Informativi 1 e 2.
 
-Il team, non essendo impegnato in nessun altro progetto, si dichiara disponibile allo sviluppo del prodotto ''SIGEOL'' cercando di non superare esageratamente i 13000\euro \space di tetto minimo.
+Il team, non essendo impegnato in nessun altro progetto, si dichiara quindi disponibile allo sviluppo del prodotto ''SIGEOL'' cercando di contenere i costi, ben sapendo che il committente non accetterà offerte con costi inferiori a 13000\textgreek{\euro}.
 
 Dall'analisi di quanto sopra affermato e delle capacità tecniche dei membri del team QuiXoft, si può dedurre che tale capitolato verrà sviluppato con cura e dedizione, realizzando un prodotto di qualità che soddisfi i requisiti del committente.
 

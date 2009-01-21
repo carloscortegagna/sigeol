@@ -1,0 +1,56 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{graphicx}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[italian]{babel}
+
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.6pt}
+% impostazione dello stile per le pagine interne del documento
+\fancypagestyle{plain} {
+\lhead{\textit{19 gennaio 2009}}
+\chead{}
+\rhead{\includegraphics[scale=0.15]{logo.png} }
+\lfoot{Incontro con il committente}
+\cfoot{}
+\rfoot{\thepage \ di \pageref{LastPage}}
+}
+\headheight = 46pt
+\title{Resoconto dell'incontro con il committente}
+\author{Scarpa Davide}
+\date{19 gennaio 2009}
+\pagestyle{plain}
+\begin{document}
+\maketitle
+\section{Scopo dell'incontro}
+In data 19 gennaio 2009, alle ore 10.30 si è svolto un incontro tra il Team QuiXoft e il committente con lo scopo di chiarire alcuni dubbi riguardanti il sistema SIGEOL.
+
+Al termine si è poi svolto un incontro non previsto con il proponente, con lo scopo di discutere l'esito dell'incontro con il committente.
+\section{Membri presenti}
+In rappresentanza del team QuiXoft erano presenti all'incontro Beggiato Andrea, Freo Matteo, Grosselle Alessandro, Scarpa Davide e Scortegagna Carlo.
+
+Era inoltre presente il committente prof.ssa Rossi Francesca.
+
+Era presente al secondo incontro il proponente prof. Vardanega Tullio.
+\section{Resoconto dettagliato}
+La prima richiesta di chiarimento riguardava l'indipendenza o meno del sistema SIGEOL: il team QuiXoft ipotizzava la presenza di un database di dipartimento, contenente informazioni sui docenti quali username e password, informazioni sulle aule disponibili e sui corsi d'insegnamento. In tal caso il team avrebbe realizzato il sistema interfacciandosi al suddetto database, al fine di evitare duplicazioni di dati, inserimenti manuali non necessari e possibili inconsistenze.
+
+Il committente ha risposto che il database ipotizzato non esiste, e le informazioni sopra citate sono memorizzate in un modo non utilizzabile per lo scopo del team.
+
+La seconda richiesta di chiarimento riguardava le differenze tra le funzionalità dell'utente segreteria didattica e l'utente Presidente del CCS, suggerendo la possibilità di creare un utente amministratore distinto dai primi due.
+
+Il committente ha risposto che non esistono differenze tra i due utenti, entrambi hanno le stesse funzioni da amministratore, pertanto non ne serve uno distinto.
+Il committente ha inoltre posto l'accento sul fatto che anche se hanno le stesse funzionalità i sopra citati utenti devono rimanere separati.
+
+Si è inoltre discusso della gestione dei vincoli dei docenti, giungendo alla conclusione che questi vengano accettati subito dal sistema, ma in caso opportuno la segreteria o il Presidente del CCS potranno rilassarne uno o più, mutandoli in preferenze.
+
+Infine si è parlato del numero di ore settimanali di ogni corso d'insegnamento, che il sistema calcolerà automaticamente in base ai crediti del corso, lasciando comunque la possibilità di essere modificato.
+
+
+Al secondo incontro si è discusso prevalentemente dell'indipendenza del sistema. Il proponente ha posto l'accento sul fatto che non esistendo il database ipotizzato dal team QuiXoft, quest'ultimo dovrà fare particolare attenzione a progettarne uno proprio in modo che possa venire facilmente utilizzato dal dipartimento in caso di necessità.
+\end{document}
