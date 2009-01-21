@@ -17,7 +17,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Piano di Progetto v1.0.0}
+\lfoot{Piano di Progetto v1.1.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -29,7 +29,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Piano di Progetto v1.0.0}
+\lfoot{Piano di Progetto v1.1.0}
 \cfoot{}
 \rfoot{}
 }
@@ -45,6 +45,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{03-01-2009} & 1.1.0 & Modifiche apportate dal nuovo componente\\
 \hline
 \textit{09-12-2008} & 1.0.0 & Approvazione del Responsabile e passaggio di stato in ''Formale''\\
 \hline
@@ -83,8 +85,8 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Progetto \\ v1.0.0}}
-\author{Redazione: Scortegagna Carlo}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Progetto \\ v1.1.0}}
+\author{Redazione: Scortegagna Carlo, Alberti Andrea}
 \maketitle
 \medskip
 \begin{center}
@@ -157,7 +159,8 @@ Il team QuiXoft è formato dai seguenti componenti:
 \item Freo Matteo
 \item Grosselle Alessandro
 \item Scarpa davide
-\item Scortegagna Carlo 
+\item Scortegagna Carlo
+\item Alberti Andrea
 \end{itemize}
 Ogni componente soddisfa i vincoli di propedeuticità ed è quindi libero di partecipare alla revisione dei requisiti.
 \subsection{Ruoli}
@@ -213,6 +216,7 @@ Per lo stesso motivo anche i nominativi dei componenti verranno così abbrevviat
 \item Grosselle Alessandro: GA
 \item Scarpa Davide: SD
 \item Scortegagna Carlo: SC
+\item Alberti Andrea: AA
 \end{itemize}
 \subsection{Modello di ciclo di vita}
 Il modello scelto dal team QuiXoft è il modello a cascata.
@@ -262,6 +266,7 @@ Freo Matteo & Ver(10) & An(20) \\ \hline
 Grosselle Alessandro & Amm(13,5) & An(20) \\ \hline
 Scarpa Davide & An(20) & Amm(13,5) \\ \hline
 Scortegagna Carlo & Res(10) & An(20) \\ \hline
+Alberti Andrea & Res(4)/Amm(3)/Ver(3) & An(20) \\ \hline
 \end{tabular}
 \end{center}
 \bigskip
@@ -289,12 +294,13 @@ A fianco di ogni ruolo sono riportate, tra parentesi, le ore stimate da esercita
 \begin{tabular}{|c||c|c|}
 \hline
 \textsc{Componenti} & \textsc{Progettazione [1]} & \textsc{Progettazione [2]} \\ \hline \hline
-Barberio Mattia & Prog(21,5) & Ver(20) \\ \hline
-Beggiato Andrea & Amm(13,5)/Ver(10) & Prog(22) \\ \hline
-Freo Matteo & Prog(21) & Res(10,5) \\ \hline
-Grosselle Alessandro & Ver(20) & Prog(22) \\ \hline
-Scarpa Davide & Res(10) & Prog(21,5) \\ \hline
-Scortegagna Carlo & Prog(22) & Amm(13,5) \\ \hline
+Barberio Mattia & Prog(18) & Ver(12) \\ \hline
+Beggiato Andrea & Amm(6)/Ver(8) & Prog(19) \\ \hline
+Freo Matteo & Prog(19) & Res(6)/Ver(8) \\ \hline
+Grosselle Alessandro & Ver(17) & Prog(19) \\ \hline
+Scarpa Davide & Res(9)/Ver(5) & Prog(18) \\ \hline
+Scortegagna Carlo & Prog(18) & Amm(12,5) \\ \hline
+Alberti Andrea & Res(5,5)/Amm(8,5) & Prog(19) \\ \hline
 \end{tabular}
 \end{center}
 \bigskip
@@ -326,12 +332,13 @@ A fianco di ogni ruolo sono riportate, tra parentesi, le ore stimate da esercita
 \begin{tabular}{|c||c|c|}
 \hline
 \textsc{Componenti} & \textsc{Realizzazione [1]} & \textsc{Realizzazione [2]} \\ \hline \hline
-Barberio Mattia & Progr(18) & Amm(14) \\ \hline
-Beggiato Andrea & Progr(18) & Res(11) \\ \hline
-Freo Matteo & Amm(14,5) & Progr(18,5)/Ver(10) \\ \hline
-Grosselle Alessandro & Res(10) & Progr(18) \\ \hline
-Scarpa Davide & Progr(19,5) & Ver(20) \\ \hline
-Scortegagna Carlo & Ver(20) & Progr(18) \\ \hline
+Barberio Mattia & Progr(15) & Amm(11,5)/Ver(6) \\ \hline
+Beggiato Andrea & Progr(16) & Res(9)/Amm(5,5) \\ \hline
+Freo Matteo & Amm(11,5) & Progr(16)/Res(3) \\ \hline
+Grosselle Alessandro & Res(9) & Progr(15) \\ \hline
+Scarpa Davide & Progr(16) & Ver(12) \\ \hline
+Scortegagna Carlo & Ver(17) & Progr(16) \\ \hline
+Alberti Andrea & Progr(16) & Ver(15) \\ \hline
 \end{tabular}
 \end{center}
 \bigskip
@@ -345,12 +352,13 @@ Si può altresi notare, osservando la colonna ''Totale'', che il carico di lavor
 \hline
 \textsc{Componenti} & \textsc{Res} & \textsc{Amm} & \textsc{An} & \textsc{Prog} & \textsc{Ver} & \textsc{Progr} & \textsc{Totale}\\
 \hline \hline
-BM & 11 & 14 & 20 & 21.5 & 20 & 18 & 104.5 \\ \hline
-BA & 11 & 13,5 & 20 & 22 & 20 & 18 & 104.5 \\ \hline
-FM & 10.5 & 14.5 & 20 & 21 & 20 & 18.5 & 104.5 \\ \hline
-GA & 10 & 13.5 & 20 & 22 & 20 & 18 & 103.5 \\ \hline
-SD & 10 & 13.5 & 20 & 21.5 & 20 & 19.5 & 104.5\\ \hline
-SC & 10 & 13.5 & 20 & 22 & 20 & 18 & 103.5\\ \hline
+BM & 11 & 11.5 & 20 & 18 & 18 & 15 & 93.5 \\ \hline
+BA & 9 & 11.5 & 20 & 19 & 18 & 16 & 93.5 \\ \hline
+FM & 9 & 11.5 & 20 & 19 & 18 & 16 & 93.5 \\ \hline
+GA & 9 & 13.5 & 20 & 19 & 17 & 15 & 93.5 \\ \hline
+SD & 9 & 13.5 & 20 & 18 & 17 & 16 & 93.5 \\ \hline
+SC & 10 & 12.5 & 20 & 18 & 17 & 16 & 93.5 \\ \hline
+AA & 9.5 & 11.5 & 20 & 19 & 18 & 16 & 94 \\ \hline
 \end{tabular}
 \end{center}
 \bigskip \bigskip \bigskip
@@ -362,13 +370,13 @@ La seguente tabella rappresenta appunto le ore che ogni ruolo svolgerà per peri
 \begin{tabular}{|c||c|c|c||c|}
 \hline
 \textsc{Componenti}& \textsc{Analisi} & \textsc{Progettazione} & \textsc{Realizzazione} & \textsc{Tot.} \\ \hline \hline
-Responsabile & 21 & 20.5 & 21 & 62.5 \\ \hline
-Amministratore & 27 & 27 & 28.5 & 82.5 \\ \hline
-Analista & 120 & 0 & 0 & 120 \\ \hline
+Responsabile & 25 & 20.5 & 21 & 66.5 \\ \hline
+Amministratore & 30 & 27 & 28.5 & 85.5 \\ \hline
+Analista & 140 & 0 & 0 & 140 \\ \hline
 Progettista & 0 & 130 & 0 & 130 \\ \hline
 Programmatore & 0 & 0 & 110 & 110 \\ \hline
-Verificatore & 20 & 50 & 50 & 120 \\ \hline \hline
-\textsc{Totale} & 188 & 227.5 & 209.5 & 625 \\ \hline
+Verificatore & 23 & 50 & 50 & 123 \\ \hline \hline
+\textsc{Totale} & 218 & 227.5 & 209.5 & 655 \\ \hline
 \end{tabular}
 \end{center}
 \bigskip
@@ -436,11 +444,11 @@ Si utilizzeranno strumenti e tecnologie che per alcuni componenti risulteranno n
 L'\underline{Amministratore} metterà a disposizione guide e manuali per poter formare il team.
 
 Lo studio è personale e non è previsto nel piano di progetto.
-Tuttavia, se dovesse essere necessario, verrà fatta una riunione che delinearà i concetti di massima dell'eventuale strumento o tecnologia.
-\subsection{Calendario delle attività inneficiente}
+Tuttavia, se dovesse essere necessario, verrà fatta una riunione che delineerà i concetti di massima dell'eventuale strumento o tecnologia.
+\subsection{Calendario delle attività inefficiente}
 Le attività, vista la scarsa esperienza, sono state pianificate basandosi su precedenti calendari di altri gruppi.
 
-E' compito dell'\underline{Amministratore} correggere eventuali errori di pianificazione, cercando di mantenere inalterati i costi e la data di fine. progetto.
+E' compito dell'\underline{Amministratore} correggere eventuali errori di pianificazione, cercando di mantenere inalterati i costi e la data di fine progetto.
 \subsection{Analisi dei requisiti inefficiente}
 Nella prima fase avviene lo studio approfondito dei requisiti.
 Finita questa fase, inizia quella di progettazione.
@@ -459,13 +467,13 @@ In pieno rispetto al vincolo ''Budget economico'' della sezione 2.1.2, il costo 
 \begin{tabular}{|c||c|c|c||c|}
 \hline
 \textsc{Componenti}& \textsc{Analisi} & \textsc{Progettazione} & \textsc{Realizzazione} & \textsc{Tot.} \\ \hline \hline
-Responsabile & 630 & 615 & 630 & 1875 \\ \hline
-Amministratore & 540 & 540 & 570 & 1650 \\ \hline
-Analista & 3000 & 0 & 0 & 3000 \\ \hline
+Responsabile & 750 & 615 & 630 & 1995 \\ \hline
+Amministratore & 600 & 540 & 570 & 1710 \\ \hline
+Analista & 3500 & 0 & 0 & 3500 \\ \hline
 Progettista & 0 & 2860 & 0 & 2860 \\ \hline
 Programmatore & 0 & 0 & 1760 & 1760 \\ \hline
-Verificatore & 320 & 800 & 800 & 1920 \\ \hline \hline
-\textsc{Totale} & 4490 & 4815 & 3760 & 13065 \\ \hline
+Verificatore & 368 & 800 & 800 & 1968 \\ \hline \hline
+\textsc{Totale} & 5218 & 4815 & 3760 & 13793 \\ \hline
 \end{tabular}
 \end{center}
 \subsection{Costi stimati nel progetto per componente}
@@ -477,12 +485,13 @@ Emerge un peso economico pressochè identico tra i vari membri del team QuiXoft 
 \hline
 \textsc{Componenti} & \textsc{Res} & \textsc{Amm} & \textsc{An} & \textsc{Prog} & \textsc{Ver} & \textsc{Progr} & \textsc{Totale}\\
 \hline \hline
-BM & 330 & 280 & 500 & 473 & 320 & 288 & 2191\\ \hline
-BA & 330 & 270 & 500 & 484 & 320 & 288 & 2192\\ \hline
-FM & 315 & 290 & 500 & 462 & 320 & 296 & 2183\\ \hline
-GA & 300 & 270 & 500 & 484 & 320 & 288 & 2162\\ \hline
-SD & 300 & 270 & 500 & 473 & 320 & 312 & 2175\\ \hline
-SC & 300 & 270 & 500 & 484 & 320 & 288 & 2162\\ \hline
+BM & 330 & 230 & 500 & 396 & 288 & 240 & 1984 \\ \hline
+BA & 270 & 230 & 500 & 418 & 288 & 256 & 1962 \\ \hline
+FM & 270 & 230 & 500 & 418 & 288 & 256 & 1962 \\ \hline
+GA & 270 & 270 & 500 & 418 & 272 & 240 & 1970 \\ \hline
+SD & 270 & 270 & 500 & 396 & 272 & 256 & 1964 \\ \hline
+SC & 300 & 250 & 500 & 396 & 272 & 256 & 1974 \\ \hline
+AA & 315 & 230 & 500 & 418 & 288 & 256 & 2007 \\ \hline
 \end{tabular}
 \end{center}
 \modifiche
