@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Piano di Qualifica v1.0.0}
+\lfoot{Piano di Qualifica v1.1.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Piano di Qualifica v1.0.0}
+\lfoot{Piano di Qualifica v1.1.0}
 \cfoot{}
 \rfoot{}
 }
@@ -45,7 +45,9 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
-\textit{09-12-2008} & 0.5.1 & Approvazione del Responsabile e passaggio di stato in ``formale''  \\
+\textit{21-01-2009} & 1.1.0 & Aggiunta la sezione Automazione delle attività di verifica  \\
+\hline
+\textit{09-12-2008} & 1.0.0 & Approvazione del Responsabile e passaggio di stato in ``formale''  \\
 \hline
 \textit{08-12-2008} & 0.5.1 & Correzioni varie  \\
 \hline
@@ -82,7 +84,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Qualifica \\ v1.0.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Qualifica \\ v1.1.0}}
 \author{Redazione: Carlo Scortegagna}
 \maketitle
 \medskip
@@ -227,7 +229,7 @@ Sarà compito dell'\underline{Amministratore} gestire l'uso delle risorse umane 
 La qualità dei processi è critica per la qualità del prodotto, quindi il team QuiXoft si impegna a garantire e migliorare la qualità dei propri processi.
 
 Per far ciò il prodotto che si intende sviluppare, nonchè ogni processo istanziato, saranno sottoposti a costante attività di verifica in ogni fase di lavoro descritta nel \textsc{Piano di progetto}. Di seguito sono riportate le metodologie per attuare tale attività.
-\subsubsection{Verifica del codice prodotto}
+\subsubsection{Verifica del codice prodotto} \label{TDD}
 L'intero sviluppo del sistema ''SIGEOL'' sarà guidato dalla metodologia \textit{Test-Driven Development} (d'ora in poi TDD).
 
 La strategia di sviluppo TDD enfatizza in modo formidabile i test automatizzati per verificare la correttezza del codice. Invece di costruire una struttura di test alla fine dello sviluppo dell’applicazione, il TDD prevede che la scrittura del test sia la fase iniziale del processo. Quindi l’implementazione di una nuova funzionalità viene preceduta dalla definizione dei test che ne stabiliscono la correttezza formale e semantica. Questo approccio garantisce che il codice prodotto risulti naturalmente modulare ed i moduli possano essere testati in isolamento gli uni dagli altri.
@@ -247,6 +249,35 @@ L'incaricato alla verifica di ogni documento dovrà accertarsi che gli argomenti
 Inoltre dovrà segnalare parti del documento che risultino poco chiare od ambigue, eliminare porzioni di testo ritenute superflue e privare il documento di ogni errore ortografico, grammaticale o dattilografico. 
 \subsubsection{Ambienti di prova e di collaudo}
 Con il procedere del progetto, come anche specificato nell' \textsc{Analisi dei requisiti}, si renderà necessario organizzare degli \underline{ambienti di prova} e di \underline{collaudo} per il \underline{software} prodotto, per rilevare errori o inconsistenze nei dati. Nei prossimi rilasci del presente documento ne verranno specificate le caratteristiche e le funzionalità.
+\section{Automazione delle attività di verifica}
+La procedura di verifica può risultare spesso tediosa e ripetitiva se svolta in modo completamente manuale, nonchè l'assenza di un'adeguata infrastruttura a supporto di tale attività può essere fonte di errori ed imprecisioni.
+
+Per questo motivo il team QuiXoft utilizza una serie di applicativi che facilitino ed automatizzino il più possibile l'attività di verifica, rendendo disponibili i risultati quando questi saranno necessari.
+
+\subsection{Tickets e consultazione ore di lavoro}
+Quando un compito è assegnato ad un membro tramite un \underline{ticket}, il Responsabile stimerà le ore di lavoro necessarie per lo svolgimento dell'incarico ed annoterà tale numero nell'apposito spazio presente nel \underline{ticket}.
+
+Il componente che ha accettato il \underline{ticket}, una volta completata la propria mansione, registretà le ore effettive di lavoro che potranno essere superiori alle aspettattive del Responsabile. Tramite gli strumenti messi a disposizione dal sito \textit{http://www.assembla.com}, è immediata la consultazione del carico di lavoro e quindi il Responsabile, od un suo delegato, potrà apportare, se lo ritiene necessiario, le dovute modifiche al \textsc{Piano di Progetto}.
+
+\subsection{Validazione delle pagine web}
+L'adesione agli standard proposti dal consorzio W3C nella creazione di pagine web è un elemento fondamentale per la corretta visualizzazione delle stesse attraverso diversi tipi di browser. Per questo motivo il team QuiXoft utilizzerà gli strumenti messi a disposizione da tale consorzio per validare le pagine create.
+
+Questo compito risulta spesso ripetitivo e, se svolto manualmente, produce un'eccessivo consumo di ore di lavoro. Per questo motivo verrà utilizzato un \underline{plugin} che validerà ogni pagina creata in modo automatico e renderà disponibili immediatamente i risultati di tale validazione per poter eseguire le adeguate correzioni.
+
+\subsection{TDD e Mocks objects }
+Come precedentemente dichiarato, l'intero sviluppo del progetto sarà guidato dalla metodologia Test-Driven Development (confronta sezione \ref{TDD}). Ogni componente del team, nell'arco di tutta la durata del progetto, dovrà ricoprire ogni ruolo (per maggiori dettagli consultare il documento \textsc{Piano di Progetto}), quindi ogni membro ha discrete compotenze riguardo la stesura del codice. Per questo motivo il Verificatore di turno (o i Verificatori se ne sono previsti più di uno) avrà il compito di sviluppare i test anticipatamente alla stesura del codice. In questo modo il Programmatore avrà il solo compito di implementare le funzionalità che sono richieste dai test.
+
+Per facilitare la scrittura di test verrà utilizzato un \underline{plugin} che permetta la creazione di Mocks object, letteralmente ``oggetti di pezza'', in altre parole un oggetto che simula il comportamento di uno reale, permettendo di isolare una componente del sistema dalle altre per poterla testare al meglio. Un mock object non ha solamente metodi per simulare un oggetto reale, ma ha un'implementazione dei metodi propri di tale oggetto nella quale viene verificato il comportamento di chi usa l'oggetto, per esempio verificando che i metodi siano richiamati in un certo ordine o con certi parametri.
+
+Per maggiori informazioni è consigliata la consultazione del sito \\ \textit{http://flexmock.rubyforge.org}.
+
+\subsection{Metriche sulla copertura dei test sul codice}
+Durante l'implementazione da parte del Programmatore delle funzionalità richieste dai test, è possibile che venga aggiunto del codice che non verrà mai testato. A questo scopo sarà utilizzato un \underline{plugin} che, in modo completamente automatico, esplori il codice sorgente segnalando quelle porzioni che non vengono verificate da nessun test.
+
+Il \underline{plugin} renderà disponibili le porzioni di codice non testato, nonchè la percentuale di codice coperta da test. Sarà quindi auspicabile che tale percentuale raggiunga il 100\% prima della consegna del prodotto.
+
+Per maggiori informazioni è consigliata la consultazione del sito \\ \textit{http://rubyforge.org/projects/rcov/}.
+
 \section{Gestione amministrativa}
 \subsection{Comunicazioni}
 Come spiegato nel documento \textsc{Norme di Progetto}, ad ogni prodotto del lavoro del team è assegnato un \underline{ticket}, consultabile sul sito di appoggio \textit{http://www.assembla.com}. Per prodotto si intende ovviamente qualsiasi risultato del lavoro dei componenti del team QuiXoft (documentazione, codice \underline{sorgente}, moduli o programmi completi, ecc...).
