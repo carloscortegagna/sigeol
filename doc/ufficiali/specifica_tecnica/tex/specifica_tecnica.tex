@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Specifica tecnica v0.3.0}
+\lfoot{Specifica tecnica v0.3.1}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Specifica tecnica v0.3.0}
+\lfoot{Specifica tecnica v0.3.1}
 \cfoot{}
 \rfoot{}
 }
@@ -44,6 +44,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{23-01-2009} & 0.3.1 & Correzioni varie \\
 \hline
 \textit{22-01-2009} & 0.3.0 & Aggiunti i flussi di esecuzione \\
 \hline
@@ -72,7 +74,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Specifica Tecnica \\ v0.3.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Specifica Tecnica \\ v0.3.1}}
 \author{Redazione: }
 \maketitle
 \medskip
@@ -101,7 +103,7 @@ Documento contenente la specifica tecnica per il progetto ''SIGEOL'' commissiona
 \setcounter{page}{1}
 \section{Introduzione}
 \subsection{Scopo del documento}
-Il presente documento denominato \textsc{Specifica tecnica} ha lo scopo di mostrare la struttura del progetto \textit{SIGEOL} e descrivere i componenti che fanno parte. 
+Il presente documento denominato \textsc{Specifica tecnica} ha lo scopo di mostrare la struttura del progetto \textit{SIGEOL} e descrivere i componenti che ne fanno parte. 
 \subsection{Scopo del prodotto}
 Il progetto sotto analisi, denominato \textit{SIGEOL}, si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. 
 \subsection{Glossario}
@@ -109,32 +111,32 @@ Le definizioni dei termini specialistici usati nella stesura di questo e di tutt
 
 \section{Definizione del prodotto}
 \subsection{Metodo e formalismo di specifica}
-Lo strumento principale nel redarre la specifica tecnica sarà il linguaggio \underline{UML}, che permetterà di realizzare i diagrammi delle classi, di sequenza, di collaborazione e di attivita'.
+Lo strumento principale nel redarre la specifica tecnica sarà il linguaggio \underline{UML}, che permetterà di realizzare i diagrammi delle classi, di sequenza, di collaborazione e di attività.
 
 
-La decomposizione architetturale utilizzata sara' di tipo \underline{Top-down}.
+La decomposizione architetturale utilizzata sarà di tipo \underline{Top-down}.
 E' prevista una descrizione generale dell’architettura del sistema, alla quale seguiranno le specifiche dettagliate dei suoi componenti.
 
 
-Per semplificare la progettazione, si utilizzaranno i seguenti pattern:
+Per semplificare la progettazione, si utilizzeranno i seguenti pattern:
 \begin{description}
  \item[\textbf{MVC}] 
-Il pattern MVC (Model View Controller)si basa sulla separazione tra i componenti software del sistema, che gestiscono il modo in cui presentare i dati e i componenti che gestiscono i dati stessi. 
- \item[\textbf{Facade}]
-Permette attraverso un'interfaccia più semplice, l'accesso a sottosistemi che espongono interfacce complesse e molto diverse tra loro, nonché a blocchi di codice complessi.
-\item[\textbf{Rest}]
+Il pattern MVC (Model View Controller) si basa sulla separazione tra i componenti software del sistema, che gestiscono il modo in cui presentare i dati, e i componenti che gestiscono i dati stessi. 
+ \item[\textbf{Façade}]
+Permette, attraverso un'interfaccia più semplice, l'accesso a sottosistemi aventi interfacce complesse e molto diverse tra loro, nonché a blocchi di codice complessi.
+\item[\textbf{REST}]
 Representational state transfer (REST) è un tipo di architettura software per i sistemi di ipertesto distribuiti come il World Wide Web. 
 REST si riferisce ad un insieme di principi di architetture di rete, i quali delineano come le risorse sono definite e indirizzate.
 
 
 \item[\textbf{Convention Over Configuration}]
 Convention Over Configuration è un paradigma di programmazione che prevede configurazione minima (o addirittura assente) per il programmatore che utilizza un framework che lo rispetti, obbligandolo a configurare solo gli aspetti che si differenziano dalle implementazioni standard o che non rispettano particolari convenzioni di denominazione o simili.
-Significa che Rails prevede delle impostazioni di default per qualsiasi aspetto dell’applicazione. Utilizzando queste convenzioni sarà possibile velocizzare i tempi di sviluppo evitando di realizzare scomodi file di configurazione. L’esempio più chiaro del COC si può notare a livello di modelli: rispettando le convenzioni previste dal framework è possibile realizzare strutture di dati complesse con molte relazioni tra oggetti in pochissimo tempo, in maniera quasi meccanica e soprattutto senza definire nessuna configurazione. Questo concetto differenzia Rails da quei framework che prevedono centinaia di righe di configurazione per qualsiasi aspetto dell’applicazione. Con il COC tutto diventa più snello e più dinamico. Ovviamente per situazioni in cui le convenzioni non possano essere rispettate, Rails permette di utilizzare schemi funzionali diversi da quelli previsti.
+Significa che Rails prevede delle impostazioni di default per qualsiasi aspetto dell’applicazione. Utilizzando queste convenzioni sarà possibile velocizzare i tempi di sviluppo evitando di realizzare scomodi file di configurazione. L’esempio più chiaro del COC si può notare a livello di modelli: rispettando le convenzioni previste dal framework è possibile realizzare strutture di dati complesse con molte relazioni tra oggetti in pochissimo tempo, in maniera quasi meccanica e soprattutto senza definire nessuna configurazione. Questo concetto differenzia Rails dai framework che prevedono molte righe di configurazione per ogni aspetto dell’applicazione. Con il COC tutto diventa più snello e più dinamico. Ovviamente per situazioni in cui le convenzioni non possano essere rispettate, Rails permette di utilizzare schemi funzionali diversi da quelli previsti.
 \item[\textbf{DRY}]
-Questo concetto, fortemente filosofico, prevede che ciascun elemento di un’applicazione debba essere implementato solamente una volta e niente debba essere ripetuto. Questo significa che, tramite le funzionalità di Rails, è possibile gestire funzionalità ripetitive tramite una estrema fattorizzazione del codice (scrivo una volta e uso più volte) che facilita sia lo sviluppo iniziale che eventuali modifiche successive del prodotto.
+Questo concetto, fortemente filosofico, prevede che ciascun elemento di un’applicazione debba essere implementato solamente una volta e niente debba essere ripetuto. Questo significa che, mediante Rails, è possibile gestire funzionalità ripetitive con una estrema fattorizzazione del codice (''scrivo una volta e uso più volte'') che facilita sia lo sviluppo iniziale che eventuali modifiche successive del prodotto.
 \item[\textbf{View Helper}]
 Questo pattern disaccoppia il Business Logic dallo strato View, il che facilita
-la manutenibilit`a. Aiuta a separare, in fase di sviluppo, la responsabilt`a
+la manutenibilità. Aiuta a separare, in fase di sviluppo, la responsabilità
 del web designer e dello sviluppatore.
 \item[\textbf{Active Record}]
 Secondo il pattern Active Record esiste una relazione molto stretta fra tabella e classe, colonne e attributi della classe. 
@@ -160,7 +162,7 @@ In questo modello i ruoli di presentazione, controllo ed accesso ai dati vengono
 E' il primo livello che si incontra e contiene i componenti che costituiscono l'interfaccia grafica, tramite la quale l'utente interagisce con il sistema \textit{Sigeol}.
 La View delega al Controller l'esecuzione dei processi richiesti dall'utente dopo averne catturato gli input e la
 scelta delle eventuali schermate da presentare.
-ActionView gestisce l'aspetto delle pagine da restituire al client. Sono per lo piu' file .rhtml che contengono delle direttive scritte in Ruby immerse nel codice XHTML.
+ActionView gestisce l'aspetto delle pagine da restituire al client. Sono per lo più file .rhtml che contengono delle direttive scritte in Ruby immerse nel codice XHTML.
 
 \begin{center}
  \textbf{Model}
@@ -173,11 +175,11 @@ Viene gestito da una libreria chiamata ActiveRecord, che si occupa di tutta la l
 \end{center}
 Questo componente ha la responsabilità di trasformare le interazioni dell'utente della View in azioni eseguite dal Model. Ma il Controller non rappresenta un semplice "ponte" tra View e Model. Realizzando la mappatura tra input dell'utente e processi eseguiti dal Model e selezionando le schermate della View richieste, il Controller implementa la logica di controllo dell'applicazione.
 
-Gestisce le richieste del browser e facilita la comunicazione fra Model e View. Tutti i controller creati dall'utente ereditano da ActionController. L'ApplicationController raccoglie funzionalita' condivise nell'intera applicazione.
+Gestisce le richieste del browser e facilita la comunicazione fra Model e View. Tutti i controller creati dall'utente ereditano da ActionController. L'ApplicationController raccoglie funzionalità condivise nell'intera applicazione.
 In particolare verranno inserite le azioni CRUD (Create-Read-Update-Delete) per l'oggetto e le varie funzioni che possono servirci per la nostra applicazione.
 I Controller sono gestiti dal componente ActionController che fa parte del pacchetto di moduli rails chiamato Action Pack.
 I Controller sono rappresentati dalla libreria ActionController.
-Gestisce le richieste del browser e facilita la comunicazione fra Model e View. Tutti i controller creati dall'utente ereditano da ActionController. L'ApplicationController raccoglie funzionalita' condivise nell'intera applicazione.
+Gestisce le richieste del browser e facilita la comunicazione fra Model e View. Tutti i controller creati dall'utente ereditano da ActionController. L'ApplicationController raccoglie funzionalità condivise nell'intera applicazione.
 In particolare verranno inserite le azioni CRUD (Create-Read-Update-Delete) per l'oggetto e le varie funzioni che possono servirci per la nostra applicazione.
 \includegraphics[scale=0.50]{images/SIGEOL.png}
 
@@ -209,7 +211,7 @@ Ad esempio, Dato un URL nel formato \textit{nomecontroller/azione/id}, viene ide
 I metodi helper sono semplici metodi pubblici di una classe Controller.
 
 \subsubsection{Parte Model}
-L' ActiveRecord è il modulo di Ruby on Rails che gestisce la persistenza dei dati. 
+L'ActiveRecord è il modulo di Ruby on Rails che gestisce la persistenza dei dati. 
 Il modulo è stato implementato seguendo il pattern Active Record facendo largo uso di convenzioni sui nomi da assegnare a tabelle, classi, colonne e attributi; se non sono presenti configurazioni particolari del modello, sono valide le seguenti convenzioni:
 \begin{itemize}
  \item per ogni modello esiste una tabella avente come nome il nome del modello al plurale e in caratteri minuscoli;
