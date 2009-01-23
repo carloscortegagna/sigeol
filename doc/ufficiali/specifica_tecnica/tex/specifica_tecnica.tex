@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Specifica tecnica v0.0.1}
+\lfoot{Specifica tecnica v0.3.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Specifica tecnica v0.0.1}
+\lfoot{Specifica tecnica v0.3.0}
 \cfoot{}
 \rfoot{}
 }
@@ -40,15 +40,16 @@
 \begin{center}
 \textbf{Diario delle modifiche} \\
 \bigskip
-\begin{tabular}{|c|c|p{0.51\textwidth}|}
+\begin{tabular}{|c|c|p{0.62\textwidth}|}
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
-\textit{21 gennaio 2009} & 0.2.0 & Stesura Descrizione dei componenti \\
+\textit{22-01-2009} & 0.3.0 & Aggiunti i flussi di esecuzione \\
 \hline
+\textit{21-01-2009} & 0.2.0 & Stesura Descrizione dei componenti \\
 \hline
-\textit{20 gennaio 2009} & 0.1.0 & Creazione dell'indice \\
+\textit{20-01-2009} & 0.1.0 & Creazione dell'indice \\
 \hline
 \end{tabular}
 \end{center}
@@ -71,7 +72,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Specifica Tecnica \\ v0.1.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Specifica Tecnica \\ v0.3.0}}
 \author{Redazione: }
 \maketitle
 \medskip
@@ -224,5 +225,74 @@ Con ActiveRecord è possibile utilizzare diversi tipi di database: SQLite, MySQL
 \subsection{Attività svolte e dati trattati}
 \section{Stime di fattibilità e di bisogno di risorse}
 \section{Tracciamento della relazione componenti-requisiti}
+\section{Flusso di esecuzione}
+La seguente sezione si fa carico di illustrare, con l'utilizzo di diagrammi di attività, i flussi delle varie azioni che gli utenti del sistema SIGEOL hanno la possibilità di compiere.
+Quanto riportato in seguito è da considerarsi passibile di modifiche col procedere della fase di progettazione.
+\newpage
+\subsection{Login utenti}
+La Segreteria Didattica e tutti Docenti registrati hanno la possibilità di accedere alla pagina di login per inserire le proprie credenziali ed accedere alle funzioni aggiuntive che il sistema SIGEOL mette loro a disposizione. Il Presidente del CCS viene considerato un Docente, ma con in più la possibilità di accedere a tutte le funzioni tipiche della Segreteria Didattica.
+
+Al termine della fase di login, l'utente verrà reindirizzato alla pagina principale di SIGEOL e potrà espletare le funzioni a sua disposizione.\\
+\begin{center}
+ \includegraphics[scale=1]{images/login.png}
+\end{center}
+
+\newpage
+\subsection{Inserimento nuovo Docente}
+La Segreteria Didattica e il Presidente del CSS hanno la possibilità, dopo aver effettuato con successo il login, di inserire un nuovo Docente nel sistema SIGEOL. Verranno richiesti nome, cognome ed indirizzo email. Se tali dati vengono inseriti e il Docente non è già presente nel DB di sistema, viene automaticamente inviata una email al Docente invitato, in cui gli viene indicato il link necessario per procedere alla creazione del suo account.
+\begin{center}
+ \includegraphics[scale=0.9]{images/inserimento_docente.png}
+\end{center}
+
+\newpage
+\subsection{Registrazione Docente}
+Ogni docente, dopo aver ricevuto la mail di invito al sistema SIGEOL, utilizza il link ricevuto per accedere al form di scelta password e di inserimento degli altri dati personali. La scelta della password seguirà rigide regole di sintassi, che verranno controllate dinamicamente durante l'inserimento. Tali regole prevederanno un numero minimo di caratteri, la presenza obbligatoria di cifre o simboli e altre convenzioni che saranno decise dal team QuiXoft, in collaborazione con il Committente, durante il proseguimento della fase di progettazione. La password dovrà poi essere confermata in un successivo campo dati, per evitare spiacevoli errori di battitura.
+
+Al termine della prcedura la password scelta e gli altri dati inseriti verranno memorizzati in modo sicuro sul DB di sistema.
+\begin{center}
+ \includegraphics[scale=0.8]{images/registrazione_docente.png}
+\end{center}
+
+\newpage
+\subsection{Inserimento dei dati nel sistema}
+La Segreteria Didattica e il Presidente del CCS hanno la possibilità di inserire i dati relativi ai corsi di laurea, agli insegnamenti, alle aule, ai dipartimenti e molti altri dati indispensabili al funzionamento del sistema SIGEOL.
+
+L'inserimento avverrà tramite diverse pagine web e diverse form, ma il diagramma di flusso di tali inserimenti è cosi simile che è stato scelto di esporne solo uno generale, adatto a rappresentare tutti gli inserimenti.
+\begin{center}
+ \includegraphics[scale=0.85]{images/inserimento_dati.png}
+\end{center}
+
+\newpage
+\subsection{Modifica dei dati del sistema}
+La Segreteria Didattica e il Presidente del CCS hanno la possibilità di modificare tutti i dati relativi ai corsi di laurea, agli insegnamenti, alle aule, ai dipartimenti, ecc...
+
+I docenti invece hanno la possibilità di modificare i propri dati personali e i vincoli e le preferenze inserite.
+
+Le similitudini tra tutte le sopra citate modifiche hanno portato allo sviluppo di un singolo diagramma di attività che le rappresenti tutte. L'invocazione del comando di modifica sarà ovviamente diverso tra i vari tipi di dati, ma la procedura per modificarli e salvarli è similare.
+
+\begin{center}
+ \includegraphics[scale=0.85]{images/modifica_dati.png}
+\end{center}
+
+\newpage
+\subsection{Inserimento vincoli e preferenze da parte dei Docenti}
+Tutti i docenti cha abbiano effettuato correttamente il login hanno la possibilità di inserire i loro vincoli e le loro preferenze. La procedura è similare, per tanto è rappresentata dallo stesso diagramma di attività.
+
+La differenza sostanziale nell'inserimento di un vincolo o di una preferenza è che solo il vincolo, tra i due, prevede una motivazione, mentre solo la preferenza prevede un livello di priorità. L'assegnazione della priorità di una preferenza è automatizzata dal sistema: il Docente dovrà solamente decidere l'ordine di importanza delle proprie preferenze.
+
+\begin{center}
+ \includegraphics[scale=0.85]{images/inserimento_vincoli.png}
+\end{center}
+
+\newpage
+\subsection{Generazione dell'orario}
+La Segreteria Didattica e il Presidente del CCS hanno la possibilità, una volta scaduta la data limite per l'inserimento dei vincoli e delle preferenze da parte dei Docenti, di far partire l'algoritmo di generazione dell'orario. L'algoritmo calcolerà l'orario migliore possibile per tutti i Corsi di Laurea inseriti, e sarà data la possibilità di scelta se generare l'orario per uno o più periodi (per periodo si intende il numero di trimestre-semestre-ecc... in base alla scelta fatta nel momento di inserimento dei dati).
+
+L'algoritmo proporrà un orario soddisfacendo tutti i requisiti presenti e tentando di rispettare il più possibile tutte le preferenze. Se ciò non fosse possibile, sarà data la possibilità alla Segreteria Didattica o al Presidente del CCS di rilassare certi vincoli o di modificare manualmente lo schema d'orario generato.
+\begin{center}
+ \includegraphics[scale=0.85]{images/generazione_orario.png}
+\end{center}
+
+
 \modifiche
 \end{document}
