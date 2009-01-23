@@ -17,7 +17,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Piano di Progetto v1.1.0}
+\lfoot{Piano di Progetto v2.0.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -29,7 +29,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Piano di Progetto v1.1.0}
+\lfoot{Piano di Progetto v2.0.0}
 \cfoot{}
 \rfoot{}
 }
@@ -46,13 +46,23 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
+\textit{23-01-2009} & 2.0.0 & Modifiche varie e approvazione del Responsabile\\
+\hline
+\textit{21-01-2009} & 1.5.0 & Aggiunta delle ore di Analisi consuntive\\
+\hline
+\textit{20-01-2009} & 1.4.0 & Modifica della rotazione dei ruoli\\
+\hline
+\textit{19-01-2009} & 1.3.0 & Correzioni varie\\
+\hline
+\textit{06-01-2009} & 1.2.0 & Seconda approvazione del Responsabile e passaggio di stato in ''Formale''\\
+\hline
 \textit{03-01-2009} & 1.1.0 & Modifiche apportate dal nuovo componente\\
 \hline
 \textit{09-12-2008} & 1.0.0 & Approvazione del Responsabile e passaggio di stato in ''Formale''\\
 \hline
-\textit{08-12-2008} & 0.6.0 & Aggiunti i riassunti delle ore \\
+\textit{08-12-2008} & 0.6.0 & Aggiunta dei riassunti delle ore \\
 \hline
-\textit{07-12-2008} & 0.5.0 & Aggiunti i riferimenti e le fasi \\
+\textit{07-12-2008} & 0.5.0 & Aggiunta dei riferimenti e le fasi \\
 \hline
 \textit{07-12-2008} & 0.4.1 & Correzioni varie \\
 \hline
@@ -72,8 +82,8 @@
 \bigskip
 \begin{tabbing}
 	\hspace*{0.3\textwidth} \= \hspace*{0.5\textwidth} \kill
-	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Freo Matteo} \\
-	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Grosselle Alessandro} \\
+	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Grosselle Alessandro} \\
+	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Scarpa Davide} \\
 	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Formale} \\
 	\parbox{0.3\textwidth}{\textbf{Uso: }} \> \parbox{0.5\textwidth}{Esterno} \\
 	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{QuiXoft} \\
@@ -85,8 +95,8 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Progetto \\ v1.1.0}}
-\author{Redazione: Scortegagna Carlo, Alberti Andrea}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Progetto \\ v2.0.0}}
+\author{Redazione: Alberti Andrea}
 \maketitle
 \medskip
 \begin{center}
@@ -136,13 +146,13 @@ Per ulteriori informazioni riguardanti scopi e funzioni del prodotto si prega di
 Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti possono essere trovate nel documento \textsc{Glossario} al fine di eliminare ogni ambiguità e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione è disponibile all'interno del glossario verrà marcato con una \underline{sottolineatura}.
 \section{Panoramica di progetto}
 \subsection{Vincoli}
-Il progetto, per essere considerato accettabile dal committente, dovrà tassativamente rispettare i seguenti vincoli.
+Il progetto, per essere considerato accettabile dal committente, dovrà tassativamente rispettare i vincoli seguenti.
 \subsubsection{Equa ripartizione del carico di lavoro}
 Il piano di progetto prevede un'equa ripartizione del carico di lavoro tra tutti i componenti del team.
-In linea di massima, le ore fatte in corso d'attività dovranno essere paragonabili a quelle attribuite a ciascun componente del gruppo nel piano.
+In linea di massima, le ore realmente fatte in corso d'attività dovranno essere paragonabili a quelle attribuite a ciascun componente del gruppo nel piano.
 
-Il piano di progetto di fase in fase verrà aggiornato inserendo le ore consuntive di ogni ruolo.
-E' necessario che ogni componente abbia un carico di lavoro inferiore alle 105 ore. Per maggiori informazioni si prega di consultare la sezione 3.4.
+Il piano di progetto di fase in fase verrà man mano aggiornato inserendo le ore consuntive di ogni ruolo.
+E' necessario che ogni componente abbia un carico di lavoro compreso fra le 85 e le 105 ore. Per maggiori informazioni si prega di consultare la sezione 3.4.
 \subsubsection{Budget Economico}
 Il progetto dovrà affrontare una spesa pari ad almeno 13000\euro.
 
@@ -294,13 +304,13 @@ A fianco di ogni ruolo sono riportate, tra parentesi, le ore stimate da esercita
 \begin{tabular}{|c||c|c|}
 \hline
 \textsc{Componenti} & \textsc{Progettazione [1]} & \textsc{Progettazione [2]} \\ \hline \hline
-Barberio Mattia & Prog(18) & Ver(12) \\ \hline
-Beggiato Andrea & Amm(6)/Ver(8) & Prog(19) \\ \hline
-Freo Matteo & Prog(19) & Res(6)/Ver(8) \\ \hline
-Grosselle Alessandro & Ver(17) & Prog(19) \\ \hline
-Scarpa Davide & Res(9)/Ver(5) & Prog(18) \\ \hline
-Scortegagna Carlo & Prog(18) & Amm(12,5) \\ \hline
-Alberti Andrea & Res(5,5)/Amm(8,5) & Prog(19) \\ \hline
+Barberio Mattia & Prog(18) & Ver(14) \\ \hline
+Beggiato Andrea & Amm(4)/Ver(12) & Prog(19) \\ \hline
+Freo Matteo & Prog(19) & Res(5)/Ver(13) \\ \hline
+Grosselle Alessandro & Ver(22) & Prog(19) \\ \hline
+Scarpa Davide & Res(7)/Ver(9) & Prog(18) \\ \hline
+Scortegagna Carlo & Prog(18) & Amm(9,5) \\ \hline
+Alberti Andrea & Res(3)/Amm(6,5) & Prog(19) \\ \hline
 \end{tabular}
 \end{center}
 \bigskip
@@ -332,13 +342,13 @@ A fianco di ogni ruolo sono riportate, tra parentesi, le ore stimate da esercita
 \begin{tabular}{|c||c|c|}
 \hline
 \textsc{Componenti} & \textsc{Realizzazione [1]} & \textsc{Realizzazione [2]} \\ \hline \hline
-Barberio Mattia & Progr(15) & Amm(11,5)/Ver(6) \\ \hline
-Beggiato Andrea & Progr(16) & Res(9)/Amm(5,5) \\ \hline
-Freo Matteo & Amm(11,5) & Progr(16)/Res(3) \\ \hline
-Grosselle Alessandro & Res(9) & Progr(15) \\ \hline
+Barberio Mattia & Progr(15) & Amm(9,5)/Ver(10) \\ \hline
+Beggiato Andrea & Progr(16) & Res(7)/Amm(5,5) \\ \hline
+Freo Matteo & Amm(9,5) & Progr(16)/Res(2) \\ \hline
+Grosselle Alessandro & Res(7) & Progr(15) \\ \hline
 Scarpa Davide & Progr(16) & Ver(12) \\ \hline
-Scortegagna Carlo & Ver(17) & Progr(16) \\ \hline
-Alberti Andrea & Progr(16) & Ver(15) \\ \hline
+Scortegagna Carlo & Ver(22) & Progr(16) \\ \hline
+Alberti Andrea & Progr(16) & Ver(20) \\ \hline
 \end{tabular}
 \end{center}
 \bigskip
@@ -352,13 +362,13 @@ Si può altresi notare, osservando la colonna ''Totale'', che il carico di lavor
 \hline
 \textsc{Componenti} & \textsc{Res} & \textsc{Amm} & \textsc{An} & \textsc{Prog} & \textsc{Ver} & \textsc{Progr} & \textsc{Totale}\\
 \hline \hline
-BM & 11 & 11.5 & 20 & 18 & 18 & 15 & 93.5 \\ \hline
-BA & 9 & 11.5 & 20 & 19 & 18 & 16 & 93.5 \\ \hline
-FM & 9 & 11.5 & 20 & 19 & 18 & 16 & 93.5 \\ \hline
-GA & 9 & 13.5 & 20 & 19 & 17 & 15 & 93.5 \\ \hline
-SD & 9 & 13.5 & 20 & 18 & 17 & 16 & 93.5 \\ \hline
-SC & 10 & 12.5 & 20 & 18 & 17 & 16 & 93.5 \\ \hline
-AA & 9.5 & 11.5 & 20 & 19 & 18 & 16 & 94 \\ \hline
+BM & 11 & 9.5 & 20 & 18 & 22 & 15 & 95.5 \\ \hline
+BA & 7 & 9.5 & 20 & 19 & 24 & 16 & 95.5 \\ \hline
+FM & 7 & 9.5 & 20 & 19 & 23 & 16 & 94.5 \\ \hline
+GA & 7 & 13.5 & 20 & 19 & 21 & 15 & 95.5 \\ \hline
+SD & 7 & 13.5 & 20 & 18 & 21 & 16 & 95.5 \\ \hline
+SC & 10 & 9.5 & 20 & 18 & 22 & 16 & 95.5 \\ \hline
+AA & 7 & 9.5 & 20 & 18 & 24 & 16 & 94.5 \\ \hline
 \end{tabular}
 \end{center}
 \bigskip \bigskip \bigskip
@@ -433,36 +443,37 @@ Se la revisione andrà a buon fine il progetto verrà accettato e il progetto po
 Al presente documento viene allegato il file \textsc{gantt.pdf}, contenente la pianificazione delle attività per ogni fase.
 
 Il diagramma in allegato è caratterizzato dalla rappresentazione dell'arco temporale totale del progetto sull'asse orizzontale (in settimane) e dalla rappresentazione delle mansioni o attività che costituiscono il progetto sull'asse verticale.
+
 \section{Analisi dei rischi}
 \subsection{Assenza componente per medio/lungo periodo}
 Ogni componente ha sempre un determinato ruolo in tutte le fasi del progetto.
 Se un componente risultasse indisponibile per un lasso di tempo più o meno lungo causerebbe un rallentamento del progetto, se non addirittura uno stallo.
 
-E' compito dell'\underline{Amministratore} riassegnare il determinato ruolo ad uno o più componenti del team e modificare il piano di progetto cercando di mantenere inalterati i costi e la data di fine progetto.
+E' compito dell'amministratore riassegnare il determinato ruolo ad uno o più componenti del team e modificare il piano di progetto cercando di mantenere inalterati i costi e la data di fine progetto.
 \subsection{Mancanza di conoscenze tecniche}
 Si utilizzeranno strumenti e tecnologie che per alcuni componenti risulteranno nuove.
-L'\underline{Amministratore} metterà a disposizione guide e manuali per poter formare il team.
+L'amministratore metterà a disposizione guide e manuali per poter formare il team.
 
 Lo studio è personale e non è previsto nel piano di progetto.
 Tuttavia, se dovesse essere necessario, verrà fatta una riunione che delineerà i concetti di massima dell'eventuale strumento o tecnologia.
 \subsection{Calendario delle attività inefficiente}
 Le attività, vista la scarsa esperienza, sono state pianificate basandosi su precedenti calendari di altri gruppi.
 
-E' compito dell'\underline{Amministratore} correggere eventuali errori di pianificazione, cercando di mantenere inalterati i costi e la data di fine progetto.
+E' compito dell'amministratore correggere eventuali errori di pianificazione, cercando di mantenere inalterati i costi e la data di fine progetto.
 \subsection{Analisi dei requisiti inefficiente}
 Nella prima fase avviene lo studio approfondito dei requisiti.
 Finita questa fase, inizia quella di progettazione.
 
-Data la scarsa esperienza del team QuiXoft il rischio di variazione dei requisiti dopo il loro studio esiste. Tuttavia si cerca di renderlo il più basso possibile ruotando il ruolo di \underline{Analista} e rendendo la ricerca dei requisiti il più completa ed efficiente possibile.
+Data la scarsa esperienza del team QuiXoft il rischio di variazione dei requisiti dopo il loro studio esiste. Tuttavia si cerca di renderlo il più basso possibile ruotando il ruolo di analista e rendendo la ricerca dei requisiti il più completa ed efficiente possibile.
 \subsection{Gestione della qualità inadeguata}
-L'accertamento della qualità del processo e del prodotto è garantita dalla presenza del ruolo del \underline{Verificatore} per tutto il periodo di concezione e sviluppo del progetto.
+L'accertamento della qualità del processo e del prodotto è garantita dal lavoro del Verificatore, che per tutto il periodo di concezione e sviluppo del progetto dovrà seguire le norme e le procedure contenute nel \textsc{Piano di Qualifica}, documento in costante aggiornamento proprio per poter assicurare il massimo livello qualitativo possibile al prodotto finale.
 
-Se le ore necessarie al \underline{Verificatore} in una determinata fase dovessero essere troppo poche, ne verrà immediatamente avvisato l'\underline{Amministratore}, il quale modificherà di conseguenza il \textsc{Piano di Progetto}, dedicando più ore alle fasi di verifica.
+Se le ore necessarie al verificatore in una determinata fase dovessero essere troppo poche, l'Amministratore andrà immediatamente a modificare il \textsc{Piano di Progetto}, dedicando più ore alle fasi di verifica.
 \section{Conto economico preventivo}
 \subsection{Costi stimati nel progetto per ruolo}
 Dalla precedente pianificazione si può redigere la seguente tabella, che mostra i costi stimati (in \euro) per ruolo in relazione alle varie fasi del progetto.
 
-In pieno rispetto al vincolo ''Budget economico'' della sezione 2.1.2, il costo totale del progetto è stimato in 13065\euro.
+In pieno rispetto al vincolo ''Budget economico'' della sezione 2.1.2, il costo totale del progetto è stimato in 13793\euro.
 \begin{center}
 \begin{tabular}{|c||c|c|c||c|}
 \hline
@@ -494,5 +505,48 @@ SC & 300 & 250 & 500 & 396 & 272 & 256 & 1974 \\ \hline
 AA & 315 & 230 & 500 & 418 & 288 & 256 & 2007 \\ \hline
 \end{tabular}
 \end{center}
+\newpage
+
+\section{Consuntivo}
+\subsection{Conteggio effettivo delle ore}
+Durante la fase di analisi il Verificatore e l'Analista hanno avuto un ruolo chiave nello sviluppo del progetto.
+Come si nota dai dati riportati in seguito, c'è stata la necessità di attribuire più ore di lavoro al Verificatore a discapito dei ruoli di Amministratore e Responsabile, che in questa fase erano stati stimati più necessari di quanto in realtà è avvenuto.
+\\
+\begin{center}
+\begin{tabular}{|c||c|c|}
+\hline
+\textsc{Componenti} & \textsc{Analisi [1]} & \textsc{Analisi [2]} \\ \hline \hline
+Barberio Mattia & An(21) & Res(9) \\ \hline
+Beggiato Andrea & An(18) & Ver(12) \\ \hline
+Freo Matteo & Ver(12) & An(18) \\ \hline
+Grosselle Alessandro & Amm(10) & An(23) \\ \hline
+Scarpa Davide & An(23) & Amm(10) \\ \hline
+Scortegagna Carlo & Res(9) & An(21) \\ \hline
+Alberti Andrea & Res(3)/Amm(2)/Ver(7) & An(18) \\ \hline
+\end{tabular}
+\end{center}
+\bigskip
+\subsection{Conto economico reale}
+Il maggior numero di ore assegnate ai Verificatori ha portato ad una leggera variazione dei costi di progetto.
+Il costo totale della fase di analisi non supera comunque le stime fatte in fase di preventivo, in quanto sono state utilizzate meno ore di lavoro di Responsabile ed Amministratore.
+
+La seguente tabella mostra i costi reali sostenuti dal team QuiXoft durante la fase di analisi:
+\\
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|c|c||c|}
+\hline
+\textsc{Componenti} & \textsc{Res} & \textsc{Amm} & \textsc{An} & \textsc{Prog} & \textsc{Ver} & \textsc{Progr} & \textsc{Totale}\\
+\hline \hline
+BM & 270 & 0 & 525 & 0 & 0 & 0 & 795 \\ \hline
+BA & 0 & 0 & 450 & 0 & 192 & 0 & 642 \\ \hline
+FM & 0 & 0 & 450 & 0 & 192 & 0 & 642 \\ \hline
+GA & 0 & 200 & 575 & 0 & 0 & 0 & 775 \\ \hline
+SD & 0 & 200 & 575 & 0 & 0 & 0 & 775 \\ \hline
+SC & 270 & 0 & 525 & 0 & 0 & 0 & 795 \\ \hline
+AA & 90 & 40 & 450 & 0 & 192 & 0 & 772 \\ \hline
+\end{tabular}
+\end{center}
+\bigskip
+Il costo totale della prima fase è stato quindi di 5196\euro. Paragonandolo al costo stimato di 5218\euro, si può notare che la variazione è irrisoria e non porta ad alcuna conseguenza negativa nel corretto svolgimento del progetto.
 \modifiche
 \end{document}
