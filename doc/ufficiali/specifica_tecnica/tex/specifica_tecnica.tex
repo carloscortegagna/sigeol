@@ -235,7 +235,7 @@ Questa componente si trova in relazione solo con la componente Middle Man. Algor
 \item \textbf{Constraint}: rappresenta la classe che individua un vincolo o una preferenza, necessario/a al calcolo dello schema d'orario. L'attributo booleano isHard indica se è un vincolo o una preferenza.
 \subitem \textbf{QuantityConstraint}: rappresenta la classe che individua un vincolo di tipo numerico; ad esempio il numero massimo di ore di una lezione. La classe QuantityConstraint è in associazione polimorfa con la classe Constraint.
 \subitem \textbf{TemporalConstraint}: rappresenta la classe che individua un vincolo di tipo temporale, specificato da un giorno della settimana, un'ora di inizio ed un'ora di fine. La classe TemporalConstraint è in associazione polimorfa con la classe Constraint.
-\subitem \textbf{BooleanConstraint}: rappresenta la classe che individua un vincolo che potrà essere considerato o meno dall'algoritmo in base al suo attributo booleano. La classe BooleanConstraint è in associazione polimorfa con la classe Constraint. 
+\subitem \textbf{BooleanConstraint}: rappresenta la classe che individua un vincolo che potrà essere considerato o meno dall'algoritmo in base al valore del suo attributo booleano. La classe BooleanConstraint è in associazione polimorfa con la classe Constraint. 
 
 \item \textbf{Curriculum}: rappresenta la classe che individua un indirizzo appartenetente ad un corso di laurea.
 
@@ -245,10 +245,10 @@ Questa componente si trova in relazione solo con la componente Middle Man. Algor
 
 \item \textbf{GraduateCourse}: rappresenta la classe che individua un corso di laurea e ne gestisce i relativi dati.
 
-\item \textbf{OrganizationAcademic}: rappresenta la classe che descrive com'è strutturato un corso di laurea: bimestre,trimestre, semestre.
+\item \textbf{AcademicOrganization}: rappresenta la classe che descrive com'è strutturato un corso di laurea: bimestre,trimestre, semestre.
 
 \item \textbf{Period}: rappresenta la classe che individua una fascia temporale. 
-Le fascie temporali sono generate in base alla durata e alla struttura dell'anno accedemico (bimestre,trimestre,semestre)
+Le fascie temporali sono generate in base alla durata e alla struttura del corso di laurea (bimestre,trimestre,semestre). 
 
 \item \textbf{Teaching}: rappresenta la classe che gestisce i dati relativi ad un determinato insegnamento.
 
