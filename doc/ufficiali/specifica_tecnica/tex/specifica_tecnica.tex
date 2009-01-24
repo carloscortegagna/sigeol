@@ -219,6 +219,9 @@ Questa componente si trova in relazione solo con la componente Middle Man. Algor
 
 \section{Diagrammi delle classi}
 \subsection{Model}
+
+
+Tutte le classi presenti nel diagramma sottostante derivano da ActiveRecord ma questa dipendenza non è mostrata nel diagramma.
 \begin{center}
 \includegraphics[scale=0.3]{images/class_diagram.png}
 \end{center}
@@ -248,7 +251,7 @@ Questa componente si trova in relazione solo con la componente Middle Man. Algor
 \item \textbf{AcademicOrganization}: rappresenta la classe che descrive com'è strutturato un corso di laurea: bimestre,trimestre, semestre.
 
 \item \textbf{Period}: rappresenta la classe che individua una fascia temporale. 
-Le fascie temporali sono generate in base alla durata e alla struttura del corso di laurea (bimestre,trimestre,semestre). 
+Le fascie temporali sono generate in base alla durata e alla struttura del corso di laurea (bimestre,trimestre,semestre). Ogni insegnamento è inserito in una specifica fascia temporale; ad esempio primo(year) anno, primo(subperiod) trimestre. 
 
 \item \textbf{Teaching}: rappresenta la classe che gestisce i dati relativi ad un determinato insegnamento.
 
