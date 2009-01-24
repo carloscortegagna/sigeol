@@ -226,7 +226,7 @@ Questa componente si trova in relazione solo con la componente Middle Man. Algor
 \section{Diagrammi delle classi}
 \subsection{Model}
 Rails preferisce le convenzioni alle configurazioni, e cerca di evitare allo sviluppatore il peso di dover specificare l'associazione tra tabelle e classi.
-Non è quindi necessario illustrare nella specifica tecnica la struttura del database, in quanto verrà implementato automanticamente da Rails a partire dalla struttura delle classi. 
+Non è quindi necessario illustrare nella specifica tecnica la struttura del database, in quanto verrà implementato da Rails a partire dalla struttura delle classi.
 
 L'utilizzo dell'inglese nella scelta dei nomi delle classi è necessario per rispettare le convenzioni di Rails.
 I nomi delle tabelle del database di sistema saranno semplicemente il plurale dei nomi delle classi qui di seguito specificate:
@@ -236,29 +236,29 @@ I nomi delle tabelle del database di sistema saranno semplicemente il plurale de
 \end{center}
 
 \begin{itemize}
-\item \textbf{Address}: rappresenta la classe che individua un indirizzo civico. 
+\item \textbf{Address}: rappresenta la classe che individua un indirizzo civico.
 
 \item \textbf{Belong}: rappresenta la classe che individua se un determinato insegnamento, inserito in un preciso corso di laurea, e' opzionale o meno.
 
-\item \textbf{Building}: rappresenta la classe che gestisce i dati di un complesso. Quest'ultimo possiede aule, laboratori e uffici dei docenti. 
+\item \textbf{Building}: rappresenta la classe che gestisce i dati di un complesso. Quest'ultimo possiede aule, laboratori e uffici dei docenti.
 
-\item \textbf{Capability}: rappresenta la classe che gestisce le informazioni di un determinato servizio, disponibile per gli utenti del sistema.Ogni tipologia di utente ha uno specifico numero di servizi a sua disposizione.
+\item \textbf{Capability}: rappresenta la classe che gestisce le informazioni di un determinato servizio, disponibile per gli utenti del sistema. Ogni tipologia di utente ha uno specifico numero di servizi a sua disposizione.
 
 \item \textbf{Constraint}: rappresenta la classe che individua un vincolo o una preferenza, necessario/a al calcolo dello schema d'orario. L'attributo booleano isHard indica se è un vincolo o una preferenza.
 \subitem \textbf{QuantityConstraint}: rappresenta la classe che individua un vincolo di tipo numerico; ad esempio il numero massimo di ore di una lezione. La classe QuantityConstraint è in associazione polimorfa con la classe Constraint.
 \subitem \textbf{TemporalConstraint}: rappresenta la classe che individua un vincolo di tipo temporale, specificato da un giorno della settimana, un'ora di inizio ed un'ora di fine. La classe TemporalConstraint è in associazione polimorfa con la classe Constraint.
-\subitem \textbf{BooleanConstraint}: rappresenta la classe che individua un vincolo che potrà essere considerato o meno dall'algoritmo in base al valore del suo attributo booleano. La classe BooleanConstraint è in associazione polimorfa con la classe Constraint. 
+\subitem \textbf{BooleanConstraint}: rappresenta la classe che individua un vincolo che potrà essere considerato o meno dall'algoritmo in base al valore del suo attributo booleano. La classe BooleanConstraint è in associazione polimorfa con la classe Constraint.
 
-\item \textbf{Curriculum}: rappresenta la classe che individua un indirizzo appartenetente ad un corso di laurea.
+\item \textbf{Curriculum}: rappresenta la classe che individua un percorso formativo appartenetente ad un corso di laurea.
 
 \item \textbf{ExpiryDate}: rappresenta la classe che individua la data oltre la quale un docente non potrà più inserire e/o modificare i propri vincoli e preferenze. Successivamente a questa data l'algoritmo di calcolo dello schema d'orario si avvierà. 
 
 \item \textbf{GraduateCourse}: rappresenta la classe che individua un corso di laurea e ne gestisce i relativi dati.
 
-\item \textbf{AcademicOrganization}: rappresenta la classe che descrive com'è strutturato un corso di laurea: bimestre,trimestre, semestre.
+\item \textbf{AcademicOrganization}: rappresenta la classe che descrive com'è strutturato un corso di laurea: bimestre, trimestre, semestre.
 
-\item \textbf{Period}: rappresenta la classe che individua una fascia temporale. 
-Le fascie temporali sono generate in base alla durata e alla struttura del corso di laurea (bimestre,trimestre,semestre). Ogni insegnamento è inserito in una specifica fascia temporale; ad esempio primo(year) anno, primo(subperiod) trimestre. 
+\item \textbf{Period}: rappresenta la classe che individua una fascia temporale.
+Le fascie temporali sono generate in base alla durata e alla struttura del corso di laurea (bimestre, trimestre, semestre). Ogni insegnamento è inserito in una specifica fascia temporale; ad esempio primo (year) anno, primo (subperiod) trimestre.
 
 \item \textbf{Teaching}: rappresenta la classe che gestisce i dati relativi ad un determinato insegnamento.
 
@@ -266,7 +266,7 @@ Le fascie temporali sono generate in base alla durata e alla struttura del corso
 
 \item \textbf{TimetableEntry}: rappresenta la classe che individua un giorno, un'ora di inizio e un'ora di fine di un determinato insegnamento.
 
-\item \textbf{User}: rappresenta la classe che gestisce i dati di \underline{login}. In particolare possiede i seguenti due attributi: mail, che funge da username e password che permette l'\underline{autenticazione} sicura.
+\item \textbf{User}: rappresenta la classe che gestisce i dati di \underline{login}. In particolare possiede i seguenti due attributi: mail (che funge da username) e password (che permette l'\underline{autenticazione} sicura).
 \subitem \textbf{DidacticOffice}: rappresenta la classe che gestisce i dati della segreteria. 
 Questa classe e' in associazione polimorfa con la classe User 
 \subitem \textbf{Teacher}: rappresenta la classe che gestisce i dati personali di un docente.
@@ -275,8 +275,8 @@ Questa classe e' in associazione polimorfa con la classe User.
 
 \newpage
 \section{Tracciamento componenti-requisiti}
-Di seguito è riportato il tracciamento dei requisiti descritti nel documento denominato \textsc{Analisi dei Requisiti} alla sua ultima versione con le componenti descritti nel presente.\\
-\bigskip
+Di seguito è riportato il tracciamento dei requisiti descritti nel documento denominato \textsc{Analisi dei Requisiti} con le componenti descritti nel presente.\\
+\begin{center}
 \begin{small}
 \begin{tabular}{|c||c|c|c|c|c|}
 \hline
@@ -349,6 +349,8 @@ RID0.0 & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
 \hline
 \end{tabular}
 \end{small}
+\end{center}
+\medskip
 \section{Flusso di esecuzione}
 La seguente sezione si fa carico di illustrare, con l'utilizzo di diagrammi di attività, i flussi delle varie azioni che gli utenti del sistema SIGEOL hanno la possibilità di compiere.
 Quanto riportato in seguito è da considerarsi passibile di modifiche col procedere della fase di progettazione.
