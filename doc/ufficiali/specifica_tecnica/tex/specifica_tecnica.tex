@@ -45,6 +45,10 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
+\textit{23-01-2009} & 0.4.2 & Correzioni varie \\
+\hline
+\textit{23-01-2009} & 0.4.1 & Aggiunto middleman e algorithm \\
+\hline
 \textit{23-01-2009} & 0.3.1 & Correzioni varie \\
 \hline
 \textit{22-01-2009} & 0.3.0 & Aggiunti i flussi di esecuzione \\
@@ -105,7 +109,7 @@ Documento contenente la specifica tecnica per il progetto ''SIGEOL'' commissiona
 \subsection{Scopo del documento}
 Il presente documento denominato \textsc{Specifica tecnica} ha lo scopo di mostrare la struttura del progetto \textit{SIGEOL} e descrivere i componenti che ne fanno parte. 
 \subsection{Scopo del prodotto}
-Il progetto sotto analisi, denominato \textit{SIGEOL}, si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. 
+Il progetto sotto analisi, denominato \textit{SIGEOL}, si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. Per maggiori dettagli consultare il documento denominato \textsc{Analisi dei Requisiti} alla sua ultima versione.
 \subsection{Glossario}
 Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti possono essere trovate nel documento \textsc{Glossario} al fine di eliminare ogni ambiguità e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione è disponibile all’interno del Glossario verrà marcato con una \underline{sottolineatura}.
 
@@ -155,6 +159,8 @@ Oltre a veicolare lo sviluppo di applicazioni secondo il pattern MVC, il RESTful
 Per presentare l'architettura generale del sistema \textit{Sigeol} si utilizzerà il pattern Model-View-Controller(MVC).
 In questo modello i ruoli di presentazione, controllo ed accesso ai dati vengono affidati a componenti diversi e sono tra di loro disaccoppiati.
 
+\begin{center}
+\includegraphics[scale=0.3]{images/component_diagram.png}\end{center}
 
 \begin{center}
  \textbf{View}
@@ -181,7 +187,7 @@ I Controller sono gestiti dal componente ActionController che fa parte del pacch
 I Controller sono rappresentati dalla libreria ActionController.
 Gestisce le richieste del browser e facilita la comunicazione fra Model e View. Tutti i controller creati dall'utente ereditano da ActionController. L'ApplicationController raccoglie funzionalità condivise nell'intera applicazione.
 In particolare verranno inserite le azioni CRUD (Create-Read-Update-Delete) per l'oggetto e le varie funzioni che possono servirci per la nostra applicazione.
-\includegraphics[scale=0.50]{images/SIGEOL.png}
+
 
 
 \section{Descrizione dei singoli componenti}
@@ -210,6 +216,13 @@ Ad esempio, Dato un URL nel formato \textit{nomecontroller/azione/id}, viene ide
  Il modulo Action View contenuto nel framework Ruby on Rails, offre meccanismi avanzati per il riutilizzo del codice, tramite l'uso di viste e di metodi helper pensati per generare ad esempio pagine XHTML.
 I metodi helper sono semplici metodi pubblici di una classe Controller.
 
+\subsubsection{Parte Middle Man}
+Il BackgroundRb è il job server e scheduler di Ruby. 
+Il suo uso principale è quello di eseguire tasks di lunga durata separatamente dal ciclo dell'http request/respons in modo da non mettere in attesa l'esecuzione dell'applicazione.
+
+\subsubsection{Parte Algorithm}
+Il componente TimeTableScheduler implementa l'algoritmo di generazione dell'orario.
+
 \subsubsection{Parte Model}
 L'ActiveRecord è il modulo di Ruby on Rails che gestisce la persistenza dei dati. 
 Il modulo è stato implementato seguendo il pattern Active Record facendo largo uso di convenzioni sui nomi da assegnare a tabelle, classi, colonne e attributi; se non sono presenti configurazioni particolari del modello, sono valide le seguenti convenzioni:
@@ -221,6 +234,9 @@ Il modulo è stato implementato seguendo il pattern Active Record facendo largo 
 \end{itemize}
 La classe è descritta in buona parte dalla tabella che rappresenta ed espone i metodi necessari per leggere e scrivere i record.
 Con ActiveRecord è possibile utilizzare diversi tipi di database: SQLite, MySQL, Postgresql, Oracle, IBM DB/2 ed è possibile scrivere driver personalizzati per altri database relazionali.
+\begin{center}
+\includegraphics[scale=0.3]{images/class_diagram.png}\end{center}
+
 
 \subsection{Relazioni d'uso di altre componenti}
 \subsection{Interfacce con e relazioni di uso da altre componenti}
