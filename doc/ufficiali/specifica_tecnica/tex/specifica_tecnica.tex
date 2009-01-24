@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Specifica tecnica v0.3.1}
+\lfoot{Specifica tecnica v0.6.2}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Specifica tecnica v0.3.1}
+\lfoot{Specifica tecnica v0.6.2}
 \cfoot{}
 \rfoot{}
 }
@@ -44,6 +44,10 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{24-01-2009} & 0.6.2 & Correzioni di forma e sintassi \\
+\hline
+\textit{24-01-2009} & 0.6.1 & Lieve correzione nel diagramma delle classi \\
 \hline
 \textit{24-01-2009} & 0.6.0 & Aggiunto il tracciamento requisiti-componenti \\
 \hline
@@ -69,9 +73,9 @@
 \bigskip
 \begin{tabbing}
 	\hspace*{0.3\textwidth} \= \hspace*{0.5\textwidth} \kill
-	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Freo Matteo} \\
-	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Scortegagna Carlo} \\
-	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Formale} \\
+	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Beggiato Andrea} \\
+	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{} \\
+	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Preliminare} \\
 	\parbox{0.3\textwidth}{\textbf{Uso: }} \> \parbox{0.5\textwidth}{Esterno} \\
 	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{QuiXoft} \\
 							\> \parbox{0.5\textwidth}{Rossi Francesca} \\
@@ -82,8 +86,8 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Specifica Tecnica \\ v0.3.1}}
-\author{Redazione: }
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Specifica Tecnica \\ v0.6.2}}
+\author{Redazione: Freo Matteo, Barbiero Mattia, Scortegagna Carlo}
 \maketitle
 \medskip
 \begin{center}
@@ -242,8 +246,6 @@ Tutte le classi derivano da ActiveRecord, ma questa dipendenza non viene mostrat
 
 \item \textbf{Curriculum}: rappresenta la classe che individua un indirizzo appartenetente ad un corso di laurea.
 
-\item \textbf{DidacticOffice}: rappresenta la classe che gestisce i dati della segreteria. Questa classe e' in associazione polimorfa con la classe User 
-
 \item \textbf{ExpiryDate}: rappresenta la classe che individua la data oltre la quale un docente non potrà più inserire e/o modificare i propri vincoli e preferenze. Successivamente a questa data l'algoritmo di calcolo dello schema d'orario si avvierà. 
 
 \item \textbf{GraduateCourse}: rappresenta la classe che individua un corso di laurea e ne gestisce i relativi dati.
@@ -269,6 +271,8 @@ Questa classe e' in associazione polimorfa con la classe User.
 \newpage
 \section{Tracciamento componenti-requisiti}
 Di seguito è riportato il tracciamento dei requisiti descritti nel documento denominato \textsc{Analisi dei Requisiti} alla sua ultima versione con le componenti descritti nel presente. \\
+\bigskip
+\begin{small}
 \begin{tabular}{|c||c|c|c|c|c|}
 \hline
 \textsc{Requisiti} & \textsc{View} & \textsc{Controller} & \textsc{Model} & \textsc{MiddleMan} & \textsc{Algorithm}\\ \hline \hline
@@ -339,7 +343,7 @@ RIO1.2 & \checkmark & & & & \\
 RID0.0 & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
 \hline
 \end{tabular}
-
+\end{small}
 \section{Flusso di esecuzione}
 La seguente sezione si fa carico di illustrare, con l'utilizzo di diagrammi di attività, i flussi delle varie azioni che gli utenti del sistema SIGEOL hanno la possibilità di compiere.
 Quanto riportato in seguito è da considerarsi passibile di modifiche col procedere della fase di progettazione.
