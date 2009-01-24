@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Specifica tecnica v0.6.2}
+\lfoot{Specifica tecnica v0.6.3}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Specifica tecnica v0.6.2}
+\lfoot{Specifica tecnica v0.6.3}
 \cfoot{}
 \rfoot{}
 }
@@ -45,25 +45,27 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
+\textit{24-01-2009} & 0.6.3 & Sottolineatura dei termini del Glossario \\
+\hline
 \textit{24-01-2009} & 0.6.2 & Correzioni di forma e sintassi \\
 \hline
 \textit{24-01-2009} & 0.6.1 & Lieve correzione nel diagramma delle classi \\
 \hline
-\textit{24-01-2009} & 0.6.0 & Aggiunto il tracciamento requisiti-componenti \\
+\textit{23-01-2009} & 0.6.0 & Aggiunto il tracciamento requisiti-componenti \\
 \hline
-\textit{23-01-2009} & 0.5.0 & Aggiunta il diagramma e la descrizione delle classi \\
+\textit{22-01-2009} & 0.5.0 & Aggiunta il diagramma e la descrizione delle classi \\
 \hline
-\textit{23-01-2009} & 0.4.1 & Correzioni varie di tipo ortografico\\
+\textit{21-01-2009} & 0.4.1 & Correzioni varie di tipo ortografico\\
 \hline
-\textit{23-01-2009} & 0.4.0 & Aggiunto middleman e algorithm \\
+\textit{21-01-2009} & 0.4.0 & Aggiunto middleman e algorithm \\
 \hline
-\textit{23-01-2009} & 0.3.1 & Correzioni varie \\
+\textit{20-01-2009} & 0.3.1 & Correzioni varie \\
 \hline
-\textit{22-01-2009} & 0.3.0 & Aggiunti i flussi di esecuzione \\
+\textit{20-01-2009} & 0.3.0 & Aggiunti i flussi di esecuzione \\
 \hline
-\textit{21-01-2009} & 0.2.0 & Stesura Descrizione dei componenti \\
+\textit{17-01-2009} & 0.2.0 & Stesura Descrizione dei componenti \\
 \hline
-\textit{20-01-2009} & 0.1.0 & Creazione dell'indice \\
+\textit{15-01-2009} & 0.1.0 & Creazione dell'indice \\
 \hline
 \end{tabular}
 \end{center}
@@ -86,7 +88,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Specifica Tecnica \\ v0.6.2}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Specifica Tecnica \\ v0.6.3}}
 \author{Redazione: Freo Matteo, Barbiero Mattia, Scortegagna Carlo}
 \maketitle
 \medskip
@@ -115,7 +117,7 @@ Documento contenente la specifica tecnica per il progetto ''SIGEOL'' commissiona
 \setcounter{page}{1}
 \section{Introduzione}
 \subsection{Scopo del documento}
-Il presente documento denominato \textsc{Specifica tecnica} ha lo scopo di mostrare la struttura del progetto \textit{SIGEOL} e descrivere i componenti che ne fanno parte. 
+Il presente documento denominato \textsc{Specifica tecnica} ha lo scopo di mostra\-re la struttura del progetto \textit{SIGEOL} e descrivere i componenti che ne fanno parte. 
 \subsection{Scopo del prodotto}
 Il progetto sotto analisi, denominato \textit{SIGEOL}, si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. Per maggiori dettagli consultare il documento denominato \textsc{Analisi dei Requisiti} alla sua ultima versione.
 \subsection{Glossario}
@@ -130,10 +132,10 @@ La decomposizione architetturale utilizzata sarà di tipo \underline{Top-down}.
 E' prevista una descrizione generale dell’architettura del sistema, alla quale seguiranno le specifiche dettagliate dei suoi componenti.
 
 
-Per semplificare la progettazione, si utilizzeranno i seguenti pattern:
+Per semplificare la progettazione, si utilizzeranno i seguenti \underline{pattern}:
 \begin{description}
  \item[\textbf{MVC}] 
-Il pattern MVC (Model View Controller) si basa sulla separazione tra i componenti software del sistema, che gestiscono il modo in cui presentare i dati, e i componenti che gestiscono i dati stessi. 
+Il \underline{pattern} MVC (Model View Controller) si basa sulla separazione tra i componenti software del sistema, che gestiscono il modo in cui presentare i dati, e i componenti che gestiscono i dati stessi. 
  \item[\textbf{Façade}]
 Permette, attraverso un'interfaccia più semplice, l'accesso a sottosistemi aventi interfacce complesse e molto diverse tra loro, nonché a blocchi di codice complessi.
 \item[\textbf{REST}]
@@ -142,30 +144,30 @@ REST si riferisce ad un insieme di principi di architetture di rete, i quali del
 
 
 \item[\textbf{Convention Over Configuration}]
-Convention Over Configuration è un paradigma di programmazione che prevede configurazione minima (o addirittura assente) per il programmatore che utilizza un framework che lo rispetti, obbligandolo a configurare solo gli aspetti che si differenziano dalle implementazioni standard o che non rispettano particolari convenzioni di denominazione o simili.
-Significa che Rails prevede delle impostazioni di default per qualsiasi aspetto dell’applicazione. Utilizzando queste convenzioni sarà possibile velocizzare i tempi di sviluppo evitando di realizzare scomodi file di configurazione. L’esempio più chiaro del COC si può notare a livello di modelli: rispettando le convenzioni previste dal framework è possibile realizzare strutture di dati complesse con molte relazioni tra oggetti in pochissimo tempo, in maniera quasi meccanica e soprattutto senza definire nessuna configurazione. Questo concetto differenzia Rails dai framework che prevedono molte righe di configurazione per ogni aspetto dell’applicazione. Con il COC tutto diventa più snello e più dinamico. Ovviamente per situazioni in cui le convenzioni non possano essere rispettate, Rails permette di utilizzare schemi funzionali diversi da quelli previsti.
+Convention Over Configuration è un paradigma di programmazione che prevede configurazione minima (o addirittura assente) per il programmatore che utilizza un \underline{framework} che lo rispetti, obbligandolo a configurare solo gli aspetti che si differenziano dalle implementazioni standard o che non rispettano particolari convenzioni di denominazione o simili.
+Significa che Rails prevede delle impostazioni di default per qualsiasi aspetto dell’applicazione. Utilizzando queste convenzioni sarà possibile velocizzare i tempi di sviluppo evitando di realizzare scomodi file di configurazione. L’esempio più chiaro del COC si può notare a livello di modelli: rispettando le convenzioni previste dal \underline{framework} è possibile realizzare strutture di dati complesse con molte relazioni tra oggetti in pochissimo tempo, in maniera quasi meccanica e soprattutto senza definire nessuna configurazione. Questo concetto differenzia Rails dai \underline{framework} che prevedono molte righe di configurazione per ogni aspetto dell’applicazione. Con il COC tutto diventa più snello e più dinamico. Ovviamente per situazioni in cui le convenzioni non possano essere rispettate, Rails permette di utilizzare schemi funzionali diversi da quelli previsti.
 \item[\textbf{DRY}]
 Questo concetto, fortemente filosofico, prevede che ciascun elemento di un’applicazione debba essere implementato solamente una volta e niente debba essere ripetuto. Questo significa che, mediante Rails, è possibile gestire funzionalità ripetitive con una estrema fattorizzazione del codice (''scrivo una volta e uso più volte'') che facilita sia lo sviluppo iniziale che eventuali modifiche successive del prodotto.
 \item[\textbf{View Helper}]
-Questo pattern disaccoppia il Business Logic dallo strato View, il che facilita
+Questo \underline{pattern} disaccoppia il Business Logic dallo strato View, il che facilita
 la manutenibilità. Aiuta a separare, in fase di sviluppo, la responsabilità
 del web designer e dello sviluppatore.
 \item[\textbf{Active Record}]
-Secondo il pattern Active Record esiste una relazione molto stretta fra tabella e classe, colonne e attributi della classe. 
+Secondo il \underline{pattern} Active Record esiste una relazione molto stretta fra tabella e classe, colonne e attributi della classe. 
 \begin{itemize}
- \item una tabella di un database relazionale è gestita attraverso una classe
+ \item una tabella di un \underline{database} relazionale è gestita attraverso una classe
 \item una singola istanza della classe corrisponde ad una riga della tabella
 \item alla creazione di una nuova istanza viene creata una nuova riga all'interno della tabella, e modificando l'istanza la riga viene aggiornata
 \end{itemize}
 \end{description}
 
 
-Il sistema verrà implementato utilizzando Ruby on Rails, un framework la cui architettura è fortemente ispirata al paradigma Model-View-Controller. 
-Oltre a veicolare lo sviluppo di applicazioni secondo il pattern MVC, Rails segui la filosofia REST imponendo un’ulteriore disciplina nella codifica degli indirizzi garantendo quindi maggior chiarezza e compattezza.
+Il sistema verrà implementato utilizzando \underline{Ruby on Rails}, un \underline{framework} la cui architettura è fortemente ispirata al paradigma Model-View-Controller. 
+Oltre a veicolare lo sviluppo di applicazioni secondo il \underline{pattern} MVC, Rails segui la filosofia REST imponendo un’ulteriore disciplina nella codifica degli indirizzi garantendo quindi maggior chiarezza e compattezza.
 
 
 \subsection{Presentazione dell'architettura generale del sistema}
-Per presentare l'architettura generale del sistema \textit{Sigeol} si utilizzerà il pattern Model-View-Controller(MVC).
+Per presentare l'architettura generale del sistema \textit{Sigeol} si utilizzerà il \underline{pattern} Model-View-Controller(MVC).
 In questo modello i ruoli di presentazione, controllo ed accesso ai dati vengono affidati a componenti diversi e sono tra di loro disaccoppiati.
 
 Sono inoltre previste altre due componenti: Middle Man si occupa di ricevere i compiti che necessitano di un elevato carico di lavoro; Algorithm, invece, risolve il problema del calcolo dell'orario.
@@ -176,8 +178,8 @@ Sono inoltre previste altre due componenti: Middle Man si occupa di ricevere i c
 
 \section{Descrizione dei singoli componenti}
 \subsection{Model}
-L' ActiveRecord è il modulo di Ruby on Rails che gestisce la persistenza dei dati. 
-Il modulo è stato implementato seguendo il pattern Active Record facendo largo uso di convenzioni sui nomi da assegnare a tabelle, classi, colonne e attributi; se non sono presenti configurazioni particolari del modello, sono valide le seguenti convenzioni:
+L' ActiveRecord è il modulo di \underline{Ruby on Rails} che gestisce la persistenza dei dati. 
+Il modulo è stato implementato seguendo il \underline{pattern} Active Record facendo largo uso di convenzioni sui nomi da assegnare a tabelle, classi, colonne e attributi; se non sono presenti configurazioni particolari del modello, sono valide le seguenti convenzioni:
 \begin{itemize}
  \item per ogni modello esiste una tabella avente come nome il nome del modello al plurale e in caratteri minuscoli;
 \item nel caso di modelli con nome composto di più parole, il nome del modello ha la prima lettera di ogni parola; maiuscola, mentre la tabella ha sempre il nome tutto in minuscolo e separa le parole con un trattino basso (underscore);
@@ -185,20 +187,20 @@ Il modulo è stato implementato seguendo il pattern Active Record facendo largo 
 \item ogni tabella ha una colonna id (intero positivo) che identifica univocamente ogni record;
 \end{itemize}
 La classe è descritta in buona parte dalla tabella che rappresenta ed espone i metodi necessari per leggere e scrivere i record.
-Con ActiveRecord è possibile utilizzare diversi tipi di database: SQLite, MySQL, Postgresql, Oracle, IBM DB/2 ed è possibile scrivere driver personalizzati per altri database relazionali.
+Con ActiveRecord è possibile utilizzare diversi tipi di \underline{database}: SQLite, MySQL, Postgresql, Oracle, IBM DB/2 ed è possibile scrivere driver personalizzati per altri \underline{database} relazionali.
 \subsubsection{Relazione d'uso con le altre componenti}
-Questa componente si relaziona con il Controller ed il Middle Man fornendo i dati che vengono richiesti e salvando le eventuali modifiche al database.
+Questa componente si relaziona con il Controller ed il Middle Man fornendo i dati che vengono richiesti e salvando le eventuali modifiche al \underline{database}.
 \subsection{Controller}
-Il modulo che gestisce la parte controller è contenuto all'interno del framework Ruby on Rails ed è chiamato Action Controller.
+Il modulo che gestisce la parte controller è contenuto all'interno del \underline{framework} \underline{Ruby on Rails} ed è chiamato Action Controller.
 Questo, assieme all'Action View(confronta sezione \ref{view}) è integrato all'interno di un pacchetto chiamato Action Pack.
 
 Ogni controller è una normale classe, ed ogni metodo pubblico definito in questa classe corrisponde ad un'azione specifica.
 
 
-Ruby on Rails riconosce il tipo di richiesta pervenuta codificando le informazioni all'interno di un URL e si serve di un componente chiamato Rounting, per determinare l'azione cui deve essere sottoposta la richiesta.
+\underline{Ruby on Rails} riconosce il tipo di richiesta pervenuta codificando le informazioni all'interno di un URL e si serve di un componente chiamato Rounting, per determinare l'azione cui deve essere sottoposta la richiesta.
 Il componente Routing traccia una mappatura che permette a Rails di collegare gli URL esterni e l'azione contenuta in una determinata classe Controller.
 
-Ad esempio, dato un URL nel formato \textit{controller/azione/id}, viene identificato il Controller \textit{controller} e viene istanziato. A questo punto l'oggetto richiama il metodo con nome \textit{azione} e con parametro \textit{id}. Il Controller infine cercherà di visualizzare un template con lo stesso nome dell'azione. 
+Ad esempio, dato un URL nel formato \textit{controller/azione/id}, viene identificato il Controller \textit{controller} e viene istanziato. A questo punto l'oggetto richiama il metodo con nome \textit{azione} e con parametro \textit{id}. Il Controller infine cercherà di visualizzare un \underline{template} con lo stesso nome dell'azione. 
 \subsubsection{Relazione d'uso con le altre componenti}
 Questa componente si relazione con la View, il Model ed il Middle Man. 
 
@@ -206,28 +208,31 @@ Il Controller funge da intermediario fornendo i dati alla View attraverso il Mod
 
 Grazie alla sua stretta relazione con il il Middle Man può delegare ad esso le operazioni più onerose in termini di calcolo e tempo, e richiederne lo stato di avanzamento di quest'ultime.
 \subsection{View}\label{view}
- Il modulo Action View contenuto nel framework Ruby on Rails, offre meccanismi avanzati per il riutilizzo del codice, tramite l'uso di viste, layouts, partials e di metodi helper pensati per generare ad esempio pagine XHTML.
+ Il modulo Action View contenuto nel \underline{framework} \underline{Ruby on Rails}, offre meccanismi avanzati per il riutilizzo del codice, tramite l'uso di viste, \underline{layouts}, partials e di metodi helper pensati per generare ad esempio pagine \underline{XHTML}.
 I metodi helper sono semplici metodi pubblici di una classe Controller.
 \subsubsection{Relazione d'uso con le altre componenti}
 Questa componente si trova in relazione solamente con il Controller. Converte infatti le azioni che l'utente effettua attraverso la View in richieste a metodi propri del Controller.
 \subsection{Middle Man}
-La componente Middle Man è estranea al pattern MVC e si occupa di gestire quelle richieste che a causa del tempo di calcolo, renderebbero inutilizzabile ogni altra funzione di consultazione dell'applicazione web. Questa componente sarà implementata tramite un plugin per Ruby on Rails denominato BackgroundRB.
+La componente Middle Man è estranea al \underline{pattern} MVC e si occupa di gestire quelle richieste che a causa del tempo di calcolo, renderebbero inutilizzabile ogni altra funzione di consultazione dell'applicazione web. Questa componente sarà implementata tramite un \underline{plugin} per \underline{Ruby on Rails} denominato BackgroundRB.
 \subsubsection{Relazione d'uso con le altre componenti}
 Questa componente è in relazione con il Controller, il Model e l'Algorithm. 
 
 Per soddifare le richieste del Controller preleva, grazie alla sua relazione con il Model, i dati da inviare alla componente Algorithm. Inoltra ad ogni richiesta pervenuta dal Controller informerà lo stesso dell'avanzamento del compito delegatogli, o restituirà i risultati appena disponibili.
 \subsection{Algorithm}
-La componente Algorithm non inclusa nel pattern MVC si occupa di calcolare effettivamente l'orario delle lezioni, rispettando i vincoli inseriti nel sistema. Dagli studi di ricerca operativa sono noti diversi algoritmi per la ricerca di una soluzione ottimale di un problema sottoposto a vincoli. E' in fase di valutazione, da parte del team QuiXoft, la scelta del particolare tipo di algoritmo.
+La componente Algorithm non inclusa nel \underline{pattern} MVC si occupa di calcolare effettivamente l'orario delle lezioni, rispettando i vincoli inseriti nel sistema. Dagli studi di ricerca operativa sono noti diversi algoritmi per la ricerca di una soluzione ottimale di un problema sottoposto a vincoli. E' in fase di valutazione, da parte del team QuiXoft, la scelta del particolare tipo di algoritmo.
 \subsection{Relazioni d'uso di altre componenti}
 Questa componente si trova in relazione solo con la componente Middle Man. Algorithm infatti restituisce i risultati dei suoi calcoli direttamente alla componente Middle Man.
 
 \section{Diagrammi delle classi}
 \subsection{Model}
+Rails preferisce le convenzioni alle configurazioni, e cerca di evitare allo sviluppatore il peso di dover specificare l'associazione tra tabelle e classi.
+Non è quindi necessario illustrare nella specifica tecnica la struttura del database, in quanto verrà implementato automanticamente da Rails a partire dalla struttura delle classi. 
 
-
-Tutte le classi derivano da ActiveRecord, ma questa dipendenza non viene mostrata nel diagramma sottostante .
+L'utilizzo dell'inglese nella scelta dei nomi delle classi è necessario per rispettare le convenzioni di Rails.
+I nomi delle tabelle del database di sistema saranno semplicemente il plurale dei nomi delle classi qui di seguito specificate:
+\\
 \begin{center}
-\includegraphics[scale=0.3]{images/class_diagram.png}
+\includegraphics[scale=0.33]{images/class_diagram.png}
 \end{center}
 
 \begin{itemize}
@@ -235,7 +240,7 @@ Tutte le classi derivano da ActiveRecord, ma questa dipendenza non viene mostrat
 
 \item \textbf{Belong}: rappresenta la classe che individua se un determinato insegnamento, inserito in un preciso corso di laurea, e' opzionale o meno.
 
-\item \textbf{Buildings}: rappresenta la classe che gestisce i dati di un complesso. Quest'ultimo possiede aule, laboratori e uffici dei docenti. 
+\item \textbf{Building}: rappresenta la classe che gestisce i dati di un complesso. Quest'ultimo possiede aule, laboratori e uffici dei docenti. 
 
 \item \textbf{Capability}: rappresenta la classe che gestisce le informazioni di un determinato servizio, disponibile per gli utenti del sistema.Ogni tipologia di utente ha uno specifico numero di servizi a sua disposizione.
 
@@ -257,11 +262,11 @@ Le fascie temporali sono generate in base alla durata e alla struttura del corso
 
 \item \textbf{Teaching}: rappresenta la classe che gestisce i dati relativi ad un determinato insegnamento.
 
-\item \textbf{Timetable}: rappresenta la classe che permette di individuare lo schema d'orario specifico di un corso di laurea e di un periodo (bimestre/trimestre/semestre) 
+\item \textbf{Timetable}: rappresenta la classe che permette di individuare lo schema d'orario specifico di un corso di laurea e di un periodo (bimestre, trimestre, semestre) 
 
 \item \textbf{TimetableEntry}: rappresenta la classe che individua un giorno, un'ora di inizio e un'ora di fine di un determinato insegnamento.
 
-\item \textbf{User}: rappresenta la classe che gestisce i dati di login. In particolare possiede i seguenti due attributi: mail, che funge da username e password che permette l'autenticazione sicura.
+\item \textbf{User}: rappresenta la classe che gestisce i dati di \underline{login}. In particolare possiede i seguenti due attributi: mail, che funge da username e password che permette l'\underline{autenticazione} sicura.
 \subitem \textbf{DidacticOffice}: rappresenta la classe che gestisce i dati della segreteria. 
 Questa classe e' in associazione polimorfa con la classe User 
 \subitem \textbf{Teacher}: rappresenta la classe che gestisce i dati personali di un docente.
@@ -270,7 +275,7 @@ Questa classe e' in associazione polimorfa con la classe User.
 
 \newpage
 \section{Tracciamento componenti-requisiti}
-Di seguito è riportato il tracciamento dei requisiti descritti nel documento denominato \textsc{Analisi dei Requisiti} alla sua ultima versione con le componenti descritti nel presente. \\
+Di seguito è riportato il tracciamento dei requisiti descritti nel documento denominato \textsc{Analisi dei Requisiti} alla sua ultima versione con le componenti descritti nel presente.\\
 \bigskip
 \begin{small}
 \begin{tabular}{|c||c|c|c|c|c|}
@@ -349,23 +354,23 @@ La seguente sezione si fa carico di illustrare, con l'utilizzo di diagrammi di a
 Quanto riportato in seguito è da considerarsi passibile di modifiche col procedere della fase di progettazione.
 \newpage
 \subsection{Login utenti}
-La Segreteria Didattica e tutti Docenti registrati hanno la possibilità di accedere alla pagina di login per inserire le proprie credenziali ed accedere alle funzioni aggiuntive che il sistema SIGEOL mette loro a disposizione. Il Presidente del CCS viene considerato un Docente, ma con in più la possibilità di accedere a tutte le funzioni tipiche della Segreteria Didattica.
+La Segreteria Didattica e tutti Docenti registrati hanno la possibilità di accedere alla pagina di \underline{login} per inserire le proprie credenziali ed accedere alle funzioni aggiuntive che il sistema SIGEOL mette loro a disposizione. Il Presidente del CCS viene considerato un Docente, ma con in più la possibilità di accedere a tutte le funzioni tipiche della Segreteria Didattica.
 
-Al termine della fase di login, l'utente verrà reindirizzato alla pagina principale di SIGEOL e potrà espletare le funzioni a sua disposizione.\\
+Al termine della fase di \underline{login}, l'utente verrà reindirizzato alla pagina principale di SIGEOL e potrà espletare le funzioni a sua disposizione.\\
 \begin{center}
  \includegraphics[scale=1]{images/login.png}
 \end{center}
 
 \newpage
 \subsection{Inserimento nuovo Docente}
-La Segreteria Didattica e il Presidente del CSS hanno la possibilità, dopo aver effettuato con successo il login, di inserire un nuovo Docente nel sistema SIGEOL. Verranno richiesti nome, cognome ed indirizzo email. Se tali dati vengono inseriti e il Docente non è già presente nel DB di sistema, viene automaticamente inviata una email al Docente invitato, in cui gli viene indicato il link necessario per procedere alla creazione del suo account.
+La Segreteria Didattica e il Presidente del CCS hanno la possibilità, dopo aver effettuato con successo il \underline{login}, di inserire un nuovo Docente nel sistema SIGEOL. Verranno richiesti nome, cognome ed indirizzo email. Se tali dati vengono inseriti e il Docente non è già presente nel DB di sistema, viene automaticamente inviata una email al Docente invitato, in cui gli viene indicato il \underline{link} necessario per procedere alla creazione del suo \underline{account}.
 \begin{center}
  \includegraphics[scale=0.9]{images/inserimento_docente.png}
 \end{center}
 
 \newpage
 \subsection{Registrazione Docente}
-Ogni docente, dopo aver ricevuto la mail di invito al sistema SIGEOL, utilizza il link ricevuto per accedere al form di scelta password e di inserimento degli altri dati personali. La scelta della password seguirà rigide regole di sintassi, che verranno controllate dinamicamente durante l'inserimento. Tali regole prevederanno un numero minimo di caratteri, la presenza obbligatoria di cifre o simboli e altre convenzioni che saranno decise dal team QuiXoft, in collaborazione con il Committente, durante il proseguimento della fase di progettazione. La password dovrà poi essere confermata in un successivo campo dati, per evitare spiacevoli errori di battitura.
+Ogni docente, dopo aver ricevuto la mail di invito al sistema SIGEOL, utilizza il \underline{link} ricevuto per accedere al form di scelta password e di inserimento degli altri dati personali. La scelta della password seguirà rigide regole di sintassi, che verranno controllate dinamicamente durante l'inserimento. Tali regole prevederanno un numero minimo di caratteri, la presenza obbligatoria di cifre o simboli e altre convenzioni che saranno decise dal team QuiXoft, in collaborazione con il Committente, durante il proseguimento della fase di progettazione. La password dovrà poi essere confermata in un successivo campo dati, per evitare spiacevoli errori di battitura.
 
 Al termine della prcedura la password scelta e gli altri dati inseriti verranno memorizzati in modo sicuro sul DB di sistema.
 \begin{center}
@@ -395,7 +400,7 @@ Le similitudini tra tutte le sopra citate modifiche hanno portato allo sviluppo 
 
 \newpage
 \subsection{Inserimento vincoli e preferenze da parte dei Docenti}
-Tutti i docenti cha abbiano effettuato correttamente il login hanno la possibilità di inserire i loro vincoli e le loro preferenze. La procedura è similare, per tanto è rappresentata dallo stesso diagramma di attività.
+Tutti i docenti cha abbiano effettuato correttamente il \underline{login} hanno la possibilità di inserire i loro vincoli e le loro preferenze. La procedura è similare, per tanto è rappresentata dallo stesso diagramma di attività.
 
 La differenza sostanziale nell'inserimento di un vincolo o di una preferenza è che solo il vincolo, tra i due, prevede una motivazione, mentre solo la preferenza prevede un livello di priorità. L'assegnazione della priorità di una preferenza è automatizzata dal sistema: il Docente dovrà solamente decidere l'ordine di importanza delle proprie preferenze.
 
@@ -414,12 +419,12 @@ L'algoritmo proporrà un orario soddisfacendo tutti i requisiti presenti e tenta
 
 \newpage
 \subsection{Consultazione dell'orario}
-Qualsiasi utente ha la possibilità di consultare gli orari generati dal sistema SIGEOL, anche senza effettuare alcuna operazione di login. Sarà sufficiente scegliere il Corso di Laurea ed il periodo e verrà visualizzato il relativo orario.
+Qualsiasi utente ha la possibilità di consultare gli orari generati dal sistema SIGEOL, anche senza effettuare alcuna operazione di \underline{login}. Sarà sufficiente scegliere il Corso di Laurea ed il periodo e verrà visualizzato il relativo orario.
 
 Cliccando su un determinato insegnamento sarà possibile consultarne le informazioni.
 Quest'operazione può essere compiuta quante volte si vuole, senza modificare la visualizzazione dell'orario: le informazioni saranno infatti mostrate su una nuova pagina o su una finestra pop-up. Con il proseguire della fase di progettazione verrà definitivamente decisa la forma di visualizzazione.
 
-In ogni momento è data la possibilità all'utente di generare un PDF contenente l'orario visualizzato: sarà possibili visualizzarlo all'interno del proprio browser oppure salvarlo.
+In ogni momento è data la possibilità all'utente di generare un \underline{PDF} contenente l'orario visualizzato: sarà possibili visualizzarlo all'interno del proprio \underline{browser} oppure salvarlo.
 \begin{center}
  \includegraphics[scale=0.85]{images/consultazione_orario.png}
 \end{center}
