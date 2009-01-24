@@ -45,9 +45,9 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
-\textit{23-01-2009} & 0.4.2 & Correzioni varie \\
+\textit{23-01-2009} & 0.4.1 & Correzioni varie di tipo ortografico\\
 \hline
-\textit{23-01-2009} & 0.4.1 & Aggiunto middleman e algorithm \\
+\textit{23-01-2009} & 0.4.0 & Aggiunto middleman e algorithm \\
 \hline
 \textit{23-01-2009} & 0.3.1 & Correzioni varie \\
 \hline
@@ -152,79 +152,23 @@ Secondo il pattern Active Record esiste una relazione molto stretta fra tabella 
 \end{description}
 
 
-Il sistema verrà implementato utilizzando Ruby on rails, un framework la cui architettura è fortemente ispirata al paradigma Model-View-Controller. 
-Oltre a veicolare lo sviluppo di applicazioni secondo il pattern MVC, il RESTful Rails impone un’ulteriore disciplina nella codifica che garantisce maggiore compattezza, migliore leggibilità, “pretty-urling” e semplicità nella costruzione di API.
+Il sistema verrà implementato utilizzando Ruby on Rails, un framework la cui architettura è fortemente ispirata al paradigma Model-View-Controller. 
+Oltre a veicolare lo sviluppo di applicazioni secondo il pattern MVC, Rails segui la filosofia REST imponendo un’ulteriore disciplina nella codifica degli indirizzi garantendo quindi maggior chiarezza e compattezza.
+
 
 \subsection{Presentazione dell'architettura generale del sistema}
 Per presentare l'architettura generale del sistema \textit{Sigeol} si utilizzerà il pattern Model-View-Controller(MVC).
 In questo modello i ruoli di presentazione, controllo ed accesso ai dati vengono affidati a componenti diversi e sono tra di loro disaccoppiati.
 
-\begin{center}
-\includegraphics[scale=0.3]{images/component_diagram.png}\end{center}
+Sono inoltre previste altre due componenti: Middle Man si occupa di ricevere i compiti che necessitano di un elevato carico di lavoro; Algorithm, invece, risolve il problema del calcolo dell'orario.
 
 \begin{center}
- \textbf{View}
+\includegraphics[scale=0.3]{images/component_diagram.png}
 \end{center}
-E' il primo livello che si incontra e contiene i componenti che costituiscono l'interfaccia grafica, tramite la quale l'utente interagisce con il sistema \textit{Sigeol}.
-La View delega al Controller l'esecuzione dei processi richiesti dall'utente dopo averne catturato gli input e la
-scelta delle eventuali schermate da presentare.
-ActionView gestisce l'aspetto delle pagine da restituire al client. Sono per lo più file .rhtml che contengono delle direttive scritte in Ruby immerse nel codice XHTML.
-
-\begin{center}
- \textbf{Model}
-\end{center}
-Definisce i dati e le operazioni che possono essere eseguite su questi. Quindi definisce le regole di business per l'interazione con i dati, esponendo alla View ed al Controller rispettivamente le funzionalità per l'accesso e l'aggiornamento.
-Viene gestito da una libreria chiamata ActiveRecord, che si occupa di tutta la logica di business e che permette l'accesso a numerosi DataBase bastati su SQL. Con questa libreria si stabilisce un collegamento tra le classi scritte in Ruby e le tabelle del DB.
-
-\begin{center}
- \textbf{Controller}
-\end{center}
-Questo componente ha la responsabilità di trasformare le interazioni dell'utente della View in azioni eseguite dal Model. Ma il Controller non rappresenta un semplice "ponte" tra View e Model. Realizzando la mappatura tra input dell'utente e processi eseguiti dal Model e selezionando le schermate della View richieste, il Controller implementa la logica di controllo dell'applicazione.
-
-Gestisce le richieste del browser e facilita la comunicazione fra Model e View. Tutti i controller creati dall'utente ereditano da ActionController. L'ApplicationController raccoglie funzionalità condivise nell'intera applicazione.
-In particolare verranno inserite le azioni CRUD (Create-Read-Update-Delete) per l'oggetto e le varie funzioni che possono servirci per la nostra applicazione.
-I Controller sono gestiti dal componente ActionController che fa parte del pacchetto di moduli rails chiamato Action Pack.
-I Controller sono rappresentati dalla libreria ActionController.
-Gestisce le richieste del browser e facilita la comunicazione fra Model e View. Tutti i controller creati dall'utente ereditano da ActionController. L'ApplicationController raccoglie funzionalità condivise nell'intera applicazione.
-In particolare verranno inserite le azioni CRUD (Create-Read-Update-Delete) per l'oggetto e le varie funzioni che possono servirci per la nostra applicazione.
-
-
 
 \section{Descrizione dei singoli componenti}
-\subsubsection{Parte Controller}
-\begin{center}
- \textbf{Action Controller}
-\end{center}
-Il modulo che gestisce la parte controller è contenuto all'interno del framework Ruby on rails ed è chiamato Action Controller.
-Questo, assieme all'Action View(vedi Parte view) è integrato all'interno di un pacchetto chiamato Action Pack.
-%\includegraphics[scale=0.50]{images/SIGEOL.png}
-
-
-Ogni controller è una normale classe, ed ogni metodo pubblico definito in questa classe corrisponde ad un'azione specifica.
-Ad ogni azione definita corrisponde una vista. 
-
-Ruby on Rails riconosce il tipo di richiesta pervenuta codificando le informazioni all'interno di un URL e si serve di un componente chiamato Rounting, per determinare l'azione cui deve essere sottoposta la richiesta.
-Il componente \textbf{Routing} traccia una mappatura che permette a Rails di collegare gli URL esterni e l'azione contenuta in una determinata classe Controller.
-
-
-Ad esempio, Dato un URL nel formato \textit{nomecontroller/azione/id}, viene identificato il Controller \textit{nomecontroller} e viene istanziato. A questo punto l'oggetto richiama il metodo con nome \textit{azione} e con parametro \textit{id}. Il Controller infine cercherà di visualizzare un template con lo stesso nome dell'azione. 
-
-\subsubsection{Parte View}
-\begin{center}
- \textbf{Action View}
-\end{center}
- Il modulo Action View contenuto nel framework Ruby on Rails, offre meccanismi avanzati per il riutilizzo del codice, tramite l'uso di viste e di metodi helper pensati per generare ad esempio pagine XHTML.
-I metodi helper sono semplici metodi pubblici di una classe Controller.
-
-\subsubsection{Parte Middle Man}
-Il BackgroundRb è il job server e scheduler di Ruby. 
-Il suo uso principale è quello di eseguire tasks di lunga durata separatamente dal ciclo dell'http request/respons in modo da non mettere in attesa l'esecuzione dell'applicazione.
-
-\subsubsection{Parte Algorithm}
-Il componente TimeTableScheduler implementa l'algoritmo di generazione dell'orario.
-
-\subsubsection{Parte Model}
-L'ActiveRecord è il modulo di Ruby on Rails che gestisce la persistenza dei dati. 
+\subsection{Model}
+L' ActiveRecord è il modulo di Ruby on Rails che gestisce la persistenza dei dati. 
 Il modulo è stato implementato seguendo il pattern Active Record facendo largo uso di convenzioni sui nomi da assegnare a tabelle, classi, colonne e attributi; se non sono presenti configurazioni particolari del modello, sono valide le seguenti convenzioni:
 \begin{itemize}
  \item per ogni modello esiste una tabella avente come nome il nome del modello al plurale e in caratteri minuscoli;
@@ -234,15 +178,45 @@ Il modulo è stato implementato seguendo il pattern Active Record facendo largo 
 \end{itemize}
 La classe è descritta in buona parte dalla tabella che rappresenta ed espone i metodi necessari per leggere e scrivere i record.
 Con ActiveRecord è possibile utilizzare diversi tipi di database: SQLite, MySQL, Postgresql, Oracle, IBM DB/2 ed è possibile scrivere driver personalizzati per altri database relazionali.
-\begin{center}
-\includegraphics[scale=0.3]{images/class_diagram.png}\end{center}
+\subsubsection{Relazione d'uso con le altre componenti}
+Questa componente si relaziona con il Controller ed il Middle Man fornendo i dati che vengono richiesti e salvando le eventuali modifiche al database.
+\subsection{Controller}
+Il modulo che gestisce la parte controller è contenuto all'interno del framework Ruby on Rails ed è chiamato Action Controller.
+Questo, assieme all'Action View(confronta sezione \ref{view}) è integrato all'interno di un pacchetto chiamato Action Pack.
+
+Ogni controller è una normale classe, ed ogni metodo pubblico definito in questa classe corrisponde ad un'azione specifica.
 
 
+Ruby on Rails riconosce il tipo di richiesta pervenuta codificando le informazioni all'interno di un URL e si serve di un componente chiamato Rounting, per determinare l'azione cui deve essere sottoposta la richiesta.
+Il componente Routing traccia una mappatura che permette a Rails di collegare gli URL esterni e l'azione contenuta in una determinata classe Controller.
+
+Ad esempio, dato un URL nel formato \textit{controller/azione/id}, viene identificato il Controller \textit{controller} e viene istanziato. A questo punto l'oggetto richiama il metodo con nome \textit{azione} e con parametro \textit{id}. Il Controller infine cercherà di visualizzare un template con lo stesso nome dell'azione. 
+\subsubsection{Relazione d'uso con le altre componenti}
+Questa componente si relazione con la View, il Model ed il Middle Man. 
+
+Il Controller funge da intermediario fornendo i dati alla View attraverso il Model. Inoltre sceglie quale view renderizzare a seconda della richiesta pervenuta.
+
+Grazie alla sua stretta relazione con il il Middle Man può delegare ad esso le operazioni più onerose in termini di calcolo e tempo, e richiederne lo stato di avanzamento di quest'ultime.
+\subsection{View}\label{view}
+ Il modulo Action View contenuto nel framework Ruby on Rails, offre meccanismi avanzati per il riutilizzo del codice, tramite l'uso di viste, layouts, partials e di metodi helper pensati per generare ad esempio pagine XHTML.
+I metodi helper sono semplici metodi pubblici di una classe Controller.
+\subsubsection{Relazione d'uso con le altre componenti}
+Questa componente si trova in relazione solamente con il Controller. Converte infatti le azioni che l'utente effettua attraverso la View in richieste a metodi propri del Controller.
+\subsection{Middle Man}
+La componente Middle Man è estranea al pattern MVC e si occupa di gestire quelle richieste che a causa del tempo di calcolo, renderebbero inutilizzabile ogni altra funzione di consultazione dell'applicazione web. Questa componente sarà implementata tramite un plugin per Ruby on Rails denominato BackgroundRB.
+\subsubsection{Relazione d'uso con le altre componenti}
+Questa componente è in relazione con il Controller, il Model e l'Algorithm. 
+
+Per soddifare le richieste del Controller preleva, grazie alla sua relazione con il Model, i dati da inviare alla componente Algorithm. Inoltra ad ogni richiesta pervenuta dal Controller informerà lo stesso dell'avanzamento del compito delegatogli, o restituirà i risultati appena disponibili.
+\subsection{Algorithm}
+La componente Algorithm non inclusa nel pattern MVC si occupa di calcolare effettivamente l'orario delle lezioni, rispettando i vincoli inseriti nel sistema. Dagli studi di ricerca operativa sono noti diversi algoritmi per la ricerca di una soluzione ottimale di un problema sottoposto a vincoli. E' in fase di valutazione, da parte del team QuiXoft, la scelta del particolare tipo di algoritmo.
 \subsection{Relazioni d'uso di altre componenti}
-\subsection{Interfacce con e relazioni di uso da altre componenti}
-\subsection{Attività svolte e dati trattati}
-\section{Stime di fattibilità e di bisogno di risorse}
-\section{Tracciamento della relazione componenti-requisiti}
+Questa componente si trova in relazione solo con la componente Middle Man. Algorithm infatti restituisce i risultati dei suoi calcoli direttamente alla componente Middle Man.
+
+\begin{center}
+\includegraphics[scale=0.3]{images/class_diagram.png}
+\end{center}
+
 \section{Flusso di esecuzione}
 La seguente sezione si fa carico di illustrare, con l'utilizzo di diagrammi di attività, i flussi delle varie azioni che gli utenti del sistema SIGEOL hanno la possibilità di compiere.
 Quanto riportato in seguito è da considerarsi passibile di modifiche col procedere della fase di progettazione.
