@@ -15,7 +15,7 @@
 \lhead{QuiXoft - Progetto SIGEOL}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Glossario v1.2.0}
+\lfoot{Glossario v1.2.1}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +27,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Glossario v1.2.0}
+\lfoot{Glossario v1.2.1}
 \cfoot{}
 \rfoot{}
 }
@@ -43,6 +43,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{24-01-2009} & 1.2.1 & Correzioni varie\\
 \hline
 \textit{23-01-2009} & 1.2.0 & Aggiunta di alcune definizioni\\
 \hline
@@ -83,7 +85,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Glossario \\ v1.2.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Glossario \\ v1.2.1}}
 \author{Redazione: Carlo Scortegagna}
 \maketitle
 \medskip
@@ -227,6 +229,7 @@ Documento che definisce i termini usati nei documenti ufficiali dell’azienda Q
 \smallskip
 \normalsize
 \begin{description}
+	\item[Pattern:] nell'ingegneria del software è una soluzione progettuale generale a un problema ricorrente. Esso non è una libreria o un componente di software riusabile, quanto una descrizione o un modello da applicare per risolvere un problema che può presentarsi in diverse situazioni durante la progettazione e lo sviluppo del software.
 	\item[Pdf:] il Portable Document Format, comunemente abbreviato Pdf, è un formato di file basato su un linguaggio di descrizione di pagina sviluppato da Adobe per rappresentare documenti in modo indipendente dall'hardware e dal software utilizzati per generarli o per visualizzarli. Ogni documento redatto dal team QuiXoft viene esportato in questo formato.
 	\item[Plugin:] programma non autonomo che interagisce con un altro programma per ampliarne le funzioni.
 	\item[Portabilità:] adattamento o una modifica di un componente, volto a consentirne l'uso in un ambiente di esecuzione diverso da quello originale. In una più moderna accezione, si parla di portabilità di un componente software o di un documento intendendo che può essere utilizzato su diverse piattaforme senza apportare alcuna modifica.
@@ -261,6 +264,7 @@ Documento che definisce i termini usati nei documenti ufficiali dell’azienda Q
 \begin{description}
 	\item[Template:] documento o programma dove, come in un foglio semicompilato cartaceo, su una struttura generica o standard esistono spazi temporaneamente "bianchi" da riempire successivamente.
 	\item[Ticket:] assegnazione di un determinato compito ad un componente del team di sviluppo.
+	\item[Top-down:] visione generale del sistema senza scendere nel dettaglio di alcuna delle sue parti. Ogni parte del sistema è successivamente rifinita aggiungendo maggiori dettagli dalla progettazione. Ogni nuova parte così ottenuta può quindi essere nuovamente rifinita, specificando ulteriori dettagli finché la specifica completa è sufficientemente dettagliata da validare il modello. Il modello top-down è spesso progettato con l'ausilio di scatole nere che semplificano il riempimento ma non consentono di capirne il meccanismo elementare.
 \end{description}
 \bigskip
 \Huge U \bigskip
