@@ -1,0 +1,47 @@
+\documentclass[10pt]{beamer}
+
+\usetheme{sidebar}
+\usepackage[italian]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage {eurosym}
+\setbeamercovered{transparent}
+
+%
+% The following info should normally be given in you main file:
+%
+\setbeamertemplate{footline}{
+\hfill \begin{center}
+ \textbf{Pagina \insertframenumber, di \inserttotalframenumber }
+\end{center}
+
+}
+\title{Revisione di progetto preliminare}
+\author{Team QuiXoft}
+\date{25 Gennaio 2008}
+
+
+\begin{document}
+\transduration{1}
+
+\frame{
+	\transsplitverticalin
+	\titlepage 
+\begin{center}
+ \includegraphics[scale=0.20]{logo.png}
+\end{center}
+}
+\part{<<Nome parte>>}
+
+\frame{
+	\transsplitverticalin
+	\partpage }
+
+\section{<<nome sezione>>}
+\subsection{<<nome sottosezione>>}
+\frame{
+	\frametitle{<<nome sezione>>}
+  \framesubtitle{<<nome sottosezione>>}
+    \transsplitverticalin
+	 }
+
+\end{document}
