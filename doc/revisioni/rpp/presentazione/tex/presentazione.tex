@@ -70,7 +70,6 @@
 \begin{Large}\textbf{Diagramma dei componenti}\end{Large}
 	\begin{center}
  \includegraphics[scale=0.15]{images/diagramma_componenti.pdf}
- % PresentazioneGenerali.jpg: 794x1123 pixel, 72dpi, 28.01x39.62 cm, bb=0 0 794 1123
 \end{center}
  \transsplitverticalin
 }
@@ -78,26 +77,53 @@
  \frametitle{Specifica tecnica}
  \framesubtitle{Descrizione dei componenti}
 \begin{Large}\textbf{Componente View}\end{Large}
-
+\begin{itemize}
+ \item converte le azioni dell'utente in richieste a metodi propri del Controller
+\end{itemize}
+%Il modulo Action View contenuto nel \underline{framework} \underline{Ruby on Rails}, offre meccanismi avanzati per il riutilizzo del codice, tramite l'uso di viste, \underline{layouts}, partials e di metodi helper pensati per generare ad esempio pagine \underline{XHTML}.
  \transsplitverticalin
 }
 \frame{
  \frametitle{Specifica tecnica}
  \framesubtitle{Descrizione dei componenti}
 \begin{Large}\textbf{Componente Controller}\end{Large}
-
+\begin{itemize}
+ \item Action Controller: modulo che gestisce la parte controller;
+ \item Ruby on Rails riconosce si serve di un componente chiamato Rounting, per determinare l'azione;
+ Es: URL nel formato \textit{controller/azione/id}
+\begin{enumerate}
+\item viene identificato il Controller \textit{controller}
+\item la classe corrispondente viene istanziata
+\item l'oggetto richiama il metodo con nome \textit{azione} e con parametro \textit{id}
+\item il Controller infine cercherà di visualizzare un \underline{template} con lo stesso nome dell'azione. 
+\end{enumerate}	
+\item il Controller funge da intermediario fornendo i dati alla View attraverso il Model;
+\item sceglie quale view renderizzare a seconda della richiesta pervenuta;
+\end{itemize}
  \transsplitverticalin
 }\frame{
  \frametitle{Specifica tecnica}
  \framesubtitle{Descrizione dei componenti}
 \begin{Large}\textbf{Componente Model}\end{Large}
-
+\begin{itemize}
+ \item ActiveRecord: modulo che gestisce la persistenza dei dati;
+\item largo uso di convenzioni sui nomi da assegnare a tabelle, classi, colonne e attributi;
+\item la classe è descritta dalla tabella che rappresenta ed espone i metodi necessari per leggere e scrivere i record;
+\item si relaziona con il Controller ed il Middle Man fornendo i dati che vengono richiesti e salvando le eventuali modifiche al \underline{database}.
+\end{itemize}
  \transsplitverticalin
 }
 \frame{
  \frametitle{Specifica tecnica}
  \framesubtitle{Descrizione dei componenti}
 \begin{Large}\textbf{Componente MiddleMan}\end{Large}
+\begin{itemize}
+ \item componente estranea al pattern MVC;
+\item estire quelle richieste che a causa del tempo di calcolo, renderebbero inutilizzabile ogni altra funzione di consultazione dell'applicazione web.
+\item implementata tramite un \underline{plugin} per \underline{Ruby on Rails} denominato BackgroundRB
+\item soddifare le richieste del Controller preleva, grazie alla sua relazione con il Model, i dati da inviare alla componente Algorithm.
+\item informerà il controller lo stesso dell'avanzamento del compito delegatogli, o restituirà i risultati appena disponibili.
+\end{itemize}
 
  \transsplitverticalin
 }
@@ -105,7 +131,11 @@
  \frametitle{Specifica tecnica}
  \framesubtitle{Descrizione dei componenti}
 \begin{Large}\textbf{Componente Algorithm}\end{Large}
-
+\begin{itemize}
+ \item non inclusa nel \underline{pattern} MVC 
+\item calcolare effettivamente l'orario delle lezioni, rispettando i vincoli inseriti nel sistema.
+\item restituisce i risultati dei suoi calcoli direttamente alla componente Middle Man.
+\end{itemize}
  \transsplitverticalin
 }
 
