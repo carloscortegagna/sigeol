@@ -1,6 +1,4 @@
-#!/usr/bin/ruby1.8
-
-#!/usr/local/bin/ruby
+#!/home/pigno/jruby-1.1.5/bin/jruby
 #
 # You may specify the path to the FastCGI crash log (a log of unhandled
 # exceptions which forced the FastCGI instance to exit, great for debugging)

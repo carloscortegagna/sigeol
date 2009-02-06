@@ -1,6 +1,4 @@
-#!/usr/bin/ruby1.8
-
-#!/usr/local/bin/ruby
+#!/home/pigno/jruby-1.1.5/bin/jruby
 
 require File.dirname(__FILE__) + "/../config/environment" unless defined?(RAILS_ROOT)
 
