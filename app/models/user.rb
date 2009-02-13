@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :mail,
                           :message=>"La Mail è già presente",
                           :on => :save or :create or :update
+
   #la mail deve essere del tipo account@qualcosa.qualcosa.it oppure account@qualcosa.qualcosa.it
   validates_format_of :mail,
                      :with => /([^@ t]{8,12})+@+(([^@ t]{1,12})+\.+[a-z]{2,3})|(([^@ t]{1,12})+\.+([^@ t]{1,12})+\.+[a-z]{2,3})/,
@@ -44,7 +45,8 @@ class User < ActiveRecord::Base
                      :on => :save or :create or :update
 
   #l'utente deve essere specificato
-  validates_presence_of :specified
+  validates_presence_of :specified,
+                        :message=>"Utente non specificato",
 
   def self.authenticate(mail, password)
     sha1 = Digest::SHA1.hexdigest(password)
