@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
 
   #l'utente deve essere specificato
   validates_presence_of :specified,
-                        :message=>"Utente non specificato",
+                        :message=>"Utente non specificato"
 
   def self.authenticate(mail, password)
     sha1 = Digest::SHA1.hexdigest(password)
