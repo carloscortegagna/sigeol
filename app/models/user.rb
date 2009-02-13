@@ -11,30 +11,38 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
-   belongs_to :specified, :polymorphic => true
+   belongs_to :specified, :polymorphic => true, :dependent=>:destroy
    has_and_belongs_to_many :capabilities
    belongs_to :address
-    #validazioni attr. password
+
+
+  #validazioni attr. password
     validates_presence_of :password,
-                         :message=>"password must exist",
+                         :message=>"La password non deve essere vuota",
                          :on => :save or :create or :update
    validates_length_of :password,
                        :in=> 6..20,
-                       :message=>"password too short. min 6 characters",
+                       :message=>"La password troppo corta. Min 6, Max 20",
                        :on => :save or :create or :update
 
- validates_presence_of :mail,
-                         :message=>"mail must exist",
+ validates_format_of :password,
+                     :with => /[a-zA-Z0-9\.]/,
+                     :message=>"Si accetta solo caratteri numeri e il carattere .",
+                     :on => :save or :create or :update
+
+  validates_presence_of :mail,
+                         :message=>"La mail non deve essere vuota",
                          :on => :save or :create or :update
-   #validazioni attr. mail
+
+  #validazioni attr. mail
   #più account non possono avere la stessa mail
   validates_uniqueness_of :mail,
-                          :message=>"mail already exist",
+                          :message=>"La Mail è già presente",
                           :on => :save or :create or :update
   #la mail deve essere del tipo account@qualcosa.qualcosa
   validates_format_of :mail,
                      :with => /([^@ t]{8,12})+@+([^@ t])+\.+[a-z]{2,3}/,
-                     :message=>"mail is invalid",
+                     :message=>"La mail non è valida",
                      :on => :save or :create or :update
 
   #l'utente deve essere specificato
