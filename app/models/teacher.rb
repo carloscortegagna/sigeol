@@ -1,3 +1,12 @@
+#QuiXoft - Progetto ”SIGEOL”
+#NOME FILE: teacher.rb
+#VERSIONE: 0.3
+#AUTORE: Grosselle Alessandro
+#DATA CREAZIONE: 12/02/09
+#REGISTRO DELLE MODIFICHE:
+#13/02/09 Aggiunta delle prime validazioni
+#12/02/09 Prima stesura
+
 class Teacher < ActiveRecord::Base
     has_one :user, :as => :specified, :dependent=>:destroy
     #si associa teacher ai vincol temporali(temporal constraint)

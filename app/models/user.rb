@@ -5,7 +5,7 @@
 #DATA CREAZIONE: 12/02/09
 #REGISTRO DELLE MODIFICHE:
 #13/02/09 Agginta del metodo per l'autenticazione
-#13/02/09 Aggiunta delle validazione
+#13/02/09 Aggiunta delle prime validazioni
 #12/02/09 Prima stesura
 
 require 'digest/sha1'
@@ -30,18 +30,16 @@ class User < ActiveRecord::Base
                      :message=>"Si accetta solo caratteri numeri e il carattere .",
                      :on => :save or :create or :update
 
+  #validazioni attr. mail
   validates_presence_of :mail,
                          :message=>"La mail non deve essere vuota",
                          :on => :save or :create or :update
-
-  #validazioni attr. mail
-  #più account non possono avere la stessa mail
   validates_uniqueness_of :mail,
                           :message=>"La Mail è già presente",
                           :on => :save or :create or :update
-  #la mail deve essere del tipo account@qualcosa.qualcosa
+  #la mail deve essere del tipo account@qualcosa.qualcosa.it oppure account@qualcosa.qualcosa.it
   validates_format_of :mail,
-                     :with => /([^@ t]{8,12})+@+([^@ t])+\.+[a-z]{2,3}/,
+                     :with => /([^@ t]{8,12})+@+(([^@ t]{1,12})+\.+[a-z]{2,3})|(([^@ t]{1,12})+\.+([^@ t]{1,12})+\.+[a-z]{2,3})/,
                      :message=>"La mail non è valida",
                      :on => :save or :create or :update
 
