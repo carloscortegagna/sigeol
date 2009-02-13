@@ -9,120 +9,166 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090210124634) do
+ActiveRecord::Schema.define(:version => 20090213110947) do
 
   create_table "academic_organizations", :force => true do |t|
     t.string  "name"
-    t.integer "number", :limit => 11
+    t.integer "number"
+    t.integer "created_at", :limit => 2000000000
+    t.integer "updated_at", :limit => 2000000000
   end
 
   create_table "addresses", :force => true do |t|
-    t.string "city"
-    t.string "telephone"
-    t.string "street"
+    t.string  "city"
+    t.string  "telephone"
+    t.string  "street"
+    t.integer "created_at", :limit => 2000000000
+    t.integer "updated_at", :limit => 2000000000
   end
 
   create_table "belongs", :force => true do |t|
-    t.integer  "teaching_id",   :limit => 11
-    t.integer  "curriculum_id", :limit => 11
-    t.boolean  "isOptional"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "teaching_id"
+    t.integer "curriculum_id"
+    t.integer "isOptional",    :limit => 1
+    t.integer "created_at",    :limit => 2000000000
+    t.integer "updated_at",    :limit => 2000000000
+  end
+
+  create_table "boolean_constraints", :force => true do |t|
+    t.integer "bool",       :limit => 1
+    t.integer "created_at", :limit => 2000000000
+    t.integer "updated_at", :limit => 2000000000
   end
 
   create_table "buildings", :force => true do |t|
     t.string  "name"
-    t.integer "address_id", :limit => 11
+    t.integer "address_id"
+    t.integer "created_at", :limit => 2000000000
+    t.integer "updated_at", :limit => 2000000000
   end
 
   create_table "capabilities", :force => true do |t|
-    t.string "name"
+    t.string  "name"
+    t.integer "created_at", :limit => 2000000000
+    t.integer "updated_at", :limit => 2000000000
   end
 
   create_table "capabilities_users", :force => true do |t|
-    t.integer "capability_id", :limit => 11
-    t.integer "user_id",       :limit => 11
+    t.integer "capability_id"
+    t.integer "user_id"
+    t.integer "created_at",    :limit => 2000000000
+    t.integer "updated_at",    :limit => 2000000000
   end
 
   create_table "classrooms", :force => true do |t|
-    t.string   "name"
-    t.integer  "capacity",    :limit => 11
-    t.integer  "building_id", :limit => 11
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "name"
+    t.integer "capacity"
+    t.integer "building_id"
+    t.integer "created_at",  :limit => 2000000000
+    t.integer "updated_at",  :limit => 2000000000
+  end
+
+  create_table "constraints_owners", :force => true do |t|
+    t.string  "description"
+    t.integer "owner_id"
+    t.string  "owner_type"
+    t.integer "constraint_id"
+    t.string  "constraint_type"
+    t.integer "created_at",      :limit => 2000000000
+    t.integer "updated_at",      :limit => 2000000000
   end
 
   create_table "curriculums", :force => true do |t|
-    t.string   "name"
-    t.integer  "graduate_course_id", :limit => 11
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "name"
+    t.integer "graduate_course_id"
+    t.integer "created_at",         :limit => 2000000000
+    t.integer "updated_at",         :limit => 2000000000
   end
 
   create_table "didactic_offices", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "created_at", :limit => 2000000000
+    t.integer "updated_at", :limit => 2000000000
   end
 
   create_table "expiry_dates", :force => true do |t|
-    t.datetime "date"
-    t.integer  "graduate_course_id", :limit => 11
+    t.integer "date",               :limit => 2000000000
+    t.integer "graduate_course_id"
+    t.integer "created_at",         :limit => 2000000000
+    t.integer "updated_at",         :limit => 2000000000
   end
 
   create_table "graduate_courses", :force => true do |t|
     t.string  "name"
-    t.integer "duration",                 :limit => 11
-    t.integer "academic_organization_id", :limit => 11
+    t.integer "duration"
+    t.integer "academic_organization_id"
+    t.integer "created_at",               :limit => 2000000000
+    t.integer "updated_at",               :limit => 2000000000
   end
 
   create_table "periods", :force => true do |t|
-    t.integer "subperiod", :limit => 11
-    t.integer "year",      :limit => 11
+    t.integer "subperiod"
+    t.integer "year"
+  end
+
+  create_table "quantity_constraints", :force => true do |t|
+    t.integer "quantity"
+    t.integer "created_at", :limit => 2000000000
+    t.integer "updated_at", :limit => 2000000000
   end
 
   create_table "teachers", :force => true do |t|
-    t.string   "name"
-    t.string   "surname"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "name"
+    t.string  "surname"
+    t.integer "created_at", :limit => 2000000000
+    t.integer "updated_at", :limit => 2000000000
   end
 
   create_table "teachings", :force => true do |t|
     t.string  "name"
-    t.integer "CFU",            :limit => 11
-    t.integer "classHours",     :limit => 11
-    t.integer "labHours",       :limit => 11
-    t.integer "studentsNumber", :limit => 11
-    t.integer "teacher_id",     :limit => 11
-    t.integer "period_id",      :limit => 11
+    t.integer "CFU"
+    t.integer "classHours"
+    t.integer "labHours"
+    t.integer "studentsNumber"
+    t.integer "teacher_id"
+    t.integer "period_id"
+    t.integer "created_at",     :limit => 2000000000
+    t.integer "updated_at",     :limit => 2000000000
+  end
+
+  create_table "temporal_constraints", :force => true do |t|
+    t.integer "day"
+    t.integer "startHour",  :limit => 2000000000
+    t.integer "endHour",    :limit => 2000000000
+    t.integer "created_at", :limit => 2000000000
+    t.integer "updated_at", :limit => 2000000000
   end
 
   create_table "timetable_entries", :force => true do |t|
-    t.time     "startTime"
-    t.time     "endTime"
-    t.string   "day"
-    t.integer  "timetable_id", :limit => 11
-    t.integer  "teaching_id",  :limit => 11
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "startTime",    :limit => 2000000000
+    t.integer "endTime",      :limit => 2000000000
+    t.string  "day"
+    t.integer "timetable_id"
+    t.integer "teaching_id"
+    t.integer "created_at",   :limit => 2000000000
+    t.integer "updated_at",   :limit => 2000000000
   end
 
   create_table "timetables", :force => true do |t|
-    t.string   "year"
-    t.integer  "period_id",          :limit => 11
-    t.integer  "graduate_course_id", :limit => 11
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "year"
+    t.integer "period_id"
+    t.integer "graduate_course_id"
+    t.integer "created_at",         :limit => 2000000000
+    t.integer "updated_at",         :limit => 2000000000
   end
 
   create_table "users", :force => true do |t|
-    t.string   "mail"
-    t.string   "password"
-    t.integer  "specified_id",   :limit => 11
-    t.string   "specified_type"
-    t.integer  "address_id",     :limit => 11
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "mail"
+    t.string  "password"
+    t.integer "specified_id"
+    t.string  "specified_type"
+    t.integer "address_id"
+    t.integer "created_at",     :limit => 2000000000
+    t.integer "updated_at",     :limit => 2000000000
   end
 
 end

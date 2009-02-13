@@ -3,4 +3,7 @@ class GraduateCourse < ActiveRecord::Base
   belongs_to :academic_organization
   has_many :timetables
   has_many :curriculums
+  has_many_polymorphs :constraints, :from => [:quantity_constraints,:boolean_constraints, :temporal_constraints],
+    :as=> :owner
+
 end
