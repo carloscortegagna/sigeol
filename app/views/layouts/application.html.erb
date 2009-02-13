@@ -45,6 +45,11 @@
   </div>
 
 <div id="rightPan">
+  <% if flash[:error] %>
+    <div class="errors">
+      <%= flash[:error] %>
+    </div>
+  <%end%>
 <%= yield  %>
 </div>
 </div>

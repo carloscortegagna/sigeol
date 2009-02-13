@@ -47,6 +47,7 @@ ul{list-style-type:none;}
 #rightPan p span.boldtext{font-weight:bold;}
 #rightPan p span.magedacolortext{background:#F6F4E4; color:#8F146E;}
 
+#rightPan div.errors{background:orange; color:red; margin: 0 10px 0 0;}
 
 /*----/Right Panel----*/
 
