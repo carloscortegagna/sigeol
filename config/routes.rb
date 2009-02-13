@@ -1,4 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :graduate_courses
+
+  map.resources :curriculums
+
+  map.resources :teachings
+
+  map.resources :buildings
+
+  map.resources :classrooms
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

@@ -1,0 +1,25 @@
+<h1>Listing classrooms</h1>
+<br>
+<table>
+  <tr>
+    <th>name</th>
+    <th>capacity</th>
+    <th>building_id</th>
+  </tr>
+<% for classroom in @classrooms %>
+  <tr>
+    <td><%=h classroom.name %></td>
+    <td><%=h classroom.capacity %></td>
+    <td><%=h classroom.building_id %></td>
+    <td><%= link_to 'Show', classroom %></td>
+    <td><%= link_to 'Edit', edit_classroom_path(classroom) %></td>
+    <td><%= link_to 'Destroy', classroom, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br> <br>
+
+<%= link_to 'New classroom', new_classroom_path %>
+
+<br> N.B. mancano building e timecostrait

@@ -1,0 +1,10 @@
+<p>
+  <b>name:</b>
+  <%=h @graduate_course.name %>
+</p>
+<p>
+  <b>duration:</b>
+  <%=h @graduate_course.duration %>
+</p>
+<%= link_to 'Edit', edit_graduate_course_path(@graduate_course) %> |
+<%= link_to 'Back', graduate_courses_path %>

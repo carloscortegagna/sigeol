@@ -1,0 +1,19 @@
+<h1>Editing graduate_course</h1>
+
+<% form_for(@graduate_course) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :duration %><br />
+    <%= f.text_field :duration %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @graduate_course %> |
+<%= link_to 'Back', graduate_courses_path %>

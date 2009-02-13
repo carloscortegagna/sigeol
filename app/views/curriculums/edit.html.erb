@@ -1,0 +1,12 @@
+<h1>Editing curriculum</h1>
+
+<% form_for(@curriculum) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @curriculum %> |
+<%= link_to 'Back', curriculums_path %>

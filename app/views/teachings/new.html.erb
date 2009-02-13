@@ -1,0 +1,30 @@
+<h1>New teaching</h1>
+
+<% form_for(@teaching) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :CFU %><br />
+    <%= f.text_field :CFU %>
+  </p>
+  <p>
+    <%= f.label :classHours %><br />
+    <%= f.text_field :classHours %>
+  </p>
+  <p>
+    <%= f.label :labHours %><br />
+    <%= f.text_field :labHours %>
+  </p>
+  <p>
+    <%= f.label :studentsNumber %><br />
+    <%= f.text_field :studentsNumber %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', teachings_path %>
