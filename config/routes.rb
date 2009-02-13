@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :timetables
 
   map.resources :graduate_courses
 
