@@ -9,8 +9,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :buildings
 
+  map.connect 'classrooms/info', :controller => 'classrooms', :action => 'info'
   map.resources :classrooms
-
+  
   map.resource :session
   # The priority is based upon order of creation: first created -> highest priority.
 
