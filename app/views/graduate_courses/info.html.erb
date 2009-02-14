@@ -1,0 +1,19 @@
+<h1>Lista pubblica dei Corsi di laurea</h1>
+<br> Qui dentro viene fatto riferimento anche ai "curriculums", che secondo me non necessitano di un menu a parte.
+<table>
+  <tr>
+    <th>name</th>
+    <th>duration</th>
+  </tr>
+
+<% for graduate_course in @graduate_courses %>
+  <tr>
+     <td><%=h graduate_course.name %></td>
+    <td><%=h graduate_course.duration %></td>
+  </tr>
+<% end %>
+</table>
+
+<br> <br>
+
+<br> N.B. mancano ExpiryDate, Constraint, (AcademicOrganization)

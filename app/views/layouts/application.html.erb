@@ -14,11 +14,11 @@
 		<a href="http://quixoft.forumup.it/"><img src="images/logo.gif" width="160" height="39" border="0" /></a> </div>
 		<ul>
             <li><%= link_to "Home" , :controller => "timetables" %></li>
-			<li><%= link_to "Info Aule" , :controller => "classrooms", :action => "info", :id => "" %></li>
+			<li><%= link_to "Info Aule" , :controller => "classrooms", :action => "info" %></li>
 			<li><a href="#">Info Docenti</a></li>
-			<li><a href="#">Info Strutture</a></li>
-			<li><a href="#">Info Insegnam.</a></li>
-			<li><a href="#">Info Corsi</a></li>
+			<li><%= link_to "Info Strutture" , :controller => "buildings", :action => "info" %></li>
+			<li><%= link_to "Info Insegnam." , :controller => "teachings", :action => "info" %></li>
+			<li><%= link_to "Info Corsi" , :controller => "graduate_courses", :action => "info" %></li>
 		</ul>
 		<!--
         <form action="" method="post">

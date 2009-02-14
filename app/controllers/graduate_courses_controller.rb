@@ -10,6 +10,10 @@ class GraduateCoursesController < ApplicationController
     end
   end
 
+  def info
+    @graduate_courses = GraduateCourse.find(:all)
+  end
+
   # GET /graduate_courses/1
   # GET /graduate_courses/1.xml
   def show

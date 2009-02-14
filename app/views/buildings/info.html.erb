@@ -1,0 +1,17 @@
+<h1>Lista pubblica delle strutture (buildings)</h1>
+
+<br>
+<table>
+  <tr>
+    <th>name</th>
+  </tr>
+<% for building in @buildings %>
+  <tr>
+    <td><%=h building.name %></td>
+  </tr>
+<% end %>
+</table>
+
+<br> <br>
+
+<br> N.B. Manca address

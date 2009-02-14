@@ -83,7 +83,6 @@ class ClassroomsController < ApplicationController
     end
   end
 
-  skip_before_filter :login_required
   def info
     @classrooms = Classroom.find(:all)
   end

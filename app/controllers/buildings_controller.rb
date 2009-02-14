@@ -10,6 +10,10 @@ class BuildingsController < ApplicationController
     end
   end
 
+  def info
+    @buildings = Building.find(:all)
+  end
+
   # GET /buildings/1
   # GET /buildings/1.xml
   def show

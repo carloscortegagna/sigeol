@@ -10,6 +10,11 @@ class TeachingsController < ApplicationController
     end
   end
 
+  def info
+    @teachings = Teaching.find(:all)
+  end
+  
+
   # GET /teachings/1
   # GET /teachings/1.xml
   def show
