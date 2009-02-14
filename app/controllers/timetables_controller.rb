@@ -1,4 +1,5 @@
 class TimetablesController < ApplicationController
+  skip_before_filter :login_required
   # GET /timetables
   # GET /timetables.xml
   def index

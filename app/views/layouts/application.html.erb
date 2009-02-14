@@ -13,14 +13,15 @@
   	<div id="leftTopPan">
 		<a href="http://quixoft.forumup.it/"><img src="images/logo.gif" width="160" height="39" border="0" /></a> </div>
 		<ul>
-			<li><a href="timetables">Home</a></li>
-			<li><a href="#">Info Aule</a></li>
+            <li><%= link_to "Home" , :controller => "timetables" %></li>
+			<li><%= link_to "Info Aule" , :controller => "classrooms", :action => "info" %></li>
 			<li><a href="#">Info Docenti</a></li>
 			<li><a href="#">Info Strutture</a></li>
 			<li><a href="#">Info Insegnam.</a></li>
 			<li><a href="#">Info Corsi</a></li>
 		</ul>
-		<form action="" method="post">
+		<!--
+        <form action="" method="post">
 			<h2>Login</h2>
 			<label>Indirizzo E-Mail:</label>
 		<input name="mail" type="text" id="mail" />
@@ -29,13 +30,14 @@
 		<input name="" type="submit" class="button" value="Login" />
 		</form>
 		<h2>Private</h2>
-
+        -->
+        Zona accessibile solo dopo aver fatto il login:
 		<ul class="linkone">
             <br> Segreteria:
-			<li><a href="graduate_courses">Corsi di Laurea</a></li>
-			<li><a href="teachings">Insegnamenti</a></li>
-			<li><a href="classrooms">Aule</a></li>
-			<li><a href="buildings">Strutture</a></li>
+			<li><%= link_to "Corsi di Laurea" , :controller => "graduate_courses" %></li>
+			<li><%= link_to "Insegnamenti" , :controller => "teachings" %></li>
+			<li><%= link_to "Aule" , :controller => "classrooms" %></li>
+			<li><%= link_to "Strutture" , :controller => "buildings" %></li>
 			<li><a href="#">Invito Docenti</a></li>
             <li><a href="#">Genera orario</a></li>
             <br> Docente:

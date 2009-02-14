@@ -1,0 +1,20 @@
+<h1>Lista pubblica delle Aule</h1>
+<br>
+<table>
+  <tr>
+    <th>name</th>
+    <th>capacity</th>
+    <th>building_id</th>
+  </tr>
+<% for classroom in @classrooms %>
+  <tr>
+    <td><%=h classroom.name %></td>
+    <td><%=h classroom.capacity %></td>
+    <td><%=h classroom.building_id %></td>
+  </tr>
+<% end %>
+</table>
+
+<br> <br>
+
+<br> N.B. mancano building e timecostrait

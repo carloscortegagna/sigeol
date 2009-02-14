@@ -82,4 +82,9 @@ class ClassroomsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def info
+    skip_before_filter :login_required
+    @classrooms = Classroom.find(:all)
+  end
 end

@@ -78,6 +78,11 @@ ActiveRecord::Schema.define(:version => 20090213193449) do
     t.integer "updated_at",      :limit => 2000000000
   end
 
+  create_table "constraintsowners", :force => true do |t|
+    t.integer "created_at", :limit => 2000000000
+    t.integer "updated_at", :limit => 2000000000
+  end
+
   create_table "curriculums", :force => true do |t|
     t.string  "name"
     t.integer "graduate_course_id"
