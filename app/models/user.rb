@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
                          :message=>"La mail non deve essere vuota",
                          :on => :save or :create or :update
   validates_uniqueness_of :mail,
-                          :message=>"La Mail è già presente",
+                          :message=>"La mail è già presente",
                           :on => :save or :create or :update
 
   #la mail deve essere del tipo account@qualcosa.qualcosa.it oppure account@qualcosa.qualcosa.it
