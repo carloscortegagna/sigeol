@@ -9,6 +9,6 @@ class AlgorithmController < ApplicationController
 
     Algorithm.schedule_output_generation
 
-    render :text => "report being generated, please check later"
+    render :text => "verificare sull'output la stampa del numero"
   end
 end
