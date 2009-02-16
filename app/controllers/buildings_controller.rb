@@ -1,4 +1,5 @@
 class BuildingsController < ApplicationController
+  skip_before_filter :login_required, :only => :index
   # GET /buildings
   # GET /buildings.xml
   def index
@@ -10,7 +11,7 @@ class BuildingsController < ApplicationController
     end
   end
 
-  def info
+  def administration
     @buildings = Building.find(:all)
   end
 

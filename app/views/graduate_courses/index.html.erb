@@ -1,4 +1,4 @@
-<h1>Lista dei Corsi di laurea</h1>
+<h1>Lista pubblica dei Corsi di laurea</h1>
 <br> Qui dentro viene fatto riferimento anche ai "curriculums", che secondo me non necessitano di un menu a parte.
 <table>
   <tr>
@@ -10,15 +10,10 @@
   <tr>
      <td><%=h graduate_course.name %></td>
     <td><%=h graduate_course.duration %></td>
-    <td><%= link_to 'Show', graduate_course %></td>
-    <td><%= link_to 'Edit', edit_graduate_course_path(graduate_course) %></td>
-    <td><%= link_to 'Destroy', graduate_course, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br> <br>
-
-<%= link_to 'New graduate_course', new_graduate_course_path %>
 
 <br> N.B. mancano ExpiryDate, Constraint, (AcademicOrganization)

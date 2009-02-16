@@ -1,4 +1,4 @@
-<h1>Lista pubblica degli insegnamenti</h1>
+<h1>Listing teachings</h1>
 <br>
 <table>
   <tr>
@@ -16,10 +16,15 @@
     <td><%=h teaching.classHours %></td>
     <td><%=h teaching.labHours %></td>
     <td><%=h teaching.studentsNumber %></td>
+    <td><%= link_to 'Show', teaching %></td>
+    <td><%= link_to 'Edit', edit_teaching_path(teaching) %></td>
+    <td><%= link_to 'Destroy', teaching, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br> <br>
+
+<%= link_to 'New teaching', new_teaching_path %>
 
 <br> N.B. Mancano Teacher, Period

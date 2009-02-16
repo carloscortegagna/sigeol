@@ -1,4 +1,5 @@
 class CurriculumsController < ApplicationController
+  skip_before_filter :login_required, :only => :index
   # GET /curriculums
   # GET /curriculums.xml
   def index
@@ -8,6 +9,10 @@ class CurriculumsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @curriculums }
     end
+  end
+
+  def administration
+    @curriculums = Curriculum.find(:all)
   end
 
   # GET /curriculums/1

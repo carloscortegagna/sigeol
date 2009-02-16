@@ -1,4 +1,5 @@
 class TeachingsController < ApplicationController
+  skip_before_filter :login_required, :only => :index
   # GET /teachings
   # GET /teachings.xml
   def index
@@ -10,7 +11,7 @@ class TeachingsController < ApplicationController
     end
   end
 
-  def info
+  def administration
     @teachings = Teaching.find(:all)
   end
   

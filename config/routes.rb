@@ -1,18 +1,18 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :timetables
 
-  map.connect 'graduate_courses/info', :controller => 'graduate_courses', :action => 'info'
+  map.connect 'graduate_courses/administration', :controller => 'graduate_courses', :action => 'administration'
   map.resources :graduate_courses
 
   map.resources :curriculums
   
-  map.connect 'teachings/info', :controller => 'teachings', :action => 'info'
+  map.connect 'teachings/administration', :controller => 'teachings', :action => 'administration'
   map.resources :teachings
 
-  map.connect 'buildings/info', :controller => 'buildings', :action => 'info'
+  map.connect 'buildings/administration', :controller => 'buildings', :action => 'administration'
   map.resources :buildings
 
-  map.connect 'classrooms/info', :controller => 'classrooms', :action => 'info'
+  map.connect 'classrooms/administration', :controller => 'classrooms', :action => 'administration'
   map.resources :classrooms
   
   map.resource :session

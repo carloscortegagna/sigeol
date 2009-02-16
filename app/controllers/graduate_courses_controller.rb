@@ -1,4 +1,5 @@
 class GraduateCoursesController < ApplicationController
+  skip_before_filter :login_required, :only => :index
   # GET /graduate_courses
   # GET /graduate_courses.xml
   def index
@@ -10,7 +11,7 @@ class GraduateCoursesController < ApplicationController
     end
   end
 
-  def info
+  def administration
     @graduate_courses = GraduateCourse.find(:all)
   end
 
