@@ -1,5 +1,6 @@
 class BuildingsController < ApplicationController
   skip_before_filter :login_required, :only => :index
+
   # GET /buildings
   # GET /buildings.xml
   def index
@@ -19,17 +20,16 @@ class BuildingsController < ApplicationController
   # GET /buildings/1.xml
   def show
     @building = Building.find(params[:id])
-
+    @address = Address.find(@building.address_id)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @building }
     end
   end
 
-  # GET /buildings/new
-  # GET /buildings/new.xml
   def new
     @building = Building.new
+    @address = Address.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -46,11 +46,16 @@ class BuildingsController < ApplicationController
   # POST /buildings.xml
   def create
     @building = Building.new(params[:building])
+    @address = Address.new(params[:address])
+
+    Building.transaction do
+      @building.address = @address
+    end
 
     respond_to do |format|
-      if @building.save
-        flash[:notice] = 'Building was successfully created.'
-        format.html { redirect_to(@building) }
+      if @building.save and @address.save!
+        flash[:notice] = 'Building e relativo Address inseriti correttamente nel DB '
+        format.html { redirect_to :action => 'administration' }
         format.xml  { render :xml => @building, :status => :created, :location => @building }
       else
         format.html { render :action => "new" }
@@ -67,7 +72,7 @@ class BuildingsController < ApplicationController
     respond_to do |format|
       if @building.update_attributes(params[:building])
         flash[:notice] = 'Building was successfully updated.'
-        format.html { redirect_to(@building) }
+        format.html { redirect_to :action => 'administration' }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -83,7 +88,7 @@ class BuildingsController < ApplicationController
     @building.destroy
 
     respond_to do |format|
-      format.html { redirect_to(buildings_url) }
+      format.html { redirect_to :action => 'administration' }
       format.xml  { head :ok }
     end
   end

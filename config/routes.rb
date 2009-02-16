@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :addresses
+
   map.resources :timetables
 
   map.connect 'graduate_courses/administration', :controller => 'graduate_courses', :action => 'administration'

@@ -2,8 +2,18 @@
   <b>name:</b>
   <%=h @building.name %>
 </p>
+<p>
+  <b>city:</b>
+  <%=h @address.city %>
+</p><p>
+  <b>telephone:</b>
+  <%=h @address.telephone %>
+</p><p>
+  <b>street:</b>
+  <%=h @address.street %>
+</p>
 
 <br> <br>
 
 <%= link_to 'Edit', edit_building_path(@building) %> |
-<%= link_to 'Back', buildings_path %>
+<%= link_to 'Back', :action => 'administration' %>
