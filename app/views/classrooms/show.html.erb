@@ -7,10 +7,11 @@
   <%=h @classroom.capacity %>
 </p>
 <p>
-  <b>building_id:</b>
-  <%=h @classroom.building_id %>
+  <b>Nome building:</b>
+  <%=h @building.name %>
 </p>
-
-
+<br><br>
+Viene mostrato il nome del building associato (si potrebbe mostrare anche l'indirizzo volendo....)
+<br><br>
 <%= link_to 'Edit', edit_classroom_path(@classroom) %> |
-<%= link_to 'Back', classrooms_path %>
+<%= link_to 'Back', :action => 'administration' %>

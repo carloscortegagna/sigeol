@@ -54,13 +54,18 @@ class BuildingsController < ApplicationController
     end
 
     respond_to do |format|
-      if @building.save and @address.save
-        flash[:notice] = 'Building e relativo Address inseriti correttamente nel DB '
-        format.html { redirect_to :action => 'administration' }
-        format.xml  { render :xml => @building, :status => :created, :location => @building }
-      else
+      if @address.save
+        if @building.save
+          flash[:notice] = 'Building e relativo Address inseriti correttamente nel DB '
+          format.html { redirect_to :action => 'administration' }
+          format.xml  { render :xml => @building, :status => :created, :location => @building }
+        else
         format.html { render :action => "new" }
         format.xml  { render :xml => @building.errors, :status => :unprocessable_entity }
+        end
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @address.errors, :status => :unprocessable_entity }
       end
     end
   end

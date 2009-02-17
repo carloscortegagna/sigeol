@@ -15,6 +15,7 @@ class ClassroomsController < ApplicationController
   # GET /classrooms/1.xml
   def show
     @classroom = Classroom.find(params[:id])
+    @building = Building.find(@classroom.building_id)
 
     respond_to do |format|
       format.html # show.html.erb
