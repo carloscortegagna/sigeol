@@ -12,21 +12,17 @@ class Classroom < ActiveRecord::Base
     :as=> :owner
   #validazioni :name
   validates_presence_of :name,
-                         :message=>"Il nome non deve essere vuoto",
-                         :on => :save or :create or :update
+                         :message=>"Il nome non deve essere vuoto"
   validates_length_of :name,
                        :maximum=> 30,
-                       :message=>"Il nome è troppo lungo",
-                       :on => :save or :create or :update
+                       :message=>"Il nome è troppo lungo"
   validates_format_of :name,
                      :with => /[a-zA-Z0-9àòèéùì]*/,
-                     :message=>"Si accetta solo caratteri",
-                     :on => :save or :create or :update
+                     :message=>"Si accetta solo caratteri"
 
   #validazione associazione obbligatoria classroom building
  validates_presence_of :building_id,
-                         :message=>"L'aula deve essere associata ad un palazzo",
-                         :on => :save or :create or :update
+                         :message=>"L'aula deve essere associata ad un palazzo"
 
 
 #validazioni :capacity

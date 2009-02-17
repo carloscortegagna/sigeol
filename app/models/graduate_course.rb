@@ -16,22 +16,20 @@ class GraduateCourse < ActiveRecord::Base
   has_many_polymorphs :constraints, :from => [:quantity_constraints,:boolean_constraints, :temporal_constraints],
     :as=> :owner, :dependent=> :destroy
 
+  validates_existence_of :academic_organization
+  #validates_associated :academic_organization
   #validazioni :name
   validates_uniqueness_of :name,
-                          :message=>"Il corso è già presente",
-                          :on => :save or :create or :update
+                          :message=>"Il corso è già presente"
 
   validates_presence_of :name,
-                         :message=>"Il nome non deve essere vuoto",
-                         :on => :save or :create or :update
+                         :message=>"Il nome non deve essere vuoto"
    validates_length_of :name,
                        :maximum=> 50,
-                       :message=>"Il nome è troppo lungo",
-                       :on => :save or :create or :update
+                       :message=>"Il nome è troppo lungo"
    validates_format_of :name,
                      :with => /[a-zA-Zàòèéùì]*/,
-                     :message=>"Si accetta solo caratteri",
-                     :on => :save or :create or :update
+                     :message=>"Si accetta solo caratteri"
 #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
   def before_save
    self.name=first_upper(self.name)
@@ -49,9 +47,9 @@ class GraduateCourse < ActiveRecord::Base
                          :message=>"La durata non deve essere vuota",
                          :on => :save or :create or :update
 
-  #validazioni :acedemic_organization
+  #validazioni :academic_organization
 
-  validates_presence_of  :academic_organization,
+  validates_presence_of  :academic_organization_id,
                          :message=>"Il corso di laurea deve avere un organizzazione accademica",
                          :on => :save or :create or :update
 

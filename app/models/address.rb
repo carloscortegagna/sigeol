@@ -14,39 +14,33 @@ class Address < ActiveRecord::Base
   
   #validazioni :city
    validates_presence_of :city,
-                         :message=>"Inserisci la città",
-                         :on => :save or :create or :update
-   validates_length_of :city,
+                         :message=>"Inserisci la città"
+
+  validates_length_of :city,
                        :maximum=> 30,
-                       :message=>"Il nome è troppo lungo",
-                       :on => :save or :create or :update
-   validates_format_of :city,
+                       :message=>"Il nome è troppo lungo"
+
+  validates_format_of :city,
                      :with => /[a-zA-Zàòèéùì]*/,
-                     :message=>"Si accetta solo caratteri",
-                     :on => :save or :create or :update
+                     :message=>"Si accetta solo caratteri"
 
 #validazioni :phone
       validates_length_of :telephone,
                        :maximum=> 15,
-                       :message=>"Il nome è troppo lungo",
-                       :on => :save or :create or :update
+                       :message=>"Il nome è troppo lungo"
      validates_format_of :telephone,
                      :with => /[0-9]{2,4}+[-]+[0-9]{6,8}/,
-                     :message=>"Inserisci in questo modo: prefisso-numero",
-                     :on => :save or :create or :update
+                     :message=>"Inserisci in questo modo: prefisso-numero"
 
 #validazioni :street
    validates_presence_of :street,
-                         :message=>"Inserisci la via",
-                         :on => :save or :create or :update
+                         :message=>"Inserisci la via"
    validates_length_of :street,
                        :maximum=> 50,
-                       :message=>"Il nome è troppo lungo",
-                       :on => :save or :create or :update
+                       :message=>"Il nome è troppo lungo"
    validates_format_of :street,
                      :with => /[a-zA-Z0-9àòèéùì]*/,
-                     :message=>"Si accetta solo caratteri",
-                     :on => :save or :create or :update
+                     :message=>"Si accetta solo caratteri"
 
 def before_save
    self.city=first_upper(self.city)

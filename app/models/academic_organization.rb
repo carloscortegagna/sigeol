@@ -13,20 +13,18 @@ class AcademicOrganization < ActiveRecord::Base
 
 #validazioni :name
    validates_uniqueness_of :name,
-                          :message=>"Il nome è già presente",
-                          :on => :save or :create or :update
-
+                          :message=>"Il nome è già presente"
+                          
    validates_presence_of :name,
-                         :message=>"Il nome non deve essere vuoto",
-                         :on => :save or :create or :update
+                         :message=>"Il nome non deve essere vuoto"
+                         
    validates_length_of :name,
                        :maximum=> 30,
-                       :message=>"Il nome è troppo lungo",
-                       :on => :save or :create or :update
+                       :message=>"Il nome è troppo lungo"
+
    validates_format_of :name,
                      :with => /[a-zA-Zàòèéùì]*/,
-                     :message=>"Si accetta solo caratteri",
-                     :on => :save or :create or :update
+                     :message=>"Si accetta solo caratteri"
  #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
  #si utilizza la funzione first_upper presente sul modulo ApplicationHelper
  def before_save
@@ -34,8 +32,7 @@ class AcademicOrganization < ActiveRecord::Base
  end
   #validazioni :number
   validates_uniqueness_of :number,
-                          :message=>"E' gia presente un'organizzazione con questo valore",
-                          :on => :save or :create or :update
+                          :message=>"E' gia presente un'organizzazione con questo valore"
 
   validates_numericality_of :number,
                            :only_integer =>true,
@@ -44,8 +41,7 @@ class AcademicOrganization < ActiveRecord::Base
                            :message=>"attenzione il numero deve essere compreso tra 1 e 6"
 
   validates_presence_of  :number,
-                         :message=>"Il numero di periodi non deve essere vuoto",
-                         :on => :save or :create or :update
+                         :message=>"Il numero di periodi non deve essere vuoto"
  
 end
 

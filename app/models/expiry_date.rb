@@ -17,12 +17,10 @@ class ExpiryDate < ActiveRecord::Base
                    :after_message=>"La data deve essere maggiore della data di oggi"
                    
     validates_presence_of :date,
-                          :message=>"La data non deve essere vuota",
-                          :on => :save or :create or :update
+                          :message=>"La data non deve essere vuota"
 
  #validazioni graduate_course_id
   validates_presence_of :graduate_course_id,
-                          :message=>"La data deve essere associata ad un corso di laurea",
-                          :on => :save or :create or :update
+                          :message=>"La data deve essere associata ad un corso di laurea"
 
 end

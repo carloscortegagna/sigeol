@@ -17,21 +17,20 @@ include ApplicationHelper
  has_many :timetable_entries
 
 #validazioni
+validates_existence_of :teaching
 #Validazioni :name
    validates_presence_of :name,
-                         :message=>"Il nome non deve essere vuoto",
-                         :on => :save or :create or :update
+                         :message=>"Il nome non deve essere vuoto"
    validates_length_of :name,
                        :maximum=> 30
    validates_format_of :name,
                        :with => /[a-zA-Zàòèéùì]*/,
-                       :message=>"Si accetta solo caratteri numeri e il carattere spazio",
-                       :on => :save or :create or :update
+                       :message=>"Si accetta solo caratteri numeri e il carattere spazio"
   validates_uniqueness_of :name,
-                          :message=>"Il nome dell'insegnamento è già presente",
-                          :on => :save or :create or :update
+                          :message=>"Il nome dell'insegnamento è già presente"
 
-#funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
+  validates_existence_of :address
+  #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
   def before_save
     self.name=first_upper(self.name)
  end

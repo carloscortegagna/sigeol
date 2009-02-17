@@ -13,14 +13,11 @@ class Belong < ActiveRecord::Base
 
   #validazioni :teaching_id e :curriculum_id
     validates_presence_of :teaching_id,
-                         :message=>"Associzione non valida",
-                         :on => :save or :create or :update
+                         :message=>"Associzione non valida"
     validates_presence_of :curriculum_id,
-                         :message=>"Associazione non valida",
-                         :on => :save or :create or :update
+                         :message=>"Associazione non valida"
     validates_presence_of :isOptional,
-                         :message=>"Setta se l'insegnamento è opzionale",
-                         :on => :save or :create or :update
+                         :message=>"Setta se l'insegnamento è opzionale"
   #validazione unicità curriculm_id e teaching_id
  private
  validate :unique_curriculum_id_and_teaching_id?

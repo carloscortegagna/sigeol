@@ -14,17 +14,13 @@ class Building < ActiveRecord::Base
 
   #validazioni :name
   validates_presence_of :name,
-                         :message=>"Il nome non deve essere vuoto",
-                         :on => :save or :create or :update
+                         :message=>"Il nome non deve essere vuoto"
    validates_length_of :name,
                        :maximum=> 30,
-                       :message=>"Il nome è troppo lungo",
-                       :on => :save or :create or :update
+                       :message=>"Il nome è troppo lungo"
    validates_format_of :name,
                      :with => /[a-zA-Z0-9àòèéùì]*/,
-                     :message=>"Si accetta solo caratteri",
-                     :on => :save or :create or :update
-
+                     :message=>"Si accetta solo caratteri"
  def before_save
    self.name=first_upper(self.name)
 end
