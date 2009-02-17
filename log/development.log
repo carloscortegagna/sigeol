@@ -54652,3 +54652,5 @@ Processing ClassroomsController#images to gif (for 127.0.0.1 at 2009-02-17 18:50
   Parameters: {"id"=>"logo"}
 Filter chain halted as [:login_required] rendered_or_redirected.
 Completed in 1ms (View: 0, DB: 2) | 406 Not Acceptable [http://localhost/classrooms/images/logo.gif]
+** has_many_polymorphs: rails environment detected
+** has_many_polymorphs: loaded ok
