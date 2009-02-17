@@ -18,15 +18,15 @@ class Teacher < ActiveRecord::Base
   #validazioni attributo :name e :surname
    validates_presence_of :name,:surname,
                          :message=>"Il nome non deve essere vuoto",
-                         :on => :save or :create or :update
+                         :on => :update
    validates_length_of :name,:surname,
                        :maximum=> 30,
                        :message=>"Il nome è troppo lungo",
-                       :on => :save or :create or :update
+                       :on => :update
    validates_format_of :name,:surname,
                      :with => /[a-zA-Zàòèéùì]*/,
                      :message=>"Si accetta solo caratteri",
-                     :on => :save or :create or :update
+                     :on => :update
   #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
  def before_save
    self.name=first_upper(self.name)

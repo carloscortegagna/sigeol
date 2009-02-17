@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090213193449) do
+ActiveRecord::Schema.define(:version => 20090217084103) do
 
   create_table "academic_organizations", :force => true do |t|
     t.string  "name"
@@ -115,11 +115,6 @@ ActiveRecord::Schema.define(:version => 20090213193449) do
     t.integer "year"
   end
 
-  create_table "provas", :force => true do |t|
-    t.integer "created_at", :limit => 2000000000
-    t.integer "updated_at", :limit => 2000000000
-  end
-
   create_table "quantity_constraints", :force => true do |t|
     t.integer "quantity"
     t.integer "created_at", :limit => 2000000000
@@ -189,6 +184,8 @@ ActiveRecord::Schema.define(:version => 20090213193449) do
     t.integer "address_id"
     t.integer "created_at",     :limit => 2000000000
     t.integer "updated_at",     :limit => 2000000000
+    t.integer "random"
+    t.string  "digest"
   end
 
 end

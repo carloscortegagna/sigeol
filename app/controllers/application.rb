@@ -21,10 +21,18 @@ class ApplicationController < ActionController::Base
         if session[:user_id]
           @current_user = User.find(session[:user_id])
         else
-          flash[:notice] = "Please log in"
+          flash[:notice] = "Effettuare il login"
           redirect_to new_session_url
         end
       end
+    end
+  end
+
+  def menage_teachers_required
+    cap = @current_user.capabilities.find_by_name("Menage teachers")
+    if @current_user == nil || cap == nil
+      flash[:error] = "Non possiedi i privilegi per effettuare questa operazione"
+      redirect_to timetables_url
     end
   end
 

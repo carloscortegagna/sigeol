@@ -1,0 +1,11 @@
+<h1>Invito dei docenti</h1>
+
+<% form_tag(:action => :create, :method => :post) do %>
+   <p>
+    <%= label_tag 'mail' %><br />
+    <%= text_field_tag 'mail' %>
+  </p>
+  <p>
+    <%= submit_tag "Invita docente" %>
+  </p>
+<% end %>

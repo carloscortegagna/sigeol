@@ -1,0 +1,23 @@
+<h1>Creazione dell'account docente <%=h @user.mail%>
+</h1>
+
+<% form_tag(:action => :activate, :method => :post) do %>
+   <p>
+    <%= label_tag 'password' %>
+    <%= password_field_tag 'password' %>
+  </p>
+  <p>
+    <%= label_tag 'Nome' %>
+    <%= text_field_tag 'name' %>
+  </p>
+  <p>
+    <%= label_tag 'Cognome' %>
+    <%= text_field_tag 'surname' %>
+  </p>
+  <p>
+    <%= hidden_field_tag 'user', @user.id  %>
+  </p>
+  <p>
+    <%= submit_tag "Crea account" %>
+  </p>
+<% end %>

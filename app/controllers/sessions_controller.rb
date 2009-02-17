@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id
       flash[:notice] = "Login effettuato con successo."
-      redirect_to curriculums_url
+      redirect_to timetables_url
     else
       flash[:error] = "E-mail o password errati."
       render :action => :new
