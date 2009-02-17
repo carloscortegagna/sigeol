@@ -1,5 +1,51 @@
+#QuiXoft - Progetto ”SIGEOL”
+#NOME FILE: classroom.rb
+#VERSIONE: 0.3
+#AUTORE: Grosselle Alessandro
+#DATA CREAZIONE: 12/02/09
+#REGISTRO DELLE MODIFICHE:
+#17/02/09 Aggiunta delle validazioni
+#12/02/09 Prima stesura
 class Classroom < ActiveRecord::Base
   belongs_to :builiding
   has_many_polymorphs :constraints, :from=>[:boolean_constraints, :temporal_constraints],
     :as=> :owner
+  #validazioni :name
+  validates_presence_of :name,
+                         :message=>"Il nome non deve essere vuoto",
+                         :on => :save or :create or :update
+  validates_length_of :name,
+                       :maximum=> 30,
+                       :message=>"Il nome è troppo lungo",
+                       :on => :save or :create or :update
+  validates_format_of :name,
+                     :with => /[a-zA-Z0-9àòèéùì]*/,
+                     :message=>"Si accetta solo caratteri",
+                     :on => :save or :create or :update
+
+  #validazione associazione obbligatoria classroom building
+ validates_presence_of :building_id,
+                         :message=>"L'aula deve essere associata ad un palazzo",
+                         :on => :save or :create or :update
+
+
+#validazioni :capacity
+  validates_numericality_of :capacity,
+                           :only_integer =>true,
+                           :grater_than_or_euqual_to =>0,
+                           :less_than_or_equal_to =>1000,
+                           :allow_nil=>true,
+                           :message=>"attenzione il numero deve essere compreso tra 0 e 1000"
+
+#validazioni unicità palazzo-classe
+   private
+ validate :unique_building_classroom?
+  def unique_building_classroom?
+    if Classroom.find_by_name_and_building_id(name,building_id)
+      errors.add_to_base("Nel palazzo è gia presente un'aula con questo nome")
+    end
+  end
+
+
+
 end
