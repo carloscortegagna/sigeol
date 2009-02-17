@@ -40,6 +40,7 @@ class BuildingsController < ApplicationController
   # GET /buildings/1/edit
   def edit
     @building = Building.find(params[:id])
+    @address = Address.find(@building.address_id)
   end
 
   # POST /buildings
@@ -53,7 +54,7 @@ class BuildingsController < ApplicationController
     end
 
     respond_to do |format|
-      if @building.save and @address.save!
+      if @building.save and @address.save
         flash[:notice] = 'Building e relativo Address inseriti correttamente nel DB '
         format.html { redirect_to :action => 'administration' }
         format.xml  { render :xml => @building, :status => :created, :location => @building }
@@ -68,9 +69,10 @@ class BuildingsController < ApplicationController
   # PUT /buildings/1.xml
   def update
     @building = Building.find(params[:id])
+    @address = Address.find(@building.address_id)
 
     respond_to do |format|
-      if @building.update_attributes(params[:building])
+      if @building.update_attributes(params[:building]) and @address.update_attributes(params[:address])
         flash[:notice] = 'Building was successfully updated.'
         format.html { redirect_to :action => 'administration' }
         format.xml  { head :ok }
