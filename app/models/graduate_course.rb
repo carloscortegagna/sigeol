@@ -16,8 +16,8 @@ class GraduateCourse < ActiveRecord::Base
   has_many_polymorphs :constraints, :from => [:quantity_constraints,:boolean_constraints, :temporal_constraints],
     :as=> :owner, :dependent=> :destroy
 
-  validates_existence_of :academic_organization
-  #validates_associated :academic_organization
+  #validates_existence_of :academic_organization
+  validates_associated :academic_organization
   #validazioni :name
   validates_uniqueness_of :name,
                           :message=>"Il corso è già presente"
@@ -49,8 +49,8 @@ class GraduateCourse < ActiveRecord::Base
 
   #validazioni :academic_organization
 
-  validates_presence_of  :academic_organization_id,
-                         :message=>"Il corso di laurea deve avere un organizzazione accademica",
-                         :on => :save or :create or :update
+  #validates_presence_of  :academic_organization_id,
+                       #  :message=>"Il corso di laurea deve avere un organizzazione accademica",
+                     #    :on => :save or :create or :update
 
 end

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090217084103) do
+ActiveRecord::Schema.define(:version => 20090218161944) do
 
   create_table "academic_organizations", :force => true do |t|
     t.string  "name"
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(:version => 20090217084103) do
   end
 
   create_table "expiry_dates", :force => true do |t|
-    t.string  "date"
+    t.integer "date",               :limit => 2000000000
     t.integer "graduate_course_id"
     t.integer "created_at",         :limit => 2000000000
     t.integer "updated_at",         :limit => 2000000000

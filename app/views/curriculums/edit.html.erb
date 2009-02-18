@@ -2,11 +2,18 @@
 
 <% form_for(@curriculum) do |f| %>
   <%= f.error_messages %>
-
+  <p>
+    <%= f.label 'Nome del Curriculum' %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label 'Corso di Laurea associato' %><br />
+    <%= f.text_field :graduate_course_id %>
+    <br> Al momento bisogna inserire un id valido di un corso di laurea, poi verrà fatto un menu a tendina o altro...
+  </p>
   <p>
     <%= f.submit "Update" %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @curriculum %> |
-<%= link_to 'Back', curriculums_path %>
+<%= link_to 'Back', :controller => 'graduate_courses', :action => 'administration' %>

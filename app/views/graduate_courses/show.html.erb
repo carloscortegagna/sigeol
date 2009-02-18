@@ -1,10 +1,15 @@
 <p>
-  <b>name:</b>
+  <b>Nome:</b>
   <%=h @graduate_course.name %>
 </p>
 <p>
-  <b>duration:</b>
+  <b>Durata in anni:</b>
   <%=h @graduate_course.duration %>
 </p>
+<p>
+  <b>Struttura del corso di laurea:</b>
+  <%=h @academic_organization.name %>
+</p>
+<br><br>
 <%= link_to 'Edit', edit_graduate_course_path(@graduate_course) %> |
-<%= link_to 'Back', graduate_courses_path %>
+<%= link_to 'Back', :action => 'administration' %>

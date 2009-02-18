@@ -1,24 +1,32 @@
-<h1>Lista dei Corsi di laurea</h1>
-<br> Qui dentro viene fatto riferimento anche ai "curriculums", che secondo me non necessitano di un menu a parte.
-<table>
-  <tr>
-    <th>name</th>
-    <th>duration</th>
-  </tr>
-
+<h1>Corsi di laurea e relativi Curriculum</h1>
+<br><br>
+-----------------------------------------------------------------
+<br><br>
 <% for graduate_course in @graduate_courses %>
   <tr>
-     <td><%=h graduate_course.name %></td>
-    <td><%=h graduate_course.duration %></td>
+    <td><h1><%=h graduate_course.name %></h1></td>Durata:<td><%=h graduate_course.duration %> anni.</td>
     <td><%= link_to 'Show', graduate_course %></td>
     <td><%= link_to 'Edit', edit_graduate_course_path(graduate_course) %></td>
     <td><%= link_to 'Destroy', graduate_course, :confirm => 'Are you sure?', :method => :delete %></td>
+    <br><br>
+    <% for curriculum in @curriculums %>
+    <% if curriculum.graduate_course_id == graduate_course.id %>
+    <td><%= curriculum.name %></td>
+    <td><%= link_to 'Edit', edit_curriculum_path(curriculum) %></td>
+    <td><%= link_to 'Destroy', curriculum, :controller => "curriculum", :confirm => 'Are you sure?', :method => :delete %> </td>
+    <br>
+    <%  end %>
+    <%  end %>
+    <br><br>
+    -----------------------------------------------------------------
+    <br><br>
   </tr>
 <% end %>
-</table>
 
-<br> <br>
+<br>
+<% if !@graduate_courses.blank? %>
+<%= link_to 'Inserisci nuovo curriculum', new_curriculum_path %> <br>
+<% end %>
+<%= link_to 'Inserisci un nuovo corso di laurea', new_graduate_course_path %>
 
-<%= link_to 'New graduate_course', new_graduate_course_path %>
-
-<br> N.B. mancano ExpiryDate, Constraint, (AcademicOrganization)
+<br> N.B. mancano ExpiryDate, Constraint

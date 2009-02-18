@@ -11,10 +11,6 @@ class CurriculumsController < ApplicationController
     end
   end
 
-  def administration
-    @curriculums = Curriculum.find(:all)
-  end
-
   # GET /curriculums/1
   # GET /curriculums/1.xml
   def show
@@ -50,11 +46,9 @@ class CurriculumsController < ApplicationController
     respond_to do |format|
       if @curriculum.save
         flash[:notice] = 'Curriculum was successfully created.'
-        format.html { redirect_to(@curriculum) }
-        format.xml  { render :xml => @curriculum, :status => :created, :location => @curriculum }
+        format.html { redirect_to :controller => 'graduate_courses', :action => 'administration' }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @curriculum.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -67,11 +61,9 @@ class CurriculumsController < ApplicationController
     respond_to do |format|
       if @curriculum.update_attributes(params[:curriculum])
         flash[:notice] = 'Curriculum was successfully updated.'
-        format.html { redirect_to(@curriculum) }
-        format.xml  { head :ok }
+        format.html { redirect_to :controller => 'graduate_courses', :action => 'administration' }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @curriculum.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -83,8 +75,7 @@ class CurriculumsController < ApplicationController
     @curriculum.destroy
 
     respond_to do |format|
-      format.html { redirect_to(curriculums_url) }
-      format.xml  { head :ok }
+      format.html { redirect_to :controller => 'graduate_courses', :action => 'administration' }
     end
   end
 end

@@ -32,21 +32,24 @@ module ApplicationHelper
     amm_link = []
     teacher_link = []
     final_link = []
-    amm_link << {:name => "Cambio password", :url => url_for(:controller => "users", :action => "edit", :id => user.id)}
+    amm_link << {:name => "Cambio psw", :url => url_for(:controller => "users", :action => "edit", :id => user.id)}
     if (user.manage_teachers?)
-      amm_link << {:name => "Gestione docenti", :url => url_for(:controller => "teachers", :action => "administration")}
+      amm_link << {:name => "Docenti", :url => url_for(:controller => "teachers", :action => "administration")}
     end
     if (user.manage_teachings?)
-      amm_link << {:name => "Gestione insegnamenti", :url => url_for(:controller => "teachings", :action => "administration")}
+      amm_link << {:name => "Corsi", :url => url_for(:controller => "graduate_courses", :action => "administration")}
+    end
+    if (user.manage_teachings?)
+      amm_link << {:name => "Insegnamenti", :url => url_for(:controller => "teachings", :action => "administration")}
     end
     if (user.manage_classrooms?)
-      amm_link << {:name => "Gestione aule", :url => url_for(:controller => "classrooms", :action => "administration")}
+      amm_link << {:name => "Aule", :url => url_for(:controller => "classrooms", :action => "administration")}
     end
     if (user.manage_buildings?)
-      amm_link << {:name => "Gestione strutture", :url => url_for(:controller => "buildings", :action => "administration")}
+      amm_link << {:name => "Strutture", :url => url_for(:controller => "buildings", :action => "administration")}
     end
     if (user.manage_timetables?)
-      amm_link << {:name => "Gestione orario", :url => url_for(:controller => "timetables", :action => "administration")}
+      amm_link << {:name => "Orario", :url => url_for(:controller => "timetables", :action => "administration")}
     end
 
     if (amm_link)

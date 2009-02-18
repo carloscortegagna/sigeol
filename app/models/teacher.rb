@@ -4,7 +4,7 @@
 #AUTORE: Grosselle Alessandro
 #DATA CREAZIONE: 12/02/09
 #REGISTRO DELLE MODIFICHE:
-#15/02/09  
+#15/02/09
 #13/02/09 Aggiunta delle prime validazioni
 #12/02/09 Prima stesura
 
@@ -14,7 +14,7 @@ class Teacher < ActiveRecord::Base
     #si associa teacher ai vincol temporali(temporal constraint)
     has_many_polymorphs :constraints, :from=>[:temporal_constraints],
       :as=> :owner, :dependent=>:destroy
-   
+
   #validazioni attributo :name e :surname
    validates_presence_of :name,:surname,
                          :message=>"Il nome non deve essere vuoto",
