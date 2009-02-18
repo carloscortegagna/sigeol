@@ -63,6 +63,24 @@ class User < ActiveRecord::Base
     user
   end
 
+  def manage_teachers?
+    self.capabilities.find_by_name("Manage teachers") != nil
+  end
+  def manage_teachings?
+    self.capabilities.find_by_name("Manage teachings") != nil
+  end
+  def manage_classrooms?
+    self.capabilities.find_by_name("Manage classrooms") != nil
+  end
+  def manage_buildings?
+    self.capabilities.find_by_name("Manage buildings") != nil
+  end
+  def manage_timetables?
+    self.capabilities.find_by_name("Manage timetables") != nil
+  end
+  def own_by_teacher?
+    self.specified_type == "Teacher"
+  end
   private
 
   def encrypt_password

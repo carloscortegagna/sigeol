@@ -12,24 +12,24 @@ require 'rufus/scheduler'
 include Algorithm
 
 #inizializzazione dell'algoritmo
-@scheduler ||= Rufus::Scheduler.start_new
-puts "Scheduler in esecuzione.."
+#@scheduler ||= Rufus::Scheduler.start_new
+#puts "Scheduler in esecuzione.."
 
 
 
-def exec_cron(cron_string)
-  @scheduler.schedule cron_string, :tags => [ "algorithm", "important" ] do
-    do_algorithm
-    ActiveRecord::Base.verify_active_connections!
-  end
-end
+#def exec_cron(cron_string)
+#  @scheduler.schedule cron_string, :tags => [ "algorithm", "important" ] do
+#    do_algorithm
+#    ActiveRecord::Base.verify_active_connections!
+#  end
+#end
 
-def execute_in(max_time)
-  @scheduler.schedule_in max_time, :tags => [ "algorithm", "important" ] do
-    do_algorithm
-    ActiveRecord::Base.verify_active_connections!
- end
-end
+#def execute_in(max_time)
+#  @scheduler.schedule_in max_time, :tags => [ "algorithm", "important" ] do
+#    do_algorithm
+#    ActiveRecord::Base.verify_active_connections!
+# end
+#end
 
 
 #utilizziamo la notazione stile cron
@@ -44,11 +44,11 @@ end
 
 
 
-def @scheduler.log_exception (e)
-  ActiveRecord::Base.logger.warn("Si è verificato un problema: ", e)
-end
+#def @scheduler.log_exception (e)
+#  ActiveRecord::Base.logger.warn("Si è verificato un problema: ", e)
+#end
 
 #esegue l'algoritmo in base alla stringa cron
-exec_cron("53 17 * * *")
+#exec_cron("53 17 * * *")
 
-@scheduler.join
+#@scheduler.join

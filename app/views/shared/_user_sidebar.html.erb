@@ -1,0 +1,8 @@
+<ul class="linkone">
+  <% user_sidebar.each do |url| %>
+    <%=h url[:cat]%>
+    <% url[:link].each do |link| %>
+    <li><%= link_to link[:name], link[:url] %></li>
+    <% end %>
+  <% end %>
+</ul>

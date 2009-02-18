@@ -11,15 +11,10 @@
 <div id="mainPan">
   <div id="leftPan">
   	<div id="leftTopPan">
-		<a href="http://quixoft.forumup.it/"><img src="images/logo.gif" width="160" height="39" border="0" /></a> </div>
-		<ul>
-            <li><%= link_to "Home" , :controller => "timetables" %></li>
-			<li><%= link_to "Info Aule" , :controller => "classrooms" %></li>
-			<li><a href="#">Info Docenti</a></li>
-			<li><%= link_to "Info Strutture" , :controller => "buildings"%></li>
-			<li><%= link_to "Info Insegnam." , :controller => "teachings"%></li>
-			<li><%= link_to "Info Corsi" , :controller => "graduate_courses"%></li>
-		</ul>
+		<a href="http://quixoft.forumup.it/"><img src="images/logo.gif" width="160" height="39" border="0" /></a>
+    </div>
+        <%= standard_sidebar %>
+        <%= user_sidebar %>
 		<!--
         <form action="" method="post">
 			<h2>Login</h2>
@@ -31,20 +26,6 @@
 		</form>
 		<h2>Private</h2>
         -->
-        Zona accessibile solo dopo aver fatto il login:
-		<ul class="linkone">
-            <br> Segreteria:
-			<li><%= link_to "Corsi di Laurea" , :controller => "graduate_courses", :action => "administration" %></li>
-			<li><%= link_to "Insegnamenti" , :controller => "teachings", :action => "administration"  %></li>
-			<li><%= link_to "Aule" , :controller => "classrooms", :action => "administration"  %></li>
-			<li><%= link_to "Strutture" , :controller => "buildings", :action => "administration"  %></li>
-			<li><a href="#">Invito Docenti</a></li>
-            <li><a href="#">Genera orario</a></li>
-            <br> Docente:
-			<li><a href="#">Vincoli</a></li>
-			<li><a href="#">Preferenze</a></li>
-			<li><a href="#">Dati personali</a></li>
-		</ul>
   </div>
 
 <div id="rightPan">

@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :login_required, :except => :info
 
-  def login_required
+    def login_required
     respond_to do |format|
       format.html do
         if session[:user_id]
@@ -28,12 +28,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def menage_teachers_required
-    cap = @current_user.capabilities.find_by_name("Menage teachers")
-    if @current_user == nil || cap == nil
+  def manage_teachers_required
+    if @current_user == nil || !@current_user.manage_teachers?
       flash[:error] = "Non possiedi i privilegi per effettuare questa operazione"
       redirect_to timetables_url
     end
   end
-
 end

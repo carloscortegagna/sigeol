@@ -33,6 +33,4 @@ class Teacher < ActiveRecord::Base
    self.surname=first_upper(self.surname)
  end
 
- validates_associated   :user,
-                        :message => "are messed up"
  end

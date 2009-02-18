@@ -1,6 +1,6 @@
 class TeachersController < ApplicationController
   skip_before_filter :login_required, :only => [:index, :activate]
-  before_filter :menage_teachers_required, :only => [:new, :create]
+  before_filter :manage_teachers_required, :only => [:new, :create]
   def index
     @teachers = User.find_by_specified_type("Teacher")
   end
