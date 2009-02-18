@@ -43,5 +43,8 @@ class AcademicOrganization < ActiveRecord::Base
   validates_presence_of  :number,
                          :message=>"Il numero di periodi non deve essere vuoto"
  
+#funzioni di callback
+#posso cancellare l'organizzazione accademica sse non è associata a nessun corso di laurea
+
 end
 

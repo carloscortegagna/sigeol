@@ -12,12 +12,10 @@ include ApplicationHelper
  #associazioni
  belongs_to :teacher
  belongs_to :period
- has_many :belongs, :dependent=>:destroy
+ has_many :belongs
  has_many :curriculums, :through=> :belongs
  has_many :timetable_entries
 
-#validazioni
-validates_existence_of :teaching
 #Validazioni :name
    validates_presence_of :name,
                          :message=>"Il nome non deve essere vuoto"
@@ -29,7 +27,6 @@ validates_existence_of :teaching
   validates_uniqueness_of :name,
                           :message=>"Il nome dell'insegnamento è già presente"
 
-  validates_existence_of :address
   #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
   def before_save
     self.name=first_upper(self.name)

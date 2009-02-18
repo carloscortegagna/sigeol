@@ -9,8 +9,8 @@
 class Curriculum < ActiveRecord::Base
  include ApplicationHelper
  belongs_to :graduate_course
- has_many :belongs
- has_many :teachings, :through=>:belongs,:dependent=> :destroy
+ has_many :belongs,:dependent=> :destroy
+ has_many :teachings, :through=>:belongs
 
 #validazioni :name
   validates_uniqueness_of :name,
@@ -21,7 +21,7 @@ class Curriculum < ActiveRecord::Base
                        :maximum=> 50,
                        :message=>"Il nome è troppo lungo"
   validates_format_of :name,
-                     :with => /[a-zA-Zàòèéùì]*/,
+                     :with => /^[a-zA-Zàòèéùì]*$/,
                      :message=>"Si accetta solo caratteri"
    #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
  def before_save

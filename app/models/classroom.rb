@@ -7,9 +7,9 @@
 #17/02/09 Aggiunta delle validazioni
 #12/02/09 Prima stesura
 class Classroom < ActiveRecord::Base
-  belongs_to :builiding
+  belongs_to :building
   has_many_polymorphs :constraints, :from=>[:boolean_constraints, :temporal_constraints],
-    :as=> :owner
+    :as=> :owner,:dependent=>:destroy
   #validazioni :name
   validates_presence_of :name,
                          :message=>"Il nome non deve essere vuoto"
