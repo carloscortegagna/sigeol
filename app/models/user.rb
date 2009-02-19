@@ -12,9 +12,10 @@ require 'digest/sha1'
 
 class User < ActiveRecord::Base
   belongs_to :specified, :polymorphic => true, :dependent=>:destroy
-   has_and_belongs_to_many :capabilities
-   belongs_to :address
-
+  has_and_belongs_to_many :capabilities
+  has_and_belongs_to_many :graduate_courses
+  belongs_to :address
+  
   before_save :encrypt_password
   before_validation :calculate_digest
 

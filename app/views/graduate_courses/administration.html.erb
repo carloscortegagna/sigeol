@@ -2,20 +2,18 @@
 <br><br>
 -----------------------------------------------------------------
 <br><br>
-<% for graduate_course in @graduate_courses %>
+<% @graduate_courses.each do |graduate_course| %>
   <tr>
     <td><h1><%=h graduate_course.name %></h1></td>Durata:<td><%=h graduate_course.duration %> anni.</td>
     <td><%= link_to 'Show', graduate_course %></td>
     <td><%= link_to 'Edit', edit_graduate_course_path(graduate_course) %></td>
     <td><%= link_to 'Destroy', graduate_course, :confirm => 'Are you sure?', :method => :delete %></td>
     <br><br>
-    <% for curriculum in @curriculums %>
-    <% if curriculum.graduate_course_id == graduate_course.id %>
+    <% graduate_course.curriculums.each do |curriculum| %>
     <td><%= curriculum.name %></td>
     <td><%= link_to 'Edit', edit_curriculum_path(curriculum) %></td>
     <td><%= link_to 'Destroy', curriculum, :controller => "curriculum", :confirm => 'Are you sure?', :method => :delete %> </td>
     <br>
-    <%  end %>
     <%  end %>
     <br><br>
     -----------------------------------------------------------------

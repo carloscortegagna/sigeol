@@ -10,8 +10,8 @@ class GraduateCoursesController < ApplicationController
   end
 
   def administration
-    @graduate_courses = GraduateCourse.find(:all)
-    @curriculums = Curriculum.find(:all)
+    ids = @current_user.graduate_course_ids
+    @graduate_courses = GraduateCourse.find(ids, :include => :curriculums)
   end
 
   def show

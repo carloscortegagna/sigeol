@@ -1,6 +1,6 @@
 class TeachersController < ApplicationController
   skip_before_filter :login_required, :only => [:index, :activate]
-  before_filter :manage_teachers_required, :only => [:new, :create]
+  before_filter :manage_teachers_required, :only => [:new, :create, :administration]
   def index
     @teachers = User.find_by_specified_type("Teacher")
   end
@@ -55,5 +55,11 @@ class TeachersController < ApplicationController
       flash[:errors] = teacher.errors.full_messages.to_s
       redirect_to :action => :pre_activate, :digest => @user.digest
     end
+  end
+
+  def administration
+    @graduate_courses = @current_user.graduate_courses
+    user_teachers = User.find_by_specified_type("Teacher")
+    render :text => "a"
   end
 end
