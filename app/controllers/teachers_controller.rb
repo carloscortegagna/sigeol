@@ -58,8 +58,7 @@ class TeachersController < ApplicationController
   end
 
   def administration
-    @graduate_courses = @current_user.graduate_courses
-    user_teachers = User.find_by_specified_type("Teacher")
-    render :text => "a"
+    ids = @current_user.graduate_course_ids
+    @graduate_courses = GraduateCourse.find(ids, :include => [:users] , :conditions => "users.specified_type = 'Teacher'")
   end
 end

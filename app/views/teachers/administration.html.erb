@@ -1,0 +1,24 @@
+<h1>Docenti raggruppati per corso di laurea</h1>
+<br><br>
+-----------------------------------------------------------------
+<br><br>
+<% @graduate_courses.each do |graduate_course| %>
+  <tr>
+    <td><h1><%=h graduate_course.name %></h1>
+    <td><%= link_to 'Show', graduate_course %></td>
+    <td><%= link_to 'Edit', edit_graduate_course_path(graduate_course) %></td>
+    <td><%= link_to 'Destroy', graduate_course, :confirm => 'Are you sure?', :method => :delete %></td>
+    <br><br>
+    <% graduate_course.users.each do |user| %>
+      <td><%= user.mail %></td>
+      <td><%= user.specified.name %></td>
+      <td><%= user.specified.surname %></td>
+      <td><%= link_to 'Edit', edit_teacher_path(user.specified) %></td>
+      <td><%= link_to 'Destroy', user.specified, :controller => "teachers", :confirm => 'Are you sure?', :method => :delete %> </td>
+      <br>
+    <%  end %>
+    <br><br>
+    -----------------------------------------------------------------
+    <br><br>
+  </tr>
+<% end %>
