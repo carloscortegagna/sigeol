@@ -13,7 +13,7 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
   belongs_to :specified, :polymorphic => true, :dependent=>:destroy
   has_and_belongs_to_many :capabilities
-  has_and_belongs_to_many :graduate_courses
+  has_and_belongs_to_many :graduate_courses, :uniq => true
   belongs_to :address
   
   before_save :encrypt_password
@@ -24,8 +24,8 @@ class User < ActiveRecord::Base
                          :message=>"La password non deve essere vuota",
                          :on => :update
    validates_length_of :password,
-                       :in=> 6..20,
-                       :message=>"La password troppo corta. Min 6, Max 20",
+                       :minimum=> 6,
+                       :message=>"La password troppo corta. Min 6 caratteri",
                        :on => :update
 
  validates_format_of :password,

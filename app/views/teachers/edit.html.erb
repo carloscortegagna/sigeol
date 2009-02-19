@@ -1,0 +1,18 @@
+<p>
+  Modifica del docente <%=h @teacher.surname%> <%=h @teacher.name%>
+</p>
+<p>
+  Corsi di laurea posseduti ed amministrabili: <br/>
+  <% @manageable_graduate_courses.each do |g| %>
+      <%=h g.name %>
+      <%= link_to "Rimuovi", :action => :remove_graduate_course, :method => :delete%>
+      <br/>
+  <% end %>
+</p>
+<p>
+  Corsi di laurea da aggiungere: <br/>
+  <% @selectable_graduate_courses.each do |g| %>
+    <%=h g.name %>
+    <%= link_to "Aggiungi", :action => :show, :method => :put%>
+</p>
+<% end %>

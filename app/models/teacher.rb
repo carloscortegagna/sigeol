@@ -11,6 +11,7 @@
 class Teacher < ActiveRecord::Base
   include ApplicationHelper
   has_one :user, :as => :specified, :dependent=>:destroy
+  has_many :teachings
     #si associa teacher ai vincol temporali(temporal constraint)
     has_many_polymorphs :constraints, :from=>[:temporal_constraints],
       :as=> :owner, :dependent=>:destroy

@@ -1,0 +1,16 @@
+<p>
+  <b>Nome:</b>
+  <%=h @teacher.name %>
+</p>
+<p>
+  <b>Cognome:</b>
+  <%=h @teacher.surname %>
+</p>
+<p>
+  Insegnamenti tenuti:
+  <% @teacher.teachings.each do |t| %>
+  <p>
+    <%=h t.name %>
+  </p>
+  <% end %>
+</p>

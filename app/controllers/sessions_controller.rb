@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.authenticate(params[:mail], params[:password])
-    if user
+    if user && user.active?
       session[:user_id] = user.id
       flash[:notice] = "Login effettuato con successo."
       redirect_to timetables_url
