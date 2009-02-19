@@ -2,7 +2,7 @@ class TeachersController < ApplicationController
   skip_before_filter :login_required, :only => [:index, :activate]
   before_filter :manage_teachers_required, :only => [:new, :create, :administration, :edit,
                                                      :update]
-  before_filter :same_graduate_course_required, :only => [:edit, :update]
+  before_filter :same_graduate_course_required, :only => [:edit_graduate_courses, :update_graduate_courses]
   def index
     @teachers = User.find_by_specified_type("Teacher")
   end
@@ -15,7 +15,7 @@ class TeachersController < ApplicationController
     end
   end
 
-  def edit
+  def edit_graduate_courses
     total_graduate_courses = @current_user.graduate_courses
     @teacher = Teacher.find(params[:id])
     teacher_graduate_courses = @teacher.user.graduate_courses
@@ -23,8 +23,16 @@ class TeachersController < ApplicationController
     @selectable_graduate_courses = total_graduate_courses - teacher_graduate_courses
   end
 
-  def update
-
+  def update_graduate_courses
+    if request.delete? || params[:method] == "delete"
+      t = Teacher.find(params[:id])
+      t.user.graduate_courses.delete(GraduateCourse.find(params[:ids]))
+    end
+    if request.put? || params[:method] == "put"
+      t = Teacher.find(params[:id])
+      t.user.graduate_courses << (GraduateCourse.find(params[:ids]))
+    end
+      redirect_to administration_teachers_url
   end
 
   def new

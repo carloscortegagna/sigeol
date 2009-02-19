@@ -1,3 +1,4 @@
+<%= administration_teachers_menu %>
 <h1>Docenti raggruppati per corso di laurea</h1>
 <br><br>
 -----------------------------------------------------------------
@@ -14,7 +15,7 @@
       <td><%= user.specified.name %></td>
       <td><%= user.specified.surname %></td>
       <td><%= link_to 'Show', user.specified %></td>
-      <td><%= link_to 'Edit', edit_teacher_path(user.specified) %></td>
+      <td><%= link_to 'Edit', edit_graduate_courses_teacher_path(user.specified) %></td>
       <td><%= link_to 'Destroy', user.specified, :controller => "teachers", :confirm => 'Are you sure?', :method => :delete %> </td>
       <br>
     <%  end %>

@@ -21,7 +21,15 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :teachers, :collection => {:pre_activate => :get,
                                            :activate => :post,
-                                           :administration => :get}
+                                           :administration => :get},
+                           :member => {:edit_graduate_courses => :get,
+                                       :update_graduate_courses => [:post, :put, :delete]}
+
+  map.resources :users, :only => :edit
+
+  map.resources :timetables, :collection => {:administration => :get}
+
+  map.resources :constraints
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -61,6 +69,6 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  #map.connect ':controller/:action/:id'
+  #map.connect ':controller/:action/:id.:format'
 end
