@@ -13,7 +13,7 @@ class Teacher < ActiveRecord::Base
   has_one :user, :as => :specified, :dependent=>:destroy
   has_many :teachings
     #si associa teacher ai vincol temporali(temporal constraint)
-    has_many_polymorphs :constraints, :from=>[:temporal_constraints],
+  has_many_polymorphs :constraints, :from=>[:temporal_constraints],
       :as=> :owner, :dependent=>:destroy
 
   #validazioni attributo :name e :surname
@@ -25,7 +25,7 @@ class Teacher < ActiveRecord::Base
                        :message=>"Il nome è troppo lungo",
                        :on => :update
    validates_format_of :name,:surname,
-                     :with => /[a-zA-Zàòèéùì]*/,
+                     :with => /^[a-zA-Zàòèéùì]*$/,
                      :message=>"Si accetta solo caratteri",
                      :on => :update
   #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera

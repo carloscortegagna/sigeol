@@ -56,17 +56,8 @@ module ValidatesTimeliness
     #   replaced with yy)
     
     @@time_formats = [
-      'hh:nn:ss',
-      'hh-nn-ss',
-      'h:nn',
-      'h.nn',
-      'h nn',
-      'h-nn',
-      'h:nn_ampm',
-      'h.nn_ampm',
-      'h nn_ampm',
-      'h-nn_ampm',
-      'h_ampm'
+      'h:nn'
+      
     ]
     
     @@date_formats = [

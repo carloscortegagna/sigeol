@@ -23,7 +23,7 @@ class AcademicOrganization < ActiveRecord::Base
                        :message=>"Il nome è troppo lungo"
 
    validates_format_of :name,
-                     :with => /[a-zA-Zàòèéùì]*/,
+                     :with => /^[a-zA-Zàòèéùì]*$/,
                      :message=>"Si accetta solo caratteri"
  #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
  #si utilizza la funzione first_upper presente sul modulo ApplicationHelper
@@ -42,9 +42,5 @@ class AcademicOrganization < ActiveRecord::Base
 
   validates_presence_of  :number,
                          :message=>"Il numero di periodi non deve essere vuoto"
- 
-#funzioni di callback
-#posso cancellare l'organizzazione accademica sse non è associata a nessun corso di laurea
-
-end
+  end
 

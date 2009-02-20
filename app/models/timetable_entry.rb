@@ -10,11 +10,31 @@
 class TimetableEntry < ActiveRecord::Base
   belongs_to :timetable
   belongs_to :teaching
-  
-  #validazioni :startime, :endtime
-   validates_presence_of :startime, :endtime,
-                         :message=>"Manca l'ora d'inizio o di fine",
-                         :on => :save or :create or :update
+  belongs_to :classroom
+  #validazioni associazione
+    validates_existence_of :timetable, 
+                           :message=>"Il timetable non è valido"
+     validates_existence_of :teaching,
+                           :message=>"L'insegnamento non è valido"
+     validates_existence_of :classroom,
+                           :message=>"La classe non è validi"
+  #validazioni :startTime e :endTime e validazioni :day
+
+  validates_presence_of :startTime,:endTime,:day,
+                          :message=>"Alcuni campi sono vuoti"
+  validates_time :startTime,:endTime,
+                 :invalid_time_message=>"La data deve essere del tipo h:nn"
+  validates_inclusion_of :day,
+                       :in => %w{ lun mar mer gio ven sab dom},
+                       :message => "Deve essere lun,mar,mer,gio,ven,sab"
+  #validazione unicità :startTime :endTime :day :classroom_id time :timetable_id
+ private
+ validate :unique?
+  def unique?
+    if TimetableEntry.find_by_startTime_and_endTime_and_day_and_timetable_id_and_classroom_id(startTime,endTime,day,timetable_id,classroom_id)
+      errors.add_to_base("riga già presente")
+    end
+  end
    
 
 end

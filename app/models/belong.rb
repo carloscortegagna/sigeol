@@ -11,13 +11,21 @@ class Belong < ActiveRecord::Base
  belongs_to :teaching
  belongs_to :curriculum
 
-  #validazioni :teaching_id e :curriculum_id
-    validates_presence_of :teaching_id,
-                         :message=>"Associzione non valida"
-    validates_presence_of :curriculum_id,
-                         :message=>"Associazione non valida"
+  #validazioni associazioni
+   validates_existence_of :curriculum,:teaching,
+                      :message=>"Attenzione associazione non valida"
+
+   #validazioni :teaching_id e :curriculum_id
     validates_presence_of :isOptional,
                          :message=>"Setta se l'insegnamento è opzionale"
+
+  #se l'insegnamento non è legato a nessun curriculum,eliminalo
+  def after_destroy
+    if(Belong.count(:conditions=>["teaching_id = ?" , teaching_id])==1)
+      Teaching.destroy(teaching_id)
+    end
+  end
+
   #validazione unicità curriculm_id e teaching_id
  private
  validate :unique_curriculum_id_and_teaching_id?
@@ -27,4 +35,4 @@ class Belong < ActiveRecord::Base
     end
   end
 
-end
+  end

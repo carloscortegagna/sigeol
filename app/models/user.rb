@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
   before_validation :calculate_digest
 
+    validates_existence_of :specified, 
+                           :message=>"User non specificato"
   #validazioni password
     validates_presence_of :password,
                          :message=>"La password non deve essere vuota",
@@ -43,12 +45,9 @@ class User < ActiveRecord::Base
 
   #la mail deve essere del tipo account@qualcosa.qualcosa.it oppure account@qualcosa.qualcosa.it
   validates_format_of :mail,
-                     :with => /([^@ t]{8,12})+@+(([^@ t]{1,12})+\.+[a-z]{2,3})|(([^@ t]{1,12})+\.+([^@ t]{1,12})+\.+[a-z]{2,3})/,
+                     :with => /^([^@ t]{8,12})+@+(([^@ t]{1,12})+\.+[a-z]{2,3})|(([^@ t]{1,12})+\.+([^@ t]{1,12})+\.+[a-z]{2,3})$/,
                      :message=>"La mail non è valida"
-  #l'utente deve essere specificato
-  validates_presence_of :specified_type,
-                        :message=>"Utente non specificato"
-                      
+
   validates_presence_of :random,
                         :message => "Non è stato scelto nessun numero casuale"
 
@@ -82,6 +81,13 @@ class User < ActiveRecord::Base
   def own_by_teacher?
     self.specified_type == "Teacher"
   end
+
+   def after_destroy
+    if(Address.count(:conditions=>["id = ?" , address_id])==1)
+      Address.destroy(address_id)
+     end
+  end
+
   private
 
   def encrypt_password

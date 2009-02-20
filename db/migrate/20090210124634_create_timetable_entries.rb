@@ -6,6 +6,7 @@ class CreateTimetableEntries < ActiveRecord::Migration
       t.string :day
       t.integer :timetable_id
       t.integer :teaching_id
+      t.integer :classroom_id
       t.timestamps
     end
   end

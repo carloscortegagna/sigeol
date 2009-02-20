@@ -9,8 +9,7 @@
 
 class Period < ActiveRecord::Base
   has_many :teachings
-  belongs_to :timetable
-  
+  has_many :timetable
   #validazioni :subperiod
   validates_inclusion_of :subperiod,
                          :in  =>1..4,

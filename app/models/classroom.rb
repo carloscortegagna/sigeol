@@ -10,6 +10,12 @@ class Classroom < ActiveRecord::Base
   belongs_to :building
   has_many_polymorphs :constraints, :from=>[:boolean_constraints, :temporal_constraints],
     :as=> :owner,:dependent=>:destroy
+  has_many :timetable_entries, :dependent=>:destroy
+
+  #validazioni associazioni
+  validates_existence_of :building,
+                         :message => "Deve essere associato ad un palazzo"
+
   #validazioni :name
   validates_presence_of :name,
                          :message=>"Il nome non deve essere vuoto"
@@ -20,11 +26,7 @@ class Classroom < ActiveRecord::Base
                      :with => /[a-zA-Z0-9àòèéùì]*/,
                      :message=>"Si accetta solo caratteri"
 
-  #validazione associazione obbligatoria classroom building
- validates_presence_of :building_id,
-                         :message=>"L'aula deve essere associata ad un palazzo"
-
-
+ 
 #validazioni :capacity
   validates_numericality_of :capacity,
                            :only_integer =>true,

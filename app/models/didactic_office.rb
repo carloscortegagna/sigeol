@@ -7,6 +7,6 @@
 #15/02/09 
 #12/02/09 Prima stesura
 class DidacticOffice < ActiveRecord::Base
-  has_one :user, :as => :specified, :dependent=>:destroy
+  has_one :user, :as => :specified
   
 end

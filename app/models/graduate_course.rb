@@ -12,13 +12,14 @@ class GraduateCourse < ActiveRecord::Base
   has_many :expiry_dates, :dependent=>:destroy
   belongs_to :academic_organization
   has_many :timetables, :dependent=> :destroy
-  has_many :curriculums, :dependent=> :destroy
+  has_many :curriculums, :dependent=>:destroy
   has_and_belongs_to_many :users, :uniq => true
   has_many_polymorphs :constraints, :from => [:quantity_constraints,:boolean_constraints, :temporal_constraints],
     :as=> :owner, :dependent=> :destroy
 
-  #validates_existence_of :academic_organization
-  validates_associated :academic_organization
+  #validazioni associazioni
+  validates_existence_of :academic_organization,
+                          :message=>"Deve essere associato ad un organizzazione accademica"
   #validazioni :name
   validates_uniqueness_of :name,
                           :message=>"Il corso è già presente"
@@ -29,7 +30,7 @@ class GraduateCourse < ActiveRecord::Base
                        :maximum=> 50,
                        :message=>"Il nome è troppo lungo"
    validates_format_of :name,
-                     :with => /[a-zA-Zàòèéùì]*/,
+                     :with => /^[a-zA-Zàòèéùì]*$/,
                      :message=>"Si accetta solo caratteri"
 #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
   def before_save
@@ -45,13 +46,6 @@ class GraduateCourse < ActiveRecord::Base
                            :message=>"attenzione il numero deve essere compreso tra 1 e 6"
 
   validates_presence_of  :duration,
-                         :message=>"La durata non deve essere vuota",
-                         :on => :save or :create or :update
+                         :message=>"La durata non deve essere vuota"
 
-  #validazioni :academic_organization
-
-  #validates_presence_of  :academic_organization_id,
-                       #  :message=>"Il corso di laurea deve avere un organizzazione accademica",
-                     #    :on => :save or :create or :update
-
-end
+  end

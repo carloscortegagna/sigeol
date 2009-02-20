@@ -12,7 +12,10 @@ class Curriculum < ActiveRecord::Base
  has_many :belongs,:dependent=> :destroy
  has_many :teachings, :through=>:belongs
 
-#validazioni :name
+ validates_existence_of :graduate_course,
+                       :message=>"Il curriculum deve essere associato ad un corso di laurea"
+
+  #validazioni :name
   validates_uniqueness_of :name,
                           :message=>"Il curriculum è già presente"
   validates_presence_of :name,
@@ -27,9 +30,4 @@ class Curriculum < ActiveRecord::Base
  def before_save
    self.name=first_upper(self.name)
  end
-
-
- #validazioni :graduate_course_id
- validates_presence_of :graduate_course_id,
-                       :message=>"Il curriculum deve essere associato ad un corso di laurea"
 end

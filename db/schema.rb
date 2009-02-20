@@ -18,6 +18,9 @@ ActiveRecord::Schema.define(:version => 20090218173721) do
     t.integer "updated_at", :limit => 2000000000
   end
 
+  add_index "academic_organizations", ["name"], :name => "index_academic_organizations_on_name", :unique => true
+  add_index "academic_organizations", ["number"], :name => "index_academic_organizations_on_number", :unique => true
+
   create_table "addresses", :force => true do |t|
     t.string  "city"
     t.string  "telephone"
@@ -34,6 +37,8 @@ ActiveRecord::Schema.define(:version => 20090218173721) do
     t.integer "updated_at",    :limit => 2000000000
   end
 
+  add_index "belongs", ["curriculum_id", "teaching_id"], :name => "index_belongs_on_curriculum_id_and_teaching_id", :unique => true
+
   create_table "boolean_constraints", :force => true do |t|
     t.integer "bool",       :limit => 1
     t.integer "created_at", :limit => 2000000000
@@ -47,11 +52,15 @@ ActiveRecord::Schema.define(:version => 20090218173721) do
     t.integer "updated_at", :limit => 2000000000
   end
 
+  add_index "buildings", ["name"], :name => "index_buildings_on_name", :unique => true
+
   create_table "capabilities", :force => true do |t|
     t.string  "name"
     t.integer "created_at", :limit => 2000000000
     t.integer "updated_at", :limit => 2000000000
   end
+
+  add_index "capabilities", ["name"], :name => "index_capabilities_on_name", :unique => true
 
   create_table "capabilities_users", :force => true do |t|
     t.integer "capability_id"
@@ -67,6 +76,8 @@ ActiveRecord::Schema.define(:version => 20090218173721) do
     t.integer "created_at",  :limit => 2000000000
     t.integer "updated_at",  :limit => 2000000000
   end
+
+  add_index "classrooms", ["name", "building_id"], :name => "index_classrooms_on_name_and_building_id", :unique => true
 
   create_table "constraints_owners", :force => true do |t|
     t.string  "description"
@@ -114,6 +125,8 @@ ActiveRecord::Schema.define(:version => 20090218173721) do
     t.integer "subperiod"
     t.integer "year"
   end
+
+  add_index "periods", ["subperiod", "year"], :name => "index_periods_on_subperiod_and_year", :unique => true
 
   create_table "quantity_constraints", :force => true do |t|
     t.integer "quantity"
@@ -164,9 +177,12 @@ ActiveRecord::Schema.define(:version => 20090218173721) do
     t.string  "day"
     t.integer "timetable_id"
     t.integer "teaching_id"
+    t.integer "classroom_id"
     t.integer "created_at",   :limit => 2000000000
     t.integer "updated_at",   :limit => 2000000000
   end
+
+  add_index "timetable_entries", ["startTime", "endTime", "day", "classroom_id", "timetable_id"], :name => "index_timetable_entries_on_startTime_and_endTime_and_day_and_classroom_id_and_timetable_id", :unique => true
 
   create_table "timetables", :force => true do |t|
     t.string  "year"
@@ -175,6 +191,8 @@ ActiveRecord::Schema.define(:version => 20090218173721) do
     t.integer "created_at",         :limit => 2000000000
     t.integer "updated_at",         :limit => 2000000000
   end
+
+  add_index "timetables", ["period_id", "year", "graduate_course_id"], :name => "index_timetables_on_period_id_and_year_and_graduate_course_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string  "mail"
@@ -187,5 +205,7 @@ ActiveRecord::Schema.define(:version => 20090218173721) do
     t.integer "random"
     t.string  "digest"
   end
+
+  add_index "users", ["mail"], :name => "index_users_on_mail", :unique => true
 
 end

@@ -11,6 +11,9 @@ class Building < ActiveRecord::Base
  include ApplicationHelper
  belongs_to :address, :dependent=>:destroy
  has_many :classrooms, :dependent=>:destroy
+ 
+  #validazioni associazioni
+  validates_existence_of :address, :allow_nil => true
 
   #validazioni :name
   validates_presence_of :name,
@@ -19,12 +22,18 @@ class Building < ActiveRecord::Base
                        :maximum=> 30,
                        :message=>"Il nome è troppo lungo"
    validates_format_of :name,
-                     :with => /[a-zA-Z0-9àòèéùì]*/,
+                     :with => /^[a-zA-Z0-9àòèéùì]*$/,
                      :message=>"Si accetta solo caratteri"
  def before_save
    self.name=first_upper(self.name)
 end
 
+#se l'indirizzo non è legato a nessun altro,eliminalo
+  def after_destroy
+    if(Address.count(:conditions=>["id = ?" , address_id])==1)
+      Address.destroy(address_id)
+     end
+  end
 
 end
 
