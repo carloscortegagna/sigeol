@@ -12,10 +12,6 @@ class Classroom < ActiveRecord::Base
     :as=> :owner,:dependent=>:destroy
   has_many :timetable_entries, :dependent=>:destroy
 
-  #validazioni associazioni
-  validates_existence_of :building,
-                         :message => "Deve essere associato ad un palazzo"
-
   #validazioni :name
   validates_presence_of :name,
                          :message=>"Il nome non deve essere vuoto"

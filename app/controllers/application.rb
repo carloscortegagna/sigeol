@@ -34,4 +34,11 @@ class ApplicationController < ActionController::Base
       redirect_to timetables_url
     end
   end
+
+  def manage_capabilities_required
+    if @current_user == nil || !@current_user.manage_capabilities?
+      flash[:error] = "Non possiedi i privilegi per effettuare questa operazione"
+      redirect_to timetables_url
+    end
+  end
 end

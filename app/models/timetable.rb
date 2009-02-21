@@ -3,9 +3,6 @@ class Timetable < ActiveRecord::Base
   belongs_to :graduate_course
   has_many :timetable_entries, :dependent=>:destroy
 
-  #validazioni associazione
-    validates_existence_of :period,:graduate_course, 
-                           :message=>"Il periodo o il corso di laurea non sono validi"
   # validazioni :year
   validates_presence_of :year,
                         :message=>"Aggiungi l'anno accademico"

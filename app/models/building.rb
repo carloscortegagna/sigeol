@@ -12,9 +12,6 @@ class Building < ActiveRecord::Base
  belongs_to :address, :dependent=>:destroy
  has_many :classrooms, :dependent=>:destroy
  
-  #validazioni associazioni
-  validates_existence_of :address, :allow_nil => true
-
   #validazioni :name
   validates_presence_of :name,
                          :message=>"Il nome non deve essere vuoto"

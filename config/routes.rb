@@ -23,7 +23,10 @@ ActionController::Routing::Routes.draw do |map|
                                            :activate => :post,
                                            :administration => :get},
                            :member => {:edit_graduate_courses => :get,
-                                       :update_graduate_courses => [:post, :put, :delete]}
+                                       :update_graduate_courses => [:post, :put, :delete],
+                                       :edit_capabilities => :get,
+                                       :update_capabilities => [:post, :put, :delete]
+                                       }
 
   map.resources :users, :only => :edit
 

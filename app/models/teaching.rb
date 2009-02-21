@@ -16,14 +16,6 @@ include ApplicationHelper
  has_many :curriculums, :through=> :belongs
  has_many :timetable_entries, :dependent=>:destroy
 
-  #Validazioni associazioni
-   validates_existence_of :teacher,
-                          :allow_nil => true,
-                          :message=>"L'insegnante deve essere valido"
-   validates_existence_of :period,
-                          :allow_nil => true,
-                          :message=>"Il periodo deve essere valido"
-
   #Validazioni :name
    validates_presence_of :name,
                          :message=>"Il nome non deve essere vuoto"

@@ -1,0 +1,18 @@
+<p>
+    Modifica del docente <%=h @teacher.surname%> <%=h @teacher.name%>
+</p>
+<p>
+  Privilegi posseduti ed amministrabili: <br/>
+  <% @manageable_capabilities.each do |c| %>
+      <%=h c.name %>
+      <%= button_to "Rimuovi", :action => :update_capabilities, :method => :delete, :ids => c.id%>
+      <br/>
+  <% end %>
+</p>
+<p>
+  Privilegi da aggiungere: <br/>
+  <% @selectable_capabilities.each do |c| %>
+    <%=h c.name %>
+    <%= button_to "Aggiungi", :action => :update_capabilities, :method => :put, :ids => c.id %>
+</p>
+<% end %>

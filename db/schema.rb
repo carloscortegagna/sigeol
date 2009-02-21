@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090218173721) do
+ActiveRecord::Schema.define(:version => 20090220153901) do
 
   create_table "academic_organizations", :force => true do |t|
     t.string  "name"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(:version => 20090218173721) do
 
   add_index "capabilities", ["name"], :name => "index_capabilities_on_name", :unique => true
 
-  create_table "capabilities_users", :force => true do |t|
+  create_table "capabilities_users", :id => false, :force => true do |t|
     t.integer "capability_id"
     t.integer "user_id"
     t.integer "created_at",    :limit => 2000000000
@@ -115,6 +115,8 @@ ActiveRecord::Schema.define(:version => 20090218173721) do
     t.integer "created_at",               :limit => 2000000000
     t.integer "updated_at",               :limit => 2000000000
   end
+
+  add_index "graduate_courses", ["name"], :name => "index_graduate_courses_on_name", :unique => true
 
   create_table "graduate_courses_users", :id => false, :force => true do |t|
     t.integer "user_id"

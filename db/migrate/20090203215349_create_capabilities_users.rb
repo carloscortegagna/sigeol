@@ -1,6 +1,6 @@
 class CreateCapabilitiesUsers < ActiveRecord::Migration
   def self.up
-   create_table :capabilities_users do |t|
+   create_table :capabilities_users, :id => false do |t|
      t.integer :capability_id
      t.integer :user_id
      t.timestamps

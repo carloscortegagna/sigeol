@@ -9,9 +9,6 @@
 class ExpiryDate < ActiveRecord::Base
 
   belongs_to :graduate_course
-  #validazioni associazione
-   validates_existence_of :graduate_course,
-                          :message=>"La data deve essere associata ad un corso di laurea"
 
   #validazioni :date attraverso l'uso del plugin validates_timeliness
     oggi=::Date.current()

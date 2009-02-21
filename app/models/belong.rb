@@ -11,9 +11,6 @@ class Belong < ActiveRecord::Base
  belongs_to :teaching
  belongs_to :curriculum
 
-  #validazioni associazioni
-   validates_existence_of :curriculum,:teaching,
-                      :message=>"Attenzione associazione non valida"
 
    #validazioni :teaching_id e :curriculum_id
     validates_presence_of :isOptional,

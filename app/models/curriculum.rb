@@ -12,9 +12,6 @@ class Curriculum < ActiveRecord::Base
  has_many :belongs,:dependent=> :destroy
  has_many :teachings, :through=>:belongs
 
- validates_existence_of :graduate_course,
-                       :message=>"Il curriculum deve essere associato ad un corso di laurea"
-
   #validazioni :name
   validates_uniqueness_of :name,
                           :message=>"Il curriculum è già presente"

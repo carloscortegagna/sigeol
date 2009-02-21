@@ -12,15 +12,13 @@ require 'digest/sha1'
 
 class User < ActiveRecord::Base
   belongs_to :specified, :polymorphic => true, :dependent=>:destroy
-  has_and_belongs_to_many :capabilities
+  has_and_belongs_to_many :capabilities, :uniq => true
   has_and_belongs_to_many :graduate_courses, :uniq => true
   belongs_to :address
   
   before_save :encrypt_password
   before_validation :calculate_digest
 
-    validates_existence_of :specified, 
-                           :message=>"User non specificato"
   #validazioni password
     validates_presence_of :password,
                          :message=>"La password non deve essere vuota",
@@ -77,6 +75,9 @@ class User < ActiveRecord::Base
   end
   def manage_timetables?
     self.capabilities.find_by_name("Manage timetables") != nil
+  end
+  def manage_capabilities?
+    self.capabilities.find_by_name("Manage capabilities") != nil
   end
   def own_by_teacher?
     self.specified_type == "Teacher"

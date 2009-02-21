@@ -11,13 +11,7 @@ class TimetableEntry < ActiveRecord::Base
   belongs_to :timetable
   belongs_to :teaching
   belongs_to :classroom
-  #validazioni associazione
-    validates_existence_of :timetable, 
-                           :message=>"Il timetable non è valido"
-     validates_existence_of :teaching,
-                           :message=>"L'insegnamento non è valido"
-     validates_existence_of :classroom,
-                           :message=>"La classe non è validi"
+
   #validazioni :startTime e :endTime e validazioni :day
 
   validates_presence_of :startTime,:endTime,:day,

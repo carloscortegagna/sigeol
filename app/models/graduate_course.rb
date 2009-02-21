@@ -17,9 +17,6 @@ class GraduateCourse < ActiveRecord::Base
   has_many_polymorphs :constraints, :from => [:quantity_constraints,:boolean_constraints, :temporal_constraints],
     :as=> :owner, :dependent=> :destroy
 
-  #validazioni associazioni
-  validates_existence_of :academic_organization,
-                          :message=>"Deve essere associato ad un organizzazione accademica"
   #validazioni :name
   validates_uniqueness_of :name,
                           :message=>"Il corso è già presente"

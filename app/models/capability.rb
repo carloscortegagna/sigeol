@@ -7,7 +7,7 @@
 #17/02/09 Aggiunta delle validazioni
 #12/02/09 Prima stesura
 class Capability < ActiveRecord::Base
- has_and_belongs_to_many :users
+ has_and_belongs_to_many :users, :uniq => true
 
   #validazioni :name
    validates_presence_of :name,
