@@ -21,7 +21,7 @@ class Address < ActiveRecord::Base
                        :message=>"Il nome è troppo lungo"
 
   validates_format_of :city,
-                     :with => /^[a-zA-Zàòèéùì]*$/,
+                     :with => /^[a-zA-Zàòèéùì\s]*$/,
                      :message=>"Si accetta solo caratteri"
 
 #validazioni :phone
@@ -39,7 +39,7 @@ class Address < ActiveRecord::Base
                        :maximum=> 50,
                        :message=>"Il nome è troppo lungo"
    validates_format_of :street,
-                     :with => /^[a-zA-Z0-9àòèéùì]*$/,
+                     :with => /^[a-zA-Z0-9àòèéùì\s]*$/,
                      :message=>"Si accetta solo caratteri"
 
 def before_save
