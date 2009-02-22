@@ -90,5 +90,19 @@ end
              end
              end
 
+#Eliminazione dei trigger
+ def cancel_create(from_table,column)
+   execute %(DROP TRIGGER IF EXISTS create_#{constraint_name(from_table,column)})
+ end
+
+ def cancel_update (from_table,column)
+  execute %(DROP TRIGGER IF EXISTS update_#{constraint_name(from_table,column)})
+ end
+
+ def cancel_delete (from_table,column)
+  execute %(DROP TRIGGER IF EXISTS delete_#{constraint_name(from_table,column)})
+ end
+
 end
+
 
