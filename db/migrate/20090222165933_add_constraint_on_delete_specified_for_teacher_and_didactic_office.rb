@@ -5,7 +5,7 @@ class AddConstraintOnDeleteSpecifiedForTeacherAndDidacticOffice < ActiveRecord::
               FOR EACH ROW BEGIN
               SELECT CASE
                 WHEN ((SELECT id FROM users WHERE specified_id =OLD.id AND specified_type='Teacher') IS NOT NULL)
-                  THEN RAISE(ABORT, 'Non puoi eliminare questo insegnante perche' e' associato ad uno user')
+                  THEN RAISE(ABORT, 'Non puoi eliminare questo insegnante perchè è associato ad uno user')
                 END;
                END;
               )
@@ -15,7 +15,7 @@ class AddConstraintOnDeleteSpecifiedForTeacherAndDidacticOffice < ActiveRecord::
               FOR EACH ROW BEGIN
               SELECT CASE
                 WHEN ((SELECT id FROM users WHERE specified_id = OLD.id AND specified_type='DidacticOffice') IS NOT NULL)
-                  THEN RAISE(ABORT, 'Non puoi eliminare questa segreteria didattica perche' e' associato ad uno user')
+                  THEN RAISE(ABORT, 'Non puoi eliminare questa segreteria didattica perchè è associato ad uno user')
                 END;
                END;
               )
