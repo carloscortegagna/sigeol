@@ -8,5 +8,9 @@
 #12/02/09 Prima stesura
 class DidacticOffice < ActiveRecord::Base
   has_one :user, :as => :specified
-  
+
+  def before_destroy
+   User.delete_all("specified_id=#{id} AND specified_type='DidacticOffice'")
+  end
+
 end

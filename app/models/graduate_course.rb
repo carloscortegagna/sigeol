@@ -27,7 +27,7 @@ class GraduateCourse < ActiveRecord::Base
                        :maximum=> 50,
                        :message=>"Il nome è troppo lungo"
    validates_format_of :name,
-                     :with => /^[a-zA-Zàòèéùì]*$/,
+                     :with => /^[a-zA-Zàòèéùì\s]*$/,
                      :message=>"Si accetta solo caratteri"
 #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
   def before_save

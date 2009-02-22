@@ -25,7 +25,7 @@ class Teacher < ActiveRecord::Base
                        :message=>"Il nome è troppo lungo",
                        :on => :update
    validates_format_of :name,:surname,
-                     :with => /^[a-zA-Zàòèéùì]*$/,
+                     :with => /^[a-zA-Zàòèéùì\s]*$/,
                      :message=>"Si accetta solo caratteri",
                      :on => :update
   #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
@@ -35,7 +35,6 @@ class Teacher < ActiveRecord::Base
  end
 
  def before_destroy
-   puts "entratp"
    User.delete_all("specified_id=#{id} AND specified_type='Teacher'")
   end
 

@@ -23,7 +23,7 @@ class AcademicOrganization < ActiveRecord::Base
                        :message=>"Il nome è troppo lungo"
 
    validates_format_of :name,
-                     :with => /^[a-zA-Zàòèéùì]*$/,
+                     :with => /^[a-zA-Zàòèéùì\s]*$/,
                      :message=>"Si accetta solo caratteri"
  #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
  #si utilizza la funzione first_upper presente sul modulo ApplicationHelper

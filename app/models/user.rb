@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
                        :on => :update
 
  validates_format_of :password,
-                     :with => /[a-zA-Z0-9\.]/,
+                     :with => /^[a-zA-Z0-9\.]*$/,
                      :message=>"Si accetta solo caratteri numeri e il carattere .",
                      :on => :update
 

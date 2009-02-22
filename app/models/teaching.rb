@@ -22,7 +22,7 @@ include ApplicationHelper
    validates_length_of :name,
                        :maximum=> 30
    validates_format_of :name,
-                       :with => /^[a-zA-Zàòèéùì]*$/,
+                       :with => /^[a-zA-Zàòèéùì\s]*$/,
                        :message=>"Si accetta solo caratteri numeri e il carattere spazio"
   validates_uniqueness_of :name,
                           :message=>"Il nome dell'insegnamento è già presente"
