@@ -20,4 +20,10 @@ class ExpiryDate < ActiveRecord::Base
     validates_presence_of :date,
                           :message=>"La data non deve essere vuota"
 
+#conversione in una data,fa gia il plugin
+#   def before_save
+#    self.date.to_date
+ # end
+
+
 end

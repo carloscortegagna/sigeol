@@ -16,11 +16,11 @@ class TimetableEntry < ActiveRecord::Base
 
   validates_presence_of :startTime,:endTime,:day,
                           :message=>"Alcuni campi sono vuoti"
-  validates_time :startTime,:endTime,
-                 :invalid_time_message=>"La data deve essere del tipo h:nn"
+  #validates_time :startTime,:endTime,
+  #               :invalid_time_message=>"La data deve essere del tipo h:nn"
   validates_inclusion_of :day,
-                       :in => %w{ lun mar mer gio ven sab dom},
-                       :message => "Deve essere lun,mar,mer,gio,ven,sab"
+                       :in => 1..5,
+                       :message => "Deve essere compreso tra 1 e 5"
   #validazione unicità :startTime :endTime :day :classroom_id time :timetable_id
  private
  validate :unique?

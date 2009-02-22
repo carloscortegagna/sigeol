@@ -89,7 +89,7 @@ class User < ActiveRecord::Base
      end
   end
 
-  private
+   private
 
   def encrypt_password
     self.password = Digest::SHA1.hexdigest(self.password) if attribute_present?("password")
