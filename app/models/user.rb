@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
 
   #la mail deve essere del tipo account@qualcosa.qualcosa.it oppure account@qualcosa.qualcosa.it
   validates_format_of :mail,
-                     :with => /^([^@ t]{8,12})+@(([^@ t]{1,12})+\.+[a-z]{2,3})|(([^@ t]{1,12})+\.+([^@ t]{1,12})+\.+[a-z]{2,3})$/,
+                     :with => /^([a-zA-Z0-9_\.\-\+]){8,12}\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
                      :message=>"La mail non è valida"
 
   validates_presence_of :random,
