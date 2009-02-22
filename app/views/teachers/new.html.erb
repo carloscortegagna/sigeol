@@ -1,7 +1,7 @@
-<%= administration_teachers_menu %>
 <h1>Invito dei docenti</h1>
 
-<% form_tag(:action => :create, :method => :post) do %>
+<% form_tag(:action => :create) do %>
+    <%= error_messages_for :user, :object => @teacher %>
    <p>
     <%= label_tag "Mail" %>
     <%= text_field_tag "mail" %>

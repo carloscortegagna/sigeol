@@ -1,6 +1,8 @@
 class GraduateCoursesController < ApplicationController
   skip_before_filter :login_required, :only => :index
-  
+  before_filter :manage_graduate_courses_required, :only => [:administration, :edit, :update]
+  before_filter :didactic_office_required, :only => [:new, :create]
+  before_filter :same_graduate_course_required, :only => [:edit, :update, :destroy]
   def index
     @graduate_courses = GraduateCourse.find(:all)
 
@@ -25,7 +27,7 @@ class GraduateCoursesController < ApplicationController
 
   def new
     @graduate_course = GraduateCourse.new
-
+    @academic_organization = AcademicOrganization.find(:all)
     respond_to do |format|
       format.html # new.html.erb
     end
@@ -34,16 +36,18 @@ class GraduateCoursesController < ApplicationController
   # GET /graduate_courses/1/edit
   def edit
     @graduate_course = GraduateCourse.find(params[:id])
+    @academic_organization = AcademicOrganization.find(:all)
   end
 
   def create
     @graduate_course = GraduateCourse.new(params[:graduate_course])
-
     respond_to do |format|
       if @graduate_course.save
-        flash[:notice] = 'GraduateCourse was successfully created.'
-        format.html { redirect_to(@graduate_course) }
+        @graduate_course.users << @current_user
+        flash[:notice] = 'Corso di laurea creato correttamente'
+        format.html { redirect_to administration_graduate_courses_url }
       else
+        @academic_organization = AcademicOrganization.find(:all)
         format.html { render :action => "new" }
       end
     end
@@ -70,6 +74,14 @@ class GraduateCoursesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to :action => 'administration' }
+    end
+  end
+
+  private
+
+  def same_graduate_course_required
+    if (!@current_user.graduate_courses.find(params[:id]))
+      flash[:error] = "Non puoi modificare questo corso di laurea"
     end
   end
 end

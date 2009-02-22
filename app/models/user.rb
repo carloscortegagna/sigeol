@@ -79,8 +79,14 @@ class User < ActiveRecord::Base
   def manage_capabilities?
     self.capabilities.find_by_name("Manage capabilities") != nil
   end
+    def manage_graduate_courses?
+    self.capabilities.find_by_name("Manage graduate courses") != nil
+  end
   def own_by_teacher?
     self.specified_type == "Teacher"
+  end
+  def own_by_didactic_office?
+    self.specified_type == "DidacticOffice"
   end
 
    def after_destroy

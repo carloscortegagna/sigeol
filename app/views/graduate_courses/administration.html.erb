@@ -22,9 +22,5 @@
 <% end %>
 
 <br>
-<% if !@graduate_courses.blank? %>
 <%= link_to 'Inserisci nuovo curriculum', new_curriculum_path %> <br>
-<% end %>
-<%= link_to 'Inserisci un nuovo corso di laurea', new_graduate_course_path %>
-
 <br> N.B. mancano ExpiryDate, Constraint

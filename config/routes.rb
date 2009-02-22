@@ -3,8 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :timetables
 
-  map.connect 'graduate_courses/administration', :controller => 'graduate_courses', :action => 'administration'
-  map.resources :graduate_courses
+  map.resources :graduate_courses, :collection => {:administration => :get}
 
   map.resources :curriculums
   
@@ -28,7 +27,7 @@ ActionController::Routing::Routes.draw do |map|
                                        :update_capabilities => [:post, :put, :delete]
                                        }
 
-  map.resources :users, :only => :edit
+  map.resources :users, :only => [:edit, :update]
 
   map.resources :timetables, :collection => {:administration => :get}
 

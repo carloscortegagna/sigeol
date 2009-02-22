@@ -11,14 +11,8 @@
     <%= f.text_field :duration %>
   </p>
   <p>
-    <%= f.label 'Periodi' %><br />
-    <%= f.text_field :academic_organization_id %>
-  </p>
-    Esempio: inserire 3 se il corso di laurea è diviso in trimestri, 2 se in semestri, ecc...
-  <p>
+     <%= f.label "Organizzazione Accademica" %><br />
+     <%= select_tag "graduate_course[academic_organization_id]" , options_from_collection_for_select(@academic_organization, "id", "name", @graduate_course.academic_organization_id) %>
     <%= f.submit "Update" %>
   </p>
 <% end %>
-
-<%= link_to 'Show', @graduate_course %> |
-<%= link_to 'Back', :action => 'administration' %>

@@ -1,0 +1,12 @@
+<div>
+  <% form_for :user, :url => {:action => :update}, :html=> {:method => :put} do |f| %>
+    <%= error_messages_for 'current_user' %>
+    <p>
+      <%= f.label 'Nuova password' %><br />
+      <%= f.password_field :password %>
+    </p>
+    <p>
+      <%= f.submit "Cambio password" %>
+    </p>
+  <% end %>
+</div>

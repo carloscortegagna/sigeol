@@ -28,6 +28,7 @@ class Teacher < ActiveRecord::Base
                      :with => /^[a-zA-Zàòèéùì\s]*$/,
                      :message=>"Si accetta solo caratteri",
                      :on => :update
+   validates_associated :address
   #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
  def before_save
    self.name=first_upper(self.name)

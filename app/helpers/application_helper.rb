@@ -16,7 +16,10 @@ module ApplicationHelper
     name=name.downcase if name
     name=name.capitalize if name
   end
-  
+
+  def login_form
+    render :partial => "shared/login_form"
+  end
   def standard_sidebar
     render(:partial => "shared/standard_sidebar")
   end
@@ -32,11 +35,18 @@ module ApplicationHelper
     amm_link = []
     teacher_link = []
     final_link = []
+    didactic_office_link = []
+    if (user.own_by_didactic_office?)
+      didactic_office_link << {:name => "Nuovo corso", :url => url_for(:controller => "graduate_courses", :action => "new")}
+    end
+    if (didactic_office_link)
+      final_link << {:cat => "Segreteria", :link => didactic_office_link}
+    end
     amm_link << {:name => "Cambio psw", :url => url_for(:controller => "users", :action => "edit", :id => user.id)}
     if (user.manage_teachers?)
       amm_link << {:name => "Docenti", :url => url_for(:controller => "teachers", :action => "administration")}
     end
-    if (user.manage_teachings?)
+    if (user.manage_graduate_courses?)
       amm_link << {:name => "Corsi", :url => url_for(:controller => "graduate_courses", :action => "administration")}
     end
     if (user.manage_teachings?)

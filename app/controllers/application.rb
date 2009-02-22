@@ -29,14 +29,26 @@ class ApplicationController < ActionController::Base
   end
 
   def manage_teachers_required
-    if @current_user == nil || !@current_user.manage_teachers?
+    if @current_user == nil || !@current_user.active? || !@current_user.manage_teachers?
       flash[:error] = "Non possiedi i privilegi per effettuare questa operazione"
       redirect_to timetables_url
     end
   end
 
   def manage_capabilities_required
-    if @current_user == nil || !@current_user.manage_capabilities?
+    if @current_user == nil || !@current_user.active? || !@current_user.manage_capabilities?
+      flash[:error] = "Non possiedi i privilegi per effettuare questa operazione"
+      redirect_to timetables_url
+    end
+  end
+  def manage_graduate_courses_required
+    if @current_user == nil || !@current_user.active? || !@current_user.manage_graduate_courses?
+      flash[:error] = "Non possiedi i privilegi per effettuare questa operazione"
+      redirect_to timetables_url
+    end
+  end
+  def didactic_office_required
+    if @current_user == nil || !@current_user.active? || !@current_user.own_by_didactic_office?
       flash[:error] = "Non possiedi i privilegi per effettuare questa operazione"
       redirect_to timetables_url
     end

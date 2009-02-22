@@ -5,9 +5,6 @@
 <% @graduate_courses.each do |graduate_course| %>
   <tr>
     <td><h1><%=h graduate_course.name %></h1>
-    <td><%= link_to 'Show', graduate_course %></td>
-    <td><%= link_to 'Edit', edit_graduate_course_path(graduate_course) %></td>
-    <td><%= link_to 'Destroy', graduate_course, :confirm => 'Are you sure?', :method => :delete %></td>
     <br><br>
     <% graduate_course.users.each do |user| %>
       <td><%= user.mail %></td>

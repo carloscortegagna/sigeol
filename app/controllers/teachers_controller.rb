@@ -66,19 +66,19 @@ class TeachersController < ApplicationController
   def create
     user = User.find_by_mail(params[:mail])
     if user == nil
-      user = User.new()
-      user.mail = params[:mail]
-      user.graduate_courses << GraduateCourse.find(params[:graduate_course_id])
-      user.random = rand(120)
-      teacher = Teacher.new()
-      user.specified = teacher
-      if user.save
+      @teacher = User.new()
+      @teacher.mail = params[:mail]
+      @teacher.random = rand(120)
+      t = Teacher.new()
+      @teacher.specified = t
+      if @teacher.save
+        @teacher.graduate_courses << GraduateCourse.find(params[:graduate_course_id])
         flash[:notice] = "Docente invitato con successo"
         redirect_to new_teacher_url
       else
-        flash[:error] = user.errors
-        teacher.destroy
-        redirect_to new_teacher_url
+        t.destroy
+        @graduate_courses = @current_user.graduate_courses
+        render :action => :new
       end
     else
       if user.own_by_teacher?
@@ -95,6 +95,8 @@ class TeachersController < ApplicationController
   def pre_activate
     if params[:digest]
       @user = User.find_by_digest params[:digest]
+      @teachers = @user.specified
+      @address = Address.new
       if @user == nil || @user.active?
         flash[:error] = "L'utente non esiste od è già attivo"
         redirect_to timetables_url
@@ -105,28 +107,28 @@ class TeachersController < ApplicationController
   end
 
   def activate
-    @user = User.find params[:user]
-    teacher = @user.specified
-    teacher.name = params[:name]
-    teacher.surname = params[:surname]
-    if teacher.save
-      @user.password = params[:password]
+    @user = User.find params[:user_id]
+    @teacher = @user.specified
+    @address = Address.new(params[:address])
+    if @teacher.update_attributes(params[:teacher])
+      @user.password = params[:user][:password]
+      @user.address = @address
       if @user.save
         flash[:notice] = "Account attivato correttamente"
         redirect_to timetables_url
       else
-        flash[:errors] = @user.errors.full_messages.to_s
-        redirect_to :action => :pre_activate, :digest => @user.digest
+        render :action => :pre_activate, :digest => @user.digest
       end
     else
-      flash[:errors] = teacher.errors.full_messages.to_s
-      redirect_to :action => :pre_activate, :digest => @user.digest
+      render :action => :pre_activate, :digest => @user.digest
     end
   end
 
   def administration
-    ids = @current_user.graduate_course_ids
-    @graduate_courses = GraduateCourse.find(ids, :include => [:users] , :conditions => "users.specified_type = 'Teacher'")
+    gs = @current_user.graduate_courses
+    @graduate_courses = gs.find(:all, :include => [:users],
+                :conditions => ["specified_type = 'Teacher'"])
+    
   end
 
   private
@@ -137,7 +139,7 @@ class TeachersController < ApplicationController
     current_user_ids = @current_user.graduate_course_ids
     common_ids = current_user_ids & teacher_ids
     if common_ids == []
-      flash[:error] = "Questo docente non appartiane a nessun tuo corso di laurea"
+      flash[:error] = "Questo docente non appartiene a nessun tuo corso di laurea"
       redirect_to timetables_url
     end
   end

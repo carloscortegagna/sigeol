@@ -1,0 +1,7 @@
+<div>
+  <% if session[:user_id] -%>
+  <%= link_to 'Logout', session_path, :method => :delete %>
+<% else -%>
+  <%= link_to 'Login', new_session_path %>
+<% end -%>
+</div>

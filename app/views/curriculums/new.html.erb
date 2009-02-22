@@ -8,12 +8,9 @@
   </p>
   <p>
     <%= f.label 'Corso di Laurea associato' %><br />
-    <%= f.text_field :graduate_course_id %>
-    <br> Al momento bisogna inserire un id valido di un corso di laurea, poi verrà fatto un menu a tendina o altro...
+     <%= select_tag "curriculum[graduate_course_id]" , options_from_collection_for_select(@graduate_courses, "id", "name") %>
   </p>
   <p>
     <%= f.submit "Create" %>
   </p>
 <% end %>
-
-<%= link_to 'Back', :controller => 'graduate_courses', :action => 'administration' %>

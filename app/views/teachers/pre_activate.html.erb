@@ -1,21 +1,38 @@
 <h1>Creazione dell'account docente <%=h @user.mail%>
 </h1>
 
-<% form_tag(:action => :activate, :method => :post) do %>
+<% form_for @user, :url => {:action => :activate}, :html => {:method => :post} do |f| %>
+  <%= error_messages_for :user %>
+  <%= error_messages_for :teacher %>
    <p>
     <%= label_tag 'password' %>
-    <%= password_field_tag 'password' %>
+    <%= f.password_field :password %>
   </p>
+  <fieldset>
+    <legend>Dati personali</legend>
+    <% fields_for @teacher do |field| %>
   <p>
     <%= label_tag 'Nome' %>
-    <%= text_field_tag 'name' %>
+    <%= field.text_field :name %>
   </p>
   <p>
     <%= label_tag 'Cognome' %>
-    <%= text_field_tag 'surname' %>
+    <%= field.text_field :surname %>
   </p>
+  <% end %>
+  </fieldset>
+  <fieldset>
+    <legend>Indirizzo</legend>
+    <% fields_for @address do |field| %>
+    <p>
+      Città <%= field.text_field :city %><br/>
+      Telefono: <%= field.text_field :telephone %><br/>
+      Via: <%= field.text_field :street %><br/>
+    </p>
+    <% end %>
+  </fieldset>
   <p>
-    <%= hidden_field_tag 'user', @user.id  %>
+    <%= hidden_field_tag 'user_id', @user.id  %>
   </p>
   <p>
     <%= submit_tag "Crea account" %>
