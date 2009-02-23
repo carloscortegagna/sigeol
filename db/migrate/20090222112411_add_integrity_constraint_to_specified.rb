@@ -4,7 +4,7 @@ class AddIntegrityConstraintToSpecified < ActiveRecord::Migration
             BEFORE INSERT ON users
               FOR EACH ROW BEGIN
               SELECT CASE
-                WHEN ((NEW.specified_type IS NULL) OR (NEW.specified_type != 'Teacher' AND NEW.specified_type != 'DidacticOffice'))
+                WHEN (NEW.specified_type IS NOT NULL AND NEW.specified_type != 'Teacher' AND NEW.specified_type != 'DidacticOffice')
                   THEN RAISE(ABORT, 'Lo user non ha un tipo specificato valido')
                 WHEN (NEW.specified_type == 'Teacher' AND (SELECT id FROM teachers WHERE id = NEW.specified_id) IS NULL)
                   THEN RAISE(ABORT, 'Non esiste in teachers una riga con quel id')
