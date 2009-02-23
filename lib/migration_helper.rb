@@ -12,7 +12,8 @@
 #to_table=individua la tabella associata
 
   def constraint_on_create(from_table, from_column, to_table,can_be_null)
-    if(can_be_null==0)
+    case can_be_null
+    when 0
       execute %(CREATE TRIGGER insert_#{constraint_name(from_table, from_column)}
               BEFORE INSERT ON #{from_table}
               FOR EACH ROW BEGIN
@@ -22,7 +23,7 @@
                END;
               END;)
 
-    else
+    when 1
         execute %(CREATE TRIGGER insert_#{constraint_name(from_table, from_column)}
               BEFORE INSERT ON #{from_table}
               FOR EACH ROW BEGIN
@@ -43,17 +44,18 @@
 #la riga se il suo id è associato. se assume 1 la cancellazione metterà le chiavi esterne
 #associate a NULL
  def constraint_on_delete(from_table,column,to_table,choose)
- if(choose==0)
+ case choose
+ when 0
   execute %(CREATE TRIGGER delete_#{constraint_name(from_table, to_table)}
               BEFORE DELETE ON #{from_table}
               FOR EACH ROW BEGIN
               SELECT CASE
                WHEN ((SELECT #{column} FROM #{to_table} WHERE #{column} = OLD.id) IS NOT NULL)
-               THEN RAISE(ABORT,'Eliminando, Violazione della chiave esterna #{column} della tabella #{from_table}')
+               THEN RAISE(ABORT,'Eliminando, Violazione della chiave esterna #{column} della tabella #{to_table}')
                END;
               END;)
 
- else
+ when 1
    execute %(CREATE TRIGGER delete_#{constraint_name(from_table, to_table)}
             BEFORE DELETE ON #{from_table}
             FOR EACH ROW BEGIN
@@ -61,14 +63,14 @@
             END;)
 
  end
-
 end
 
 #UPDATE
 #Metodo che controlla il rispetto del vincolo di integrità in fase di aggiornamento
 #Come funzionamento vedi constraint_on_create, sono simili
  def constraint_on_update(from_table, column, to_table,can_be_null)
-    if(can_be_null==0)
+    case can_be_null
+    when 0
       execute %(CREATE TRIGGER update_#{constraint_name(from_table,column)}
                 BEFORE UPDATE ON #{from_table}
                 FOR EACH ROW BEGIN
@@ -77,7 +79,7 @@ end
                   THEN RAISE(ABORT, 'Aggiornando, Violazione della chiave esterna #{column} della tabella #{from_table}')
                 END;
                 END;)
-      else
+    when 1
        execute %(CREATE TRIGGER update_#{constraint_name(from_table,column)}
                 BEFORE UPDATE ON #{from_table}
                 FOR EACH ROW BEGIN
