@@ -29,7 +29,7 @@ class Address < ActiveRecord::Base
                        :maximum=> 15,
                        :message=>"Il nome è troppo lungo"
      validates_format_of :telephone,
-                     :with => /^[0-9]{2,4}+[-]+[0-9]{6,8}$/,
+                     :with => /^[0-9]{2,4}+\-[0-9]{6,8}$/,
                      :message=>"Inserisci in questo modo: prefisso-numero"
 
 #validazioni :street
