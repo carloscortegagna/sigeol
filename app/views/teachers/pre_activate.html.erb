@@ -1,9 +1,10 @@
 <h1>Creazione dell'account docente <%=h @user.mail%>
 </h1>
 
-<% form_for @user, :url => {:action => :activate}, :html => {:method => :post} do |f| %>
+<% form_for @user, :url => {:action => :activate, :digest => params[:digest]}, :html => {:method => :post} do |f| %>
   <%= error_messages_for :user %>
   <%= error_messages_for :teacher %>
+  <%= error_messages_for :address %>
    <p>
     <%= label_tag 'password' %>
     <%= f.password_field :password %>
@@ -31,9 +32,7 @@
     </p>
     <% end %>
   </fieldset>
-  <p>
-    <%= hidden_field_tag 'user_id', @user.id  %>
-  </p>
+    <% #  hidden_field_tag 'digest', params[:digest]  %>
   <p>
     <%= submit_tag "Crea account" %>
   </p>

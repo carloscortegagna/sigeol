@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090221145632) do
+ActiveRecord::Schema.define(:version => 20090222165933) do
 
   create_table "academic_organizations", :force => true do |t|
     t.string  "name"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20090221145632) do
     t.integer "updated_at", :limit => 2000000000
   end
 
-  create_table "belongs", :force => true do |t|
+  create_table "belongs", :id => false, :force => true do |t|
     t.integer "teaching_id"
     t.integer "curriculum_id"
     t.integer "isOptional",    :limit => 1
@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(:version => 20090221145632) do
     t.integer "created_at",    :limit => 2000000000
     t.integer "updated_at",    :limit => 2000000000
   end
+
+  add_index "capabilities_users", ["user_id", "capability_id"], :name => "index_capabilities_users_on_user_id_and_capability_id", :unique => true
 
   create_table "classrooms", :force => true do |t|
     t.string  "name"
@@ -209,5 +211,6 @@ ActiveRecord::Schema.define(:version => 20090221145632) do
   end
 
   add_index "users", ["mail"], :name => "index_users_on_mail", :unique => true
+  add_index "users", ["specified_id", "specified_type"], :name => "index_users_on_specified_id_and_specified_type", :unique => true
 
 end

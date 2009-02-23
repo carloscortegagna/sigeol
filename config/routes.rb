@@ -18,10 +18,10 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resource :session
 
-  map.resources :teachers, :collection => {:pre_activate => :get,
-                                           :activate => :post,
-                                           :administration => :get},
-                           :member => {:edit_graduate_courses => :get,
+  map.resources :teachers, :collection => {:administration => :get},
+                           :member => {:pre_activate => :get,
+                                       :activate => :post,
+                                       :edit_graduate_courses => :get,
                                        :update_graduate_courses => [:post, :put, :delete],
                                        :edit_capabilities => :get,
                                        :update_capabilities => [:post, :put, :delete]

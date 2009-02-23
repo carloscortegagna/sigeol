@@ -70,13 +70,16 @@ class TeachersController < ApplicationController
       @teacher.mail = params[:mail]
       @teacher.random = rand(120)
       t = Teacher.new()
+      a = Address.new()
+      t.save
+      a.save false
       @teacher.specified = t
+      @teacher.address = a
       if @teacher.save
         @teacher.graduate_courses << GraduateCourse.find(params[:graduate_course_id])
         flash[:notice] = "Docente invitato con successo"
         redirect_to new_teacher_url
       else
-        t.destroy
         @graduate_courses = @current_user.graduate_courses
         render :action => :new
       end
@@ -93,34 +96,40 @@ class TeachersController < ApplicationController
   end
 
   def pre_activate
-    if params[:digest]
-      @user = User.find_by_digest params[:digest]
+    @user = User.find params[:id]
+    if @user != nil && !@user.active? && @user.digest == params[:digest]
       @teachers = @user.specified
-      @address = Address.new
-      if @user == nil || @user.active?
-        flash[:error] = "L'utente non esiste od è già attivo"
-        redirect_to timetables_url
-      end
+      @address = @user.address
     else
+      flash[:error] = "L'utente non esiste od è già attivo"
       redirect_to timetables_url
     end
   end
 
   def activate
-    @user = User.find params[:user_id]
-    @teacher = @user.specified
-    @address = Address.new(params[:address])
-    if @teacher.update_attributes(params[:teacher])
-      @user.password = params[:user][:password]
-      @user.address = @address
-      if @user.save
-        flash[:notice] = "Account attivato correttamente"
-        redirect_to timetables_url
-      else
-        render :action => :pre_activate, :digest => @user.digest
-      end
+    @user = User.find params[:id]
+    if @user != nil && !@user.active? && @user.digest == params[:digest]
+      @teacher = @user.specified
+      @address = @user.address
+        if @teacher.update_attributes(params[:teacher])
+          if @address.update_attributes(params[:address])
+            @user.password = params[:user][:password]
+            @user.address = @address
+            if @user.save
+              flash[:notice] = "Account attivato correttamente"
+              redirect_to timetables_url
+            else
+              render :action => :pre_activate, :digest => @user.digest
+            end
+          else
+            render :action => :pre_activate, :digest => @user.digest
+          end
+        else
+          render :action => :pre_activate, :digest => @user.digest
+        end
     else
-      render :action => :pre_activate, :digest => @user.digest
+      flash[:error] = "L'utente non esiste od è già attivo"
+      redirect_to timetables_url
     end
   end
 
