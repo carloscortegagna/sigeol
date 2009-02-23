@@ -18,7 +18,8 @@ class Belong < ActiveRecord::Base
 
   #se l'insegnamento non è legato a nessun curriculum,eliminalo
   def after_destroy
-    if(Belong.count(:conditions=>["teaching_id = ?" , teaching_id])==1)
+    if(Belong.count(:conditions=>["teaching_id = ?" , teaching_id])==0)
+      puts "distruggi"
       Teaching.destroy(teaching_id)
     end
   end
