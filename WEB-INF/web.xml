@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<!--
+    Document   : web.xml
+    Created on : 23 febbraio 2009, 16.24
+    Author     : mattia
+    Description:
+        Purpose of the document follows.
+-->
+<web-app>
+        <servlet>
+                <servlet-name>MiddleManServlet</servlet-name>
+                <servlet-class>sigeol.MiddleManServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+                <servlet-name>MiddleManServlet</servlet-name>
+                <url-pattern>/alg</url-pattern>
+        </servlet-mapping>
+</web-app>
