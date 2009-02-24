@@ -1,21 +1,9 @@
 class TeachingsController < ApplicationController
-  skip_before_filter :login_required, :only => :index
-  # GET /teachings
-  # GET /teachings.xml
+  skip_before_filter :login_required, :only => [:index ,:show]
+  before_filter :manage_teachings_required, :except => [:index, :show]
   def index
-    @teachings = Teaching.find(:all)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @teachings }
-    end
+      @teachings = Teaching.find :all
   end
-
-  def administration
-    @teachings = Teaching.find(:all)
-  end
-  
-
   # GET /teachings/1
   # GET /teachings/1.xml
   def show
@@ -26,11 +14,16 @@ class TeachingsController < ApplicationController
       format.xml  { render :xml => @teaching }
     end
   end
-
+  def administration
+    
+  end
   # GET /teachings/new
   # GET /teachings/new.xml
   def new
     @teaching = Teaching.new
+    @graduate_courses = @current_user.graduate_courses
+    @year = Period.find(:all, :select => "DISTINCT year")
+    @subperiod = Period.find(:all, :select => "DISTINCT subperiod")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -47,17 +40,40 @@ class TeachingsController < ApplicationController
   # POST /teachings.xml
   def create
     @teaching = Teaching.new(params[:teaching])
-
+    curriculum = Curriculum.find(params[:curriculum_id])
+    optional = false
+    optional = true if params[:isOptional]
+    if curriculum
+      @teaching.curriculums << curriculum
+    end
+    period = Period.find_by_subperiod_and_year(params[:subperiod], params[:year])
+    if period
+      @teaching.period = period
+    end
     respond_to do |format|
       if @teaching.save
-        flash[:notice] = 'Teaching was successfully created.'
-        format.html { redirect_to(@teaching) }
+        if (optional)
+          b = @teaching.belongs.find(:first, :include => :curriculum,
+                                     :conditions => ["curriculum_id = ?", params[:curriculum_id]])
+          b.update_attribute(:isOptional, optional)
+        end
+        flash[:notice] = 'Insegnamento creato correttamente.'
+        format.html { redirect_to select_teacher_teaching_url(@teaching) }
         format.xml  { render :xml => @teaching, :status => :created, :location => @teaching }
       else
+        @graduate_courses = @current_user.graduate_courses
+        @year = Period.find(:all, :select => "DISTINCT year")
+        @subperiod = Period.find(:all, :select => "DISTINCT subperiod")
         format.html { render :action => "new" }
         format.xml  { render :xml => @teaching.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  def select_teacher
+    ids = @current_user.graduate_course_ids
+    @teachers = Teacher.find(:all, :include => {:user => :graduate_courses},
+                            :conditions => ["graduate_courses_users.graduate_course_id IN (?)",ids])
   end
 
   # PUT /teachings/1

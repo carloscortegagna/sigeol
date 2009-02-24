@@ -3,28 +3,42 @@
 <% form_for(@teaching) do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :name %><br />
+    <%= f.label "Nome" %><br />
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :CFU %><br />
+    <%= f.label "CFU" %><br />
     <%= f.text_field :CFU %>
   </p>
   <p>
-    <%= f.label :classHours %><br />
+    <%= f.label "Ore settimanali in aula" %><br />
     <%= f.text_field :classHours %>
   </p>
   <p>
-    <%= f.label :labHours %><br />
+    <%= f.label "Ore settimanali in laboratorio" %><br />
     <%= f.text_field :labHours %>
   </p>
   <p>
-    <%= f.label :studentsNumber %><br />
+    <%= f.label "Numero stimato di studenti" %><br />
     <%= f.text_field :studentsNumber %>
+  </p>
+  <p>
+    Curriculum <br/>
+    <%= select_tag "curriculum_id" , option_groups_from_collection_for_select(@graduate_courses, :curriculums, "name", "id", "name") %>
+  </p>
+  <p>
+    Opzionale
+    <%= check_box_tag "optional" %>
+  </p>
+  <p>
+    Anno <br/>
+    <%= select_tag "year" , options_from_collection_for_select(@year, "year", "year") %>
+  </p>
+    <p>
+    Periodo <br/>
+    <%= select_tag "subperiod" , options_from_collection_for_select(@subperiod, "subperiod", "subperiod") %>
   </p>
   <p>
     <%= f.submit "Create" %>
   </p>
 <% end %>
-
-<%= link_to 'Back', teachings_path %>

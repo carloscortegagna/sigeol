@@ -44,8 +44,16 @@ class GraduateCoursesController < ApplicationController
     respond_to do |format|
       if @graduate_course.save
         @graduate_course.users << @current_user
-        flash[:notice] = 'Corso di laurea creato correttamente'
-        format.html { redirect_to administration_graduate_courses_url }
+        if params[:unico]
+          c = Curriculum.new(:name => "Unico")
+          c.graduate_course = @graduate_course
+          c.save
+          flash[:notice] = 'Corso di laurea creato correttamente'
+          format.html { redirect_to administration_graduate_courses_url }
+        else
+          flash[:notice] = "Inserire un curriculum per il corso di laurea #{@graduate_course.name}"
+          format.html { redirect_to new_curriculum_url}
+        end
       else
         @academic_organization = AcademicOrganization.find(:all)
         format.html { render :action => "new" }

@@ -1,15 +1,6 @@
 class ClassroomsController < ApplicationController
-  skip_before_filter :login_required, :only => [:index, :show]
-  # GET /classrooms
-  # GET /classrooms.xml
-  def index
-    @classrooms = Classroom.find(:all)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @classrooms }
-    end
-  end
+  skip_before_filter :login_required, :only => :show
+  before_filter :manage_classrooms_required, :only => [:new, :create, :edit, :update, :destroy]
 
   # GET /classrooms/1
   # GET /classrooms/1.xml
@@ -27,6 +18,7 @@ class ClassroomsController < ApplicationController
   # GET /classrooms/new.xml
   def new
     @classroom = Classroom.new
+    @buildings = Building.find :all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -46,10 +38,12 @@ class ClassroomsController < ApplicationController
 
     respond_to do |format|
       if @classroom.save
+        @classroom.graduate_courses = @current_user.graduate_courses #NON TUTTI I CORSI
         flash[:notice] = 'Classroom was successfully created.'
-        format.html { redirect_to(@classroom) }
+        format.html { redirect_to administration_building_url }
         format.xml  { render :xml => @classroom, :status => :created, :location => @classroom }
       else
+        @buildings = Building.find :all
         format.html { render :action => "new" }
         format.xml  { render :xml => @classroom.errors, :status => :unprocessable_entity }
       end

@@ -10,12 +10,11 @@
 class Teaching < ActiveRecord::Base
 include ApplicationHelper
  #associazioni
- belongs_to :teacher
- belongs_to :period
  has_many :belongs, :dependent=>:destroy
  has_many :curriculums, :through=> :belongs
  has_many :timetable_entries, :dependent=>:destroy
-
+ belongs_to :period
+ belongs_to :teacher
   #Validazioni :name
    validates_presence_of :name,
                          :message=>"Il nome non deve essere vuoto"
@@ -53,49 +52,21 @@ validates_numericality_of :labHours,:classHours,
                           :less_than_or_equal_to =>1000,
                           :allow_nil=>true,
                           :message=>"Attenzione il numero deve essere compreso tra 0 e 1000"
-
+  validates_presence_of :period_id,
+                        :message => "Non è stato specificato il periodo"
   validate :check_durata?
 private
  #si valida sse all'insegnamento è associato un corso di laurea ed un periodo
 #un corso di laurea deve obbligatoriamente avere un'organizzazione
   def check_durata?
-  b=Belong.find_by_teaching_id(id)
-  if(b && period_id)
-#si individua il numero di periodi e la durata del corso di laurea associato
-#all'insegnamento
-   find_graduate_course_organization(b)
-#si individua il periodo e l'anno assegnato all'insegnamento
-   find_period(period_id)
-    if(@sotto_periodo>@periodi_corso)
-     errors.add_to_base("Il corso di laurea ha #{@periodi_corso}. Si è inserito #{@periodo}")
-   end
-   if(@anno>@durata_corso)
-      errors.add_to_base("Il corso di laurea dura #{@durata_corso}. Si è inserito #{@anno}")
-   end
-  end
-
-end
-
-  def find_graduate_course_organization(b)
-    #Se esiste l'associzione esisterà per forza il curriculum associato
-    #e non sarà mai nil
-    curriculum=Curriculum.find_by_id(b.curriculum_id)
-    #un curriculum se esiste è associato ad un corso di laurea
-    corso_di_laurea=GraduateCourse.find_by_id(curriculum.graduate_course_id)
-    #un corso se esiste ha un organizzazione
-    organizzazione_id=corso_di_laurea.academic_organization_id
-    organizzazione=AcademicOrganization.find_by_id(organizzazione_id)
-    #un organizzazione ha necessariamente gli attributi number e duration non nulli
-    @periodi_corso=organizzazione.number
-    @durata_corso=corso_di_laurea.duration
-  end
-
-  def find_period(id)
-    #un periodo ha necessariamente il suo attributo subperiod e il suo year non mulli
-    periodo=Period.find_by_id(id)
-    @sotto_periodo=periodo.subperiod
-    @anno=periodo.year
-    
+    ids = self.curriculum_ids
+    maxyear = GraduateCourse.minimum("duration", :include => :curriculums,
+                                     :conditions => ["curriculums.id IN (?)", ids])
+    maxsubperiod = AcademicOrganization.minimum("number", :include => [:graduate_courses => :curriculums],
+                                              :conditions => ["curriculums.id IN (?)", ids])
+    if (self.period.subperiod > maxsubperiod.to_i || self.period.year > maxyear.to_i)
+      errors.add(:period, "Non puo assegnare questo periodo a questo insegnamento")
+    end
   end
 end
 

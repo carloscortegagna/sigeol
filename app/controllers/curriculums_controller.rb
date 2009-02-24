@@ -1,16 +1,6 @@
 class CurriculumsController < ApplicationController
-  skip_before_filter :login_required, :only => :index
+  skip_before_filter :login_required, :only => :show
   before_filter :manage_graduate_courses_required, :only => [:new, :create, :edit, :update, :destroy]
-  # GET /curriculums
-  # GET /curriculums.xml
-  def index
-    @curriculums = Curriculum.find(:all)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @curriculums }
-    end
-  end
 
   # GET /curriculums/1
   # GET /curriculums/1.xml
@@ -44,7 +34,6 @@ class CurriculumsController < ApplicationController
   # POST /curriculums.xml
   def create
     @curriculum = Curriculum.new(params[:curriculum])
-    #@curriculum.graduate_course = GraduateCourse.find(params[:graduate_course_id])
     respond_to do |format|
       if @curriculum.save
         flash[:notice] = 'Curriculum creato con successo'

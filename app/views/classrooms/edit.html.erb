@@ -11,8 +11,8 @@
     <%= f.text_field :capacity %>
   </p>
   <p>
-    <%= f.label :building_id %><br />
-    <%= f.text_field :building_id %>
+     <%= f.label "Edificio" %><br />
+     <%= select_tag "classroom[building_id]" , options_from_collection_for_select(@buildings, "id", "name", @classroom.building_id) %>
   </p>
   <p>
     <%= f.submit "Update" %>

@@ -1,17 +1,11 @@
 <h1>Schermata di gestione dei Buildings</h1>
-<br>
-<table>
-  <tr>
-    <th>name</th>
-  </tr>
-<% for building in @buildings %>
-  <tr>
-    <td><%=h building.name %></td>
-    <td><%= link_to 'Show', building %></td>
-    <td><%= link_to 'Edit', edit_building_path(building) %></td>
-    <td><%= link_to 'Destroy', building, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<div>
+<% @buildings.each do |b| %>
+  <h2><%= b.name %></h2> <br/>
+  <%  b.classrooms.each do |c| %>
+    <%= c.name %><br/>
+    <% end %>
 <% end %>
-</table>
+</div>
 <br> <br>
 <%= link_to 'Inserisci un nuovo buildings e il relativo indirizzo', new_building_path %>

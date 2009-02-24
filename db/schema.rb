@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090222165933) do
+ActiveRecord::Schema.define(:version => 20090223203513) do
 
   create_table "academic_organizations", :force => true do |t|
     t.string  "name"
@@ -80,6 +80,11 @@ ActiveRecord::Schema.define(:version => 20090222165933) do
   end
 
   add_index "classrooms", ["name", "building_id"], :name => "index_classrooms_on_name_and_building_id", :unique => true
+
+  create_table "classrooms_graduate_courses", :id => false, :force => true do |t|
+    t.integer "graduate_course_id"
+    t.integer "classroom_id"
+  end
 
   create_table "constraints_owners", :force => true do |t|
     t.string  "description"

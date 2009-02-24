@@ -14,6 +14,7 @@ class GraduateCourse < ActiveRecord::Base
   has_many :timetables, :dependent=> :destroy
   has_many :curriculums, :dependent=>:destroy
   has_and_belongs_to_many :users, :uniq => true
+  has_and_belongs_to_many :classrooms, :uniq => true
   has_many_polymorphs :constraints, :from => [:quantity_constraints,:boolean_constraints, :temporal_constraints],
     :as=> :owner, :dependent=> :destroy
 

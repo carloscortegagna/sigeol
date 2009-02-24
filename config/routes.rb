@@ -5,16 +5,15 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :graduate_courses, :collection => {:administration => :get}
 
-  map.resources :curriculums
+  map.resources :curriculums, :except => [:index]
   
-  map.connect 'teachings/administration', :controller => 'teachings', :action => 'administration'
-  map.resources :teachings
+  map.resources :teachings, :collection => {:administration => :get},
+                            :membert => {:select_teacher => :get,
+                                         :assign_teacher => :post}
 
-  map.connect 'buildings/administration', :controller => 'buildings', :action => 'administration'
-  map.resources :buildings
+  map.resources :buildings, :collection => {:administration => :get}
 
-  map.connect 'classrooms/administration', :controller => 'classrooms', :action => 'administration'
-  map.resources :classrooms
+  map.resources :classrooms, :except => [:index]
   
   map.resource :session
 

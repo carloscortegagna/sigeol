@@ -1,0 +1,4 @@
+<div>
+  <% show_teaching(@teaching) %>
+  <%= select_for "teacher_id", objects_for_collection(@teachers, "id", "name")%>
+</div>

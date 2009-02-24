@@ -38,4 +38,7 @@ class Teacher < ActiveRecord::Base
    User.delete_all("specified_id=#{id} AND specified_type='Teacher'")
   end
 
+ def complete_name
+   self.surname + " " + self.name
  end
+end
