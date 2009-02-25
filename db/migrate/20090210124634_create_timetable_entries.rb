@@ -4,14 +4,16 @@ class CreateTimetableEntries < ActiveRecord::Migration
       t.time :startTime
       t.time :endTime
       t.string :day
-      t.integer :timetable_id
-      t.integer :teaching_id
-      t.integer :classroom_id
+      t.integer :timetable_id,:null=>false
+      t.integer :teaching_id,:null=>false
+      t.integer :classroom_id,:null=>false
       t.timestamps
     end
-  end
+    add_index(:timetable_entries,[:startTime,:endTime,:day,:classroom_id,:timetable_id], :unique => true,:name=>"indice")
+   end
 
   def self.down
+    remove_index :timetable_entries,:name=>"indice"
     drop_table :timetable_entries
   end
 end

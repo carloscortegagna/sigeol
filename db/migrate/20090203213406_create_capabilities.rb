@@ -3,10 +3,12 @@ class CreateCapabilities < ActiveRecord::Migration
     create_table :capabilities do |t|
       t.string :name
       t.timestamps
-    end
-   end
+      end
+      add_index(:capabilities,:name, :unique => true)
+  end
 
   def self.down
-   drop_table :capabilities
+    remove_index :capabilities,:column=>:name
+    drop_table :capabilities
   end
 end

@@ -5,9 +5,11 @@ class CreateBuildings < ActiveRecord::Migration
       t.integer :address_id
       t.timestamps
       end
+      add_index(:buildings,:name, :unique => true)
   end
 
   def self.down
+    remove_index :buildings,:column=>:name
     drop_table :buildings
   end
 end

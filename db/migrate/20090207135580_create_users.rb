@@ -8,8 +8,12 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :address_id
       t.timestamps
     end
+    add_index(:users,:mail,:unique => true)
+    add_index(:users,[:specified_id,:specified_type],:unique=>true)
   end
   def self.down
+    remove_index(:users,[:specified_id,:specified_type])
+    remove_index :users,:column=>:mail
     drop_table :users
   end
 end
