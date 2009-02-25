@@ -1,4 +1,8 @@
 <div>
-  <% show_teaching(@teaching) %>
-  <%= select_for "teacher_id", objects_for_collection(@teachers, "id", "name")%>
+  <%= show_teaching(@teaching) %>
+  <% form_for :teaching, :url => {:action => :assign_teacher} do %>
+    Docente da assegnare
+    <%= select_tag "teacher_id", options_from_collection_for_select(@teachers, "id", "complete_name")%>
+    <%= submit_tag "Assegna" %>
+  <% end %>
 </div>

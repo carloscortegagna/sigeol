@@ -1,0 +1,12 @@
+<div class="first_div">
+  <h3>Docenti non attivi</h3>
+  <table>
+    <% not_active_users.each do |u| %>
+      <tr>
+        <td>
+          <%= u.mail %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

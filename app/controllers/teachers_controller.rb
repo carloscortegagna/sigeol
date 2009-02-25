@@ -135,8 +135,11 @@ class TeachersController < ApplicationController
 
   def administration
     gs = @current_user.graduate_courses
+    ids = @current_user.graduate_course_ids
     @graduate_courses = gs.find(:all, :include => [:users],
-                :conditions => ["specified_type = 'Teacher'"])
+                :conditions => ["specified_type = 'Teacher' AND users.password is NOT null"])
+    @not_active_users = User.find(:all, :include => :graduate_courses,
+                :conditions => ["users.password IS null AND graduate_courses.id IN (?)",ids])
     
   end
 

@@ -13,8 +13,6 @@ class Curriculum < ActiveRecord::Base
  has_many :teachings, :through=>:belongs
 
   #validazioni :name
-  validates_uniqueness_of :name,
-                          :message=>"Il curriculum è già presente"
   validates_presence_of :name,
                          :message=>"Il nome non deve essere vuoto"
   validates_length_of :name,

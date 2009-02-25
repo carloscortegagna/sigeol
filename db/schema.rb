@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20090223203513) do
     t.integer "updated_at", :limit => 2000000000
   end
 
-  create_table "belongs", :id => false, :force => true do |t|
+  create_table "belongs", :force => true do |t|
     t.integer "teaching_id"
     t.integer "curriculum_id"
     t.integer "isOptional",    :limit => 1

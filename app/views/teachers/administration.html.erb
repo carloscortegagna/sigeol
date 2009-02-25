@@ -1,22 +1,8 @@
-<h1>Docenti raggruppati per corso di laurea</h1>
-<br><br>
------------------------------------------------------------------
-<br><br>
-<% @graduate_courses.each do |graduate_course| %>
-  <tr>
-    <td><h1><%=h graduate_course.name %></h1>
-    <br><br>
-    <% graduate_course.users.each do |user| %>
-      <td><%= user.mail %></td>
-      <td><%= user.specified.name %></td>
-      <td><%= user.specified.surname %></td>
-      <td><%= link_to 'Show', user.specified %></td>
-      <td><%= link_to 'Edit', edit_graduate_courses_teacher_path(user.specified) %></td>
-      <td><%= link_to 'Destroy', user.specified, :controller => "teachers", :confirm => 'Are you sure?', :method => :delete %> </td>
-      <br>
-    <%  end %>
-    <br><br>
-    -----------------------------------------------------------------
-    <br><br>
-  </tr>
+<%= menu_admin() %>
+<h1>Amministrazione docenti</h1>
+<%= show_not_active_users(@not_active_users) %>
+<% @graduate_courses.each do |g| %>
+  <div class="first_div">
+    <%= show_graduate_course_admin(g) %>
+  </div>
 <% end %>

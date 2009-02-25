@@ -1,6 +1,9 @@
 class TeachingsController < ApplicationController
   skip_before_filter :login_required, :only => [:index ,:show]
   before_filter :manage_teachings_required, :except => [:index, :show]
+  before_filter :same_graduate_course_required, :only => [:edit, :update, :destroy,
+                                                          :select_teacher, :assign_teacher]
+
   def index
       @teachings = Teaching.find :all
   end
@@ -14,8 +17,9 @@ class TeachingsController < ApplicationController
       format.xml  { render :xml => @teaching }
     end
   end
+
   def administration
-    
+    @graduate_courses = @current_user.graduate_courses
   end
   # GET /teachings/new
   # GET /teachings/new.xml
@@ -44,7 +48,7 @@ class TeachingsController < ApplicationController
     optional = false
     optional = true if params[:isOptional]
     if curriculum
-      @teaching.curriculums << curriculum
+      @teaching.belongs.build(:curriculum => curriculum, :isOptional => optional)
     end
     period = Period.find_by_subperiod_and_year(params[:subperiod], params[:year])
     if period
@@ -69,13 +73,23 @@ class TeachingsController < ApplicationController
       end
     end
   end
-
   def select_teacher
+    @teaching = Teaching.find(params[:id])
     ids = @current_user.graduate_course_ids
     @teachers = Teacher.find(:all, :include => {:user => :graduate_courses},
-                            :conditions => ["graduate_courses_users.graduate_course_id IN (?)",ids])
+                            :conditions => ["graduate_courses_users.graduate_course_id IN (?) AND teachers.id NOT IN (?)",ids, @teaching.teacher_id])
   end
-
+  def assign_teacher
+    @teacher = Teacher.find(params[:teacher_id])
+    @teaching = Teaching.find(params[:id])
+    @teaching.teacher = @teacher
+    if @teaching.save
+      flash[:notice] = "Docente assegnato con successo"
+      redirect_to administration_teachings_url
+    else
+      redirect_to select_teacher_url(@teaching)
+    end
+  end
   # PUT /teachings/1
   # PUT /teachings/1.xml
   def update
@@ -100,8 +114,20 @@ class TeachingsController < ApplicationController
     @teaching.destroy
 
     respond_to do |format|
-      format.html { redirect_to(teachings_url) }
+      format.html { redirect_to(administration_teachings_url) }
       format.xml  { head :ok }
+    end
+  end
+
+  private
+
+  def same_graduate_course_required
+    ids = @current_user.graduate_course_ids
+    graduate_course = GraduateCourse.find(:all, :include => {:curriculums => :teachings},
+                                          :conditions => ["graduate_courses.id IN (?) AND teachings.id = ?", ids, params[:id]])
+    unless graduate_course
+      flash[:error] = "Questo insegnamento non appartiane a nessun tuo corso di laurea"
+      redirect_to timetables_url
     end
   end
 end

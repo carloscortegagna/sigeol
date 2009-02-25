@@ -1,0 +1,10 @@
+<div>
+  Insegnamenti presenti: <br/>
+  <%= show_teachings(@curriculum.teachings) %> <br/>
+  <% form_for :curriculum, :url => {:action => :assign_teaching} do %>
+    Aggiungi insegnamento:
+    <%= select_tag "teaching_id", options_from_collection_for_select(@teachings, "id", "name") %><br/>
+    Opzionale: <%= check_box_tag "isOptional"%> <br/>
+    <%= submit_tag "Aggiungi" %>
+  <% end %>
+</div>

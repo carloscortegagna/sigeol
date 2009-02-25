@@ -47,9 +47,13 @@ class GraduateCoursesController < ApplicationController
         if params[:unico]
           c = Curriculum.new(:name => "Unico")
           c.graduate_course = @graduate_course
-          c.save
-          flash[:notice] = 'Corso di laurea creato correttamente'
-          format.html { redirect_to administration_graduate_courses_url }
+          if c.save
+            flash[:notice] = 'Corso di laurea creato correttamente'
+            format.html { redirect_to administration_graduate_courses_url }
+          else
+            flash[:error] = 'Errore nella creazione del corso di laurea'
+            format.html { redirect_to administration_graduate_courses_url }
+          end
         else
           flash[:notice] = "Inserire un curriculum per il corso di laurea #{@graduate_course.name}"
           format.html { redirect_to new_curriculum_url}

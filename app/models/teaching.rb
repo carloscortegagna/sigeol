@@ -59,7 +59,11 @@ private
  #si valida sse all'insegnamento è associato un corso di laurea ed un periodo
 #un corso di laurea deve obbligatoriamente avere un'organizzazione
   def check_durata?
-    ids = self.curriculum_ids
+    c = self.belongs
+    ids = []
+    c.each do |k|
+      ids << k.curriculum_id
+    end
     maxyear = GraduateCourse.minimum("duration", :include => :curriculums,
                                      :conditions => ["curriculums.id IN (?)", ids])
     maxsubperiod = AcademicOrganization.minimum("number", :include => [:graduate_courses => :curriculums],

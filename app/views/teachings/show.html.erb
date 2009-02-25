@@ -1,23 +1,5 @@
-<p>
-  <b>name:</b>
-  <%=h @teaching.name %>
-</p>
-<p>
-  <b>CFU:</b>
-  <%=h @teaching.CFU %>
-</p>
-<p>
-  <b>classHours:</b>
-  <%=h @teaching.classHours %>
-</p>
-<p>
-  <b>labHours:</b>
-  <%=h @teaching.labHours %>
-</p>
-<p>
-  <b>studentsNumber:</b>
-  <%=h @teaching.studentsNumber %>
-</p>
-<br>
+<div>
+  <%= show_teaching(@teaching) %>
+</div>
 <%= link_to 'Edit', edit_teaching_path(@teaching) %> |
 <%= link_to 'Back', teachings_path %>

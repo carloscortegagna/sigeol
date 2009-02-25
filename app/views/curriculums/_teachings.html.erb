@@ -1,0 +1,7 @@
+<ul>
+  <% teachings.each do |t| %>
+    <li>
+      <%= link_to t.name, teaching_path(t) %> <br/>
+    </li>
+  <% end %>
+</ul>

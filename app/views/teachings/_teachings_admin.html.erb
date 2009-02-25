@@ -1,0 +1,25 @@
+<table>
+  <% teachings_admin.each do |t| %>
+    <tr>
+      <td>
+        <%= link_to t.name, teaching_path(t) %>
+      </td>
+      <td>
+        <%= link_to "Modifica", edit_teaching_path(t) %>
+      </td>
+      <td>
+        <%= link_to "Elimina", t, :method => :delete %>
+      </td>
+      <td>
+        <% if t.teacher %>
+          <%= link_to  t.teacher.complete_name, teacher_path(t.teacher) %>
+        <% else %>
+          <%=h "Nessun docente" %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to "Assegna docente", select_teacher_teaching_path(t) %>
+      </td>
+    </tr>
+  <% end %>
+</table>

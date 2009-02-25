@@ -5,10 +5,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :graduate_courses, :collection => {:administration => :get}
 
-  map.resources :curriculums, :except => [:index]
+  map.resources :curriculums, :except => [:index],
+                              :member => {:select_teaching => :get,
+                                          :assign_teaching => :post}
   
   map.resources :teachings, :collection => {:administration => :get},
-                            :membert => {:select_teacher => :get,
+                            :member => {:select_teacher => :get,
                                          :assign_teacher => :post}
 
   map.resources :buildings, :collection => {:administration => :get}
