@@ -53,7 +53,7 @@ module ApplicationHelper
       amm_link << {:name => "Insegnamenti", :url => url_for(:controller => "teachings", :action => "administration")}
     end
     if (user.manage_buildings? || user.manage_classrooms?)
-      amm_link << {:name => "Edifici ed aule", :url => url_for(:controller => "buildings", :action => "administration")}
+      amm_link << {:name => "Edifici ed aule", :url => url_for(:controller => "classrooms", :action => "administration")}
     end
     if (user.manage_timetables?)
       amm_link << {:name => "Orario", :url => url_for(:controller => "timetables", :action => "administration")}

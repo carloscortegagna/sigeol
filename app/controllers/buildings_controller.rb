@@ -12,11 +12,6 @@ class BuildingsController < ApplicationController
     end
   end
 
-  def administration
-    ids = @current_user.graduate_course_ids
-    @buildings = Building.find(:all, :include => {:classrooms => :graduate_courses},
-                               :conditions => ["classrooms_graduate_courses.graduate_course_id IN (?)", ids])
-  end
 
   # GET /buildings/1
   # GET /buildings/1.xml

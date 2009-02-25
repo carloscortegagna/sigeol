@@ -3,7 +3,7 @@
 </h3>
 <div>
   <%= link_to "Modifica", edit_graduate_course_path(graduate_course_admin) %>
-  <%= link_to "Elimina", edit_graduate_course_path(graduate_course_admin), :method => :delete%>
+  <%= link_to "Elimina", graduate_course_admin, :method => :delete%>
 </div>
 <% if graduate_course_admin.curriculums.empty? %>
    <%=h "Nessun curriculum presente" %>

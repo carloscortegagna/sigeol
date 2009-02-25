@@ -13,9 +13,10 @@ ActionController::Routing::Routes.draw do |map|
                             :member => {:select_teacher => :get,
                                          :assign_teacher => :post}
 
-  map.resources :buildings, :collection => {:administration => :get}
+  map.resources :buildings
 
-  map.resources :classrooms, :except => [:index]
+  map.resources :classrooms, :except => [:index],
+                             :collection => {:administration => :get}
   
   map.resource :session
 
