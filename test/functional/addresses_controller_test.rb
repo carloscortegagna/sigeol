@@ -5,7 +5,7 @@ class AddressesControllerTest < ActionController::TestCase
   test "Guest usa New" do  #Redirect alla pagina di login
     get :new
     assert_redirected_to new_session_url
-    flash[:notice] = "Effettuare il login"
+    assert_equal "Effettuare il login" , flash[:notice]
   end
   
 =begin

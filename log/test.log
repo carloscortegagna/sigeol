@@ -2551,3 +2551,275 @@ Rendering timetables/index
 Rendered shared/_login_form (1.9ms)
 Rendered shared/_standard_sidebar (2.1ms)
 Completed in 18ms (View: 11, DB: 2) | 200 OK [http://test.host/timetables]
+** has_many_polymorphs: rails environment detected
+** has_many_polymorphs: loaded ok
+** has_many_polymorphs: autoload hook invoked
+** has_many_polymorphs: preloading parent model GraduateCourse
+** has_many_polymorphs: associating GraduateCourse.constraints
+** has_many_polymorphs: associating QuantityConstraint.owners
+** has_many_polymorphs: associating Classroom.constraints
+** has_many_polymorphs: associating Teacher.constraints
+** has_many_polymorphs: associating TemporalConstraint.owners
+** has_many_polymorphs: associating BooleanConstraint.owners
+** has_many_polymorphs: associating Teacher.constraints
+** has_many_polymorphs: associating Classroom.constraints
+** has_many_polymorphs: associating GraduateCourse.constraints
+** has_many_polymorphs: preloading parent model ConstraintsOwner
+** has_many_polymorphs: preloading parent model Teacher
+** has_many_polymorphs: preloading parent model Classroom
+** has_many_polymorphs: autoload hook invoked
+** has_many_polymorphs: preloading parent model GraduateCourse
+** has_many_polymorphs: preloading parent model ConstraintsOwner
+** has_many_polymorphs: preloading parent model Teacher
+** has_many_polymorphs: preloading parent model Classroom
+
+
+Processing AddressesController#new (for 0.0.0.0 at 2009-02-23 18:38:58) [GET]
+Redirected to http://test.host/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 2ms (DB: 29) | 302 Found [http://test.host/addresses/new]
+
+
+Processing BuildingsController#administration (for 0.0.0.0 at 2009-02-23 18:38:58) [GET]
+Redirected to http://test.host/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/buildings/administration]
+
+
+Processing BuildingsController#index (for 0.0.0.0 at 2009-02-23 18:38:58) [GET]
+  [4;36;1mBuilding Load (2.2ms)[0m   [0;1mSELECT * FROM buildings [0m
+Rendering template within layouts/application
+Rendering buildings/index
+Rendered shared/_login_form (1.2ms)
+Rendered shared/_standard_sidebar (12.2ms)
+Completed in 34ms (View: 24, DB: 2) | 200 OK [http://test.host/buildings]
+
+
+Processing BuildingsController#new (for 0.0.0.0 at 2009-02-23 18:38:58) [GET]
+Redirected to http://test.host/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/buildings/new]
+
+
+Processing ClassroomsController#administration (for 0.0.0.0 at 2009-02-23 18:38:58) [GET]
+Redirected to http://test.host/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 2ms (DB: 0) | 302 Found [http://test.host/classrooms/administration]
+
+
+Processing ClassroomsController#index (for 0.0.0.0 at 2009-02-23 18:38:58) [GET]
+  [4;35;1mClassroom Load (2.1ms)[0m   [0mSELECT * FROM classrooms [0m
+Rendering template within layouts/application
+Rendering classrooms/index
+Rendered shared/_login_form (3.9ms)
+Rendered shared/_standard_sidebar (3.6ms)
+Completed in 26ms (View: 19, DB: 2) | 200 OK [http://test.host/classrooms]
+
+
+Processing ClassroomsController#new (for 0.0.0.0 at 2009-02-23 18:38:58) [GET]
+Redirected to http://test.host/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 5ms (DB: 0) | 302 Found [http://test.host/classrooms/new]
+
+
+Processing CurriculumsController#index (for 0.0.0.0 at 2009-02-23 18:38:58) [GET]
+  [4;36;1mCurriculum Load (2.0ms)[0m   [0;1mSELECT * FROM curriculums [0m
+Rendering template within layouts/application
+Rendering curriculums/index
+Rendered shared/_login_form (0.3ms)
+Rendered shared/_standard_sidebar (3.5ms)
+Completed in 15ms (View: 7, DB: 2) | 200 OK [http://test.host/curriculums]
+
+
+Processing CurriculumsController#new (for 0.0.0.0 at 2009-02-23 18:38:58) [GET]
+Redirected to http://test.host/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/curriculums/new]
+
+
+Processing GraduateCoursesController#administration (for 0.0.0.0 at 2009-02-23 18:38:58) [GET]
+Redirected to http://test.host/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 5ms (DB: 0) | 302 Found [http://test.host/graduate_courses/administration]
+
+
+Processing GraduateCoursesController#index (for 0.0.0.0 at 2009-02-23 18:38:58) [GET]
+  [4;35;1mGraduateCourse Load (2.2ms)[0m   [0mSELECT * FROM graduate_courses [0m
+Rendering template within layouts/application
+Rendering graduate_courses/index
+Rendered shared/_login_form (0.4ms)
+Rendered shared/_standard_sidebar (2.1ms)
+Completed in 18ms (View: 10, DB: 2) | 200 OK [http://test.host/graduate_courses]
+
+
+Processing GraduateCoursesController#new (for 0.0.0.0 at 2009-02-23 18:38:58) [GET]
+Redirected to http://test.host/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/graduate_courses/new]
+
+
+Processing TeachersController#administration (for 0.0.0.0 at 2009-02-23 18:38:58) [GET]
+Redirected to http://test.host/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 2ms (DB: 0) | 302 Found [http://test.host/teachers/administration]
+
+
+Processing TeachersController#index (for 0.0.0.0 at 2009-02-23 18:38:58) [GET]
+  [4;36;1mUser Load (3.0ms)[0m   [0;1mSELECT * FROM users WHERE (users.specified_type = 'Teacher') LIMIT 1[0m
+Rendering template within layouts/application
+Rendering teachers/index
+Rendered shared/_login_form (0.3ms)
+Rendered shared/_standard_sidebar (2.1ms)
+Completed in 73ms (View: 15, DB: 3) | 200 OK [http://test.host/teachers]
+
+
+Processing TeachersController#new (for 0.0.0.0 at 2009-02-23 18:38:58) [GET]
+Redirected to http://test.host/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 4ms (DB: 0) | 302 Found [http://test.host/teachers/new]
+
+
+Processing TeachingsController#administration (for 0.0.0.0 at 2009-02-23 18:38:58) [GET]
+Redirected to http://test.host/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/teachings/administration]
+
+
+Processing TeachingsController#index (for 0.0.0.0 at 2009-02-23 18:38:58) [GET]
+  [4;35;1mTeaching Load (2.9ms)[0m   [0mSELECT * FROM teachings [0m
+Rendering template within layouts/application
+Rendering teachings/index
+Rendered shared/_login_form (2.0ms)
+Rendered shared/_standard_sidebar (18.7ms)
+Completed in 34ms (View: 25, DB: 3) | 200 OK [http://test.host/teachings]
+
+
+Processing TeachingsController#new (for 0.0.0.0 at 2009-02-23 18:38:58) [GET]
+Redirected to http://test.host/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/teachings/new]
+
+
+Processing TimetablesController#index (for 0.0.0.0 at 2009-02-23 18:38:58) [GET]
+  [4;36;1mTimetable Load (2.1ms)[0m   [0;1mSELECT * FROM timetables [0m
+Rendering template within layouts/application
+Rendering timetables/index
+Rendered shared/_login_form (1.9ms)
+Rendered shared/_standard_sidebar (2.3ms)
+Completed in 18ms (View: 12, DB: 2) | 200 OK [http://test.host/timetables]
+** has_many_polymorphs: rails environment detected
+** has_many_polymorphs: loaded ok
+** has_many_polymorphs: autoload hook invoked
+** has_many_polymorphs: preloading parent model GraduateCourse
+** has_many_polymorphs: associating GraduateCourse.constraints
+** has_many_polymorphs: associating QuantityConstraint.owners
+** has_many_polymorphs: associating Classroom.constraints
+** has_many_polymorphs: associating Teacher.constraints
+** has_many_polymorphs: associating TemporalConstraint.owners
+** has_many_polymorphs: associating BooleanConstraint.owners
+** has_many_polymorphs: associating Teacher.constraints
+** has_many_polymorphs: associating Classroom.constraints
+** has_many_polymorphs: associating GraduateCourse.constraints
+** has_many_polymorphs: preloading parent model ConstraintsOwner
+** has_many_polymorphs: preloading parent model Teacher
+** has_many_polymorphs: preloading parent model Classroom
+** has_many_polymorphs: autoload hook invoked
+** has_many_polymorphs: preloading parent model GraduateCourse
+** has_many_polymorphs: preloading parent model ConstraintsOwner
+** has_many_polymorphs: preloading parent model Teacher
+** has_many_polymorphs: preloading parent model Classroom
+
+
+Processing AddressesController#new (for 0.0.0.0 at 2009-02-24 17:53:50) [GET]
+Redirected to http://test.host/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 2ms (DB: 34) | 302 Found [http://test.host/addresses/new]
+** has_many_polymorphs: rails environment detected
+** has_many_polymorphs: loaded ok
+** has_many_polymorphs: autoload hook invoked
+** has_many_polymorphs: preloading parent model GraduateCourse
+** has_many_polymorphs: associating GraduateCourse.constraints
+** has_many_polymorphs: associating QuantityConstraint.owners
+** has_many_polymorphs: associating Classroom.constraints
+** has_many_polymorphs: associating Teacher.constraints
+** has_many_polymorphs: associating TemporalConstraint.owners
+** has_many_polymorphs: associating BooleanConstraint.owners
+** has_many_polymorphs: associating Teacher.constraints
+** has_many_polymorphs: associating Classroom.constraints
+** has_many_polymorphs: associating GraduateCourse.constraints
+** has_many_polymorphs: preloading parent model ConstraintsOwner
+** has_many_polymorphs: preloading parent model Teacher
+** has_many_polymorphs: preloading parent model Classroom
+** has_many_polymorphs: autoload hook invoked
+** has_many_polymorphs: preloading parent model GraduateCourse
+** has_many_polymorphs: preloading parent model ConstraintsOwner
+** has_many_polymorphs: preloading parent model Teacher
+** has_many_polymorphs: preloading parent model Classroom
+
+
+Processing AddressesController#new (for 0.0.0.0 at 2009-02-24 17:54:11) [GET]
+Redirected to http://test.host/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 2ms (DB: 35) | 302 Found [http://test.host/addresses/new]
+** has_many_polymorphs: rails environment detected
+** has_many_polymorphs: loaded ok
+** has_many_polymorphs: autoload hook invoked
+** has_many_polymorphs: preloading parent model GraduateCourse
+** has_many_polymorphs: associating GraduateCourse.constraints
+** has_many_polymorphs: associating QuantityConstraint.owners
+** has_many_polymorphs: associating Classroom.constraints
+** has_many_polymorphs: associating Teacher.constraints
+** has_many_polymorphs: associating TemporalConstraint.owners
+** has_many_polymorphs: associating BooleanConstraint.owners
+** has_many_polymorphs: associating Teacher.constraints
+** has_many_polymorphs: associating Classroom.constraints
+** has_many_polymorphs: associating GraduateCourse.constraints
+** has_many_polymorphs: preloading parent model ConstraintsOwner
+** has_many_polymorphs: preloading parent model Teacher
+** has_many_polymorphs: preloading parent model Classroom
+** has_many_polymorphs: autoload hook invoked
+** has_many_polymorphs: preloading parent model GraduateCourse
+** has_many_polymorphs: preloading parent model ConstraintsOwner
+** has_many_polymorphs: preloading parent model Teacher
+** has_many_polymorphs: preloading parent model Classroom
+
+
+Processing BuildingsController#administration (for 0.0.0.0 at 2009-02-24 17:54:50) [GET]
+Redirected to http://test.host/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 2ms (DB: 33) | 302 Found [http://test.host/buildings/administration]
+
+
+Processing BuildingsController#index (for 0.0.0.0 at 2009-02-24 17:54:50) [GET]
+  [4;36;1mBuilding Load (3.3ms)[0m   [0;1mSELECT * FROM buildings [0m
+Rendering template within layouts/application
+Rendering buildings/index
+Rendered shared/_login_form (3.6ms)
+Rendered shared/_standard_sidebar (8.9ms)
+Completed in 36ms (View: 24, DB: 3) | 200 OK [http://test.host/buildings]
+
+
+Processing BuildingsController#new (for 0.0.0.0 at 2009-02-24 17:54:50) [GET]
+Redirected to http://test.host/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/buildings/new]
+** has_many_polymorphs: rails environment detected
+** has_many_polymorphs: loaded ok
+** has_many_polymorphs: autoload hook invoked
+** has_many_polymorphs: preloading parent model GraduateCourse
+** has_many_polymorphs: associating GraduateCourse.constraints
+** has_many_polymorphs: GraduateCourse could not be preloaded: #<ActiveRecord::ActiveRecordError: Table boolean_constraints does not exist>
+** has_many_polymorphs: preloading parent model ConstraintsOwner
+** has_many_polymorphs: associating QuantityConstraint.owners
+** has_many_polymorphs: associating Classroom.constraints
+** has_many_polymorphs: ConstraintsOwner could not be preloaded: #<ActiveRecord::ActiveRecordError: Table boolean_constraints does not exist>
+** has_many_polymorphs: preloading parent model Teacher
+** has_many_polymorphs: associating Teacher.constraints
+** has_many_polymorphs: Teacher could not be preloaded: #<ActiveRecord::ActiveRecordError: Table constraints_owners does not exist>
+** has_many_polymorphs: preloading parent model Classroom
+** has_many_polymorphs: autoload hook invoked
+** has_many_polymorphs: preloading parent model GraduateCourse
+** has_many_polymorphs: preloading parent model ConstraintsOwner
+** has_many_polymorphs: preloading parent model Teacher
+** has_many_polymorphs: preloading parent model Classroom
+** has_many_polymorphs: associating Classroom.constraints
