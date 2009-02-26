@@ -10,6 +10,7 @@
 
 class Teacher < ActiveRecord::Base
   include ApplicationHelper
+  
   has_one :user, :as => :specified
   has_many :teachings
     #si associa teacher ai vincol temporali(temporal constraint)
@@ -35,7 +36,7 @@ class Teacher < ActiveRecord::Base
  end
 
  def before_destroy
-   User.delete_all("specified_id=#{id} AND specified_type='Teacher'")
+   User.delete_all("specified_id=#{self.id} AND specified_type='Teacher'")
   end
 
  def complete_name

@@ -14,21 +14,19 @@ class TimetableEntry < ActiveRecord::Base
 
   #validazioni :startTime e :endTime e validazioni :day
 
-  validates_presence_of :startTime,:endTime,:day,
+  validates_presence_of :startTime,:endTime,:day,:timetable_id,:classroom_id,
                           :message=>"Alcuni campi sono vuoti"
-  #validates_time :startTime,:endTime,
-  #               :invalid_time_message=>"La data deve essere del tipo h:nn"
+
   validates_inclusion_of :day,
                        :in => 1..5,
                        :message => "Deve essere compreso tra 1 e 5"
-  #validazione unicità :startTime :endTime :day :classroom_id time :timetable_id
+                    
+
  private
  validate :unique?
   def unique?
-    if TimetableEntry.find_by_startTime_and_endTime_and_day_and_timetable_id_and_classroom_id(startTime,endTime,day,timetable_id,classroom_id)
+    if TimetableEntry.find_by_startTime_and_endTime_and_day_and_timetable_id_and_classroom_id(self.startTime,self.endTime,self.day,self.timetable_id,self.classroom_id)
       errors.add_to_base("riga già presente")
     end
   end
-   
-
 end

@@ -7,7 +7,4 @@ class TemporalConstraint < ActiveRecord::Base
                        :in => 1..5,
                        :message => "Deve essere compreso tra 1 e 5"
 
- #validates_time :startHour,:endHour,
-  #               :invalid_time_message=>"La data deve essere del tipo h:nn"
-
-end
+ end
