@@ -47,8 +47,9 @@ validate :unique_building_classroom?
 
   private
  def unique_building_classroom?
-    if Classroom.find_by_name_and_building_id(self.name,self.building_id)
-      errors.add_to_base("Nel palazzo è gia presente un'aula con questo nome")
+   name=first_upper(self.name)
+   if Classroom.find_by_name_and_building_id(name,self.building_id)
+     errors.add_to_base("Nel palazzo è gia presente un'aula con questo nome")
     end
   end
 
