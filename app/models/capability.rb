@@ -11,12 +11,14 @@ class Capability < ActiveRecord::Base
 
   #validazioni :name
    validates_presence_of :name,
-                         :message=>"Il nome non deve essere vuoto"
+                         :message => "Il nome non deve essere vuoto"
    validates_length_of :name,
-                       :maximum=> 30,
-                       :message=>"Il nome è troppo lungo"
+                       :maximum => 30,
+                       :message => "Il nome è troppo lungo"
    validates_format_of :name,
                      :with => /[^a-zA-Z0-9àòèéùì\s$]*/,
-                     :message=>"Si accetta solo caratteri"
+                     :message =>"Si accetta solo caratteri"
+  validates_uniqueness_of :name,
+                          :message => "La capability è già presente"
 
 end

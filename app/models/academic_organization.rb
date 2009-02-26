@@ -9,38 +9,41 @@
 
 class AcademicOrganization < ActiveRecord::Base
   include ApplicationHelper
+  
   has_many :graduate_courses
 
 #validazioni :name
-   validates_uniqueness_of :name,
-                          :message=>"Il nome è già presente"
+  validates_uniqueness_of :name,
+                          :message => "Il nome è gia presente"
                           
    validates_presence_of :name,
-                         :message=>"Il nome non deve essere vuoto"
+                         :message => "Il nome non deve essere vuoto"
                          
    validates_length_of :name,
-                       :maximum=> 30,
-                       :message=>"Il nome è troppo lungo"
+                       :maximum => 30,
+                       :message => "Il nome è troppo lungo"
 
    validates_format_of :name,
                      :with => /^[a-zA-Zàòèéùì\s]*$/,
-                     :message=>"Si accetta solo caratteri"
- #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
+                     :message => "Si accetta solo caratteri"
+
+  #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
  #si utilizza la funzione first_upper presente sul modulo ApplicationHelper
  def before_save
    self.name=first_upper(self.name)
  end
-  #validazioni :number
-  validates_uniqueness_of :number,
-                          :message=>"E' gia presente un'organizzazione con questo valore"
 
-  validates_numericality_of :number,
-                           :only_integer =>true,
-                           :grater_than_or_euqual_to =>1,
-                           :less_than_or_equal_to =>6,
-                           :message=>"attenzione il numero deve essere compreso tra 1 e 6"
+ #validazioni :number
+ validates_uniqueness_of :number,
+                         :message => "Il numero è gia presente"
+ validates_numericality_of :number,
+                           :only_integer => true,
+                           :grater_than_or_euqual_to => 1,
+                           :less_than_or_equal_to => 6,
+                           :message => "Il numero deve essere compreso tra 1 e 6"
 
   validates_presence_of  :number,
-                         :message=>"Il numero di periodi non deve essere vuoto"
-  end
+                         :message => "Il numero di periodi non deve essere vuoto"
+
+end
 

@@ -13,25 +13,26 @@ class Belong < ActiveRecord::Base
 
 
    #validazioni :teaching_id e :curriculum_id
-    validates_presence_of :isOptional,
-                         :message=>"Setta se l'insegnamento è opzionale"
+    validates_presence_of :teaching_id,:curriculum_id,
+                          :message => "Associa un insegnamento ad un curriculum"
     validate :unique_curriculum_id_and_teaching_id?
+
   #se l'insegnamento non è legato a nessun curriculum,eliminalo
   def after_destroy
-    if(Belong.count(:conditions=>["teaching_id = ?" , teaching_id])==0)
-      puts "distruggi"
+    if(Belong.count(:conditions=>["teaching_id = ?" , self.teaching_id])==0)
       Teaching.destroy(teaching_id)
     end
   end
+
   def before_validation
     self.isOptional = false if !attribute_present?("isOptional")
   end
+
   #validazione unicità curriculm_id e teaching_id
  private
   def unique_curriculum_id_and_teaching_id?
-    if Belong.find_by_curriculum_id_and_teaching_id(teaching_id,curriculum_id)
+    if Belong.find_by_curriculum_id_and_teaching_id(self.curriculum_id,self.teaching_id)
       errors.add_to_base("L'insegnamento è gia assegnato al curriculum")
     end
   end
-
-  end
+end
