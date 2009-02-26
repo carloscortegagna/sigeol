@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   belongs_to :specified, :polymorphic => true, :dependent=>:destroy
   has_and_belongs_to_many :capabilities, :uniq => true
   has_and_belongs_to_many :graduate_courses, :uniq => true
-  belongs_to :address
+  belongs_to :address, :dependent => :destroy
   
   before_save :encrypt_password
   before_validation :calculate_digest
@@ -52,6 +52,16 @@ class User < ActiveRecord::Base
   validates_presence_of :digest,
                         :message => "Non è possibile calcolare il digest"
 
+  validates_associated :address,
+                       :message => "L'indirizzo non è stato inserito correttamente"
+
+  validates_presence_of :specified_id,:specified_type,
+                        :message=>"L'utente deve essere specificato",
+                        :on => :update
+  #L'indirizzo può essere associato ad una sola entità
+  validate :is_only_my_address?
+
+  validate
   def active?
     attribute_present?("password")
   end
@@ -89,15 +99,15 @@ class User < ActiveRecord::Base
     self.specified_type == "DidacticOffice"
   end
 
-   def after_destroy
-    if(User.count(:conditions=>["address_id = ?" , address_id])==1)
-      Address.destroy(address_id)
-     end
+  private
+
+   def is_only_my_address?
+    if(self.address_id!=nil && (Building.find_by_address_id(self.address_id) || User.find_by_address_id(self.address_id)))
+      errors.add(:address_id, "L'indirizzo associato appartiene ad un'altra entità")
+    end
   end
 
-   private
-
-  def encrypt_password
+   def encrypt_password
     self.password = Digest::SHA1.hexdigest(self.password) if attribute_present?("password")
   end
 
