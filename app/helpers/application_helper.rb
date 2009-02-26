@@ -46,14 +46,19 @@ module ApplicationHelper
     if (user.manage_teachers?)
       amm_link << {:name => "Docenti", :url => url_for(:controller => "teachers", :action => "administration")}
     end
+
+    if (user.manage_buildings?)
+      amm_link << {:name => "Edifici", :url => url_for(:controller => "buildings", :action => "administration")}
+    end
+    if (user.manage_classrooms?)
+      amm_link << {:name => "Aule", :url => url_for(:controller => "classrooms", :action => "administration")}
+    end
+
     if (user.manage_graduate_courses?)
       amm_link << {:name => "Corsi", :url => url_for(:controller => "graduate_courses", :action => "administration")}
     end
     if (user.manage_teachings?)
       amm_link << {:name => "Insegnamenti", :url => url_for(:controller => "teachings", :action => "administration")}
-    end
-    if (user.manage_buildings? || user.manage_classrooms?)
-      amm_link << {:name => "Edifici ed aule", :url => url_for(:controller => "classrooms", :action => "administration")}
     end
     if (user.manage_timetables?)
       amm_link << {:name => "Orario", :url => url_for(:controller => "timetables", :action => "administration")}

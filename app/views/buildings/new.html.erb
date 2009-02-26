@@ -3,7 +3,7 @@
 <% form_for :building, :url => { :action => :create } do |form| %>
   <%= error_messages_for :building %>
   Nome:       <%= form.text_field :name %><br/>
-
+  <br><br>
   <fieldset>
     <legend>Indirizzo:</legend>
     <%= error_messages_for :address %>

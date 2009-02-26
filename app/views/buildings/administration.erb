@@ -1,0 +1,13 @@
+<%= menu_admin() %>
+<br><br>
+<h1>Edifici / Buildings</h1>
+<br><br>
+<% if @buildings.empty? %>
+   <%=h "Nessun edificio presente" %>
+<% else %>
+  <% @buildings.each do |b| %>
+   <div class="first_div">
+      <%= show_building_admin(b) %>
+   </div>
+  <% end %>
+<% end %>

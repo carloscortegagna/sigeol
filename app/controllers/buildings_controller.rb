@@ -1,26 +1,24 @@
 class BuildingsController < ApplicationController
   skip_before_filter :login_required, :only => :index
+  before_filter :manage_buildings_required, :only => [:administration, :edit, :update]
 
-  # GET /buildings
-  # GET /buildings.xml
   def index
     @buildings = Building.find(:all)
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @buildings }
+      format.html
     end
   end
 
+  def administration
+    @buildings = Building.find(:all)
+  end
 
-  # GET /buildings/1
-  # GET /buildings/1.xml
   def show
     @building = Building.find(params[:id])
     @address = Address.find(@building.address_id)
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @building }
     end
   end
 
@@ -30,7 +28,6 @@ class BuildingsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @building }
     end
   end
 
@@ -41,28 +38,22 @@ class BuildingsController < ApplicationController
   end
 
   # POST /buildings
-  # POST /buildings.xml
   def create
     @building = Building.new(params[:building])
     @address = Address.new(params[:address])
 
-    Building.transaction do
-      @building.address = @address
-    end
-
     respond_to do |format|
       if @address.save
+        @building.address = @address
         if @building.save
-          flash[:notice] = 'Building e relativo Address inseriti correttamente nel DB '
+          flash[:notice] = 'Inserimento del nuovo edificio avvenuto con successo'
           format.html { redirect_to :action => 'administration' }
-          format.xml  { render :xml => @building, :status => :created, :location => @building }
         else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @building.errors, :status => :unprocessable_entity }
+          Address.find(@building.address_id).destroy # cancello l'address salvato nel DB, non è puntato da nessun building
+          format.html { render :action => "new" }
         end
-      else
+      else        
         format.html { render :action => "new" }
-        format.xml  { render :xml => @address.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -75,12 +66,10 @@ class BuildingsController < ApplicationController
 
     respond_to do |format|
       if @building.update_attributes(params[:building]) and @address.update_attributes(params[:address])
-        flash[:notice] = 'Building was successfully updated.'
+        flash[:notice] = "Modifica dell'edificio completata correttamente"
         format.html { redirect_to :action => 'administration' }
-        format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @building.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -89,11 +78,11 @@ class BuildingsController < ApplicationController
   # DELETE /buildings/1.xml
   def destroy
     @building = Building.find(params[:id])
+    #Address.find(@building.address_id).destroy
     @building.destroy
 
     respond_to do |format|
       format.html { redirect_to :action => 'administration' }
-      format.xml  { head :ok }
     end
   end
 end
