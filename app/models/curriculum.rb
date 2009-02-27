@@ -36,7 +36,8 @@ validate :unique_curriculum_graduate_course?
   private
   def unique_curriculum_graduate_course?
     name=first_upper(self.name)
-    if Curriculum.find_by_name_and_graduate_course_id(name,self.graduate_course_id)
+    c=Curriculum.find_by_name_and_graduate_course_id(name,self.graduate_course_id)
+    if c && c.id!=self.id
       errors.add_to_base("E' gia presente un curriculum con questo nome")
     end
   end

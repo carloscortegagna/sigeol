@@ -47,7 +47,8 @@ class AcademicOrganization < ActiveRecord::Base
 private
  def is_unique_name?
    name=first_upper(self.name)
-   if AcademicOrganization.find_by_name(name)
+   a=AcademicOrganization.find_by_name(name)
+   if  a && self.id!=a.id
       errors.add(:name,"E' gia presente un organizzazione accademica con questo nome")
   end
 end
