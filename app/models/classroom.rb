@@ -39,7 +39,7 @@ validates_presence_of :building_id,
                       :message=>"Deve essere associato ad un palazzo"
                        
  #validazioni unicità palazzo-classe
-validate_on_create :unique_building_classroom?
+validate :unique_building_classroom?
 
  def before_save
       self.name=first_upper(self.name)
