@@ -12,5 +12,15 @@ class ExpiryDate < ActiveRecord::Base
 
   validates_presence_of :date,
                         :message=>"La data non deve essere vuota"
+  validates_presence_of :graduate_course_id,
+                        :message=>"Deve essere associata ad un corso di laurea"
+  validate :is_correct_date?
+  private
+    def is_correct_date?
+      if self.date && self.date.past?
+        errors.add(:date,"La data deve essere maggiore di quella di oggi(#{::Date.current}).")
+      end
+    end
+
 
 end

@@ -20,10 +20,18 @@ class TimetableEntry < ActiveRecord::Base
   validates_inclusion_of :day,
                        :in => 1..5,
                        :message => "Deve essere compreso tra 1 e 5"
+  validate :unique?
+  validate :is_correct_time?
                     
 
  private
- validate :unique?
+
+ def is_correct_time?
+   if(self.endTime && self.startTime && (self.endTime<=>self.startTime)==-1)
+     errors.add([:starTime,:endTime],"Attenzione l'ora di inizio è piu grande dell'ora di fine")
+   end
+ end
+
   def unique?
     if TimetableEntry.find_by_startTime_and_endTime_and_day_and_timetable_id_and_classroom_id(self.startTime,self.endTime,self.day,self.timetable_id,self.classroom_id)
       errors.add_to_base("riga già presente")
