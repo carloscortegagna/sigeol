@@ -1,13 +1,12 @@
-<h1>Editing classroom</h1>
-
+<h1>Aggiornamento dati Aula</h1>
 <% form_for(@classroom) do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :name %><br />
+    <%= f.label 'Nome' %><br />
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :capacity %><br />
+    <%= f.label 'Capacità' %><br />
     <%= f.text_field :capacity %>
   </p>
   <p>
@@ -15,9 +14,55 @@
      <%= select_tag "classroom[building_id]" , options_from_collection_for_select(@buildings, "id", "name", @classroom.building_id) %>
   </p>
   <p>
-    <%= f.submit "Update" %>
+    <%= f.submit "Salva modifiche" %>
   </p>
 <% end %>
 
+<br><br>
+<% if @graduate_courses_associati.size == 0 %>
+<br>
+  L'aula non è a disposizione di nessun corso di laurea
+<br>
+<% else %>
+Quest'aula è a disposizione dei seguenti corsi di laurea:
+<br>
+<% for graduate_course in @graduate_courses_associati %>
+<br>
+  <tr>
+    <td><%=h graduate_course.name %></td>
+    <% end %>
+  </tr>
+<br><br><br>
+<tr>
+  <% form_tag(:action => :elimina) do%>
+    <p>
+      Corso di laurea da disassociare
+      <%= select_tag "graduate_course_canc" , options_from_collection_for_select(@graduate_courses_associati, "id", "name") %>
+      <%= hidden_field_tag 'classroom_canc', @classroom.id %>
+      <%= submit_tag 'Rimuovi' %>
+    </p>
+  <% end %>
+</tr>
+<br><br>
+<% end %>
+<% if @graduate_courses_non_associati.size == 0 %>
+  <br>
+  L'aula è messa a disposizione di tutti i corsi di laurea disponibili
+<% else %>
+<tr>
+  <% form_tag(:action => :aggiungi) do%>
+    <p>
+      Corso di laurea da associare
+      <%= select_tag "graduate_course_add" , options_from_collection_for_select(@graduate_courses_non_associati, "id", "name") %>
+      <%= hidden_field_tag 'classroom_add', @classroom.id %>
+      <%= submit_tag 'Aggiungi' %>
+    </p>
+  <% end %>
+</tr>
+<% end %>
+
+
+
+<br><br>
 <%= link_to 'Show', @classroom %> |
 <%= link_to 'Back', classrooms_path %>
