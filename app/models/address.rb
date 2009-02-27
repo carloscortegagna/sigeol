@@ -9,8 +9,8 @@
 
 class Address < ActiveRecord::Base
   include ApplicationHelper
-  has_one :user
-  has_one :building
+  has_many :user
+  has_many :building
   
   #validazioni :city
    validates_presence_of :city,

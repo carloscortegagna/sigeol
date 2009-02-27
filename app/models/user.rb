@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :capabilities, :uniq => true
   has_and_belongs_to_many :graduate_courses, :uniq => true
   belongs_to :address, :dependent => :destroy
-  
   before_save :encrypt_password
   before_validation :calculate_digest
 

@@ -28,7 +28,7 @@ class AcademicOrganization < ActiveRecord::Base
 
   #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
  #si utilizza la funzione first_upper presente sul modulo ApplicationHelper
- def before_save
+ def before_validation
    self.name=first_upper(self.name)
  end
 
@@ -46,8 +46,7 @@ class AcademicOrganization < ActiveRecord::Base
 
 private
  def is_unique_name?
-   name=first_upper(self.name)
-   a=AcademicOrganization.find_by_name(name)
+   a=AcademicOrganization.find_by_name(self.name)
    if  a && self.id!=a.id
       errors.add(:name,"E' gia presente un organizzazione accademica con questo nome")
   end

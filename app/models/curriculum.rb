@@ -26,7 +26,7 @@ class Curriculum < ActiveRecord::Base
                         :message => "Deve essere associato ad un corso di laurea"
 
   #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
- def before_save
+ def before_validation
    self.name=first_upper(self.name)
  end
 
@@ -35,8 +35,7 @@ validate :unique_curriculum_graduate_course?
 
   private
   def unique_curriculum_graduate_course?
-    name=first_upper(self.name)
-    c=Curriculum.find_by_name_and_graduate_course_id(name,self.graduate_course_id)
+    c=Curriculum.find_by_name_and_graduate_course_id(self.name,self.graduate_course_id)
     if c && c.id!=self.id
       errors.add_to_base("E' gia presente un curriculum con questo nome")
     end

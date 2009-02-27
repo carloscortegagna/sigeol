@@ -41,14 +41,13 @@ validates_presence_of :building_id,
  #validazioni unicità palazzo-classe
 validate :unique_building_classroom?
 
- def before_save
+ def before_validation
       self.name=first_upper(self.name)
     end
 
   private
  def unique_building_classroom?
-   name=first_upper(self.name)
-   c=Classroom.find_by_name_and_building_id(name,self.building_id)
+   c=Classroom.find_by_name_and_building_id(self.name,self.building_id)
    if c && c.id!=self.id
      errors.add_to_base("Nel palazzo è gia presente un'aula con questo nome")
     end

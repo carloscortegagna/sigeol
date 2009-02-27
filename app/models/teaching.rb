@@ -54,6 +54,8 @@ validates_numericality_of :labHours,:classHours,
                           :message => "Attenzione il numero deve essere compreso tra 0 e 1000"
   validates_associated :teacher,
                         :message => "Il teacher associato non è valido"
+  validates_presence_of :period_id,
+                         :message => "Associa un periodo all'insegnamento"
   validate :check_durata?
 private
  #si valida sse all'insegnamento è associato un corso di laurea ed un periodo
