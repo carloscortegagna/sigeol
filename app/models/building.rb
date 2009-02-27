@@ -28,7 +28,7 @@ class Building < ActiveRecord::Base
   validates_presence_of :address_id,
                           :message=>"Immetti l'indirizzo del palazzo"
 
-  def before_save
+  def before_validation
       self.name=first_upper(self.name)
     end
 end
