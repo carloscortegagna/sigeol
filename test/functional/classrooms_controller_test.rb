@@ -2,11 +2,6 @@ require 'test_helper'
 
 class ClassroomsControllerTest < ActionController::TestCase
 
-  test "Guest usa Index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:classrooms)
-  end
 
   test "Guest usa Administration" do  #Redirect alla pagina di login
     get :administration

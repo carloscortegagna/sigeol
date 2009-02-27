@@ -2,11 +2,6 @@ require 'test_helper'
 
 class CurriculumsControllerTest < ActionController::TestCase
 
-  test "Guest usa Index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:curriculums)
-  end
 
   test "Guest usa New" do  #Redirect alla pagina di login
     get :new
