@@ -47,20 +47,12 @@ class TeachingsController < ApplicationController
     curriculum = Curriculum.find(params[:curriculum_id])
     optional = false
     optional = true if params[:isOptional]
-    if curriculum
-      @teaching.belongs.build(:curriculum => curriculum, :isOptional => optional)
-    end
     period = Period.find_by_subperiod_and_year(params[:subperiod], params[:year])
     if period
       @teaching.period = period
     end
     respond_to do |format|
-      if @teaching.save
-        if (optional)
-          b = @teaching.belongs.find(:first, :include => :curriculum,
-                                     :conditions => ["curriculum_id = ?", params[:curriculum_id]])
-          b.update_attribute(:isOptional, optional)
-        end
+      if curriculum && @teaching.belongs.build(:curriculum => curriculum, :isOptional => optional) && @teaching.save
         flash[:notice] = 'Insegnamento creato correttamente.'
         format.html { redirect_to select_teacher_teaching_url(@teaching) }
         format.xml  { render :xml => @teaching, :status => :created, :location => @teaching }

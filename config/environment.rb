@@ -72,9 +72,27 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # Please note that observers generated using script/generate observer need to have an _observer suffix
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
-end
+
+  config.action_mailer.delivery_method = :smtp
+  end
 #europe date conversion 
 ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.
     merge!(:default => '%d/%m/%Y')
 
 ValidatesTimeliness::Formats.remove_us_formats
+ActionMailer::Base.default_url_options[:host] = MAIL_CONFIG['host']
+if MAIL_CONFIG['authentication'] == 'plain'
+  #ActionMailer::Base.smtp.settings = {:authentication => :plain}
+end
+if MAIL_CONFIG['authentication'] == 'login'
+  #ActionMailer::Base.smtp.settings = {:authentication => :login}
+end
+ActionMailer::Base.smtp_settings = {
+    :tls => MAIL_CONFIG['tls'],
+    :address => MAIL_CONFIG['address'],
+    :port => MAIL_CONFIG['port'].to_i,
+    :domain => MAIL_CONFIG['domain'],
+    :authentication => MAIL_CONFIG['authentication'],
+    :user_name => MAIL_CONFIG['user_name'],
+    :password => MAIL_CONFIG['password']
+  }

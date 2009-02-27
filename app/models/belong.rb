@@ -13,13 +13,13 @@ class Belong < ActiveRecord::Base
 
 
    #validazioni :teaching_id e :curriculum_id
-    validates_presence_of :teaching_id,:curriculum_id,
-                          :message => "Associa un insegnamento"
     validate_on_create :unique_curriculum_id_and_teaching_id?
 
     validates_presence_of :curriculum_id,
                           :message => "Associa un curriculum"
-                        
+    validates_presence_of :teaching_id,
+                          :on => :update,
+                          :message => "Associa un insegnamento"
   #se l'insegnamento non è legato a nessun curriculum,eliminalo
   def after_destroy
     if(Belong.count(:conditions=>["teaching_id = ?" , self.teaching_id])==0)
@@ -34,8 +34,10 @@ class Belong < ActiveRecord::Base
   #validazione unicità curriculm_id e teaching_id
  private
   def unique_curriculum_id_and_teaching_id?
-    if Belong.find_by_curriculum_id_and_teaching_id(self.curriculum_id,self.teaching_id)
-      errors.add_to_base("L'insegnamento è gia assegnato al curriculum")
+    if self.teaching_id
+      if Belong.find_by_curriculum_id_and_teaching_id(self.curriculum_id,self.teaching_id)
+        errors.add_to_base("L'insegnamento è gia assegnato al curriculum")
+      end
     end
   end
 end

@@ -18,6 +18,8 @@ include ApplicationHelper
   #Validazioni :name
    validates_presence_of :name,
                          :message => "Il nome non deve essere vuoto"
+   validates_presence_of :period_id,
+                         :message => "Devi associare un periodo"
    validates_length_of :name,
                        :maximum => 30
    validates_format_of :name,
@@ -50,8 +52,6 @@ validates_numericality_of :labHours,:classHours,
                           :less_than_or_equal_to => 1000,
                           :allow_nil => true,
                           :message => "Attenzione il numero deve essere compreso tra 0 e 1000"
-  validates_associated :period,
-                        :message => "Il periodo associato non è valido"
   validates_associated :teacher,
                         :message => "Il teacher associato non è valido"
   validate :check_durata?
@@ -68,8 +68,8 @@ private
                                      :conditions => ["curriculums.id IN (?)", ids])
     maxsubperiod = AcademicOrganization.minimum("number", :include => [:graduate_courses => :curriculums],
                                               :conditions => ["curriculums.id IN (?)", ids])
-    if (self.period && (self.period.subperiod > maxsubperiod.to_i || self.period.year > maxyear.to_i))
-      errors.add(:period, "Non puo assegnare questo periodo a questo insegnamento")
+    if (self.period.subperiod > maxsubperiod.to_i || self.period.year > maxyear.to_i)
+      errors.add(:period, "Non puo assegnare questo periodo a questo insegnamento" + maxyear.to_s + " " + maxsubperiod.to_s)
     end
   end
 end

@@ -78,6 +78,7 @@ class TeachersController < ApplicationController
       if @teacher.save
         @teacher.graduate_courses << GraduateCourse.find(params[:graduate_course_id])
         flash[:notice] = "Docente invitato con successo"
+        TeacherMailer.deliver_activate_teacher(@current_user, @teacher)
         redirect_to new_teacher_url
       else
         @graduate_courses = @current_user.graduate_courses
@@ -134,13 +135,11 @@ class TeachersController < ApplicationController
   end
 
   def administration
-    gs = @current_user.graduate_courses
     ids = @current_user.graduate_course_ids
-    @graduate_courses = gs.find(:all, :include => [:users],
-                :conditions => ["specified_type = 'Teacher' AND users.password is NOT null"])
+    @graduate_courses = GraduateCourse.find(:all, :include => :users,
+                :conditions => ["specified_type = 'Teacher' AND users.password is NOT null AND graduate_courses.id IN (?)",ids])
     @not_active_users = User.find(:all, :include => :graduate_courses,
                 :conditions => ["users.password IS null AND graduate_courses.id IN (?)",ids])
-    
   end
 
   private
