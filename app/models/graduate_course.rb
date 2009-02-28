@@ -39,6 +39,14 @@ class GraduateCourse < ActiveRecord::Base
   end
 
 
+  def before_destroy
+    c=self.classrooms
+    c.each do |k| 
+      if k.graduate_courses.count==1
+        k.destroy
+      end
+    end
+  end
   #validazioni :duration
   validates_numericality_of :duration,
                             :only_integer =>true,
