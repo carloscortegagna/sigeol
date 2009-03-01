@@ -34,7 +34,7 @@ Quest'aula è a disposizione dei seguenti corsi di laurea:
   </tr>
 <br><br><br>
 <tr>
-  <% form_tag(:action => :elimina) do%>
+  <% form_tag(:action => :remove_classroom_graduate_course) do%>
     <p>
       Corso di laurea da disassociare
       <%= select_tag "graduate_course_canc" , options_from_collection_for_select(@graduate_courses_associati, "id", "name") %>
@@ -50,7 +50,7 @@ Quest'aula è a disposizione dei seguenti corsi di laurea:
   L'aula è messa a disposizione di tutti i corsi di laurea disponibili
 <% else %>
 <tr>
-  <% form_tag(:action => :aggiungi) do%>
+  <% form_tag(:action => :add_classroom_graduate_course) do%>
     <p>
       Corso di laurea da associare
       <%= select_tag "graduate_course_add" , options_from_collection_for_select(@graduate_courses_non_associati, "id", "name") %>
@@ -65,4 +65,4 @@ Quest'aula è a disposizione dei seguenti corsi di laurea:
 
 <br><br>
 <%= link_to 'Show', @classroom %> |
-<%= link_to 'Back', classrooms_path %>
+<%= link_to 'Indietro', classrooms_path %>

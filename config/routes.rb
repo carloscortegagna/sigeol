@@ -17,7 +17,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :classrooms, :except => [:index],
                              :collection => {:administration => :get},
-                             :member => {:elimina => :post, :aggiungi => :post}
+                             :member => {:remove_classroom_graduate_course => :post,
+                             :add_classroom_graduate_course => :post}
   
   map.resource :session
 
