@@ -1,5 +1,5 @@
 class TeachersController < ApplicationController
-  skip_before_filter :login_required, :only => [:index, :activate]
+  skip_before_filter :login_required, :only => [:index, :show, :activate]
   before_filter :manage_teachers_required, :only => [:new, :create, :administration, :edit_graduate_courses,
                                                      :update_graduate_courses]
   before_filter :manage_capabilities_required, :only => [:edit_capabilities, :update_capabilities]
@@ -90,7 +90,7 @@ class TeachersController < ApplicationController
         flash[:notice] = "Docente invitato con successo"
         redirect_to new_teacher_url
       else
-        flash[:errors] = "La mail inserita è già presente e non corrisponde ad un docente"
+        flash[:error] = "La mail inserita è già presente e non corrisponde ad un docente"
         redirect_to new_teacher_url
       end
     end

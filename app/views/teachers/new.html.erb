@@ -3,11 +3,11 @@
 <% form_tag(:action => :create) do %>
     <%= error_messages_for :user, :object => @teacher %>
    <p>
-    <%= label_tag "Mail" %>
+    <%= label_tag 'mail', "Mail" %>
     <%= text_field_tag "mail" %>
   </p>
   <p>
-    <%= label_tag 'Corso di laurea' %>
+    <%= label_tag 'graduate_course_id', 'Corso di laurea' %>
     <%= select_tag "graduate_course_id", options_from_collection_for_select(@graduate_courses, "id", "name") %>
   </p>
   <p>

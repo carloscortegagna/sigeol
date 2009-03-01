@@ -6,11 +6,11 @@
   <b>Cognome:</b>
   <%=h @teacher.surname %>
 </p>
-<p>
+<div>
   Insegnamenti tenuti:
   <% @teacher.teachings.each do |t| %>
   <p>
     <%=h t.name %>
   </p>
   <% end %>
-</p>
+</div>
