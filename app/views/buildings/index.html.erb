@@ -1,17 +1,6 @@
-<h1>Lista pubblica delle strutture (buildings)</h1>
+<h1>Strutture e relative aule:</h1>
 <br>
-<table>
-  <tr>
-    <th>name</th>
-  </tr>
 <% for building in @buildings %>
-  <tr>
-    <td><%=h building.name %></td>
-  </tr>
+  <h3> <%= link_to building.name, building_path(building) %> </h3>
+
 <% end %>
-</table>
-<br> <br>
-<br> N.B. Manca address
-
-
-
