@@ -36,5 +36,9 @@ class Test::Unit::TestCase
 
   # Add more helper methods to be used by all tests here...
   Html::Test::Validator.w3c_url = "http://localhost/cgi-bin/check"
-  Html::Test::Validator.w3c_show_source = "1"
+  ApplicationController.validate_all = true
+  ApplicationController.validators = [:w3c]
+  # # ApplicationController.check_urls = true
+  ApplicationController.check_redirects = true
+
 end
