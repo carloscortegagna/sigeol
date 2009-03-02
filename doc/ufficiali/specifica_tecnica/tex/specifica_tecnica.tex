@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Specifica tecnica v0.6.3}
+\lfoot{Specifica tecnica v0.6.4}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Specifica tecnica v0.6.3}
+\lfoot{Specifica tecnica v0.6.4}
 \cfoot{}
 \rfoot{}
 }
@@ -44,6 +44,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{02-03-2009} & 0.6.4 & Riscrittura contenuto Middle Man \\
 \hline
 \textit{24-01-2009} & 0.6.3 & Sottolineatura dei termini del Glossario \\
 \hline
@@ -88,7 +90,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Specifica Tecnica \\ v0.6.3}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Specifica Tecnica \\ v0.6.4}}
 \author{Redazione: Freo Matteo, Barbiero Mattia, Scortegagna Carlo}
 \maketitle
 \medskip
@@ -189,7 +191,7 @@ Il modulo è stato implementato seguendo il \underline{pattern} Active Record fa
 La classe è descritta in buona parte dalla tabella che rappresenta ed espone i metodi necessari per leggere e scrivere i record.
 Con ActiveRecord è possibile utilizzare diversi tipi di \underline{database}: SQLite, MySQL, Postgresql, Oracle, IBM DB/2 ed è possibile scrivere driver personalizzati per altri \underline{database} relazionali.
 \subsubsection{Relazione d'uso con le altre componenti}
-Questa componente si relaziona con il Controller ed il Middle Man fornendo i dati che vengono richiesti e salvando le eventuali modifiche al \underline{database}.
+Questa componente si relaziona con il Controller fornendo i dati che vengono richiesti e salvando le eventuali modifiche al \underline{database}.
 \subsection{Controller}
 Il modulo che gestisce la parte controller è contenuto all'interno del \underline{framework} \underline{Ruby on Rails} ed è chiamato Action Controller.
 Questo, assieme all'Action View(confronta sezione \ref{view}) è integrato all'interno di un pacchetto chiamato Action Pack.
@@ -206,22 +208,23 @@ Questa componente si relazione con la View, il Model ed il Middle Man.
 
 Il Controller funge da intermediario fornendo i dati alla View attraverso il Model. Inoltre sceglie quale view renderizzare a seconda della richiesta pervenuta.
 
-Grazie alla sua stretta relazione con il il Middle Man può delegare ad esso le operazioni più onerose in termini di calcolo e tempo, e richiederne lo stato di avanzamento di quest'ultime.
 \subsection{View}\label{view}
  Il modulo Action View contenuto nel \underline{framework} \underline{Ruby on Rails}, offre meccanismi avanzati per il riutilizzo del codice, tramite l'uso di viste, \underline{layouts}, partials e di metodi helper pensati per generare ad esempio pagine \underline{XHTML}.
 I metodi helper sono semplici metodi pubblici di una classe Controller.
 \subsubsection{Relazione d'uso con le altre componenti}
 Questa componente si trova in relazione solamente con il Controller. Converte infatti le azioni che l'utente effettua attraverso la View in richieste a metodi propri del Controller.
 \subsection{Middle Man}
-La componente Middle Man è estranea al \underline{pattern} MVC e si occupa di gestire quelle richieste che a causa del tempo di calcolo, renderebbero inutilizzabile ogni altra funzione di consultazione dell'applicazione web. Questa componente sarà implementata tramite un \underline{plugin} per \underline{Ruby on Rails} denominato BackgroundRB.
+La componente Middle Man è estranea al \underline{pattern} MVC e si occupa di gestire quelle richieste che a causa del tempo di calcolo, renderebbero inutilizzabile ogni altra funzione di consultazione dell'applicazione web. 
+Questa componente sarà implementata tramite una \underline{servlet} in \underline{Java} denominata SchedulerServlet.
 \subsubsection{Relazione d'uso con le altre componenti}
-Questa componente è in relazione con il Controller, il Model e l'Algorithm. 
+Questa componente è in relazione con il Controller e l'Algorithm. 
 
-Per soddifare le richieste del Controller preleva, grazie alla sua relazione con il Model, i dati da inviare alla componente Algorithm. Inoltra ad ogni richiesta pervenuta dal Controller informerà lo stesso dell'avanzamento del compito delegatogli, o restituirà i risultati appena disponibili.
+Per soddifare le richieste del Controller preleva i dati necessari da un file, creato dall'applicazione stessa, e si occuperà di avviare la componente Algorithm per il calcolo degli orari.
+Inoltre è a disposizione del Controller per l'inserimento delle tempistiche di esecuzione del calcolo degli orari.
 \subsection{Algorithm}
-La componente Algorithm non inclusa nel \underline{pattern} MVC si occupa di calcolare effettivamente l'orario delle lezioni, rispettando i vincoli inseriti nel sistema. Dagli studi di ricerca operativa sono noti diversi algoritmi per la ricerca di una soluzione ottimale di un problema sottoposto a vincoli. E' in fase di valutazione, da parte del team QuiXoft, la scelta del particolare tipo di algoritmo.
+La componente Algorithm non inclusa nel \underline{pattern} MVC si occupa di calcolare effettivamente l'orario delle lezioni, rispettando i vincoli inseriti nel sistema. Dagli studi di ricerca operativa sono noti diversi algoritmi per la ricerca di una soluzione ottimale di un problema sottoposto a vincoli. L'algoritmo scelto è stato utilizzato nell'International Timetabling Competition 2007 ed è basato sulla libreria Constraint Solver Library (licenza GNU LGPL).
 \subsection{Relazioni d'uso di altre componenti}
-Questa componente si trova in relazione solo con la componente Middle Man. Algorithm infatti restituisce i risultati dei suoi calcoli direttamente alla componente Middle Man.
+Questa componente si trova in relazione solo con la componente Middle Man. Algorithm restituisce il risultato in un file che verrà poi processato dall'applicazione.
 
 \section{Diagrammi delle classi}
 \subsection{Model}

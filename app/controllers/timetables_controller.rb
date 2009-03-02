@@ -1,3 +1,6 @@
+require 'net/http'
+require 'net/https'
+
 class TimetablesController < ApplicationController
   skip_before_filter :login_required
   # GET /timetables
@@ -83,4 +86,88 @@ class TimetablesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  #
+  #metodo usato nella creazione di una nuova istanza di schedulazione
+  #
+  def schedule
+    #URL della servlet
+    url = URI.parse('http://localhost/middleman/alg')
+    #impostazione del metodo POST
+    req = Net::HTTP::Post.new(url.path)
+    #parametri di autenticazione
+    #req.basic_auth 'jack', 'pass'
+    #dati da inviare
+    req.set_form_data({'course'=>'corso', 'date'=>'data_scheduling'}, ';')
+    #connessione alla servlet
+    res = Net::HTTP.new(url.host, url.port).start {
+      |http| http.request(req)
+    }
+    #controllo del codice di errore
+    case res
+      when Net::HTTPSuccess, Net::HTTPRedirection
+      # OK
+      when Net::HTTPNotAcceptable
+      #parametri non corretti.. riportare alla form
+      else
+      #errore connessione.. riprovare
+    end
+  end
+  
+  #
+  #metodo per la segnalazione di avvio calcolo algoritmo
+  #
+  def notify
+    if start
+      head :ok
+    else
+      head :unavailable
+    end
+  end
+
+  #
+  #metodo per la segnalazione del calcolo dell'algoritmo eseguito
+  #
+  def done
+    #prendi valore course e effettuta operazione di finalizzazione
+    if true
+    head :ok
+    else
+    head :unavailable
+    end
+  end
+
+
+  def start
+
+    done = false
+    #prepara il file di input
+
+    #URL della servlet
+    url = URI.parse('http://localhost/middleman/alg')
+    #impostazione del metodo POST
+    req = Net::HTTP::Get.new(url.path)
+    #parametri di autenticazione
+    #req.basic_auth 'jack', 'pass'
+    #dati da inviare
+    req.set_form_data({'course'=>'corso', 'inputfile'=>'file_name','timeout'=>'time'}, ';')
+    #connessione alla servlet
+    res = Net::HTTP.start(url.host, url.port) {
+      |http| http.request(req)
+    }
+
+    #controllo del codice di errore
+    case res
+      when Net::HTTPSuccess, Net::HTTPRedirection
+      # OK
+      done = true
+      when Net::HTTPNotAcceptable
+      #parametri non corretti.. riportare alla form
+      else
+      #errore connessione.. riprovare
+    end
+
+    return done
+  end
+
 end
