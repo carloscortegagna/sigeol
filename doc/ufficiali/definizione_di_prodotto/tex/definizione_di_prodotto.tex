@@ -199,6 +199,7 @@ Durante tutto lo svolgimento del progetto, il team QuiXoft utilizzarà i seguent
 
 \section{Specifica delle componenti}
 Il sistema Sigeol è strutturato seguendo il paradigma MVC, con l'aggiunta di ulteriori due componenti: MiddleMan e Algorithm.
+\subsection{Componente Model} \label{model}
 \subsection{Componente Controller}
 La componente Controller si occupa di gestire le azioni che l'utente effettua, solitamente attraverso una view. Ogni metodo pubblico rappresenta quindi una specifica azione, eccezion fatta per l'Application Controller.
 Di seguito è riportato il diagramma delle classi che illustra questa componente. Sono stati omessi volutamente i tipi di ritorno per i metodi che implementano un'azione, in quanto queste operazioni non sono utilizzate per restituire un valore, bensì inizializzano alcune variabili d'istanza che saranno successivamente disponibili nella view specifica per quella azione. Inoltre per aumentare la leggibilità è stata omessa la derivazione della classe \verb|ApplicationController| da \verb|ActionController::Base|. \\
@@ -231,8 +232,25 @@ Questa classe deriva direttamente da \verb|ActionController::Base|, ed è estesa
  \item \verb|didactic_office_required|: se l'utente non appartiene ad una segreteria didattica questo metodo reindirizza alla pagina principale mostrando un errore.
 \end{itemize}
 \subsubsection{GraduateCoursesController}
+Il controller \verb|GraduateCourseController| permette alla segreteria didattica di creare e cancellare i corsi di laurea. Inoltre permette agli utenti con gli opportuni privilegi di aggiornare le informazioni relative ai propri corsi di laurea.
+I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
+\begin{itemize}
+ \item \verb|login_required| non è utilizzato nelle azioni \verb|index| e \verb|show|
+ \item \verb|manage_graduate_courses_required| è utilizzato nelle azioni \verb|edit|, \verb|update|, \verb|destroy|, \verb|administration|
+ \item \verb|didactic_office_required| è utilizzato nelle azioni \verb|new|, \verb|create| e \verb|destroy|
+ \item \verb|same_graduate_courses_required| è utilizzato nelle azioni \verb|edit|, \verb|update|, e \verb|destroy|.
+\end{itemize}
 \subsubsection{CurriculumsController}
+Il controller \verb|CurriculumsController| permette all'utente con gli opportuni privilegi di aggiornare le informazioni relative ai curricula dei propri corsi di laurea, nonchè di aggiungere o rimuove insegnamenti da quest'ultimi attreverso, rispettivamente, i metodi \verb|select_teaching| e \verb|assign_teaching|. Il primo fornisce alla view una lista degli insegnamenti presenti nel corso di laurea a cui il curriculum appartiene, mentre il secondo crea questa associazione tramite il model.
+I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
+\begin{itemize}
+ \item \verb|login_required| non è utilizzato solamente nell'azione \verb|show|
+ \item \verb|manage_graduate_courses_required| non è utilizzato solamente nell'azione \verb|show|
+ \item \verb|same_graduate_courses_required| è utilizzato nelle azioni \verb|edit|, \verb|update|, \verb|select_teaching| e \verb|assign_teaching|.
+\end{itemize}
 \subsubsection{UsersController}
+Il controller \verb|UserController| dispone solamente delle azioni \verb|edit| e \verb|update| e del metodo privato (utilizzato come filtro anteposto alle due azioni assieme al filtro \verb|login_required|) \verb|same_user_required|. Questa scelta progettuale deriva dalla relazione tra i model \verb|Teacher|, \verb|DidacticOffice| e \verb|User|. Confrontare la sezione \ref{model}.
+Il metodo privato \verb|same_user_required| garantisce che non si stia cercando di modificare un utente diverso dal proprio.
 \subsubsection{TeachersController}
 \subsubsection{SessionsController}
 \subsubsection{TeachingsController}

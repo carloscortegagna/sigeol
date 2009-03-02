@@ -1,7 +1,7 @@
 class GraduateCoursesController < ApplicationController
   skip_before_filter :login_required, :only => :index
-  before_filter :manage_graduate_courses_required, :only => [:administration, :edit, :update]
-  before_filter :didactic_office_required, :only => [:new, :create]
+  before_filter :manage_graduate_courses_required, :only => [:administration, :edit, :update, :destroy]
+  before_filter :didactic_office_required, :only => [:new, :create, :destroy]
   before_filter :same_graduate_course_required, :only => [:edit, :update, :destroy]
   def index
     @graduate_courses = GraduateCourse.find(:all)

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :same_user
+  before_filter :same_user_required
 
   def edit
     @current_user
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
   private
 
-  def same_user
+  def same_user_required
     unless @current_user == User.find(params[:id])
       flash[:error] = "Non puoi modificare un utente diverso dal tuo"
       redirect_to timetables_url
