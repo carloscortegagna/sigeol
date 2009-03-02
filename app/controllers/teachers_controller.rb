@@ -5,6 +5,11 @@ class TeachersController < ApplicationController
   before_filter :manage_capabilities_required, :only => [:edit_capabilities, :update_capabilities]
   before_filter :same_graduate_course_required, :only => [:edit_graduate_courses, :update_graduate_courses,
                                                           :edit_capabilities, :update_capabilities]
+
+  # metodi da aggiungere:
+  # destroy
+  # edit per i dati personali
+  # update per i dati personali
   def index
     @teachers = User.find_by_specified_type("Teacher")
   end

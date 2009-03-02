@@ -55,7 +55,7 @@ class CurriculumsController < ApplicationController
 
     respond_to do |format|
       if @curriculum.update_attributes(params[:curriculum])
-        flash[:notice] = 'Curriculum was successfully updated.'
+        flash[:notice] = 'Curriculum modificato con successo'
         format.html { redirect_to :controller => 'graduate_courses', :action => 'administration' }
       else
         @graduate_courses = @current_user.graduate_courses
