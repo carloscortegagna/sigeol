@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Norme di Progetto v1.3.1}
+\lfoot{Norme di Progetto v1.3.2}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Norme di Progetto v1.3.1}
+\lfoot{Norme di Progetto v1.3.2}
 \cfoot{}
 \rfoot{}
 }
@@ -44,6 +44,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{02-03-2009} & 1.3.2 & Correzione varie\\
 \hline
 \textit{07-02-2009} & 1.3.1 & Correzione dei problemi riscontrati nella RPP\\
 \hline
@@ -85,7 +87,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Norme di Progetto \\ v1.3.1}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Norme di Progetto \\ v1.3.2}}
 \author{Redazione: Scortegagna Carlo}
 \maketitle
 \medskip
@@ -238,9 +240,9 @@ I documenti ufficiali prodotti dal team QuiXoft dovranno essere salvati sul \und
 
 I file dei documenti ufficiali interni ed esterni dovranno essere nominati mettendo in sequenza le seguenti parti:
 \begin{enumerate}
- \item Nome del documento (gli eventuali spazi dovranno essere sostituiti con un underscore)
+ \item Nome del documento, tutto in minuscolo (gli eventuali spazi dovranno essere sostituiti con un underscore)
  \item Versione del documento (tra il nome del documento e la versione dovrà essere presente un underscore, cosi come tra i vari numeri che compongono la versione)
- \item Estensione del file (salvo diverse indicazioni, l'estensione sarà sempre .pdf)
+ \item Estensione del file (salvo diverse indicazioni, l'estensione sarà sempre .pdf per i documenti esportati in formato Pdf e .tex per i sorgenti \LaTeX)
 \end{enumerate}
 Ad esempio, il presente documento alla versione 1.0.0 dovrà essere cosi nominato: norme\_di\_progetto\_1\_0\_0.pdf
 
@@ -293,9 +295,9 @@ Tale \underline{intestazione} deve essere cosi formattata: \\
 \textit{\{data e resoconto delle modifiche, in ordine cronologico decrescente\}}
 \subsection{Altre convenzioni}
 La scelta di Ruby on Rails come framework per lo sviluppo del progetto porta già con se una gran quantità di convenzioni riguardanti la stesura del codice, senza che debbano essere scelte dal team di sviluppo.
-La filosofia che sta alla base di tutto ciò è denominata Convention over Configuration, che prevede configurazione minima (o addirittura assente) per il programmatore che utilizza un framework che lo rispetti, obbligandolo a configurare solo gli aspetti che si differenziano dalle implementazioni standard o che non rispettano particolari convenzioni di denominazione o simili.
+La filosofia che sta alla base di tutto ciò è denominata Convention over Configuration, che prevede configurazione minima (o addirittura assente) per il programmatore che utilizza tale framework, obbligandolo a configurare solo gli aspetti che si differenziano dalle implementazioni standard o che non rispettano particolari convenzioni di denominazione o simili.
 
-A seguire, un basilare elenco delle norme da seguire nella stesura del codice. Per la lista completa delle regole da rispettare è sufficiente consultare la documentazione di Ruby on Rails e di Active Record.
+A seguire, un basilare elenco delle norme da seguire nella stesura del codice:
 
 \begin{itemize}
   \item Convenzioni sui nomi: i nomi delle costanti sono scritti completamente in maiuscolo (upper case), usando l’underscore per separarare i termini. Per convenzione ogni variabile scritta completamente in maiuscolo è interpretata da Ruby come costante. I nomi di classi e moduli adottano il PascalCase, ovvero l’uso del carattere maiuscolo per ogni parola che compone il nome. I nomi di metodi e variabili adottano lo snake case, ovvero completamente minuscolo con i termini separati da un carattere underscore.
@@ -303,6 +305,7 @@ A seguire, un basilare elenco delle norme da seguire nella stesura del codice. P
   \item Per quanto riguarda le \underline{indentazioni}, la convenzione è di non utilizzare Tab ma Soft Tab (ovvero tab convertite in automatico in spazi) o spazi direttamente. La dimensione di ogni Soft Tab è fissata a 2 caratteri.
 \end{itemize}
 Tutto quanto non esplicitamente indicato è da intendersi regolamentato dalle norme fissate dal framework Ruby on Rails, dal linguaggio di programmazione Ruby e dai vari plugin che verranno utilizzati durante lo sviluppo del progetto.
+Per la lista completa delle regole da rispettare è sufficiente consultare la relativa documentazione.
 
 \section{Compiti}
 \subsection{Ticket}
@@ -327,7 +330,7 @@ Salvo diverse indicazioni, è fatto obbligo lo sviluppo di tutto il progetto con
 
 Per ogni membro del team QuiXoft, tutti i software dovranno essere aggiornati alla versione riportata in seguito: non è consigliato l'utilizzo di software in diverse versioni, cosi come non sono consigliati aggiornamenti in corso d'opera, per evitare eventuali incompatibilità e malfunzionamenti.
 
-Eccezione a quanto appena detto, durante la fase di collaudo del sistema SIGEOL sarà necessario testare il prodotto sotto vari sistemi operativi, per verificarne l'effettiva portabilità.
+Eccezione a quanto appena detto, durante la fase di collaudo del sistema SIGEOL sarà necessario testare il prodotto sotto vari sistemi operativi e con diversi browser, per verificarne l'effettiva portabilità.
 \begin{itemize}
  \item tutto il progetto dovrà necessariamente essere sviluppato all'interno di un sistema operativo \textbf{GNU/Linux}. La scelta di distribuzione e versione è lasciata ai singoli membri del team QuiXoft, ma è comunque consigliabile l'utilizzo di un sistema operativo basato su Debian (come, per esempio, Ubuntu) per la facilità di gestione e per la qualità dell'architettura e dell'infrastruttura.
  \item per la scrittura e la compilazione di tutta la documentazione e delle presentazioni verrà usato il programma \textbf{\underline{Kile}} (KDE Integrated LaTeX Environment) alla versione 2.0.1. Per la compilazione dei sorgenti \LaTeX \space verrà utilizzato PDFLaTeX, incluso nell'installazione di Kile.
