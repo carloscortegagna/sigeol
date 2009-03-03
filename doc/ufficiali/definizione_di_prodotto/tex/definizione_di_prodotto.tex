@@ -210,12 +210,15 @@ Per evitare fastidiose ripetizioni in questa sezione verranno descritti i metodi
 \begin{itemize}
  \item \verb|index|: rende disponibile alla view specifica un insieme d'istanze ed è raggiungibile eseguendo una richiesta GET all'indirizzo /nomecontroller. Ad esempio l'azione \verb|index| di \verb|GraduateCourseController| fornisce alla view un insieme di corsi di laurea ed è raggiungibile attraverso una richiesta GET all'indirizzo /graduate\_courses.
  \item \verb|show|: rende disponibile alla view specifica un'istanza ed è raggiungibile eseguendo una richiesta GET all'indirizzo /nomecontroller/id. Usando sempre l'esempio dei corsi di laurea, eseguendo una richiesta GET all'indirizzo /graduate\_courses/1 verranno visualizzate le informazioni relative al corso di laurea con id 1.
- \item \verb|new|: rende disponibile alla view specifica un'istanza vuota dello stesso tipo per permettere l'inserimento di un nuovo oggetto. E' raggiungibile eseguendo una richiesta GET /nomecontroller/new
+ \item \verb|new|: rende disponibile alla view specifica un'istanza vuota per permettere l'inserimento di un nuovo oggetto. E' raggiungibile eseguendo una richiesta GET /nomecontroller/new
  \item \verb|create|: acquisisce i dati da una richiesta POST per salvare l'oggetto nel database attraverso il model. Solitamente i dati provengono da una form con metodo POST presente nella view per l'azione \verb|new|. E' possibile comunque invocare questa azione mediante una richiesta POST all'indirizzo /nomecontroller
  \item \verb|edit|: rende disponibile alla view specifica un'istanza esistente per permetterne la modifica. e' raggiungibile attraverso una richiesta GET all'indirizzo /nomecontroller/id/edit
  \item \verb|update|: acquisisce i dati da una richiesta PUT per aggiornare lo stato dell'oggetto nel database attraverso il model. Solitamente i dati provengono da una form con metodo PUT presente nella view per l'azione \verb|edit|. E' possibile comunque invocare questa azione mediante una richiesta PUT all'indirizzo /nomecontroller/id
  \item \verb|destroy|: distrugge l'oggetto attraverso il model. Questa azione viene invocata tramite una richiesta DELETE all'indirizzo /nomecontroller/id
  \item \verb|administration|: rende disponibile alla view specifica un insieme d'istanze per effettuarne l'amministrazione. Questa azione è raggiungibile attraverso una richiesta GET all'indirizzo \\ /nomecontroller/administration.
+ \item \verb|new_constraint|: rende disponibile alla view specifica un'istanza per un vincolo od una preferenza per permetterne l'inserimento. E' raggiungibile eseguendo una richiesta GET all'indirizzo \\ /nomecontroller/id/new\_constraint
+ \item \verb|create_constraint|: acquisisce i dati da una richiesta POST per salvare il vincolo o la preferenza nel database attraverso il model. Solitamente i dati provengono da una form con metodo POST presente nella view per l'azione \verb|new_constraint|. E' possibile comunque invocare questa azione mediante una richiesta POST all'indirizzo /nomecontroller/id/create\_constraint
+ \item \verb|destroy_constraint|: distrugge l'oggetto attraverso il model. Questa azione viene invocata tramite una richiesta DELETE all'indirizzo /nomecontroller/id/destroy\_contraint/id
 \end{itemize}
 Solitamente non è necessaria l'autenticazione o il possesso di alcuni privilegi per eseguire le azioni \verb|index| e \verb|show|. Per quanto riguarda gli altri metodi, invece, può ritenersi necessaria l'autenticazione od il possesso di alcuni privilegi. Per ogni controller sarà descritto questo aspetto.
 Differente invece è il caso del metodo \verb|same_graduate_course_required|, dichiarato privato nei controllers che lo implementano. Questo metodo non rispecchia un'azione, ma è utilizzato come filtro, ovvero è chiamato prima o dopo una determinata azione, per impedire la modifica o la cancellazione di un oggetto appartenente ad un corso di laurea diverso da quello dell'utente autenticato.
@@ -232,30 +235,63 @@ Questa classe deriva direttamente da \verb|ActionController::Base|, ed è estesa
  \item \verb|didactic_office_required|: se l'utente non appartiene ad una segreteria didattica questo metodo reindirizza alla pagina principale mostrando un errore.
 \end{itemize}
 \subsubsection{GraduateCoursesController}
-Il controller \verb|GraduateCourseController| permette alla segreteria didattica di creare e cancellare i corsi di laurea. Inoltre permette agli utenti con gli opportuni privilegi di aggiornare le informazioni relative ai propri corsi di laurea.
+Il controller \verb|GraduateCourseController| permette alla segreteria didattica di creare e eliminare i corsi di laurea. Inoltre permette agli utenti con gli opportuni privilegi di aggiornare le informazioni relative ai propri corsi di laurea.
 I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
 \begin{itemize}
  \item \verb|login_required| non è utilizzato nelle azioni \verb|index| e \verb|show|
  \item \verb|manage_graduate_courses_required| è utilizzato nelle azioni \verb|edit|, \verb|update|, \verb|destroy|, \verb|administration|
  \item \verb|didactic_office_required| è utilizzato nelle azioni \verb|new|, \verb|create| e \verb|destroy|
- \item \verb|same_graduate_courses_required| è utilizzato nelle azioni \verb|edit|, \verb|update|, e \verb|destroy|.
+ \item \verb|same_graduate_course_required| è utilizzato nelle azioni \verb|edit|,\\ \verb|update|, e \verb|destroy|.
 \end{itemize}
 \subsubsection{CurriculumsController}
-Il controller \verb|CurriculumsController| permette all'utente con gli opportuni privilegi di aggiornare le informazioni relative ai curricula dei propri corsi di laurea, nonchè di aggiungere o rimuove insegnamenti da quest'ultimi attreverso, rispettivamente, i metodi \verb|select_teaching| e \verb|assign_teaching|. Il primo fornisce alla view una lista degli insegnamenti presenti nel corso di laurea a cui il curriculum appartiene, mentre il secondo crea questa associazione tramite il model.
+Il controller \verb|CurriculumsController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare le informazioni relative ai curricula dei propri corsi di laurea, nonchè di aggiungere o rimuove insegnamenti da quest'ultimi attreverso i metodi \verb|select_teaching|, raggiungibile medianta una richiesta GET all'indirizzo /curriculums/id/select\_teaching, e \verb|assign_teaching|, raggiungibile mediante una richiesta POST all'indirizzo /curriculums/id/assign\_teaching. Il primo fornisce alla view una lista degli insegnamenti presenti nel corso di laurea a cui il curriculum appartiene, mentre il secondo crea questa associazione tramite il model.
 I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
 \begin{itemize}
  \item \verb|login_required| non è utilizzato solamente nell'azione \verb|show|
  \item \verb|manage_graduate_courses_required| non è utilizzato solamente nell'azione \verb|show|
- \item \verb|same_graduate_courses_required| è utilizzato nelle azioni \verb|edit|, \verb|update|, \verb|select_teaching| e \verb|assign_teaching|.
+ \item \verb|same_graduate_course_required| è utilizzato nelle azioni \verb|edit|,\\ \verb|update|, \verb|select_teaching| e \verb|assign_teaching|.
 \end{itemize}
 \subsubsection{UsersController}
-Il controller \verb|UserController| dispone solamente delle azioni \verb|edit| e \verb|update| e del metodo privato (utilizzato come filtro anteposto alle due azioni assieme al filtro \verb|login_required|) \verb|same_user_required|. Questa scelta progettuale deriva dalla relazione tra i model \verb|Teacher|, \verb|DidacticOffice| e \verb|User|. Confrontare la sezione \ref{model}.
+Il controller \verb|UsersController| dispone solamente delle azioni \verb|edit| e \verb|update| e del metodo privato \verb|same_user_required| (utilizzato come filtro anteposto alle due azioni assieme al filtro \verb|login_required|). Questa scelta progettuale deriva dalla relazione tra i model \verb|Teacher|, \verb|DidacticOffice| e \verb|User|. Confrontare la sezione \ref{model}.
 Il metodo privato \verb|same_user_required| garantisce che non si stia cercando di modificare un utente diverso dal proprio.
 \subsubsection{TeachersController}
+Il controller \verb|TeachersController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare i docenti dei propri corsi da laurea, nonchè di attribuire ad essi nuovi privilegi e corsi di laurea. Attraverso l'azione \verb|new| viene rischiesto un indirizzo e-mail di un docente e l'azione \verb|create| verificherà se questo è presente o meno nel database. Nel primo caso se il docente appartiene già a quel corso di laurea verrà segnalato un errore, altrimenti verrà aggiunto; nel secondo caso verrà inviata al nuovo docente una mail con le istruzioni per la registrazione al sistema. Il nuovo docente tramite l'azione \verb|pre_activate|, raggiungibile mediante una richista GET all'indirizzo /teachers/id/pre\_activate?digest=, potrà completare la creazione dello proprio user, e del relativo indirizzo, che sarà delegata all'azione \verb|activate|, raggiungibile mediante una richiesta POST all'indirizzo /teachers/id/activate?digest=. La certezza che solamente il docente invitato potrà creare il proprio account è resa possibile tramite il parametro \verb|digest| che solamente chi ha ha ricevuto la mail di invito può conoscere.
+
+Infine attraverso le azioni \verb|edit_graduate_courses|, \verb|edit_capabilities|, \verb|update_graduate_courses| e \verb|update_capabilities|, raggiungibili rispettivamente mediante una richiesta GET all'indirizzo \\ /teachers/id/edit\_graduate\_courses o /teachers/id/edit\_capabilities e mediante una richiesta POST all'indirizzo /teachers/is/update\_graduate\_courses o /teachers/id/update\_capabilities, è possibilile modificare o rimuovere corsi di laurea e privilegi ai docenti da user che ne hanno la facoltà.
+I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
+\begin{itemize}
+ \item \verb|login_required| non è utilizzato nelle azioni \verb|index|, \verb|show| ed \verb|activate|
+ \item \verb|manage_teachers_required|  è utilizzato nelle azioni \verb|new|, \verb|create|,\\ \verb|administration|, \verb|edit_graduate_courses|, \verb|update_graduate_courses|
+ \item \verb|manage_capabilities_required| è utilizzato nelle azioni \\ \verb|edit_capabilities| e \verb|update_capabilities|
+ \item \verb|same_graduate_course_required| è utilizzato nelle azioni \\ \verb|edit_graduate_courses|, \verb|edit_capabilities|,\\ \verb|update_graduate_courses| e \verb|update_capabilities|.
+\end{itemize}
 \subsubsection{SessionsController}
+Il controller \verb|SessionsController| permette la creazione di una sessione al momento dell'autenticazione dello user. Utilizza quindi le azioni \verb|new|, \verb|create| e \verb|destroy| senza alcun filtro, raggiungibili rispettivamente con una richiesta GET all'indirizzo /session/new, POST all'indirizzo /session e DELETE all'indirizzo /session/id.
 \subsubsection{TeachingsController}
+Il controller \verb|TeachingsController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare le informazioni relative agli insegnamenti dei propri corsi di laurea, nonchè di aggiungere o rimuove il docente che tiene l'insegnamento in questione attraverso le azioni \verb|select_teacher|, raggiungibile medianta una richiesta GET all'indirizzo \\ /teachings/id/select\_teacher, e \verb|assign_teacher|, raggiungibile mediante una richiesta POST all'indirizzo /teachers/id/assign\_teacher. Il primo fornisce alla view una lista dei docenti presenti nel corso di laurea a cui il curriculum appartiene, mentre il secondo crea questa associazione tramite il model.
+I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
+\begin{itemize}
+ \item \verb|login_required| non è utilizzato nelle azioni \verb|index| e \verb|show|
+ \item \verb|manage_teachings_required| non è utilizzato nelle azioni \verb|index| e \verb|show|
+ \item \verb|same_graduate_course_required| è utilizzato nelle azioni \verb|edit|,\\ \verb|update|, \verb|destroy|, \verb|select_teacher| e \verb|assign_teacher|.
+\end{itemize}
 \subsubsection{BuildingsController}
+Il controller \verb|BuildingsController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare le informazioni relative agli edifici ed ai relativi indirizzi.
+I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
+\begin{itemize}
+ \item \verb|login_required| non è utilizzato nelle azioni \verb|index| e \verb|show|
+ \item \verb|manage_buildings_required| non è utilizzato nelle azioni \verb|index| e \verb|show|
+\end{itemize}
+Non è presente il filtro \verb|same_graduate_course_required| in quanto un edificio non appartiene ad uno o più corsi di laurea, bensì all'intero sistema universitario.
 \subsubsection{ClassroomsController}
+Il controller \verb|ClassroomsController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare le informazioni relative alle aule, nonchè di aggiungere o rimuovere le aule ai propri corsi di laurea attraverso le azione \verb|add_classroom_graduate_course| e \\ \verb|remove_classroom_graduate_course| raggiungibili attraverso una richiesta POST agli indirizzi, rispettivamente,\\ /classrooms/id/add\_classroom\_graduate\_course e \\ /classrooms/id/remove\_classroom\_graduate\_course
+I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
+\begin{itemize}
+ \item \verb|login_required| non è utilizzato solamente nell'azione \verb|show|
+ \item \verb|manage_classrooms_required| non è utilizzato solamente nell' azione \verb|show|
+ \item \verb|same_graduate_course_required| non è utilizzato nelle azioni \verb|show|, \verb|new| e \verb|create|
+\end{itemize}
 \subsubsection{TimetablesController}
-\modifiche
+Il controller \verb|TimetablesController| permette all'utente con gli opportuni privilegi di creare ed eliminare gli orari.
+\modifiche.
 \end{document}
