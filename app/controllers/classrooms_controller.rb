@@ -1,5 +1,7 @@
 class ClassroomsController < ApplicationController
-  before_filter :manage_classrooms_required, :only => [:new, :create, :edit, :update, :destroy]
+  skip_before_filter :login_required, :only => :show
+  before_filter :manage_classrooms_required, :except => :show
+  #before_filter :same_graduate_course, :only => :except => [:show, :new, :create]
 
   # GET /classrooms/1
   def show

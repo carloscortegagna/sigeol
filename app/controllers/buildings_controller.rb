@@ -1,6 +1,6 @@
 class BuildingsController < ApplicationController
   skip_before_filter :login_required, :only => [:index, :show]
-  before_filter :manage_buildings_required, :only => [:administration, :edit, :update]
+  before_filter :manage_buildings_required, :except => [:index, :show]
 
   def index
     @buildings = Building.find(:all)
