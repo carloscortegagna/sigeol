@@ -1,6 +1,5 @@
 <h1>Strutture e relative aule:</h1>
-<br/>
-<% for building in @buildings %>
-  <h3> <%= link_to building.name, building_path(building) %> </h3>
-
+<% @buildings.each do |b| %>
+  <h3> <%= show_building(b) %> </h3>
+  
 <% end %>

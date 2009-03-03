@@ -3,5 +3,12 @@
 <% @graduate_courses.each do |g| %>
   <div class="first_div">
     <%= show_graduate_course_admin(g) %>
+    <% if g.curriculums.empty? %>
+      <%=h "Nessun curriculum presente" %>
+    <% else %>
+      <% g.curriculums.each do |c| %>
+        <%= show_curriculum_admin(c) %>
+      <% end %>
+    <% end %>
   </div>
 <% end %>

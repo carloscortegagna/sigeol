@@ -1,14 +1,14 @@
-<tr>
-  <td>
+<div>
+  <div>
     <%= link_to curriculum_admin.name, curriculum_path(curriculum_admin) %>
-  </td>
-  <td>
+  </div>
+  <div>
     <%= link_to "Modifica", edit_curriculum_path(curriculum_admin) %>
-  </td>
-  <td>
+  </div>
+  <div>
     <%= link_to "Elimina", curriculum_admin, :method => :delete %>
-  </td>
-  <td>
-    <%= link_to "Aggiungi insegnamento", select_teaching_curriculum_path(curriculum_admin) %>
-  </td>
-</tr>
+  </div>
+  <div>
+    <%= link_to "Gestisci insegnamenti", select_teaching_curriculum_path(curriculum_admin) %>
+  </div>
+</div>

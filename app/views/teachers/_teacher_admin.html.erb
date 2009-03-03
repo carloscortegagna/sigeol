@@ -1,14 +1,14 @@
-<tr>
-  <td>
+<div>
+  <div>
     <%= link_to teacher_admin.complete_name, teacher_path(teacher_admin) %>
-  </td>
-  <td>
+  </div>
+  <div>
     <%= link_to "Elimina", teacher_admin, :method => :delete %>
-  </td>
-  <td>
+  </div>
+  <div>
     <%= link_to "Aggiungi corso", edit_graduate_courses_teacher_path(teacher_admin)%>
-  </td>
-  <td>
+  </div>
+  <div>
     <%= link_to "Aggiungi privilegi", edit_capabilities_teacher_path(teacher_admin)%>
-  </td>
-</tr>
+  </div>
+</div>

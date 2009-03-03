@@ -1,6 +1,12 @@
 <div>
-  Insegnamenti presenti: <br/>
-  <%= show_teachings(@curriculum.teachings) %> <br/>
+  <% if @curriculum.teachings.empty? %>
+    <%=h "Nessun insegnamento presente"%>
+  <% else %>
+    <%=h "Insegnamenti presenti:" %>
+    <% @curriculum.teachings.each do |t|  %>
+      <%= show_teaching(t) %>
+    <% end %>
+  <% end %>
   <% form_for :curriculum, :url => {:action => :assign_teaching} do %>
     Aggiungi insegnamento:
     <%= select_tag "teaching_id", options_from_collection_for_select(@teachings, "id", "name") %><br/>

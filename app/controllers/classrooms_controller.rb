@@ -99,7 +99,7 @@ class ClassroomsController < ApplicationController
   def remove_classroom_graduate_course
     if request.post?
       graduate_course_to_remove = GraduateCourse.find(params[:graduate_course_canc])
-      classroom_to_modify = graduate_course_to_remove.classrooms.find(params[:classroom_canc])
+      classroom_to_modify = graduate_course_to_remove.classrooms.find(params[:id])
       if classroom_to_modify
         graduate_course_to_remove.classrooms.delete(classroom_to_modify)
       end
@@ -120,7 +120,7 @@ class ClassroomsController < ApplicationController
 
   def add_classroom_graduate_course
     if request.post?
-      classroom_to_modify = Classroom.find(params[:classroom_add])
+      classroom_to_modify = Classroom.find(params[:id])
       graduate_course_to_add = GraduateCourse.find(params[:graduate_course_add])
       classroom_to_modify.graduate_courses << graduate_course_to_add
 

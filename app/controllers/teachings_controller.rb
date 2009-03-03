@@ -20,6 +20,15 @@ class TeachingsController < ApplicationController
 
   def administration
     @graduate_courses = @current_user.graduate_courses
+    @graduate_courses.each do |g|
+      g['teachings'] = []
+      g.curriculums.each do |c|
+        c.teachings.each do |t|
+          g['teachings'] << t
+        end
+      end
+      g['teachings'].uniq!
+    end
   end
   # GET /teachings/new
   # GET /teachings/new.xml

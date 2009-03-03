@@ -52,7 +52,8 @@ class User < ActiveRecord::Base
                         :message => "Non è possibile calcolare il digest"
 
   validates_associated :address,
-                       :message => "L'indirizzo non è stato inserito correttamente"
+                       :message => "L'indirizzo non è stato inserito correttamente",
+                       :on => :update
 
   validates_presence_of :specified_id,:specified_type,
                         :message=>"L'utente deve essere specificato",

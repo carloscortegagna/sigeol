@@ -2,9 +2,9 @@
 <h1> Amministrazione insegnamenti </h1>
 <% @graduate_courses.each do |g| %>
   <div class ="first_div">
-    <h3>
-      <%= g.name %>
-    </h3>
-    <%= show_teachings_for_graduate_course_admin(g) %>
+    <%= show_graduate_course(g) %>
+    <% g['teachings'].each do |t|  %>
+      <%= show_teaching_admin(t) %>
+    <% end %>
   </div>
-<% end %>
+ <% end %>

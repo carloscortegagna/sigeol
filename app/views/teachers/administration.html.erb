@@ -1,8 +1,13 @@
 <%= menu_admin() %>
 <h1>Amministrazione docenti</h1>
-<%= show_not_active_users(@not_active_users) %>
+<% unless @not_active_users.empty? %>
+  <%= show_not_active_users(@not_active_users) %>
+<% end %>
 <% @graduate_courses.each do |g| %>
   <div class="first_div">
     <%= show_graduate_course_admin(g) %>
+    <% g.users.each do |t| %>
+      <%= show_teacher_admin(t) %>
+    <% end %>
   </div>
 <% end %>

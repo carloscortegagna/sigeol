@@ -1,0 +1,21 @@
+<div>
+  <div>
+    <%= link_to teaching_admin.name, teaching_path(teaching_admin) %>
+  </div>
+  <div>
+    <%= link_to "Modifica", edit_teaching_path(teaching_admin) %>
+  </div>
+  <div>
+    <%= link_to "Elimina", teaching_admin, :method => :delete %>
+  </div>
+  <div>
+    <% if teaching_admin.teacher %>
+       <%= show_teacher(teaching_admin.teacher) %>
+    <% else %>
+       <%=h "Nessun docente" %>
+    <% end %>
+  </div>
+  <div>
+    <%= link_to "Assegna docente", select_teacher_teaching_path(teaching_admin) %>
+  </div>
+</div>
