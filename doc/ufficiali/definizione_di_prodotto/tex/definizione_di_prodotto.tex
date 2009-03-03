@@ -147,7 +147,7 @@ Il team QuiXoft si avvalerà dello strumento \underline{RDoc}, specifico per il 
 Lo schema di denominazione deve essere determinante per la comprensione del flusso logico dell'applicazione. Verrano quindi utilizzati nomi significativi che identifichino la funzione e lo scopo dell'elemento. Inoltre saranno seguite le convenzioni generali dello specifico linguaggio di programmazione utilizzato per realizzare l'elemento, nonchè ulteriori convenzioni dettate dal framework utilizzato. Per maggiori informazioni consultare la sezione \ref{programmazione}
 
 \subsection{Standard di programmazione}\label{programmazione}
-Ogni file deve contenere esattamente una classe, eccezion fatta per i \underline{template} di file HTML e JavaScript. Inoltre è necessaria ai fini di una migliore leggibilità, l'uso di una corretta indentazione, fornita dall'ambiente di sviluppo. 
+Ogni file deve contenere esattamente una classe od un modulo, eccezion fatta per i \underline{template} di file HTML e JavaScript. Inoltre è necessaria ai fini di una migliore leggibilità, l'uso di una corretta indentazione, fornita dall'ambiente di sviluppo. 
 \subsubsection{Ruby e framework Rails}
 Di seguito sono elencate le convenzioni utilizzate negli elementi sviluppati con il linguaggio Ruby.
 \subsubsection*{Variabili locali}
@@ -198,7 +198,7 @@ Durante tutto lo svolgimento del progetto, il team QuiXoft utilizzarà i seguent
 \end{itemize}
 
 \section{Specifica delle componenti}
-Il sistema Sigeol è strutturato seguendo il paradigma MVC, con l'aggiunta di ulteriori due componenti: MiddleMan e Algorithm.
+Il sistema Sigeol è strutturato seguendo il paradigma MVC, con l'aggiunta di ulteriori: Helper, MiddleMan e Algorithm.
 \subsection{Componente Model} \label{model}
 \subsection{Componente Controller}
 La componente Controller si occupa di gestire le azioni che l'utente effettua, solitamente attraverso una view. Ogni metodo pubblico rappresenta quindi una specifica azione, eccezion fatta per l'Application Controller.
@@ -293,5 +293,73 @@ I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e s
 \end{itemize}
 \subsubsection{TimetablesController}
 Il controller \verb|TimetablesController| permette all'utente con gli opportuni privilegi di creare ed eliminare gli orari.
-\modifiche.
+\subsection{Componente View}
+\subsection{Componente Helper}\label{helper}
+Il componente Helper si occupa di raccogliere le funzionalità di utilità necessarie ai componenti del pattern MVC. Ogni file che rappresenta un Helper non conterrà una classe, bensì un modulo, ovvero un insieme di metodi di pubblica utilità. Per ogni controller è previsto lo specifico Helper, anche se non è necessario che siano presenti dei metodi in quanto non tutti i controller (e le rispettive view) necessitano di funzioni ausiliarie.
+\subsubsection{ApplicationHelper}
+L' \verb|ApplicationHelper| contiene i metodi di utilità che non trovano una collocazione logica negli altri helper, nonchè tutte le funzionalità ausiliare richieste da più classi delle diverse componenti.
+I metodi presenti all'interno dell' \verb|ApplicationHelper| sono i seguenti:
+\begin{itemize}
+ \item \verb|first_upper(name)|: metodo che restituisce la stringa \verb|name| a cui viene reso maiscolo il primo carattere e minuscoli i rimanenti.
+ \item \verb|login_form|: metodo che \underline{renderizza} il partial per la form per il login.
+ \item \verb|standard_sidebar|: metodo che renderizza il partial per il menu pubblico.
+ \item \verb|user_sidebar|: metodo che renderizza il partial per il menu privato.
+ \item \verb|link(user)|: metodo che restituisce l'insieme dei link disponibili per \verb|user|.
+\end{itemize}
+\subsubsection{BuildingsHelper}
+I metodi presenti all'interno del \verb|BuildingsHelper| sono i seguenti:
+\begin{itemize}
+ \item \verb|menu_admin|: metodo che renderizza il partial per il menu di amministrazione per gli edifici.
+ \item \verb|show_building_admin(building)|: metodo che renderizza il partial per l'amministrazione del \verb|building|.
+ \item \verb|show_building(building)|: metodo che renderizza il partial per la visualizzazione del \verb|building|.
+\end{itemize}
+\subsubsection{ClassroomsHelper}
+I metodi presenti all'interno del \verb|ClassroomsHelper| sono i seguenti:
+\begin{itemize}
+ \item \verb|menu_admin|: metodo che renderizza il partial per il menu di amministrazione per le aule.
+ \item \verb|show_classroom_admin(classroom)|: metodo che renderizza il partial per l'amministrazione della \verb|classroom|.
+\item \verb|show_classroom(classroom)|: metodo che renderizza il partial per la visualizzazione della \verb|classroom|.
+\end{itemize}
+\subsubsection{CurriculumsHelper}
+I metodi presenti all'interno del \verb|CurriculumsHelper| sono i seguenti:
+\begin{itemize}
+\item \verb|show_curriculum_admin(curriculum)|: metodo che renderizza il partial per l'amministrazione del \verb|curriculum|.
+\item \verb|show_curriculum(curriculum)|: metodo che renderizza il partial per la visualizzazione del \verb|curriculum|.
+\end{itemize}
+\subsubsection{SessionsHelper}
+Non è presente nessun metodo all'interno di \verb|SessionsHelper|.
+\subsubsection{GraduateCoursesHelper}
+I metodi presenti all'interno del \verb|GraduateCoursesHelper| sono i seguenti:
+\begin{itemize}
+ \item \verb|menu_admin|: metodo che renderizza il partial per il menu di amministrazione per i corsi di laurea
+ \item \verb|show_graduate_course_admin(graduate_course)|: metodo che renderizza il partial per l'amministrazione del  \verb|graduate_course|.
+\item \verb|show_graduate_course(graduate_course)|: metodo che renderizza il partial per la visualizzazione del \verb|graduate_course|.
+\end{itemize}
+\subsubsection{TeachersHelper}
+I metodi presenti all'interno del \verb|TeachersHelper| sono i seguenti:
+\begin{itemize}
+ \item \verb|menu_admin|: metodo che renderizza il partial per il menu di amministrazione per i docenti.
+ \item \verb|show_teacher_admin(teacher)|: metodo che renderizza il partial per l'amministrazione del \verb|teacher|.
+ \item \verb|show_teacher(teacher)|: metodo che renderizza il partial per la visualizzazione del \verb|teacher|.
+\end{itemize}
+\subsubsection{TeachingsHelper}
+I metodi presenti all'interno del \verb|TeachingsHelper| sono i seguenti:
+\begin{itemize}
+ \item \verb|menu_admin|: metodo che renderizza il partial per il menu di amministrazione per gli insegnamenti.
+ \item \verb|show_teaching_admin(teaching)|: metodo che renderizza il partial per l'amministrazione del \verb|teaching|.
+ \item \verb|show_teaching(teaching)|: metodo che renderizza il partial per la visualizzazione del \verb|teaching|.
+\end{itemize}
+\subsubsection{TimetablesHelper}
+I metodi presenti all'interno del \verb|TimetablesHelper| sono i seguenti:
+\begin{itemize}
+ \item \verb|menu_admin|: metodo che renderizza il partial per il menu di amministrazione per gli orari.
+ \item \verb|show_timetable_admin(timetable)|: metodo che renderizza il partial per l'amministrazione del \verb|timetable|.
+ \item \verb|show_timetable(timetable)|: metodo che renderizza il partial per la visualizzazione del \verb|timetable|.
+\end{itemize}
+\subsubsection{UsersHelper}
+I metodi presenti all'interno del \verb|UsersHelper| sono i seguenti:
+\begin{itemize}
+ \item \verb|show_not_active_users(user)|: metodo che renderizza il partial per la visualizzazione dello \verb|user| non ancora attivo.
+\end{itemize}
+\modifiche
 \end{document}
