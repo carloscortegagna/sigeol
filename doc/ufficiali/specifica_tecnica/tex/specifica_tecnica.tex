@@ -45,6 +45,8 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
+\textit{03-03-2009} & 0.7.4 & Aggiunta diagramma di sequenza del Middle Man \\
+\hli
 \textit{02-03-2009} & 0.6.4 & Riscrittura contenuto Middle Man \\
 \hline
 \textit{24-01-2009} & 0.6.3 & Sottolineatura dei termini del Glossario \\
@@ -221,6 +223,21 @@ Questa componente è in relazione con il Controller e l'Algorithm.
 
 Per soddifare le richieste del Controller preleva i dati necessari da un file, creato dall'applicazione stessa, e si occuperà di avviare la componente Algorithm per il calcolo degli orari.
 Inoltre è a disposizione del Controller per l'inserimento delle tempistiche di esecuzione del calcolo degli orari.
+
+\subsubsection{Interazione tra MiddleMan e applicazione}
+\begin{flushleft}
+\includegraphics[angle=90,scale=0.5]{images/middleman_seq_diagram.pdf}
+\end{flushleft}% MiddleMan_sequence_diagram.png: 1364x579 pixel, 72dpi, 48.12x20.43 cm, bb=0 0 1364 579
+\begin{description}
+ \item[1] impostazione di una nuova generazione dell'orario ad una detterminata data
+\item[1.1] impostazione della classe da istanziare all'avvio dell'evento schedulato
+\item [1.1.1] segnalazione all'applicazione 
+\item [1.1.1.2] invio dei dati alla servlet utilizzati per la generazione dell'orario (manuale e schedulata)
+\item [1.1.1.2.1] impostazione della classe da istanziare all'avvio dell'evento schedulato
+\item [1.1.1.3.1.1] avvio dell'algoritmo
+\item [1.1.1.3.1.2] segnalazione della generazione dell'orario effettuata 	
+ \end{description}
+
 \subsection{Algorithm}
 La componente Algorithm non inclusa nel \underline{pattern} MVC si occupa di calcolare effettivamente l'orario delle lezioni, rispettando i vincoli inseriti nel sistema. Dagli studi di ricerca operativa sono noti diversi algoritmi per la ricerca di una soluzione ottimale di un problema sottoposto a vincoli. L'algoritmo scelto è stato utilizzato nell'International Timetabling Competition 2007 ed è basato sulla libreria Constraint Solver Library (licenza GNU LGPL).
 \subsection{Relazioni d'uso di altre componenti}
