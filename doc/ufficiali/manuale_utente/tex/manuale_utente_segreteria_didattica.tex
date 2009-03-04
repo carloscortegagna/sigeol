@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Manuale Utente - Segreteria Didattica v0.1.0}
+\lfoot{Manuale Utente - Segreteria Didattica v0.3.1}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Manuale Utente v0.1.0}
+\lfoot{Manuale Utente v0.3.1}
 \cfoot{}
 \rfoot{}
 }
@@ -45,7 +45,13 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
-\textit{02-03-2009} & 0.1.0 & Stesura indice\\
+\textit{03-03-2009} & 0.3.1 & Correzioni varie\\
+\hline
+\textit{02-03-2009} & 0.3.0 & Completata la Descrizione funzionale e le Azioni richieste-permesse\\
+\hline
+\textit{26-02-2009} & 0.2.0 & Inserite la premessa e le sezioni Introduzione e Descrizione Generale\\
+\hline
+\textit{24-02-2009} & 0.1.0 & Stesura indice\\
 \hline
 \end{tabular}
 \end{center}
@@ -55,8 +61,8 @@
 \bigskip
 \begin{tabbing}
 	\hspace*{0.3\textwidth} \= \hspace*{0.5\textwidth} \kill
-	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Grosselle Alessandro} \\
-	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Scarpa Davide} \\
+	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{} \\
+	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{} \\
 	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Formale} \\
 	\parbox{0.3\textwidth}{\textbf{Uso: }} \> \parbox{0.5\textwidth}{Esterno} \\
 	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{QuiXoft} \\
@@ -65,7 +71,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Manuale Utente - Segreteria Didattica\\ v0.1.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Manuale Utente - Segreteria Didattica\\ v0.3.1}}
 \author{Redazione: Scortegagna Carlo}
 \maketitle
 \medskip
@@ -100,7 +106,7 @@ L'utilizzo del progetto software SIGEOL è previsto da 3 differenti tipologie d'
  \item Segreteria Didattica che accede al sistema tramite login
 \end{enumerate}
 \bigskip
-Le funzionalità offerte ai visitatori sono solamente di consultazione di informazioni: possono consultare lo schema d'orario dei diversi corsi di laurea, possono accedere alle informazioni relative ai docenti, alle aule, alle strutture, agli insegnamenti, ecc...
+Le funzionalità offerte ai visitatori sono solamente di consultazione di informazioni: possono consultare lo schema d'orario dei diversi corsi di laurea, possono accedere alle informazioni relative ai docenti, alle aule, agli edifici, agli insegnamenti, ecc...
 
 Tali funzioni sono state ritenute talmente di immediato utilizzo ed esenti da possibili problematiche che il team QuiXoft ha ritenuto superflua la redazione di un manuale utente dedicato ai visitatori.
 E' stata presa questa decisione anche meditando sul largo numero di utenti visitatori che accederanno al progetto SIGEOL: una cosi grande diffusione di un eventuale manuale utente dedicato a loro sarebbe stata infattibile.
@@ -154,7 +160,7 @@ Prima di effettuare il login saranno disponibili e visualizzate solamente le pag
  \item orari di lezione per i vari corsi di laurea presenti
  \item informazioni riguardanti i suddetti corsi di laurea e gli insegnamenti
  \item informazioni personali e contatti dei docenti assegnati ai vari insegnamenti
- \item informazioni sulle strutture e sulle aule presenti
+ \item informazioni sugli edifici e sulle aule presenti
 \end{itemize}
 Sarà inoltre possibile generare un file in formato Pdf con l'orario richiesto, per poterlo facilmente stampare o salvare localmente.
 
@@ -214,7 +220,7 @@ Per ogni corso di laurea sono elencati tutti curriculum che ne fanno parte: anch
 
 Per ogni curriculum, seguendo il link `Gestisci Insegnamenti`, è a disposizione una pagina in cui sono elencati tutti gli insegnamenti assegnati a quel particolare curriculum. E' data la possibilità di rimuovere o aggiungere uno o più insegnamenti: tale funzione è particolarmente utile per corsi di laurea che prevedono curriculum multipli, in quanto due o più curriculum all'interno dello stesso corso di laurea potrebbero condividere un particolare insegnamento.
 
-Da notare che il rimuovere un insegnamento da un dato curriculum non equivale alla rimozione totale dell'insegnamento: per cancellare completamente un insegnamento non più necessario si prega di consultare la sezione `Gestione Insegnamenti`.
+Da notare che il rimuovere un insegnamento da un dato curriculum non equivale alla rimozione totale dell'insegnamento: per cancellare completamente un insegnamento non più necessario si prega di consultare la sezione `Gestione Insegnamenti` del presente documento.
 
 Per ogni corso di laurea precedentemente inserito nel sistema SIGEOL è possibile impostare una scadenza entro cui i docenti devono terminare le loro operazioni di inserimento vincoli e preferenze: tale data è impostabile seguendo il link `Imposta data di termine inserimento vincoli`, disponibile a fianco di ogni singolo corso di laurea.
 
@@ -263,7 +269,7 @@ La pagina di inserimento di un nuovo curriculum, come visualizato in figura 4.2.
  \item inserimento del nome del curriculum: deve contenere solo caratteri o spazi e la sua lunghezza massima è fissata in 50 caratteri
  \item scelta del corso di laurea di cui il curriculum fa parte, tramite menu a tendina
 \end{itemize}
-Premendo il bottone `Create` verrà salvato il curriculum e si verrà reindirizzati alla pagina di gestione dei corsi di laurea. Il nuovo curriculum appena creato sarà presente nella lista del relativo corso di laurea.
+Premendo il bottone `Salva` verrà salvato il curriculum e si verrà reindirizzati alla pagina di gestione dei corsi di laurea. Il nuovo curriculum appena creato sarà presente nella lista del relativo corso di laurea.
 \newline \newline
 \begin{large}\textbf{Modifica dei dati di un curriculum:}\end{large}
 
@@ -301,7 +307,7 @@ La pagina di inserimento di un nuovo edificio, come illustrato in figura 4.2.2.1
  \item numero di telefono: deve essere inserito nel formato `prefisso-numero`. Il prefisso può essere composto solamente da numeri e la sua lunghezza può variare da 2 a 4. Anche il numero segue le stesse regole, ma la lunghezza dev'essere compresa tra 6 e 8 cifre.
  \item via: si accettano caratteri, numeri e spazi. In questo caso la lunghezza massima è fissata in 50 caratteri, compresi gli spazi.
 \end{itemize}
-Al termine dell'inserimento di tutti i dati richiesti è sufficiente premere sul pulsante `Save Changes` per salvare l'edificio e il relativo indirizzo nel sistema SIGEOL.
+Al termine dell'inserimento di tutti i dati richiesti è sufficiente premere sul pulsante `Salva` per salvare l'edificio e il relativo indirizzo nel sistema SIGEOL.
 Da questo momento è possibile inserire delle aule all'interno dell'edificio appena salvato.
 \newline \newline
 \begin{large}\textbf{Modifica dei dati di un edificio:}\end{large}
@@ -313,7 +319,7 @@ Da questo momento è possibile inserire delle aule all'interno dell'edificio app
 
 Come visualizzato in figura 4.2.2.2, la pagina di modifica dei dati di un edificio già presente nel sistema SIGEOL è di funzionamento simile alla pagina di inserimento appena descritta. Si possono modificare gli stessi dati inseriti in fase di creazione dell'edificio e le regole da rispettare per la modifica delle varie informazioni sono le stesse sopra elencate.
 
-Al termine delle modifiche è sufficiente premere il bottone `Update` per salvare le modifiche nel sistema SIGEOL.
+Al termine delle modifiche è sufficiente premere il bottone `Salva modifiche` per salvare le modifiche nel sistema SIGEOL.
 \subsubsection{Gestione Aule}
 La pagina di gestione delle aule contiene, in modo simile a tutte le altre pagine di amministrazione disponibili per la segreteria didattica, una lista delle aule a diposizione.
 E' possibile consultare le informazioni relative ad una data aula cliccando sul link presente sul suo nome: all'interno di tale pagina è anche presente, tra gli altri dati, una lista dei corsi di laurea per cui quest'aula è messa a disposizione. La scelta di quest'ultimo particolare sarà illustrata nelle sezioni dedicate all'inserimento di una nuova aula e alla sua modifica.
@@ -337,7 +343,7 @@ La pagina di inserimento di una nuova aula, come visualizzato in figura 4.2.3.1,
  \item capacità dell'aula: deve essere un numero intero compreso tra 1 e 1000
  \item scelta dell'edificio in cui l'aula è ubicata, tramite menu a tendina. Nel caso l'edificio non fosse ancora presente nel sistema SIGEOL, è necessario, prima della fase di creazione dell'aula, inserire i dati dell'edificio: per maggiori informazioni si prega di consultare la sezione `Inserimento di un nuovo edificio`.
 \end{itemize}
-Una volta inseriti correttamente tutti i dati è sufficiente premere il pulsante `Create` per salvare la nuova aula.
+Una volta inseriti correttamente tutti i dati è sufficiente premere il pulsante `Salva` per salvare la nuova aula.
 
 Da notare che l'aula viene messa a disposizione automaticamente di tutti i corsi di laurea presenti nel sistema SIGEOL: se tale scelta non fosse corretta, sarà necessario passare alla fase di modifica dei dati dell'aula.
 \newline \newline
@@ -396,7 +402,7 @@ La pagina di inserimento di un nuovo insegnamento, come illustrato in figura 4.2
  \item scelta dell'anno in cui il corso verrà tenuto nel curriculum selezionato, tramite menu a tendina
  \item periodo in cui il corso verrà tenuto: la scelta verrà fatta tramite menu a tendina e dovrà tener conto dell'organizzazione accademica del corso di laurea su cui si sta agendo.
 \end{itemize}
-Una volta inseriti tutti i dati, l'insegnamento verrà salvato nel sistema SIGEOL premendo il pulsante `Create`.
+Una volta inseriti tutti i dati, l'insegnamento verrà salvato nel sistema SIGEOL premendo il pulsante `Salva`.
 \newline \newline
 \begin{large}\textbf{Modifica dei dati di un insegnamento:}\end{large}
 La pagina di modifica di un insegnamento già presente all'interno del sistema SIGEOL permette di aggiornare tutti i dati, mantenendo l'aspetto e i campi dato della pagina di inserimento di un nuovo insegnamento.
