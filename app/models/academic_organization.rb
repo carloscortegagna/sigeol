@@ -13,7 +13,8 @@ class AcademicOrganization < ActiveRecord::Base
   has_many :graduate_courses
 
 #validazioni :name
-   validate :is_unique_name?
+   validates_uniqueness_of :name,
+                           :message => "E' gia presente un organizzazione accademica con questo nome"
                           
    validates_presence_of :name,
                          :message => "Il nome non deve essere vuoto"
@@ -34,21 +35,14 @@ class AcademicOrganization < ActiveRecord::Base
 
  #validazioni :number
  validates_uniqueness_of :number,
-                         :message => "Il numero è gia presente"
+                         :message => "E' gia presente un organizzazione accademica con questo numbero"
  validates_numericality_of :number,
                            :only_integer => true,
-                           :grater_than_or_euqual_to => 1,
+                           :greater_than_or_equal_to => 1,
                            :less_than_or_equal_to => 6,
                            :message => "Il numero deve essere compreso tra 1 e 6"
 
   validates_presence_of  :number,
                          :message => "Il numero di periodi non deve essere vuoto"
 
-private
- def is_unique_name?
-   a=AcademicOrganization.find_by_name(self.name)
-   if  a && self.id!=a.id
-      errors.add(:name,"E' gia presente un organizzazione accademica con questo nome")
-  end
-end
 end

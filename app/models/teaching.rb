@@ -27,28 +27,28 @@ include ApplicationHelper
                        :message =>"Si accetta solo caratteri numeri e il carattere spazio"
 
   #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
-  def before_save
+  def before_validation
     self.name=first_upper(self.name)
  end
  
   #validazioni :CFU,:classHours,:labHours,:studentsNumber,
  validates_numericality_of :CFU,
                            :only_integer => true,
-                           :grater_than_or_euqual_to => 0,
+                           :greater_than_or_equal_to => 0,
                            :less_than_or_equal_to => 20,
                            :allow_nil=>true,
                            :message=>"Attenzione il numero deve essere compreso tra 0 e 20"
 
 validates_numericality_of :labHours,:classHours,
                            :only_integer => true,
-                           :grater_than_or_euqual_to => 0,
+                           :greater_than_or_equal_to => 0,
                            :less_than_or_equal_to => 50,
                            :allow_nil => true,
                            :message => "Attenzione il numero deve essere compreso tra 0 e 50"
 
  validates_numericality_of :studentsNumber,
                           :only_integer => true,
-                          :grater_than_or_euqual_to => 0,
+                          :greater_than_or_equal_to => 0,
                           :less_than_or_equal_to => 1000,
                           :allow_nil => true,
                           :message => "Attenzione il numero deve essere compreso tra 0 e 1000"

@@ -20,7 +20,7 @@ class Period < ActiveRecord::Base
                          :in  => 1..6,
                          :message => "L'anno deve essere compreso tra 1 e 6"
   #validazione unicità subperiod e year
-  validate :unique_subperiod_year?
+  validate_on_create :unique_subperiod_year?
 
   private
   def unique_subperiod_year?

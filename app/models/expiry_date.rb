@@ -21,6 +21,4 @@ class ExpiryDate < ActiveRecord::Base
         errors.add(:date,"La data deve essere maggiore di quella di oggi(#{::Date.current}).")
       end
     end
-
-
-end
+  end

@@ -29,10 +29,10 @@ class Classroom < ActiveRecord::Base
 #validazioni :capacity
   validates_numericality_of :capacity,
                             :only_integer => true,
-                            :grater_than_or_euqual_to => 0,
+                            :greater_than_or_equal_to => 1,
                             :less_than_or_equal_to => 1000,
                             :allow_nil => true,
-                            :message => "Attenzione il numero deve essere compreso tra 0 e 1000"
+                            :message => "Attenzione il numero deve essere compreso tra 1 e 1000"
 
  #validazione presenza chiave esterna building
 validates_presence_of :building_id,

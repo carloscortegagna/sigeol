@@ -9,8 +9,8 @@
 
 class Address < ActiveRecord::Base
   include ApplicationHelper
-  has_many :user
-  has_many :building
+  has_one :user
+  has_one :building
   
   #validazioni :city
    validates_presence_of :city,
@@ -26,10 +26,10 @@ class Address < ActiveRecord::Base
 
 #validazioni :phone
       validates_length_of :telephone,
-                          :maximum => 15,
+                          :maximum => 13,
                           :message => "Il numero di telefono è troppo lungo"
      validates_format_of :telephone,
-                     :with => /^[0-9]{2,4}+\-[0-9]{6,8}$/,
+                     :with => /^[0-9]{2,4}\-[0-9]{6,8}$/,
                      :message => "Inserisci in questo modo: prefisso-numero"
 
 #validazioni :street

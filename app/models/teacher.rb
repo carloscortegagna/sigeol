@@ -30,13 +30,13 @@ class Teacher < ActiveRecord::Base
                      :message=>"Si accetta solo caratteri",
                      :on => :update
   #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
- def before_save
+ def before_validation
    self.name=first_upper(self.name)
    self.surname=first_upper(self.surname)
  end
 
  def before_destroy
-   User.delete_all("specified_id=#{self.id} AND specified_type='Teacher'")
+   User.delete("specified_id=#{self.id} AND specified_type='Teacher'")
   end
 
  def complete_name

@@ -34,23 +34,14 @@ class GraduateCourse < ActiveRecord::Base
                          :message => "Deve essere associata ad un'organizzazione accademica"
 
   #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
-  def before_save
+  def before_validation
    self.name=first_upper(self.name)
   end
 
-
-  def before_destroy
-    c=self.classrooms
-    c.each do |k| 
-      if k.graduate_courses.count==1
-        k.destroy
-      end
-    end
-  end
   #validazioni :duration
   validates_numericality_of :duration,
                             :only_integer =>true,
-                            :grater_than_or_euqual_to =>1,
+                            :greater_than_or_equal_to =>1,
                             :less_than_or_equal_to =>6,
                             :message=>"Attenzione il numero deve essere compreso tra 1 e 6"
 

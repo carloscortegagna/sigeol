@@ -3,9 +3,11 @@ class TemporalConstraint < ActiveRecord::Base
 
   validates_presence_of :startHour,:endHour,:day,
                           :message=>"Alcuni campi sono vuoti"
-  validates_inclusion_of :day,
-                       :in => 1..5,
-                       :message => "Deve essere compreso tra 1 e 5"
+ validates_numericality_of :day,
+                          :only_integer => true,
+                          :greater_than_or_equal_to => 1,
+                          :less_than_or_equal_to => 5,
+                          :message => "Deve essere compreso tra 1 e 5"
                      
   validate :is_correct_time?
 

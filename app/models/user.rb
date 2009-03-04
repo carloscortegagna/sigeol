@@ -58,9 +58,7 @@ class User < ActiveRecord::Base
   validates_presence_of :specified_id,:specified_type,
                         :message=>"L'utente deve essere specificato",
                         :on => :update
-  #L'indirizzo può essere associato ad una sola entità
-  validate :is_only_my_address?
-
+  
   validate
   def active?
     attribute_present?("password")
@@ -101,13 +99,7 @@ class User < ActiveRecord::Base
 
   private
 
-   def is_only_my_address?
-    if(self.address_id!=nil && (Building.find_by_address_id(self.address_id) || User.find_by_address_id(self.address_id)))
-      errors.add(:address_id, "L'indirizzo associato appartiene ad un'altra entità")
-    end
-  end
-
-   def encrypt_password
+  def encrypt_password
     self.password = Digest::SHA1.hexdigest(self.password) if attribute_present?("password")
   end
 

@@ -17,9 +17,11 @@ class TimetableEntry < ActiveRecord::Base
   validates_presence_of :startTime,:endTime,:day,:timetable_id,:classroom_id,
                           :message=>"Alcuni campi sono vuoti"
 
-  validates_inclusion_of :day,
-                       :in => 1..5,
-                       :message => "Deve essere compreso tra 1 e 5"
+   validates_numericality_of :day,
+                          :only_integer => true,
+                          :greater_than_or_equal_to => 1,
+                          :less_than_or_equal_to => 5,
+                          :message => "Attenzione il numero deve essere compreso tra 0 e 1000"
   validate :unique?
   validate :is_correct_time?
                     
