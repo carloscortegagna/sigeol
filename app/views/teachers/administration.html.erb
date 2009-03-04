@@ -7,7 +7,7 @@
   <div class="first_div">
     <%= show_graduate_course_admin(g) %>
     <% g.users.each do |t| %>
-      <%= show_teacher_admin(t) %>
+      <%= show_teacher_admin(t.specified) %>
     <% end %>
   </div>
 <% end %>
