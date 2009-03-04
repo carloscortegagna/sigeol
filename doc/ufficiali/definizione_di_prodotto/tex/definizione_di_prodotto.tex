@@ -294,12 +294,9 @@ L'opzione \verb|:as=>specified|, specifica che la relazione tra \verb|User| e il
 Ad esempio, sia u un oggetto di tipo \verb|User| e t un oggetto di tipo \verb|Teacher|, per specificare lo user, semplicemente basta fare:\\
 \verb|u.specified=t|
 
-La seconda associazione polimorfa è tra i model\\ 
-\verb|BooleanConstraint|,\verb|TemporalConstraint| e \verb|QuantityConstraint|\\ 
-e i model che che possiedono più vincoli di diversi tipo:\\
-\verb|Classroom|,\verb|Teacher|,\verb|GraduateCourse|.
-A parole, il problema si può spiegare in questo modo: una corso di laurea o una classe, possono avere più vincoli di diverso tipo; ad esempio possono avere due vincoli di tipo temporale ed uno di quantità. A sua volta un vincolo può avere più tipi di proprietari: una classe, un insegnante e un corso di laurea.
-Insomma, un vincolo può avere più tipi di proprietari e un proprietario può avere più tipi di vincoli; questa situazione si chiama \textit{associazione polimorfa doppia}.
+Il secondo tipo di associazione è chiamata \textit{associazione polimorfa doppia}\\ 
+A parole, il problema si può spiegare in questo modo: una corso di laurea o una classe, possono avere più vincoli di diverso tipo; ad esempio possono avere due vincoli di tipo temporale ed uno di quantità. A sua volta un vincolo può avere più tipi di proprietari: una classe, un insegnante o un corso di laurea.
+Insomma, un vincolo può avere più tipi di proprietari e un proprietario può avere più tipi di vincoli; questa situazione si chiama 
 Per implementare questa associazione si farà uso di un plugin chiamato :\verb|has_many_polymorphs|. 
 
 
