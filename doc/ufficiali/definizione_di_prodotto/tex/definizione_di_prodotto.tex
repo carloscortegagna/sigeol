@@ -283,7 +283,6 @@ Nel progetto \textit{Sigeol} sono presenti due associazioni polimorfe.
 
 
 La prima è tra il model \verb|User|, \verb|Teacher| e \verb|DidacticOffice|.\\ 
-Uno user può essere o un insegnante o una segreteria didattica.
 Per implementare quest'associazione, si è aggiunto alla tabella \verb|users| due attributi: \verb|specified_id| e \verb|specified_type|.
 Ora nel model \verb|User| è necessario specificare che si sta creando un'associazione polimorfa attraverso \verb|specified_id| e \verb|specified_type|:\\
 \verb|belongs_to :specified, :polymorphic => true|.\\
@@ -299,16 +298,15 @@ La seconda associazione polimorfa è tra i model\\
 \verb|BooleanConstraint|,\verb|TemporalConstraint| e \verb|QuantityConstraint|\\ 
 e i model che che possiedono più vincoli di diversi tipo:\\
 \verb|Classroom|,\verb|Teacher|,\verb|GraduateCourse|.
-Per implementare questa associazione poliforma si è utilizzato un plugin:\verb|has_many_polymorphs|.
+A parole, il problema si può spiegare in questo modo: una corso di laurea o una classe, possono avere più vincoli di diverso tipo; ad esempio possono avere due vincoli di tipo temporale ed uno di quantità. A sua volta un vincolo può avere più tipi di proprietari: una classe, un insegnante e un corso di laurea.
+Insomma, un vincolo può avere più tipi di proprietari e un proprietario può avere più tipi di vincoli; questa situazione si chiama \textit{associazione polimorfa doppia}.
+Per implementare questa associazione si farà uso di un plugin chiamato :\verb|has_many_polymorphs|. 
 
 
-Ad esempio il model \verb|Classroom| ha più vincoli; sia di tipo \verb|Boolean| che di tipo \verb|Temporal|. 
-Questo viene così implementato:\\
-\verb|has_many_polymorphs :constraints,|\\
-\verb|:from => [:boolean_constraints, :temporal_constraints]|
+Inoltre si dovrà aggiungere una nuova classe che associerà tutti i tipi di vincoli con tutti i tipi di proprietari. Questo tipo di model è chiamato join model
 
 
-Ora dato un oggetto di tipo \verb|Classroom| c, per vedere tutti i suoi possibili vincoli semplicemente basta fare \verb|c.constraints|
+
 
 \paragraph{Funzioni di callback}
 \verb|ActiveRecord| mette a disposizione dei metodi che monitorano lo stato dell'oggetto. 
@@ -444,7 +442,6 @@ Prima di effettuare le operazioni di validazione, il contenuto dell'attributo \v
 \paragraph{Associazioni}
 \begin{itemize}
  \item \verb|belongs_to :building|: tra \verb|buildings| e \verb|classrooms| esiste un'associazione one-to-many; \verb|classrooms contiene| la chiave esterna
-  \item \verb|has_many_polymorphs :constraints, :dependent => :destroy|:\\ \verb|classrooms| possiede più vincoli di diverso tipo. Se si distrugge l'oggetto, verranno distrutti anche tutti i \verb|constraints| associati
  \item \verb|has_many :timetable_entries, :dependent => :destroy|:\\ tra \verb|classrooms| e \verb|timetable_entries| esiste un'associazione di tipo one-to-many. Se viene eliminata una classroom vengono eliminate tutte le righe di \verb|timetables| associate
 \item \verb|has_and_belongs_to_many :graduate_courses|:\\tra \verb|classrooms| e \verb|graduate_courses| esiste una relazione many-to-many 
 \end{itemize}
@@ -514,7 +511,6 @@ Prima di effettuare le operazioni di validazione, il contenuto dell'attributo \v
 \item \verb|has_many :curriculums, :dependent => :destroy|:\\ tra \verb|graduate_courses| e \verb|curriculums|, esiste un'associazione one-to-many. Se un graduate course viene distrutto, verranno cancellate anche tutte le righe associate di curriculums
 \item \verb|has_and_belongs_to_many :users|: tra \verb|graduate_courses| e \verb|users|, esiste un'associazione many-to-many 
 \item \verb|has_and_belongs_to_many :classrooms|: tra \verb|graduate_courses| e \verb|classrooms|, esiste un'associazione many-to-many
-\item \verb|has_many_polymorphs :constraints|:\\ \verb|graduate_courses| è in associazione polimorfa con \verb|constraint|. Un oggetto di tipo \verb|GraduateCourse| può essere associato ha tre tipi di vincoli: booleani, temporali e di quantità. Se un graduate course viene distrutto, verranno cancellati dal database tutti i suoi vincoli 
 \end{itemize}
 \subsubsection{Period}
 \paragraph{Descrizione attributi}
@@ -561,7 +557,6 @@ Prima di eliminare l'oggetto d'istanza(e la sua riga associata), elimina il suo 
 \begin{itemize}
  \item \verb|has_one :user, :as => :specified|:\\ un teacher ha uno user. l'opzione \verb|:as| specifica che la relazione tra \verb|user| e \verb|teacher| è polimorfa
 \item \verb|has_many :teachings|: tra \verb|teachers| e \verb|teachings| esiste una relazione one-to-many.
-\item \verb|has_many_polymorphs :constraints|: un oggetto di tipo \verb|Teacher| possiede più vincoli di tempo. Se viene cancellato un teacher verranno cancellati anche tutti i vincoli associati.
 \end{itemize}
 \subsubsection{Teaching}
 \paragraph{Descrizione attributi}
@@ -922,6 +917,6 @@ I metodi presenti all'interno del \verb|TimetablesHelper| sono i seguenti:
 I metodi presenti all'interno del \verb|UsersHelper| sono i seguenti:
 \begin{itemize}
  \item \verb|show_not_active_users(user)|: metodo che renderizza il partial per la visualizzazione dello \verb|user| non ancora attivo.
-\end{itemize}
+\end{itemize} 
 \modifiche
 \end{document}
