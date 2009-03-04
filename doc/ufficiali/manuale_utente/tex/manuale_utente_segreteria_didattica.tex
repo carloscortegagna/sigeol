@@ -186,15 +186,22 @@ La pagina principale del prodotto SIGEOL presenta la possibilità di consultare 
 
 Sarà inoltre presente un link che porta alla pagina di login, in cui si potranno inserire il proprio indirizzo email e la propria password per accedere alle aree e alle funzioni private di amministrazione del prodotto SIGEOL.
 \subsubsection{Pagina di Login}
-\begin{LARGE}FIGURA\end{LARGE}
 
-La pagina di login, come si vede in figura 64646, offre la possibiltà agli utenti come la segreteria didattica o i docenti di inserire il proprio username (corrispondente all'indirizzo email) e la relativa password per poter accedere alle funzioni private messe a loro disposizione.
+\begin{center}
+	\includegraphics[scale=0.5]{images/login.jpg}\\
+	\textbf{fig. 4.1.2.1} Form di login\\
+\end{center}
+
+La pagina di login, come si vede in figura 4.1.2.1, offre la possibiltà agli utenti come la segreteria didattica o i docenti di inserire il proprio username (corrispondente all'indirizzo email) e la relativa password per poter accedere alle funzioni private messe a loro disposizione.
 
 In caso di login corretto verrà visualizzata nuovamente la pagina principale del prodotto SIGEOL, con in più i link a tutte le funzioni private accessibili.
-In caso di errore nell'inserimento dell'indirizzo email o della password verrà visualizzato un messaggio di notifica di tale errore, come in figura 6864.
+In caso di errore nell'inserimento dell'indirizzo email o della password verrà visualizzato un messaggio di notifica di tale errore, come in figura 4.1.2.2.
 Sarà immediatamente possibile reinserire i dati corretti e ritentare il login.
 
-\begin{LARGE}FIGURA\end{LARGE}
+\begin{center}
+	\includegraphics[scale=0.5]{images/login_errato.jpg}\\
+	\textbf{fig. 4.1.2.2} Form dopo un login errato\\
+\end{center}
 
 Le funzioni accessibili alle due tipologie di utenti appena citate sono diametralmente opposte: nei successivi capitoli del presente documento verranno quindi solamente illustrate le funzioni dedicate alla segreteria didattica.
 \subsection{Azioni richieste/permesse}
@@ -205,26 +212,38 @@ La pagina di gestione dei corsi di laurea mostra una lista di tutti i corsi inse
 E' possibile visualizzare le informazioni relative a quel corso di laurea cliccando sul nome del corso, ed è possibile eliminare quel particolare corso di laurea seguendo il link nominato `elimina`.
 Per ogni corso di laurea sono elencati tutti curriculum che ne fanno parte: anche questi ultimi hanno le medesime funzioni di visualizzazione e eliminazione come appena illustrato per i corsi di laurea.
 
+Per ogni curriculum, seguendo il link `Gestisci Insegnamenti`, è a disposizione una pagina in cui sono elencati tutti gli insegnamenti assegnati a quel particolare curriculum. E' data la possibilità di rimuovere o aggiungere uno o più insegnamenti: tale funzione è particolarmente utile per corsi di laurea che prevedono curriculum multipli, in quanto due o più curriculum all'interno dello stesso corso di laurea potrebbero condividere un particolare insegnamento.
+
+Da notare che il rimuovere un insegnamento da un dato curriculum non equivale alla rimozione totale dell'insegnamento: per cancellare completamente un insegnamento non più necessario si prega di consultare la sezione `Gestione Insegnamenti`.
+
+Per ogni corso di laurea precedentemente inserito nel sistema SIGEOL è possibile impostare una scadenza entro cui i docenti devono terminare le loro operazioni di inserimento vincoli e preferenze: tale data è impostabile seguendo il link `Imposta data di termine inserimento vincoli`, disponibile a fianco di ogni singolo corso di laurea.
+
 Sono poi disponibili, sia per i corsi di laurea sia per i curriculum, le funzionalità di inserimento e modifica, descritte più nel dettaglio qui di seguito:
 \newline \newline
 \begin{large}\textbf{Inserimento di un nuovo corso di laurea:}\end{large}
 
-\begin{LARGE}FIGURA NUOVO CORSO\end{LARGE}
+\begin{center}
+	\includegraphics[scale=0.5]{images/nuovo_corso.jpg}\\
+	\textbf{fig. 4.2.1.1} Form di inserimento di un corso di laurea\\
+\end{center}
 
-La pagina di inserimento di un nuovo corso di laurea, come visualizzato in figura 46846, richiede:
+La pagina di inserimento di un nuovo corso di laurea, come visualizzato in figura 4.2.1.1, richiede:
 \begin{itemize}
  \item inserimento del nome del corso di laurea: il nome non deve essere vuoto e deve contenere solamente caratteri o spazi. Sono vietati numeri o simboli. La lunghezza massima è fissata in 50 caratteri, compresi gli spazi.
  \item inserimento della durata in anni: deve essere inserito un numero compreso tra 1 e 6.
  \item scelta dell'organizzazione accademica: la scelta deve essere fatta tramite menu a tendina tra le varie opzioni proposte, che al momento sono annuale, semestri, trimenstri, quadrimestri. Serve a determinare in quanti periodi è suddiviso l'anno di quel determinato corso di laurea.
  \item nel caso il corso di laurea che si sta inserendo preveda un solo curriculum, è necessario selezionare la casella `Curriculum Unico` per crearlo automaticamente. Nel caso il corso di laurea preveda più curriculum, è sufficiente non selezionare tale opzione e inserire i vari curriculum successivamente. La scelta non è vincolante: è possibile eliminare o aggiungere curriculum a piacimento successivamente alla creazione del corso di laurea.
 \end{itemize}
-Al termine dell'inserimento dei dati richiesti, sarà sufficiente premere il bottone `Create` per salvare il nuovo corso di laurea. Verrà di seguito visualizzata nuovamente la pagina principale di gestione dei corsi di laurea. 
+Al termine dell'inserimento dei dati richiesti, sarà sufficiente premere il bottone `Salva` per salvare il nuovo corso di laurea. Verrà di seguito visualizzata nuovamente la pagina principale di gestione dei corsi di laurea. 
 \newline \newline
 \begin{large}\textbf{Modifica dei dati di un corso di laurea:}\end{large}
 
-\begin{LARGE}FIGURA MODIFICA CORSO\end{LARGE}
+\begin{center}
+	\includegraphics[scale=0.5]{images/modifica_corso.jpg}\\
+	\textbf{fig. 4.2.1.2} Form di modifica di un corso di laurea\\
+\end{center}
 
-La modifica dei dati di un corso di laurea inserito precedentemente funziona similarmente alla inserimento appena illustrato. I campi che è possibile modificare sono:
+La modifica dei dati di un corso di laurea inserito precedentemente funziona similarmente alla inserimento appena illustrato, come visibile in figura 4.2.1.2. I campi che è possibile modificare sono:
 \begin{itemize}
  \item nome
  \item durata in anni
@@ -234,9 +253,12 @@ Le regole da seguire per la loro compilazione sono identiche a quelle sopra illu
 \newline \newline
 \begin{large}\textbf{Inserimento di un nuovo curriculum:}\end{large}
 
-\begin{LARGE}FIGURA INSERIMENTO CURRICULM\end{LARGE}
+\begin{center}
+	\includegraphics[scale=0.5]{images/nuovo_curriculum.jpg}\\
+	\textbf{fig. 4.2.1.3} Form di inserimento di un curriculum\\
+\end{center}
 
-La pagina di inserimento di un nuovo curriculum richiede i seguenti campi:
+La pagina di inserimento di un nuovo curriculum, come visualizato in figura 4.2.1.3, richiede i seguenti campi:
 \begin{itemize}
  \item inserimento del nome del curriculum: deve contenere solo caratteri o spazi e la sua lunghezza massima è fissata in 50 caratteri
  \item scelta del corso di laurea di cui il curriculum fa parte, tramite menu a tendina
@@ -245,9 +267,12 @@ Premendo il bottone `Create` verrà salvato il curriculum e si verrà reindirizz
 \newline \newline
 \begin{large}\textbf{Modifica dei dati di un curriculum:}\end{large}
 
-\begin{LARGE}FIGURA MODIFICA CURRICULM\end{LARGE}
+\begin{center}
+	\includegraphics[scale=0.5]{images/modifica_curriculum.jpg}\\
+	\textbf{fig. 4.2.1.4} Form di modifica di un curriculum\\
+\end{center}
 
-La pagina per modificare i dati di un curriculum esistente funziona in modo similare alla pagina di inserimento appena illustrata. I campi che è possibile modificare sono infatti:
+La pagina per modificare i dati di un curriculum esistente, visibile in figura 4.2.1.4, funziona in modo similare alla pagina di inserimento appena illustrata. I campi che è possibile modificare sono infatti:
 \begin{itemize}
  \item nome del curriculum
  \item scelta del corso di laurea di cui il curriculum fa parte, tramite menu a tendina
@@ -264,9 +289,12 @@ Le funzioni di inserimento di un nuovo edificio e di modifica dei dati di un edi
 \newline \newline
 \begin{large}\textbf{Inserimento di un nuovo edificio:}\end{large}
 
-\begin{LARGE}FIGURA INSERIMENTO EDIFICIO\end{LARGE}
+\begin{center}
+	\includegraphics[scale=0.5]{images/nuovo_edificio.jpg}\\
+	\textbf{fig. 4.2.2.1} Form di inserimento di un edificio\\
+\end{center}
 
-La pagina di inserimento di un nuovo edificio richiede l'inserimento obbligatorio dei seguenti dati:
+La pagina di inserimento di un nuovo edificio, come illustrato in figura 4.2.2.1, richiede l'inserimento obbligatorio dei seguenti dati:
 \begin{itemize}
  \item nome dell'edificio: deve essere composto solamente da caratteri, numeri e spazi. La lunghezza massima del nome è stata fissata in 30 caratteri.
  \item città: il nome della città in cui si trova l'edificio deve essere composto solamente da caratteri o spazi. Anche in questo caso la lunghezza massima è fissata in 30 caratteri.
@@ -278,20 +306,159 @@ Da questo momento è possibile inserire delle aule all'interno dell'edificio app
 \newline \newline
 \begin{large}\textbf{Modifica dei dati di un edificio:}\end{large}
 
-\begin{LARGE}FIGURA MODIFICA EDIFICIO\end{LARGE}
+\begin{center}
+	\includegraphics[scale=0.5]{images/modifica_edificio.jpg}\\
+	\textbf{fig. 4.2.2.2} Form di modifica di un edificio\\
+\end{center}
 
-La pagina di modifica dei dati di un edificio già presente nel sistema SIGEOL è di funzionamento simile alla pagina di inserimento appena descritta. Si possono modificare gli stessi dati inseriti in fase di creazione dell'edificio e le regole da rispettare per la modifica delle varie informazioni sono le stesse sopra elencate.
+Come visualizzato in figura 4.2.2.2, la pagina di modifica dei dati di un edificio già presente nel sistema SIGEOL è di funzionamento simile alla pagina di inserimento appena descritta. Si possono modificare gli stessi dati inseriti in fase di creazione dell'edificio e le regole da rispettare per la modifica delle varie informazioni sono le stesse sopra elencate.
 
 Al termine delle modifiche è sufficiente premere il bottone `Update` per salvare le modifiche nel sistema SIGEOL.
 \subsubsection{Gestione Aule}
+La pagina di gestione delle aule contiene, in modo simile a tutte le altre pagine di amministrazione disponibili per la segreteria didattica, una lista delle aule a diposizione.
+E' possibile consultare le informazioni relative ad una data aula cliccando sul link presente sul suo nome: all'interno di tale pagina è anche presente, tra gli altri dati, una lista dei corsi di laurea per cui quest'aula è messa a disposizione. La scelta di quest'ultimo particolare sarà illustrata nelle sezioni dedicate all'inserimento di una nuova aula e alla sua modifica.
+
+E' anche data la possibilità di eliminare in modo permanente un aula dal sistema SIGEOL semplicemente seguendo il link `Elimina` presente a fianco di ogni aula.
+
+I vincoli temporali di indisponibilità di ogni aula si possono inserire, gestire e cancellare seguendo il link `Gestione Vincoli`, disponibile a fianco di ogni singola aula. Tale pagina di gestione permette di inserire un nuovo vincolo di indisponibilità dell'aula tramite comodi menu a tendina, permette di cancellare vincoli già inseriti in passato e da la possibilità di modificare vincoli già presenti.
+
+Le funzionalità di inserimento di una nuova aula e di modifica dei dati di una già presente sono illustrate in maggior dettaglio qui di seguito:
+\newline \newline
+\begin{large}\textbf{Inserimento di una nuova aula:}\end{large}
+
+\begin{center}
+	\includegraphics[scale=0.5]{images/nuova_aula.jpg}\\
+	\textbf{fig. 4.2.3.1} Form di inserimento di un'aula\\
+\end{center}
+
+La pagina di inserimento di una nuova aula, come visualizzato in figura 4.2.3.1, richiede i seguenti dati:
+\begin{itemize}
+ \item nome dell'aula: deve essere non vuoto, può solamente contenere caratteri, numeri o spazi; la lunghezza massima è fissata in 30 caratteri. 
+ \item capacità dell'aula: deve essere un numero intero compreso tra 1 e 1000
+ \item scelta dell'edificio in cui l'aula è ubicata, tramite menu a tendina. Nel caso l'edificio non fosse ancora presente nel sistema SIGEOL, è necessario, prima della fase di creazione dell'aula, inserire i dati dell'edificio: per maggiori informazioni si prega di consultare la sezione `Inserimento di un nuovo edificio`.
+\end{itemize}
+Una volta inseriti correttamente tutti i dati è sufficiente premere il pulsante `Create` per salvare la nuova aula.
+
+Da notare che l'aula viene messa a disposizione automaticamente di tutti i corsi di laurea presenti nel sistema SIGEOL: se tale scelta non fosse corretta, sarà necessario passare alla fase di modifica dei dati dell'aula.
+\newline \newline
+\begin{large}\textbf{Modifica dei dati di un aula:}\end{large}
+
+\begin{center}
+	\includegraphics[scale=0.5]{images/modifica_aula.jpg}\\
+	\textbf{fig. 4.2.3.2} Form di modifica di un aula\\
+\end{center}
+
+Come visualizzato in figura 4.2.3.2, la pagina di modifica dei dati di un aula già presente all'interno del sistema SIGEOL permette di aggiornare i seguenti dati:
+\begin{itemize}
+ \item nome dell'aula
+ \item capacità dell'aula
+ \item edificio in cui l'aula è ubicata, tramite menu a tendina
+\end{itemize}
+Le regole da rispettare per l'inserimento di questi dati sono le stesse sopra illustrate per la fase di inserimento di una nuova aula.
+Premendo il bottone `Salva modifiche` i nuovi dati aggiornati saranno salvati nel sistema.
+
+\begin{center}
+	\includegraphics[scale=0.5]{images/modifica_aula_corso.jpg}\\
+	\textbf{fig. 4.2.3.3} Form di aggiunta e rimozione delle disponibilità\\
+\end{center}
+
+Oltre ai campi per l'aggiornamento di questi dati, la pagina di modifica dei dati di un aula contiene una lista dei corsi di laurea per i quali quest'aula è messa a disposizione: sarà possibile modificare questa lista semplicemente usando i pulsanti `Aggiungi`, `Rimuovi` e i relativi menu a tendina, come illustrato in figura 4.2.3.3.
+
+Nel caso vengano rimosse tutte le disponibilità, l'aula non è a disposizione di nessun corso di laurea, e pertanto non verrà mai considerata nella generazione degli orari di lezione.
+E' pur sempre possibile rendere nuovamente disponibile quest'aula per qualche corso di laurea in seguito.
 \subsubsection{Gestione Insegnamenti}
+La pagina di gestione degli insegnamenti mostra un elenco degli insegnamenti presenti all'interno del sistema SIGEOL, raggruppati per corso di laurea.
+
+Come per ogni altra pagina dedicata alla segreteria didattica, è possibile consultare le informazioni relative al corso di laurea o all'insegnamento prescelti semplicemente cliccando sul loro nome.
+E' altresi possibile cancellare definitivamente un insegnamento dal sistema SIGEOL seguendo il link `Elimina` presente a fianco di ogni insegnamento.
+
+Se un insegnamento presente in lista ha già un docente assegnato, sarà visualizzato il nome di tale docente.
+In caso contrario sarà disponibile un link denominato `Assegna Docente`: seguendo questo link sarà possibile assegnare un dato docente all'insegnamento in questione. Da notare che il docente deve essere preventivamente invitato e registrato al sistema SIGEOL, altrimenti non sarà possibile assegnargli l'insegnamento.
+
+Le funzioni di inserimento di un nuovo insegnamento e di modifica dei dati di uno già presente nel sistema saranno illustrate nel dettaglio qui di seguito:
+\newline \newline
+\begin{large}\textbf{Inserimento di un nuovo insegnamento:}\end{large}
+
+\begin{center}
+	\includegraphics[scale=0.5]{images/nuovo_insegnamento.jpg}\\
+	\textbf{fig. 4.2.4.1} Form di inserimento di un insegnamento\\
+\end{center}
+
+La pagina di inserimento di un nuovo insegnamento, come illustrato in figura 4.2.4.1, richiede obbligatoriamente i seguenti dati:
+\begin{itemize}
+ \item nome dell'insegnamento: deve essere composto solamente da caratteri, numeri o spazi; non può essere vuoto e la sua lunghezza massima è fissata in 30 caratteri.
+ \item CFU: il numero dei crediti deve essere compreso tra 1 e 20
+ \item ore di lezione settimanali in aula: deve essere un numero compreso tra 0 e 40
+ \item ore di lezione settimanali in laboratorio: deve essere un numero compreso tra 0 e 40
+ \item numero stimato di studenti: deve essere inserito un numero compreso tra 0 e 1000
+ \item scelta del curriculum a cui l'insegnamento si riferisce, tramite menu a tendina
+ \item opzionale: mettere la spunta nel caso il corso sia opzionale per il curriculum appena selezionato
+ \item scelta dell'anno in cui il corso verrà tenuto nel curriculum selezionato, tramite menu a tendina
+ \item periodo in cui il corso verrà tenuto: la scelta verrà fatta tramite menu a tendina e dovrà tener conto dell'organizzazione accademica del corso di laurea su cui si sta agendo.
+\end{itemize}
+Una volta inseriti tutti i dati, l'insegnamento verrà salvato nel sistema SIGEOL premendo il pulsante `Create`.
+\newline \newline
+\begin{large}\textbf{Modifica dei dati di un insegnamento:}\end{large}
+La pagina di modifica di un insegnamento già presente all'interno del sistema SIGEOL permette di aggiornare tutti i dati, mantenendo l'aspetto e i campi dato della pagina di inserimento di un nuovo insegnamento.
 \subsubsection{Gestione Docenti}
+La pagina di gestione dei docenti offre innanzitutto una lista dei docenti che sono stati invitati al sistema SIGEOL ma non hanno ancora completato la registrazione: questi docenti potranno essere gestiti e assegnati ai vari insegnamenti appena completeranno la loro registrazione.
+
+A seguire è presente una lista dei docenti già correttamente registrati all'interno del sistema, raggruppata per corsi di laurea.
+E' data la possibilità di:
+\begin{itemize}
+ \item eliminare completamente il docente dal sistema SIGEOL, seguendo il link `Elimina` presente a fianco di ogni docente
+ \item aggiungere il docente prescelto ad un altro corso di laurea
+ \item aggiungere dei privilegi al docente selezionato: questa funzione è particolarmente utile se si rivelasse la necessità di avere un docente che affianchi la segreteria didattica nella parte amministrativa del sistema SIGEOL (di default, il presidente del CCS è già un docente con tali privilegi, ma potrebbe nascere la necessità di avere un altro docente con qualche privilegio amministrativo).
+\end{itemize}
+E' anche disponibile, seguendo il link `Invito Docenti`, la seguente funzionalità:
+\newline \newline
+\begin{large}\textbf{Invito di un docente:}\end{large}
+
+\begin{center}
+	\includegraphics[scale=0.5]{images/invito_docenti.jpg}\\
+	\textbf{fig. 4.2.5.1} Form di invito di un docente\\
+\end{center}
+
+Nella pagina di invito di un nuovo docente, come illustrato in figura 4.2.5.1, è sufficiente inserire l'indirizzo email a cui recapitare l'invito e, tramite menu a tendina, il corso di laurea per il quale il docente è richiesto.
+
+Premendo il pulsante `Invita Docente` verrà automaticamente spedita un e-mail all'indirizzo specificato: tale e-mail conterrà delle brevi istruzioni che il docente dovrà seguire per completare la propria iscrizione al sistema SIGEOL.
+Per ulteriori informazioni sulla procedura di attivazione dell'account di un docente si prega di consultare il documento \textsc{Manuale Utente Docente}.
+\subsubsection{Cambio Password}
+La pagina di cambio password permette semplicemente di modificare la password dell'account della segreteria didattica.
+
+La procedura è particolarmente semplice: è sufficiente inserire la nuova password e premere il pulsante `Cambio Password`, come illustrato in figura 4.2.6.1.
+
+\begin{center}
+	\includegraphics[scale=0.5]{images/cambio_password.jpg}\\
+	\textbf{fig. 4.2.6.1} Form di cambio password\\
+\end{center}
+
+
 \subsubsection{Generazione dell'orario}
+La pagina di generazione dell'orario di lezione permette alla segreteria didattica di far calcolare al sistema SIGEOL la miglior soluzione possibile di orario tenendo conto di tutti i dati che sono stati inseriti nelle precedenti fasi.
 
+Al momento della generazione dell'orario, è data la possibilità di scegliere:
+\begin{itemize}
+ \item il corso di laurea di cui generare l'orario
+ \item il periodo di cui calcolare l'orario, in base all'organizzazione accademica del corso di laurea prescelto (trimestri, semestri, ecc...)
+\end{itemize}
+Il calcolo dello schema d'orario non è istantaneo, ma potrà richiedere svariati minuti, in base anche alla complessità e al numero di dati inseriti.
+La generazione dell'orario è indipendente dal sito internet del progetto: non è quindi necessario attendere la fine dei calcoli sulla pagina di generazione, ma è possibile compiere altre azioni o addirittura spegnere il calcolatore da cui è stata lanciata la richiesta.
 
+Al termine del calcolo, l'orario sarà reso disponibile nella pagina principale del progetto SIGEOL.
+
+Si ricorda che allo scadere della data limite di inserimento dei vincoli dei docenti (vedi sezione `Gestione corsi di laurea`) verrà automaticamente generato un orario di lezione per tutti i corsi di laurea, senza alcuna richiesta da parte della segreteria didattica. Potrà comunque essere generato nuovamente l'orario delle lezioni in seguito, per esempio dopo l'inserimento di nuove aule o di nuovi vincoli.
 \subsection{Errori probabili e cause possibili}
+L'inserimento dei dati nelle varie form da parte della segreteria didattica è seguito passo passo dal sistema SIGEOL: ogni dato è controllato e validato prima di essere salvato in modo persistente.
+
+E' pertanto difficile, se non impossibile, inserire dati errati senza che questo venga segnalato.
+La segnalazione degli errori avverrà in seguito alla pressione del pulsante di invio dei dati: verrà quindi visualizzata nuovamente la form da cui si era partiti, con in più la segnalazione dell'errore. Sarà quindi sufficiente correggere il dato che ha generato l'errore e premere nuovamente il pulsante di invio dei dati (che potrà essere `Salva`, `Salva Modifiche` o altro, in base alla form su cui si sta lavorando).
+
+Per non andare incontro a segnalazioni continue di errori è necessario seguire le linee guida indicate nella sezione `Azioni richieste - permesse` del presente documento, di volta in volta consultando la sottosezione relativa alla funzionalità che si sta usando.
+
+Si è deciso di non elencare tutti i possibili messaggi d'errore, in quanto tali messaggi sono talmente chiari e autoesplicativi da non necessitare di ulteriori definizioni.
+\newpage
 \section{Appendice}
-\subsection{Messaggi di errore e loro significato}
 \subsection{Glossario}
 
 
