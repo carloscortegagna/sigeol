@@ -232,6 +232,7 @@ Questa classe deriva direttamente da \verb|ActionController::Base|, ed è estesa
  \item \verb|manage_classrooms_required|: se l'utente non possiede i privilegi per gestire le aule questo metodo reindirizza alla pagina principale mostrando un errore.
  \item \verb|manage_buildings_required|: se l'utente non possiede i privilegi per gestire gli edifici questo metodo reindirizza alla pagina principale mostrando un errore.
  \item \verb|manage_teachings_required|: se l'utente non possiede i privilegi per gestire gli insegnamenti questo metodo reindirizza alla pagina principale mostrando un errore.
+ \item \verb|manage_timetables_required|: se l'utente non possiede i privilegi per gestire gli orari questo metodo reindirizza alla pagina principale mostrando un errore.
  \item \verb|didactic_office_required|: se l'utente non appartiene ad una segreteria didattica questo metodo reindirizza alla pagina principale mostrando un errore.
 \end{itemize}
 \subsubsection{GraduateCoursesController}
@@ -293,6 +294,13 @@ I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e s
 \end{itemize}
 \subsubsection{TimetablesController}
 Il controller \verb|TimetablesController| permette all'utente con gli opportuni privilegi di creare ed eliminare gli orari.
+I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
+\begin{itemize}
+ \item \verb|login_required| non è utilizzato nelle azioni \verb|index| e \verb|show|
+ \item \verb|manage_timetables_required| non è utilizzato nelle azione \verb|index| e \verb|show|
+ \item \verb|same_graduate_course_required| non è utilizzato nelle azioni \verb|index|, \verb|show|, \verb|new|, \verb|create|
+ \item \verb|public_required| è utilizzato nell'azione \verb|show| ed assicura che l'orario che si intente visualizzare sia stato dichiarato pubblico da un utente con gli opportuni privilegi.
+\end{itemize}
 \subsection{Componente View}
 \subsection{Componente Helper}\label{helper}
 Il componente Helper si occupa di raccogliere le funzionalità di utilità necessarie ai componenti del pattern MVC. Ogni file che rappresenta un Helper non conterrà una classe, bensì un modulo, ovvero un insieme di metodi di pubblica utilità. Per ogni controller è previsto lo specifico Helper, anche se non è necessario che siano presenti dei metodi in quanto non tutti i controller (e le rispettive view) necessitano di funzioni ausiliarie.
