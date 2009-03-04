@@ -915,11 +915,6 @@ I metodi presenti all'interno del \verb|UsersHelper| sono i seguenti:
 \begin{itemize}
  \item \verb|show_not_active_users(user)|: metodo che renderizza il partial per la visualizzazione dello \verb|user| non ancora attivo.
 \end{itemize}
-\newpage
-\section{Organizzazione delle directories}
-Per facilitare la comprensione dell'organizzazione del sistema Sigeol, viene presentata in questa sezione la struttura delle directories. Per un dettaglio maggiore dell'organizzazione si prega di far riferimento al sito ufficiale di Ruby on Rails. Nella figura che segue viene illustrata la gerarchia \\
-\includegraphics[scale=0.59]{images/gerarchiacartelle.png}
-A differenza delle consuete applicazioni sviluppate tramite il framework Rails, il sistema Sigeol presente la cartella \verb|WEB-INF| utilizzata . . . !!!MATTIA!!!!!
 \subsection{Componente MiddleMan}
 Il componente \verb|MiddleMan| viene utilizzato per effettuare esecuzioni (istantanee e/o schedulate) di calcolo dell'orario. 
 Esso implementa le seguenti operazioni:
@@ -941,10 +936,17 @@ viene inizializzata ed eseguita la componente \verb|Algorithm| con i parametri r
 \end{description}
 \subsubsection{SchedulerJobListener}
 Classe che viene richiamata all'attivazione di un evento precedentemente schedulato (nel nostro caso la generazione dell'orario di un determinato corso di laurea ad una certa data)
-Si occupa di segnalare all'applicazione l'attivazione del calcolo dell'orario del corso  
+Si occupa di segnalare all'applicazione l'attivazione del calcolo dell'orario del corso di laurea specificato  
 
 \includegraphics[scale=0.34]{images/MMalg_diagram_class.png}
 \subsubsection{AlgorithmJob}
+
 \subsubsection{ItcSolver}
+\newpage
+\section{Organizzazione delle directories}
+Per facilitare la comprensione dell'organizzazione del sistema Sigeol, viene presentata in questa sezione la struttura delle directories. Per un dettaglio maggiore dell'organizzazione si prega di far riferimento al sito ufficiale di Ruby on Rails. Nella figura che segue viene illustrata la gerarchia \\
+\includegraphics[scale=0.59]{images/gerarchiacartelle.png}
+A differenza delle consuete applicazioni sviluppate tramite il framework Rails, il sistema Sigeol presente la cartella \verb|WEB-INF| utilizzata . . . !!!MATTIA!!!!!
+
 \modifiche
 \end{document}
