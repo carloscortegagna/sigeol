@@ -848,6 +848,49 @@ I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e s
  \item \verb|public_required| è utilizzato nell'azione \verb|show| ed assicura che l'orario che si intente visualizzare sia stato dichiarato pubblico da un utente con gli opportuni privilegi.
 \end{itemize}
 \subsection{Componente View}
+Il componente View si occupa di presentare le informazioni presenti nel sistema a chiunque le richieda, sia esso un utente finale o un altro sistema software. Per far ciò sono presenti diversi elementi in questa componente, tra i quali:
+\begin{itemize}
+ \item Layouts: impostano l'impaginazione e la struttura dei template.
+ \item Templates: vengono incorporati in un layout e si occupano della effettiva presentazione delle informazioni
+ \item Partials: vengono incorporati in uno o più template o in uno o più layout. Sono frammenti di codice che presentano un sottoinsieme delle informazioni del sistema, riutilizzabili da più view.
+\end{itemize}
+\subsubsection{Layouts}
+Il sistema Sigeol prevede un unico layout XHTML per tutta l'applicazione in modo da garantire la stessa impaginazione per ogni template. Come nella maggior parte dei siti web moderni è prevista un'intestazione, un \underline{footer}, un menu presente nella parte sinistra della pagina ed un blocco dei contenuti presenti nella parte centrale dove verranno renderizzati i template. In aggiunta sarà presente un menu di amministrazione ove richiesto che verrà collocato nella parte superiore del blocco dei contenuti.
+
+Di seguito è riportata una immagina esplicativa della struttura del layout:
+
+\includegraphics[scale=0.50]{images/layout.png}
+\subsubsection{Templates}
+Il sistema Sigeol prevede un diverso template per ogni azione raggiungibile attraverso una richiesta GET presente in ogni controller. Di seguito viene riportata una descrizione di ogni template:
+\subsubsection*{Template comuni a più controller}
+Per evitare fastidiose ripetizione di seguito sono riportate le descrizioni dei template per le azioni che figurano in più controller:
+\begin{itemize}
+ \item \verb|new.html.erb|: presenta un form per l'inserimento di una nuova istanza.
+ \item \verb|edit.html.erb|: presenta un form per la modifica di un'istanza esistente.
+ \item \verb|index.html.erb|: presenta un elenco ordinato di un insieme di istanze.
+ \item \verb|show.html.erb|: presenta le informazioni relativa ad una determinata istanza.
+ \item \verb|administration.html.erb|: presenta un elenco ordinato di un insieme di istanza e le relative funzioni
+ per amministrarle.
+ \item \verb|new_constraint.html.erb|: presenta un form per l'inserimento di un nuovo vincolo o preferenza
+\end{itemize}
+Inoltre per garantire l'interoperabilità dei dati sono presenti i template XML per tutte le azioni \verb|index| e \verb|show|, nonchè un template PDF per l'azione \verb|show| di \verb|TimetablesController|.
+\subsubsection*{Template per TeachingsController}
+Il template XHTML \verb|select_teacher.html.erb| è presente per il \\ \verb|TeachingsController| per l'azione \verb|select_teacher|.  Questo presenta un form per l'assegnamento di un docente ad un insegnamento utilizzando metodi per la presentazione automatica della lista dei docenti come i tag XHTML \verb|<select>| e \verb|<option>|.
+\subsubsection*{Template per CurriculumsController}
+Il template XHTML \verb|select_teaching.html.erb| è presente per il \\ \verb|CurriculumsController| per l'azione \verb|select_teaching|.  Questo presenta un form per l'assegnamento di un insegnamento ad un curriculum utilizzando metodi per la presentazione automatica della lista degli insegnamenti come i tag XHTML \verb|<select>| e \verb|<option>|.
+\subsubsection*{Template per TeachersController}
+Il \verb|TeachersController| prevede diverse azioni raggiungibili attraverso una richiesta GET ed i relativi template XHTML sono i seguenti:
+\begin{itemize}
+ \item \verb|pre_activate.html.erb|: presenta un form per l'attivazione dello \verb|user| del docente invitato
+ \item \verb|edit_capabilities.html.erb|: presenta un form per l'assegnazione di nuovi privilegi allo \verb|user| detenuto dal docente utilizzando metodi per la presentazione automatica della lista dei privilegi come li tag XHTML \verb|<input type="checkbox">|
+ \item \verb|edit_graduate_courses.html.erb|: presenta un form per l'assegnazione di nuovi corsi di laurea allo \verb|user| dtenuto dal docente utilizzando metodi per la presentazione automatica della lista dei corsi di laurea come i tag XHTML \verb|<select>| e \verb|<option>|
+\end{itemize}
+\subsubsection{Partials}
+Il sistema Sigeol prevede l'uso di partials per la visualizzazione delle informazioni che sono riutilizzate in più view. Ognuno di essi è caratterizzato dalla presenza di un \_ (underscore) prima del nome del file che sono della forma \verb|_show_nomemodel.html.erb| e \verb|_show_nomemodel_admin.html.erb| e dovranno essere contenuti nella rispettiva directory che contiene i template del controller associato a \verb|nomemodel| (ad esempio \verb|_show_teaching.html.erb| è contenuto all'interno della directory \verb|app\views\teachings|. I partial del primo tipo visualizzano le informazioni dell'oggetto di tipo \verb|nomemodel| per le azioni di pubblico accesso, mentre i secondi per le azioni di amministrazione con le relative funzioni.
+
+Per i controller che presentano l'azione \verb|administration| e necessitano di un menu di amministrazione è presente un partial \verb|_menu_admin.html.erb| per la visualizzazione del suddetto menu che risiederà nella stessa directory che contiene i template del controller in questione.
+
+I partials, infine, che vengono utilizzati dal layout sono contenuti nella directory \verb|app\views\shared|, come ad esempio \verb|_user_sidebar.html.erb|.
 \subsection{Componente Helper}\label{helper}
 Il componente Helper si occupa di raccogliere le funzionalità di utilità necessarie ai componenti del pattern MVC. Ogni file che rappresenta un Helper non conterrà una classe, bensì un modulo, ovvero un insieme di metodi di pubblica utilità. Per ogni controller è previsto lo specifico Helper, anche se non è necessario che siano presenti dei metodi in quanto non tutti i controller (e le rispettive view) necessitano di funzioni ausiliarie.
 \subsubsection{ApplicationHelper}
