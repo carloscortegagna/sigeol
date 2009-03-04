@@ -921,30 +921,29 @@ Per facilitare la comprensione dell'organizzazione del sistema Sigeol, viene pre
 \includegraphics[scale=0.59]{images/gerarchiacartelle.png}
 A differenza delle consuete applicazioni sviluppate tramite il framework Rails, il sistema Sigeol presente la cartella \verb|WEB-INF| utilizzata . . . !!!MATTIA!!!!!
 \subsection{Componente MiddleMan}
-Il componente \verb|MiddleMan| effettua le seguenti operazioni:
+Il componente \verb|MiddleMan| viene utilizzato per effettuare esecuzioni (istantanee e/o schedulate) di calcolo dell'orario. 
+Esso implementa le seguenti operazioni:
 \begin{itemize}
-\item riceve le richieste, da parte dell'applicazione, di aggiunta di nuove date per la generazione dell'orario
-\item assegna alla componente \verb|Algorithm| la generazione dell'orario
-\item segnala all'applicazione la fine del calcolo 
+\item ricezione delle richieste, da parte dell'applicazione, di aggiunta di nuove date per la generazione dell'orario relativo ad uno specifico corso di laurea
+\item assegnazione alla componente \verb|Algorithm| della generazione dell'orario relativo ad uno specifico corso di laurea
+\item segnalazione all'applicazione della fine del calcolo 
 \end{itemize}
-\includegraphics[scale=0.34]{images/MiddleMan_class_diagram.png}
+\includegraphics[scale=0.34]{images/MMserv_diagram_class.png}
 \subsubsection{SchedulerServlet}
-Servlet che si occupa di ricevere le richiesteb (POST e GET) dall'applicazione:
+Servlet che si occupa di ricevere le richieste (di tipo HTTP POST e GET) dall'applicazione:
 \begin{description}
 \item[POST] 
 Parametri: course, date
-crea una nuovo trigger che si attiverà alla data (date) per il corso (course) 
+crea una nuovo trigger che si attiverà alla data (date) per il corso di laurea (course) specificato 
 \item[GET] 
-Parametri: course, inputfile,timeout
-richiama la componente \verb|Algorithm| passandogli i parametri ricevuti
+Parametri: course, inputfile, timeout
+viene inizializzata ed eseguita la componente \verb|Algorithm| con i parametri ricevuti
 \end{description}
 \subsubsection{SchedulerJobListener}
-Classe richiamata all'esecuzione del trigger.
-Si occupa di segnalare all'applicazione l'avvio del calcolo dell'orario per quel determinato corso.
+Classe che viene richiamata all'attivazione di un evento precedentemente schedulato (nel nostro caso la generazione dell'orario di un determinato corso di laurea ad una certa data)
+Si occupa di segnalare all'applicazione l'attivazione del calcolo dell'orario del corso  
 
-
-\subsection{Componente MiddleMan}
-\includegraphics[scale=0.34]{images/algoritm_class_diagram.png}
+\includegraphics[scale=0.34]{images/MMalg_diagram_class.png}
 \subsubsection{AlgorithmJob}
 \subsubsection{ItcSolver}
 \modifiche
