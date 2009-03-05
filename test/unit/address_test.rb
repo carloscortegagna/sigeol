@@ -52,4 +52,11 @@ class AddressTest < ActiveSupport::TestCase
     addresses(:address_2).delete
     !assert(buildings(:building_1).address_id)
   end
+
+  def test_correct_address
+    @a.telephone="049-9050231"
+    @a.street="Via Belzoni 6"
+    @a.city="Villafranca veronese"
+    assert @a.save
+  end
 end
