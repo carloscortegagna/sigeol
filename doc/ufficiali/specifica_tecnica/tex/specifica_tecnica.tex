@@ -218,12 +218,12 @@ Questa componente si trova in relazione solamente con il Controller. Converte in
 \subsection{Middle Man}
 La componente Middle Man è estranea al \underline{pattern} MVC e si occupa di gestire quelle richieste che a causa del tempo di calcolo, renderebbero inutilizzabile ogni altra funzione di consultazione dell'applicazione web. 
 Questa componente sarà implementata tramite una \underline{servlet} in \underline{Java} denominata SchedulerServlet.
-La componente integrerà Quartz (un' open source job scheduling system, per maggiori informazioni visitare \\ http://www.opensymphony.com/quartz/ ) per gestire le operazioni di schedulazione.
+La componente integrerà Quartz (un' open source job scheduling system, per maggiori informazioni visitare \\ http://www.opensymphony.com/quartz/ ) il quale verrà utilizzato per gestire tutte le operazioni di scheduling e fornirà strumenti aggiuntivi (quali ripristino informazioni dopo crash di sistema e gestione schedulazioni in formato cron).
 \subsubsection{Relazione d'uso con le altre componenti}
 Questa componente è in relazione con il Controller e l'Algorithm. 
 
-Per soddifare le richieste del Controller preleva i dati necessari da un file, creato dall'applicazione stessa, e si occuperà di avviare la componente Algorithm per il calcolo degli orari.
-Inoltre è a disposizione del Controller per l'inserimento delle tempistiche di esecuzione del calcolo degli orari.
+Per soddifare le richieste del Controller preleva i dati necessari da un file, creato dall'applicazione stessa, e si occuperà poi di avviare la componente Algorithm per il calcolo degli orari passandogli tutti i dati necessari.
+Inoltre la componente è utilizzata dal Controller per l'inserimento delle tempistiche di esecuzione del calcolo degli orari.
 
 \includegraphics[scale=0.3]{images/MiddleMan_sequence_diagram.png}
 % MiddleMan_sequence_diagram.png: 1364x579 pixel, 72dpi, 48.12x20.43 cm, bb=0 0 1364 579

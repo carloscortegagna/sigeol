@@ -771,10 +771,10 @@ I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e s
 Il controller \verb|TimetablesController| permette all'utente con gli opportuni privilegi di creare ed eliminare gli orari.
 Implementa alcune azioni aggiuntive oltre a quelle di base:
 \begin{itemize}
-\item \verb|schedule|: metodo usato nella creazione di una nuova istanza di schedulazione. Invia al Middle Man i dati necessari ad impostare una nuova schedulazione.
-\item \verb|notify|: metodo richiamato dal Middle Man per notificare all'applicazione l'attivazione di un'evento precedentemente schedulato. Inoltre richiama il metodo \verb|start| per avviare la generazione dell'orario
-\item \verb|done|: metodo richiamato dal Middle Man utilizzato per segnalare la fine del calcolo
-\item \verb|start|: metodo che segnala al Middle Man di avviare la generazione dell'orario
+\item \verb|schedule|: metodo usato nella creazione di una nuova istanza di schedulazione. Invia al MiddleMan (attraverso richiesta HTTP) i dati necessari ad impostare una nuova schedulazione.
+\item \verb|notify|: metodo richiamato (attraverso richiesta HTTP) dal componente MiddleMan per notificare all'applicazione l'attivazione di un'evento precedentemente schedulato. Inoltre richiama il metodo \verb|start| per avviare la generazione dell'orario.
+\item \verb|done|: metodo richiamato (attraverso richiesta HTTP) dal componente MiddleMan utilizzato per segnalare la fine del calcolo.
+\item \verb|start|: metodo che segnala al componente MiddleMan (attraverso richiesta HTTP) di avviare la generazione dell'orario per un determinato corso.
 \end{itemize}
 I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
 \begin{itemize}
@@ -898,9 +898,9 @@ I metodi presenti all'interno del \verb|UsersHelper| sono i seguenti:
 Il componente \verb|MiddleMan| viene utilizzato per effettuare esecuzioni (istantanee e/o schedulate) di calcolo dell'orario. \\ 
 Esso implementa le seguenti operazioni:
 \begin{itemize}
-\item ricezione delle richieste, da parte dell'applicazione, di aggiunta di nuove date per la generazione dell'orario relativo ad uno specifico corso di laurea
-\item assegnazione alla componente \verb|Algorithm| della generazione dell'orario relativo ad uno specifico corso di laurea
-\item segnalazione all'applicazione della fine del calcolo 
+\item aggiunta di nuove date per la generazione dell'orario relativo ad uno specifico corso di laurea
+\item delega alla componente \verb|Algorithm| la generazione dell'orario relativo ad uno specifico corso di laurea
+\item segnala all'applicazione la fine del calcolo 
 \end{itemize}
 \includegraphics[scale=0.34]{images/MMserv_diagram_class.png}
 \subsubsection{SchedulerServlet}
