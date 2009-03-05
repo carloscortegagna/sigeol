@@ -204,19 +204,18 @@ Il sistema Sigeol è strutturato seguendo il paradigma MVC, con l'aggiunta di ul
 \subsection{Componente Model}\label{model}
 \subsubsection{Introduzione}
 
-Ogni classe appartente al model, deriva direttamente da \verb|ActiveRecord::Base|.
+Ogni classe appartente al model deriva direttamente da \verb|ActiveRecord::Base|.
 
 
 Quando una classe deriva da \verb|Base|, il suo oggetto istanziato viene anche chiamato oggetto di tipo Active Record.
-In un oggetto di questo tipo, gli attributi non vengono specificati direttamente, ma vengono dedotti dalla tabella associata.
+Gli attributi non vengono specificati direttamente, ma vengono dedotti dalla tabella associata.
 
 
-In rails, per poter associare una classe Active Record ad una tabella, si devono seguire queste convenzioni:
+Per associare una classe Active Record ad una tabella è necessario seguire determinate convenzioni:
 \begin{itemize}
  \item la tabella deve essere chiamata con un nome plurale e tutto in minuscolo
  \item la classe deve essere chiamata con lo stesso nome della tabella, ma al singolare e con la prima lettera maiuscola
 \end{itemize}
-Quindi se si crea una tabella users la classe del model dovrà essere chiamata User.
 
 
 Un'istanza di una classe model corrisponde ad una riga della tabella associata.
@@ -229,21 +228,21 @@ Da \verb|base| si ereditano diversi metodi di pubblica utilità tra i quali:
  \item \verb|destroy|: elimina il record associato. Ovviamente dopo questa operazione l'oggetto model corrispondente alla riga cancellata, non potrà più modificare gli attributi.
 \end{itemize}
 \paragraph{Validazioni}
-Grazie alla libreria Active Record è possibile validare gli attributi di un oggetto model. La validazione viene eseguita automaticamente prima di creare il record nel database. Se la convalida fallisce, l'oggetto non verrà scritto nel db e verrà lasciato in memoria.
+Grazie alla libreria Active Record è possibile validare gli attributi di un oggetto model. La validazione viene eseguita automaticamente prima di creare il record nel database. Se la convalida fallisce, l'istanza non verrà scritta nel db e verrà lasciata in memoria.
 
 
-Active record distingue i models che corrispondono ad un record esistente e quelli che non lo sono. Quando viene chiamato il metodo \verb|save|, Active Record effettuerà un operazione SQL di Insert per i nuovi record e un update per le righe esistenti. Grazie a questo, è possibile specificare quando effettuare le validazioni (prima di aggiornare il record, prima di crearlo od ogni volta che lo si salva).
+Inoltre è possibile specificare quando effettuare le validazioni (prima di aggiornare il record, prima di crearlo od ogni volta che lo si salva).
 
 
-\verb|Active record| inoltre, mette ha disposizione un set di helpers methods che implementano validazioni comuni a molti models; per esempio il controllo che il contenuto dell'attributo non sia nullo.
+Si ha disposizione un set di helpers methods che implementano validazioni comuni a molti models; per esempio il controllo che il contenuto dell'attributo non sia nullo.
 Se il controllo fallisce, verrà aggiunto all'attributo un messaggio di errore.
-Ad esempio nel model \verb|User|, per controllare la presenza dell'attributo \verb|mail|, si potrà utilizzare l'helper method \verb|validates_presence_of:| in questo modo:\\
+Nel model \verb|User|, per controllare la presenza dell'attributo \verb|mail|, si potrà utilizzare l'helper method \verb|validates_presence_of:| in questo modo:\\
 \begin{center}
  \verb|validates_presence_of:|\\
  \verb|:message=>"La mail non deve essere vuota"|\\
  \verb|:on  => :update|\\
 \end{center}
-dove \verb|:message| contiene il messaggio d'errore e \verb|:on| specifica in che fase effettuare la validazione(\verb|:create|, \verb|:update|).
+dove \verb|:message| contiene il messaggio d'errore e \verb|:on| specifica quando effettuare la validazione(\verb|:create|, \verb|:update|).
 
  
 Se \verb|:on| è omesso la validazione verrà fatta prima di ogni operazione di scrittura nel database.
@@ -276,8 +275,7 @@ Anche qui è necessario seguire delle convenizioni:
 
 
 
-E' possibile modificare le associazioni aggiungendo delle opzioni; in particolare nel progetto \textit{Sigeol} si è utilizzata l'opzione :dependent.
-Questa indica ad \verb|Active record| come comportarsi quando si elimina una riga del parent table rispetto al child table.
+L'opzione \verb|:dependent| indica ad \verb|Active record| come comportarsi con la child table in caso di cancellazione di una riga del parent table.
 Ad esempio nel model GraduateCourse la relazione con la tabella curriculums dovrà essere definita in questo modo:\\
 \verb|has_many :curriculums, :dependent => :destroy|\\
 Tradotta significa che cancellando una riga di \verb|graduate_courses|, verranno cancellate tutte le righe associate di \verb|curriculums|.
@@ -288,9 +286,9 @@ Nel progetto \textit{Sigeol} sono presenti due associazioni polimorfe.
 
 Uno user ha uno tipo specifico; ad esempio può essere o un \verb|Teacher| o un \verb|DidacticOffice|\\
 Per implementare quest'associazione, si deve aggiungere alla tabella \verb|users| due attributi: \verb|specified_id| e \verb|specified_type|.
-In \verb|User| si specificherà la relazione polimorfa:\\
+Al model associato invece si dovrà specificare la relazione polimorfa; e lo si farà in questo modo:\\
 \verb|belongs_to :specified, :polymorphic => true|.\\
-Nei model che rappresentano i tipi che User può assumere, si inserirà questa associazione:\\
+Nelle classi associate invece si inserirà questa definizione:\\
 \verb|has_one :user, :as => :specified|\\
 L'opzione \verb|:as=>specified|, specifica che la relazione tra \verb|User| e il model è polimorfa, usando l'attributo \verb|specified|.
 
@@ -299,7 +297,7 @@ Ad esempio, sia u un oggetto di tipo \verb|User| e t un oggetto di tipo \verb|Te
 \verb|u.specified=t|
 
 Il secondo tipo di associazione è chiamato \textit{associazione polimorfa doppia}\\ 
-A parole il problema si può spiegare in questo modo: una corso di laurea o una classe, possono avere più vincoli di diverso tipo; ad esempio possono avere due vincoli di tipo temporale ed uno di quantità. A sua volta un vincolo può avere più tipi di proprietari: una classe, un insegnante o un corso di laurea.
+A parole semplice, il problema si può spiegare in questo modo: una corso di laurea o una classe, possono avere più vincoli di diverso tipo. A sua volta un vincolo può avere più tipi di proprietari: una classe, un insegnante o un corso di laurea.
 Insomma, un vincolo può avere più tipi di proprietari e un proprietario può avere più tipi di vincoli. 
 Per implementare questa associazione si farà uso di un plugin chiamato :\verb|has_many_polymorphs|. 
 
@@ -311,10 +309,10 @@ Per il corretto uso del plugin, si dovrà aggiungere una nuova classe model che 
 
 \paragraph{Funzioni di callback}
 \verb|ActiveRecord| mette a disposizione dei metodi che monitorano lo stato dell'oggetto. 
-E' possibile quindi definire delle operazioni da eseguire prima o dopo l'alterazione dello stato dell'oggetto.
+E' possibile quindi definire delle operazioni da eseguire prima o dopo l'alterazione dello stato dell'istanza.
 
 
-Ad esempio, per eseguire determinate istruzioni prima di validare l'oggetto, basterà ridefinire la funzione di callback \verb|before_validation|.
+Ad esempio, per eseguire determinate istruzioni prima di validare, basterà ridefinire la funzione di callback \verb|before_validation|.
 Oltre a \verb|before_validation| sono presenti altre funzioni come \verb|before_create|, \verb|before_destroy|, \verb|after_create|.
 
 \paragraph{Diagramma delle classi}
