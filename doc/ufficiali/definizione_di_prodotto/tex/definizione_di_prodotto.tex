@@ -842,6 +842,13 @@ I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e s
 \end{itemize}
 \subsubsection{TimetablesController}
 Il controller \verb|TimetablesController| permette all'utente con gli opportuni privilegi di creare ed eliminare gli orari.
+Implementa alcune azioni aggiuntive oltre a quelle di base:
+\begin{itemize}
+\item \verb|schedule|: metodo usato nella creazione di una nuova istanza di schedulazione. Invia al Middle Man i dati necessari ad impostare una nuova schedulazione.
+\item \verb|notify|: metodo richiamato dal Middle Man per notificare all'applicazione l'attivazione di un'evento precedentemente schedulato. Inoltre richiama il metodo \verb|start| per avviare la generazione dell'orario
+\item \verb|done|: metodo richiamato dal Middle Man utilizzato per segnalare la fine del calcolo
+\item \verb|start|: metodo che segnala al Middle Man di avviare la generazione dell'orario
+\end{itemize}
 I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
 \begin{itemize}
  \item \verb|login_required| non è utilizzato nelle azioni \verb|index| e \verb|show|
@@ -972,26 +979,26 @@ Esso implementa le seguenti operazioni:
 \subsubsection{SchedulerServlet}
 Servlet che si occupa di ricevere le richieste (di tipo HTTP POST e GET) dall'applicazione:
 \begin{description}
-\item[POST] \\ 
-Parametri: course, date \\
+\item[POST]
+Parametri: course, date\\
 crea una nuovo trigger che si attiverà alla data (date) per il corso di laurea (course) specificato 
-\item[GET] \\ 
-Parametri: course, inputfile, timeout \\
+\item[GET]
+Parametri: course, inputfile, timeout\\
 viene inizializzata ed eseguita la componente \verb|Algorithm| con i parametri ricevuti
 \end{description}
 \subsubsection{SchedulerJobListener}
 Classe che viene richiamata all'attivazione di un evento precedentemente schedulato (nel nostro caso la generazione dell'orario di un determinato corso di laurea ad una certa data).
-Si occupa di segnalare all'applicazione l'attivazione del calcolo dell'orario del corso di laurea specificato  
+Si occupa di segnalare all'applicazione (attraverso il metodo \textbf{execute}) l'attivazione del calcolo dell'orario del corso di laurea specificato  
 \subsection{Componente Algorithm}
 \includegraphics[scale=0.34]{images/MMalg_diagram_class.png}
 \subsubsection{AlgorithmJob}
-Ogni singola istanza della classe \verb|AlgorithmJob| esegue il calcolo dell'orario relativo ad un determianto corso di laurea.
+Ogni singola istanza della classe \verb|AlgorithmJob| esegue il calcolo dell'orario relativo ad un determinato corso di laurea.
 \subsubsection{ItcSolver}
 Classe che si occupa di leggere il file di input (contenente tutte le informazioni richieste relative al calcolo e generazione dell'orario) ed eseguire effettivamente l'algoritmo.
 \newpage
 \section{Organizzazione delle directories}
 Per facilitare la comprensione dell'organizzazione del sistema Sigeol, viene presentata in questa sezione la struttura delle directories. Per un dettaglio maggiore dell'organizzazione si prega di far riferimento al sito ufficiale di Ruby on Rails. Nella figura che segue viene illustrata la gerarchia \\
 \includegraphics[scale=0.59]{images/gerarchiacartelle.png}
-A differenza delle consuete applicazioni sviluppate tramite il framework Rails, il sistema Sigeol presente la cartella \verb|WEB-INF| che contiene tutte le classi e librerie utilizzate dalla servlet e il suo file di configurazione web.xml.\\ Per ulteriori informazioni sulla tecnologia servlet visitare il sito http://java.sun.com/products/servlet/ .
+A differenza delle consuete applicazioni sviluppate tramite il framework Rails, il sistema Sigeol presenta la cartella \verb|WEB-INF| che contiene tutte le classi e librerie utilizzate dalla servlet e il suo file di configurazione web.xml.\\ Per ulteriori informazioni sulla tecnologia servlet visitare il sito http://java.sun.com/products/servlet/ .
 \modifiche
 \end{document}

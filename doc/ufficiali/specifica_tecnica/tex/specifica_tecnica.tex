@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Specifica tecnica v0.6.4}
+\lfoot{Specifica tecnica v0.7.4}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Specifica tecnica v0.6.4}
+\lfoot{Specifica tecnica v0.7.4}
 \cfoot{}
 \rfoot{}
 }
@@ -46,7 +46,7 @@
 \hline
 \hline
 \textit{03-03-2009} & 0.7.4 & Aggiunta diagramma di sequenza del Middle Man \\
-\hli
+\hline
 \textit{02-03-2009} & 0.6.4 & Riscrittura contenuto Middle Man \\
 \hline
 \textit{24-01-2009} & 0.6.3 & Sottolineatura dei termini del Glossario \\
@@ -92,7 +92,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Specifica Tecnica \\ v0.6.4}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Specifica Tecnica \\ v0.7.4}}
 \author{Redazione: Freo Matteo, Barbiero Mattia, Scortegagna Carlo}
 \maketitle
 \medskip
@@ -177,7 +177,7 @@ In questo modello i ruoli di presentazione, controllo ed accesso ai dati vengono
 Sono inoltre previste altre due componenti: Middle Man si occupa di ricevere i compiti che necessitano di un elevato carico di lavoro; Algorithm, invece, risolve il problema del calcolo dell'orario.
 
 \begin{center}
-\includegraphics[scale=0.3]{images/component_diagram.png}
+\includegraphics[scale=0.2]{images/component_diagram.png}
 \end{center}
 
 \section{Descrizione dei singoli componenti}
@@ -218,25 +218,24 @@ Questa componente si trova in relazione solamente con il Controller. Converte in
 \subsection{Middle Man}
 La componente Middle Man è estranea al \underline{pattern} MVC e si occupa di gestire quelle richieste che a causa del tempo di calcolo, renderebbero inutilizzabile ogni altra funzione di consultazione dell'applicazione web. 
 Questa componente sarà implementata tramite una \underline{servlet} in \underline{Java} denominata SchedulerServlet.
+La componente integrerà Quartz (un' open source job scheduling system, per maggiori informazioni visitare \\ http://www.opensymphony.com/quartz/ ) per gestire le operazioni di schedulazione.
 \subsubsection{Relazione d'uso con le altre componenti}
 Questa componente è in relazione con il Controller e l'Algorithm. 
 
 Per soddifare le richieste del Controller preleva i dati necessari da un file, creato dall'applicazione stessa, e si occuperà di avviare la componente Algorithm per il calcolo degli orari.
 Inoltre è a disposizione del Controller per l'inserimento delle tempistiche di esecuzione del calcolo degli orari.
 
-\subsubsection{Interazione tra MiddleMan e applicazione}
-\begin{flushleft}
-\includegraphics[angle=90,scale=0.5]{images/middleman_seq_diagram.pdf}
-\end{flushleft}% MiddleMan_sequence_diagram.png: 1364x579 pixel, 72dpi, 48.12x20.43 cm, bb=0 0 1364 579
-\begin{description}
- \item[1] impostazione di una nuova generazione dell'orario ad una detterminata data
-\item[1.1] impostazione della classe da istanziare all'avvio dell'evento schedulato
-\item [1.1.1] segnalazione all'applicazione 
-\item [1.1.1.2] invio dei dati alla servlet utilizzati per la generazione dell'orario (manuale e schedulata)
-\item [1.1.1.2.1] impostazione della classe da istanziare all'avvio dell'evento schedulato
-\item [1.1.1.3.1.1] avvio dell'algoritmo
-\item [1.1.1.3.1.2] segnalazione della generazione dell'orario effettuata 	
- \end{description}
+\includegraphics[scale=0.3]{images/MiddleMan_sequence_diagram.png}
+% MiddleMan_sequence_diagram.png: 1364x579 pixel, 72dpi, 48.12x20.43 cm, bb=0 0 1364 579
+\begin{itemize}
+\item 1: impostazione di una nuova generazione dell'orario di un corso di laurea ad una specifica data
+\item 1.1: impostazione della classe da istanziare all'avvio dell'evento schedulato
+\item 1.1.1: invio della notifica all'applicazione per la preparazione file di input e avvio calcolo
+\item 1.1.1.2: invio dei dati alla servlet utili alla generazione dell'orario (manuale e schedulata)
+\item 1.1.1.2.1: impostazione dell'istanza di classe che si occuperà di avviare l'algoritmo
+\item 1.1.1.3.1.1: avvio dell'algoritmo
+\item 1.1.1.3.1.2: segnalazione della generazione dell'orario effettuata (o di eventuale errore)	
+\end{itemize}
 
 \subsection{Algorithm}
 La componente Algorithm non inclusa nel \underline{pattern} MVC si occupa di calcolare effettivamente l'orario delle lezioni, rispettando i vincoli inseriti nel sistema. Dagli studi di ricerca operativa sono noti diversi algoritmi per la ricerca di una soluzione ottimale di un problema sottoposto a vincoli. L'algoritmo scelto è stato utilizzato nell'International Timetabling Competition 2007 ed è basato sulla libreria Constraint Solver Library (licenza GNU LGPL).

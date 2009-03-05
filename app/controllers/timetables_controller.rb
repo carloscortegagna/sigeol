@@ -137,9 +137,7 @@ class TimetablesController < ApplicationController
     end
   end
 
-
   def start
-
     done = false
     #prepara il file di input
 
