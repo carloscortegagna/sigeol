@@ -272,17 +272,17 @@ L'adesione agli standard proposti dal consorzio W3C nella creazione di pagine we
 
 Questo compito risulta spesso ripetitivo e, se svolto manualmente, produce un'eccessivo consumo di ore di lavoro. Per questo motivo verrà utilizzato un \underline{plugin} che validerà ogni pagina creata in modo automatico e renderà disponibili immediatamente i risultati di tale validazione per poter eseguire le adeguate correzioni.
 
-\subsection{TDD e Mocks objects }
+\subsection{TDD e Mock objects }
 Come precedentemente dichiarato, l'intero sviluppo del progetto sarà guidato dalla metodologia Test-Driven Development (confronta sezione \ref{TDD}). Ogni componente del team, nell'arco di tutta la durata del progetto, dovrà ricoprire ogni ruolo (per maggiori dettagli consultare il documento \textsc{Piano di Progetto}), quindi ogni membro ha discrete compotenze riguardo la stesura del codice. Per questo motivo il Verificatore di turno (o i Verificatori se ne sono previsti più di uno) avrà il compito di sviluppare i test anticipatamente alla stesura del codice. In questo modo il Programmatore avrà il solo compito di implementare le funzionalità che sono richieste dai test.
 
-Per facilitare la scrittura di test verrà utilizzato un \underline{plugin} che permetta la creazione di Mocks object, letteralmente ``oggetti di pezza'', in altre parole un oggetto che simula il comportamento di uno reale, permettendo di isolare una componente del sistema dalle altre per poterla testare al meglio. Un mock object non ha solamente metodi per simulare un oggetto reale, ma ha un'implementazione dei metodi propri di tale oggetto nella quale viene verificato il comportamento di chi usa l'oggetto, per esempio verificando che i metodi siano richiamati in un certo ordine o con certi parametri.
+Per facilitare la scrittura di test verrà utilizzato un \underline{plugin} che permetta la creazione di Mock object, letteralmente ``oggetti di pezza'', in altre parole un oggetto che simula il comportamento di uno reale, permettendo di isolare una componente del sistema dalle altre per poterla testare al meglio. Un mock object non ha solamente metodi per simulare un oggetto reale, ma ha un'implementazione dei metodi propri di tale oggetto nella quale viene verificato il comportamento di chi usa l'oggetto, per esempio verificando che i metodi siano richiamati in un certo ordine o con certi parametri.
 
-Per maggiori informazioni è consigliata la consultazione del sito \\ \textit{http://flexmock.rubyforge.org}.
+La scelta dei plugin è ricaduta su Mocha alla versione 0.9.5 in quanto utilizzato anche dal team di sviluppo di Ruby on Rails per effettuare la verfica del codice prodotto. Per maggiori informazioni consultare il sito \textit{http://mocha.rubyforge.org/}.
 
 \subsection{Metriche sulla copertura dei test sul codice}
-Durante l'implementazione da parte del Programmatore delle funzionalità richieste dai test, è possibile che venga aggiunto del codice che non verrà mai testato. A questo scopo sarà utilizzato un \underline{plugin} che, in modo completamente automatico, esplori il codice sorgente segnalando quelle porzioni che non vengono verificate da nessun test.
+Durante l'implementazione da parte del Programmatore delle funzionalità richieste dai test, è possibile che venga aggiunto del codice che non verrà mai testato. A questo scopo sarà utilizzato uno strumento per il linguaggio di programmazione Ruby che, in modo completamente automatico, esplori il codice sorgente segnalando quelle porzioni che non vengono verificate da nessun test.
 
-Il \underline{plugin} renderà disponibili le porzioni di codice non testato, nonchè la percentuale di codice coperta da test. Sarà quindi auspicabile che tale percentuale raggiunga il 100\% prima della consegna del prodotto.
+Lo strumento renderà disponibili le porzioni di codice non testato, nonchè la percentuale di codice coperta da test. Sarà quindi auspicabile che tale percentuale raggiunga il 100\% prima della consegna del prodotto.
 
 Per maggiori informazioni è consigliata la consultazione del sito \\ \textit{http://rubyforge.org/projects/rcov/}.
 
@@ -324,17 +324,83 @@ Per la lista completa degli errori rilevati e delle relative correzioni è sempr
  \item documentazione per la \textbf{Revisione di Progetto Preliminare:} particolare attenzione è stata posta nel controllare con pari attenzione tutta la documentazione: in fase di Revisione dei Requisiti, infatti, sono stati trovati dal Committente banali errori grammaticali nel \textsc{Piano di Progetto}, che potevano benissimo essere evitati dedicando maggiore attenzione nella sua verifica. Anche in questa seconda fase di sviluppo sono stati segnalati errori ed incertezze grammaticali. Si è comunque rilevata una diminuzione rispetto al periodo precedente, indice di una maturazione ed una maggiore attenzione dei membri del team QuiXoft.
  \item documentazione per la \textbf{Revisione di Qualifica:} le operazioni di verifica della documentazione sono state svolte come nei periodi precedenti, segnalando e portando alla correzione alcuni errori e varie incertezza sintattiche che rendevano difficoltosa la lettura. Particolare attenzione è stata posta invece nell'evitare errori in fase di consegna della documentazione: nella consegna precedente, infatti, era stata consegnata una versione dell'\textsc{Analisi dei Requisiti} compilata con le immagini sbagliate. Successivamente, grazie alla disponibilità del Docente di riferimento, il problema è stato risolto con una nuova consegna del suddetto documento, ma tali errori andrebbero assolutamente evitati.
 \end{itemize}
-\subsection{Dettaglio delle verifiche tramite prove}
-\subsubsection{Test fixtures}
-Descrizione di cosa servono le fixtures e di come sono utili a unit tests e functional tests
+\subsection{Dettaglio delle verifiche tramite test}
+Per l'esecuzione delle attività di verifica tramite test verranno utilizzati i moduli e le classi rese disponibili dal framework Rails, e più precisamente ogni test di unità dovrà estendere la classe ActiveSupport::TestCase ed ogni test funzionale dovrà estendere la classe ActionController::TestCase.
 \subsubsection{Unit Tests}
-Descrizione di come abbiamo scritto i test d'unità (ricordiamoci che li abbiamo scritti prima di cominciare lo sviluppo, TDD...).
-Esempio di test, magari copia incolla di tutti i test scritti per un dato model (address per esempio, che è facile perchè non ha chiavi esterne...)
-Risultati parziali di tali test.
-\subsubsection{Functionals Tests}
-Come sopra, magari prendendo d'esempio un particolare controller.
-\subsubsection{Test sulle metriche}
-Descrizione di come eseguiamo tali test. Magari alleghiamo lo stesso l'html con la percentuale di codice testato, cosi per far vedere il progresso che faremo per la prossima revisione, raggiungendo il fantimatico 100per100.
+Nello sviluppo di un'applicazione tramite il framework Rails, i test di unità (unit test) sono specifici per la verifica degli elementi appartenenti al componente Model. Data la particolare importanza di questa componente in quanto gestisce la persistenza dei dati, il team QuiXoft ha scelto di effettuare gli unit tests attraverso l'uso di fixtures, ovvero con istanze reali di un determiato model opportunamente salvate in file con estensione \verb|yml| all'interno della directory \verb|test/fixtures|. Prima dell'esecuzione della verifica il database di test sarà inizializzato con i dati contenuti nelle fixtures che vengono utilizzate in quel particolare test.
+
+Ogni classe che implementa un insieme di test per un particolare model dovrà essere denominata \verb|NomeModelTest| ed essere salvata su di un file chiamato \verb|nome_model_test.rb| all'interno della directory \verb|test/unit|.
+
+Un esempio di unit test per il model \verb|address| e delle relative fixtures utilizzate è dato dalla seguente porzione di codice:
+
+nel file \verb|address_test.rb|
+\begin{verbatim}
+class AddressTest < ActiveSupport::TestCase
+  fixtures :addresses, :buildings
+
+  def setup
+    @a=Address.new
+  end
+  
+  def test_correct_address
+    @a.telephone="049-9050231"
+    @a.street="Via Belzoni 6"
+    @a.city="Villafranca veronese"
+    assert @a.save
+  end
+
+  def test_destroy_address_in_building_address_id_must_nil
+    addresses(:address_2).delete
+    !assert(buildings(:building_1).address_id)
+  end
+end
+\end{verbatim}
+
+nel file \verb|adresses.yml|
+\begin{verbatim}
+address_2:
+  city: Vicenza
+  telephone: 049-9075393
+  street: via rossini 9
+\end{verbatim}
+
+nel file \verb|buildings.yml|
+\begin{verbatim}
+building_1:
+  name: Torre Archimede
+  address: address_2
+\end{verbatim}
+\subsubsection{Functional Tests}
+Nello sviluppo di un'applicazione tramite il framework Rails, i test funzionali (functional tests) sono specifici per la verifica degli elementi appartenenti alla componente Controller. Dato che gli unit tests sono stati effettuati tramite istanze reali, il team QuiXoft ha scelto di utilizzare la strategia dei Mock objects per la verifica delle azioni presenti nei controller.
+
+Ogni classe che implementa un insieme di test per un particolare controller dovrà essere denominata \verb|NomeControllerTest| ed essere salvata su di un file chiamato \verb|nome_controller_controller_test.rb| all'interno della directory \verb|test/functional|.
+
+Un esempio di functional test per il controller \verb|sessions| è dato dalla seguente porzione di codice: \\
+nel file \verb|sessions_controller_test.rb|
+\begin{verbatim}
+class SessionsControllerTest < ActionController::TestCase
+
+  test "Guest usa New" do
+    get :new
+    assert_template "new"
+    assert_response :success
+  end
+
+  test "Immissione di email e password validi" do
+    user = stub(:id => :an_id, :mail => "a_mail",
+                :password => "a_password")
+    User.stubs(:authenticate).returns(user)
+    user.stubs(:active?).returns(true)
+    post :create, :mail => user.mail, :password => user.password
+    assert_equal session[:user_id], :an_id
+    assert_redirected_to timetables_url
+  end
+end
+\end{verbatim}
+\subsubsection{Copertura dei test sul codice}
+Come descritto precedentemente sarà utilizzato uno strumento per il linguaggio di programmazione Ruby per misurare la copertura dei test sul codice. Il team QuiXoft utilizzerà la metrica C0, ovvero sarà controllata la copertura di ogni istruzione. L'attuale situazione di coprtura dei test sul codice è riportato nel file \verb|coverage.pdf| allegato al presente documento.
+
+Come si può notare la percentuale per ora coperta è appena inferiore al 50\%, il che è comprensibile dato lo sviluppo tramite TDD il quale testa solamente le i rami \verb|true| delle istruzioni condizionali. Per la consegna del prodotto la percentuale dovrà essere del 100\%
 \subsection{Dettaglio dell'esito delle revisioni}
 Per ciascuna revisione affrontata sarà qui riportato un resoconto dei risultati e dei problemi emersi. Tali dati dovranno essere usati come base per migliorare la qualità del progetto in visione della revisione successiva, con l'obiettivo finale di offrire un prodotto che soddisfi tutti i requisiti e che calzi con le esigenze del committente.
 \subsubsection{Revisione dei Requisiti}

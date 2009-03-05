@@ -38,7 +38,7 @@ class Test::Unit::TestCase
   Html::Test::Validator.w3c_url = "http://localhost/cgi-bin/check"
   ApplicationController.validate_all = true
   ApplicationController.validators = [:w3c]
-  # # ApplicationController.check_urls = true
+  # ApplicationController.check_urls = true
   ApplicationController.check_redirects = true
 
 end

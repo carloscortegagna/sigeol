@@ -42,7 +42,7 @@ class AddressTest < ActiveSupport::TestCase
     !assert(users(:user_1).address_id)
   end
 
-  def test_destroy_building
+  def test_when_destroy_building_destroy_address
     b=buildings(:building_1)
     b.delete
     !assert(Address.find(b.address_id))
