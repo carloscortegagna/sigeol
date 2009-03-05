@@ -324,6 +324,12 @@ Di seguito è riportato il diagramma delle classi che illustra questa componente
 
 \subsection{Descrizione dei models}
 \subsubsection{AcademicOrganization}
+\paragraph{Descrizione attributi}
+\begin{itemize}
+ \item name: contiene il nome del tipo di organizzazione accademica; ad esempio Trimestre.
+ \item number: contiene il numero di periodi dell'organizzazione accademica
+\end{itemize}
+
 \paragraph{Validazioni}
 \begin{itemize}
  \item \verb|name|:\\ nella tabella \verb|academic_organizations| non deve essere presente una riga con lo stesso valore contenuto nell'attributo. La stringa non dovrà essere nulla e dovrà essere al massimo di 30 caratteri. Infine dovrà rispettare la seguente espressione regolare: \verb|/^[a-zA-Zàòèéùì\s]*$/|
@@ -333,6 +339,12 @@ Di seguito è riportato il diagramma delle classi che illustra questa componente
 \subparagraph{before\_validation}
 Prima di effettuare le operazioni di validazione, il contenuto dell'attributo \verb|name| verrà messo tutto in minuscolo, tranne la prima lettera che verrà messa in maiuscolo. 
 \subsubsection{Address}
+\paragraph{Descrizione attributi}
+\begin{itemize}
+ \item street: contiene la via  
+ \item city: contiene il nome della città
+ \item telephone: contiene un numero di telefono
+\end{itemize}
 \paragraph{Validazioni}
 Le validazioni di \verb|city| e di \verb|street| sono identiche all'attributo \verb|name| del model \verb|AcademicOrganization|
 \begin{itemize}
