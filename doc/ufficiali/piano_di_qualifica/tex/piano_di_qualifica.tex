@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Piano di Qualifica v2.1.0}
+\lfoot{Piano di Qualifica v3.0.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Piano di Qualifica v2.1.0}
+\lfoot{Piano di Qualifica v3.0.0}
 \cfoot{}
 \rfoot{}
 }
@@ -44,6 +44,14 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{06-03-2009} & 3.0.0 & Approvazione del responsabile  \\
+\hline
+\textit{06-03-2009} & 2.3.1 & Verifica e correzione della versione 2.3.0  \\
+\hline
+\textit{06-03-2009} & 2.3.0 & Aggiunto il dettaglio delle verifiche tramite test   \\
+\hline
+\textit{18-02-2009} & 2.2.0 & Aggiunti i plugin utilizzati per l'automazione delle attività di verifica  \\
 \hline
 \textit{10-02-2009} & 2.1.0 & Aggiunto il resoconto della Revisione di Progetto Preliminare  \\
 \hline
@@ -79,8 +87,8 @@
 \bigskip
 \begin{tabbing}
 	\hspace*{0.3\textwidth} \= \hspace*{0.5\textwidth} \kill
-	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Freo Matteo} \\
-	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Grosselle Alessandro} \\
+	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Scarpa Davide} \\
+	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Beggiato Andrea} \\
 	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Formale} \\
 	\parbox{0.3\textwidth}{\textbf{Uso: }} \> \parbox{0.5\textwidth}{Esterno} \\
 	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{QuiXoft} \\
@@ -92,8 +100,8 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Qualifica \\ v2.1.0}}
-\author{Redazione: Carlo Scortegagna, Andrea Beggiato}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Qualifica \\ v3.0.0}}
+\author{Redazione: Carlo Scortegagna, Barbiero Mattia}
 \maketitle
 \medskip
 \begin{center}
@@ -270,7 +278,7 @@ Il componente che ha accettato il \underline{ticket}, una volta completata la pr
 \subsection{Validazione delle pagine web}
 L'adesione agli standard proposti dal consorzio W3C nella creazione di pagine web è un elemento fondamentale per la corretta visualizzazione delle stesse attraverso diversi tipi di browser. Per questo motivo il team QuiXoft utilizzerà gli strumenti messi a disposizione da tale consorzio per validare le pagine create.
 
-Questo compito risulta spesso ripetitivo e, se svolto manualmente, produce un'eccessivo consumo di ore di lavoro. Per questo motivo verrà utilizzato un \underline{plugin} che validerà ogni pagina creata in modo automatico e renderà disponibili immediatamente i risultati di tale validazione per poter eseguire le adeguate correzioni.
+Questo compito risulta spesso ripetitivo e, se svolto manualmente, produce un'eccessivo consumo di ore di lavoro. Per questo motivo verrà utilizzato un \underline{plugin} che validerà ogni pagina creata in modo automatico e renderà disponibili immediatamente i risultati di tale validazione per poter eseguire le adeguate correzioni. Per maggiori informazioni consultare il sito http://code.google.com/p/htmltest/
 
 \subsection{TDD e Mock objects }
 Come precedentemente dichiarato, l'intero sviluppo del progetto sarà guidato dalla metodologia Test-Driven Development (confronta sezione \ref{TDD}). Ogni componente del team, nell'arco di tutta la durata del progetto, dovrà ricoprire ogni ruolo (per maggiori dettagli consultare il documento \textsc{Piano di Progetto}), quindi ogni membro ha discrete compotenze riguardo la stesura del codice. Per questo motivo il Verificatore di turno (o i Verificatori se ne sono previsti più di uno) avrà il compito di sviluppare i test anticipatamente alla stesura del codice. In questo modo il Programmatore avrà il solo compito di implementare le funzionalità che sono richieste dai test.
