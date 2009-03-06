@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Definizione di prodotto v0.2.0}
+\lfoot{Definizione di prodotto v1.0.1}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Definizione di prodotto v0.2.0}
+\lfoot{Definizione di prodotto v1.0.1}
 \cfoot{}
 \rfoot{}
 }
@@ -45,9 +45,36 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
-\textit{4 marzo 2009} & 0.2.0 & Stesura parte sul componente MiddleMan \\
+\textit{7 marzo 2009} & 1.0.1 & Correzione dell'impostazione delle pagine \\
 \hline
-\textit{20 febbraio 2009} & 0.1.0 & Stesura dell'indice \\
+\textit{1 marzo 2009} & 1.0.0 & Approvazione del responsabile e passaggio di stato a Formale \\
+\hline
+\textit{24 febbraio 2009} & 0.10.1 & Verifica della versione 0.10.0 \\
+\hline
+\textit{23 febbraio 2009} & 0.10.0 & Stesura sezione Organizzazione delle directories e Tracciamento requisiti\\
+\hline
+\textit{23 febbraio 2009} & 0.9.0 & Stesura sezione Organizzazione delle directories \\
+\hline
+\textit{21 febbraio 2009} & 0.8.0 & Stesura sezione Componente MiddleMan e Algorithm \\
+\hline
+\textit{21 febbraio 2009} & 0.7.0 & Completata stesura sezione Componente Controller e redatta la sezione Componente Helper\\
+\textit{20 febbraio 2009} & 0.6.0 & Completata stesura sezione Componente View ed inserimento immagine layout \\
+\hline
+\textit{20 febbraio 2009} & 0.5.2 & Inseriti i diagrammi delle classi della Componente Controller e Model\\
+\hline
+\textit{20 febbraio 2009} & 0.5.1 & Correzione di errori grammaticali della versione 0.5.0 \\
+\hline
+\textit{19 febbraio 2009} & 0.5.0 & Stesura della sezione Componente Model \\
+\hline
+\textit{19 febbraio 2009} & 0.4.1 & Verifica e correzione errori di sintassi della versione 0.4.0\\
+\hline
+\textit{18 febbraio 2009} & 0.4.0 &  Prima stesura della sezione Componente View\\
+\hline
+\textit{18 febbraio 2009} & 0.3.0 & Prima stesura della sezione Componente Controller \\
+\hline
+\textit{17 febbraio 2009} & 0.2.0 & Stesura della sezione Standard di progetto \\
+\hline
+\textit{15 febbraio 2009} & 0.1.0 & Stesura dell'indice \\
 \hline
 \end{tabular}
 \end{center}
@@ -57,18 +84,21 @@
 \bigskip
 \begin{tabbing}
 	\hspace*{0.3\textwidth} \= \hspace*{0.5\textwidth} \kill
-	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Verificatore} \\
-	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Responsabile} \\
-	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Preliminare | Formale} \\
-	\parbox{0.3\textwidth}{\textbf{Uso: }} \> \parbox{0.5\textwidth}{Interno | Esterno} \\
+	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Alberti Andrea} \\
+	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Freo Matteo} \\
+	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Formale} \\
+	\parbox{0.3\textwidth}{\textbf{Uso: }} \> \parbox{0.5\textwidth}{Esterno} \\
 	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{QuiXoft} \\
+							\> \parbox{0.5\textwidth}{Rossi Francesca} \\
+							\> \parbox{0.5\textwidth}{Vardanega Tullio} \\
+							\> \parbox{0.5\textwidth}{Conte Renato} \\
 \end{tabbing}
 }
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Definizione di prodotto \\ v0.2.0}}
-\author{Redazione: }
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Definizione di prodotto \\ v1.0.1}}
+\author{Redazione: Beggiato Andrea, Grosselle Alessandro, Barbiero Mattia}
 \maketitle
 \medskip
 \begin{center}
@@ -203,69 +233,41 @@ Durante tutto lo svolgimento del progetto, il team QuiXoft utilizzarà i seguent
 Il sistema Sigeol è strutturato seguendo il paradigma MVC, con l'aggiunta di ulteriori: Helper, MiddleMan e Algorithm.
 \subsection{Componente Model}\label{model}
 \subsubsection{Introduzione}
+Ogni classe appartente al model, deriva direttamente da \verb|ActiveRecord::Base| ed ogni istanza di tale classe viene anche chiamata oggetto di tipo Active Record, dove gli attributi non vengono specificati direttamente, ma dedotti dalla tabella associata.
 
-Ogni classe appartente al model deriva direttamente da \verb|ActiveRecord::Base|.
+Un'istanza di una classe model corrisponde ad una riga della tabella associata, quindi se viene cancellato verrà eliminata anche la riga corrispondente.
 
-
-Quando una classe deriva da \verb|Base|, il suo oggetto istanziato viene anche chiamato oggetto di tipo Active Record.
-Gli attributi non vengono specificati direttamente, ma vengono dedotti dalla tabella associata.
-
-
-Per associare una classe Active Record ad una tabella è necessario seguire determinate convenzioni:
-\begin{itemize}
- \item la tabella deve essere chiamata con un nome plurale e tutto in minuscolo
- \item la classe deve essere chiamata con lo stesso nome della tabella, ma al singolare e con la prima lettera maiuscola
-\end{itemize}
-
-
-Un'istanza di una classe model corrisponde ad una riga della tabella associata.
-Se viene cancellato un oggetto model, verrà cancellata anche la riga corrispondente.
-
-
-Da \verb|base| si ereditano diversi metodi di pubblica utilità tra i quali:
+Da \verb|ActiveRecord:Base| si ereditano diversi metodi di pubblica utilità tra i quali:
 \begin{itemize}
  \item \verb|save|: salva l'oggetto model. Se il model è nuovo viene creato un record nel database, altrimenti il record esistente viene aggiornato.
  \item \verb|destroy|: elimina il record associato. Ovviamente dopo questa operazione l'oggetto model corrispondente alla riga cancellata, non potrà più modificare gli attributi.
 \end{itemize}
-\paragraph{Validazioni}
-Grazie alla libreria Active Record è possibile validare gli attributi di un oggetto model. La validazione viene eseguita automaticamente prima di creare il record nel database. Se la convalida fallisce, l'istanza non verrà scritta nel db e verrà lasciata in memoria.
+\subsubsection*{Validazioni}
+Grazie alla libreria Active Record è possibile validare gli attributi di un oggetto model. La validazione viene effettuata automaticamente prima della creazione del record o del suo aggiornamento nel database. Se la convalida fallisce, la tupla del database resterà invariata mentre all'istanza verrà aggiunto l'errore di validazione verificatosi. Inoltre è possibile specificare differenti validazioni per nuovi record, per aggiornamenti di tuple esistenti o per ogni operazione di salvataggio.
 
+\verb|Active Record| infine, mette ha disposizione un set di metodi ausiliari che implementano validazioni comuni a molti models come ad esempio il controllo della presenza di un attributo. Se il controllo fallisce, verrà aggiunto all'oggetto un messaggio di errore per lo specifico attributo.
+Ad esempio nel model \verb|User|, per controllare la presenza dell'attributo \verb|mail|, si potrà utilizzare l'helper method \verb|validates_presence_of:| in questo modo:\\
+\begin{verbatim}
+validates_presence_of :mail,
+		      :message=>"La mail non deve essere vuota",
+		      :on  => :save
+\end{verbatim}
+dove \verb|:message| contiene il messaggio d'errore e \verb|:on| specifica in che fase effettuare la validazione(\verb|:create|, \verb|:update| o \verb|:save|); se \verb|:on| è omesso questi assumera il valore di default \verb|save|.
 
-Inoltre è possibile specificare quando effettuare le validazioni (prima di aggiornare il record, prima di crearlo od ogni volta che lo si salva).
-
-
-Si ha disposizione un set di helpers methods che implementano validazioni comuni a molti models; per esempio il controllo che il contenuto dell'attributo non sia nullo.
-Se il controllo fallisce, verrà aggiunto all'attributo un messaggio di errore.
-Nel model \verb|User|, per controllare la presenza dell'attributo \verb|mail|, si potrà utilizzare l'helper method \verb|validates_presence_of:| in questo modo:\\
-\begin{center}
- \verb|validates_presence_of:|\\
- \verb|:message=>"La mail non deve essere vuota"|\\
- \verb|:on  => :update|\\
-\end{center}
-dove \verb|:message| contiene il messaggio d'errore e \verb|:on| specifica quando effettuare la validazione(\verb|:create|, \verb|:update|).
-
- 
-Se \verb|:on| è omesso la validazione verrà fatta prima di ogni operazione di scrittura nel database.
-
-
-Infine, per creare una validazione, è necessario aggiungere alle chiamate di \verb|validate|, \verb|validate_on_update|,\verb|validate_on_create|, la lista dei metodi(passati come simboli) che si vuole eseguire.
+Per creare, invece, una validazione non presente in quelle fornite dalle librerie di Rails è necessario aggiungere alle chiamate di \verb|validate|,\\ \verb|validate_on_update|,\verb|validate_on_create|, la lista dei metodi che si vuole aggiungere, passati come simboli.
 \begin{itemize}
  \item \verb|validate|: la validazione viene eseguita prima di ogni operazione di scrittura nel database; quindi sia in fase di creazione che di modifica
- \item \verb|validate_on_create|:la validazione viene eseguita solo quando\\ un nuovo model dev'essere salvato nel database
- \item \verb|validate_on_update|:la validazione viene eseguita solamente quando si modifica una riga già esistente
+ \item \verb|validate_on_create|:la validazione viene eseguita solamente alla creazione di una nuova tupla
+ \item \verb|validate_on_update|:la validazione viene eseguita solamente alla modifica di un record esistente.
 \end{itemize}
 
-
-Ad esempio, nel model \verb|ExpiryDate|, per controllare che la data immessa sia maggiore di quella di oggi si implementerà il \\metodo \verb|is_correct_date?|
-Il nome poi verrà aggiunto come simbolo alla chiamata di \verb|validate|:\\
-\verb|validate :is_correct_date?|
-
-
-Ora, un qualsiasi oggetto di tipo \verb|ExpiryDate| è valido solo se contiene una data maggiore della data di oggi.
-\paragraph{Associazioni}
-Oltre alle validazioni, nelle classi del model sono definite le relazione tra le tabelle.
-\verb|Active record| supporta tre tipi di associazioni: one-to-one, one-to-many, many-to-many.
-Per dichiarare una relazione, basta inserire opportunamente nelle classi del model: \verb|has_one|, \verb|has_many|, \verb|belongs_to| e \verb|has_and_belongs_to_many|.
+Ad esempio, nel model \verb|ExpiryDate|, per controllare che la data immessa sia maggiore di quella di oggi si implementerà il metodo \verb|is_correct_date?|. Il nome quindi verrà aggiunto come simbolo alla chiamata di \verb|validate| nel seguente modo: \\
+\begin{verbatim}
+validate :is_correct_date?
+\end{verbatim}
+\subsubsection*{Associazioni}
+Oltre alle validazioni, nel model vengono definite le relazione tra le tabelle, e quindi delle stesse classi. \verb|Active record| supporta tre tipi di associazioni: one-to-one, one-to-many, many-to-many.
+Per dichiarare una relazione, è necessario rchiamare opportunamente i metodi \verb|has_one|, \verb|has_many|, \verb|belongs_to| e \verb|has_and_belongs_to_many| nelle classi del model.
 Anche qui è necessario seguire delle convenizioni:
 \begin{itemize}
  \item la dichiarazione di \verb|belongs_to| deve essere aggiunta nel model, associato alla tabella che contiene la chiave esterna
@@ -273,235 +275,203 @@ Anche qui è necessario seguire delle convenizioni:
  \item dopo \verb|belongs_to| e \verb|has_one| deve essere aggiunto(come simbolo) il nome al singolare della tabella
 \end{itemize}
 
+E' possibile modificare le associazioni aggiungendo delle opzioni; in particolare nel progetto Sigeol si è utilizzata l'opzione \verb|:dependent| che indica ad \verb|Active record| come comportarsi quando si elimina una riga di una tabella che è associata ad un altra tramite chiave esterna (rapporto tra parent table e child table)
+Ad esempio nel model \verb|GraduateCourse| la relazione con la classe \verb|Curriculum| dovrà essere definita come \verb|has_many :curriculums|,\\ \verb|:dependent => :destroy|, per indicare che eliminando un record di \\ \verb|graduate_courses|, verranno cancellate tutte le tuple di \verb|curriculums| associate ad esso.
+\subsubsection*{Associazioni polimorfe}
+Nel progetto Sigeol sono presenti due associazioni polimorfe.
 
-
-L'opzione \verb|:dependent| indica ad \verb|Active record| come comportarsi con la child table in caso di cancellazione di una riga del parent table.
-Ad esempio nel model GraduateCourse la relazione con la tabella curriculums dovrà essere definita in questo modo:\\
-\verb|has_many :curriculums, :dependent => :destroy|\\
-Tradotta significa che cancellando una riga di \verb|graduate_courses|, verranno cancellate tutte le righe associate di \verb|curriculums|.
-
-\paragraph{Associazioni polimorfe}
-Nel progetto \textit{Sigeol} sono presenti due associazioni polimorfe.
-
-
-Uno user ha uno tipo specifico; ad esempio può essere o un \verb|Teacher| o un \verb|DidacticOffice|\\
+Uno \verb|User| ha uno tipo specifico; ad esempio può essere o un \verb|Teacher| o un \verb|DidacticOffice|\\
 Per implementare quest'associazione, si deve aggiungere alla tabella \verb|users| due attributi: \verb|specified_id| e \verb|specified_type|.
-Al model associato invece si dovrà specificare la relazione polimorfa; e lo si farà in questo modo:\\
+In \verb|User| si specificherà la relazione polimorfa:\\
 \verb|belongs_to :specified, :polymorphic => true|.\\
-Nelle classi associate invece si inserirà questa definizione:\\
+Nei model che rappresentano i tipi che possono possedere uno \verb|User|, si inserirà la seguente associazione:\\
 \verb|has_one :user, :as => :specified|\\
-L'opzione \verb|:as=>specified|, specifica che la relazione tra \verb|User| e il model è polimorfa, usando l'attributo \verb|specified|.
+L'opzione \verb|:as=>specified|, specifica che la relazione tra \verb|User| e il model è polimorfa, usando gli attributi \verb|specified_id| e \verb|specified_type|.
 
-
-Ad esempio, sia u un oggetto di tipo \verb|User| e t un oggetto di tipo \verb|Teacher|, per specificare lo user, semplicemente basta fare:\\
-\verb|u.specified=t|
-
-Il secondo tipo di associazione è chiamato \textit{associazione polimorfa doppia}\\ 
-A parole semplice, il problema si può spiegare in questo modo: una corso di laurea o una classe, possono avere più vincoli di diverso tipo. A sua volta un vincolo può avere più tipi di proprietari: una classe, un insegnante o un corso di laurea.
-Insomma, un vincolo può avere più tipi di proprietari e un proprietario può avere più tipi di vincoli. 
+Il secondo tipo di associazione è chiamato \textit{associazione polimorfa doppia}; un corso di laurea o un'aula, possono avere più vincoli di diverso tipo tra temporali, di quantità o booleani. A sua volta un vincolo può avere differenti proprietari: un'aula, un docente o un corso di laurea.
 Per implementare questa associazione si farà uso di un plugin chiamato :\verb|has_many_polymorphs|. 
 
+Per il corretto uso del plugin, si dovrà aggiungere una nuova classe model che associerà tutti i tipi di vincoli con tutti i tipi di proprietari. Questo tipo di model prende il nome di join model.
+\subsubsection*{Funzioni di callback}
+\verb|ActiveRecord| mette a disposizione dei metodi che monitorano lo stato dell'oggetto; è possibile quindi definire delle operazioni da eseguire prima o dopo l'alterazione dello stato dell'oggetto.
 
-Per il corretto uso del plugin, si dovrà aggiungere una nuova classe model che associerà tutti i tipi di vincoli con tutti i tipi di proprietari. Questo tipo di model è chiamato join model.
-
-
-
-
-\paragraph{Funzioni di callback}
-\verb|ActiveRecord| mette a disposizione dei metodi che monitorano lo stato dell'oggetto. 
-E' possibile quindi definire delle operazioni da eseguire prima o dopo l'alterazione dello stato dell'istanza.
-
-
-Ad esempio, per eseguire determinate istruzioni prima di validare, basterà ridefinire la funzione di callback \verb|before_validation|.
-Oltre a \verb|before_validation| sono presenti altre funzioni come \verb|before_create|, \verb|before_destroy|, \verb|after_create|.
-
-\paragraph{Diagramma delle classi}
+Ad esempio, per eseguire determinate istruzioni prima della validazione dell'oggetto, basterà ridefinire la funzione di callback \verb|before_validation|.
+Oltre a \verb|before_validation| sono presenti altre funzioni tra cui \verb|before_create|, \verb|before_destroy|. \verb|after_create|.
+\subsection{Descrizione dei models}
 Di seguito è riportato il diagramma delle classi che illustra questa componente. Per aumentare la leggibilità è stata omessa la derivazione delle classi da \verb|ActiveRecord::Base|. \\
 \bigskip \\
 \includegraphics[scale=0.34]{images/Model_ClassDiagram.png}
-
-\subsection{Descrizione dei models}
 \subsubsection{AcademicOrganization}
-\paragraph{Descrizione attributi}
+\subsubsection*{Descrizione degli attributi}
 \begin{itemize}
  \item name: contiene il nome del tipo di organizzazione accademica; ad esempio Trimestre.
  \item number: contiene il numero di periodi dell'organizzazione accademica
 \end{itemize}
-
-\paragraph{Validazioni}
+\subsubsection*{Validazioni}
 \begin{itemize}
- \item \verb|name|:\\ nella tabella \verb|academic_organizations| non deve essere presente una riga con lo stesso valore contenuto nell'attributo. La stringa non dovrà essere nulla e dovrà essere al massimo di 30 caratteri. Infine dovrà rispettare la seguente espressione regolare: \verb|/^[a-zA-Zàòèéùì\s]*$/|
-\item \verb|number|:\\ nella tabella \verb|academic_organizations| non deve essere presente una riga con lo stesso valore contenuto nell'attributo. Inoltre potrà assumere solo valori interi compresi tra 1 e 6
+ \item \verb|name|:\\ nella tabella \verb|academic_organizations| non deve essere presente una tupla con lo stesso valore dell'attributo. La stringa non dovrà essere nulla e dovrà essere al massimo di 30 caratteri. Infine dovrà rispettare la seguente espressione regolare: \verb|/^[a-zA-Zàòèéùì\s]*$/|
+\item \verb|number|:\\ nella tabella \verb|academic_organizations| non deve essere presente una tupla con lo stesso valore contenuto nell'attributo. Inoltre potrà assumere solo valori interi compresi tra 1 e 6
 \end{itemize}
-\paragraph{Funzioni di callback}
-\subparagraph{before\_validation}
-Prima di effettuare le operazioni di validazione, il contenuto dell'attributo \verb|name| verrà messo tutto in minuscolo, tranne la prima lettera che verrà messa in maiuscolo. 
+\subsubsection*{Funzioni di callback}
+\paragraph{before\_validation}
+Prima di effettuare le operazioni di validazione, verrà reso maiscuolo il primo carattere del contenuto dell'attributo \verb|name| e minuscoli i rimanenti.
 \subsubsection{Address}
-\paragraph{Descrizione attributi}
+\subsubsection*{Descrizione degli attributi}
 \begin{itemize}
  \item street: contiene la via  
  \item city: contiene il nome della città
  \item telephone: contiene un numero di telefono
 \end{itemize}
-\paragraph{Validazioni}
+\subsubsection*{Validazioni}
 Le validazioni di \verb|city| e di \verb|street| sono identiche all'attributo \verb|name| del model \verb|AcademicOrganization|
 \begin{itemize}
  \item \verb|telephone|: il numero di telefono dovrà essere al massimo di 13 caratteri e dovrà rispettare l'espressione regolare\\
  \verb|/^[0-9]{2,4}-[0-9]{6,8}$/|.\\  
-In questo modo il contenuto di \verb|telephone| avrà un numero di cifre compreso tra due e quattro(prefisso), seguite dal simbolo - ed infine un secondo numero di cifre compreso tra sei e otto(numero di telefono). Non è necessario inserire e controllare prima del numero di telefono il prefisso internazionale, perchè si ipotizza che tutti i numeri inseriti siano italiani.
+In questo modo il contenuto di \verb|telephone| avrà un numero di cifre compreso tra due e quattro(prefisso), seguite dal simbolo - ed infine un secondo numero di cifre compreso tra sei e otto (numero di telefono). Non è necessario inserire e controllare prima del numero di telefono il prefisso internazionale, perchè si ipotizza che tutti i numeri inseriti siano italiani.
 \end{itemize}
-\paragraph{Funzioni di callback}
-\subparagraph{before\_save}
-Prima di salvare l'oggetto nel database, il contenuto degli attributi \verb|city| e \verb|street| vengono messi in minuscolo, tranne la prima lettera che viene messa in maiuscolo.
+\subsubsection*{Funzioni di callback}
+\subsubsection*{before\_save}
+Prima di salvare l'oggetto nel database, verrà reso maiuscolo il primo carattere del contenuto degli attributi \verb|city| e \verb|street| e minuscoli i rimanenti.
 \subsubsection{Belong}
-\paragraph{Descrizione attributi}
+\subsubsection*{Descrizione degli attributi}
 \begin{itemize}
  \item \verb|curriculum_id|: chiave esterna di curriculums
  \item \verb|teaching_id|: chiave esterna di teachings
- \item \verb|isOptional|: è un attributo booleano. Se settato a true, indica che l'insegnamento individuato dalla chiave esterna \verb|teaching_id|, è opzionale rispetto al curriculum individuato della chiave esterna \verb|curriculum_id|	
+ \item \verb|isOptional|: attributo booleano che indica se l'insegnamento individuato dalla chiave esterna \verb|teaching_id|, è opzionale rispetto al curriculum individuato della chiave esterna \verb|curriculum_id|	
 \end{itemize}
-\paragraph{Validazioni}
+\subsubsection*{Validazioni}
 \begin{itemize}
  \item \verb|curriculum_id|: il contenuto della chiave esterna \verb|curriculum_id| non deve essere nullo 
  \item \verb|teaching_id|: il contenuto della chiave esterna \verb|teaching_id| non deve essere nullo
 \end{itemize}
-\subparagraph{validate\_on\_create}
+\subsubsection*{validate\_on\_create}
 \begin{itemize}
  \item \verb|validate_on_create :unique_curriculum_id_and_teaching_id?|: \\E' possibile salvare nel database l'oggetto istanziato, solo se nessuna riga della tabella associata \verb|belongs|, ha gli stessi valori di \verb|teaching_id| e di \verb|curriculum_id| dell'istanza.\\
- \verb|unique_curriculum_id_and_teaching_id?| è un metodo privato.
+ \verb|unique_curriculum_id_and_teaching_id?| è un metodo privato utilizzato per la validazione precedente.
 \end{itemize}
-\paragraph{Funzioni di callback}
-\subparagraph{before\_destroy}
-Dopo aver eliminato l'oggetto, se nessun curriculum utilizza l'insegnamento(associato all'istanza appena cancellata), allora anch'esso verrà cancellato.
 \subsubsection{Building}
-\paragraph{Descrizione attributi}
+\subsubsection*{Descrizione degli attributi}
 \begin{itemize}
- \item \verb|name|: contiene il nome del palazzo
+ \item \verb|name|: contiene il nome dell'edificio
  \item \verb|address_id|: chiave esterna di addresses	
 \end{itemize}
-\paragraph{Validazioni}
-Le validazioni di \verb|name| sono identiche all'attributo \verb|name| del model \verb|AcademicOrganization|
+\subsubsection*{Validazioni}
+Le validazioni di \verb|name| sono identiche all'attributo \verb|name| del model \\ \verb|AcademicOrganization|
 \begin{itemize}
  \item \verb|address_id|: il contenuto della chiave esterna non deve essere nullo
 \end{itemize}
-\paragraph{Funzioni di callback}
-\subparagraph{before\_validation}
-Prima di validare l'oggetto, il contenuto di \verb|name| viene messo in minuscolo, tranne la prima lettera che viene messa in maiuscolo.
+\subsubsection*{Funzioni di callback}
+\subsubsection*{before\_validation}
+Prima di effettuare le operazioni di validazione, verrà reso maiscuolo il primo carattere del contenuto dell'attributo \verb|name| e minuscoli i rimanenti.
 \subsubsection{Capability}
-\paragraph{Descrizione attributi}
+\subsubsection*{Descrizione degli attributi}
 \begin{itemize}
- \item \verb|name|: contiene il nome del servizio, disponibile per gli utenti del sistema
+ \item \verb|name|: contiene il nome del privilegio disponibile per gli utenti del sistema
 \end{itemize}
-\paragraph{Validazioni}
-Le validazioni di \verb|name| sono identiche all'attributo \verb|name| del model \verb|AcademicOrganization|
+\subsubsection*{Validazioni}
+Le validazioni di \verb|name| sono identiche all'attributo \verb|name| del model \\ \verb|AcademicOrganization|
 \subsubsection{Classroom}
-\paragraph{Descrizione attributi}
+\subsubsection*{Descrizione degli attributi}
 \begin{itemize}
- \item \verb|name|: contiene il nome della classe
- \item \verb|capacity|: contiene la capienza massima della classe
+ \item \verb|name|: contiene il nome dell' aula
+ \item \verb|capacity|: contiene la capienza massima dell'aula
  \item \verb|building_id|: chiave esterna di \verb|buildings|	
 \end{itemize}
-\paragraph{validazioni}
-Le validazioni di \verb|name| sono identiche all'attributo \verb|name| del model \verb|AcademicOrganization| senza però il controllo dell'unicità
+\subsubsection*{Validazioni}
+Le validazioni di \verb|name| sono identiche all'attributo \verb|name| del model \\ \verb|AcademicOrganization| senza il controllo dell'unicità.
 \begin{itemize}
 \item \verb|capacity|: il contenuto deve essere un intero compreso tra 0 e 1000. Sarà possibile lasciare questo attributo nullo.
 \item \verb|building_id|: il contenuto della chiave esterna non deve essere vuoto 
 \end{itemize}
-\subparagraph{validate}
+\subsubsection*{Validate}
 \begin{itemize}
  \item \verb|validate :unique_building_classroom?|: per salvare l'istanza nel database, è necessario che l'oggetto di tipo \verb|Building|, con chiave primaria uguale a \verb|building_id|, non abbia associato un oggetto di tipo \verb|Classroom| con \verb|name| uguale a quello definito nell'istanza.
-
-
-\verb|unique_building_classroom?| è un metodo privato
+\item \verb|unique_building_classroom?| è un metodo privato utilizzato nella validazione precedente
 \end{itemize}
-\paragraph{Funzioni di callback}
-\subparagraph{before\_validation}
-Prima di effettuare le operazioni di validazione, il contenuto dell'attributo \verb|name| viene messo tutto in minuscolo, tranne la prima lettera che viene messa in maiuscolo.
+\subsubsection*{Funzioni di callback}
+\subsubsection*{before\_validation}
+Prima di effettuare le operazioni di validazione, verrà reso maiscuolo il primo carattere del contenuto dell'attributo \verb|name| e minuscoli i rimanenti.
 \subsubsection{Curriculum}
-\paragraph{Descrizione Attributi}
+\subsubsection*{Descrizione degli attributi}
 \begin{itemize}
  \item \verb|name|: contiene il nome del curriculum
- \item \verb|graduate_course_id|:\\ contiene la chiave esterna di \verb|graduate_courses|	 
+ \item \verb|graduate_course_id|: contiene la chiave esterna di \verb|graduate_courses|	 
 \end{itemize}
-\paragraph{Validazioni}
-Le validazioni di \verb|name| sono identiche all'attributo \verb|name| del model \verb|AcademicOrganization|, senza però il controllo dell'unicità
+\subsubsection*{Validazioni}
+Le validazioni di \verb|name| sono identiche all'attributo \verb|name| del model \\ \verb|AcademicOrganization|, senza il controllo dell'unicità
 \begin{itemize}
  \item \verb|graduate_course_id|: la chiave esterna di \verb|graduate_courses| non deve essere nulla
 \end{itemize}
-\subparagraph{validate}
+\subsubsection*{validate}
 \begin{itemize}
- \item \verb|validate :unique_curriculum_graduate_course?|: \\per salvare l'oggetto nel database, è necessario che il graduate course, con id uguale a \verb|graduate_course_id|, non abbia associato un curriculum con il nome uguale a quello definito nell'oggetto
-
-
-\verb|unique_curriculum_graduate_course?| è un metodo privato.
+ \item \verb|validate :unique_curriculum_graduate_course?|: per salvare l'oggetto nel database, è necessario che il graduate course, con id uguale a \verb|graduate_course_id|, non abbia associato un curriculum con il nome uguale a quello definito nell'oggetto
+\item \verb|unique_curriculum_graduate_course?| è un metodo privato utilizzato nella validazione precedente.
 \end{itemize}
-
-\paragraph{Funzioni di callback}
-\subparagraph{before\_validation}
-Prima di effettuare le operazioni di validazione, il contenuto dell'attributo \verb|name| viene messo tutto in minuscolo, tranne la prima lettera che viene messa in maiuscolo.
-
+\subsubsection*{Funzioni di callback}
+\subsubsection*{before\_validation}
+Prima di effettuare le operazioni di validazione, verrà reso maiscuolo il primo carattere del contenuto dell'attributo \verb|name| e minuscoli i rimanenti.
 \subsubsection{ExpiryDate}
-\paragraph{Descrizione attributi}
+\subsubsection*{Descrizione degli attributi}
 \begin{itemize}
  \item \verb|date|: successivamente a questa data, il docente non potrà più inserire le proprie indisponibilità
 \end{itemize}
-\paragraph{Validazioni}
+\subsubsection*{Validazioni}
 \begin{itemize}
  \item \verb|date| : il contenuto di \verb|date| non deve essere vuoto
  \item \verb|graduate_course_id| : il contenuto della chiave esterna non deve essere vuoto
 \end{itemize}
-\subparagraph{validate}
+\subsubsection*{validate}
 \begin{itemize}
- \item \verb|validate :is_correct_date?|: la data inserita deve essere maggiore della data di oggi. \verb|is_correct_date?| è un metodo privato
+ \item \verb|validate :is_correct_date?|: la data inserita deve essere maggiore della data di oggi. 
+ \item \verb|is_correct_date?| è un metodo privato utilizzato nella validazione precedente
 \end{itemize}
 
 \subsubsection{GraduateCourse}
-\paragraph{Descrizione Attributi}
+\subsubsection*{Descrizione degli Attributi}
 \begin{itemize}
  \item \verb|name|: contiene il nome del corso di laurea
  \item \verb|duration|: indica la durata, in anni, del corso di laurea
 \end{itemize}
-\paragraph{validazioni}
-Le validazioni di \verb|name| sono identiche all'attributo \verb|name| del model \verb|AcademicOrganization| tranne per il numero di caratteri che da 30 son passati a 50.
+\subsubsection*{Validazioni}
+Le validazioni di \verb|name| sono identiche all'attributo \verb|name| del model \\ \verb|AcademicOrganization| eccezion fatta per il numero di caratteri di 50.
 \begin{itemize}
 \item \verb|:duration|: deve essere un intero compreso tra 1 e 6
-\item \verb|academic_organization_id|:\\ la chiave esterna non deve essere nulla. Quindi un oggetto di tipo \verb|GraduateCourse| per essere valido, deve avere associato un oggetto di tipo \verb|AcademicOrganization| anch'esso valido.
+\item \verb|academic_organization_id|: la chiave esterna non deve essere nulla. Quindi un oggetto di tipo \verb|GraduateCourse| per essere valido, deve avere associato un oggetto di tipo \verb|AcademicOrganization| anch'esso valido.
 \end{itemize}
-\paragraph{Funzioni di callback}
-\subparagraph{before\_validation}
-Prima di effettuare le operazioni di validazione, il contenuto dell'attributo \verb|name| viene messo tutto in minuscolo, tranne la prima lettera che viene messa in maiuscolo.
+\subsubsection*{Funzioni di callback}
+\subsubsection*{before\_validation}
+Prima di effettuare le operazioni di validazione, verrà reso maiscuolo il primo carattere del contenuto dell'attributo \verb|name| e minuscoli i rimanenti.
 \subsubsection{Period}
-\paragraph{Descrizione attributi}
+\subsubsection*{Descrizione degli attributi}
 \begin{itemize}
- \item \verb|subperiod|: individua un determinato periodo dell'anno accademico. Ad esempio in un corso di laurea con un'organizazzione a trimestri, il subperiod 1 significa primo trimestre
- \item \verb|year|: individua l'anno d'appartenenza di un corso d'insegnamento. Ad esempio Analisi Matematica è un corso d'insegnamento del primo anno accademico.
+ \item \verb|subperiod|: individua un determinato periodo dell'anno accademico. Ad esempio in un corso di laurea con un'organizazzione a trimestri, \verb|subperiod| con valore 1 identifica il primo trimestre
+ \item \verb|year|: individua l'anno, insteso come primo, secondo, terzo, ecc.
 \end{itemize}
-La coppia \verb|subperiod| ed \verb|year| individuano in che periodo e in che anno, viene svolto un determinato insegnamento.
-\paragraph{validazioni}
+\subsubsection*{Validazioni}
 \begin{itemize}
  \item \verb|subperiod|: dovrà contenere un valore intero compreso tra 1 e 4
 \item \verb|year|: dovrà contenere un valore intero compreso tra 1 e 6
 \end{itemize}
-\subparagraph{validate\_on\_create} 
+\subsubsection*{validate\_on\_create} 
 \begin{itemize}
- \item \verb|validate_con_create :unique_subperiod_year?|: l'oggetto è valido solo se nella tabella \verb|periods| non è presente nessuna riga con gli stessi valori di \verb|period| e di \verb|year| dell'istanza. 
-Se non è valido, l'oggetto non verrà salvato nel database. \verb|unique_subperiod_year?| è un metodo privato
+ \item \verb|validate_con_create :unique_subperiod_year?|: l'oggetto è valido solo se nella tabella \verb|periods| non è presente nessuna riga con gli stessi valori di \verb|period| e di \verb|year| dell'istanza.
+ \item \verb|unique_subperiod_year?| è un metodo privato utilizzato nella validazione precedente
 \end{itemize}
 \subsubsection{Teacher}
-\paragraph{Descrizione attributi}
+\subsubsection*{Descrizione degli attributi}
 \begin{itemize}
  \item \verb|name|: contiene il nome del docente
  \item \verb|surname|: contiene il cognome del docente
 \end{itemize}
-\paragraph{Validazioni}
+\subsubsection*{Validazioni}
 Le validazioni di \verb|name| e di \verb|surname| sono identiche all'attributo \verb|name| del model \verb|AcademicOrganization|. Non è presente però la validazione di unicità. In questo modo sono ammessi i casi di omonimia.
-\paragraph{Funzioni di callback}
-\subparagraph{before\_validation}
-Prima di effettuare le operazioni di validazione, il contenuto dell'attributo \verb|name| e \verb|surname| vengono messi in minuscolo, tranne la prima lettera che viene messa in maiuscolo.
-\subparagraph{before\_destroy}
-Prima di eliminare l'oggetto d'istanza(e la sua riga associata), elimina il suo user associato presente nella tabella \verb|users|.
+\subsubsection*{Funzioni di callback}
+\subsubsection*{before\_validation}
+Prima di effettuare le operazioni di validazione, verrà reso maiscuolo il primo carattere del contenuto degli attributi \verb|name| e \verb|surname| e minuscoli i rimanenti.
+\subsubsection*{before\_destroy}
+Prima di eliminare l'oggetto verrà eliminato lo user ad esso associato.
 \subsubsection{Teaching}
-\paragraph{Descrizione attributi}
+\subsubsection*{Descrizione degli attributi}
 \begin{itemize}
  \item \verb|name|: contiene il nome dell'insegnamento
  \item \verb|CFU|: contiene il numero di crediti formativi dell'insegnamento
@@ -509,156 +479,142 @@ Prima di eliminare l'oggetto d'istanza(e la sua riga associata), elimina il suo 
  \item \verb|labHours|: contiene il numero di ore settimanali di lezione in laboratorio
  \item \verb|studentsNumber|: contiene la stima del numero di studenti che frequenteranno l'insegnamento 
 \end{itemize}
-\paragraph{Validazioni}
-Le validazioni di \verb|name| sono identiche all'attributo \verb|name| del model \verb|AcademicOrganization|. In più però ci sarà la possibilità di inserire nella stringa anche valori numerici.
+\subsubsection*{Validazioni}
+Le validazioni di \verb|name| sono identiche all'attributo \verb|name| del model \\ \verb|AcademicOrganization|. Inoltre è permesso l'inserimento nella stringa di valori numerici.
 \begin{itemize}
  \item \verb|CFU|: per essere valido deve contenere un valore intero compreso tra 1 e 20
- \item \verb|labHours, classHours|: gli attributi per essere validi devono contenere un valore intero compreso tra 1 e 50
-\item \verb|studentsNumber|:per essere valido deve contenere un valore intero compreso tra 1 e 1000
+ \item \verb|labHours, classHours|: gli attributi per essere validi devono contenere un valore intero compreso tra 0 e 50
+\item \verb|studentsNumber|: per essere valido deve contenere un valore intero compreso tra 1 e 1000
 \end{itemize}
-Tutti questi attributi possono essere nulli. Questo perchè non si può sempre sapere all'atto della creazione dell'insegnamento, il numero di ore di lezione o la stima del numero di studenti che frequenteranno il corso d'insegnamento. Può anche capitare che non sia chiaro nemmeno il numero di crediti formativi.
+Tutti questi attributi possono essere nulli. Questo perchè non si può sempre sapere all'atto della creazione dell'insegnamento, il numero di ore di lezione o la stima del numero di studenti che frequenteranno il corso d'insegnamento.
 \begin{itemize}
  \item \verb|period_id|: la chiave esterna non deve essere nulla. Questo significa che l'oggetto istanziato deve essere associato ad un periodo valido.
 \end{itemize}
-
-\subparagraph{validate}
+\subsubsection*{validate}
 \begin{itemize}
-\item \verb|validate :check_durata?|:\\ Un insegnamento può appartenere a più curriculum; due diversi curriculum possono avere un insegnamento in comune, ma appartenere a due differenti corsi di laurea con diversa organizzazione accademica.
-Per questo motivo un \verb|Teaching| è valido solo se l'oggetto \verb|Period| associato, ha un valore di \verb|year| ,minore o uguale, al minimo valore dell'attributo \verb|duration| scelto fra tutti i \verb|GraduateCourse|, che hanno almeno un \verb|Curriculum| associato a quel \verb|Teaching|. Ovviamente dovrà essere confrontato anche l'attributo \verb|subperiod|(appartenente al model \verb|Period| associato) con l'attributo \verb|number|.
- \verb|check_durata?| è un metodo privato.
+\item \verb|validate :check_durata?|: un insegnamento può appartenere a più curriculum; due diversi curriculum possono avere un insegnamento in comune, ma appartenere a due differenti corsi di laurea con diversa organizzazione accademica.
+Per questo motivo un \verb|Teaching| è valido solo se l'oggetto \verb|Period| associato, ha un valore di \verb|year| minore o uguale al minimo valore dell'attributo \verb|duration| scelto fra tutti i \verb|GraduateCourse|, che hanno almeno un \verb|Curriculum| associato a quel \verb|Teaching|. Ovviamente dovrà essere confrontato anche l'attributo \verb|subperiod| (appartenente al model \verb|Period| associato) con l'attributo \verb|number|.
+\item \verb|check_durata?| è un metodo privato utilizzato nella precedente validazione.
 \end{itemize}
-
-\paragraph{Funzioni di callback}
-\subparagraph{before\_validation}
-Prima di effettuare le operazioni di validazione, il contenuto dell'attributo \verb|name| viene messo tutto in minuscolo, tranne la prima lettera che viene messa in maiuscolo. 
-
+\subsubsection*{Funzioni di callback}
+\subsubsection*{before\_validation}
+Prima di effettuare le operazioni di validazione, verrà reso maiscuolo il primo carattere del contenuto dell'attributo \verb|name|.
 \subsubsection{TimeTable}
-\paragraph{Descrizione attributi}
+\paragraph{Descrizione degli attributi}
  \begin{itemize}
   \item \verb|year|: contiene l'anno accademico. Ad esempio 2008-09
   \item \verb|period_id|: chiave esterna di \verb|periods|
   \item \verb|graduate_course_id|: chiave esterna di \verb|graduate_courses|
  \end{itemize}
-\paragraph{Validazioni}
-\subparagraph{Attributi year,period\_id,graduate\_course\_id}
+\subsubsection*{Validazioni}
+\subsubsection*{Attributi year,period\_id,graduate\_course\_id}
 \begin{itemize}
- \item \verb|year, period_id, graduate_course_id|:\\
- il contenuto degli attributi devono essere non nulli.
- \item \verb|year| : deve rispettare l'espressione regolare\\ \verb|/^[0-9]{4,4}-[0-9]{2,2}$/|;\\ dovrà avere nei primi quattro caratteri solo cifre, il quinto dovrà essere riservato al carattere - ed infine negli ultimi due caratteri dovranno esserci altri due numeri
- \end{itemize}
+ \item \verb|year, period_id, graduate_course_id|: il contenuto degli attributi devono essere non nulli.
+ \item \verb|year| : deve rispettare l'espressione regolare\\ \verb|/^[0-9]{4,4}-[0-9]{2,2}$/|; dovrà avere nei primi quattro caratteri solo cifre, il quinto dovrà essere riservato al carattere - ed infine negli ultimi due caratteri dovranno esserci altri due numeri
+\end{itemize}
 \subsubsection{TimetableEntry}
-\paragraph{Descrizione Attributi}
+\subsubsection*{Descrizione degli attributi}
 \begin{itemize}
  \item \verb|startTime|: contiene un oggetto di tipo Time e indica l'ora di inizio
- \item \verb|endTime|:contiene un oggetto di tipo Time e indica l'ora di fine
- \item \verb|day|: contiene un intero che indica un determinato giorno della settimana. Ad esempio 1 significa Lunedì.
+ \item \verb|endTime|: contiene un oggetto di tipo Time e indica l'ora di fine
+ \item \verb|day|: contiene un intero che indica un determinato giorno della settimana.
  \item \verb|teaching_id|: chiave esterna di \verb|teachings|
  \item \verb|classroom_id|: chiave esterna di \verb|classrooms|
  \item \verb|timetable_id|: chiave esterna di \verb|timetables|
 \end{itemize}
-\verb|startTime|,\verb|endTime| e \verb|day|\\ individuano quando verrà svolta la lezione del corso d'insegnamento, individuato dalla chiave esterna \verb|teaching_id|. \verb|classroom_id| individuerà la classe che verrà utilizzata.
-\paragraph{Validazioni}
+\verb|startTime|,\verb|endTime| e \verb|day|\\ individuano quando verrà svolta la lezione del corso d'insegnamento, individuato dalla chiave esterna \verb|teaching_id|. \verb|classroom_id| individuerà l'aula che verrà utilizzata.
+\subsubsection*{Validazioni}
 \begin{itemize}
- \item \verb|startTime, endTime, day |\\
-	\verb|timetable_id, classroom_id|:\\ 
-Nessun attributo dell'oggetto devono essere nulli.
+ \item \verb|startTime, endTime, day | \verb|timetable_id, classroom_id|: Nessun attributo dell'oggetto deve essere nullo.
  \item \verb|:day|: deve essere un intero compreso tra 1 e 6
 \end{itemize}
-\subparagraph{validate}
+\subsubsection*{validate}
 \begin{itemize}
-\item \verb|validate :is_correct_time?|: L'oggetto d'istanza è valido solo se l'attributo \verb|startTime| ha un oggetto di tipo tempo minore dell'oggetto contenuto in \verb|endTime|. \verb|:is_correct_time?|	 è un metodo privato
+\item \verb|validate :is_correct_time?|: L'oggetto d'istanza è valido solo se l'attributo \verb|startTime| ha un oggetto di tipo tempo minore dell'oggetto contenuto in \verb|endTime|.
+\item \verb|:is_correct_time?| è un metodo privato usato le validazione precedente
 \end{itemize}
 \subsubsection{User}
-\paragraph{Descrizione attributi}
+\subsubsection*{Descrizione degli attributi}
 \begin{itemize}
- \item mail: contiene una stringa che rappresenta la mail dello user
- \item password: contiene la password(crittografata tramite SHA1) dello user
- \item random: contiene un valore casuale, che verrà utilizzato per calcolare il digest del contenuto dell'attributo \verb|mail|
- \item digest: Il contenuto dell'attributo \verb|mail| concatenato al valore di 
- \\ \verb|random|, viene crittografato tramite SHA1. 
-
-Il risultato dell'operazione verrà salvato in questo attributo.
+ \item \verb|mail|: contiene una stringa che rappresenta la mail dello user
+ \item \verb|password|: contiene la password(crittografata tramite SHA1) dello user
+ \item \verb|random|: contiene un valore casuale, che verrà utilizzato per calcolare il digest.
+ \item \verb|digest|: il contenuto dell'attributo \verb|mail| concatenato al valore di \verb|random|, viene crittografato tramite SHA1. Il risultato dell'operazione verrà salvato in questo attributo.
 \end{itemize}
-\paragraph{Validazioni}
+\subsubsection*{Validazioni}
 \begin{itemize}
-\item \verb|password, mail, random, digest|:\\tutti gli attributi devono essere non nulli. Per la \verb|password|,il controllo della presenza di contenuto non nullo, verrà fatto solo nelle operazioni di update e non nelle operazioni di create. Questo perchè un utente verrà inizialmente inserito nel sistema e successivamente verrà invitato tramite mail a completare la registrazione inserendo la password. 
+\item \verb|password, mail, random, digest|: tutti gli attributi devono essere non nulli. Per \verb|password| il controllo della presenza di contenuto non nullo, verrà eseguito solo nelle operazioni di aggiornamento e non nelle operazioni di creazione. Questo perchè un utente verrà inizialmente inserito nel sistema e successivamente verrà invitato tramite mail a completare la registrazione inserendo la password. 
 \item \verb|password|: dovrà contenere come minimo 6 caratteri e dovrà rispettare l'espressione regolare: \verb|/^[a-zA-Z0-9\.]*$/|. 
- \item \verb|mail|: nella tabella \verb|users| non deve essere presente una riga con lo stesso valore dell'attributo \verb|mail| dell'oggetto istanziato. 
-
-Non possono esistere due user con la stessa password. Inoltre il contenuto deve rispettare l'espressione regolare:\\
+ \item \verb|mail|: nella tabella \verb|users| non deve essere presente una tupla con lo stesso valore dell'attributo \verb|mail| dell'oggetto istanziato. Non possono esistere due user con lo stesso indirizzo e-mail. Inoltre il contenuto deve rispettare l'espressione regolare:\\
 \verb|^([a-zA-Z0-9_\.\-\+]){4,20}\@|\\ \verb|(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})$/|.\\
-Si accettano tutti i tipi di mail con un numero di caratteri compreso tra 4 e 20. E' possibile utilizzare lettere maiuscole, minuscole, numeri e i caratteri - e +.
-Sono valide anche le mail che hanno più domini, come ad esempio prova@math.unipd.it  
+Si accettano tutti i tipi di indirizzo e-mail con un numero di caratteri compreso tra 4 e 20. E' possibile utilizzare lettere maiuscole, minuscole, numeri e i caratteri - e +. Sono valide anche le mail che hanno più domini, come ad esempio prova@math.unipd.it 
 \end{itemize}
-\paragraph{Funzioni di callback}
+\subsubsection*{Funzioni di callback}
 \begin{itemize}
- \item \verb|before_save :encrypt_password|: prima di salvare l'oggetto di tipo \verb|User| nel database, la password viene crittografata attraverso l'algoritmo SHA1. \verb|encrypt_password| è un metodo privato.
-\item \verb|before_validation :calculate_digest|:\\
- prima di validare l'oggetto, viene chiamato il metodo\\ \verb|calculate_digest|. Questo metodo calcola il digest, tramite l'algoritmo SHA1, della stringa contenuta in \verb|mail|, concatenata ad un numero casuale(contenuto nell'attributo \verb|random|). Il risultato infine viene salvato nell'attributo \verb|digest|. \verb|calculate_digest| è un metodo privato.
+ \item \verb|before_save :encrypt_password|: prima di salvare l'oggetto di tipo \verb|User| nel database, la password viene crittografata attraverso l'algoritmo SHA1. 
+\item \verb|encrypt_password| è un metodo privato. utilizzato nella precedente funzione.
+\item \verb|before_validation :calculate_digest|: prima di validare l'oggetto, viene chiamato il metodo \verb|calculate_digest|. Questo metodo calcola il digest, tramite l'algoritmo SHA1, della stringa contenuta in \verb|mail|, concatenata ad un numero casuale (contenuto nell'attributo \verb|random|). Il risultato infine viene salvato nell'attributo \verb|digest|. 
+\item \verb|calculate_digest| è un metodo privato utilizzato nella precedente funzione.
 \end{itemize}
 \paragraph{Metodi pubblici}
-Nel model \verb|User| sono presenti diversi metodi pubblici che ritornano true se l'oggetto d'istanza è associato a un particolare servizio. Se è associato significa che quel particolare utente è abilitato ad utilizzare quel servizio.
-Ogni metodo inizierà con la radice \verb|manage_|:
+Nel model \verb|User| sono presenti diversi metodi pubblici che ritornano true se l'oggetto possiede uno specifico privilegio. Ogni metodo inizierà con la radice \verb|manage_|:
 \begin{itemize}
- \item \verb|def manage_teachers?|: se torna true, l'utente può modificare le informazioni dei docenti associati hai suoi stessi corsi di laurea
- \item \verb|manage_teachings?|: se torna true, l'utente può modificare le informazioni dei corsi d'insegnamento associati hai suoi stessi corsi di laurea 
- \item \verb|manage_classrooms?|: se torna true, l'utente può modificare le informazioni delle classi associate ai suoi stessi corsi di laurea
+ \item \verb|manage_teachers?|: ritorna true se l'utente possiede il privilegio di amministrazione dei docenti
+ \item \verb|manage_teachings?|: ritorna true se l'utente possiede il privilegio di amministrazione degli insegnamenti
+ \item \verb|manage_classrooms?|: ritorna true se l'utente possiede il privilegio di amministrazione delle aule
  \end{itemize}
-Non è necessario riportare tutti i metodi, perchè il loro scopo è facilmente intuibile dalla seconda parte del nome; tutti i metodi sono riportati nel diagramma delle classi mostrato all'inizio della sottosezione intitolata Introduzione.
+Non è necessario riportare tutti i metodi, dato che il loro scopo è facilmente intuibile dalla denominazione;
 
-I metodi \verb|own_by_teacher?| e \verb|own_by_didactic_office?|, indicano se l'oggetto appartiene ha un \verb|Teacher| o ha un \verb|DidacticOffice|. In altre parole specifica se lo user è un docente o una segreteria didattica.
+I metodi \verb|own_by_teacher?| e \verb|own_by_didactic_office?|, indicano se l'oggetto appartiene ad un \verb|Teacher| o ad un \verb|DidacticOffice|.
 \subsubsection{DidacticOffice}
-\paragraph{Funzioni di callback}
+\subsubsection*{Funzioni di callback}
 \begin{itemize}
- \item \verb|def before_destroy|: Se un oggetto di tipo \verb|DidacticOffice| viene distrutto, deve essere cancellato anche l'oggetto \verb|User| associato
+ \item \verb|before_destroy|: prima dell'eliminazione di un oggetto di tipo \\ \verb|DidacticOffice|, viene eliminato l'oggetto di tipo \verb|User| ad esso associato.
 \end{itemize}
 \subsubsection{TemporalConstraint}
-\paragraph{Descrizione attributi}
+\subsubsection*{Descrizione degli attributi}
 \begin{itemize}
  \item \verb|startHour|:contiene un oggetto di tipo \verb|Time| ed indica l'ora di inizio dell'indisponibilità
  \item \verb|endHour|: contiene un oggetto di tipo \verb|Time| ed indica l'ora di fine dell'indisponibilità
  \item \verb|day|: contiene un intero che individua il giorno dell'indisponibilità
 \end{itemize}
-\paragraph{Validazioni}
+\subsubsection*{Validazioni}
 \begin{itemize}
  \item \verb|startHour,endHour,day|: tutti gli attributi devono essere non nulli
- \item \verb|day|: deve contenere un valore intero compreso tra 1 e 5
+ \item \verb|day|: deve contenere un valore intero compreso tra 1 e 6
  \end{itemize}
-
-\subparagraph{validate}
+\subsubsection*{validate}
 \begin{itemize}
- \item \verb|validate :is_correct_time?|: l'oggetto d'istanza è valido solo se \verb|starthour| è minore di \verb|endHour|. \verb|is_correct_time?| è un metodo privato.
+ \item \verb|validate :is_correct_time?|: l'oggetto è valido solo se \verb|starthour| è minore di \verb|endHour|. \item \verb|is_correct_time?| è un metodo privato utilizzato nella precedente validazione.
 \end{itemize}
 \subsubsection{QuantityConstraint}
-\paragraph{Descrizione attributi}
+\subsubsection*{Descrizione degli attributi}
 \begin{itemize}
- \item \verb|quantity|: contiene un valore intero
+ \item \verb|quantity|: contiene un valore intero rappresentante la quantità del vincolo o preferenza
 \end{itemize}
-\paragraph{Validazioni}
+\subsubsection*{Validazioni}
 \begin{itemize}
  \item \verb|quantity|: il contenuto di \verb|quantity| deve essere presente
  \item \verb|validates_numericality_of :quantity|: il contenuto di \verb|quantity| deve essere un intero compreso tra 1 e 1000 
 \end{itemize}
 \subsubsection{BooleanConstraint}
-\paragraph{Descrizione attributi}
+\subsubsection*{Descrizione attributi}
 \begin{itemize}
- \item \verb|bool|: contiene un valore booleano
+ \item \verb|bool|: contiene un valore booleano rappresentante la presenza o meno del vincolo o preferenza
 \end{itemize}
-\paragraph{Validazioni}
+\subsubsection*{Validazioni}
 \begin{itemize}
  \item \verb|bool|: il contenuto di \verb|bool| deve essere presente
 \end{itemize}
-I model \\
-\verb|BooleanConstraint|,\verb|TemporalConstraint| e \verb|QuantityConstraint| \\
+I model \verb|BooleanConstraint|, \verb|TemporalConstraint| e \verb|QuantityConstraint|
 hanno in comune i seguenti attributi:
 \begin{itemize}
  \item \verb|description|: contiene una descrizione del vincolo
- \item \verb|isHard|: contiene un valore di tipo intero. Se questo è uguale a 0, significa che il vincolo tassativamente dovrà essere soddisfatto. Per valori compresi tra 1 e 10, il vincolo è una preferenza con importanza inversamente proporzionale al numero(più grande è il numero meno importante è la preferenza)  	
+ \item \verb|isHard|: contiene un valore di tipo intero. Se questo è uguale a 0, significa che rappresenta un vincolo, mentre un valore maggiore o uguale ad 1 indica una preferenza con importanza inversamente proporzionale al numero.
  \end{itemize}
 \subsubsection{ConstraintsOwner}
 All'interno di questa classe, si definiranno le relazioni tra i vincoli e i relativi proprietari.
-Un vincolo può avere come proprietario: un corso di laurea(\verb|GraduateCourse|), una classe(\verb|Classroom|) e un docente(\verb|Teacher|).
-
+Un vincolo può avere come proprietario: un corso di laurea (\verb|GraduateCourse|), una classe (\verb|Classroom|) o un docente (\verb|Teacher|).
 
 Un proprietario, può avere tre tipi di vincoli, booleano, temporale e di quantità.
 Grazie a questo model join ed al plugin \verb|has_many_polymorphs|, sarà possibile associare in modo semplice e veloce un proprietario con un qualsiasi tipo di vincolo
@@ -666,15 +622,11 @@ Grazie a questo model join ed al plugin \verb|has_many_polymorphs|, sarà possib
 L'integrità referenziale è un concetto molto importante da non dimenticare durante la progettazione di un database.
 Da poco MySql ha implementato un supporto per la chiavi esterne attraverso il nuovo table engine INNODB.
 
-
-La sintassi per aggiungere un vincolo d'integrità alle chiave esterne è il seguente:\\ 
-\begin{center}
-\verb|add constraint constraint_name|\\
-\verb|foreign key (from_column)|
-\verb|references to_table(id)|   
-\end{center}
-Ovviamente ogni tabella del database dovrà utilizzare come engine,\\ INNODB, altrimenti la clausula \verb|foreign key| verrà ignorata. 
-
+La sintassi per aggiungere un vincolo d'integrità alle chiave esterne è il seguente:\\
+\verb|add constraint constraint_name| \\
+\verb|foreign key (from_column)|\\
+\verb|references to_table(id)|\\
+Ovviamente ogni tabella del database dovrà utilizzare come engine INNODB, altrimenti la clausula \verb|foreign key| verrà ignorata.
 \subsection{Componente Controller}
 La componente Controller si occupa di gestire le azioni che l'utente effettua, solitamente attraverso una view. Ogni metodo pubblico rappresenta quindi una specifica azione, eccezion fatta per l'Application Controller.
 Di seguito è riportato il diagramma delle classi che illustra questa componente. Sono stati omessi volutamente i tipi di ritorno per i metodi che implementano un'azione, in quanto queste operazioni non sono utilizzate per restituire un valore, bensì inizializzano alcune variabili d'istanza che saranno successivamente disponibili nella view specifica per quella azione. Inoltre per aumentare la leggibilità è stata omessa la derivazione della classe \verb|ApplicationController| da \verb|ActionController::Base|. \\
@@ -922,10 +874,159 @@ Si occupa di segnalare all'applicazione (attraverso il metodo \textbf{execute}) 
 Ogni singola istanza della classe \verb|AlgorithmJob| esegue il calcolo dell'orario relativo ad un determinato corso di laurea.
 \subsubsection{ItcSolver}
 Classe che si occupa di leggere il file di input (contenente tutte le informazioni richieste relative al calcolo e generazione dell'orario) ed eseguire effettivamente l'algoritmo.
+\subsubsection{Descrizione dell'algoritmo}
+L'algoritmo utilizzato per la generazione dell'orario si basa su \verb|Constraint Solver Library| (CPSolver 1.1,  copyright (C) 2007 Tomáš Müller): tale libreria permette la modellazione di una realtà universitaria al fine di elaborare diverse tipologie di orari, in base alle necessità.
+\subsubsection*{Risultati internazionali}
+Il CPSolver 1.1 ha concorso nella \verb|International Timetabling Competition 2007 (ITC 2007)|: tale competizione era strutturata in 3 diverse tipologie di problemi da risolvere:
+\begin{enumerate}
+ \item Generazione di orari d'esame
+ \item Generazione di orari di lezione basati sulla struttura del corso di laurea
+ \item Generazione di orari di lezione basati sulle iscrizioni dei diversi studenti ai corsi
+\end{enumerate}
+L'algoritmo è giunto tra i finalisti in tutti i diversi problemi, aggiudicandosi il primo posto nelle tipologie 1 e 2 (sito web ufficiale: \textit{http://www.cs.qub.ac.uk/itc2007/index.htm}).
+\subsubsection*{Motivazioni della scelta}
+CPSolver 1.1 è stato scelto dal nostro team in seguito ad un'attenta analisi. Le motivazioni che ci hanno portato ad adottarlo sono riassumibili in:
+\begin{itemize}
+ \item Ottimi risultati a livello internazionale
+ \item Totalmente open source
+ \item La libreria è scritta interamente in Java, e Ruby, tramite l'implementazione JRuby, supporta in maniera eccellente Java
+ \item Il codice sorgente è strutturato in maniera ordinata e corretta
+ \item La documentazione relativa è ampia e facilmente accessibile
+\end{itemize}
+\subsubsection*{Curriculum Course Timetabling}
+Il \verb|Curriculum Corse Timetabling (CCT)| rappresenta la sezione del CPSolver 1.1 che risolve il problema della generazione di orari di lezione basati sulla struttura dei corso di laurea. Qui di seguito ne verranno analizzati gli aspetti di maggiore importanza.
+\paragraph{Entità coinvolte}
+Le entità coinvolte  nella generazione dell'orario sono:
+\begin{itemize}
+ \item i corsi di laurea su cui si desidera elaborare l'orario delle lezioni
+ \item gli insegnamenti appartenenti ai corsi di laurea interessati
+ \item il numero dei giorni di lezione (solitamente 5)
+ \item il numero di fasce orarie giornaliere
+\end{itemize}
+\subsubsection*{Vincoli}
+I vincoli che l'algoritmo deve rispettare sono:
+\begin{itemize}
+ \item tutte le lezioni di un insegnamento devono essere presenti all'interno dell'orario, ed assegnate a giorni e/o fasce orarie differenti
+ \item due lezioni non possono tenersi contemporaneamente nella stessa aula
+ \item due lezioni non possono tenersi contemporaneamente nello stesso giorno e nella stessa fascia oraria
+ \item tutte le lezioni dello stesso anno devono essere tenute in giorni e/o fasce orarie differenti, vietando sovrapposizioni 
+ \item tutte le lezioni tenute dallo stesso docente devono essere tenute in giorni e/o fasce orarie differenti
+ \item tutti i giorni e/o fasce orarie caratterizzati da indisponibilità devono essere rispettati/e
+\end{itemize}
+\subsubsection*{Fattori di scelta}
+La soluzione migliore viene trovata in base ai seguenti fattori:
+\begin{itemize}
+ \item la capacità dell'aula preposta ad ospitare la lezione di un determinato insegnamento deve cercare di garantire il posto a sedere agli studenti previsti dall'insegnamento stesso
+ \item le lezioni di un determinato insegnamento devono essere tenute almeno in un numero minimo prefissato di giorni diversi
+ \item le lezioni dello stesso anno devono essere il più possibile adiacenti le une con le altre, riducendo le eventuali ore buche
+ \item le lezioni dello stesso insegnamento devono essere tenute il più possibile nella stessa aula
+ \item le preferenze sui singoli insegnamenti devono essere il più possibile rispettate
+\end{itemize}
+\subsubsection*{Componenti interne}
+Tutte le informazioni relative a CPSolver 1.1, compresa la relativa documentazione, sono reperibili all'indirizzo: \textit{http://cpsolver.sourceforge.net/api/index.html}.
+
+La versione originale dell'algoritmo permette la sola gestione dei vincoli. Al fine di garantire un prodotto il più possibile adattabile alle diverse realtà universitarie, il team QuiXoft ha innestato all'interno della libreria la gestione delle preferenze sui singoli insegnamenti. Tali modifiche sono state apportate nel modo meno invasivo possibile, lasciando il più incontaminato possibile il codice sorgente originale.
+
+Prima di continuare la trattazione delle componenti occorre rendere nota la seguente convenzione in uso da parte del CPSolver 1.1 e che è stata mantenuta durante il nostro sviluppo:
+\begin{itemize}
+ \item i giorni interessati nella generazione dell'orario vengono individuati tramite valore numerico: ove N°Giorni rappresenta il numero dei giorni di lezione, 0,1, .. N°Giorni-1 rappresentano in formato numerico i giorni di interesse. Ipotizzando, ad esempio, 5 giorni a disposizione: 0 = LUN, 1 = MAR, .. , 4 = VEN
+ \item le fasce orarie vengono individuate tramite valore numerico: ove N°FasceOrarie rappresenta il numero di fasce orarie giornaliere, 0,1 .. N°FasceOrarie rappresentano in formato numerico le fasce orarie. Ipotizzando, ad esempio, 6 fasce orarie: 0 = 1° fascia, 1 = 2°fascia, .. , 5 = 6°fascia
+\end{itemize}
+I nomi delle classi e dei metodi rispecchiano le convenzioni standard di Java. La lingua di riferimento adottata, come nel CPSolver 1.1,  è la lingua inglese, commenti compresi.
+\subsubsection*{La classe MyPreferences\_DaySlot}
+La classe \verb|MyPreferences_DaySlot| rappresenta il gestore delle preferenze. Le preferenze che gestisce sono relative ad un insegnamento, in particolare rappresentano i giorni e/o le fasce orarie in cui tale insegnamento non è desiderabile venga tenuto. 
+L'insieme delle preferenze è organizzato sotto forma di \verb|Vector| (\textit{http://java.sun.com/j2se/1.4.2/docs/api/java/util/Vector.html}), il cui tipo base è \verb|DaySlot_PreferenceInfo|.
+\subsubsection*{La classe interna DaySlot\_PreferenceInfo}
+La classe \verb|DaySlot_PreferenceInfo| rappresenta una singola preferenza. Ogni preferenza è caratterizzata da diverse informazioni quali:
+\begin{itemize}
+\item	il codice identificativo dell'insegnamento a cui essa fa riferimento
+\item	il giorno e la fascia oraria in cui è desiderabile non venga tenuto l'insegnamento
+\item	il peso della preferenza stessa
+\end{itemize}
+Il peso rappresenta un valore numerico attraverso il quale si assegna un valore di importanza ad una preferenza. Tale peso permette all'algoritmo di tenere in maggiore considerazione le preferenze ``molto desiderabili'', rispetto, ad esempio, a preferenze minori.
+
+\paragraph{Pesi e priorità delle preferenze}
+L'assegnazione dei pesi viene gestita internamente alla classe in base ad una scala di priorità. I valori dei pesi sono stati scelti dal team QuiXoft in modo da garantire una corretta ed efficiente elaborazione. La relazione tra il valore di priorità ed il peso che tale priorità associa alla preferenza è riassumibile con la tabella seguente:
+
+\includegraphics[scale=1]{images/Algoritm_WeightPriorityRelation.png}
+\subsubsection*{I metodi}
+I metodi privati presenti all'interno della classe \verb|MyPrefereces_DaySlot| sono:
+\begin{itemize}
+\item \verb|int getWeightFromPriority (int)| : in base al valore di priorità restituisce il peso corrispondente secondo la tabella precedente.
+\item \verb|DaySlot_PreferenceInfo getPreference (String, int, int)| : restituisce un riferimento alla preferenza di uno specifico insegnamento, in base al giorno ed alla fascia oraria di interesse. Nel caso in cui tale preferenza non esistesse il valore restituito è \verb|null|.
+\item \verb|bool existsCoursePreference (String)| : in base al codice identificativo di un insegnamento, restituisce TRUE se esiste almeno una preferenza relativa allo stesso, FALSE nel caso in cui non ne esista alcuna. 
+\end{itemize}
+
+I metodi pubblici messi a disposizione sono:
+\begin{itemize}
+\item \verb|addPreference(String, int, int, int)| : aggiunge una preferenza all'insieme delle preferenze. I parametri formali rappresentano l'identificativo dell'insegnamento, il giorno e la fascia oraria in cui è desiderabile non venga tenuta alcuna lezione dell'insegnamento specificato, ed il valore di priorità che la preferenza assumerà all'interno del sistema di calcolo.
+\item \verb|getPreferencesPenality(String)| : restituisce il valore di penalità associato ad un determinato insegnamento. I valore di penalità viene calcolato in base alle preferenze non soddisfatte.
+\end{itemize}
+\subsubsection*{Dati di input}\label{Algo_Input}
+Per quanto riguarda l'input, l'algoritmo si basa su un file con estensione \verb|.cct| (Curriculum Course Timetabling) il quale contiene i dati necessari all'elaborazione dell'orario delle lezioni.
+
+La struttura interna del file di input è definibile attraverso le diverse sezioni che la compongono; più precisamente esse sono:
+\begin{itemize}
+\item	Sezione \verb|MODEL|: informazioni generali
+\item	Sezione \verb|COURSES|: elenco dei vari insegnamenti
+\item	Sezione \verb|ROOMS|: elenco delle aule
+\item	Sezione \verb|CURRICULA|: elenco dei relativa corsi di laurea
+\item	Sezione \verb|UNAVAIBILITY_CONSTRAINTS|: elenco delle indisponibilità
+\item	Sezione \verb|PREFERENCES|: elenco delle preferenze
+\end{itemize}
+La sezione \verb|MODEL| rappresenta il preambolo del file. Tratta le informazioni di carattere generale riguardanti la realtà universitaria sulla quale si genererà l'orario delle lezioni. Si suddivide nei seguenti campi:
+\begin{itemize}
+\item	\verb|Name|: indica il nome della realtà di riferimento
+\item	\verb|Courses|: indica il numero complessivo dei corsi 
+\item	\verb|Rooms|: indica il numero delle aule a disposizione
+\item	\verb|Days|: indica il numero di giorni di lezione
+\item	\verb|Periods_per_day|: indica il numero di fasce orarie in cui è suddiviso ogni giorno
+\item	\verb|Curricula|: indica il numero dei corsi di laurea e relativi curricula interessati nella generazione dell'orario
+\item	\verb|Constraints|: indica il numero di vincoli di indisponibilità
+\end{itemize}
+
+Per la trattazione delle sezioni seguenti occorre avvalersi della seguente convenzione:
+\begin{itemize}
+\item il carattere | indica la divisione dal campo precedente al successivo, e corrisponde al carattere \verb|blank| nel file reale
+\item i campi preceduti dal carattere \# indicano campi a cui è assegnata un'informazione di tipo numerico
+\end{itemize}
+
+La sezione \verb|COURSES| identifica la sezione nella quale vengono elencati tutti gli insegnamenti e relative caratteristiche. Ogni riga di questa sezione rappresenta un singolo corso, e si attiene alla struttura seguente: \begin{verbatim}
+ CourseID | Teacher | #Lectures | MinWorkingDays | #Students
+\end{verbatim}
+
+La sezione \verb|ROOMS| identifica la sezione nella quale vengono elencate tutte le aule a disposizione e relativa capacità. Ogni riga di questa sezione rappresenta una singola aula, e si attiene alla  struttura seguente:
+\begin{verbatim}
+ RoomID | #Capacity
+\end{verbatim}
+
+La sezione \verb|CURRICULA| identifica la sezione nella quale vengono elencati tutti i corsi di laurea con i relativi curricula ed i relativi insegnamenti che ne fanno parte. Ogni riga di questa sezione rappresenta un singolo corso di laurea, e si attiene alla struttura seguente:
+\begin{verbatim}
+ CurriculumID | #Courses | CourseID ... CourseID
+\end{verbatim}
+
+La sezione \verb|UNAVAILABILITY_CONSTRAINTS| identifica la sezione nella quale vengono elencati tutti i vincoli di indisponibilità degli insegnamenti. Ogni riga di questa sezione rappresenta un singolo vincolo, e si attiene alla struttura seguente:
+\begin{verbatim}
+ CourseID | #Day | #TimeSlot
+\end{verbatim}
+
+
+La sezione \verb|PREFERENCES| identifica la sezione nella quale vengono elencate tutte le preferenze degli insegnamenti: rappresentano quando non è desiderabile venga tenuta una lezione di un determinato insegnamento. Ogni riga di questa sezione rappresenta una singola preferenza, e si attiene alla struttura seguente:
+\begin{verbatim}
+ CourseID | #Day | #TimeSlot
+\end{verbatim}
+
+\subsubsection*{Dati di output}
+Per quanto riguarda l'output l'algoritmo produce un file che rappresenta l'intero orario delle lezioni. Ogni riga rappresenta una singola lezione, e si attiene alla struttura seguente:
+\begin{verbatim}
+ CourseID | RoomID | #Day | #TimeSlot
+\end{verbatim}
+
+I valori identificativi dell'insegnamento (\verb|CourseID|) e dell'aula (\verb|RoomID|) derivano dai valori delle sezioni \verb|COURSES| e \verb|ROOMS| trattate nella sezione \ref{Algo_Input}
 \newpage
 \section{Organizzazione delle directories}
 Per facilitare la comprensione dell'organizzazione del sistema Sigeol, viene presentata in questa sezione la struttura delle directories. Per un dettaglio maggiore dell'organizzazione si prega di far riferimento al sito ufficiale di Ruby on Rails. Nella figura che segue viene illustrata la gerarchia \\
 \includegraphics[scale=0.59]{images/gerarchiacartelle.png}
-A differenza delle consuete applicazioni sviluppate tramite il framework Rails, il sistema Sigeol presenta la cartella \verb|WEB-INF| che contiene tutte le classi e librerie utilizzate dalla servlet e il suo file di configurazione web.xml.\\ Per ulteriori informazioni sulla tecnologia servlet visitare il sito http://java.sun.com/products/servlet/ .
+A differenza delle consuete applicazioni sviluppate tramite il framework Rails, il sistema Sigeol presenta la cartella \verb|WEB-INF| che contiene tutte le classi e librerie utilizzate dalla servlet e il suo file di configurazione web.xml.\\ Per ulteriori informazioni sulla tecnologia servlet visitare il sito \\ http://java.sun.com/products/servlet/ .
 \modifiche
 \end{document}
