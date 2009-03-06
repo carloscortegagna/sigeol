@@ -48,6 +48,8 @@
 \hline
 \textit{06-03-2009} & 3.0.0 & Correzioni varie e approvazione del Responsabile\\
 \hline
+\textit{29-02-2009} & 2.6.0 & Aggiunta sezione componente aggiuntivo\\
+\hline
 \textit{04-03-2009} & 2.5.0 & Modifica dell'analisi dei rischi\\
 \hline
 \textit{30-02-2009} & 2.4.0 & Modifica della rotazione dei ruoli\\
@@ -136,7 +138,7 @@ Questo documento espone la pianificazione dello sviluppo del progetto denominato
 Al suo interno è possibile trovare una stima delle tempistiche e dei costi del progetto, il tutto illustrato attraverso l'utilizzo di tabelle e del diagramma di Gantt.
 
 Si mostrerà anche come è stata pianificata la rotazione dei ruoli per ogni fase del progetto e la ripartizione del carico di lavoro individuale.
-Il piano si evolve di pari passo col progetto e inizialmente il documento conterrà solamente previsioni e stime.
+Il piano si evolve di pari passo col progetto e inizialmente il documento conterrà solamente previsioni e stime, in seguito anche i consuntivi delle ore spese e dei costi.
 
 Data la scarsa esperienza del team QuiXoft non si esclude la possibilità che il piano di progetto potrà essere rivisto e rimodellato in corso d'opera.
 \subsection{Scopo del prodotto}
@@ -181,6 +183,8 @@ Il team QuiXoft è formato dai seguenti componenti:
 \item Alberti Andrea
 \end{itemize}
 Ogni componente soddisfa i vincoli di propedeuticità ed è quindi libero di partecipare alla revisione dei requisiti.
+\subsubsection{Componente aggiunto}
+Il componente Andrea Alberti è stato inserito nel team QuiXoft in un secondo momento. Questo ha permesso di poter apportare un maggior valore aggiunto in termini di qualità al progetto, potendo effettuare con più ore di lavoro a disposizione sia una progettazione che dei test di verifica maggiormente accurati; tutto questo a fronte di un piccolo costo in più che però viene in questo modo, avendo una qualità di prodotto superiore, subito ripagato.
 \subsection{Ruoli}
 Il progetto prevede i seguenti ruoli:
 \begin{itemize}
@@ -213,7 +217,7 @@ Verranno qui descritti gli aspetti riguardanti la pianificazione del progetto, i
 
 Vista la natura del team di sviluppo, in cui tutti i componenti occuperanno a rotazione tutti i ruoli necessari, è stata posta particolare attenzione nel fissare date precise in cui cambiare ruoli e nel garantire l'assenza di conflitti di interesse.
 
-Per necessità organizzative, è possibile che qualche componente possa esercitare due ruoli durante una singola rotazione; è comunque garantita la completa assenza di interessi tra i compiti assunti.
+Per necessità organizzative, è possibile che qualche componente possa esercitare due ruoli durante una singola rotazione; è comunque garantita la completa assenza di conflitti tra i compiti assunti.
 \bigskip
 
 Per adattare alcune tabelle al documento, i nominativi dei ruoli verranno così abbreviati:
@@ -333,7 +337,7 @@ La rotazione dei ruoli è avvenuta il giorno 27/01/2009, ed è rappresentata nel
 \bigskip \bigskip 
 \begin{large}\textbf{Preventivo:}\end{large}
 \newline
-A fianco di ogni ruolo sono riportate, tra parentesi, le ore stimate da esercitare:
+A fianco di ogni ruolo sono riportate, tra parentesi, le ore inizialmente stimate da esercitare:
 \\
 \begin{center}
 \begin{tabular}{|c||c|c|}
@@ -385,9 +389,9 @@ Non appena tutte le componenti saranno pronte, verranno a loro volta integrate t
 
 La fase di realizzazione è iniziata il 16/02/2009 e se ne prevede la fine per il 24/03/2009.
 
-Orientativamente a tre quarti della fase di realizzazione è prevista la Revisione di Qualifica (RQ), che ha lo scopo di approvare l'esito finale della verifica. In questa fase si dovrà portare la versione definitiva del \textsc{Piano di Qualifica} e la versione iniziale del \textsc{Manuale Utente}.
+Orientativamente a tre quarti della fase di realizzazione è prevista la Revisione di Qualifica (RQ), che ha lo scopo di approvare l'esito finale della verifica. In questa fase si dovrà portare la versione aggiornata del \textsc{Piano di Qualifica} e del \textsc{Piano di Progetto}; inoltre la versione iniziale del \textsc{Manuale Utente}.
 
-A fine fase ci sarà la Revisione di Accettazione (RA), in cui vi sarà il \underline{collaudo} del sistema da parte del committente e l'accertamento di soddisfacimento di tutti i requisiti previsti. In quest'occasione dovrà essere consegnata la versione definitiva del \textsc{Manuale Utente} e la versione aggiornata del \textsc{Piano di Qualifica}.
+A fine fase ci sarà la Revisione di Accettazione (RA), in cui vi sarà il \underline{collaudo} del sistema da parte del committente e l'accertamento di soddisfacimento di tutti i requisiti previsti. In quest'occasione dovrà essere consegnata la versione definitiva del \textsc{Manuale Utente} e la versione definitiva del \textsc{Piano di Qualifica} e del \textsc{Piano di Progetto}.
 
 Se la revisione andrà a buon fine il prodotto verrà accettato e il progetto avrà termine.
 
@@ -405,7 +409,7 @@ A fianco di ogni ruolo sono riportate, tra parentesi, le ore stimate da esercita
 Barberio Mattia & Progr(15) & Amm(8,5)/Ver(10) \\ \hline
 Beggiato Andrea & Progr(16) & Res(7)/Amm(5,5) \\ \hline
 Freo Matteo & Amm(9,5) & Progr(16)/Res(2) \\ \hline
-Grosselle Alessandro & Res(7)/Prog(2) & Progr(15) \\ \hline
+Grosselle Alessandro & Res(7)/Prog(2) & Progr(17) \\ \hline
 Scarpa Davide & Progr(16) & Ver(12) \\ \hline
 Scortegagna Carlo & Ver(22) & Progr(16) \\ \hline
 Alberti Andrea & Progr(16) & Ver(20) \\ \hline
@@ -436,7 +440,7 @@ Alberti Andrea & Progr(17) \\ \hline
 \end{center}
 \bigskip
 \subsection{Riassunto delle ore}
-Dai dati consuntivati riguardanti le fasi appena elencate è possibile stilare la seguente tabella riassuntiva, che mostra la suddivisione del carico di lavoro (espresso in ore) per ogni componente del team QuiXoft, diviso per ruolo.
+Dai dati consuntivati riguardanti le fasi appena elencate è possibile stilare la seguente tabella riassuntiva, il preventivo a finire delle ore, che mostra la suddivisione del carico di lavoro per ogni componente del team QuiXoft, diviso per ruolo.
 
 Si può altresi notare, osservando la colonna ''Totale'', che il carico di lavoro personale che ogni componente del team dovrà sopportare durante lo sviluppo del progetto è compreso fra le 85 e le 105 ore, in pieno rispetto del vincolo consultabile al punto 2.2.1.
 
@@ -603,10 +607,10 @@ SC & 300 & 190 & 500 & 396 & 352 & 256 & 1994 \\ \hline
 AA & 210 & 190 & 500 & 396 & 384 & 256 & 1936 \\ \hline
 \end{tabular}
 \end{center}
-\subsection{Conto economico reale}
+\subsection{Conto economico reale e preventivo a finire}
 Nel proseguire dello sviluppo del progetto sono state variate, come illustrato nelle precedenti sezioni del presente documento, le ore utilizzate dai vari membri del team e dai vari ruoli previsti.
 
-Ciò ha portato ai dati riportati di seguito, che illustrano i costi sostenuti dal team QuiXoft fino al primo periodo di realizzazione:
+Ciò ha portato ai dati riportati di seguito, che illustrano i costi sostenuti dal team QuiXoft fino al primo periodo di realizzazione compreso:
 \\
 \begin{center}
 \begin{tabular}{|c||c|c|c|c|c|c||c|}
@@ -617,15 +621,15 @@ BM & 330 & 0 & 500 & 440 & 192 & 240 & 1702 \\ \hline
 BA & 0 & 60 & 500 & 440 & 368 & 256 & 1624 \\ \hline
 FM & 120 & 170 & 500 & 462 & 368 & 0 & 1620 \\ \hline
 GA & 150 & 270 & 500 & 418 & 336 & 32 & 1674  \\ \hline
-SD & 180 & 270 & 500 & 396 & 336 & 272 & 1792 \\ \hline
-SC & 300 & 170 & 500 & 418 & 160 & 0 & 1548 \\ \hline
+SD & 180 & 270 & 500 & 396 & 144 & 272 & 1762 \\ \hline
+SC & 300 & 170 & 500 & 418 & 352 & 0 & 1740 \\ \hline
 AA & 180 & 170 & 500 & 440 & 64 & 272 & 1626 \\ \hline
 \end{tabular}
 \end{center}
 \bigskip
-Il costo totale sostenuto fin'ora è quindi di 11780 \euro. Tale costo è ancora inferiore di 1984 \euro al costo inizialmente preventivato.
+Il costo totale sostenuto fin'ora è quindi di 11748\euro. Tale costo è ancora inferiore di 2016\euro \ al costo inizialmente preventivato.
 Tale disavanzo verrà impiegato dal team per portare a termine la seconda fase di realizzazione, tutt'ora in corso.
 
-Il costo preventivato inizialmente per la seconda fase di realizzazione è di 1974 \euro, molto vicino quindi al valore di 1984 appena rilevato. Si prevede quindi di riuscire a portare a compimento il progetto restando ampiamente entro i costi preventivati.
+Il costo preventivato inizialmente per la seconda fase di realizzazione è di 2006\euro, molto vicino quindi al valore di 2016\euro \ appena rilevato. Si prevede quindi di riuscire a portare a compimento il progetto restando ampiamente entro i costi preventivati. Il preventivo totale a finire sarà quindi di 13754\euro.
 \modifiche
 \end{document}
