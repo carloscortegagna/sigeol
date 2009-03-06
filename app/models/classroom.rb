@@ -10,8 +10,6 @@ class Classroom < ActiveRecord::Base
   include ApplicationHelper
   
   belongs_to :building
-  has_many_polymorphs :constraints, :from => [:boolean_constraints, :temporal_constraints],
-    :as => :owner,:dependent => :destroy
   has_many :timetable_entries, :dependent => :destroy
   has_and_belongs_to_many :graduate_courses, :uniq => true
 

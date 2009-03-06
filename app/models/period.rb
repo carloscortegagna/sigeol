@@ -11,14 +11,17 @@ class Period < ActiveRecord::Base
   has_many :teachings
   has_many :timetable
   #validazioni :subperiod
-  validates_inclusion_of :subperiod,
-                         :in  => 1..4,
-                         :message => "Il sotto-periodo deve essere compreso tra 1 e 4"
-
- #validazioni :year
-  validates_inclusion_of :year,
-                         :in  => 1..6,
-                         :message => "L'anno deve essere compreso tra 1 e 6"
+  validates_numericality_of :subperiod,
+                            :only_integer =>true,
+                            :greater_than_or_equal_to =>1,
+                            :less_than_or_equal_to =>4,
+                            :message=>"il sotto periodo deve essere compreso tra 1 e 4"
+  
+  validates_numericality_of :year,
+                            :only_integer =>true,
+                            :greater_than_or_equal_to =>1,
+                            :less_than_or_equal_to =>6,
+                            :message=>"L'anno deve essere compreso tra 1 e 6"
   #validazione unicità subperiod e year
   validate_on_create :unique_subperiod_year?
 

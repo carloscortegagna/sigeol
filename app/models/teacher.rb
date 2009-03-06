@@ -13,10 +13,6 @@ class Teacher < ActiveRecord::Base
   
   has_one :user, :as => :specified
   has_many :teachings
-    #si associa teacher ai vincol temporali(temporal constraint)
-  has_many_polymorphs :constraints, :from=>[:temporal_constraints],
-      :as=> :owner, :dependent=>:destroy
-
   #validazioni attributo :name e :surname
    validates_presence_of :name, :surname,
                          :message=>"Il nome non deve essere vuoto",
