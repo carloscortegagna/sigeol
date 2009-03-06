@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Analisi dei requisiti v2.0.0}
+\lfoot{Analisi dei requisiti v2.0.1}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Analisi dei requisiti v2.0.0}
+\lfoot{Analisi dei requisiti v2.0.1}
 \cfoot{}
 \rfoot{}
 }
@@ -44,6 +44,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{6 marzo 2009} & 2.0.1 & Modifiche nella sezione Requisiti funzionali e conseguente aggiornamento della sezione Tracciamento Requisiti-Use Case \\
 \hline
 \textit{24 gennaio 2009} & 2.0.0 & Approvazione del Responsabile \\
 \hline
@@ -98,7 +100,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Analisi dei requisiti \\ v2.0.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Analisi dei requisiti \\ v2.0.1}}
 \author{Redazione: Beggiato Andrea, Scarpa Davide, Barbiero Mattia }
 \maketitle
 \medskip
@@ -427,33 +429,51 @@ Nell'eventualità in cui il presidente sia anche docente, i requisiti obbligator
 \item \textbf{OBBLIGATORI}
 \begin{enumerate}
 \item RFO0.0 Possibilità di \underline{autenticazione}
-\item RFO0.1 Possibilità di inserimento e modifica per ogni corso, all'interno del proprio corso di laurea, del nome, dei relativi CFU, dell'anno di appartenenza, del periodo, dello stato, del numero di ore in aula e in laboratorio (se previsto), del docente di riferimento che lo tiene e della stima del numero di studenti che lo seguiranno 
-\item RFO0.2 Possibilità di inserimento e modifica per ogni aula disponibile, all'interno del proprio corso di laurea, del nome, della capienza, delle ore e dei periodi di non disponibilità
-\item RFO0.3 Possibilità di inserimento e modifica, all'interno del proprio corso di laurea, dei dati dei docenti
-\item RFO0.4 Possibilità di inserimento e modifica dei dati relativi all'anno accademico
-\item RFO0.5 Possibilità di inserimento e modifica dei diversi indirizzi appartenenti allo stesso corso di laurea
-\item RFO0.6 Possibilità di impostare vincoli e le preferenze per la struttura dell'orario
-\item RFO0.7 Possibilità di generazione dello schema d'orario in formato \underline{pdf} e \underline{html}
-\item RFO0.8 Possibilità di consultare lo schema d'orario di ogni corso di laurea
-\item RFO0.9 Possibilità di ripristinare i dati relativi ai corsi di laurea da un \underline{backup} scelto
-\item RFO0.10 Possibilità di scegliere lo stato (rilassato o meno) dei vincoli, eventualmente modificati dal sistema al fine di generare uno schema d'orario nel caso in cui esso risulti inesistente o inadatto
-\item RFO0.11 Possibilità di notificare i vincoli e le preferenze non soddisfatti ai docenti interessati
-\item RFO0.12 Possibilità di consultare le informazioni relative a docenti, aule, corsi di laurea e corsi
+\item RFO0.1Possibilità di inserimento dei corsi di laurea. Questo requisito è da intendersi esclusivamente per l'utente segreteria didattica
+\item RFO0.2Possibilità di modifica dei corsi di laurea. Questo requisito è da intendersi esclusivamente per l'utente segreteria didattica
+\item RFO0.3Possibilità di cancellazione dei corsi di laurea. Questo requisito è da intendersi esclusivamente per l'utente segreteria didattica
+\item RFO0.4 Possibilità di inserimento per ogni corso, all'interno del proprio corso di laurea, del nome, dei relativi CFU, dell'anno di appartenenza, del periodo, dello stato, del numero di ore in aula e in laboratorio (se previsto), del docente di riferimento che lo tiene e della stima del numero di studenti che lo seguiranno
+\item RFO0.5 Possibilità di modifica per ogni corso, all'interno del proprio corso di laurea, del nome, dei relativi CFU, dell'anno di appartenenza, del periodo, dello stato, del numero di ore in aula e in laboratorio (se previsto), del docente di riferimento che lo tiene e della stima del numero di studenti che lo seguiranno
+\item RFO0.6 Possibilità di cancellazione, all'interno del proprio corso di laurea, di ogni corso precedentemente inserito
+\item RFO0.7 Possibilità di inserimento per ogni aula disponibile, all'interno del proprio corso di laurea, del nome, della capienza, delle ore e dei periodi di non disponibilità
+\item RFO0.8 Possibilità di modifica per ogni aula disponibile, all'interno del proprio corso di laurea, del nome, della capienza, delle ore e dei periodi di non disponibilità
+\item RFO0.9 Possibilità di cancellazione, all'interno del proprio corso di laurea, di ogni aula precedentemente inserita
+\item RFO0.10 Possibilità di inserimento, all'interno del proprio corso di laurea, dei dati dei docenti
+\item RFO0.11 Possibilità di modifica, all'interno del proprio corso di laurea, dei dati dei docenti
+\item RFO0.12 Possibilità di cancellazione, all'interno del proprio corso di laurea, di un docente precedentemente inserito
+\item RFO0.13 Possibilità di inserimento dei dati relativi all'anno accademico
+\item RFO0.14 Possibilità di modifica dei dati relativi all'anno accademico
+\item RFO0.15 Possibilità di cancellazione di un anno accademico precedentemente inserito
+\item RFO0.16 Possibilità di inserimento dei diversi indirizzi appartenenti allo stesso corso di laurea
+\item RFO0.17 Possibilità di modifica dei diversi indirizzi appartenenti allo stesso corso di laurea
+\item RFO0.18 Possibilità di cancellazione di un indirizzo precedentemente inserito di un corso di laurea
+\item RFO0.19 Possibilità di impostare vincoli e preferenze per la struttura dell'orario
+\item RFO0.20 Possibilità di generazione dello schema d'orario in formato \underline{pdf} e \underline{html}
+\item RFO0.21 Possibilità di consultare lo schema d'orario di ogni corso di laurea
+%\item RFO0.9 Possibilità di ripristinare i dati relativi ai corsi di laurea da un \underline{backup} scelto
+\item RFO0.22 Possibilità di scegliere lo stato (rilassato o meno) dei vincoli, eventualmente modificati dal sistema al fine di generare uno schema d'orario nel caso in cui esso risulti inesistente o inadatto
+\item RFO0.23 Possibilità di notificare i vincoli e le preferenze non soddisfatti ai docenti interessati
+\item RFO0.24 Possibilità di consultare le informazioni relative a docenti, aule, corsi di laurea e corsi
 \end{enumerate}
 \item \textbf{DESIDERABILI}
 \begin{enumerate}
-\item RFD0.0 Possibilità di notificare il mancato inserimento di un docente o di un corso d'insegnamento di un altro corso di laurea
-\item RFD0.1 Possibilità di impostare una data limite per l'inserimento dei vincoli da parte dei docenti, con notifica della scadenza. 
-\item RFD0.2 Possibilità di modifica manuale dello schema d'orario specificato
+\item RFD0.0 Possibilità di impostare una data limite per l'inserimento dei vincoli da parte dei docenti, con notifica della scadenza
+\item RFD0.1 Possibilità di modifica manuale dello schema d'orario specificato
+\item RFD0.2 Possibilità di ripristinare i dati relativi ai corsi di laurea da un \underline{backup} scelto
+\item RFD0.3 Possibilità di impostare la frequenza con cui avviene il \underline{backup} automatico dei dati
 \end{enumerate}
 \end{itemize}
 \subsubsection{RF1 Requisiti funzionali per i docenti}
 \begin{itemize}
 \item \textsc{OBBLIGATORI}
 \begin{enumerate}
-\item RFO1.0 Possibilità di inserimento e modifica dei propri giorni e ore di indisponibilità, con relativa motivazione
-\item RFO1.1 Possibilità di inserimento e modifica delle proprie preferenze su orari e giorni di lezione
-\item RFO1.2 Possibilità di modifica dei propri dati personali
+\item RFO1.0 Possibilità di inserimento dei propri giorni e ore di indisponibilità, con relativa motivazione
+\item RFO1.1 Possibilità di modifica dei propri giorni e ore di indisponibilità, con relativa motivazione
+\item RFO1.2 Possibilità di cancellazione dei propri vincoli di indisponibilità precedentemente inseriti
+\item RFO1.3 Possibilità di inserimento delle proprie preferenze su orari e giorni di lezione
+\item RFO1.4 Possibilità di modifica delle proprie preferenze su orari e giorni di lezione
+\item RFO1.5 Possibilità di cancellazione delle proprie preferenze su orari e giorni di lezione
+\item RFO1.6 Possibilità di modifica dei propri dati personali
 \end{enumerate}
 \item \textbf{DESIDERABILI}
 \begin{enumerate}
@@ -514,21 +534,39 @@ Nell'eventualità in cui il presidente sia anche docente, i requisiti obbligator
 \hline
 \textsc{Requisiti} & \textsc{Use case}  \\ \hline \hline
 RFO0.0 & UC1 \\ \hline
-RFO0.1 & UC4 \\ \hline
-RFO0.2 & UC5 \\ \hline
-RFO0.3 & UC6 \\ \hline
 RFO0.4 & UC4 \\ \hline
-RFO0.5 & UC4  \\ \hline
+RFO0.5 & UC4 \\ \hline
 RFO0.6 & UC4 \\ \hline
-RFO0.7 & UC7 \\ \hline
-RFO0.8 & UC8 \\ \hline
-RFO0.9 & UC9 \\ \hline
-RFO0.10& UC7 \\ \hline
-RFO0.11& UC2 \\ \hline
-RFO0.12& UC8 \\ \hline
-RFO1.0 & UC6 \\ \hline
+RFO0.7 & UC5 \\ \hline
+RFO0.8 & UC5 \\ \hline
+RFO0.9 & UC5 \\ \hline
+RFO0.10& UC6 \\ \hline%???
+RFO0.11& UC6 \\ \hline
+RFO0.12& UC6 \\ \hline%???
+RFO0.13& UC4 \\ \hline
+RFO0.14& UC4 \\ \hline
+RFO0.15& UC4 \\ \hline
+RFO0.16& UC4 \\ \hline
+RFO0.17& UC4 \\ \hline
+RFO0.18& UC4 \\ \hline
+RFO0.19& UC4 \\ \hline
+RFO0.20& UC7 \\ \hline
+RFO0.21& UC8 \\ \hline
+RFO0.22& UC7 \\ \hline
+RFO0.23& UC2 \\ \hline
+RFO0.24& UC8 \\ \hline
+RFD0.2 & UC9 \\ \hline
+RFD0.3 & UC9 \\ \hline
+RFO1.0 & UC6 \\ \hline%???
 RFO1.1 & UC6 \\ \hline
-RFO1.2 & UC6 \\ \hline
+RFO1.2 & UC6 \\ \hline%???
+RFO1.3 & UC6 \\ \hline%???
+RFO1.4 & UC6 \\ \hline
+RFO1.5 & UC6 \\ \hline%???
+RFO1.6 & UC6 \\ \hline
+RFD1.0 & UC8 \\ \hline
+RFD2.0 & UC8 \\ \hline
+RFD2.1 & UC8 \\ \hline
 \end{tabular}
 \end{center}
 \modifiche
