@@ -17,7 +17,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Piano di Progetto v2.0.0}
+\lfoot{Piano di Progetto v3.0.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -29,7 +29,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Piano di Progetto v2.0.0}
+\lfoot{Piano di Progetto v3.0.0}
 \cfoot{}
 \rfoot{}
 }
@@ -45,6 +45,14 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{06-03-2009} & 3.0.0 & Correzioni varie e approvazione del Responsabile\\
+\hline
+\textit{04-03-2009} & 2.5.0 & Modifica dell'analisi dei rischi\\
+\hline
+\textit{30-02-2009} & 2.4.0 & Modifica della rotazione dei ruoli\\
+\hline
+\textit{29-02-2009} & 2.3.0 & Aggiunta delle ore consuntive\\
 \hline
 \textit{24-01-2009} & 2.0.0 & Modifiche varie e approvazione del Responsabile\\
 \hline
@@ -82,8 +90,8 @@
 \bigskip
 \begin{tabbing}
 	\hspace*{0.3\textwidth} \= \hspace*{0.5\textwidth} \kill
-	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Grosselle Alessandro} \\
-	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Scarpa Davide} \\
+	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Scrotegagna Carlo} \\
+	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Grosselle Alessandro} \\
 	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Formale} \\
 	\parbox{0.3\textwidth}{\textbf{Uso: }} \> \parbox{0.5\textwidth}{Esterno} \\
 	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{QuiXoft} \\
@@ -95,8 +103,8 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Progetto \\ v2.0.0}}
-\author{Redazione: Alberti Andrea}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Progetto \\ v3.0.0}}
+\author{Redazione: Freo Matteo}
 \maketitle
 \medskip
 \begin{center}
@@ -146,12 +154,12 @@ Per ulteriori informazioni riguardanti scopi e funzioni del prodotto si prega di
 Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti possono essere trovate nel documento \textsc{Glossario} al fine di eliminare ogni ambiguità e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione è disponibile all'interno del glossario verrà marcato con una \underline{sottolineatura}.
 \section{Panoramica di progetto}
 \subsection{Vincoli}
-Il progetto, per essere considerato accettabile dal committente, dovrà tassativamente rispettare i vincoli seguenti.
+Il progetto, per essere considerato accettabile dal committente, dovrà tassativamente rispettare i seguenti vincoli.
 \subsubsection{Equa ripartizione del carico di lavoro}
 Il piano di progetto prevede un'equa ripartizione del carico di lavoro tra tutti i componenti del team.
 In linea di massima, le ore realmente fatte in corso d'attività dovranno essere paragonabili a quelle attribuite a ciascun componente del gruppo nel piano.
 
-Il piano di progetto di fase in fase verrà man mano aggiornato inserendo le ore consuntive di ogni ruolo.
+Il piano di progetto, di fase in fase, verrà aggiornato inserendo le ore consuntive di ogni ruolo.
 E' necessario che ogni componente abbia un carico di lavoro compreso fra le 85 e le 105 ore. Per maggiori informazioni si prega di consultare la sezione 3.4.
 \subsubsection{Budget Economico}
 Il progetto dovrà affrontare una spesa pari ad almeno 13000\euro.
@@ -203,7 +211,7 @@ Verificatore & 16 \\ \hline
 \section{Pianificazione}
 Verranno qui descritti gli aspetti riguardanti la pianificazione del progetto, il ciclo di vita prescelto e le stime sulla durata delle fasi.
 
-Vista la natura del team di sviluppo, in cui tutti i componenti occuperanno a rotazione tutti i ruoli necessari, particolare attenzione sarà posta nel fissare date precise in cui cambiare ruoli e nel garantire l'assenza di conflitti di interesse.
+Vista la natura del team di sviluppo, in cui tutti i componenti occuperanno a rotazione tutti i ruoli necessari, è stata posta particolare attenzione nel fissare date precise in cui cambiare ruoli e nel garantire l'assenza di conflitti di interesse.
 
 Per necessità organizzative, è possibile che qualche componente possa esercitare due ruoli durante una singola rotazione; è comunque garantita la completa assenza di interessi tra i compiti assunti.
 \bigskip
@@ -252,19 +260,24 @@ La fase di \underline{manutenzione} non verrà tenuta dal team QuiXoft in quanto
 
 La \underline{manutenzione} verrà quindi fatta dalla comunità di utenti che utilizzeranno il prodotto, come previsto dalla licenza libera con cui verrà rilasciato.
 \subsubsection{Analisi}
-La fase di analisi ha lo scopo di determinare cosa farà il sistema. Essa è preceduta da una analisi di fattibilità, in cui si stabilisce se vale la pena (da un punto di vista tecnico ed economico) realizzare il sistema del quale si vanno definendo i requisiti.
+La fase di analisi ha lo scopo di determinare cosa fa il sistema. Essa viene preceduta da un'analisi di fattibilità, in cui si stabilisce se vale la pena (da un punto di vista tecnico ed economico) realizzare il sistema del quale si vanno definendo i requisiti.
 
 In seguito avviene la definizione dei vincoli, delle funzioni, dei requisiti e di qualsiasi altra caratteristica che il sistema dovrà soddisfare.
 L'individuazione dei requisiti si basa sul capitolato d'appalto e su eventuali incontri con il commitente.
 
-La data d'inizio della fase di analisi è il 17/11/2008, data del primo incontro del team QuiXoft. Si prevede di terminare l'analisi il 09/01/09.
+La fase di analisi è iniziata il 17/11/2008, data del primo incontro del team QuiXoft, e si è conclusa il 09/01/09.
 
-All'incirca a metà della fase di analisi il team dovrà affrontare la revisione dei requisiti, condotta dal committente.
-Per questa revisione è prevista la discussione dell'\textsc{Analisi dei Requisiti}, del \textsc{Piano di Qualifica} e del presente documento, il \textsc{Piano di Progetto}.
+All'incirca a metà della fase di analisi il team ha affrontare la revisione dei requisiti, condotta dal committente.
+Per questa revisione è stata fatta la discussione dell'\textsc{Analisi dei Requisiti}, del \textsc{Piano di Qualifica} e del presente documento, il \textsc{Piano di Progetto}.
 
-Si riporta ora lo schema di attribuzione e di rotazione dei ruoli durante la fase di analisi.
-La rotazione dei ruoli è tassativamente stabilita per il giorno 9/12/2008, ed è rappresentata nella seguente tabella dal passaggio dalla prima fase di analisi (Analisi [1]) alla seconda (Analisi [2]).
-A fianco di ogni ruolo sono riportate, tra parentesi, le ore stimate da esercitare.
+La rotazione dei ruoli durante la fase di analisi è avvenuta il giorno 9/12/2008, come precedentemente stabilito, ed è rappresentata nelle tabelle a seguire dal passaggio dalla prima fase di analisi (Analisi [1]) alla seconda (Analisi [2]).
+
+Verranno ora prese in esame le ore preventivate e le ore effettivamente consuntivate per la fase di analisi:
+
+\bigskip \bigskip 
+\begin{large}\textbf{Preventivo:}\end{large}
+\newline
+A fianco di ogni ruolo sono riportate, tra parentesi, le ore precedentemente preventivate per ogni membro del team:
 \\
 \begin{center}
 \begin{tabular}{|c||c|c|}
@@ -279,6 +292,26 @@ Scortegagna Carlo & Res(10) & An(20) \\ \hline
 Alberti Andrea & Res(4)/Amm(3)/Ver(3) & An(20) \\ \hline
 \end{tabular}
 \end{center}
+
+\bigskip \bigskip 
+\begin{large}\textbf{Consuntivo:}\end{large}
+\newline
+Durante la fase di analisi il Verificatore e l'Analista hanno avuto un ruolo chiave nello sviluppo del progetto.
+Come si nota dai dati riportati in seguito, c'è stata la necessità di attribuire più ore di lavoro al Verificatore a discapito dei ruoli di Amministratore e Responsabile, che in questa fase erano stati stimati più necessari di quanto in realtà è avvenuto.
+\\
+\begin{center}
+\begin{tabular}{|c||c|c|}
+\hline
+\textsc{Componenti} & \textsc{Analisi [1]} & \textsc{Analisi [2]} \\ \hline \hline
+Barberio Mattia & An(21) & Res(9) \\ \hline
+Beggiato Andrea & An(18) & Ver(12) \\ \hline
+Freo Matteo & Ver(12) & An(18) \\ \hline
+Grosselle Alessandro & Amm(10) & An(23) \\ \hline
+Scarpa Davide & An(23) & Amm(10) \\ \hline
+Scortegagna Carlo & Res(9) & An(21) \\ \hline
+Alberti Andrea & Res(3)/Amm(2)/Ver(7) & An(18) \\ \hline
+\end{tabular}
+\end{center}
 \bigskip
 \subsubsection{Progettazione}
 Sulla base della specifica dei requisiti prodotta dall'analisi, la fase di progettazione definisce come tali requisiti saranno soddisfatti, entrando nel merito della struttura che dovrà essere data al sistema software che deve essere realizzato.
@@ -287,18 +320,20 @@ La fase di progettazione prevede inizialmente la definizione dell'architettura d
 
 In seguito alla progettazione architetturale vi sarà la definizione delle strutture interne di ciascun componente: questa fase, nota come progettazione di dettaglio, rappresenta una descrizione del sistema molto vicina alla codifica, ma sempre indipendente da decisioni realizzative quali, ad esempio, la scelta del \underline{linguaggio di programmazione}.
 
-La data di inizio della fase di progettazione è fissata per il 12/01/2009 e la data di fine al 13/02/2009.
+La progettazione è iniziata il 12/01/2009 e si è conclusa il 13/02/2009.
 
-Verso la fine della fase il team affronterà la prima revisione interna, la Revisione del Progetto Preliminare (RPP), che metterà in luce una visione ad alto livello del sistema.
-In occasione di tale revisione il team dovrà redarre la \textsc{Specifica Tecnica} del progetto e aggiornare il \textsc{Piano di Qualifica}.
+Verso la fine della fase il team ha affrontato la prima revisione interna, la Revisione del Progetto Preliminare (RPP), che ha messo in luce una visione ad alto livello del sistema.
+In occasione di tale revisione il team ha redatto la \textsc{Specifica Tecnica} del progetto e aggiornato il \textsc{Piano di Qualifica} e il presente documento \textsc{Piano di Progetto}.
 
-Se la revisione andrà a buon fine, si attiverà la fase realizzativa del prodotto.
+Essendo tale revisione andata a buon fine, si è attivata la fase realizzativa del prodotto.
 
+Si riportano ora gli schemi di attribuzione e di rotazione dei ruoli durante la fase di progettazione.
+La rotazione dei ruoli è avvenuta il giorno 27/01/2009, ed è rappresentata nella seguente tabella dal passaggio dalla prima fase di progettazione (Progettazione [1]) alla seconda (Progettazione [2]).
 
-
-Si riporta ora lo schema di attribuzione e di rotazione dei ruoli durante la fase di progettazione.
-La rotazione dei ruoli è fissata per il giorno 27/01/2009, ed è rappresentata nella seguente tabella dal passaggio dalla prima fase di progettazione (Progettazione [1]) alla seconda (Progettazione [2]).
-A fianco di ogni ruolo sono riportate, tra parentesi, le ore stimate da esercitare.
+\bigskip \bigskip 
+\begin{large}\textbf{Preventivo:}\end{large}
+\newline
+A fianco di ogni ruolo sono riportate, tra parentesi, le ore stimate da esercitare:
 \\
 \begin{center}
 \begin{tabular}{|c||c|c|}
@@ -313,11 +348,33 @@ Scortegagna Carlo & Prog(18) & Amm(9,5) \\ \hline
 Alberti Andrea & Res(3)/Amm(6,5) & Prog(18) \\ \hline
 \end{tabular}
 \end{center}
+
+\bigskip \bigskip 
+\begin{large}\textbf{Consuntivo:}\end{large}
+\newline
+Durante la questa fase il Proggettista ha avuto un ruolo chiave nello sviluppo rispetto a quanto preventivato. Come si nota dai dati riportati in seguito, c'è stata la necessità di attribuire più ore di lavoro al Proggettista a discapito dei ruoli di Amministratore e Responsabile, che in questa fase erano stati stimati più necessari di quanto in realtà è avvenuto.
+
+Si riporta ora lo schema di attribuzione dei ruoli con le ore effettivamente consuntivate:
+\\
+\begin{center}
+\begin{tabular}{|c||c|c|}
+\hline
+\textsc{Componenti} & \textsc{Progettazione [1]} & \textsc{Progettazione [2]} \\ \hline \hline
+Barberio Mattia & Prog(20) & Ver(14) \\ \hline
+Beggiato Andrea & Amm(3)/Ver(11) & Prog(20) \\ \hline
+Freo Matteo & Prog(21) & Res(4)/Ver(13) \\ \hline
+Grosselle Alessandro & Ver(22) & Prog(19) \\ \hline
+Scarpa Davide & Res(6)/Ver(9) & Prog(18) \\ \hline
+Scortegagna Carlo & Prog(19) & Amm(8,5) \\ \hline
+Alberti Andrea & Res(2)/Amm(5,5) & Prog(20) \\ \hline
+\end{tabular}
+\end{center}
 \bigskip
+
 \subsubsection{Realizzazione}
 La fase di realizzazione ha lo scopo di implementare i vari moduli definiti nella progettazione tramite un determinato \underline{linguaggio di programmazione}.
 
-Alla codifica seguiranno i periodi di prova, integrazione e \underline{collaudo} del sistema.
+Alla codifica vera e propria seguiranno i periodi di prova, integrazione e \underline{collaudo} del sistema.
 Tali fasi di test e verifica sono necessarie per garantire la correttezza dell'implementazione dei singoli moduli e la correttezza del funzionamento complessivo del sistema.
 
 Ogni volta che il modulo di un componente vieni istanziato, questo viene collaudato: se l'esito è positivo viene integrato al componente, altrimenti verrà segnalato al programmatore il malfunzionamento.
@@ -326,7 +383,7 @@ Per ulteriori informazioni sulla gestione dei malfunzionamenti si prega di consu
 
 Non appena tutte le componenti saranno pronte, verranno a loro volta integrate tra loro e si avvierà la fase di \underline{collaudo} dell'intero sistema.
 
-La data di inizio della fase di realizzazione è fissata per il 16/02/2009, la data di fine per il 24/03/2009.
+La fase di realizzazione è iniziata il 16/02/2009 e se ne prevede la fine per il 24/03/2009.
 
 Orientativamente a tre quarti della fase di realizzazione è prevista la Revisione di Qualifica (RQ), che ha lo scopo di approvare l'esito finale della verifica. In questa fase si dovrà portare la versione definitiva del \textsc{Piano di Qualifica} e la versione iniziale del \textsc{Manuale Utente}.
 
@@ -334,59 +391,88 @@ A fine fase ci sarà la Revisione di Accettazione (RA), in cui vi sarà il \unde
 
 Se la revisione andrà a buon fine il prodotto verrà accettato e il progetto avrà termine.
 
-Si riporta ora lo schema di attribuzione e di rotazione dei ruoli durante la fase di realizzazione.
-La rotazione dei ruoli è tassativamente stabilita per il giorno 02/03/2009, ed è rappresentata nella seguente tabella dal passaggio dalla prima fase di realizzazione (Realizzazione [1]) alla seconda (Realizzazione [2]).
-A fianco di ogni ruolo sono riportate, tra parentesi, le ore stimate da esercitare.
+Si riportano in seguito gli schemi di attribuzione e di rotazione dei ruoli durante la fase di realizzazione. La rotazione dei ruoli è avvenuta il giorno 02/03/2009.
+
+\bigskip \bigskip 
+\begin{large}\textbf{Preventivo:}\end{large}
+\newline
+A fianco di ogni ruolo sono riportate, tra parentesi, le ore stimate da esercitare:
 \\
 \begin{center}
 \begin{tabular}{|c||c|c|}
 \hline
 \textsc{Componenti} & \textsc{Realizzazione [1]} & \textsc{Realizzazione [2]} \\ \hline \hline
-Barberio Mattia & Progr(15) & Amm(9,5)/Ver(10) \\ \hline
+Barberio Mattia & Progr(15) & Amm(8,5)/Ver(10) \\ \hline
 Beggiato Andrea & Progr(16) & Res(7)/Amm(5,5) \\ \hline
 Freo Matteo & Amm(9,5) & Progr(16)/Res(2) \\ \hline
-Grosselle Alessandro & Res(7) & Progr(15) \\ \hline
+Grosselle Alessandro & Res(7)/Prog(2) & Progr(15) \\ \hline
 Scarpa Davide & Progr(16) & Ver(12) \\ \hline
 Scortegagna Carlo & Ver(22) & Progr(16) \\ \hline
 Alberti Andrea & Progr(16) & Ver(20) \\ \hline
 \end{tabular}
 \end{center}
+
+\bigskip \bigskip 
+\begin{large}\textbf{Consuntivo:}\end{large}
+\newline
+Durante la prima parte della fase di Realizzazione il Programmatore ha necessitato di alcune ore in più rispetto a quanto previsto, come si nota dai dati riportati in seguito.
+
+Anche in questa fase sono state attribuite meno ore ai ruoli di Amministratore e Responsabile, che sono stati meno necessari di quanto preventivato.
+
+Si riporta ora lo schema di attribuzione dei ruoli con le ore effettivamente consuntivate per quanto riguarda la fase di Realizzazione[1]. La seconda fase di realizzazione è in corso e non ne sono quindi ancora a disposizione i dati.
+\\
+\begin{center}
+\begin{tabular}{|c||c|}
+\hline
+\textsc{Componenti} & \textsc{Realizzazione [1]} \\ \hline \hline
+Barberio Mattia & Progr(15) \\ \hline
+Beggiato Andrea & Progr(16) \\ \hline
+Freo Matteo & Amm(8,5) \\ \hline
+Grosselle Alessandro & Res(5) \\ \hline
+Scarpa Davide & Progr(17) \\ \hline
+Scortegagna Carlo & Ver(22) \\ \hline
+Alberti Andrea & Progr(17) \\ \hline
+\end{tabular}
+\end{center}
 \bigskip
 \subsection{Riassunto delle ore}
-Dai dati riguardanti le fasi appena elencate è possibile stilare la seguente tabella riassuntiva, che mostra la suddivisione del carico di lavoro (espresso in ore) per ogni componente del team QuiXoft, diviso per ruolo.
+Dai dati consuntivati riguardanti le fasi appena elencate è possibile stilare la seguente tabella riassuntiva, che mostra la suddivisione del carico di lavoro (espresso in ore) per ogni componente del team QuiXoft, diviso per ruolo.
 
-Si può altresi notare, osservando la colonna ''Totale'', che il carico di lavoro personale che ogni componente del team dovrà sopportare durante lo sviluppo del progetto non supera le 105 ore, in pieno rispetto del vincolo consultabile al punto 2.2.1.
+Si può altresi notare, osservando la colonna ''Totale'', che il carico di lavoro personale che ogni componente del team dovrà sopportare durante lo sviluppo del progetto è compreso fra le 85 e le 105 ore, in pieno rispetto del vincolo consultabile al punto 2.2.1.
+
+Da tenere anche in considerazione il fatto che seguenti dati sono da considerarsi ancora stimati e soggetti a possibili variazioni, in quanto le ore per la seconda parte della fase di realizzazione sono ancora preventivate.
 \\ \bigskip
 \begin{center}
 \begin{tabular}{|c||c|c|c|c|c|c||c|}
 \hline
 \textsc{Componenti} & \textsc{Res} & \textsc{Amm} & \textsc{An} & \textsc{Prog} & \textsc{Ver} & \textsc{Progr} & \textsc{Totale}\\
 \hline \hline
-BM & 11 & 9.5 & 20 & 18 & 22 & 15 & 95.5 \\ \hline
-BA & 7 & 9.5 & 20 & 19 & 23 & 16 & 94.5 \\ \hline
-FM & 7 & 9.5 & 20 & 19 & 23 & 16 & 94.5 \\ \hline
-GA & 7 & 13.5 & 20 & 19 & 21 & 15 & 95.5 \\ \hline
-SD & 7 & 13.5 & 20 & 18 & 21 & 16 & 95.5 \\ \hline
-SC & 10 & 9.5 & 20 & 18 & 22 & 16 & 95.5 \\ \hline
-AA & 7 & 9.5 & 20 & 18 & 24 & 16 & 94.5 \\ \hline
+BM & 11 & 8.5 & 20 & 20 & 22 & 15 & 96.5 \\ \hline
+BA & 7 & 8.5 & 20 & 20 & 23 & 16 & 94.5 \\ \hline
+FM & 6 & 8.5 & 20 & 21 & 23 & 16 & 94.5 \\ \hline
+GA & 5 & 13.5 & 20 & 19 & 21 & 17 & 95.5 \\ \hline
+SD & 6 & 13.5 & 20 & 18 & 21 & 17 & 95.5 \\ \hline
+SC & 10 & 8.5 & 20 & 19 & 22 & 16 & 95.5 \\ \hline
+AA & 6 & 8.5 & 20 & 20 & 24 & 17 & 95.5 \\ \hline
 \end{tabular}
 \end{center}
-\bigskip \bigskip \bigskip
+\bigskip
 
-Risulta utile anche valutare le ore che ogni ruolo avrà assegnate durante le varie fasi del progetto: ciò può portare ad una stima del peso e dell'importanza dei vari ruoli nello sviluppo del progetto software ''SIGEOL''.
+Risulta anche utile valutare le ore che ogni ruolo avrà assegnate durante le varie fasi del progetto: ciò può dimostrare il peso e l'importanza dei vari ruoli nello sviluppo del progetto software ''SIGEOL''.
 
-La seguente tabella rappresenta appunto le ore che ogni ruolo svolgerà per periodo, il totale di ore per fase e il numero totale di ore che il team QuiXoft preventiva di impiegare per sviluppare completamente il progetto:
+La seguente tabella rappresenta appunto le ore che ogni ruolo ha svolto in ogni periodo, il totale di ore per fase e il numero totale di ore che il team QuiXoft impiegherà per sviluppare completamente il progetto. Da tenere sempre in considerazione il fatto che in questa tabella i dati provenienti dalla fase di Realizzazione[2] sono solo stimati.
+\\
 \begin{center}
 \begin{tabular}{|c||c|c|c||c|}
 \hline
 \textsc{Componenti}& \textsc{Analisi} & \textsc{Progettazione} & \textsc{Realizzazione} & \textsc{Tot.} \\ \hline \hline
-Responsabile & 25 & 15 & 16 & 56 \\ \hline
-Amministratore & 30 & 20 & 24.5 & 74.5 \\ \hline
+Responsabile & 25 & 12 & 14 & 51 \\ \hline
+Amministratore & 30 & 17 & 22.5 & 69.5 \\ \hline
 Analista & 140 & 0 & 0 & 140 \\ \hline
-Progettista & 0 & 129 & 0 & 129 \\ \hline
-Programmatore & 0 & 0 & 110 & 110 \\ \hline
+Progettista & 0 & 137 & 0 & 137 \\ \hline
+Programmatore & 0 & 0 & 114 & 114 \\ \hline
 Verificatore & 23 & 70 & 63 & 156 \\ \hline \hline
-\textsc{Totale} & 218 & 234 & 213.5 & 665.5 \\ \hline
+\textsc{Totale} & 218 & 236 & 213.5 & 667.5 \\ \hline
 \end{tabular}
 \end{center}
 \bigskip
@@ -445,35 +531,47 @@ Al presente documento viene allegato il file \textsc{gantt.pdf}, contenente la p
 Il diagramma in allegato è caratterizzato dalla rappresentazione dell'arco temporale totale del progetto sull'asse orizzontale (in settimane) e dalla rappresentazione delle mansioni o attività che costituiscono il progetto sull'asse verticale.
 
 \section{Analisi dei rischi}
+Vengono a seguito presentati i rischi di sviluppo del progetto marcati da opportuni indicatori utili a rilevare il livello di rischio, la probabilità con cui si possa incombere in una situazione di questo tipo e una opportuna soluzione o prevenzione.
+\subsection{Perdita dei dati}
+LIVELLO DI RISCHIO: alto \\
+PROBABILITA' DI RISCHIO: basso \\
+Il server sul quale ci basiamo per archiviare i documenti e i file sorgenti, potrebbe avere dei problemi di instabilità tali da non avere alcuna possibilità di recuperare le informazioni in esso riposte. 
+Per fronteggiare un tale eventualità prevediamo una regolare creazione di file di backup, che, in caso di indisponibilità del server, possano, garantire comunque la continuazione dell sviluppo dell'applicativo in esame. \\
+SOLUZIONE: è prevista una regolare creazione di file di backup, che, in caso di indisponibilità del server, possano, garantire comunque la continuazione del progetto.
 \subsection{Assenza componente per medio/lungo periodo}
+LIVELLO DI RISCHIO: alto \\
+PROBABILITA' DI RISCHIO: medio \\
 Ogni componente ha sempre un determinato ruolo in tutte le fasi del progetto.
-Se un componente risultasse indisponibile per un lasso di tempo più o meno lungo causerebbe un rallentamento del progetto, se non addirittura uno stallo.
-
-E' compito dell'amministratore riassegnare il determinato ruolo ad uno o più componenti del team e modificare il piano di progetto cercando di mantenere inalterati i costi e la data di fine progetto.
+Se un componente risultasse indisponibile per un lasso di tempo più o meno lungo causerebbe un rallentamento del progetto, se non addirittura uno stallo. \\
+SOLUZIONE: sarà compito dell'amministratore riassegnare il determinato ruolo ad uno o più componenti del team e modificare il piano di progetto cercando di mantenere inalterati i costi e la data di fine progetto.
 \subsection{Mancanza di conoscenze tecniche}
+LIVELLO DI RISCHIO: basso \\
+PROBABILITA' DI RISCHIO: alta \\
 Si utilizzeranno strumenti e tecnologie che per alcuni componenti risulteranno nuove.
-L'amministratore metterà a disposizione guide e manuali per poter formare il team.
-
-Lo studio è personale e non è previsto nel piano di progetto.
+L'amministratore metterà a disposizione guide e manuali per poter formare il team. \\
+SOLUZIONE: Lo studio è personale e non è previsto nel piano di progetto.
 Tuttavia, se dovesse essere necessario, verrà fatta una riunione che delineerà i concetti di massima dell'eventuale strumento o tecnologia.
 \subsection{Calendario delle attività inefficiente}
-Le attività, vista la scarsa esperienza, sono state pianificate basandosi su precedenti calendari di altri gruppi.
-
-E' compito dell'amministratore correggere eventuali errori di pianificazione, cercando di mantenere inalterati i costi e la data di fine progetto.
+LIVELLO DI RISCHIO: basso \\
+PROBABILITA' DI RISCHIO: media \\
+Le attività, vista la scarsa esperienza, sono state pianificate basandosi su precedenti calendari di altri gruppi. \\
+SOLUZIONE: sarà compito dell'amministratore correggere eventuali errori di pianificazione, cercando di mantenere inalterati i costi e la data di fine progetto.
 \subsection{Analisi dei requisiti inefficiente}
+LIVELLO DI RISCHIO: medio \\
+PROBABILITA' DI RISCHIO: alta \\
 Nella prima fase avviene lo studio approfondito dei requisiti.
-Finita questa fase, inizia quella di progettazione.
-
-Data la scarsa esperienza del team QuiXoft il rischio di variazione dei requisiti dopo il loro studio esiste. Tuttavia si cerca di renderlo il più basso possibile ruotando il ruolo di analista e rendendo la ricerca dei requisiti il più completa ed efficiente possibile.
+Finita questa fase, inizia quella di progettazione. \\
+SOLUZIONE: Data la scarsa esperienza del team QuiXoft il rischio di variazione dei requisiti dopo il loro studio esiste. Tuttavia si cerca di renderlo il più basso possibile ruotando il ruolo di analista e rendendo la ricerca dei requisiti il più completa ed efficiente possibile.
 \subsection{Gestione della qualità inadeguata}
-L'accertamento della qualità del processo e del prodotto è garantita dal lavoro del Verificatore, che per tutto il periodo di concezione e sviluppo del progetto dovrà seguire le norme e le procedure contenute nel \textsc{Piano di Qualifica}, documento in costante aggiornamento proprio per poter assicurare il massimo livello qualitativo possibile al prodotto finale.
+LIVELLO DI RISCHIO: basso \\
+PROBABILITA' DI RISCHIO: alta \\
+L'accertamento della qualità del processo e del prodotto è garantita dal lavoro del Verificatore, che per tutto il periodo di concezione e sviluppo del progetto dovrà seguire le norme e le procedure contenute nel \textsc{Piano di Qualifica}, documento in costante aggiornamento proprio per poter assicurare il massimo livello qualitativo possibile al prodotto finale. \\
+SOLUZIONE: Se le ore necessarie al verificatore in una determinata fase dovessero essere troppo poche, l'Amministratore andrà immediatamente a modificare il \textsc{Piano di Progetto}, dedicando più ore alle fasi di verifica.
+\section{Conto economico}
+\subsection{Costo stimato del progetto per ruolo}
+Dalla pianificazione iniziale del progetto si può redigere la seguente tabella, che mostra i costi stimati (in \euro) per ruolo in relazione alle varie fasi del progetto.
 
-Se le ore necessarie al verificatore in una determinata fase dovessero essere troppo poche, l'Amministratore andrà immediatamente a modificare il \textsc{Piano di Progetto}, dedicando più ore alle fasi di verifica.
-\section{Conto economico preventivo}
-\subsection{Costi stimati nel progetto per ruolo}
-Dalla precedente pianificazione si può redigere la seguente tabella, che mostra i costi stimati (in \euro) per ruolo in relazione alle varie fasi del progetto.
-
-In pieno rispetto al vincolo ''Budget economico'' della sezione 2.1.2, il costo totale del progetto è stimato in 13764\euro.
+In pieno rispetto al vincolo ''Budget economico'' della sezione 2.1.2, il costo totale del progetto è inizialmente stimato in 13764\euro.
 \begin{center}
 \begin{tabular}{|c||c|c|c||c|}
 \hline
@@ -488,7 +586,7 @@ Verificatore & 368 & 1120 & 1008 & 2496 \\ \hline \hline
 \end{tabular}
 \end{center}
 \subsection{Costi stimati nel progetto per componente}
-La tabella sottostante rappresenta i costi (in \euro) di ogni componente del team in relazione al ruolo ricoperto.
+La tabella sottostante illustra le stime iniziali sui costi (in \euro) di ogni componente del team in relazione al ruolo ricoperto.
 
 Emerge un peso economico pressochè identico tra i vari membri del team QuiXoft al termine di tutte le fasi di sviluppo.
 \begin{center}
@@ -505,48 +603,29 @@ SC & 300 & 190 & 500 & 396 & 352 & 256 & 1994 \\ \hline
 AA & 210 & 190 & 500 & 396 & 384 & 256 & 1936 \\ \hline
 \end{tabular}
 \end{center}
-\newpage
-
-\section{Consuntivo}
-\subsection{Conteggio effettivo delle ore}
-Durante la fase di analisi il Verificatore e l'Analista hanno avuto un ruolo chiave nello sviluppo del progetto.
-Come si nota dai dati riportati in seguito, c'è stata la necessità di attribuire più ore di lavoro al Verificatore a discapito dei ruoli di Amministratore e Responsabile, che in questa fase erano stati stimati più necessari di quanto in realtà è avvenuto.
-\\
-\begin{center}
-\begin{tabular}{|c||c|c|}
-\hline
-\textsc{Componenti} & \textsc{Analisi [1]} & \textsc{Analisi [2]} \\ \hline \hline
-Barberio Mattia & An(21) & Res(9) \\ \hline
-Beggiato Andrea & An(18) & Ver(12) \\ \hline
-Freo Matteo & Ver(12) & An(18) \\ \hline
-Grosselle Alessandro & Amm(10) & An(23) \\ \hline
-Scarpa Davide & An(23) & Amm(10) \\ \hline
-Scortegagna Carlo & Res(9) & An(21) \\ \hline
-Alberti Andrea & Res(3)/Amm(2)/Ver(7) & An(18) \\ \hline
-\end{tabular}
-\end{center}
-\bigskip
 \subsection{Conto economico reale}
-Il maggior numero di ore assegnate ai Verificatori ha portato ad una leggera variazione dei costi di progetto.
-Il costo totale della fase di analisi non supera comunque le stime fatte in fase di preventivo, in quanto sono state utilizzate meno ore di lavoro di Responsabile ed Amministratore.
+Nel proseguire dello sviluppo del progetto sono state variate, come illustrato nelle precedenti sezioni del presente documento, le ore utilizzate dai vari membri del team e dai vari ruoli previsti.
 
-La seguente tabella mostra i costi reali sostenuti dal team QuiXoft durante la fase di analisi:
+Ciò ha portato ai dati riportati di seguito, che illustrano i costi sostenuti dal team QuiXoft fino al primo periodo di realizzazione:
 \\
 \begin{center}
 \begin{tabular}{|c||c|c|c|c|c|c||c|}
 \hline
 \textsc{Componenti} & \textsc{Res} & \textsc{Amm} & \textsc{An} & \textsc{Prog} & \textsc{Ver} & \textsc{Progr} & \textsc{Totale}\\
 \hline \hline
-BM & 270 & 0 & 525 & 0 & 0 & 0 & 795 \\ \hline
-BA & 0 & 0 & 450 & 0 & 192 & 0 & 642 \\ \hline
-FM & 0 & 0 & 450 & 0 & 192 & 0 & 642 \\ \hline
-GA & 0 & 200 & 575 & 0 & 0 & 0 & 775 \\ \hline
-SD & 0 & 200 & 575 & 0 & 0 & 0 & 775 \\ \hline
-SC & 270 & 0 & 525 & 0 & 0 & 0 & 795 \\ \hline
-AA & 90 & 40 & 450 & 0 & 192 & 0 & 772 \\ \hline
+BM &  &  &  &  &  &  &  \\ \hline
+BA &  &  &  &  &  &  &  \\ \hline
+FM &  &  &  &  &  &  &  \\ \hline
+GA &  &  &  &  &  &  &  \\ \hline
+SD &  &  &  &  &  &  &  \\ \hline
+SC &  &  &  &  &  &  &  \\ \hline
+AA &  &  &  &  &  &  &  \\ \hline
 \end{tabular}
 \end{center}
 \bigskip
-Il costo totale della prima fase è stato quindi di 5196\euro. Paragonandolo al costo stimato di 5218\euro, si può notare che la variazione è irrisoria e non porta ad alcuna conseguenza negativa nel corretto svolgimento del progetto.
+Il costo totale sostenuto fin'ora è quindi di xxxxxxx \euro. Tale costo è ancora inferiore di 13764-xxxxxx \euro al costo inizialmente preventivato.
+Tale disavanzo verrà impiegato dal team per portare a termine la seconda fase di realizzazione, tutt'ora in corso.
+
+Il costo preventivato inizialmente per la seconda fase di realizzazione è di zzzzzzzzz \euro, molto vicino quindi al valore di 13764-xxxxxx appena rilevato. Si prevede quindi di riuscire a portare a compimento il progetto restando ampiamente entro i costi preventivati.
 \modifiche
 \end{document}
