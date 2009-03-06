@@ -4,6 +4,8 @@ class CreateTemporalConstraints < ActiveRecord::Migration
       t.integer :day
       t.time :startHour
       t.time :endHour
+      t.string :description
+      t.integer :isHard
       t.timestamps
     end
   end

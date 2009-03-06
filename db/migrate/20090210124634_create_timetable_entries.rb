@@ -3,7 +3,7 @@ class CreateTimetableEntries < ActiveRecord::Migration
     create_table :timetable_entries do |t|
       t.time :startTime
       t.time :endTime
-      t.string :day
+      t.integer :day
       t.integer :timetable_id,:null=>false
       t.integer :teaching_id,:null=>false
       t.integer :classroom_id,:null=>false
