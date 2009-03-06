@@ -45,7 +45,7 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
-\textit{7 marzo 2009} & 1.0.1 & Correzione dell'impostazione delle pagine \\
+\textit{6 marzo 2009} & 1.0.1 & Correzione dell'impostazione delle pagine \\
 \hline
 \textit{1 marzo 2009} & 1.0.0 & Approvazione del responsabile e passaggio di stato a Formale \\
 \hline
@@ -126,9 +126,9 @@ Descrizione dettagliata delle caratteristiche tecniche ed architetturali del pro
 \setcounter{page}{1}
 \section{Introduzione}
 \subsection{Scopo del documento}
-Il presente documento denominato \textsc{Descrizione di prodotto} si prefigge di illustrare ed analizzare con maggior dettaglio i metodi ed i formalismi adottati nella definizione del prodotto \textsc{Sigeol}
+Il presente documento denominato \textsc{Descrizione di prodotto} si prefigge di illustrare ed analizzare con maggior dettaglio i metodi ed i formalismi adottati nella definizione del prodotto SIGEOL.
 \subsection{Scopo del prodotto}
-Il progetto sotto analisi, denominato \textsc{Sigeol}, si prefigge di automatizzare la generazione, la gestione, l’ottimizzazione e la consultazione degli orari di lezione. Per maggiori dettagli consultare il documento denominato \textsc{Analisi dei Requisiti} alla sua ultima versione.
+Il progetto sotto analisi, denominato SIGEOL, si prefigge di automatizzare la generazione, la gestione, l’ottimizzazione e la consultazione degli orari di lezione. Per maggiori dettagli consultare il documento denominato \textsc{Analisi dei Requisiti} alla sua ultima versione.
 \subsection{Glossario}
 Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti possono essere trovate nel documento denominato \textsc{Glossario} al fine di eliminare ogni ambiguità e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione è disponibile all’interno del glossario verrà marcato con una sottolineatura.
 \subsection{Riferimenti normativi}
@@ -233,7 +233,7 @@ Durante tutto lo svolgimento del progetto, il team QuiXoft utilizzarà i seguent
 Il sistema Sigeol è strutturato seguendo il paradigma MVC, con l'aggiunta di ulteriori componenti: Helper, MiddleMan e Algorithm.
 \subsection{Componente Model}\label{model}
 \subsubsection{Introduzione}
-Ogni classe appartente al model, deriva direttamente da \verb|ActiveRecord::Base| ed ogni istanza di tale classe viene anche chiamata oggetto di tipo Active Record, dove gli attributi non vengono specificati direttamente, ma dedotti dalla tabella associata.
+Ogni classe appartente al model deriva direttamente da \verb|ActiveRecord::Base| ed ogni istanza di tale classe viene anche chiamata oggetto di tipo Active Record, dove gli attributi non vengono specificati direttamente, ma dedotti dalla tabella associata.
 
 Un'istanza di una classe model corrisponde ad una riga della tabella associata, quindi se viene cancellato verrà eliminata anche la riga corrispondente.
 
@@ -257,8 +257,8 @@ dove \verb|:message| contiene il messaggio d'errore e \verb|:on| specifica in ch
 Per creare, invece, una validazione non presente in quelle fornite dalle librerie di Rails è necessario aggiungere alle chiamate di \verb|validate|,\\ \verb|validate_on_update|,\verb|validate_on_create|, la lista dei metodi che si vuole aggiungere, passati come simboli.
 \begin{itemize}
  \item \verb|validate|: la validazione viene eseguita prima di ogni operazione di scrittura nel database; quindi sia in fase di creazione che di modifica
- \item \verb|validate_on_create|:la validazione viene eseguita solamente alla creazione di una nuova tupla
- \item \verb|validate_on_update|:la validazione viene eseguita solamente alla modifica di un record esistente.
+ \item \verb|validate_on_create|: la validazione viene eseguita solamente alla creazione di una nuova tupla
+ \item \verb|validate_on_update|: la validazione viene eseguita solamente alla modifica di un record esistente.
 \end{itemize}
 
 Ad esempio, nel model \verb|ExpiryDate|, per controllare che la data immessa sia maggiore di quella di oggi si implementerà il metodo \verb|is_correct_date?|. Il nome quindi verrà aggiunto come simbolo alla chiamata di \verb|validate| nel seguente modo: \\
@@ -271,8 +271,8 @@ Per dichiarare una relazione, è necessario rchiamare opportunamente i metodi \v
 Anche qui è necessario seguire delle convenizioni:
 \begin{itemize}
  \item la dichiarazione di \verb|belongs_to| deve essere aggiunta nel model, associato alla tabella che contiene la chiave esterna
- \item dopo \verb|has_many| e \verb|has_and_belongs_to_many| deve essere aggiunto(come simbolo) il nome della tabella
- \item dopo \verb|belongs_to| e \verb|has_one| deve essere aggiunto(come simbolo) il nome al singolare della tabella
+ \item dopo \verb|has_many| e \verb|has_and_belongs_to_many| deve essere aggiunto (come simbolo) il nome della tabella
+ \item dopo \verb|belongs_to| e \verb|has_one| deve essere aggiunto (come simbolo) il nome al singolare della tabella
 \end{itemize}
 
 E' possibile modificare le associazioni aggiungendo delle opzioni; in particolare nel progetto Sigeol si è utilizzata l'opzione \verb|:dependent| che indica ad \verb|Active record| come comportarsi quando si elimina una riga di una tabella che è associata ad un altra tramite chiave esterna (rapporto tra parent table e child table)
@@ -404,7 +404,7 @@ Le validazioni di \verb|name| sono identiche all'attributo \verb|name| del model
 \end{itemize}
 \subsubsection*{validate}
 \begin{itemize}
- \item \verb|validate :unique_curriculum_graduate_course?|: per salvare l'oggetto nel database, è necessario che il graduate course, con id uguale a \verb|graduate_course_id|, non abbia associato un curriculum con il nome uguale a quello definito nell'oggetto
+ \item \verb|validate :unique_curriculum_graduate_course?|: per salvare l'og\-getto nel database, è necessario che il graduate course, con id uguale a \verb|graduate_course_id|, non abbia associato un curriculum con il nome uguale a quello definito nell'oggetto
 \item \verb|unique_curriculum_graduate_course?| è un metodo privato utilizzato nella validazione precedente.
 \end{itemize}
 \subsubsection*{Funzioni di callback}
@@ -630,8 +630,9 @@ La sintassi per aggiungere un vincolo d'integrità alle chiave esterne è il seg
 Ovviamente ogni tabella del database dovrà utilizzare come engine INNODB, altrimenti la clausula \verb|foreign key| verrà ignorata.
 \subsection{Componente Controller}
 La componente Controller si occupa di gestire le azioni che l'utente effettua, solitamente attraverso una view. Ogni metodo pubblico rappresenta quindi una specifica azione, eccezion fatta per l'Application Controller.
-Di seguito è riportato il diagramma delle classi che illustra questa componente. Sono stati omessi volutamente i tipi di ritorno per i metodi che implementano un'azione, in quanto queste operazioni non sono utilizzate per restituire un valore, bensì inizializzano alcune variabili d'istanza che saranno successivamente disponibili nella view specifica per quella azione. Inoltre per aumentare la leggibilità è stata omessa la derivazione della classe \verb|ApplicationController| da \verb|ActionController::Base|. \\
-\bigskip \\
+Di seguito è riportato il diagramma delle classi che illustra questa componente. Sono stati omessi volutamente i tipi di ritorno per i metodi che implementano un'azione, in quanto queste operazioni non sono utilizzate per restituire un valore, bensì inizializzano alcune variabili d'istanza che saranno successivamente disponibili nella view specifica per quella azione. Inoltre per aumentare la leggibilità è stata omessa la derivazione della classe \verb|ApplicationController| da \verb|ActionController::Base|.
+
+\bigskip
 \includegraphics[scale=0.34]{images/Controller_ClassDiagram.png}
 \subsubsection{Azioni comuni a più controller}
 Per evitare fastidiose ripetizioni in questa sezione verranno descritti i metodi che figurano con lo stesso nome in diversi controller. La scelta dello stesso nome non è casuale, in quanto rispecchia la funzione dell'azione.
@@ -746,9 +747,10 @@ Il componente View si occupa di presentare le informazioni presenti nel sistema 
 \subsubsection{Layouts}
 Il sistema Sigeol prevede un unico layout XHTML per tutta l'applicazione in modo da garantire la stessa impaginazione per ogni template. Come nella maggior parte dei siti web moderni è prevista un'intestazione, un \underline{footer}, un menu presente nella parte sinistra della pagina ed un blocco dei contenuti presenti nella parte centrale dove verranno renderizzati i template. In aggiunta sarà presente un menu di amministrazione ove richiesto che verrà collocato nella parte superiore del blocco dei contenuti.
 
-Di seguito è riportata una immagina esplicativa della struttura del layout:
-
-\includegraphics[scale=0.36]{images/layout.png}
+Di seguito è riportata una immagine esplicativa della struttura del layout:
+\begin{center}
+ \includegraphics[scale=0.40]{images/layout.png}
+\end{center}
 \subsubsection{Templates}
 Il sistema Sigeol prevede un diverso template per ogni azione raggiungibile attraverso una richiesta GET presente in ogni controller. Di seguito viene riportata una descrizione di ogni template:
 \subsubsection*{Template comuni a più controller}
@@ -855,7 +857,9 @@ Esso implementa le seguenti operazioni:
 \item delega alla componente \verb|Algorithm| la generazione dell'orario relativo ad uno specifico corso di laurea
 \item segnala all'applicazione la fine del calcolo 
 \end{itemize}
-\includegraphics[scale=0.34]{images/MMserv_diagram_class.png}
+\begin{center}
+ \includegraphics[scale=0.34]{images/MMserv_diagram_class.png}
+\end{center}
 \subsubsection{SchedulerServlet}
 Servlet che si occupa di ricevere le richieste (di tipo HTTP POST e GET) dall'applicazione:
 \begin{description}
@@ -876,15 +880,17 @@ Ogni singola istanza della classe \verb|AlgorithmJob| esegue il calcolo dell'ora
 \subsubsection{ItcSolver}
 Classe che si occupa di leggere il file di input (contenente tutte le informazioni richieste relative al calcolo e generazione dell'orario) ed eseguire effettivamente l'algoritmo.
 \subsubsection{Descrizione dell'algoritmo}
-L'algoritmo utilizzato per la generazione dell'orario si basa su \verb|Constraint Solver Library| (CPSolver 1.1,  copyright (C) 2007 Tomáš Müller): tale libreria permette la modellazione di una realtà universitaria al fine di elaborare diverse tipologie di orari, in base alle necessità.
+L'algoritmo utilizzato per la generazione dell'orario si basa su \verb|Constraint| \verb|Solver Library| (CPSolver 1.1,  copyright (C) 2007 Tomáš Müller): tale libreria permette la modellazione di una realtà universitaria al fine di elaborare diverse tipologie di orari, in base alle necessità.
 \subsubsection*{Risultati internazionali}
-Il CPSolver 1.1 ha concorso nella \verb|International Timetabling Competition 2007 (ITC 2007)|: tale competizione era strutturata in 3 diverse tipologie di problemi da risolvere:
+Il CPSolver 1.1 ha concorso nella \verb|International Timetabling Competition| \verb|2007 (ITC 2007)|: tale competizione era strutturata in 3 diverse tipologie di problemi da risolvere:
 \begin{enumerate}
  \item Generazione di orari d'esame
  \item Generazione di orari di lezione basati sulla struttura del corso di laurea
  \item Generazione di orari di lezione basati sulle iscrizioni dei diversi studenti ai corsi
 \end{enumerate}
-L'algoritmo è giunto tra i finalisti in tutti i diversi problemi, aggiudicandosi il primo posto nelle tipologie 1 e 2 (sito web ufficiale: \textit{http://www.cs.qub.ac.uk/itc2007/index.htm}).
+L'algoritmo è giunto tra i finalisti in tutti i diversi problemi, aggiudicandosi il primo posto nelle tipologie 1 e 2.
+\\
+(sito web ufficiale: \textit{http://www.cs.qub.ac.uk/itc2007/index.htm})
 \subsubsection*{Motivazioni della scelta}
 CPSolver 1.1 è stato scelto dal nostro team in seguito ad un'attenta analisi. Le motivazioni che ci hanno portato ad adottarlo sono riassumibili in:
 \begin{itemize}
@@ -949,7 +955,9 @@ Il peso rappresenta un valore numerico attraverso il quale si assegna un valore 
 \paragraph{Pesi e priorità delle preferenze}
 L'assegnazione dei pesi viene gestita internamente alla classe in base ad una scala di priorità. I valori dei pesi sono stati scelti dal team QuiXoft in modo da garantire una corretta ed efficiente elaborazione. La relazione tra il valore di priorità ed il peso che tale priorità associa alla preferenza è riassumibile con la tabella seguente:
 
-\includegraphics[scale=1]{images/Algoritm_WeightPriorityRelation.png}
+\begin{center}
+ \includegraphics[scale=0.8]{images/Algoritm_WeightPriorityRelation.png}
+\end{center}
 \subsubsection*{I metodi}
 I metodi privati presenti all'interno della classe \verb|MyPrefereces_DaySlot| sono:
 \begin{itemize}
@@ -1027,6 +1035,7 @@ I valori identificativi dell'insegnamento (\verb|CourseID|) e dell'aula (\verb|R
 \section{Organizzazione delle directories}
 Per facilitare la comprensione dell'organizzazione del sistema Sigeol, viene presentata in questa sezione la struttura delle directories. Per un dettaglio maggiore dell'organizzazione si prega di far riferimento al sito ufficiale di Ruby on Rails. Nella figura che segue viene illustrata la gerarchia \\
 \includegraphics[scale=0.59]{images/gerarchiacartelle.png} \\
+\\
 A differenza delle consuete applicazioni sviluppate tramite il framework Rails, il sistema Sigeol presenta la cartella \verb|WEB-INF| che contiene tutte le classi e librerie utilizzate dalla servlet e il suo file di configurazione web.xml.\\ Per ulteriori informazioni sulla tecnologia servlet visitare il sito \\ http://java.sun.com/products/servlet/ .
 \section{Tracciamento componenti-requisiti}
 Di seguito è riportato il tracciamento dei requisiti descritti nel documento denominato \textsc{Analisi dei Requisiti} con le componenti descritti nel presente.\\
