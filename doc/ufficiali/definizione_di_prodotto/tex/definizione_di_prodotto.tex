@@ -138,7 +138,7 @@ Il documento denominato \textsc{Norme di Progetto} accompagna e complementa il p
 \subsection{Standard di progettazione architetturale}
 La definizione dell'intero sistema oggetto di studio è stata effetuata attraverso l'uso di diagrammi UML e l'applicazione di pattern consolidati ed in uso in molti prodotti software.
 \subsubsection{UML}
-Il linguaggio UML è utilizzato per la modellazione architetturale di un sistema in quanto grazie alla sua capacità e chiarezza espressiva risulta di facile comprensione anche a persone esterne al progetto stesso. Il team QuiXoft ha utilizzato UML 2.0 per:
+Il linguaggio \underline{UML} è utilizzato per la modellazione architetturale di un sistema in quanto grazie alla sua capacità e chiarezza espressiva risulta di facile comprensione anche a persone esterne al progetto stesso. Il team QuiXoft ha utilizzato UML 2.0 per:
 \begin{itemize}
  \item Diagrammi use-case nel documento \textsc{Analisi dei Requisiti}
  \item Diagrammi delle classi, delle componenti, di attività e delle sequenze nei documenti \textsc{Specifica tecnica} e \textsc{Definizione di prodotto}
@@ -173,15 +173,15 @@ Secondo il \underline{pattern} Active Record esiste una relazione molto stretta 
 \end{description}
 
 \subsection{Standard di documentazione del codice}
-Il team QuiXoft si avvalerà dello strumento \underline{RDoc}, specifico per il linguaggio Ruby. Questo strumento estrapola dal codice sorgente i commenti al codice stesso, organizzandoli e rendendoli disponibili alla consultazione tramite pagine HTML. Per questo motivo ogni membro del team alla stesura di qualsiasi classe o metodo dovrà documentarlo tramite la sintassi specifica di RDoc.
+Il team QuiXoft si avvalerà dello strumento \underline{RDoc}, specifico per il linguaggio Ruby. Questo strumento estrapola dal codice sorgente i commenti al codice stesso, organizzandoli e rendendoli disponibili alla consultazione tramite pagine \underline{HTML}. Per questo motivo ogni membro del team alla stesura di qualsiasi classe o metodo dovrà documentarlo tramite la sintassi specifica di RDoc.
 
 \subsection{Standard di denominazione di entità e relazioni}
-Lo schema di denominazione deve essere determinante per la comprensione del flusso logico dell'applicazione. Verrano quindi utilizzati nomi significativi che identifichino la funzione e lo scopo dell'elemento. Inoltre saranno seguite le convenzioni generali dello specifico linguaggio di programmazione utilizzato per realizzare l'elemento, nonchè ulteriori convenzioni dettate dal framework utilizzato. Per maggiori informazioni consultare la sezione \ref{programmazione}
+Lo schema di denominazione deve essere determinante per la comprensione del flusso logico dell'applicazione. Verrano quindi utilizzati nomi significativi che identifichino la funzione e lo scopo dell'elemento. Inoltre saranno seguite le convenzioni generali dello specifico linguaggio di programmazione utilizzato per realizzare l'elemento, nonchè ulteriori convenzioni dettate dal \underline{framework} utilizzato. Per maggiori informazioni consultare la sezione \ref{programmazione}
 
 \subsection{Standard di programmazione}\label{programmazione}
-Ogni file deve contenere esattamente una classe od un modulo, eccezion fatta per i \underline{template} di file HTML e JavaScript. Inoltre è necessaria ai fini di una migliore leggibilità, l'uso di una corretta indentazione, fornita dall'ambiente di sviluppo. 
+Ogni file deve contenere esattamente una classe od un modulo, eccezion fatta per i \underline{template}. Inoltre è necessaria ai fini di una migliore leggibilità, l'uso di una corretta indentazione, fornita dall'ambiente di sviluppo. 
 \subsubsection{Ruby e framework Rails}
-Di seguito sono elencate le convenzioni utilizzate negli elementi sviluppati con il linguaggio Ruby.
+Di seguito sono elencate le convenzioni utilizzate negli elementi sviluppati con il linguaggio \underline{Ruby}.
 \subsubsection*{Variabili locali}
 Prima lettera minuscola, seguita da altri caratteri minuscoli. Se la variabile comprende più parole, queste andranno separate con un \_ (underscore). Esempio: \verb|variabile_locale|
 \subsubsection*{Variabili d'instanza}
@@ -221,7 +221,7 @@ Durante tutto lo svolgimento del progetto, il team QuiXoft utilizzarà i seguent
  \item JRuby 1.1.5 \\ \textit{http://jruby.codehaus.org/}
  \item GlassFishV3 \\ \textit{https://glassfish.dev.java.net/}
  \item MySql 5.0 \\ \textit{http://www.mysql.com/}
- \item Rails framework \\ \textit{http://rubyonrails.org/}
+ \item \underline{Rails} framework \\ \textit{http://rubyonrails.org/}
  \item RDoc \\ \textit{http://rdoc.sourceforge.net/}
  \item rcov \\ \textit{http://rubyforge.org/projects/rcov/}
  \item W3C validator \\ \textit {http://validator.w3.org/}
@@ -230,7 +230,7 @@ Durante tutto lo svolgimento del progetto, il team QuiXoft utilizzarà i seguent
 \end{itemize}
 
 \section{Specifica delle componenti}
-Il sistema Sigeol è strutturato seguendo il paradigma MVC, con l'aggiunta di ulteriori: Helper, MiddleMan e Algorithm.
+Il sistema Sigeol è strutturato seguendo il paradigma MVC, con l'aggiunta di ulteriori componenti: Helper, MiddleMan e Algorithm.
 \subsection{Componente Model}\label{model}
 \subsubsection{Introduzione}
 Ogni classe appartente al model, deriva direttamente da \verb|ActiveRecord::Base| ed ogni istanza di tale classe viene anche chiamata oggetto di tipo Active Record, dove gli attributi non vengono specificati direttamente, ma dedotti dalla tabella associata.
@@ -615,9 +615,10 @@ hanno in comune i seguenti attributi:
 \subsubsection{ConstraintsOwner}
 All'interno di questa classe, si definiranno le relazioni tra i vincoli e i relativi proprietari.
 Un vincolo può avere come proprietario: un corso di laurea (\verb|GraduateCourse|), una classe (\verb|Classroom|) o un docente (\verb|Teacher|).
-
 Un proprietario, può avere tre tipi di vincoli, booleano, temporale e di quantità.
 Grazie a questo model join ed al plugin \verb|has_many_polymorphs|, sarà possibile associare in modo semplice e veloce un proprietario con un qualsiasi tipo di vincolo
+\subsubsection{TeacherMailer}
+La classe \verb|TeacherMailer| che si occupa dell'invio delle e-mail per l'attivazione dell'account del docente può essere considerata, in modo astratt, appartene alla componente Model. Essa deriva dalla classe \verb|ActionMailer::Base| presente nel framework Rails ed implementa il metodo \verb|activate_teacher(sender, receiver)| che si occupa dell'invio del link per l'attivazione dell'account del docente.
 \subsection{Database}
 L'integrità referenziale è un concetto molto importante da non dimenticare durante la progettazione di un database.
 Da poco MySql ha implementato un supporto per la chiavi esterne attraverso il nuovo table engine INNODB.
@@ -747,13 +748,13 @@ Il sistema Sigeol prevede un unico layout XHTML per tutta l'applicazione in modo
 
 Di seguito è riportata una immagina esplicativa della struttura del layout:
 
-\includegraphics[scale=0.50]{images/layout.png}
+\includegraphics[scale=0.36]{images/layout.png}
 \subsubsection{Templates}
 Il sistema Sigeol prevede un diverso template per ogni azione raggiungibile attraverso una richiesta GET presente in ogni controller. Di seguito viene riportata una descrizione di ogni template:
 \subsubsection*{Template comuni a più controller}
 Per evitare fastidiose ripetizione di seguito sono riportate le descrizioni dei template per le azioni che figurano in più controller:
 \begin{itemize}
- \item \verb|new.html.erb|: presenta un form per l'inserimento di una nuova istanza.
+ \item \verb|new.html.erb|: presenta un \underline{form} per l'inserimento di una nuova istanza.
  \item \verb|edit.html.erb|: presenta un form per la modifica di un'istanza esistente.
  \item \verb|index.html.erb|: presenta un elenco ordinato di un insieme di istanze.
  \item \verb|show.html.erb|: presenta le informazioni relativa ad una determinata istanza.
@@ -761,7 +762,7 @@ Per evitare fastidiose ripetizione di seguito sono riportate le descrizioni dei 
  per amministrarle.
  \item \verb|new_constraint.html.erb|: presenta un form per l'inserimento di un nuovo vincolo o preferenza
 \end{itemize}
-Inoltre per garantire l'interoperabilità dei dati sono presenti i template XML per tutte le azioni \verb|index| e \verb|show|, nonchè un template PDF per l'azione \verb|show| di \verb|TimetablesController|.
+Inoltre per garantire l'interoperabilità dei dati sono presenti i template XML per tutte le azioni \verb|index| e \verb|show|, nonchè un template PDF per l'azione \verb|show| di \verb|TimetablesController|. Infine è presente il template per la mail che sarà inviata al docente per l'attivazione del proprio user.
 \subsubsection*{Template per TeachingsController}
 Il template XHTML \verb|select_teacher.html.erb| è presente per il \\ \verb|TeachingsController| per l'azione \verb|select_teacher|.  Questo presenta un form per l'assegnamento di un docente ad un insegnamento utilizzando metodi per la presentazione automatica della lista dei docenti come i tag XHTML \verb|<select>| e \verb|<option>|.
 \subsubsection*{Template per CurriculumsController}
@@ -1025,7 +1026,7 @@ Per quanto riguarda l'output l'algoritmo produce un file che rappresenta l'inter
 I valori identificativi dell'insegnamento (\verb|CourseID|) e dell'aula (\verb|RoomID|) derivano dai valori delle sezioni \verb|COURSES| e \verb|ROOMS| trattate nella sezione \ref{Algo_Input}
 \section{Organizzazione delle directories}
 Per facilitare la comprensione dell'organizzazione del sistema Sigeol, viene presentata in questa sezione la struttura delle directories. Per un dettaglio maggiore dell'organizzazione si prega di far riferimento al sito ufficiale di Ruby on Rails. Nella figura che segue viene illustrata la gerarchia \\
-\includegraphics[scale=0.59]{images/gerarchiacartelle.png}
+\includegraphics[scale=0.59]{images/gerarchiacartelle.png} \\
 A differenza delle consuete applicazioni sviluppate tramite il framework Rails, il sistema Sigeol presenta la cartella \verb|WEB-INF| che contiene tutte le classi e librerie utilizzate dalla servlet e il suo file di configurazione web.xml.\\ Per ulteriori informazioni sulla tecnologia servlet visitare il sito \\ http://java.sun.com/products/servlet/ .
 \section{Tracciamento componenti-requisiti}
 Di seguito è riportato il tracciamento dei requisiti descritti nel documento denominato \textsc{Analisi dei Requisiti} con le componenti descritti nel presente.\\

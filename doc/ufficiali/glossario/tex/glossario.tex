@@ -15,7 +15,7 @@
 \lhead{QuiXoft - Progetto SIGEOL}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Glossario v1.2.1}
+\lfoot{Glossario v1.3.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -27,7 +27,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Glossario v1.2.1}
+\lfoot{Glossario v1.3.0}
 \cfoot{}
 \rfoot{}
 }
@@ -43,6 +43,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{06-03-2009} & 1.3.0 & Aggiunti i termini presenti nella Definizione di prodotto\\
 \hline
 \textit{24-01-2009} & 1.2.1 & Correzioni varie\\
 \hline
@@ -85,7 +87,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Glossario \\ v1.2.1}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Glossario \\ v1.3.0}}
 \author{Redazione: Carlo Scortegagna}
 \maketitle
 \medskip
@@ -165,6 +167,8 @@ Documento che definisce i termini usati nei documenti ufficiali dell’azienda Q
 \smallskip
 \normalsize
 \begin{description}
+	\item[Footer]: parte inferiore di un documento, tipicamente HTML, nella quale sono presenti informazioni sugli sviluppatori o su copyright.
+	\item[Form]: modulo per l'inserimento di dati.
 	\item[Forum:] struttura informatica contenente discussioni e messaggi scritti dagli utenti. Viene utilizzato per mettere in comunicazione i componenti del team e permette loro di reperire informazioni riguardanti il progetto.
 	\item[Framework:] struttura di supporto su cui un software può essere organizzato e progettato. Alla base di un framework c'è sempre una serie di librerie di codice utilizzabili con uno o più linguaggi di programmazione, spesso corredate da una serie di strumenti di supporto allo sviluppo del software ideati per aumentare la velocità di sviluppo del prodotto finito.
 \end{description}
@@ -240,6 +244,7 @@ Documento che definisce i termini usati nei documenti ufficiali dell’azienda Q
 \smallskip
 \normalsize
 \begin{description}
+	\item[Render:] azione con la quale viene mostrato su un dispositivo di output i risultati di un'azione.
 	\item[Repository:] punto centrale in cui i dati vengono immagazzinati e manutenuti. Può essere un punto in cui sono localizzati database o file multipli per la distribuzione via rete, oppure una collocazione direttamente accessibile dall'utente. Utilizzato principalmente in un contesto di sviluppo concorrente.
 	\item[Ridondanza:] presenza di ripetizioni e duplicazioni all'interno della medesima struttura. Può essere vista in accezione negativa se rilevata all'interno di un database (duplicazione inutile di dati) oppure all'interno di un file sorgente (ereditarietà mal gestita, per esempio).
 	\item[Ruby:] linguaggio di programmazione completamente a oggetti ed interpretato.
