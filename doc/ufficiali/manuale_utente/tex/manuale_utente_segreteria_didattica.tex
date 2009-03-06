@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Manuale Utente - Segreteria Didattica v0.4.0}
+\lfoot{Manuale Utente - Segreteria Didattica v0.5.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Manuale Utente v0.4.0}
+\lfoot{Manuale Utente v0.5.0}
 \cfoot{}
 \rfoot{}
 }
@@ -45,11 +45,13 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
+\textit{06-03-2009} & 0.5.0 & Completate le Azioni richieste-permesse e approvazione del Responsabile\\
+\hline
 \textit{03-03-2009} & 0.4.0 & Aggiunto il Glossario\\
 \hline
 \textit{03-03-2009} & 0.3.1 & Correzioni varie\\
 \hline
-\textit{02-03-2009} & 0.3.0 & Completata la Descrizione funzionale e le Azioni richieste-permesse\\
+\textit{02-03-2009} & 0.3.0 & Stesura  della Descrizione funzionale e delle Azioni richieste-permesse\\
 \hline
 \textit{26-02-2009} & 0.2.0 & Inserite la premessa e le sezioni Introduzione e Descrizione Generale\\
 \hline
@@ -63,8 +65,8 @@
 \bigskip
 \begin{tabbing}
 	\hspace*{0.3\textwidth} \= \hspace*{0.5\textwidth} \kill
-	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{} \\
-	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{} \\
+	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Alberti Andrea} \\
+	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Beggiato Andrea} \\
 	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Formale} \\
 	\parbox{0.3\textwidth}{\textbf{Uso: }} \> \parbox{0.5\textwidth}{Esterno} \\
 	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{QuiXoft} \\
@@ -76,7 +78,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Manuale Utente - Segreteria Didattica\\ v0.4.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Manuale Utente - Segreteria Didattica\\ v0.5.0}}
 \author{Redazione: Scortegagna Carlo}
 \maketitle
 \medskip
@@ -246,7 +248,7 @@ La pagina di inserimento di un nuovo corso di laurea, come visualizzato in figur
  \item inserimento del nome del corso di laurea: il nome non deve essere vuoto e deve contenere solamente caratteri o spazi. Sono vietati numeri o simboli. La lunghezza massima è fissata in 50 caratteri, compresi gli spazi.
  \item inserimento della durata in anni: deve essere inserito un numero compreso tra 1 e 6.
  \item scelta dell'organizzazione accademica: la scelta deve essere fatta tramite menu a tendina tra le varie opzioni proposte, che al momento sono annuale, semestri, trimenstri, quadrimestri. Serve a determinare in quanti periodi è suddiviso l'anno di quel determinato corso di laurea.
- \item nel caso il corso di laurea che si sta inserendo preveda un solo curriculum, è necessario selezionare la casella `Curriculum Unico` per crearlo automaticamente. Nel caso il corso di laurea preveda più curriculum, è sufficiente non selezionare tale opzione e inserire i vari curriculum successivamente. La scelta non è vincolante: è possibile eliminare o aggiungere curriculum a piacimento successivamente alla creazione del corso di laurea.
+ \item nel caso il corso di laurea che si sta inserendo preveda un solo curriculum, è necessario selezionare la casella `Curriculum Unico`. Nel caso il corso di laurea preveda più curriculum, è sufficiente non selezionare tale opzione e inserire i vari curriculum successivamente. La scelta non è vincolante: è possibile eliminare o aggiungere curriculum a piacimento successivamente alla creazione del corso di laurea.
 \end{itemize}
 Al termine dell'inserimento dei dati richiesti, sarà sufficiente premere il bottone `Salva` per salvare il nuovo corso di laurea. Verrà di seguito visualizzata nuovamente la pagina principale di gestione dei corsi di laurea. 
 \newpage
@@ -257,7 +259,7 @@ Al termine dell'inserimento dei dati richiesti, sarà sufficiente premere il bot
 	\textbf{fig. 4.2.1.2} Form di modifica di un corso di laurea\\
 \end{center}
 
-La modifica dei dati di un corso di laurea inserito precedentemente funziona similarmente alla inserimento appena illustrato, come visibile in figura 4.2.1.2. I campi che è possibile modificare sono:
+La modifica dei dati di un corso di laurea inserito precedentemente funziona similarmente all'inserimento appena illustrato, come visibile in figura 4.2.1.2. I campi che è possibile modificare sono:
 \begin{itemize}
  \item nome
  \item durata in anni
@@ -353,7 +355,7 @@ La pagina di inserimento di una nuova aula, come visualizzato in figura 4.2.3.1,
 \end{itemize}
 Una volta inseriti correttamente tutti i dati è sufficiente premere il pulsante `Salva` per salvare la nuova aula.
 
-Da notare che l'aula viene messa a disposizione automaticamente di tutti i corsi di laurea presenti nel sistema SIGEOL: se tale scelta non fosse corretta, sarà necessario passare alla fase di modifica dei dati dell'aula.
+Da notare che l'aula viene messa automaticamente a disposizione di tutti i corsi di laurea presenti nel sistema SIGEOL: se tale scelta non fosse corretta, sarà necessario passare alla fase di modifica dei dati dell'aula.
 \newpage
 \begin{large}\textbf{Modifica dei dati di un aula:}\end{large}
 
@@ -415,7 +417,7 @@ Una volta inseriti tutti i dati, l'insegnamento verrà salvato nel sistema SIGEO
 \begin{large}\textbf{Modifica dei dati di un insegnamento:}\end{large}
 La pagina di modifica di un insegnamento già presente all'interno del sistema SIGEOL permette di aggiornare tutti i dati, mantenendo l'aspetto e i campi dato della pagina di inserimento di un nuovo insegnamento.
 \subsubsection{Gestione Docenti}
-La pagina di gestione dei docenti offre innanzitutto una lista dei docenti che sono stati invitati al sistema SIGEOL ma non hanno ancora completato la registrazione: questi docenti potranno essere gestiti e assegnati ai vari insegnamenti appena completeranno la loro registrazione.
+La pagina di gestione dei docenti offre innanzitutto una lista dei docenti che sono stati invitati al sistema SIGEOL ma che non hanno ancora completato la registrazione: questi docenti potranno essere gestiti e assegnati ai vari insegnamenti appena completeranno la loro registrazione.
 
 A seguire è presente una lista dei docenti già correttamente registrati all'interno del sistema, raggruppata per corsi di laurea.
 E' data la possibilità di:
