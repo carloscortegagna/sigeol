@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Specifica tecnica v0.7.4}
+\lfoot{Specifica tecnica v1.0.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Specifica tecnica v0.7.4}
+\lfoot{Specifica tecnica v1.0.0}
 \cfoot{}
 \rfoot{}
 }
@@ -45,9 +45,11 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
-\textit{03-03-2009} & 0.7.4 & Aggiunta diagramma di sequenza del Middle Man \\
+\textit{07-03-2009} & 1.0.0 & Approvazione del responsabile e passaggio di stato a Formale \\
 \hline
-\textit{02-03-2009} & 0.6.4 & Riscrittura contenuto Middle Man \\
+\textit{11-02-2009} & 0.7.0 & Aggiunta diagramma di sequenza del Middle Man \\
+\hline
+\textit{10-02-2009} & 0.6.4 & Riscrittura contenuto Middle Man \\
 \hline
 \textit{24-01-2009} & 0.6.3 & Sottolineatura dei termini del Glossario \\
 \hline
@@ -79,9 +81,9 @@
 \bigskip
 \begin{tabbing}
 	\hspace*{0.3\textwidth} \= \hspace*{0.5\textwidth} \kill
-	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Beggiato Andrea} \\
-	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{} \\
-	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Preliminare} \\
+	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Barbiero Mattia} \\
+	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Freo Matteo} \\
+	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Formale} \\
 	\parbox{0.3\textwidth}{\textbf{Uso: }} \> \parbox{0.5\textwidth}{Esterno} \\
 	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{QuiXoft} \\
 							\> \parbox{0.5\textwidth}{Rossi Francesca} \\
@@ -92,8 +94,8 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Specifica Tecnica \\ v0.7.4}}
-\author{Redazione: Freo Matteo, Barbiero Mattia, Scortegagna Carlo}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Specifica Tecnica \\ v1.0.0}}
+\author{Redazione: Grosselle Alessandro, Scarpa Davide}
 \maketitle
 \medskip
 \begin{center}
@@ -104,7 +106,7 @@
 \info
 \begin{center}
 \textbf{Sommario} \\
-Documento contenente la specifica tecnica per il progetto ''SIGEOL'' commissionato dalla prof. Rossi Francesca.
+Documento contenente la descrizione dettaglia dei componenti presenti nel sistema ''SIGEOL'' commissionato dalla prof. Rossi Francesca.
 \end{center}
 \newpage
 }
@@ -175,7 +177,6 @@ Per presentare l'architettura generale del sistema \textit{Sigeol} si utilizzer�
 In questo modello i ruoli di presentazione, controllo ed accesso ai dati vengono affidati a componenti diversi e sono tra di loro disaccoppiati.
 
 Sono inoltre previste altre due componenti: Middle Man si occupa di ricevere i compiti che necessitano di un elevato carico di lavoro; Algorithm, invece, risolve il problema del calcolo dell'orario.
-
 \begin{center}
 \includegraphics[scale=0.2]{images/component_diagram.png}
 \end{center}
@@ -305,7 +306,7 @@ Al termine della fase di \underline{login}, l'utente verrà reindirizzato alla p
 
 \newpage
 \subsection{Inserimento nuovo Docente}
-La Segreteria Didattica e il Presidente del CCS hanno la possibilità, dopo aver effettuato con successo il \underline{login}, di inserire un nuovo Docente nel sistema SIGEOL. Verranno richiesti nome, cognome ed indirizzo email. Se tali dati vengono inseriti e il Docente non è già presente nel DB di sistema, viene automaticamente inviata una email al Docente invitato, in cui gli viene indicato il \underline{link} necessario per procedere alla creazione del suo \underline{account}.
+La Segreteria Didattica e il Presidente del CCS hanno la possibilità, dopo aver effettuato con successo il \underline{login}, di inserire un nuovo Docente nel sistema SIGEOL. Verranno richiesti nome, cognome ed indirizzo email. Se tali dati vengono inseriti e il Docente non è già presente nel DB di sistema, viene automaticamente inviata una email al Docente invitato, in cui gli viene indicato il \underline{link} necessario per procedere alla creazione del suo \underline{account}.\\
 \begin{center}
  \includegraphics[scale=0.9]{images/inserimento_docente.png}
 \end{center}
@@ -314,7 +315,7 @@ La Segreteria Didattica e il Presidente del CCS hanno la possibilità, dopo aver
 \subsection{Registrazione Docente}
 Ogni docente, dopo aver ricevuto la mail di invito al sistema SIGEOL, utilizza il \underline{link} ricevuto per accedere al form di scelta password e di inserimento degli altri dati personali. La scelta della password seguirà rigide regole di sintassi, che verranno controllate dinamicamente durante l'inserimento. Tali regole prevederanno un numero minimo di caratteri, la presenza obbligatoria di cifre o simboli e altre convenzioni che saranno decise dal team QuiXoft, in collaborazione con il Committente, durante il proseguimento della fase di progettazione. La password dovrà poi essere confermata in un successivo campo dati, per evitare spiacevoli errori di battitura.
 
-Al termine della prcedura la password scelta e gli altri dati inseriti verranno memorizzati in modo sicuro sul DB di sistema.
+Al termine della prcedura la password scelta e gli altri dati inseriti verranno memorizzati in modo sicuro sul DB di sistema. \\
 \begin{center}
  \includegraphics[scale=0.8]{images/registrazione_docente.png}
 \end{center}
@@ -323,7 +324,7 @@ Al termine della prcedura la password scelta e gli altri dati inseriti verranno 
 \subsection{Inserimento dei dati nel sistema}
 La Segreteria Didattica e il Presidente del CCS hanno la possibilità di inserire i dati relativi ai corsi di laurea, agli insegnamenti, alle aule, ai dipartimenti e molti altri dati indispensabili al funzionamento del sistema SIGEOL.
 
-L'inserimento avverrà tramite diverse pagine web e diverse form, ma il diagramma di flusso di tali inserimenti è cosi simile che è stato scelto di esporne solo uno generale, adatto a rappresentare tutti gli inserimenti.
+L'inserimento avverrà tramite diverse pagine web e diverse form, ma il diagramma di flusso di tali inserimenti è cosi simile che è stato scelto di esporne solo uno generale, adatto a rappresentare tutti gli inserimenti. \\
 \begin{center}
  \includegraphics[scale=0.85]{images/inserimento_dati.png}
 \end{center}
@@ -335,7 +336,6 @@ La Segreteria Didattica e il Presidente del CCS hanno la possibilità di modific
 I docenti invece hanno la possibilità di modificare i propri dati personali e i vincoli e le preferenze inserite.
 
 Le similitudini tra tutte le sopra citate modifiche hanno portato allo sviluppo di un singolo diagramma di attività che le rappresenti tutte. L'invocazione del comando di modifica sarà ovviamente diverso tra i vari tipi di dati, ma la procedura per modificarli e salvarli è similare.
-
 \begin{center}
  \includegraphics[scale=0.85]{images/modifica_dati.png}
 \end{center}
@@ -345,11 +345,9 @@ Le similitudini tra tutte le sopra citate modifiche hanno portato allo sviluppo 
 Tutti i docenti cha abbiano effettuato correttamente il \underline{login} hanno la possibilità di inserire i loro vincoli e le loro preferenze. La procedura è similare, per tanto è rappresentata dallo stesso diagramma di attività.
 
 La differenza sostanziale nell'inserimento di un vincolo o di una preferenza è che solo il vincolo, tra i due, prevede una motivazione, mentre solo la preferenza prevede un livello di priorità. L'assegnazione della priorità di una preferenza è automatizzata dal sistema: il Docente dovrà solamente decidere l'ordine di importanza delle proprie preferenze.
-
 \begin{center}
  \includegraphics[scale=0.85]{images/inserimento_vincoli.png}
 \end{center}
-
 \newpage
 \subsection{Generazione dell'orario}
 La Segreteria Didattica e il Presidente del CCS hanno la possibilità, una volta scaduta la data limite per l'inserimento dei vincoli e delle preferenze da parte dei Docenti, di far partire l'algoritmo di generazione dell'orario. L'algoritmo calcolerà l'orario migliore possibile per tutti i Corsi di Laurea inseriti, e sarà data la possibilità di scelta se generare l'orario per uno o più periodi (per periodo si intende il numero di trimestre-semestre-ecc... in base alla scelta fatta nel momento di inserimento dei dati).
@@ -358,7 +356,6 @@ L'algoritmo proporrà un orario soddisfacendo tutti i requisiti presenti e tenta
 \begin{center}
  \includegraphics[scale=0.85]{images/generazione_orario.png}
 \end{center}
-
 \newpage
 \subsection{Consultazione dell'orario}
 Qualsiasi utente ha la possibilità di consultare gli orari generati dal sistema SIGEOL, anche senza effettuare alcuna operazione di \underline{login}. Sarà sufficiente scegliere il Corso di Laurea ed il periodo e verrà visualizzato il relativo orario.
@@ -370,7 +367,6 @@ In ogni momento è data la possibilità all'utente di generare un \underline{PDF
 \begin{center}
  \includegraphics[scale=0.85]{images/consultazione_orario.png}
 \end{center}
-
 \section{Tracciamento componenti-requisiti}
 Di seguito è riportato il tracciamento dei requisiti descritti nel documento denominato \textsc{Analisi dei Requisiti} con le componenti descritti nel presente.\\
 \begin{center}
