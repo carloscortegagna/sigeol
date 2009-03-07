@@ -12,6 +12,7 @@
 
 \renewcommand{\headrulewidth}{0.6pt}
 \renewcommand{\footrulewidth}{0.6pt}
+
 % impostazione dello stile per le pagine interne del documento
 \lhead{\leftmark}
 \chead{}
@@ -45,7 +46,7 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
-\textit{6 marzo 2009} & 1.0.1 & Correzione dell'impostazione delle pagine \\
+\textit{7 marzo 2009} & 1.0.1 & Correzione dell'impostazione delle pagine \\
 \hline
 \textit{1 marzo 2009} & 1.0.0 & Approvazione del responsabile e passaggio di stato a Formale \\
 \hline
@@ -126,9 +127,9 @@ Descrizione dettagliata delle caratteristiche tecniche ed architetturali del pro
 \setcounter{page}{1}
 \section{Introduzione}
 \subsection{Scopo del documento}
-Il presente documento denominato \textsc{Descrizione di prodotto} si prefigge di illustrare ed analizzare con maggior dettaglio i metodi ed i formalismi adottati nella definizione del prodotto SIGEOL.
+Il presente documento denominato \textsc{Descrizione di prodotto} si prefigge di illustrare ed analizzare con maggior dettaglio i metodi ed i formalismi adottati nella definizione del prodotto \textsc{Sigeol}
 \subsection{Scopo del prodotto}
-Il progetto sotto analisi, denominato SIGEOL, si prefigge di automatizzare la generazione, la gestione, l’ottimizzazione e la consultazione degli orari di lezione. Per maggiori dettagli consultare il documento denominato \textsc{Analisi dei Requisiti} alla sua ultima versione.
+Il progetto sotto analisi, denominato \textsc{Sigeol}, si prefigge di automatizzare la generazione, la gestione, l’ottimizzazione e la consultazione degli orari di lezione. Per maggiori dettagli consultare il documento denominato \textsc{Analisi dei Requisiti} alla sua ultima versione.
 \subsection{Glossario}
 Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti possono essere trovate nel documento denominato \textsc{Glossario} al fine di eliminare ogni ambiguità e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione è disponibile all’interno del glossario verrà marcato con una sottolineatura.
 \subsection{Riferimenti normativi}
@@ -138,7 +139,7 @@ Il documento denominato \textsc{Norme di Progetto} accompagna e complementa il p
 \subsection{Standard di progettazione architetturale}
 La definizione dell'intero sistema oggetto di studio è stata effetuata attraverso l'uso di diagrammi UML e l'applicazione di pattern consolidati ed in uso in molti prodotti software.
 \subsubsection{UML}
-Il linguaggio \underline{UML} è utilizzato per la modellazione architetturale di un sistema in quanto grazie alla sua capacità e chiarezza espressiva risulta di facile comprensione anche a persone esterne al progetto stesso. Il team QuiXoft ha utilizzato UML 2.0 per:
+Il linguaggio UML è utilizzato per la modellazione architetturale di un sistema in quanto grazie alla sua capacità e chiarezza espressiva risulta di facile comprensione anche a persone esterne al progetto stesso. Il team QuiXoft ha utilizzato UML 2.0 per:
 \begin{itemize}
  \item Diagrammi use-case nel documento \textsc{Analisi dei Requisiti}
  \item Diagrammi delle classi, delle componenti, di attività e delle sequenze nei documenti \textsc{Specifica tecnica} e \textsc{Definizione di prodotto}
@@ -173,15 +174,15 @@ Secondo il \underline{pattern} Active Record esiste una relazione molto stretta 
 \end{description}
 
 \subsection{Standard di documentazione del codice}
-Il team QuiXoft si avvalerà dello strumento \underline{RDoc}, specifico per il linguaggio Ruby. Questo strumento estrapola dal codice sorgente i commenti al codice stesso, organizzandoli e rendendoli disponibili alla consultazione tramite pagine \underline{HTML}. Per questo motivo ogni membro del team alla stesura di qualsiasi classe o metodo dovrà documentarlo tramite la sintassi specifica di RDoc.
+Il team QuiXoft si avvalerà dello strumento \underline{RDoc}, specifico per il linguaggio Ruby. Questo strumento estrapola dal codice sorgente i commenti al codice stesso, organizzandoli e rendendoli disponibili alla consultazione tramite pagine HTML. Per questo motivo ogni membro del team alla stesura di qualsiasi classe o metodo dovrà documentarlo tramite la sintassi specifica di RDoc.
 
 \subsection{Standard di denominazione di entità e relazioni}
-Lo schema di denominazione deve essere determinante per la comprensione del flusso logico dell'applicazione. Verrano quindi utilizzati nomi significativi che identifichino la funzione e lo scopo dell'elemento. Inoltre saranno seguite le convenzioni generali dello specifico linguaggio di programmazione utilizzato per realizzare l'elemento, nonchè ulteriori convenzioni dettate dal \underline{framework} utilizzato. Per maggiori informazioni consultare la sezione \ref{programmazione}
+Lo schema di denominazione deve essere determinante per la comprensione del flusso logico dell'applicazione. Verrano quindi utilizzati nomi significativi che identifichino la funzione e lo scopo dell'elemento. Inoltre saranno seguite le convenzioni generali dello specifico linguaggio di programmazione utilizzato per realizzare l'elemento, nonchè ulteriori convenzioni dettate dal framework utilizzato. Per maggiori informazioni consultare la sezione \ref{programmazione}
 
 \subsection{Standard di programmazione}\label{programmazione}
-Ogni file deve contenere esattamente una classe od un modulo, eccezion fatta per i \underline{template}. Inoltre è necessaria ai fini di una migliore leggibilità, l'uso di una corretta indentazione, fornita dall'ambiente di sviluppo. 
+Ogni file deve contenere esattamente una classe od un modulo, eccezion fatta per i \underline{template} di file HTML e JavaScript. Inoltre è necessaria ai fini di una migliore leggibilità, l'uso di una corretta indentazione, fornita dall'ambiente di sviluppo. 
 \subsubsection{Ruby e framework Rails}
-Di seguito sono elencate le convenzioni utilizzate negli elementi sviluppati con il linguaggio \underline{Ruby}.
+Di seguito sono elencate le convenzioni utilizzate negli elementi sviluppati con il linguaggio Ruby.
 \subsubsection*{Variabili locali}
 Prima lettera minuscola, seguita da altri caratteri minuscoli. Se la variabile comprende più parole, queste andranno separate con un \_ (underscore). Esempio: \verb|variabile_locale|
 \subsubsection*{Variabili d'instanza}
@@ -201,7 +202,7 @@ Si utilizza la stessa convenzione per le classi ed inoltre il nome dovrà essere
 \subsubsection*{Controller}
 Si utilizza la stessa convenzione per le classi ed inoltre il nome dovrà essere il plurale (in lingua inglese) del nome del Model a cui si riferisce, seguito dalla parola \textit{Controller}. Esempio: \verb|OrdersController|
 \subsubsection*{Tabelle del database}
-Prima lettera minuscola, seguita da altri caratteri minuscoli. Se il nome comprende più parola, queste andranno separate con un \_ (underscore). Inoltre il nome deve essere il plurale del model (in lingua inglese) a cui la tabella si riferisce. Esempio: \verb|orders|
+Prima lettera minuscola, seguita da altri caratteri minuscoli. Se il nome comprende più parole, queste andranno separate con un \_ (underscore). Inoltre il nome deve essere il plurale del model (in lingua inglese) a cui la tabella si riferisce. Esempio: \verb|orders|
 \subsubsection*{Chiave primaria}
 Il nome della chiave primaria dovrà essere \verb|id|
 \subsubsection*{Chiavi esterne}
@@ -221,7 +222,7 @@ Durante tutto lo svolgimento del progetto, il team QuiXoft utilizzarà i seguent
  \item JRuby 1.1.5 \\ \textit{http://jruby.codehaus.org/}
  \item GlassFishV3 \\ \textit{https://glassfish.dev.java.net/}
  \item MySql 5.0 \\ \textit{http://www.mysql.com/}
- \item \underline{Rails} framework \\ \textit{http://rubyonrails.org/}
+ \item Rails framework \\ \textit{http://rubyonrails.org/}
  \item RDoc \\ \textit{http://rdoc.sourceforge.net/}
  \item rcov \\ \textit{http://rubyforge.org/projects/rcov/}
  \item W3C validator \\ \textit {http://validator.w3.org/}
@@ -230,10 +231,10 @@ Durante tutto lo svolgimento del progetto, il team QuiXoft utilizzarà i seguent
 \end{itemize}
 
 \section{Specifica delle componenti}
-Il sistema Sigeol è strutturato seguendo il paradigma MVC, con l'aggiunta di ulteriori componenti: Helper, MiddleMan e Algorithm.
+Il sistema Sigeol è strutturato seguendo il paradigma MVC, con l'aggiunta di ulteriori: Helper, MiddleMan e Algorithm.
 \subsection{Componente Model}\label{model}
 \subsubsection{Introduzione}
-Ogni classe appartente al model deriva direttamente da \verb|ActiveRecord::Base| ed ogni istanza di tale classe viene anche chiamata oggetto di tipo Active Record, dove gli attributi non vengono specificati direttamente, ma dedotti dalla tabella associata.
+Ogni classe appartente al model, deriva direttamente da \verb|ActiveRecord::Base| ed ogni istanza di tale classe viene anche chiamata oggetto di tipo Active Record, dove gli attributi non vengono specificati direttamente, ma dedotti dalla tabella associata.
 
 Un'istanza di una classe model corrisponde ad una riga della tabella associata, quindi se viene cancellato verrà eliminata anche la riga corrispondente.
 
@@ -252,13 +253,13 @@ validates_presence_of :mail,
 		      :message=>"La mail non deve essere vuota",
 		      :on  => :save
 \end{verbatim}
-dove \verb|:message| contiene il messaggio d'errore e \verb|:on| specifica in che fase effettuare la validazione(\verb|:create|, \verb|:update| o \verb|:save|); se \verb|:on| è omesso questi assumera il valore di default \verb|save|.
+dove \verb|:message| contiene il messaggio d'errore e \verb|:on| specifica in che fase effettuare la validazione(\verb|:create|, \verb|:update| o \verb|:save|); se \verb|:on| è omesso questi assumerà il valore di default \verb|save|.
 
 Per creare, invece, una validazione non presente in quelle fornite dalle librerie di Rails è necessario aggiungere alle chiamate di \verb|validate|,\\ \verb|validate_on_update|,\verb|validate_on_create|, la lista dei metodi che si vuole aggiungere, passati come simboli.
 \begin{itemize}
  \item \verb|validate|: la validazione viene eseguita prima di ogni operazione di scrittura nel database; quindi sia in fase di creazione che di modifica
- \item \verb|validate_on_create|: la validazione viene eseguita solamente alla creazione di una nuova tupla
- \item \verb|validate_on_update|: la validazione viene eseguita solamente alla modifica di un record esistente.
+ \item \verb|validate_on_create|:la validazione viene eseguita solamente alla creazione di una nuova tupla
+ \item \verb|validate_on_update|:la validazione viene eseguita solamente alla modifica di un record esistente.
 \end{itemize}
 
 Ad esempio, nel model \verb|ExpiryDate|, per controllare che la data immessa sia maggiore di quella di oggi si implementerà il metodo \verb|is_correct_date?|. Il nome quindi verrà aggiunto come simbolo alla chiamata di \verb|validate| nel seguente modo: \\
@@ -267,12 +268,12 @@ validate :is_correct_date?
 \end{verbatim}
 \subsubsection*{Associazioni}
 Oltre alle validazioni, nel model vengono definite le relazione tra le tabelle, e quindi delle stesse classi. \verb|Active record| supporta tre tipi di associazioni: one-to-one, one-to-many, many-to-many.
-Per dichiarare una relazione, è necessario rchiamare opportunamente i metodi \verb|has_one|, \verb|has_many|, \verb|belongs_to| e \verb|has_and_belongs_to_many| nelle classi del model.
+Per dichiarare una relazione, è necessario chiamare opportunamente i metodi \verb|has_one|, \verb|has_many|, \verb|belongs_to| e \verb|has_and_belongs_to_many| nelle classi del model.
 Anche qui è necessario seguire delle convenizioni:
 \begin{itemize}
  \item la dichiarazione di \verb|belongs_to| deve essere aggiunta nel model, associato alla tabella che contiene la chiave esterna
- \item dopo \verb|has_many| e \verb|has_and_belongs_to_many| deve essere aggiunto (come simbolo) il nome della tabella
- \item dopo \verb|belongs_to| e \verb|has_one| deve essere aggiunto (come simbolo) il nome al singolare della tabella
+ \item dopo \verb|has_many| e \verb|has_and_belongs_to_many| deve essere aggiunto(come simbolo) il nome della tabella
+ \item dopo \verb|belongs_to| e \verb|has_one| deve essere aggiunto(come simbolo) il nome al singolare della tabella
 \end{itemize}
 
 E' possibile modificare le associazioni aggiungendo delle opzioni; in particolare nel progetto Sigeol si è utilizzata l'opzione \verb|:dependent| che indica ad \verb|Active record| come comportarsi quando si elimina una riga di una tabella che è associata ad un altra tramite chiave esterna (rapporto tra parent table e child table)
@@ -325,7 +326,7 @@ Prima di effettuare le operazioni di validazione, verrà reso maiscuolo il primo
 \subsubsection*{Validazioni}
 Le validazioni di \verb|city| e di \verb|street| sono identiche all'attributo \verb|name| del model \verb|AcademicOrganization|
 \begin{itemize}
- \item \verb|telephone|: il numero di telefono dovrà essere al massimo di 13 caratteri e dovrà rispettare l'espressione regolare\\
+ \item \verb|telephone|: il numero di telefono dovrà essere al massimo di 13 caratteri e dovrà rispettare l'espressione regolare:\\
  \verb|/^[0-9]{2,4}-[0-9]{6,8}$/|.\\  
 In questo modo il contenuto di \verb|telephone| avrà un numero di cifre compreso tra due e quattro(prefisso), seguite dal simbolo - ed infine un secondo numero di cifre compreso tra sei e otto (numero di telefono). Non è necessario inserire e controllare prima del numero di telefono il prefisso internazionale, perchè si ipotizza che tutti i numeri inseriti siano italiani.
 \end{itemize}
@@ -373,7 +374,7 @@ Le validazioni di \verb|name| sono identiche all'attributo \verb|name| del model
 \subsubsection{Classroom}
 \subsubsection*{Descrizione degli attributi}
 \begin{itemize}
- \item \verb|name|: contiene il nome dell' aula
+ \item \verb|name|: contiene il nome dell'aula
  \item \verb|capacity|: contiene la capienza massima dell'aula
  \item \verb|building_id|: chiave esterna di \verb|buildings|	
 \end{itemize}
@@ -404,7 +405,7 @@ Le validazioni di \verb|name| sono identiche all'attributo \verb|name| del model
 \end{itemize}
 \subsubsection*{validate}
 \begin{itemize}
- \item \verb|validate :unique_curriculum_graduate_course?|: per salvare l'og\-getto nel database, è necessario che il graduate course, con id uguale a \verb|graduate_course_id|, non abbia associato un curriculum con il nome uguale a quello definito nell'oggetto
+ \item \verb|validate :unique_curriculum_graduate_course?|: per salvare l'oggetto nel database, è necessario che il graduate course, con id uguale a \verb|graduate_course_id|, non abbia associato un curriculum con il nome uguale a quello definito nell'oggetto
 \item \verb|unique_curriculum_graduate_course?| è un metodo privato utilizzato nella validazione precedente.
 \end{itemize}
 \subsubsection*{Funzioni di callback}
@@ -445,7 +446,7 @@ Prima di effettuare le operazioni di validazione, verrà reso maiscuolo il primo
 \subsubsection*{Descrizione degli attributi}
 \begin{itemize}
  \item \verb|subperiod|: individua un determinato periodo dell'anno accademico. Ad esempio in un corso di laurea con un'organizazzione a trimestri, \verb|subperiod| con valore 1 identifica il primo trimestre
- \item \verb|year|: individua l'anno, insteso come primo, secondo, terzo, ecc.
+ \item \verb|year|: individua l'anno, inteso come primo, secondo, terzo, ecc.
 \end{itemize}
 \subsubsection*{Validazioni}
 \begin{itemize}
@@ -615,10 +616,9 @@ hanno in comune i seguenti attributi:
 \subsubsection{ConstraintsOwner}
 All'interno di questa classe, si definiranno le relazioni tra i vincoli e i relativi proprietari.
 Un vincolo può avere come proprietario: un corso di laurea (\verb|GraduateCourse|), una classe (\verb|Classroom|) o un docente (\verb|Teacher|).
+
 Un proprietario, può avere tre tipi di vincoli, booleano, temporale e di quantità.
-Grazie a questo model join ed al plugin \verb|has_many_polymorphs|, sarà possibile associare in modo semplice e veloce un proprietario con un qualsiasi tipo di vincolo
-\subsubsection{TeacherMailer}
-La classe \verb|TeacherMailer| che si occupa dell'invio delle e-mail per l'attivazione dell'account del docente può essere considerata, in modo astratt, appartene alla componente Model. Essa deriva dalla classe \verb|ActionMailer::Base| presente nel framework Rails ed implementa il metodo \verb|activate_teacher(sender, receiver)| che si occupa dell'invio del link per l'attivazione dell'account del docente.
+Grazie a questo join model ed al plugin \verb|has_many_polymorphs|, sarà possibile associare in modo semplice e veloce un proprietario con un qualsiasi tipo di vincolo
 \subsection{Database}
 L'integrità referenziale è un concetto molto importante da non dimenticare durante la progettazione di un database.
 Da poco MySql ha implementato un supporto per la chiavi esterne attraverso il nuovo table engine INNODB.
@@ -630,9 +630,8 @@ La sintassi per aggiungere un vincolo d'integrità alle chiave esterne è il seg
 Ovviamente ogni tabella del database dovrà utilizzare come engine INNODB, altrimenti la clausula \verb|foreign key| verrà ignorata.
 \subsection{Componente Controller}
 La componente Controller si occupa di gestire le azioni che l'utente effettua, solitamente attraverso una view. Ogni metodo pubblico rappresenta quindi una specifica azione, eccezion fatta per l'Application Controller.
-Di seguito è riportato il diagramma delle classi che illustra questa componente. Sono stati omessi volutamente i tipi di ritorno per i metodi che implementano un'azione, in quanto queste operazioni non sono utilizzate per restituire un valore, bensì inizializzano alcune variabili d'istanza che saranno successivamente disponibili nella view specifica per quella azione. Inoltre per aumentare la leggibilità è stata omessa la derivazione della classe \verb|ApplicationController| da \verb|ActionController::Base|.
-
-\bigskip
+Di seguito è riportato il diagramma delle classi che illustra questa componente. Sono stati omessi volutamente i tipi di ritorno per i metodi che implementano un'azione, in quanto queste operazioni non sono utilizzate per restituire un valore, bensì inizializzano alcune variabili d'istanza che saranno successivamente disponibili nella view specifica per quella azione. Inoltre per aumentare la leggibilità è stata omessa la derivazione della classe \verb|ApplicationController| da \verb|ActionController::Base|. \\
+\bigskip \\
 \includegraphics[scale=0.34]{images/Controller_ClassDiagram.png}
 \subsubsection{Azioni comuni a più controller}
 Per evitare fastidiose ripetizioni in questa sezione verranno descritti i metodi che figurano con lo stesso nome in diversi controller. La scelta dello stesso nome non è casuale, in quanto rispecchia la funzione dell'azione.
@@ -665,7 +664,7 @@ Questa classe deriva direttamente da \verb|ActionController::Base|, ed è estesa
  \item \verb|didactic_office_required|: se l'utente non appartiene ad una segreteria didattica questo metodo reindirizza alla pagina principale mostrando un errore.
 \end{itemize}
 \subsubsection{GraduateCoursesController}
-Il controller \verb|GraduateCourseController| permette alla segreteria didattica di creare e eliminare i corsi di laurea. Inoltre permette agli utenti con gli opportuni privilegi di aggiornare le informazioni relative ai propri corsi di laurea.
+Il controller \verb|GraduateCourseController| permette alla segreteria didattica di creare ed eliminare i corsi di laurea. Inoltre permette agli utenti con gli opportuni privilegi di aggiornare le informazioni relative ai propri corsi di laurea.
 I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
 \begin{itemize}
  \item \verb|login_required| non è utilizzato nelle azioni \verb|index| e \verb|show|
@@ -674,7 +673,7 @@ I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e s
  \item \verb|same_graduate_course_required| è utilizzato nelle azioni \verb|edit|,\\ \verb|update|, e \verb|destroy|.
 \end{itemize}
 \subsubsection{CurriculumsController}
-Il controller \verb|CurriculumsController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare le informazioni relative ai curricula dei propri corsi di laurea, nonchè di aggiungere o rimuove insegnamenti da quest'ultimi attreverso i metodi \verb|select_teaching|, raggiungibile medianta una richiesta GET all'indirizzo /curriculums/id/select\_teaching, e \verb|assign_teaching|, raggiungibile mediante una richiesta POST all'indirizzo /curriculums/id/assign\_teaching. Il primo fornisce alla view una lista degli insegnamenti presenti nel corso di laurea a cui il curriculum appartiene, mentre il secondo crea questa associazione tramite il model.
+Il controller \verb|CurriculumsController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare le informazioni relative ai curricula dei propri corsi di laurea, nonchè di aggiungere o rimuovere insegnamenti da quest'ultimi attreverso i metodi \verb|select_teaching|, raggiungibile mediante una richiesta GET all'indirizzo /curriculums/id/select\_teaching, e \verb|assign_teaching|, raggiungibile mediante una richiesta POST all'indirizzo /curriculums/id/assign\_teaching. Il primo fornisce alla view una lista degli insegnamenti presenti nel corso di laurea a cui il curriculum appartiene, mentre il secondo crea questa associazione tramite il model.
 I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
 \begin{itemize}
  \item \verb|login_required| non è utilizzato solamente nell'azione \verb|show|
@@ -685,7 +684,7 @@ I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e s
 Il controller \verb|UsersController| dispone solamente delle azioni \verb|edit| e \verb|update| e del metodo privato \verb|same_user_required| (utilizzato come filtro anteposto alle due azioni assieme al filtro \verb|login_required|). Questa scelta progettuale deriva dalla relazione tra i model \verb|Teacher|, \verb|DidacticOffice| e \verb|User|. Confrontare la sezione \ref{model}.
 Il metodo privato \verb|same_user_required| garantisce che non si stia cercando di modificare un utente diverso dal proprio.
 \subsubsection{TeachersController}
-Il controller \verb|TeachersController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare i docenti dei propri corsi da laurea, nonchè di attribuire ad essi nuovi privilegi e corsi di laurea. Attraverso l'azione \verb|new| viene rischiesto un indirizzo e-mail di un docente e l'azione \verb|create| verificherà se questo è presente o meno nel database. Nel primo caso se il docente appartiene già a quel corso di laurea verrà segnalato un errore, altrimenti verrà aggiunto; nel secondo caso verrà inviata al nuovo docente una mail con le istruzioni per la registrazione al sistema. Il nuovo docente tramite l'azione \verb|pre_activate|, raggiungibile mediante una richista GET all'indirizzo /teachers/id/pre\_activate?digest=, potrà completare la creazione dello proprio user, e del relativo indirizzo, che sarà delegata all'azione \verb|activate|, raggiungibile mediante una richiesta POST all'indirizzo /teachers/id/activate?digest=. La certezza che solamente il docente invitato potrà creare il proprio account è resa possibile tramite il parametro \verb|digest| che solamente chi ha ha ricevuto la mail di invito può conoscere.
+Il controller \verb|TeachersController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare i docenti dei propri corsi da laurea, nonchè di attribuire ad essi nuovi privilegi e corsi di laurea. Attraverso l'azione \verb|new| viene rischiesto un indirizzo e-mail di un docente e l'azione \verb|create| verificherà se questo è presente o meno nel database. Nel primo caso se il docente appartiene già a quel corso di laurea verrà segnalato un errore, altrimenti verrà aggiunto; nel secondo caso verrà inviata al nuovo docente una mail con le istruzioni per la registrazione al sistema. Il nuovo docente tramite l'azione \verb|pre_activate|, raggiungibile mediante una richista GET all'indirizzo /teachers/id/pre\_activate?digest=, potrà completare la creazione del proprio user, e del relativo indirizzo, che sarà delegata all'azione \verb|activate|, raggiungibile mediante una richiesta POST all'indirizzo /teachers/id/activate?digest=. La certezza che solamente il docente invitato potrà creare il proprio account è resa possibile tramite il parametro \verb|digest| che solamente chi ha ha ricevuto la mail di invito può conoscere.
 
 Infine attraverso le azioni \verb|edit_graduate_courses|, \verb|edit_capabilities|, \verb|update_graduate_courses| e \verb|update_capabilities|, raggiungibili rispettivamente mediante una richiesta GET all'indirizzo \\ /teachers/id/edit\_graduate\_courses o /teachers/id/edit\_capabilities e mediante una richiesta POST all'indirizzo /teachers/is/update\_graduate\_courses o /teachers/id/update\_capabilities, è possibilile modificare o rimuovere corsi di laurea e privilegi ai docenti da user che ne hanno la facoltà.
 I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
@@ -698,7 +697,7 @@ I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e s
 \subsubsection{SessionsController}
 Il controller \verb|SessionsController| permette la creazione di una sessione al momento dell'autenticazione dello user. Utilizza quindi le azioni \verb|new|, \verb|create| e \verb|destroy| senza alcun filtro, raggiungibili rispettivamente con una richiesta GET all'indirizzo /session/new, POST all'indirizzo /session e DELETE all'indirizzo /session/id.
 \subsubsection{TeachingsController}
-Il controller \verb|TeachingsController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare le informazioni relative agli insegnamenti dei propri corsi di laurea, nonchè di aggiungere o rimuove il docente che tiene l'insegnamento in questione attraverso le azioni \verb|select_teacher|, raggiungibile medianta una richiesta GET all'indirizzo \\ /teachings/id/select\_teacher, e \verb|assign_teacher|, raggiungibile mediante una richiesta POST all'indirizzo /teachers/id/assign\_teacher. Il primo fornisce alla view una lista dei docenti presenti nel corso di laurea a cui il curriculum appartiene, mentre il secondo crea questa associazione tramite il model.
+Il controller \verb|TeachingsController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare le informazioni relative agli insegnamenti dei propri corsi di laurea, nonchè di aggiungere o rimuovere il docente che tiene l'insegnamento in questione attraverso le azioni \verb|select_teacher|, raggiungibile mediante una richiesta GET all'indirizzo \\ /teachings/id/select\_teacher, e \verb|assign_teacher|, raggiungibile mediante una richiesta POST all'indirizzo /teachers/id/assign\_teacher. Il primo fornisce alla view una lista dei docenti presenti nel corso di laurea a cui il curriculum appartiene, mentre il secondo crea questa associazione tramite il model.
 I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
 \begin{itemize}
  \item \verb|login_required| non è utilizzato nelle azioni \verb|index| e \verb|show|
@@ -745,18 +744,17 @@ Il componente View si occupa di presentare le informazioni presenti nel sistema 
  \item Partials: vengono incorporati in uno o più template o in uno o più layout. Sono frammenti di codice che presentano un sottoinsieme delle informazioni del sistema, riutilizzabili da più view.
 \end{itemize}
 \subsubsection{Layouts}
-Il sistema Sigeol prevede un unico layout XHTML per tutta l'applicazione in modo da garantire la stessa impaginazione per ogni template. Come nella maggior parte dei siti web moderni è prevista un'intestazione, un \underline{footer}, un menu presente nella parte sinistra della pagina ed un blocco dei contenuti presenti nella parte centrale dove verranno renderizzati i template. In aggiunta sarà presente un menu di amministrazione ove richiesto che verrà collocato nella parte superiore del blocco dei contenuti.
+Il sistema \textit{Sigeol} prevede un unico layout XHTML per tutta l'applicazione in modo da garantire la stessa impaginazione per ogni template. Come nella maggior parte dei siti web moderni è prevista un'intestazione, un \underline{footer}, un menu presente nella parte sinistra della pagina ed un blocco dei contenuti presenti nella parte centrale dove verranno renderizzati i template. In aggiunta sarà presente un menu di amministrazione ove richiesto che verrà collocato nella parte superiore del blocco dei contenuti.
 
-Di seguito è riportata una immagine esplicativa della struttura del layout:
-\begin{center}
- \includegraphics[scale=0.40]{images/layout.png}
-\end{center}
+Di seguito è riportata una immagina esplicativa della struttura del layout:
+
+\includegraphics[scale=0.50]{images/layout.png}
 \subsubsection{Templates}
 Il sistema Sigeol prevede un diverso template per ogni azione raggiungibile attraverso una richiesta GET presente in ogni controller. Di seguito viene riportata una descrizione di ogni template:
 \subsubsection*{Template comuni a più controller}
 Per evitare fastidiose ripetizione di seguito sono riportate le descrizioni dei template per le azioni che figurano in più controller:
 \begin{itemize}
- \item \verb|new.html.erb|: presenta un \underline{form} per l'inserimento di una nuova istanza.
+ \item \verb|new.html.erb|: presenta un form per l'inserimento di una nuova istanza.
  \item \verb|edit.html.erb|: presenta un form per la modifica di un'istanza esistente.
  \item \verb|index.html.erb|: presenta un elenco ordinato di un insieme di istanze.
  \item \verb|show.html.erb|: presenta le informazioni relativa ad una determinata istanza.
@@ -764,7 +762,7 @@ Per evitare fastidiose ripetizione di seguito sono riportate le descrizioni dei 
  per amministrarle.
  \item \verb|new_constraint.html.erb|: presenta un form per l'inserimento di un nuovo vincolo o preferenza
 \end{itemize}
-Inoltre per garantire l'interoperabilità dei dati sono presenti i template XML per tutte le azioni \verb|index| e \verb|show|, nonchè un template PDF per l'azione \verb|show| di \verb|TimetablesController|. Infine è presente il template per la mail che sarà inviata al docente per l'attivazione del proprio user.
+Inoltre per garantire l'interoperabilità dei dati sono presenti i template XML per tutte le azioni \verb|index| e \verb|show|, nonchè un template PDF per l'azione \verb|show| di \verb|TimetablesController|.
 \subsubsection*{Template per TeachingsController}
 Il template XHTML \verb|select_teacher.html.erb| è presente per il \\ \verb|TeachingsController| per l'azione \verb|select_teacher|.  Questo presenta un form per l'assegnamento di un docente ad un insegnamento utilizzando metodi per la presentazione automatica della lista dei docenti come i tag XHTML \verb|<select>| e \verb|<option>|.
 \subsubsection*{Template per CurriculumsController}
@@ -774,10 +772,10 @@ Il \verb|TeachersController| prevede diverse azioni raggiungibili attraverso una
 \begin{itemize}
  \item \verb|pre_activate.html.erb|: presenta un form per l'attivazione dello \verb|user| del docente invitato
  \item \verb|edit_capabilities.html.erb|: presenta un form per l'assegnazione di nuovi privilegi allo \verb|user| detenuto dal docente utilizzando metodi per la presentazione automatica della lista dei privilegi come li tag XHTML \verb|<input type="checkbox">|
- \item \verb|edit_graduate_courses.html.erb|: presenta un form per l'assegnazione di nuovi corsi di laurea allo \verb|user| dtenuto dal docente utilizzando metodi per la presentazione automatica della lista dei corsi di laurea come i tag XHTML \verb|<select>| e \verb|<option>|
+ \item \verb|edit_graduate_courses.html.erb|: presenta un form per l'assegnazione di nuovi corsi di laurea allo \verb|user| tenuto dal docente utilizzando metodi per la presentazione automatica della lista dei corsi di laurea come i tag XHTML \verb|<select>| e \verb|<option>|
 \end{itemize}
 \subsubsection{Partials}
-Il sistema Sigeol prevede l'uso di partials per la visualizzazione delle informazioni che sono riutilizzate in più view. Ognuno di essi è caratterizzato dalla presenza di un \_ (underscore) prima del nome del file che sono della forma \verb|_show_nomemodel.html.erb| e \verb|_show_nomemodel_admin.html.erb| e dovranno essere contenuti nella rispettiva directory che contiene i template del controller associato a \verb|nomemodel| (ad esempio \verb|_show_teaching.html.erb| è contenuto all'interno della directory \verb|app\views\teachings|. I partial del primo tipo visualizzano le informazioni dell'oggetto di tipo \verb|nomemodel| per le azioni di pubblico accesso, mentre i secondi per le azioni di amministrazione con le relative funzioni.
+Il sistema Sigeol prevede l'uso di partials per la visualizzazione delle informazioni che sono riutilizzate in più view. Ognuno di essi è caratterizzato dalla presenza di un \_ (underscore) prima del nome del file che sono della forma \verb|_nomemodel.html.erb| e \verb|_nomemodel_admin.html.erb| e dovranno essere contenuti nella rispettiva directory che contiene i template del controller associato a \verb|nomemodel| (ad esempio \verb|_teaching.html.erb| è contenuto all'interno della directory \verb|app\views\teachings|. I partial del primo tipo visualizzano le informazioni dell'oggetto di tipo \verb|nomemodel| per le azioni di pubblico accesso, mentre i secondi per le azioni di amministrazione con le relative funzioni.
 
 Per i controller che presentano l'azione \verb|administration| e necessitano di un menu di amministrazione è presente un partial \verb|_menu_admin.html.erb| per la visualizzazione del suddetto menu che risiederà nella stessa directory che contiene i template del controller in questione.
 
@@ -857,9 +855,7 @@ Esso implementa le seguenti operazioni:
 \item delega alla componente \verb|Algorithm| la generazione dell'orario relativo ad uno specifico corso di laurea
 \item segnala all'applicazione la fine del calcolo 
 \end{itemize}
-\begin{center}
- \includegraphics[scale=0.34]{images/MMserv_diagram_class.png}
-\end{center}
+\includegraphics[scale=0.34]{images/MMserv_diagram_class.png}
 \subsubsection{SchedulerServlet}
 Servlet che si occupa di ricevere le richieste (di tipo HTTP POST e GET) dall'applicazione:
 \begin{description}
@@ -880,17 +876,15 @@ Ogni singola istanza della classe \verb|AlgorithmJob| esegue il calcolo dell'ora
 \subsubsection{ItcSolver}
 Classe che si occupa di leggere il file di input (contenente tutte le informazioni richieste relative al calcolo e generazione dell'orario) ed eseguire effettivamente l'algoritmo.
 \subsubsection{Descrizione dell'algoritmo}
-L'algoritmo utilizzato per la generazione dell'orario si basa su \verb|Constraint| \verb|Solver Library| (CPSolver 1.1,  copyright (C) 2007 Tomáš Müller): tale libreria permette la modellazione di una realtà universitaria al fine di elaborare diverse tipologie di orari, in base alle necessità.
+L'algoritmo utilizzato per la generazione dell'orario si basa su \verb|Constraint Solver Library| (CPSolver 1.1,  copyright (C) 2007 Tomáš Müller): tale libreria permette la modellazione di una realtà universitaria al fine di elaborare diverse tipologie di orari, in base alle necessità.
 \subsubsection*{Risultati internazionali}
-Il CPSolver 1.1 ha concorso nella \verb|International Timetabling Competition| \verb|2007 (ITC 2007)|: tale competizione era strutturata in 3 diverse tipologie di problemi da risolvere:
+Il CPSolver 1.1 ha concorso nella \verb|International Timetabling Competition 2007 (ITC 2007)|: tale competizione era strutturata in 3 diverse tipologie di problemi da risolvere:
 \begin{enumerate}
  \item Generazione di orari d'esame
  \item Generazione di orari di lezione basati sulla struttura del corso di laurea
  \item Generazione di orari di lezione basati sulle iscrizioni dei diversi studenti ai corsi
 \end{enumerate}
-L'algoritmo è giunto tra i finalisti in tutti i diversi problemi, aggiudicandosi il primo posto nelle tipologie 1 e 2.
-\\
-(sito web ufficiale: \textit{http://www.cs.qub.ac.uk/itc2007/index.htm})
+L'algoritmo è giunto tra i finalisti in tutti i diversi problemi, aggiudicandosi il primo posto nelle tipologie 1 e 2 (sito web ufficiale: \textit{http://www.cs.qub.ac.uk/itc2007/index.htm}).
 \subsubsection*{Motivazioni della scelta}
 CPSolver 1.1 è stato scelto dal nostro team in seguito ad un'attenta analisi. Le motivazioni che ci hanno portato ad adottarlo sono riassumibili in:
 \begin{itemize}
@@ -955,9 +949,7 @@ Il peso rappresenta un valore numerico attraverso il quale si assegna un valore 
 \paragraph{Pesi e priorità delle preferenze}
 L'assegnazione dei pesi viene gestita internamente alla classe in base ad una scala di priorità. I valori dei pesi sono stati scelti dal team QuiXoft in modo da garantire una corretta ed efficiente elaborazione. La relazione tra il valore di priorità ed il peso che tale priorità associa alla preferenza è riassumibile con la tabella seguente:
 
-\begin{center}
- \includegraphics[scale=0.8]{images/Algoritm_WeightPriorityRelation.png}
-\end{center}
+\includegraphics[scale=1]{images/Algoritm_WeightPriorityRelation.png}
 \subsubsection*{I metodi}
 I metodi privati presenti all'interno della classe \verb|MyPrefereces_DaySlot| sono:
 \begin{itemize}
@@ -1034,8 +1026,7 @@ Per quanto riguarda l'output l'algoritmo produce un file che rappresenta l'inter
 I valori identificativi dell'insegnamento (\verb|CourseID|) e dell'aula (\verb|RoomID|) derivano dai valori delle sezioni \verb|COURSES| e \verb|ROOMS| trattate nella sezione \ref{Algo_Input}
 \section{Organizzazione delle directories}
 Per facilitare la comprensione dell'organizzazione del sistema Sigeol, viene presentata in questa sezione la struttura delle directories. Per un dettaglio maggiore dell'organizzazione si prega di far riferimento al sito ufficiale di Ruby on Rails. Nella figura che segue viene illustrata la gerarchia \\
-\includegraphics[scale=0.59]{images/gerarchiacartelle.png} \\
-\\
+\includegraphics[scale=0.59]{images/gerarchiacartelle.png}
 A differenza delle consuete applicazioni sviluppate tramite il framework Rails, il sistema Sigeol presenta la cartella \verb|WEB-INF| che contiene tutte le classi e librerie utilizzate dalla servlet e il suo file di configurazione web.xml.\\ Per ulteriori informazioni sulla tecnologia servlet visitare il sito \\ http://java.sun.com/products/servlet/ .
 \section{Tracciamento componenti-requisiti}
 Di seguito è riportato il tracciamento dei requisiti descritti nel documento denominato \textsc{Analisi dei Requisiti} con le componenti descritti nel presente.\\
