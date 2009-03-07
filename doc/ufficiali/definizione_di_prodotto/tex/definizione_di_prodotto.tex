@@ -252,7 +252,7 @@ validates_presence_of :mail,
 		      :message=>"La mail non deve essere vuota",
 		      :on  => :save
 \end{verbatim}
-dove \verb|:message| contiene il messaggio d'errore e \verb|:on| specifica in che fase effettuare la validazione(\verb|:create|, \verb|:update| o \verb|:save|); se \verb|:on| è omesso questi assumera il valore di default \verb|save|.
+dove \verb|:message| contiene il messaggio d'errore e \verb|:on| specifica in che fase effettuare la validazione(\verb|:create|, \verb|:update| o \verb|:save|); se \verb|:on| è omesso questi assumerà il valore di default \verb|save|.
 
 Per creare, invece, una validazione non presente in quelle fornite dalle librerie di Rails è necessario aggiungere alle chiamate di \verb|validate|,\\ \verb|validate_on_update|,\verb|validate_on_create|, la lista dei metodi che si vuole aggiungere, passati come simboli.
 \begin{itemize}
@@ -267,7 +267,7 @@ validate :is_correct_date?
 \end{verbatim}
 \subsubsection*{Associazioni}
 Oltre alle validazioni, nel model vengono definite le relazione tra le tabelle, e quindi delle stesse classi. \verb|Active record| supporta tre tipi di associazioni: one-to-one, one-to-many, many-to-many.
-Per dichiarare una relazione, è necessario rchiamare opportunamente i metodi \verb|has_one|, \verb|has_many|, \verb|belongs_to| e \verb|has_and_belongs_to_many| nelle classi del model.
+Per dichiarare una relazione, è necessario richiamare opportunamente i metodi \verb|has_one|, \verb|has_many|, \verb|belongs_to| e \verb|has_and_belongs_to_many| nelle classi del model.
 Anche qui è necessario seguire delle convenizioni:
 \begin{itemize}
  \item la dichiarazione di \verb|belongs_to| deve essere aggiunta nel model, associato alla tabella che contiene la chiave esterna
@@ -323,7 +323,7 @@ Prima di effettuare le operazioni di validazione, verrà reso maiscuolo il primo
  \item telephone: contiene un numero di telefono
 \end{itemize}
 \subsubsection*{Validazioni}
-Le validazioni di \verb|city| e di \verb|street| sono identiche all'attributo \verb|name| del model \verb|AcademicOrganization|
+Le validazioni di \verb|city| e di \verb|street| sono identiche all'attributo \verb|name| del model. \verb|AcademicOrganization|
 \begin{itemize}
  \item \verb|telephone|: il numero di telefono dovrà essere al massimo di 13 caratteri e dovrà rispettare l'espressione regolare\\
  \verb|/^[0-9]{2,4}-[0-9]{6,8}$/|.\\
@@ -373,7 +373,7 @@ Le validazioni di \verb|name| sono identiche all'attributo \verb|name| del model
 \subsubsection{Classroom}
 \subsubsection*{Descrizione degli attributi}
 \begin{itemize}
- \item \verb|name|: contiene il nome dell' aula
+ \item \verb|name|: contiene il nome dell'aula
  \item \verb|capacity|: contiene la capienza massima dell'aula
  \item \verb|building_id|: chiave esterna di \verb|buildings|
 \end{itemize}
@@ -445,7 +445,7 @@ Prima di effettuare le operazioni di validazione, verrà reso maiscuolo il primo
 \subsubsection*{Descrizione degli attributi}
 \begin{itemize}
  \item \verb|subperiod|: individua un determinato periodo dell'anno accademico. Ad esempio in un corso di laurea con un'organizazzione a trimestri, \verb|subperiod| con valore 1 identifica il primo trimestre
- \item \verb|year|: individua l'anno, insteso come primo, secondo, terzo, ecc.
+ \item \verb|year|: individua l'anno, inteso come primo, secondo, terzo, ecc.
 \end{itemize}
 \subsubsection*{Validazioni}
 \begin{itemize}
@@ -616,7 +616,7 @@ hanno in comune i seguenti attributi:
 All'interno di questa classe, si definiranno le relazioni tra i vincoli e i relativi proprietari.
 Un vincolo può avere come proprietario: un corso di laurea (\verb|GraduateCourse|), una classe (\verb|Classroom|) o un docente (\verb|Teacher|).
 Un proprietario, può avere tre tipi di vincoli, booleano, temporale e di quantità.
-Grazie a questo model join ed al plugin \verb|has_many_polymorphs|, sarà possibile associare in modo semplice e veloce un proprietario con un qualsiasi tipo di vincolo
+Grazie a questo join model ed al plugin \verb|has_many_polymorphs|, sarà possibile associare in modo semplice e veloce un proprietario con un qualsiasi tipo di vincolo
 \subsubsection{TeacherMailer}
 La classe \verb|TeacherMailer| che si occupa dell'invio delle e-mail per l'attivazione dell'account del docente può essere considerata, in modo astratt, appartene alla componente Model. Essa deriva dalla classe \verb|ActionMailer::Base| presente nel framework Rails ed implementa il metodo \verb|activate_teacher(sender, receiver)| che si occupa dell'invio del link per l'attivazione dell'account del docente.
 \subsection{Database}
@@ -665,7 +665,7 @@ Questa classe deriva direttamente da \verb|ActionController::Base|, ed è estesa
  \item \verb|didactic_office_required|: se l'utente non appartiene ad una segreteria didattica questo metodo reindirizza alla pagina principale mostrando un errore.
 \end{itemize}
 \subsubsection{GraduateCoursesController}
-Il controller \verb|GraduateCourseController| permette alla segreteria didattica di creare e eliminare i corsi di laurea. Inoltre permette agli utenti con gli opportuni privilegi di aggiornare le informazioni relative ai propri corsi di laurea.
+Il controller \verb|GraduateCourseController| permette alla segreteria didattica di creare ed eliminare i corsi di laurea. Inoltre permette agli utenti con gli opportuni privilegi di aggiornare le informazioni relative ai propri corsi di laurea.
 I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
 \begin{itemize}
  \item \verb|login_required| non è utilizzato nelle azioni \verb|index| e \verb|show|
@@ -674,7 +674,7 @@ I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e s
  \item \verb|same_graduate_course_required| è utilizzato nelle azioni \verb|edit|,\\ \verb|update|, e \verb|destroy|.
 \end{itemize}
 \subsubsection{CurriculumsController}
-Il controller \verb|CurriculumsController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare le informazioni relative ai curricula dei propri corsi di laurea, nonchè di aggiungere o rimuove insegnamenti da quest'ultimi attreverso i metodi \verb|select_teaching|, raggiungibile medianta una richiesta GET all'indirizzo /curriculums/id/select\_teaching, e \verb|assign_teaching|, raggiungibile mediante una richiesta POST all'indirizzo /curriculums/id/assign\_teaching. Il primo fornisce alla view una lista degli insegnamenti presenti nel corso di laurea a cui il curriculum appartiene, mentre il secondo crea questa associazione tramite il model.
+Il controller \verb|CurriculumsController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare le informazioni relative ai curricula dei propri corsi di laurea, nonchè di aggiungere o rimuovere insegnamenti da quest'ultimi attreverso i metodi \verb|select_teaching|, raggiungibile mediante una richiesta GET all'indirizzo /curriculums/id/select\_teaching, e \verb|assign_teaching|, raggiungibile mediante una richiesta POST all'indirizzo /curriculums/id/assign\_teaching. Il primo fornisce alla view una lista degli insegnamenti presenti nel corso di laurea a cui il curriculum appartiene, mentre il secondo crea questa associazione tramite il model.
 I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
 \begin{itemize}
  \item \verb|login_required| non è utilizzato solamente nell'azione \verb|show|
@@ -685,7 +685,7 @@ I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e s
 Il controller \verb|UsersController| dispone solamente delle azioni \verb|edit| e \verb|update| e del metodo privato \verb|same_user_required| (utilizzato come filtro anteposto alle due azioni assieme al filtro \verb|login_required|). Questa scelta progettuale deriva dalla relazione tra i model \verb|Teacher|, \verb|DidacticOffice| e \verb|User|. Confrontare la sezione \ref{model}.
 Il metodo privato \verb|same_user_required| garantisce che non si stia cercando di modificare un utente diverso dal proprio.
 \subsubsection{TeachersController}
-Il controller \verb|TeachersController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare i docenti dei propri corsi da laurea, nonchè di attribuire ad essi nuovi privilegi e corsi di laurea. Attraverso l'azione \verb|new| viene rischiesto un indirizzo e-mail di un docente e l'azione \verb|create| verificherà se questo è presente o meno nel database. Nel primo caso se il docente appartiene già a quel corso di laurea verrà segnalato un errore, altrimenti verrà aggiunto; nel secondo caso verrà inviata al nuovo docente una mail con le istruzioni per la registrazione al sistema. Il nuovo docente tramite l'azione \verb|pre_activate|, raggiungibile mediante una richista GET all'indirizzo /teachers/id/pre\_activate?digest=, potrà completare la creazione dello proprio user, e del relativo indirizzo, che sarà delegata all'azione \verb|activate|, raggiungibile mediante una richiesta POST all'indirizzo /teachers/id/activate?digest=. La certezza che solamente il docente invitato potrà creare il proprio account è resa possibile tramite il parametro \verb|digest| che solamente chi ha ha ricevuto la mail di invito può conoscere.
+Il controller \verb|TeachersController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare i docenti dei propri corsi da laurea, nonchè di attribuire ad essi nuovi privilegi e corsi di laurea. Attraverso l'azione \verb|new| viene richiesto un indirizzo e-mail di un docente e l'azione \verb|create| verificherà se questo è presente o meno nel database. Nel primo caso se il docente appartiene già a quel corso di laurea verrà segnalato un errore, altrimenti verrà aggiunto; nel secondo caso verrà inviata al nuovo docente una mail con le istruzioni per la registrazione al sistema. Il nuovo docente tramite l'azione \verb|pre_activate|, raggiungibile mediante una richista GET all'indirizzo /teachers/id/pre\_activate?digest=, potrà completare la creazione dello proprio user, e del relativo indirizzo, che sarà delegata all'azione \verb|activate|, raggiungibile mediante una richiesta POST all'indirizzo /teachers/id/activate?digest=. La certezza che solamente il docente invitato potrà creare il proprio account è resa possibile tramite il parametro \verb|digest| che solamente chi ha ha ricevuto la mail di invito può conoscere.
 
 Infine attraverso le azioni \verb|edit_graduate_courses|, \verb|edit_capabilities|, \verb|update_graduate_courses| e \verb|update_capabilities|, raggiungibili rispettivamente mediante una richiesta GET all'indirizzo \\ /teachers/id/edit\_graduate\_courses o /teachers/id/edit\_capabilities e mediante una richiesta POST all'indirizzo /teachers/is/update\_graduate\_courses o /teachers/id/update\_capabilities, è possibilile modificare o rimuovere corsi di laurea e privilegi ai docenti da user che ne hanno la facoltà.
 I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
@@ -698,7 +698,7 @@ I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e s
 \subsubsection{SessionsController}
 Il controller \verb|SessionsController| permette la creazione di una sessione al momento dell'autenticazione dello user. Utilizza quindi le azioni \verb|new|, \verb|create| e \verb|destroy| senza alcun filtro, raggiungibili rispettivamente con una richiesta GET all'indirizzo /session/new, POST all'indirizzo /session e DELETE all'indirizzo /session/id.
 \subsubsection{TeachingsController}
-Il controller \verb|TeachingsController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare le informazioni relative agli insegnamenti dei propri corsi di laurea, nonchè di aggiungere o rimuove il docente che tiene l'insegnamento in questione attraverso le azioni \verb|select_teacher|, raggiungibile medianta una richiesta GET all'indirizzo \\ /teachings/id/select\_teacher, e \verb|assign_teacher|, raggiungibile mediante una richiesta POST all'indirizzo /teachers/id/assign\_teacher. Il primo fornisce alla view una lista dei docenti presenti nel corso di laurea a cui il curriculum appartiene, mentre il secondo crea questa associazione tramite il model.
+Il controller \verb|TeachingsController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare le informazioni relative agli insegnamenti dei propri corsi di laurea, nonchè di aggiungere o rimuovere il docente che tiene l'insegnamento in questione attraverso le azioni \verb|select_teacher|, raggiungibile mediante una richiesta GET all'indirizzo \\ /teachings/id/select\_teacher, e \verb|assign_teacher|, raggiungibile mediante una richiesta POST all'indirizzo /teachers/id/assign\_teacher. Il primo fornisce alla view una lista dei docenti presenti nel corso di laurea a cui il curriculum appartiene, mentre il secondo crea questa associazione tramite il model.
 I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
 \begin{itemize}
  \item \verb|login_required| non è utilizzato nelle azioni \verb|index| e \verb|show|
@@ -774,7 +774,7 @@ Il \verb|TeachersController| prevede diverse azioni raggiungibili attraverso una
 \begin{itemize}
  \item \verb|pre_activate.html.erb|: presenta un form per l'attivazione dello \verb|user| del docente invitato
  \item \verb|edit_capabilities.html.erb|: presenta un form per l'assegnazione di nuovi privilegi allo \verb|user| detenuto dal docente utilizzando metodi per la presentazione automatica della lista dei privilegi come li tag XHTML \verb|<input type="checkbox">|
- \item \verb|edit_graduate_courses.html.erb|: presenta un form per l'assegnazione di nuovi corsi di laurea allo \verb|user| dtenuto dal docente utilizzando metodi per la presentazione automatica della lista dei corsi di laurea come i tag XHTML \verb|<select>| e \verb|<option>|
+ \item \verb|edit_graduate_courses.html.erb|: presenta un form per l'assegnazione di nuovi corsi di laurea allo \verb|user| detenuto dal docente utilizzando metodi per la presentazione automatica della lista dei corsi di laurea come i tag XHTML \verb|<select>| e \verb|<option>|
 \end{itemize}
 \subsubsection{Partials}
 Il sistema Sigeol prevede l'uso di partials per la visualizzazione delle informazioni che sono riutilizzate in più view. Ognuno di essi è caratterizzato dalla presenza di un \_ (underscore) prima del nome del file che sono della forma \verb|_nomemodel.html.erb| e \verb|_nomemodel_admin.html.erb| e dovranno essere contenuti nella rispettiva directory che contiene i template del controller associato a \verb|nomemodel| (ad esempio \verb|_teaching.html.erb| è contenuto all'interno della directory \verb|app\views\teachings|. I partial del primo tipo visualizzano le informazioni dell'oggetto di tipo \verb|nomemodel| per le azioni di pubblico accesso, mentre i secondi per le azioni di amministrazione con le relative funzioni.
