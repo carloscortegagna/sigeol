@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(:version => 20090223203513) do
 
   create_table "boolean_constraints", :force => true do |t|
     t.boolean  "bool"
+    t.string   "description"
+    t.integer  "isHard"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -89,6 +91,8 @@ ActiveRecord::Schema.define(:version => 20090223203513) do
     t.integer "graduate_course_id", :null => false
     t.integer "classroom_id",       :null => false
   end
+
+  add_index "classrooms_graduate_courses", ["graduate_course_id", "classroom_id"], :name => "index_join", :unique => true
 
   create_table "constraints_owners", :force => true do |t|
     t.string   "description"
@@ -149,6 +153,8 @@ ActiveRecord::Schema.define(:version => 20090223203513) do
 
   create_table "quantity_constraints", :force => true do |t|
     t.integer  "quantity"
+    t.string   "description"
+    t.integer  "isHard"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -183,11 +189,14 @@ ActiveRecord::Schema.define(:version => 20090223203513) do
   end
 
   add_index "teachings", ["period_id"], :name => "fk_teachings_period_id"
+  add_index "teachings", ["teacher_id"], :name => "fk_teachings_teacher_id"
 
   create_table "temporal_constraints", :force => true do |t|
     t.integer  "day"
     t.time     "startHour"
     t.time     "endHour"
+    t.string   "description"
+    t.integer  "isHard"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -195,7 +204,7 @@ ActiveRecord::Schema.define(:version => 20090223203513) do
   create_table "timetable_entries", :force => true do |t|
     t.time     "startTime"
     t.time     "endTime"
-    t.string   "day"
+    t.integer  "day"
     t.integer  "timetable_id", :null => false
     t.integer  "teaching_id",  :null => false
     t.integer  "classroom_id", :null => false

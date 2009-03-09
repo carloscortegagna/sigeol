@@ -60,6 +60,7 @@ class TeachersControllerTest < ActionController::TestCase
     post :create, :mail => :teacher_mail, :graduate_course_id => :another_id
     assert_response :success
     assert_template "new"
+    assert_valid_markup
   end
 
   test "Utente con privilegi aggiunge docente già esistente" do

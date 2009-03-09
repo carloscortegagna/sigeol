@@ -35,10 +35,5 @@ class Test::Unit::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  Html::Test::Validator.w3c_url = "http://localhost/cgi-bin/check"
-  ApplicationController.validate_all = true
-  ApplicationController.validators = [:w3c]
-  # ApplicationController.check_urls = true
-  ApplicationController.check_redirects = true
 
 end
