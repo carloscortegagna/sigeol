@@ -10,6 +10,7 @@
 class GraduateCourse < ActiveRecord::Base
   include ApplicationHelper
 
+  has_many :constraints_owners
   has_many :expiry_dates, :dependent => :destroy
   belongs_to :academic_organization
   has_many :timetables, :dependent => :destroy
