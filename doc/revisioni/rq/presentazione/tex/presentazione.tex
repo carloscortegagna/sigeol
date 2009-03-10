@@ -74,18 +74,52 @@
   \transsplitverticalin
 	 }
 
-\subsection{Servlet}
+\subsection{MiddleMan}
 \frame{
 	\frametitle{Definizione di prodotto}
-  \framesubtitle{Servlet}
+  \framesubtitle{War architecture}
   \transsplitverticalin
+WAR-Based Mode
+\begin{itemize}
+\item Web ARchive (WAR)
+\item standard packaging format per applicazioni su Java EE servers
+\item Warbler plugin per comprimere l'applicazione Ruby-on-Rails
+\end{itemize}
 	 }
 \frame{
 	\frametitle{Definizione di prodotto}
-  \framesubtitle{Servlet}
+  \framesubtitle{War architecture}
   \transsplitverticalin
+\begin{center}
+ \includegraphics[scale=0.35]{images/sigeol_war_arch.pdf}
+ % .: 8x8 pixel, 0dpi, infxinf cm, bb=
+\end{center}
 	 }
+\frame{
+	\frametitle{Definizione di prodotto}
+  \framesubtitle{Quartz scheduler}
+  \transsplitverticalin
+From BackgroundRB to Quartz scheduler
+\\Perchè Quartz:
+\begin{itemize}
+ \item semplicità di configurazione
+ \item persistenza dei trigger e dei job, che possono essere salvati su database in modo trasparente
+ \item clusterizzazione, quartz è stato progettato per essere cluterizzato
+ \item estensibilità delle funzioni tramite plugin
+ \item possibilità di monitorare tutti gli aspetti della schedulazione e di tenere traccia dell'esito dei ogni job
+\end{itemize} 
+}
 
+\frame{
+	\frametitle{Definizione di prodotto}
+  \framesubtitle{Sequence diagram}
+  \transsplitverticalin
+\begin{center}
+ \includegraphics[scale=0.3]{images/MiddleMan_sequence_diagram.png}
+ % .: 8x8 pixel, 0dpi, infxinf cm, bb=
+\end{center}
+
+	 }
 \subsection{Algorithm}
 \frame{
 	\frametitle{Definizione di prodotto}
