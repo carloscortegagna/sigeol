@@ -11,8 +11,12 @@ class Belong < ActiveRecord::Base
  belongs_to :teaching
  belongs_to :curriculum
 
+    validates_inclusion_of :isOptional,
+                           :in => [true, false],
+                           :allow_nil=>false,
+                           :message=>"Inserisci un valore per isOptional valido"
 
-   #validazioni :teaching_id e :curriculum_id
+  #validazioni :teaching_id e :curriculum_id
     validate_on_create :unique_curriculum_id_and_teaching_id?
 
     validates_presence_of :curriculum_id,

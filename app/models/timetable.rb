@@ -3,6 +3,11 @@ class Timetable < ActiveRecord::Base
   belongs_to :graduate_course
   has_many :timetable_entries, :dependent=>:destroy
 
+  #validazioni :isPublic
+   validates_inclusion_of :isPublic, 
+                          :in => [true, false], 
+                          :allow_nil=>false,
+                          :message=>"Inserisci un valore per isPublic valido"
   # validazioni :year
   validates_presence_of :year,:period_id,:graduate_course_id,
                         :message => "Aggiungi l'anno accademico o il periodo o il corso di laurea"
