@@ -169,17 +169,64 @@ From BackgroundRB to Quartz scheduler
 \frame{
 	\transsplitverticalin
 	\partpage }
-\subsection{Aggiornamento piano di qualifica}
+\subsection{Resoconto dei test}
 \frame{
   \frametitle{Piano di qualifica}
-  \framesubtitle{Aggiornamento piano di qualifica}
-\begin{itemize}
- \item Tickets e consultazione ore di lavoro \bigskip
- \item Validazione automatica delle pagine web \bigskip
- \item Mocks objects \bigskip
- \item Metriche sulla copertura dei test sul codice \bigskip
-\end{itemize}
+  \framesubtitle{Resoconto dei test}
+\begin{center}
+ \includegraphics[scale=0.3]{images/coverage.pdf}
+\end{center}
 }
+\subsection{Esempio unit test}
+\begin{frame}[fragile]
+  \frametitle{Piano di qualifica}
+  \framesubtitle{Esempio unit test}
+\begin{small}
+\begin{verbatim}
+class AddressTest < ActiveSupport::TestCase 
+fixtures :addresses, :buildings
+  def setup
+    @a=Address.new
+  end
+  def test_correct_address
+    @a.telephone="049-9050231"
+    @a.street="Via Belzoni 6"
+    @a.city="Villafranca veronese"
+    assert @a.save
+  end
+  def test_destroy_address_in_building_address_id_must_nil
+    addresses(:address_2).delete
+    !assert(buildings(:building_1).address_id)
+  end
+\end{verbatim} 
+\end{small}
+\end{frame}
+\subsection{Esempio functional test}
+\begin{frame}[fragile]
+  \frametitle{Piano di qualifica}
+  \framesubtitle{Esempio functional test}
+\begin{small}
+\begin{verbatim}
+class SessionsControllerTest < ActionController::TestCase
+  test "Guest usa New" do
+    get :new
+    assert_template "new"
+    assert_response :success
+  end
+  test "Immissione di email e password validi" do
+    user = stub(:id => :an_id, :mail => "a_mail",
+                :password => "a_password")
+    User.stubs(:authenticate).returns(user)
+    user.stubs(:active?).returns(true)
+    post :create, :mail => user.mail,
+                  :password => user.password
+    assert_equal session[:user_id], :an_id
+    assert_redirected_to timetables_url
+  end
+end
+\end{verbatim} 
+\end{small}
+\end{frame}
 \part{Piano di progetto}
 \frame{
 	\transsplitverticalin
