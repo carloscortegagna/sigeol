@@ -1,4 +1,4 @@
-#test_classroom_1:
-#  name: Luf 250
-#  capacity: 250
-#  building: test_building_1
+classroom_1:
+ name: Luf 250
+ capacity: 250
+ building: building_1
