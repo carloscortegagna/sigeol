@@ -44,22 +44,29 @@
    \includegraphics[scale=0.20]{images/model_diagram.png}
   \transsplitverticalin
 	 }
-\frame{
-	\frametitle{Definizione di prodotto}
-  \framesubtitle{Model}
-  \transsplitverticalin
-	 }
 
 \subsection{Controller}
 \frame{
 	\frametitle{Definizione di prodotto}
   \framesubtitle{Controller}
   \transsplitverticalin
+\begin{itemize}
+ \item derivano da ApplicationController
+ \item stretto legame con i relativi Model
+ \item variabili d'istanza per le View associate
+\end{itemize}
+\bigskip \bigskip \bigskip \bigskip
+Action comuni a più controller: 
+\begin{itemize}
+ \item index, show, new, create, edit, update, destroy, administration
+\end{itemize}
 	 }
+
 \frame{
 	\frametitle{Definizione di prodotto}
   \framesubtitle{Controller}
   \transsplitverticalin
+\includegraphics[scale=0.25]{images/Controller_ClassDiagram.png}
 	 }
 
 \subsection{View}
