@@ -2,6 +2,7 @@ package net.sf.cpsolver.itc.ctt.model;
 
 import java.util.Vector;
 import java.util.Iterator;
+import java.io.PrintWriter;
 
 /* This class is needed for organize course preferences. */
 
@@ -12,10 +13,11 @@ public class MyPreferences_DaySlot {
 		int day;
 		int slot;
 		int weight;
+		int orig_priority;
 		String ID_Course;
 		
 		/* constructor */
-		DaySlot_PreferenceInfo(String ID, int d, int s, int p) { day=d; slot=s; weight=p; ID_Course=ID;}
+		DaySlot_PreferenceInfo(String ID, int d, int s, int w, int p) { day=d; slot=s; weight=w; orig_priority=p; ID_Course=ID;}
 
         public boolean equals(Object obj) {
             if ((obj instanceof DaySlot_PreferenceInfo) == false)
@@ -41,6 +43,7 @@ public class MyPreferences_DaySlot {
 		 if (priority<=0) return 0;
 		 return Weight_Map[priority-1]; 
 	}
+	
 	/* existsCoursePreference: return true if exists at least one preference about a specific CourseID */
 	private boolean existsCoursePreference(String CourseID) {
         for (Iterator it = DaySlot_Preferences.iterator(); it.hasNext();)
@@ -60,8 +63,7 @@ public class MyPreferences_DaySlot {
 	
 	/* Add a preference to preferences vector, input values are: the course ID, the unpreferred day and slot for a lecture of that course */
 	public void addPreference(String CourseID, int Day, int Slot, int priority){
-		System.out.println(CourseID+" "+Day+" "+Slot);
-		DaySlot_PreferenceInfo thisPref = new DaySlot_PreferenceInfo(CourseID, Day, Slot, getWeightFromPriority(priority));
+		DaySlot_PreferenceInfo thisPref = new DaySlot_PreferenceInfo(CourseID, Day, Slot, getWeightFromPriority(priority), priority);
 		DaySlot_Preferences.add(thisPref);
 	}
 	
@@ -82,6 +84,36 @@ public class MyPreferences_DaySlot {
 	        }
         return penality;
 	}
+	
+	public void writeUnkeptPreferences(PrintWriter w, Vector Courses) {
+		DaySlot_PreferenceInfo thispref;
+		w.println("");
+		w.println("UNKEPT_PREFERENCES:");
+		boolean esci=false;
+		int n=0; // number of unkept preferences
+		for(int i=0; i<DaySlot_Preferences.size(); i++) {
+			thispref = (DaySlot_PreferenceInfo)DaySlot_Preferences.elementAt(i);
+			if (thispref == null) continue;
+			esci=false;
+			for(int j=0; j<Courses.size() && !esci; j++) {
+            			CttCourse course = (CttCourse)Courses.elementAt(j);
+            			for (int k=0;k<course.getNrLectures() && !esci;k++) {
+                			CttLecture lecture = course.getLecture(k);
+                			CttPlacement placement = (CttPlacement)lecture.getAssignment();
+                			if (lecture == null || placement == null) continue;
+                			if (thispref.ID_Course.equals(course.getId()) && (placement.getDay() == thispref.day) && (thispref.slot == placement.getSlot())){ 
+                				w.println(course.getId()+" "+placement.getRoom().getId()+" "+placement.getDay()+" "+placement.getSlot() + " " + thispref.orig_priority);
+                				n++;
+                				esci=true;
+                			}
+            			}
+			}
+			//check
+		}
+		if (n==0)
+			w.println("ALL_PREFERENCES_OK");
+	} 
+
 	
 	
 }

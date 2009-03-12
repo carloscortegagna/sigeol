@@ -1,17 +1,23 @@
-Algo1 Lum250 4 1
-Algo1 Lum250 0 2
-Algo1 Lum250 2 1
-Algo2 P200 3 2
-Algo2 P200 4 0
-Algo2 P200 2 3
-Prog1 P200 1 2
-Prog1 P200 0 3
+Algo1 P200 2 1
+Algo1 P200 0 2
+Algo1 P200 3 2
+Algo2 P200 4 2
+Algo2 P200 0 1
+Algo2 P200 1 0
 Prog1 P200 2 2
-Prog1 P200 4 2
-Prog2 Luf1 3 0
-Prog2 Luf1 0 0
-Prog2 Luf1 4 3
-Prog2 Luf1 1 1
-Analisi1 Lum250 0 1
-Analisi1 Lum250 3 1
-Analisi1 Lum250 2 0
+Prog1 P200 1 3
+Prog1 P200 0 3
+Prog1 P200 3 3
+Prog2 Lum250 4 0
+Prog2 Lum250 3 1
+Prog2 Lum250 1 2
+Prog2 Lum250 2 3
+Analisi1 Lum250 4 1
+Analisi1 Lum250 0 0
+Analisi1 Lum250 1 1
+
+UNKEPT_PREFERENCES:
+Prog1 P200 0 3 108
+Prog1 P200 1 3 108
+Prog1 P200 2 2 108
+Prog1 P200 3 3 108

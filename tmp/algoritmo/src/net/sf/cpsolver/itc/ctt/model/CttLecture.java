@@ -129,7 +129,6 @@ public class CttLecture extends Variable implements Swapable {
     
     /** Find a swap with a placement of another lecture */
     public Neighbour findSwap(Variable another) {
-    	System.out.println("finSwap(Lecture): "+(++n));
         CttLecture lecture = (CttLecture)another;
         if (getCourse().equals(lecture.getCourse())) return null;
         CttPlacement p1 = (CttPlacement)getAssignment();

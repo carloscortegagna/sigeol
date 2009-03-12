@@ -37,7 +37,6 @@ public class CttCourse {
     private boolean[][] iAvailable = null;
     private CttLecture[] iLectures = null;
     private Vector iCurriculas = new Vector();
-    private static int n=0;
     
     /**
      * Constructor
@@ -138,7 +137,6 @@ public class CttCourse {
      * Each day below the minimum counts as 5 points of penalty.
      */
     public int getMinDaysPenalty() {
-    	System.out.println("CttCourse: "+(++n));
         int days = 0, nrDays = 0;
         for (int i=0;i<iLectures.length;i++) {
             if (iLectures[i].getAssignment()==null) {

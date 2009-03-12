@@ -16,7 +16,7 @@ Analisi1 Grioli 3 3 200
 ROOMS:
 P200 250
 Lum250 250
-Luf1 250
+Luf1 50
 
 CURRICULA:
 Info 5 Algo1 Algo2 Prog1 Prog2 Analisi1
@@ -35,15 +35,17 @@ Prog1 4 1
 
 
 PREFERENCES:
-Algo1 1 2 3 x
-Analisi1 1 1 1 v
-Analisi1 0 1 9 v
-Analisi1 1 0 1000 v
-Analisi1 2 0 2 v
-Analisi1 2 1 5 x
-Analisi1 3 0 8 v
-Analisi1 3 1 1 v
-Analisi1 4 0 1 v
-Analisi1 4 1 4 x
+Algo1 1 2 3 
+Prog1 0 2 108
+Prog1 0 3 108
+Prog1 1 2 108
+Prog1 1 3 108
+Prog1 2 2 108
+Prog1 2 3 6
+Prog1 3 2 108
+Prog1 3 3 108
+Prog1 4 2 108
+Prog1 4 3 4
+Analisi1 1 0 108
 
 END.

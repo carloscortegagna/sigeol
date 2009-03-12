@@ -53,6 +53,7 @@ public class CttModel extends ItcModel {
     private int iRoomPenalty = 0;
     private int iMinDaysPenalty = 0;
     private int iRoomCapPenalty = 0;
+  
 
     /** Constructor */
     public CttModel() {
@@ -216,11 +217,19 @@ public class CttModel extends ItcModel {
      * @param precise true -- precise computation, false -- use inner counter (for speed up)
      */
     public double getTotalValue(boolean precise) {
-        return 
-            getCompactPenalty(precise)+
-            getRoomCapPenalty(precise)+
-            getMinDaysPenalty(precise)+
-            getRoomPenalty(precise);
+        int p=0;
+        for (Enumeration e=iCourses.elements();e.hasMoreElements();) {
+            CttCourse course = (CttCourse)e.nextElement();
+            p+= pref.getPreferencesPenalty(course);
+        }
+        
+        int partial=getCompactPenalty(precise)+
+        getRoomCapPenalty(precise)+
+        getMinDaysPenalty(precise)+
+        getRoomPenalty(precise);
+    	
+        System.out.println("Orig: " + (partial) + "   Mod: " + (p));
+    	return partial+p;
     }
     
     /**
@@ -349,6 +358,8 @@ public class CttModel extends ItcModel {
                     w.println(course.getId()+" "+placement.getRoom().getId()+" "+placement.getDay()+" "+placement.getSlot());
             }
         }
+        //mod
+        pref.writeUnkeptPreferences(w,getCourses());
         w.flush();
         w.close();
         
