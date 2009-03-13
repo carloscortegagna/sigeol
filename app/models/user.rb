@@ -34,8 +34,8 @@ class User < ActiveRecord::Base
 
   #validazioni mail
   validates_presence_of :mail,
-                        :message=>"La mail non deve essere vuota",
-                        :on => :create
+                        :message=>"La mail non deve essere vuota"
+                      
   validates_uniqueness_of :mail,
                           :message=>"La mail è già presente",
                           :on => :create
@@ -51,13 +51,9 @@ class User < ActiveRecord::Base
   validates_presence_of :digest,
                         :message => "Non è possibile calcolare il digest"
 
-  validates_associated :address,
-                       :message => "L'indirizzo non è stato inserito correttamente",
-                       :on => :update
 
   validates_presence_of :specified_id,:specified_type,
-                        :message=>"L'utente deve essere specificato",
-                        :on => :update
+                        :message=>"L'utente deve essere specificato"
   
   validate
   def active?

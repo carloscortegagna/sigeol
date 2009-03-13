@@ -2,16 +2,16 @@
 </h1>
 
 <% form_for @user, :url => {:action => :activate, :digest => params[:digest]}, :html => {:method => :post} do |f| %>
-  <%= error_messages_for :user %>
-  <%= error_messages_for :teacher %>
-  <%= error_messages_for :address %>
+  <%= error_messages_for :user, :object => @user %>
+  <%= error_messages_for :teacher, :object => @user.specified%>
+  <%= error_messages_for :address, :object => @user.address %>
    <p>
     <%= label_tag 'password' %>
     <%= f.password_field :password %>
   </p>
   <fieldset>
     <legend>Dati personali</legend>
-    <% fields_for @teacher do |field| %>
+    <% fields_for :teacher, @user.specified do |field| %>
   <p>
     <%= label_tag 'Nome' %>
     <%= field.text_field :name %>
@@ -24,7 +24,7 @@
   </fieldset>
   <fieldset>
     <legend>Indirizzo</legend>
-    <% fields_for @address do |field| %>
+    <% fields_for :address, @user.address do |field| %>
     <p>
       Città <%= field.text_field :city %><br/>
       Telefono: <%= field.text_field :telephone %><br/>
