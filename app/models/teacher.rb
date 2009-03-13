@@ -10,7 +10,7 @@
 
 class Teacher < ActiveRecord::Base
   include ApplicationHelper
-  
+  has_many :constraints, :dependent=> :destroy
   has_one :user, :as => :specified
   has_many :teachings
   #validazioni attributo :name e :surname

@@ -9,6 +9,7 @@
 class Classroom < ActiveRecord::Base
   include ApplicationHelper
   
+  has_many :constraints, :dependent=> :destroy
   belongs_to :building
   has_many :timetable_entries, :dependent => :destroy
   has_and_belongs_to_many :graduate_courses, :uniq => true
