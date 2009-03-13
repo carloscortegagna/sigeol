@@ -1,7 +1,7 @@
 class TemporalConstraint < ActiveRecord::Base
   #validazioni :startTime e :endTime e validazioni :day
 
-  validates_presence_of :startHour,:endHour,:day,
+  validates_presence_of :startHour,:endHour,:day,:description,:isHard,
                           :message=>"Alcuni campi sono vuoti"
  validates_numericality_of :day,
                           :only_integer => true,

@@ -7,7 +7,7 @@ class QuantityConstraint < ActiveRecord::Base
                            :less_than_or_equal_to =>1000,
                            :message=>"attenzione il numero deve essere compreso tra 1 e 1000"
 
-  validates_presence_of  :quantity,
+  validates_presence_of  :quantity,:description,:isHard,
                          :message=>"La durata non deve essere vuota"
 
 end
