@@ -70,7 +70,7 @@ private
                                      :conditions => ["curriculums.id IN (?)", ids])
     maxsubperiod = AcademicOrganization.minimum("number", :include => [:graduate_courses => :curriculums],
                                               :conditions => ["curriculums.id IN (?)", ids])
-    if (self.period.subperiod > maxsubperiod.to_i || self.period.year > maxyear.to_i)
+    if (self.period && (self.period.subperiod > maxsubperiod.to_i || self.period.year > maxyear.to_i))
       errors.add(:period, "Non puo assegnare questo periodo a questo insegnamento" + maxyear.to_s + " " + maxsubperiod.to_s)
     end
   end

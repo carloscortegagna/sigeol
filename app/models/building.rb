@@ -25,8 +25,8 @@ class Building < ActiveRecord::Base
                      :with => /^[a-zA-Z0-9àòèéùì\s]*$/,
                      :message=>"Si accetta solo caratteri"
  #validazione presenza indirizzo
-  validates_presence_of :address_id,
-                          :message=>"Immetti l'indirizzo del palazzo"
+  validates_associated :address,
+                          :message=>"Immetti un indirizzo valido"
 
   def before_validation
       self.name=first_upper(self.name)
