@@ -10,7 +10,8 @@ class DidacticOffice < ActiveRecord::Base
   has_one :user, :as => :specified
 
   def before_destroy
-   User.delete("specified_id=#{id} AND specified_type='DidacticOffice'")
+   u=User.find_by_specified_id_and_specified_type(self.id,"DidacticOffice")
+   u.delete
   end
 
 end

@@ -32,7 +32,8 @@ class Teacher < ActiveRecord::Base
  end
 
  def before_destroy
-   User.delete("specified_id=#{self.id} AND specified_type='Teacher'")
+    u=User.find_by_specified_id_and_specified_type(self.id,"Teacher")
+   u.delete
   end
 
  def complete_name
