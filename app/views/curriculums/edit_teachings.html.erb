@@ -5,9 +5,10 @@
     <%=h "Insegnamenti presenti:" %>
     <% @curriculum.teachings.each do |t|  %>
       <%= show_teaching(t) %>
+      <%= link_to "Rimuovi", update_teachings_curriculum_path(@curriculum,:t_to_remove => t.id), :method => :delete %>
     <% end %>
   <% end %>
-  <% form_for :curriculum, :url => {:action => :assign_teaching} do %>
+  <% form_for @curriculum, :url => update_teachings_curriculum_path(@curriculum), :method => :put do %>
     Aggiungi insegnamento:
     <%= select_tag "teaching_id", options_from_collection_for_select(@teachings, "id", "name") %><br/>
     Opzionale: <%= check_box_tag "isOptional"%> <br/>

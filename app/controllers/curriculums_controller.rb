@@ -1,9 +1,9 @@
 class CurriculumsController < ApplicationController
   skip_before_filter :login_required, :only => :show
   before_filter :manage_graduate_courses_required, :only => [:new, :create, :edit, :update, :destroy,
-                                                             :select_teaching, :assign_teaching]
+                                                             :edit_teachings, :update_teachings]
 
-  before_filter :same_graduate_course_required, :only => [:edit, :update, :select_teaching, :assign_teaching]
+  before_filter :same_graduate_course_required, :only => [:edit, :update, :edit_teachings, :update_teachings]
 
   # GET /curriculums/1
   # GET /curriculums/1.xml
@@ -63,23 +63,36 @@ class CurriculumsController < ApplicationController
       end
     end
   end
-  #Sistemare in quanto se un insegnamento appartiene a 2 corsi di laurea (e forse anke con 2 curriculum)
-  #viene presentato nella lista dove è possibile aggiungere. In ogni caso non passa le validazioni del model
-  def select_teaching
+
+  def edit_teachings
     @curriculum = Curriculum.find(params[:id])
     id = @curriculum.graduate_course.id
     @teachings = Teaching.find(:all, :include => {:curriculums => :graduate_course},
-                                  :conditions => ["graduate_courses.id = ? AND curriculums.id NOT IN (?)", id, params[:id]])
+                                  :conditions => ["graduate_courses.id = ?", id])
+    @teachings = @teachings - @curriculum.teachings
   end
 
-  def assign_teaching
-    @curriculum = Curriculum.find(params[:id])
-    teaching = Teaching.find params[:teaching_id]
-    optional = false
-    optional = true if params[:isOptional]
-    @curriculum.belongs.create(:teaching => teaching, :isOptional => optional)
-    flash[:notice] = "Insegnamento aggiunto correttamente"
-    redirect_to administration_graduate_courses_url
+  def update_teachings
+    if request.put?
+      @curriculum = Curriculum.find(params[:id])
+      teaching = Teaching.find params[:teaching_id]
+      optional = false
+      optional = true if params[:isOptional]
+      @curriculum.belongs.create(:teaching => teaching, :isOptional => optional)
+      flash[:notice] = "Insegnamento aggiunto correttamente"
+      redirect_to administration_graduate_courses_url
+    end
+    if request.delete?
+      @curriculum = Curriculum.find(params[:id])
+      teaching = @curriculum.teachings.find(params[:t_to_remove])
+      if (teaching)
+        @curriculum.teachings.delete(teaching)
+        flash[:notice] = "Insegnamento eliminato con successo"
+      else
+        flash[:error] = "Insegnamento non presente nel curriculum"
+      end
+      redirect_to administration_graduate_courses_url
+    end
   end
 
   # DELETE /curriculums/1
@@ -96,11 +109,9 @@ class CurriculumsController < ApplicationController
   private
 
   def same_graduate_course_required
-    gs = @current_user.graduate_courses
-    @curriculum = Curriculum.find(params[:id])
-    begin
-      common = gs.find(@curriculum.graduate_course_id)
-    rescue
+    ids = @current_user.graduate_course_ids
+    curriculum = Curriculum.find(params[:id])
+    unless (ids.include?(curriculum.graduate_course_id))
       flash[:error] = "Questo curriculum non appartiene a nessun tuo corso di laurea"
       redirect_to timetables_url
     end

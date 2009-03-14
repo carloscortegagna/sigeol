@@ -6,8 +6,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :graduate_courses, :collection => {:administration => :get}
 
   map.resources :curriculums, :except => [:index],
-                              :member => {:select_teaching => :get,
-                                          :assign_teaching => :post}
+                              :member => {:edit_teachings => :get,
+                                          :update_teachings => [:put, :delete]}
   
   map.resources :teachings, :collection => {:administration => :get},
                             :member => {:select_teacher => :get,
@@ -26,9 +26,9 @@ ActionController::Routing::Routes.draw do |map|
                            :member => {:pre_activate => :get,
                                        :activate => :post,
                                        :edit_graduate_courses => :get,
-                                       :update_graduate_courses => [:post, :put, :delete],
+                                       :update_graduate_courses => [:put, :delete],
                                        :edit_capabilities => :get,
-                                       :update_capabilities => [:post, :put, :delete]
+                                       :update_capabilities => [:put, :delete]
                                        }
 
   map.resources :users, :only => [:edit, :update]

@@ -78,8 +78,8 @@ class TeachingsController < ApplicationController
     @teaching = Teaching.find(params[:id])
     ids = @current_user.graduate_course_ids
     @teachers = Teacher.find(:all, :include => {:user => :graduate_courses},
-                            :conditions => ["graduate_courses_users.graduate_course_id IN (?) AND teachers.id NOT IN (?)
-                                             AND users.password IS NOT NULL",ids, @teaching.teacher_id])
+                            :conditions => ["graduate_courses.id IN (?) AND users.password IS NOT NULL",ids])
+    @teachers.delete(@teaching.teacher)
   end
   def assign_teacher
     @teacher = Teacher.find(params[:teacher_id])

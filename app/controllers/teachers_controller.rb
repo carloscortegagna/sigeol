@@ -39,11 +39,11 @@ class TeachersController < ApplicationController
   end
 
   def update_graduate_courses
-    if request.delete? || params[:method] = "delete"
+    if request.delete?
       t = Teacher.find(params[:id])
       t.user.graduate_courses.delete(GraduateCourse.find(params[:ids]))
     end
-    if request.put? || params[:method] = "put"
+    if request.put?
       t = Teacher.find(params[:id])
       t.user.graduate_courses << (GraduateCourse.find(params[:ids]))
     end
@@ -52,11 +52,11 @@ class TeachersController < ApplicationController
 
   def update_capabilities
     t = Teacher.find(params[:id])
-    if request.delete? || params[:method] = "delete"
+    if request.delete?
       t.user.capabilities.delete(Capability.find(params[:ids]))
       flash[:notice] = "Privilegi per il docente #{t.surname} #{t.name} aggiornati con successo"
     end
-    if request.put? || params[:method] = "put"
+    if request.put?
       t.user.capabilities << (Capability.find(params[:ids]))
       flash[:notice] = "Privilegi per il docente #{t.surname} #{t.name} aggiornati con successo"
     end

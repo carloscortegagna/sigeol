@@ -5,7 +5,7 @@
   Corsi di laurea posseduti ed amministrabili: <br/>
   <% @manageable_graduate_courses.each do |g| %>
       <%=h g.name %>
-      <%= button_to "Rimuovi", :action => :update_graduate_courses, :method => :delete, :ids => g.id%>
+      <%= button_to "Rimuovi", update_graduate_courses_teacher_path(@teacher, :ids => g.id), :method => :delete %>
       <br/>
   <% end %>
 </p>
@@ -13,6 +13,6 @@
   Corsi di laurea da aggiungere: <br/>
   <% @selectable_graduate_courses.each do |g| %>
     <%=h g.name %>
-    <%= button_to "Aggiungi", :action => :update_graduate_courses, :method => :put, :ids => g.id %>
+    <%= button_to "Aggiungi", update_graduate_courses_teacher_path(@teacher, :ids => g.id), :method => :put, :ids => g.id %>
 </p>
 <% end %>

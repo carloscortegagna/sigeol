@@ -5,7 +5,7 @@
   Privilegi posseduti ed amministrabili: <br/>
   <% @manageable_capabilities.each do |c| %>
       <%=h c.name %>
-      <%= button_to "Rimuovi", :action => :update_capabilities, :method => :delete, :ids => c.id%>
+      <%= button_to "Rimuovi", update_capabilities_teacher_path(@teacher,:ids => c.id), :method => :delete%>
       <br/>
   <% end %>
 </p>
@@ -13,6 +13,6 @@
   Privilegi da aggiungere: <br/>
   <% @selectable_capabilities.each do |c| %>
     <%=h c.name %>
-    <%= button_to "Aggiungi", :action => :update_capabilities, :method => :put, :ids => c.id %>
+    <%= button_to "Aggiungi", update_capabilities_teacher_path(@teacher,:ids => c.id), :method => :put %>
 </p>
 <% end %>
