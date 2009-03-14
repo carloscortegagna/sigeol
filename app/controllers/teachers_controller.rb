@@ -1,5 +1,5 @@
 class TeachersController < ApplicationController
-  skip_before_filter :login_required, :only => [:index, :show, :activate]
+  skip_before_filter :login_required, :only => [:index, :show, :pre_activate, :activate]
   before_filter :manage_teachers_required, :only => [:new, :create, :administration, :edit_graduate_courses,
                                                      :update_graduate_courses]
   before_filter :manage_capabilities_required, :only => [:edit_capabilities, :update_capabilities]
@@ -39,15 +39,15 @@ class TeachersController < ApplicationController
   end
 
   def update_graduate_courses
+    t = Teacher.find(params[:id])
     if request.delete?
-      t = Teacher.find(params[:id])
       t.user.graduate_courses.delete(GraduateCourse.find(params[:ids]))
     end
     if request.put?
-      t = Teacher.find(params[:id])
       t.user.graduate_courses << (GraduateCourse.find(params[:ids]))
     end
-    redirect_to administration_teachers_url("Corsi di laurea per il docente #{t.surname} #{t.name} aggiornati con successo")
+    flash[:notice] = "Corsi di laurea per il docente #{t.surname} #{t.name} aggiornati con successo"
+    redirect_to administration_teachers_url
   end
 
   def update_capabilities

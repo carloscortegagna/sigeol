@@ -11,7 +11,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :teachings, :collection => {:administration => :get},
                             :member => {:select_teacher => :get,
-                                         :assign_teacher => :post}
+                                         :assign_teacher => :put}
 
   map.resources :buildings, :collection => {:administration => :get}
 

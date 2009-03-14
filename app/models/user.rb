@@ -13,7 +13,7 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
   belongs_to :specified, :polymorphic => true, :dependent=>:destroy
   has_and_belongs_to_many :capabilities, :uniq => true
-  has_and_belongs_to_many :graduate_courses, :uniq => true
+  has_and_belongs_to_many :graduate_courses, :uniq => true, :before_remove => :not_without_graduate_courses
   belongs_to :address, :dependent => :destroy
   before_save :encrypt_password
   before_validation :calculate_digest
@@ -104,6 +104,12 @@ class User < ActiveRecord::Base
     self.digest = Digest::SHA1.hexdigest(self.mail+ran) unless attribute_present?("digest")
     if ENV['RAILS_ENV'] == "development"
       puts self.digest
+    end
+  end
+
+  def not_without_graduate_courses(graduate_course)
+    if self.graduate_courses.size == 1
+      raise Exception
     end
   end
  end

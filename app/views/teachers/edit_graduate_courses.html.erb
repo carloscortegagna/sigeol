@@ -5,7 +5,7 @@
   Corsi di laurea posseduti ed amministrabili: <br/>
   <% @manageable_graduate_courses.each do |g| %>
       <%=h g.name %>
-      <%= button_to "Rimuovi", update_graduate_courses_teacher_path(@teacher, :ids => g.id), :method => :delete %>
+      <%= link_to "Rimuovi", update_graduate_courses_teacher_path(@teacher, :ids => g.id), :method => :delete %>
       <br/>
   <% end %>
 </p>

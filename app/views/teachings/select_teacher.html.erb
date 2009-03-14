@@ -1,6 +1,6 @@
 <div>
   <%= show_teaching(@teaching) %>
-  <% form_for :teaching, :url => {:action => :assign_teacher} do %>
+  <% form_for @teaching, :url => assign_teacher_teaching_path(@teaching), :method => :put do %>
     Docente da assegnare
     <%= select_tag "teacher_id", options_from_collection_for_select(@teachers, "id", "complete_name")%>
     <%= submit_tag "Assegna" %>
