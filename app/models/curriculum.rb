@@ -11,7 +11,7 @@ class Curriculum < ActiveRecord::Base
 
  belongs_to :graduate_course
  has_many :belongs,:dependent => :destroy
- has_many :teachings, :through =>:belongs
+ has_many :teachings, :through =>:belongs, :after_remove => :delete_last_teaching
 
   #validazioni :name
   validates_presence_of :name,
@@ -38,6 +38,12 @@ validate :unique_curriculum_graduate_course?
     c=Curriculum.find_by_name_and_graduate_course_id(self.name,self.graduate_course_id)
     if c && c.id!=self.id
       errors.add_to_base("E' gia presente un curriculum con questo nome")
+    end
+  end
+
+  def delete_last_teaching(teaching)
+    if (teaching.curriculums.size == 0)
+      teaching.delete
     end
   end
 
