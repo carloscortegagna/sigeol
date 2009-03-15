@@ -1,7 +1,5 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-# one:
-#   column: value
-#
-# two:
-#   column: value
+timetable_1:
+ year: 2008-09
+ isPublic: false
+ graduate_course: graduate_course_1
+ period: period_1

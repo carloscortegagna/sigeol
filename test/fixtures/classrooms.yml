@@ -1,4 +1,5 @@
 classroom_1:
+ id: 1
  name: Luf 250
  capacity: 250
  building: building_1

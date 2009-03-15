@@ -1,3 +1,7 @@
-#test_curriculum_1:
-#  name: Laurea Magistrale indirizzo Reti
-#  graduate_course: test_graduate_course_1
+curriculum_1:
+ name: Reti
+ graduate_course: graduate_course_1
+
+curriculum_2:
+ name: Aziendale
+ graduate_course: graduate_course_1

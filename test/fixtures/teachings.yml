@@ -1,8 +1,24 @@
-#test_teaching_1:
-#  name: Ingegneria del Software
-#  CFU: 13
-#  classHours: 8
-#  labHours: 1
-#  studentsNumber: 150
-#  teacher:
-#  period: 
+teaching_1:
+ name: Ingegneria del software
+ CFU: 13
+ classHours: 8
+ labHours: 1
+ studentsNumber: 150
+ period: period_1
+
+teaching_2:
+ name: Tecnologie web
+ CFU: 8
+ classHours: 8
+ labHours: 1
+ studentsNumber: 150
+ period: period_1
+
+teaching_3:
+ name: Analisi matematica
+ CFU: 8
+ classHours: 8
+ labHours: 1
+ studentsNumber: 150
+ period: period_2
+

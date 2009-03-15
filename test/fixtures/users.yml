@@ -1,5 +1,11 @@
 user_1:
+  id: 1
   mail: ale7forever@gmail.com
   password: alessandro
   random: 1
   address: address_1
+user_2:
+  id: 2
+  mail: math@gmail.com
+  password: 123456
+  random: 1

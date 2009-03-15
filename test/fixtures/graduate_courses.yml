@@ -1,4 +1,4 @@
-#test_graduate_course_1:
-#  name: Laurea Magistrale
-#  duration: 2
-#  academin_organization_id: 1
+graduate_course_1:
+ name: Laurea Magistrale
+ duration: 2
+ academic_organization: academic_organization_1

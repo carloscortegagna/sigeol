@@ -1,4 +1,15 @@
-#test_belong_1:
-#  isOptional: 1
-#  curriculum: test_curriculum_1
-#  teaching: test_teaching_1
+belong_1:
+ isOptional: true
+ curriculum: curriculum_1
+ teaching: teaching_1
+
+belong_2:
+ isOptional: false
+ curriculum: curriculum_2
+ teaching: teaching_1
+
+belong_3:
+ isOptional: false
+ curriculum: curriculum_2
+ teaching: teaching_2
+ 
