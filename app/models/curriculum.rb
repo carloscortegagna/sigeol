@@ -13,6 +13,8 @@ class Curriculum < ActiveRecord::Base
  has_many :belongs,:dependent => :destroy
  has_many :teachings, :through =>:belongs, :after_remove => :delete_last_teaching
 
+  validates_associated :teachings,
+                       :message=>"L'insegnamento non può essere associato a questo curriculum"
   #validazioni :name
   validates_presence_of :name,
                         :message => "Il nome non deve essere vuoto"
