@@ -96,7 +96,8 @@ ActionMailer::Base.smtp_settings = {
     :user_name => MAIL_CONFIG['user_name'],
     :password => MAIL_CONFIG['password']
   }
-Dir["#{RAILS_ROOT}/lib/jar/*.jar"].each do |jarfile|
-  require jarfile
+if RUBY_PLATFORM =~ /java/
+  Dir["#{RAILS_ROOT}/lib/jar/*.jar"].each do |jarfile|
+    require jarfile
+  end
 end
-
