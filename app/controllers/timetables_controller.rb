@@ -3,6 +3,7 @@ require 'net/https'
 
 class TimetablesController < ApplicationController
   skip_before_filter :login_required
+  
   # GET /timetables
   # GET /timetables.xml
   def index
@@ -92,7 +93,7 @@ class TimetablesController < ApplicationController
   #
   def schedule
     #URL della servlet
-    url = URI.parse('http://localhost/middleman/alg')
+    url = URI.parse('http://localhost:8080/middleman/alg')
     #impostazione del metodo POST
     req = Net::HTTP::Post.new(url.path)
     #parametri di autenticazione

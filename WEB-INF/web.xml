@@ -24,6 +24,14 @@
             <param-name>start-scheduler-on-load</param-name>
             <param-value>true</param-value>
         </init-param>
+        <init-param>
+            <param-name>input-itc-path</param-name>
+            <param-value>/WEB-INF/itc/input/</param-value>
+        </init-param>
+        <init-param>
+            <param-name>output-itc-path</param-name>
+            <param-value>/WEB-INF/itc/output/</param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet>
