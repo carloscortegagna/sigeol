@@ -8,7 +8,7 @@ import org.quartz.Scheduler;
 import org.quartz.SimpleTrigger;
 import java.util.Calendar;
 import org.quartz.impl.StdSchedulerFactory;
-import org.quartz.ee.servlet.*;
+//import org.quartz.ee.servlet.*;
 
 
 import java.text.*;
@@ -21,7 +21,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+//import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -42,11 +42,16 @@ public class SchedulerServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
+
         ServletContext ctx = config.getServletContext();
-        StdSchedulerFactory factory = (StdSchedulerFactory) ctx.getAttribute(QuartzInitializerServlet.QUARTZ_FACTORY_KEY);
+       
+
+        //StdSchedulerFactory factory = (StdSchedulerFactory) ctx.getAttribute(QuartzInitializerServlet.QUARTZ_FACTORY_KEY);
         try {
-            scheduler = factory.getScheduler();
+            scheduler = StdSchedulerFactory.getDefaultScheduler(); //factory.getScheduler();
+            System.out.println("scheduler: OK");
         } catch (Exception e) {
+            System.out.println("Errore creazione scheduler");
             e.printStackTrace();
         }
     }
@@ -59,10 +64,17 @@ public class SchedulerServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        ServletContext context =this.getServletContext();
-           String realContextPath = context.getRealPath("WEB-INF");
+      response.setContentType("text/html");
+      PrintWriter out= response.getWriter();
+      out.println("<HTML><BODY BGCOLOR=\"#7F7FFF\"><H1 ALIGN=CENTER>HELLO WORLD</H1></BODY></HTML>");
+      out.close();
+ 
+      //  ServletContext context =this.getServletContext();
+        //   String realContextPath = context.getRealPath("WEB-INF");
           
-           System.out.println("path:"+realContextPath);
+          // System.out.println("path:"+realContextPath);
+           /** TEST **/
+           //doPost(request,response);
     }
 
     /**
@@ -74,25 +86,52 @@ public class SchedulerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // HttpSession session = request.getSession(true);
+      
 
         //if(!session.isNew())
         // Check that we have a file upload request
         boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+        /**Controllo POST multipart **/
         if (!isMultipart) {
-            try {
+            /** creazione schedulazione job algoritmo **/
+            scheduleAlgortihmJob(request, response);
+        } else {
+            //HttpSession session = request.getSession(true);
+            //if(!session.isNew())
+            /** inizializzazione e avvio job algoritmo **/
+           initAlgortihmJob(request, response);
+        }
+    }
+
+    /**
+     * Ritorna una piccola descrizione della servlet.
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Servlet per la schedulazione di lavori";
+    }// </editor-fold>
+
+    private void scheduleAlgortihmJob(HttpServletRequest request, HttpServletResponse response){
+        try {
                 /** recupero parametri del POST **/
                 String course = request.getParameter("course");
                 String sdate = request.getParameter("date");
 
                 /** conversione data da String a Date **/
-                java.sql.Date date = null;
-                String pattern = "dd/MM/yyyy";
+                java.util.Date date = null;
+                String pattern = "dd-MM-yyyy";
                 SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-                date = new java.sql.Date(sdf.parse(sdate).getTime());
-
+                if(sdf.parse(sdate)!=null){
+                    long time = sdf.parse(sdate).getTime();
+                    date = new java.sql.Date(time);
+                }else{
+                    Calendar cal = Calendar.getInstance();
+                    cal.add(Calendar.SECOND, 30);
+                    date = cal.getTime();
+                }
                 /** aggiunta dell'evento nello scheduler **/
-                if (date != null && course != null) {
-
+                if (course != null) {
                     /** creazione del job da schedulare **/
                     JobDetail jobDetail = new JobDetail("job_" + course, "algorithm_job", SchedulerJobListener.class);
                     /** Rendiamo il job recovarable **/
@@ -111,7 +150,6 @@ public class SchedulerServlet extends HttpServlet {
 
                     /** invio risposta di creazione risorsa **/
                     response.setStatus(HttpServletResponse.SC_CREATED);
-
                 } else /** invio risposta di errore **/
                 {
                     response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
@@ -122,36 +160,20 @@ public class SchedulerServlet extends HttpServlet {
                 response.setStatus(HttpServletResponse.SC_EXPECTATION_FAILED);
 
             }
-        } else {
-
-            //HttpSession session = request.getSession(true);
-
-            //if(!session.isNew())
-           initAlgortihmJob(request, response);
-        }
     }
-
-    /**
-     * Ritorna una piccola descrizione della servlet.
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Servlet per la schedulazione di lavori";
-    }// </editor-fold>
-
     private void initAlgortihmJob(HttpServletRequest request, HttpServletResponse response){
-         ServletConfig cfg = getServletConfig();
+            /** lettura file configurazione servlet **/
+            ServletConfig cfg = getServletConfig();
             String input_path = cfg.getInitParameter("input-itc-path");
-             String output_path = cfg.getInitParameter("output-itc-path");
+            String output_path = cfg.getInitParameter("output-itc-path");
             try {
                 PrintWriter out = null;
-                out = response.getWriter();
                 String saveFile = null;
 
-                // save upload file
-                ServletFileUpload upload = new ServletFileUpload();  // Create a new file upload handler
-                FileItemIterator iter = upload.getItemIterator(request);  // Parse the request
+                out = response.getWriter();
+                /** salvataggio del file con i parametri del corso**/
+                ServletFileUpload upload = new ServletFileUpload(); 
+                FileItemIterator iter = upload.getItemIterator(request);
                 while (iter.hasNext()) {
                     FileItemStream item = iter.next();
                     String name = item.getFieldName();
@@ -163,7 +185,8 @@ public class SchedulerServlet extends HttpServlet {
                         saveFile = input_path + datetime + item.getName();
                         
                         byte[] buffer = new byte[4*1024];
-
+                        /***TEST **/
+                        System.out.println("saveFile: "+saveFile+" getcontext: "+getServletContext().getRealPath(saveFile));
                         FileOutputStream fileStream = new FileOutputStream(getServletContext().getRealPath(saveFile));
                         InputStream stream = item.openStream();
                         int len = 0;
@@ -188,33 +211,42 @@ public class SchedulerServlet extends HttpServlet {
                 /** creazione evento di esecuzione istantanea del job **/
                 if (course != null) {
                     timeout = request.getParameter("timeout");
+                    if(timeout == null) timeout = "10";
                     /** assegnazione dei parametri al job **/
                     JobDetail jobDetail = new JobDetail("job_" + course, "algorithm_job", AlgorithmJob.class);
                     jobDetail.getJobDataMap().put("input_file", saveFile);
                     jobDetail.getJobDataMap().put("output_file", output_path);
                     jobDetail.getJobDataMap().put("timeout", timeout);
-                    /** Rendiamo il job recovarable **/
+                    /** rendiamo il job ripristinabile **/
                     jobDetail.setRequestsRecovery(true);
                     /** ritardo di 30s all'avvio del job **/
                     Calendar cal = Calendar.getInstance();
                     cal.add(Calendar.SECOND, 30);
 
-                    /** creazione dell'evento **/
+                    /** creazione trigger **/
                     SimpleTrigger trigger = new SimpleTrigger("trigger_" + course, "algoritm_trigger", cal.getTime());
 
-                    /** creazione evento **/
+                    /** creazione schedulazione **/
                     scheduler.scheduleJob(jobDetail, trigger);
 
                     /** invio risposta di esecuzione job **/
                     response.setStatus(HttpServletResponse.SC_GONE);
+                    /** TEST **/
+                    System.out.println("GONE");
 
                 } else /** invio risposta di errore **/
                 {
                     response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+                    /** TEST **/
+                    System.out.println("NOT ACCEPTABLE");
+
                 }
 
             } catch (Exception e) {
                 e.printStackTrace();
+                /** TEST **/
+                System.out.println("EXPECTATION");
+                
                 response.setStatus(HttpServletResponse.SC_EXPECTATION_FAILED);
             }
 

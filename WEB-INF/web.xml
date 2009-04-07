@@ -12,10 +12,10 @@
         <servlet-name>QuartzInitializer</servlet-name>
         <display-name>Quartz Initializer</display-name>
         <servlet-class>org.quartz.ee.servlet.QuartzInitializerServlet</servlet-class>
-        <init-param>
+       <!-- <init-param>
             <param-name>config-file</param-name>
-            <param-value>/sigeol_quartz.properties</param-value>
-        </init-param>
+            <param-value>./sigeol_quartz.properties</param-value>
+        </init-param>-->
         <init-param>
             <param-name>shutdown-on-unload</param-name>
             <param-value>true</param-value>
@@ -23,7 +23,12 @@
         <init-param>
             <param-name>start-scheduler-on-load</param-name>
             <param-value>true</param-value>
-        </init-param>
+        </init-param>        
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>SchedulerServlet</servlet-name>
+        <servlet-class>sigeol.SchedulerServlet</servlet-class>
         <init-param>
             <param-name>input-itc-path</param-name>
             <param-value>/WEB-INF/itc/input/</param-value>
@@ -32,14 +37,9 @@
             <param-name>output-itc-path</param-name>
             <param-value>/WEB-INF/itc/output/</param-value>
         </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet>
-        <servlet-name>SchedulerServlet</servlet-name>
-        <servlet-class>sigeol.SchedulerServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SchedulerServlet</servlet-name>
-        <url-pattern>/alg</url-pattern>
+        <url-pattern>/scheduler</url-pattern>
     </servlet-mapping>
 </web-app>
