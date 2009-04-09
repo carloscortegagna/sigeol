@@ -2,10 +2,12 @@
 #NOME FILE: capability.rb
 #VERSIONE: 0.3
 #AUTORE: Grosselle Alessandro
-#DATA CREAZIONE: 12/02/09
+#DATA CREAZIONE: 16/02/09
 #REGISTRO DELLE MODIFICHE:
+#26/02/09 L'attributo name non può avere più di 30 caratteri
+#22/02/09 Piccola correzione all'espressione regolare che valida il nome
 #17/02/09 Aggiunta delle validazioni
-#12/02/09 Prima stesura
+#16/02/09 Prima stesura
 class Capability < ActiveRecord::Base
  has_and_belongs_to_many :users, :uniq => true
 

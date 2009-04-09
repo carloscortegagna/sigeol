@@ -2,10 +2,12 @@
 #NOME FILE: belong.rb
 #VERSIONE: 0.3
 #AUTORE: Grosselle Alessandro
-#DATA CREAZIONE: 12/02/09
+#DATA CREAZIONE: 16/02/09
 #REGISTRO DELLE MODIFICHE:
-#13/02/09 Aggiunta delle prime validazioni
-#12/02/09 Prima stesura
+#03/03/09 Aggiunta validates_inclusion_of :isOptional
+#20/02/09 Aggiunta del metodo after_destroy
+#18/02/09 Aggiunta delle validazioni
+#16/02/09 Prima stesura
 
 class Belong < ActiveRecord::Base
  belongs_to :teaching

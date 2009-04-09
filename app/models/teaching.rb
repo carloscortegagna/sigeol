@@ -2,10 +2,12 @@
 #NOME FILE: teaching.rb
 #VERSIONE: 0.3
 #AUTORE: Grosselle Alessandro
-#DATA CREAZIONE: 12/02/09
+#DATA CREAZIONE: 16/02/09
 #REGISTRO DELLE MODIFICHE:
-#13/02/09 Aggiunta delle prime validazioni
-#12/02/09 Prima stesura
+#27/02/09 Aggiunto il metodo validates_presence_of :period_id,
+#24/02/09 Aggiunto il metodo check_durata?
+#18/02/09 Aggiunta delle validazioni
+#16/02/09 Prima stesura
 
 class Teaching < ActiveRecord::Base
 include ApplicationHelper

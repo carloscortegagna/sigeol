@@ -2,10 +2,11 @@
 #NOME FILE: classroom.rb
 #VERSIONE: 0.3
 #AUTORE: Grosselle Alessandro
-#DATA CREAZIONE: 12/02/09
+#DATA CREAZIONE: 16/02/09
 #REGISTRO DELLE MODIFICHE:
-#17/02/09 Aggiunta delle validazioni
-#12/02/09 Prima stesura
+#22/02/09 Piccola correzione all'espressione regolare che valida il nome della classe
+#17/02/09 Aggiunta delle validazioni e dell'associazione polimorfa
+#16/02/09 Prima stesura
 class Classroom < ActiveRecord::Base
   include ApplicationHelper
   

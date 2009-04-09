@@ -2,10 +2,12 @@
 #NOME FILE: address.rb
 #VERSIONE: 0.3
 #AUTORE: Grosselle Alessandro
-#DATA CREAZIONE: 12/02/09
+#DATA CREAZIONE: 16/02/09
 #REGISTRO DELLE MODIFICHE:
-#17/02/09 Aggiunta delle prime validazioni
-#12/02/09 Prima stesura
+#27/02/09 Diminuite da 15 a 13 il numero di cifre per il numero di telefono
+#20/02/09 Piccole correzioni alle espressioni regolari
+#17/02/09 Aggiunta delle validazioni
+#16/02/09 Prima stesura
 
 class Address < ActiveRecord::Base
   include ApplicationHelper

@@ -2,10 +2,10 @@
 #NOME FILE: classroom.rb
 #VERSIONE: 0.3
 #AUTORE: Grosselle Alessandro
-#DATA CREAZIONE: 12/02/09
+#DATA CREAZIONE: 16/02/09
 #REGISTRO DELLE MODIFICHE:
 #17/02/09 Aggiunta delle validazioni
-#12/02/09 Prima stesura
+#16/02/09 Prima stesura
 
 class TimetableEntry < ActiveRecord::Base
   belongs_to :timetable
@@ -14,7 +14,7 @@ class TimetableEntry < ActiveRecord::Base
 
   #validazioni :startTime e :endTime e validazioni :day
 
-  validates_presence_of :startTime,:endTime,:day,:timetable_id,:classroom_id,
+  validates_presence_of :startTime,:endTime,:day,:timetable_id,:classroom_id,:teaching_id,
                           :message=>"Alcuni campi sono vuoti"
 
    validates_numericality_of :day,
@@ -35,8 +35,9 @@ class TimetableEntry < ActiveRecord::Base
  end
 
   def unique?
-    if TimetableEntry.find_by_startTime_and_endTime_and_day_and_timetable_id_and_classroom_id(self.startTime,self.endTime,self.day,self.timetable_id,self.classroom_id)
-      errors.add_to_base("riga già presente")
+    t=TimetableEntry.find_by_startTime_and_endTime_and_day_and_timetable_id_and_classroom_id(self.startTime,self.endTime,self.day,self.timetable_id,self.classroom_id)
+    if t && t.id!=self.id
+     errors.add_to_base("riga già presente")
     end
   end
 end

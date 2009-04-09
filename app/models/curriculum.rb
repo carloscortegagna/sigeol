@@ -4,8 +4,10 @@
 #AUTORE: Grosselle Alessandro
 #DATA CREAZIONE: 12/02/09
 #REGISTRO DELLE MODIFICHE:
-#14/02/09 Aggiunta delle prime validazioni
-#12/02/09 Prima stesura
+#14/03/09 Aggiunto il metodo delete_last_teaching
+#22/02/09 name accetta anche il carattere spazio
+#18/02/09 Aggiunta delle validazioni
+#16/02/09 Prima stesura
 class Curriculum < ActiveRecord::Base
   include ApplicationHelper
 

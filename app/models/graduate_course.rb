@@ -2,10 +2,11 @@
 #NOME FILE: graduate_course.rb
 #VERSIONE: 0.3
 #AUTORE: Grosselle Alessandro
-#DATA CREAZIONE: 12/02/09
+#DATA CREAZIONE: 16/02/09
 #REGISTRO DELLE MODIFICHE:
-#14/02/09 Aggiunta delle prime validazioni
-#12/02/09 Prima stesura
+#20/09/09 Aggiunta dell'associazione has_and_belongs_to_many :users e has_and_belongs_to_many :classrooms
+#17/02/09 Aggiunta delle validazioni
+#16/02/09 Prima stesura
 
 class GraduateCourse < ActiveRecord::Base
   include ApplicationHelper

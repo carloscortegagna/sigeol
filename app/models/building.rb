@@ -2,10 +2,12 @@
 #NOME FILE: building.rb
 #VERSIONE: 0.3
 #AUTORE: Grosselle Alessandro
-#DATA CREAZIONE: 12/02/09
+#DATA CREAZIONE: 16/02/09
 #REGISTRO DELLE MODIFICHE:
-#17/02/09 Aggiunta delle prime validazioni
-#12/02/09 Prima stesura
+#13/03/09 Aggiunta del metodo validates_associated :address
+#20/02/09 Modifica all'espressione regolare che valida il nome del palazzo
+#17/02/09 Aggiunta delle validazioni
+#16/02/09 Prima stesura
 
 class Building < ActiveRecord::Base
   include ApplicationHelper

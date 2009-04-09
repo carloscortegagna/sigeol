@@ -2,11 +2,14 @@
 #NOME FILE: user.rb
 #VERSIONE: 0.3
 #AUTORE: Grosselle Alessandro
-#DATA CREAZIONE: 12/02/09
+#DATA CREAZIONE: 16/02/09
 #REGISTRO DELLE MODIFICHE:
-#13/02/09 Aggiunta del metodo per l'autenticazione
-#13/02/09 Aggiunta delle prime validazioni
-#12/02/09 Prima stesura
+#14/03/09 Aggiunto il metodo not_without_graduate_courses(graduate_course)
+#22/02/09 Aggiunta dei metodi own_by_
+#20/02/09 Aggiunta metodi manage_
+#18/02/09 Aggiunta del metodo per l'autenticazione
+#18/02/09 Aggiunta delle prime validazioni
+#16/02/09 Prima stesura
 
 require 'digest/sha1'
 
@@ -55,7 +58,7 @@ class User < ActiveRecord::Base
   validates_presence_of :specified_id,:specified_type,
                         :message=>"L'utente deve essere specificato"
   
-  validate
+  validate 
   def active?
     attribute_present?("password")
   end

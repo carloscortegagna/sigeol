@@ -2,10 +2,12 @@
 #NOME FILE: academic_organization.rb
 #VERSIONE: 0.3
 #AUTORE: Grosselle Alessandro
-#DATA CREAZIONE: 12/02/09
+#DATA CREAZIONE: 16/02/09
 #REGISTRO DELLE MODIFICHE:
-#14/02/09 Aggiunta delle prime validazioni
-#12/02/09 Prima stesura
+#26/02/2009 Aggiunta validates_uniqueness_of :name
+#18/02/09 Aggiunta validates_numericality_of :number
+#16/02/09 Prima stesura
+
 
 class AcademicOrganization < ActiveRecord::Base
   include ApplicationHelper
@@ -35,7 +37,7 @@ class AcademicOrganization < ActiveRecord::Base
 
  #validazioni :number
  validates_uniqueness_of :number,
-                         :message => "E' gia presente un organizzazione accademica con questo numbero"
+                         :message => "E' gia presente un organizzazione accademica con questo numero"
  validates_numericality_of :number,
                            :only_integer => true,
                            :greater_than_or_equal_to => 1,

@@ -1,3 +1,13 @@
+#QuiXoft - Progetto ”SIGEOL”
+#NOME FILE: timetable.rb
+#VERSIONE: 0.3
+#AUTORE: Grosselle Alessandro
+#DATA CREAZIONE: 16/02/09
+#REGISTRO DELLE MODIFICHE:
+#03/10/09 Modifica del metodo validates_inclusion_of :isPublic e aggiunta del metodo correct_year
+#20/02/09 Aggiunta delle validazioni
+#16/02/09 Prima stesura
+
 class Timetable < ActiveRecord::Base
   belongs_to :period
   belongs_to :graduate_course
@@ -16,13 +26,29 @@ class Timetable < ActiveRecord::Base
                      :with => /^[0-9]{4,4}\-[0-9]{2,2}$/,
                      :message => "deve essere scritto nella forma aaaa-aa"
                    #validazione unicità :startTime :endTime :day :classroom_id time :timetable_id
+ validate :correct_year
+
   private
   validate :unique?
   def unique?
-    if Timetable.find_by_period_id_and_graduate_course_id_and_year(self.period_id,self.graduate_course_id,self.year)
+    t=Timetable.find_by_period_id_and_graduate_course_id_and_year(self.period_id,self.graduate_course_id,self.year)
+    if t && t.id!=self.id
       errors.add_to_base("riga già presente")
     end
   end
+
+  def correct_year
+   if year
+    year=self.year[0..3].to_i
+    this_year=::Date.current.year.to_i
+    sub_year=self.year[2..3].to_i
+    sub_year1=self.year[5..6].to_i
+    if((year<(this_year-1))||(sub_year!=(sub_year1-1)))
+      errors.add(:year,"L'anno inserito non è corretto")
+    end
+  end
+end
+
 
 
 end

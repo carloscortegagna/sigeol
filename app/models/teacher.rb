@@ -4,8 +4,9 @@
 #AUTORE: Grosselle Alessandro
 #DATA CREAZIONE: 12/02/09
 #REGISTRO DELLE MODIFICHE:
-#15/02/09
-#13/02/09 Aggiunta delle prime validazioni
+#26/02/09 Aggiunta del metodo before_destroy
+#15/02/09 Nome e cognome accettano al massimo 30 caratteri; prima ne accattavano 20
+#13/02/09 Aggiunta delle validazioni
 #12/02/09 Prima stesura
 
 class Teacher < ActiveRecord::Base

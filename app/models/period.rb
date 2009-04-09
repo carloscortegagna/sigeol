@@ -1,15 +1,16 @@
 #QuiXoft - Progetto ”SIGEOL”
 #NOME FILE: period.rb
-#VERSIONE: 0.3
+#VERSIONE: 0.2
 #AUTORE: Grosselle Alessandro
 #DATA CREAZIONE: 12/02/09
 #REGISTRO DELLE MODIFICHE:
-#14/02/09 Aggiunta delle prime validazioni
-#12/02/09 Prima stesura
+#03/06/09 Piccole modifiche alle validazioni e alle associazioni
+#17/02/09 Aggiunta delle validazioni
+#16/02/09 Prima stesura
 
 class Period < ActiveRecord::Base
   has_many :teachings
-  has_many :timetable
+  has_many :timetables
   #validazioni :subperiod
   validates_numericality_of :subperiod,
                             :only_integer =>true,
