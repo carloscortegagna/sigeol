@@ -19,7 +19,7 @@ class Belong < ActiveRecord::Base
                            :message=>"Inserisci un valore per isOptional valido"
 
   #validazioni :teaching_id e :curriculum_id
-    validate_on_create :unique_curriculum_id_and_teaching_id?
+    validate :unique_curriculum_id_and_teaching_id?
 
     validates_presence_of :curriculum_id,
                           :message => "Associa un curriculum"
@@ -33,15 +33,12 @@ class Belong < ActiveRecord::Base
     end
   end
 
-#  def before_validation
-#    self.isOptional = false if !attribute_present?("isOptional")
-#  end
-
   #validazione unicità curriculm_id e teaching_id
  private
   def unique_curriculum_id_and_teaching_id?
+    b=Belong.find_by_curriculum_id_and_teaching_id(self.curriculum_id,self.teaching_id)
     if self.teaching_id
-      if Belong.find_by_curriculum_id_and_teaching_id(self.curriculum_id,self.teaching_id)
+      if b && b.id!=self.id
         errors.add_to_base("L'insegnamento è gia assegnato al curriculum")
       end
     end

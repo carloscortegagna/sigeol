@@ -1,11 +1,10 @@
 #QuiXoft - Progetto ”SIGEOL”
-#NOME FILE: classroom.rb
+#NOME FILE: constraints_owner.rb
 #VERSIONE: 0.3
 #AUTORE: Grosselle Alessandro
 #DATA CREAZIONE: 19/02/09
 #REGISTRO DELLE MODIFICHE:
 #10/03/09 Aggiunta delle associazioni
-#19/02/09 Prima stesura
 
 class ConstraintsOwner < ActiveRecord::Base
  belongs_to :graduate_course

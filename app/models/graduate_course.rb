@@ -4,6 +4,7 @@
 #AUTORE: Grosselle Alessandro
 #DATA CREAZIONE: 16/02/09
 #REGISTRO DELLE MODIFICHE:
+#10/03/09 Aggiunta dell'associazione polimorfa has_many :constraints
 #20/09/09 Aggiunta dell'associazione has_and_belongs_to_many :users e has_and_belongs_to_many :classrooms
 #17/02/09 Aggiunta delle validazioni
 #16/02/09 Prima stesura

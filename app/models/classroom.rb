@@ -4,6 +4,7 @@
 #AUTORE: Grosselle Alessandro
 #DATA CREAZIONE: 16/02/09
 #REGISTRO DELLE MODIFICHE:
+#10/03/09 Aggiunta dell'associazione polimorfa has_many :constraints
 #22/02/09 Piccola correzione all'espressione regolare che valida il nome della classe
 #17/02/09 Aggiunta delle validazioni e dell'associazione polimorfa
 #16/02/09 Prima stesura

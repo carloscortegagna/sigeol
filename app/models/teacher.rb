@@ -4,6 +4,7 @@
 #AUTORE: Grosselle Alessandro
 #DATA CREAZIONE: 12/02/09
 #REGISTRO DELLE MODIFICHE:
+#10/03/09 Aggiunta dell'associazione polimorfa has_many :constraints
 #26/02/09 Aggiunta del metodo before_destroy
 #15/02/09 Nome e cognome accettano al massimo 30 caratteri; prima ne accattavano 20
 #13/02/09 Aggiunta delle validazioni

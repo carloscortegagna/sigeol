@@ -10,6 +10,7 @@
 
 
 class BooleanConstraint < ActiveRecord::Base
+  has_many :owners
   #validazioni boolean
   validates_inclusion_of :bool,
                          :in => [true, false],
