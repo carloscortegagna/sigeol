@@ -12,8 +12,8 @@ class AcademicOrganizationTest < ActiveSupport::TestCase
 #test1: un oggetto con attributi nulli, non deve essere valido. Se non è valido non viene salvato
 # nel database
   def test_attribute_not_nil
-#caso di prova1.1: @a contiene un oggetto con attributi nulli.
-#obiettivo: Il sistema deve riconoscere @a come un oggetto non valido.
+    #caso di prova1.1: @a contiene un oggetto con attributi nulli.
+    #obiettivo: Il sistema deve riconoscere @a come un oggetto non valido.
     assert !@a.valid?
     assert @a.errors.invalid?(:name)
     assert @a.errors.invalid?(:number)
