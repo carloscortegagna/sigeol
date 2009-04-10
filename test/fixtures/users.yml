@@ -1,11 +1,9 @@
 user_1:
-  id: 1
-  mail: ale7forever@gmail.com
+  mail: agrossel@math.unipd.it
   password: alessandro
   random: 1
   address: address_1
 user_2:
-  id: 2
-  mail: math@gmail.com
+  mail: segreteria@math.unipd.it
   password: 123456
   random: 1

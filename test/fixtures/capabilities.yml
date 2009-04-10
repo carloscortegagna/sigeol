@@ -1,2 +1,15 @@
 capability_1:
   name: Manage graduate courses
+capability_2:
+    name: Manage teachers
+capability_3:
+     name: Manage teachings
+capability_4:
+    name: Manage classrooms
+capability_5:
+    name: Manage buildings
+capability_6:
+   name: Manage timetables
+capability_7:
+   name: Manage capabilities
+  
