@@ -7,11 +7,11 @@ require 'test_helper'
 class BooleanConstraintTest < ActiveSupport::TestCase
 
   #test10: un oggetto con attributi nulli, non deve essere valido. Se non è valido non viene salvato
-  # nel database
+    # nel database
   def test_attribute_not_nil
     #caso di prova10.1: b contiene un oggetto con tutti gli attributi nulli
     #obiettivo: il sistema deve riconoscere b come un oggetto non valido; in particolare deve riscontrare il problema
-    #su tutti gli attributi di b
+      #su tutti gli attributi di b
     b=BooleanConstraint.new
     assert !b.valid?
     assert b.errors.invalid?(:bool)
@@ -40,7 +40,7 @@ class BooleanConstraintTest < ActiveSupport::TestCase
   def test_isHard_must_be_valid
     #caso di prova12.1: isHard contiene il valore 11
     #obiettivo: il sistema deve riconoscere che b non è valido; in particolare deve riscontrare
-    #l'errore sull'attributo isHard
+      #l'errore sull'attributo isHard
     b=BooleanConstraint.new
     b.isHard=11
     assert !b.valid?
@@ -50,12 +50,12 @@ class BooleanConstraintTest < ActiveSupport::TestCase
     b.isHard=-1
     assert !b.valid?
     assert b.errors.invalid?(:isHard)
-    #caso di prova12.2: isHard contiene il valore 1.1
+    #caso di prova12.3: isHard contiene il valore 1.1
     #obiettivo: lo stesso del caso di prova 12.1
     b.isHard=1.1
     assert !b.valid?
     assert b.errors.invalid?(:isHard)
-    #caso di prova12.2: isHard contiene il valore 0
+    #caso di prova12.4: isHard contiene il valore 0
     #obiettivo: il contenuto di isHard deve essere riconosciuto come valido
     b.isHard=0
     assert !b.valid?

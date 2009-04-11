@@ -42,7 +42,7 @@ class AcademicOrganizationTest < ActiveSupport::TestCase
   def test_correct_name
    #caso di prova 3.1: name contiene valori numerici
    #obiettivo: il sistema deve riconoscere @a come non valido; in particolare deve riscontrare
-   #un errore nel attributo name
+    #un errore nel attributo name
    @a.name="12a34"
    assert !@a.valid?
    assert_equal "Si accetta solo caratteri" , @a.errors.on(:name)
@@ -54,11 +54,11 @@ class AcademicOrganizationTest < ActiveSupport::TestCase
   end
 
   #test4: non devono esserci organizzazioni accademiche con ugual contenuto di
-  #name o di number
+    #name o di number
   def test_unique_number_and_duration
     #caso di prova4.1: a name e number vengono assegnati gli stessi valori di una tupla già presente nel db
     #obiettivo: il sistema deve riconoscere @a come oggetto non valido; in particolare deve riscontrare che
-    #nel db son già presenti tuple con quei valori
+     #nel db son già presenti tuple con quei valori
     @a.name=academic_organizations(:academic_organization_1).name
     @a.number=academic_organizations(:academic_organization_1).number
     assert !@a.valid?

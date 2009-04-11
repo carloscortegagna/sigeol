@@ -10,7 +10,7 @@ class AddressTest < ActiveSupport::TestCase
   end
 
  #test5: un oggetto con attributi nulli, non deve essere valido. Se non è valido non viene salvato
- # nel database
+  # nel database
   def test_attribute_not_nil
     #caso di prova5.1: @a contiene un oggetto con tutti gli attributi nulli.
     #obiettivo: il sistema deve riconoscere @a come un oggetto non valido.

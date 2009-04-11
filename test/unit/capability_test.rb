@@ -7,7 +7,7 @@ require 'test_helper'
 class CapabilityTest < ActiveSupport::TestCase
   
 #test16: un oggetto con attributi nulli, non deve essere valido. Se non è valido non viene salvato
-# nel database
+  # nel database
 def test_attribute_not_nil
     #caso di prova16.1: c contiene un oggetto con attributi nulli.
     #obiettivo: Il sistema deve riconoscere c come un oggetto non valido.
