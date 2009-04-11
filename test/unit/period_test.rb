@@ -10,7 +10,7 @@ class PeriodTest < ActiveSupport::TestCase
     # nel database
  def test_attribute_not_nil
     #caso di prova32.1: p ha tutti gli attributi nulli
-    #obiettivo: il sistema deve riconoscere ps come oggetto non valido; in particolare deve
+    #obiettivo: il sistema deve riconoscere p come oggetto non valido; in particolare deve
       #essere segnalato un errore in ogni attributo
     p=Period.new
     assert !p.valid?
