@@ -79,7 +79,7 @@ class BuildingsController < ApplicationController
   # DELETE /buildings/1.xml
   def destroy
     @building = Building.find(params[:id])
-    #Address.find(@building.address_id).destroy
+    Address.find(@building.address_id).destroy
     @building.destroy
 
     respond_to do |format|

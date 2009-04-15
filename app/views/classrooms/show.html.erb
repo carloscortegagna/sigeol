@@ -8,23 +8,7 @@
 </p>
 <p>
   <b>Si trova nell'edificio:</b>
-  
   <%= link_to @building.name, building_path(@building) %>
 </p>
 <br><br>
-<% if @graduate_courses_associati.size == 0 %>
-  Quest'aula non è messa a disposizione di nessun corso di laurea.
-  Premi modifica per aggiungerla a qualche corso di laurea.
-<% else %>
-  Quest'aula è a disposizione dei seguenti corsi di laurea:
-  <br>
-  <% for graduate_course in @graduate_courses_associati %>
-    <br>
-    <tr>
-      <td><%=h graduate_course.name %></td>
-    </tr>
-  <% end %>
-<% end %>
-<br><br>
-<%= link_to 'Modifica', edit_classroom_path(@classroom) %> |
 <%= link_to 'Back', :action => 'administration' %>

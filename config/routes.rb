@@ -18,7 +18,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :classrooms, :except => [:index],
                              :collection => {:administration => :get},
                              :member => {:remove_classroom_graduate_course => :post,
-                             :add_classroom_graduate_course => :post}
+                             :add_classroom_graduate_course => :post,
+                             :edit_constraints => :get,
+                             :create_constraint => :post,
+                             :destroy_constraint => :post}
   
   map.resource :session
 
@@ -36,6 +39,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :timetables, :collection => {:administration => :get}
 
   map.resources :constraints
+  map.resources :temporal_constraints
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090223203513) do
+ActiveRecord::Schema.define(:version => 20090414175737) do
 
   create_table "academic_organizations", :force => true do |t|
     t.string   "name"
@@ -92,16 +92,17 @@ ActiveRecord::Schema.define(:version => 20090223203513) do
     t.integer "classroom_id",       :null => false
   end
 
+  add_index "classrooms_graduate_courses", ["classroom_id"], :name => "fk_classrooms_graduate_courses_classroom_id"
   add_index "classrooms_graduate_courses", ["graduate_course_id", "classroom_id"], :name => "index_join", :unique => true
 
   create_table "constraints_owners", :force => true do |t|
-    t.string   "description"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.integer  "constraint_id"
     t.string   "constraint_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "graduate_course_id"
   end
 
   create_table "curriculums", :force => true do |t|
@@ -120,10 +121,11 @@ ActiveRecord::Schema.define(:version => 20090223203513) do
   end
 
   create_table "expiry_dates", :force => true do |t|
-    t.string   "date"
+    t.date     "date"
     t.integer  "graduate_course_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "period"
   end
 
   add_index "expiry_dates", ["graduate_course_id"], :name => "fk_expiry_dates_graduate_course_id"
@@ -143,6 +145,9 @@ ActiveRecord::Schema.define(:version => 20090223203513) do
     t.integer "user_id",            :null => false
     t.integer "graduate_course_id", :null => false
   end
+
+  add_index "graduate_courses_users", ["graduate_course_id"], :name => "fk_graduate_courses_users_graduate_course_id"
+  add_index "graduate_courses_users", ["user_id"], :name => "fk_graduate_courses_users_user_id"
 
   create_table "periods", :force => true do |t|
     t.integer "subperiod"
@@ -213,7 +218,7 @@ ActiveRecord::Schema.define(:version => 20090223203513) do
   end
 
   add_index "timetable_entries", ["classroom_id"], :name => "fk_timetable_entries_classroom_id"
-  add_index "timetable_entries", ["starttime", "endtime", "day", "classroom_id", "timetable_id"], :name => "indice", :unique => true
+  add_index "timetable_entries", ["startTime", "endTime", "day", "classroom_id", "timetable_id"], :name => "indice", :unique => true
   add_index "timetable_entries", ["teaching_id"], :name => "fk_timetable_entries_teaching_id"
   add_index "timetable_entries", ["timetable_id"], :name => "fk_timetable_entries_timetable_id"
 
@@ -223,6 +228,7 @@ ActiveRecord::Schema.define(:version => 20090223203513) do
     t.integer  "graduate_course_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "isPublic"
   end
 
   add_index "timetables", ["graduate_course_id"], :name => "fk_timetables_graduate_course_id"

@@ -1,8 +1,10 @@
 <%= menu_admin() %>
 <br><br>
 <h1>Amministrazione aule</h1>
+<br><br>
 <% @classrooms.each do |g| %>
   <div class="first_div">
     <%= show_classroom_admin(g) %>
+    <br>
   </div>
 <% end %>

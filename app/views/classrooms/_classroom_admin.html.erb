@@ -1,6 +1,6 @@
 <div>
   <div>
-    <%= link_to classroom_admin.name, classroom_path(classroom_admin) %>
+  <%= link_to classroom_admin.name, classroom_path(classroom_admin) %>
   </div>
   <div>
   <%= link_to "Modifica", edit_classroom_path(classroom_admin) %>
@@ -8,4 +8,8 @@
   <div>
   <%= link_to "Elimina", classroom_admin, :method => :delete%>
   </div>
+  <div>
+  <%= link_to "Disponibilità", edit_constraints_classroom_path(classroom_admin) %>
+  </div>
+  <hr>
 </div>

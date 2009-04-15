@@ -1,18 +1,12 @@
 class ClassroomsController < ApplicationController
   skip_before_filter :login_required, :only => :show
   before_filter :manage_classrooms_required, :except => :show
-  #before_filter :same_graduate_course, :only => :except => [:show, :new, :create]
 
   # GET /classrooms/1
   def show
     @classroom = Classroom.find(params[:id])
     @building = Building.find(@classroom.building_id)
-
-    ids = @current_user.graduate_course_ids
-    @graduate_courses_associati = GraduateCourse.find(:all, :include => {:classrooms => :graduate_courses},
-                               :conditions => ["classrooms_graduate_courses.graduate_course_id IN (?)
-                                   AND classrooms_graduate_courses.classroom_id IN (?)", ids, @classroom.id])   
-
+    
     respond_to do |format|
       format.html # show.html.erb
     end
@@ -36,7 +30,7 @@ class ClassroomsController < ApplicationController
     @graduate_courses = GraduateCourse.find(ids)
     @graduate_courses_associati = GraduateCourse.find(:all, :include => {:classrooms => :graduate_courses},
                                :conditions => ["classrooms_graduate_courses.graduate_course_id IN (?)
-                                   AND classrooms_graduate_courses.classroom_id IN (?)", ids, @classroom.id])  
+                                   AND classrooms_graduate_courses.classroom_id IN (?)", ids, @classroom.id])
     @graduate_courses_non_associati = @graduate_courses - @graduate_courses_associati
   end
 
@@ -90,10 +84,6 @@ class ClassroomsController < ApplicationController
 
   def administration
     @classrooms = Classroom.find(:all)
-    #ids = @current_user.graduate_course_ids
-    #@classrooms = Classroom.find(:all, :include => {:graduate_courses => :classrooms},
-    #                           :conditions => ["classrooms_graduate_courses.graduate_course_id IN (?)", ids])
-    
   end
 
   def remove_classroom_graduate_course
@@ -135,6 +125,46 @@ class ClassroomsController < ApplicationController
         @graduate_courses_non_associati = @graduate_courses - @graduate_courses_associati
         format.html { render :action => "edit" }
        end
+    end
+  end
+
+  def edit_constraints
+    @classroom = Classroom.find(params[:id])
+    classroom_constraints = ConstraintsOwner.find(:all,
+      :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Classroom' AND owner_id = (?)", params[:id]])
+    @constraints = TemporalConstraint.find(classroom_constraints)
+  end
+
+  def create_constraint
+    if request.post?
+      t = TemporalConstraint.new(:description=>"Vincolo di indisponibilità aula",
+        :isHard=>0,:startHour=>params[:start_hour],:endHour=>params[:end_hour],:day=>params[:selected_day])
+      if t.save
+        classroom = Classroom.find(params[:id])
+        classroom.constraints << t
+        classroom.save
+      end
+
+      respond_to do |format|
+        @classroom = Classroom.find(params[:id])
+        selected_constraints = ConstraintsOwner.find(:all,
+            :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Classroom' AND owner_id = (?)", params[:id]])
+        @constraints = TemporalConstraint.find(selected_constraints)
+        format.html { render :action => "edit_constraints" }
+      end 
+    end
+  end
+
+  def destroy_constraint
+    constraint_to_destroy = TemporalConstraint.find(params[:constraint_id])
+    constraint_to_destroy.destroy
+
+    respond_to do |format|
+        @classroom = Classroom.find(params[:id])
+        selected_constraints = ConstraintsOwner.find(:all,
+            :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Classroom' AND owner_id = (?)", params[:id]])
+        @constraints = TemporalConstraint.find(selected_constraints)
+        format.html { render :action => "edit_constraints" }
     end
   end
 
