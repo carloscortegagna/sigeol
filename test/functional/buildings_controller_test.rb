@@ -39,14 +39,17 @@ class BuildingsControllerTest < ActionController::TestCase
     address=stub(:id=>:another_id, :city=>:a_city, :street=>:a_street,:telephone=>:a_telephone)
     Building.stubs(:find).with(:an_id).returns(building)
     Address.stubs(:find).with(:another_id).returns(address)
-   get :show, :id  => :an_id
+    get :show, :id  => :an_id
+    assert_template 'buildings/show'
     assert_response :success
   end
 
   test "User con privilegi usa administration" do
     @request.session[:user_id] = :an_id
     get :administration
+   assert_template 'buildings/administration'
    assert_response :success
+
   end
 
    test "User con privilegi usa new" do
@@ -67,8 +70,8 @@ class BuildingsControllerTest < ActionController::TestCase
 
   test "User con privilegi crea un palazzo valido" do
     @request.session[:user_id] = :an_id
-    Building.any_instance.stubs(:save).returns(:true)
-    Address.any_instance.stubs(:save).returns(:true)
+    Building.any_instance.stubs(:save).returns(true)
+    Address.any_instance.stubs(:save).returns(true)
     put :create, :building=>{:name=>:a_name}, :address=>{:city=>"città", :street=>"street",:telephone=>"telephone"}
     assert_redirected_to :action => 'administration'
     assert_equal flash[:notice] ,"Inserimento del nuovo edificio avvenuto con successo"
@@ -76,7 +79,7 @@ class BuildingsControllerTest < ActionController::TestCase
 
   test "User con privilegi crea un palazzo con indirizzo non valido" do
     @request.session[:user_id] = :an_id
-    Building.any_instance.stubs(:save).returns(:true)
+    Building.any_instance.stubs(:save).returns(true)
     put :create, :building=>{:name=>:a_name ,:address_id=>:another_id}, :address=>{:city=>"città", :street=>"street",:telephone=>"telephone"}
     assert_template 'new'
   end
@@ -121,7 +124,6 @@ class BuildingsControllerTest < ActionController::TestCase
         @request.session[:user_id] = :an_id
        building = Building.new(:id=>:a_id,:name=>:a_name )
        Building.stubs(:find).with(:a_id).returns(building)
-       building.stubs(:destroy).returns(true)
        delete :destroy, :id=>:a_id
        assert_redirected_to :action=>'administration'
      end
