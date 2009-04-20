@@ -31,14 +31,16 @@ ActionController::Routing::Routes.draw do |map|
                                        :edit_graduate_courses => :get,
                                        :update_graduate_courses => [:put, :delete],
                                        :edit_capabilities => :get,
-                                       :update_capabilities => [:put, :delete]
-                                       }
-
+                                       :update_capabilities => [:put, :delete],
+                                       :edit_constraints => :get,
+                                       :edit_preferences => :get,
+                                       :create_constraint => :post,
+                                       :destroy_constraint => :post}
+                                       
   map.resources :users, :only => [:edit, :update]
 
   map.resources :timetables, :collection => {:administration => :get}
 
-  map.resources :constraints
   map.resources :temporal_constraints
   
   # The priority is based upon order of creation: first created -> highest priority.

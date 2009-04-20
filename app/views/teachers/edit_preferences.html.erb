@@ -1,0 +1,49 @@
+Pagina di show e edit delle preferenze per: <%=h @teacher.name %> <%=h @teacher.surname %>
+<hr>
+
+Hai dichiarato la tua preferenza a non sostenere lezioni nei seguenti periodi della settimana:
+<table>
+  <tr>
+    <th>Giorno</th>
+    <th>Ora inizio</th>
+    <th>Ora fine</th>
+  </tr>
+<% for constraint in @constraints %>
+  <tr>
+    <%
+    case constraint.day
+      when 1 %> <td> Lunedi </td>
+      <% when 2 %> <td> Martedi </td>
+      <% when 3 %> <td> Mercoledi </td>
+      <% when 4 %> <td> Giovedi </td>
+      <% when 5 %> <td> Venerdi </td>
+    <% end %>
+    <td><%=h constraint.startHour.to_s(:time) %></td>
+    <td><%=h constraint.endHour.to_s(:time) %></td>
+    <td><% form_tag(:action => :destroy_constraint) do %>
+      <%= hidden_field_tag 'constraint_id', constraint.id %>
+      <%= submit_tag "Elimina" %>
+    <% end %></td>
+  </tr>
+<% end %>
+</table>
+<br><br>
+Le preferenze sono ordinate per priorità crescente: spostare in alto le preferenze più importanti e in basso quelle meno importanti. L'algoritmo di calcolo dell'orario di lezione darà maggior peso alle preferenze con priorità più alta.
+<hr>
+<br><br>
+Nuovo preferenza:
+inserire il giorno della settimana, l'ora di inizio e l'ora di fine.
+<br><br>
+<% form_tag(:action => :create_constraint) do %>
+  <%= select_tag "selected_day", "<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>" %>
+  <%= text_field_tag "start_hour", nil, :maxlength => 5, :size => 10 %>
+  <%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %>
+  <%= submit_tag "Inserisci la nuova preferenza" %>
+<% end %>
+<br><br>
+Inserire il giorno della settimana e l'ora di inizio e fine nel formato xy:zw
+La nuova preferenza verrà inserita in fondo alla lista: avrà quindi piorità più bassa rispetto alle preferenze inserite precedentemente.
+<br><br>
+TODO: invece di giorno della settimana in numero metterlo in parola; ajax per scegliere l'ora di inizio e di fine
+<br><br>
+<%= link_to 'Back', :controller => 'timetables' %>

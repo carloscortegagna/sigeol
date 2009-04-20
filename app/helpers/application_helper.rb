@@ -69,8 +69,8 @@ module ApplicationHelper
     end
 
     if (user.own_by_teacher?)
-      teacher_link << {:name => "Vincoli", :url => url_for(:controller => "constraints", :action => "index")}
-      teacher_link << {:name => "Preferenze", :url => url_for(:controller => "constraints", :action => "index")}
+      teacher_link << {:name => "Vincoli", :url => url_for(:controller => "teachers", :action => "edit_constraints", :id => user.specified_id)}
+      teacher_link << {:name => "Preferenze", :url => url_for(:controller => "teachers", :action => "edit_preferences", :id => user.specified_id)}
       teacher_link << {:name => "Dati personali", :url => url_for(:controller => "teachers", :action => "edit", :id => user.specified_id)}
     end
 

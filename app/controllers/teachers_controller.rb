@@ -5,6 +5,8 @@ class TeachersController < ApplicationController
   before_filter :manage_capabilities_required, :only => [:edit_capabilities, :update_capabilities]
   before_filter :same_graduate_course_required, :only => [:edit_graduate_courses, :update_graduate_courses,
                                                           :edit_capabilities, :update_capabilities]
+  before_filter :same_teacher_required, :only => [:edit_constraints, :edit_preferences,
+                                                          :create_constraint, :destroy_constraint]
 
   # metodi da aggiungere:
   # destroy
@@ -136,6 +138,64 @@ class TeachersController < ApplicationController
     @not_active_users = User.find(:all, :include => :graduate_courses,
                 :conditions => ["users.password IS null AND graduate_courses.id IN (?)",ids])
   end
+  
+  def edit_constraints
+    @teacher = Teacher.find(params[:id])
+    teacher_constraints = TemporalConstraint.find( ConstraintsOwner.find(:all,
+      :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", params[:id]]) )
+    @constraints = []
+    for c in teacher_constraints do
+      if c.isHard == 0
+        @constraints << c
+      end
+    end
+  end
+
+  def edit_preferences
+    @teacher = Teacher.find(params[:id])
+    teacher_preferences = TemporalConstraint.find( ConstraintsOwner.find(:all,
+      :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", params[:id]]) )
+    @constraints = []
+    for p in teacher_preferences do
+      if p.isHard != 0
+        @constraints << p
+      end
+    end
+
+  end
+
+  def create_constraint # da aggiungere la gestione di isHard e della descrizione facoltativa
+    if request.post?
+      t = TemporalConstraint.new(:description=>params[:description],
+        :isHard=>0,:startHour=>params[:start_hour],:endHour=>params[:end_hour],:day=>params[:selected_day])
+      if t.save
+        teacher = Teacher.find(params[:id])
+        teacher.constraints << t
+        teacher.save
+      end
+
+      respond_to do |format|
+        @teacher = Teacher.find(params[:id])
+        teacher_constraints = ConstraintsOwner.find(:all,
+                :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", params[:id]])
+        @constraints = TemporalConstraint.find(teacher_constraints)
+        format.html { render :action => "edit_constraints" }
+      end
+    end
+  end
+
+  def destroy_constraint
+    constraint_to_destroy = TemporalConstraint.find(params[:constraint_id])
+    constraint_to_destroy.destroy
+
+    respond_to do |format|
+        @teacher = Teacher.find(params[:id])
+        teacher_constraints = ConstraintsOwner.find(:all,
+                :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", params[:id]])
+        @constraints = TemporalConstraint.find(teacher_constraints)
+        format.html { render :action => "edit_constraints" }
+    end
+  end
 
   private
 
@@ -149,4 +209,14 @@ class TeachersController < ApplicationController
       redirect_to timetables_url
     end
   end
+
+  def same_teacher_required
+    #l'unless commentato è più sensato e mi sembra sia corretto, ma non funziona...quindi ripiego su quello sotto (bruttino...)
+    #unless @current_user == User.find(:all, :conditions => ["specified_type = 'Teacher' AND specified_id = (?)", Teacher.find(params[:id])])
+    unless @current_user.specified_id.to_s == params[:id]
+      flash[:error] = "Non puoi modificare un utente diverso dal tuo"
+      redirect_to timetables_url
+    end
+  end
+  
 end

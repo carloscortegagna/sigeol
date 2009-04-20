@@ -1,0 +1,51 @@
+Pagina di show e edit dei vincoli di non disponibilità per: <%=h @teacher.name %> <%=h @teacher.surname %>
+<hr>
+
+Hai dichiarato di non essere disponibile nei seguenti periodi:
+<table>
+  <tr>
+    <th>Giorno</th>
+    <th>Ora inizio</th>
+    <th>Ora fine</th>
+    <th>Motivazione</th>
+  </tr>
+<% for constraint in @constraints %>
+  <tr>
+    <%
+    case constraint.day
+      when 1 %> <td> Lunedi </td>
+      <% when 2 %> <td> Martedi </td>
+      <% when 3 %> <td> Mercoledi </td>
+      <% when 4 %> <td> Giovedi </td>
+      <% when 5 %> <td> Venerdi </td>
+    <% end %>
+    <td><%=h constraint.startHour.to_s(:time) %></td>
+    <td><%=h constraint.endHour.to_s(:time) %></td>
+    <td><%=h constraint.description %></td>
+    <td><% form_tag(:action => :destroy_constraint) do %>
+      <%= hidden_field_tag 'constraint_id', constraint.id %>
+      <%= submit_tag "Elimina" %>
+    <% end %></td>
+  </tr>
+<% end %>
+</table>
+<hr>
+<br><br>
+Nuovo vincolo di indisponibilità:
+Inserire il giorno della settimana, l'ora di inizio, l'ora di fine e una motivazione valida.
+<br><br>
+<% form_tag(:action => :create_constraint) do %>
+  <%= select_tag "selected_day", "<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>" %>
+  <%= text_field_tag "start_hour", nil, :maxlength => 5, :size => 10 %>
+  <%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %>
+  <br><br>
+  <%= text_area_tag 'description', nil, :rows => 5, :cols => 25 %>
+  <br><br>
+  <%= submit_tag "Inserisci il nuovo vincolo" %>
+<% end %>
+<br><br>
+Inserire il giorno della settimana e l'ora di inizio e fine nel formato xy:zw
+<br><br>
+TODO: invece di giorno della settimana in numero metterlo in parola; ajax per scegliere l'ora di inizio e di fine
+<br><br>
+<%= link_to 'Back', :controller => 'timetables' %>

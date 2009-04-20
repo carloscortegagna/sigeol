@@ -132,7 +132,7 @@ class ClassroomsController < ApplicationController
     @classroom = Classroom.find(params[:id])
     classroom_constraints = ConstraintsOwner.find(:all,
       :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Classroom' AND owner_id = (?)", params[:id]])
-    @constraints = TemporalConstraint.find(classroom_constraints)
+    @constraints = TemporalConstraint.find(classroom_constraints) # da rifare!!!!!!
   end
 
   def create_constraint
@@ -147,9 +147,9 @@ class ClassroomsController < ApplicationController
 
       respond_to do |format|
         @classroom = Classroom.find(params[:id])
-        selected_constraints = ConstraintsOwner.find(:all,
+        classroom_constraints = ConstraintsOwner.find(:all,
             :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Classroom' AND owner_id = (?)", params[:id]])
-        @constraints = TemporalConstraint.find(selected_constraints)
+        @constraints = TemporalConstraint.find(classroom_constraints)
         format.html { render :action => "edit_constraints" }
       end 
     end
@@ -161,9 +161,9 @@ class ClassroomsController < ApplicationController
 
     respond_to do |format|
         @classroom = Classroom.find(params[:id])
-        selected_constraints = ConstraintsOwner.find(:all,
+        classroom_constraints = ConstraintsOwner.find(:all,
             :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Classroom' AND owner_id = (?)", params[:id]])
-        @constraints = TemporalConstraint.find(selected_constraints)
+        @constraints = TemporalConstraint.find(classroom_constraints)
         format.html { render :action => "edit_constraints" }
     end
   end
