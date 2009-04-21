@@ -130,9 +130,12 @@ class ClassroomsController < ApplicationController
 
   def edit_constraints
     @classroom = Classroom.find(params[:id])
-    classroom_constraints = ConstraintsOwner.find(:all,
-      :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Classroom' AND owner_id = (?)", params[:id]])
-    @constraints = TemporalConstraint.find(classroom_constraints) # da rifare!!!!!!
+    classroom_constraint_ids = ConstraintsOwner.find(:all,
+      :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Classroom' AND owner_id = (?)", params[:id]], :select => ['constraint_id'])
+    @constraints = []
+    for id in classroom_constraint_ids do
+      @constraints << TemporalConstraint.find(id.constraint_id)
+    end
   end
 
   def create_constraint
@@ -147,9 +150,12 @@ class ClassroomsController < ApplicationController
 
       respond_to do |format|
         @classroom = Classroom.find(params[:id])
-        classroom_constraints = ConstraintsOwner.find(:all,
-            :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Classroom' AND owner_id = (?)", params[:id]])
-        @constraints = TemporalConstraint.find(classroom_constraints)
+        classroom_constraint_ids = ConstraintsOwner.find(:all,
+            :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Classroom' AND owner_id = (?)", params[:id]], :select => ['constraint_id'])
+        @constraints = []
+        for id in classroom_constraint_ids do
+          @constraints << TemporalConstraint.find(id.constraint_id)
+        end
         format.html { render :action => "edit_constraints" }
       end 
     end
@@ -161,9 +167,12 @@ class ClassroomsController < ApplicationController
 
     respond_to do |format|
         @classroom = Classroom.find(params[:id])
-        classroom_constraints = ConstraintsOwner.find(:all,
-            :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Classroom' AND owner_id = (?)", params[:id]])
-        @constraints = TemporalConstraint.find(classroom_constraints)
+        classroom_constraint_ids = ConstraintsOwner.find(:all,
+            :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Classroom' AND owner_id = (?)", params[:id]], :select => ['constraint_id'])
+        @constraints = []
+        for id in classroom_constraint_ids do
+          @constraints << TemporalConstraint.find(id.constraint_id)
+        end
         format.html { render :action => "edit_constraints" }
     end
   end
