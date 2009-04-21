@@ -20,9 +20,17 @@ Hai dichiarato la tua preferenza a non sostenere lezioni nei seguenti periodi de
     <% end %>
     <td><%=h constraint.startHour.to_s(:time) %></td>
     <td><%=h constraint.endHour.to_s(:time) %></td>
-    <td><% form_tag(:action => :destroy_constraint) do %>
+    <td><% form_tag(:action => :destroy_preference) do %>
       <%= hidden_field_tag 'constraint_id', constraint.id %>
       <%= submit_tag "Elimina" %>
+    <% end %></td>
+    <td><% form_tag(:action => :teacher_preference_priority_up) do %>
+      <%= hidden_field_tag 'constraint_id', constraint.id %>
+      <%= submit_tag "Su" %>
+    <% end %></td>
+    <td><% form_tag(:action => :teacher_preference_priority_down) do %>
+      <%= hidden_field_tag 'constraint_id', constraint.id %>
+      <%= submit_tag "Giu" %>
     <% end %></td>
   </tr>
 <% end %>
@@ -34,8 +42,8 @@ Le preferenze sono ordinate per priorità crescente: spostare in alto le prefere
 Nuovo preferenza:
 inserire il giorno della settimana, l'ora di inizio e l'ora di fine.
 <br><br>
-<% form_tag(:action => :create_constraint) do %>
-  <%= select_tag "selected_day", "<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>" %>
+<% form_tag(:action => :create_preference) do %>
+  <%= select_tag "day", "<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>" %>
   <%= text_field_tag "start_hour", nil, :maxlength => 5, :size => 10 %>
   <%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %>
   <%= submit_tag "Inserisci la nuova preferenza" %>

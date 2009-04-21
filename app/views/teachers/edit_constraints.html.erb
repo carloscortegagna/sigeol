@@ -35,7 +35,7 @@ Nuovo vincolo di indisponibilità:
 Inserire il giorno della settimana, l'ora di inizio, l'ora di fine e una motivazione valida.
 <br><br>
 <% form_tag(:action => :create_constraint) do %>
-  <%= select_tag "selected_day", "<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>" %>
+  <%= select_tag "day", "<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>" %>
   <%= text_field_tag "start_hour", nil, :maxlength => 5, :size => 10 %>
   <%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %>
   <br><br>

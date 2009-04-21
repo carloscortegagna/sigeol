@@ -78,6 +78,7 @@ class ClassroomsController < ApplicationController
     @classroom.destroy
 
     respond_to do |format|
+      flash[:notice] = 'Aula eliminata'
       format.html { redirect_to(administration_classrooms_url) }
     end
   end

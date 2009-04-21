@@ -32,10 +32,11 @@ ActionController::Routing::Routes.draw do |map|
                                        :update_graduate_courses => [:put, :delete],
                                        :edit_capabilities => :get,
                                        :update_capabilities => [:put, :delete],
-                                       :edit_constraints => :get,
-                                       :edit_preferences => :get,
-                                       :create_constraint => :post,
-                                       :destroy_constraint => :post}
+                                       :edit_constraints => :get, :edit_preferences => :get,
+                                       :create_constraint => :post, :create_preference => :post,
+                                       :destroy_constraint => :post, :destroy_preference => :post,
+                                       :teacher_preference_priority_up => :post,
+                                       :teacher_preference_priority_down => :post}
                                        
   map.resources :users, :only => [:edit, :update]
 
