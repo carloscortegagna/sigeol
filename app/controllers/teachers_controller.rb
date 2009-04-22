@@ -142,7 +142,8 @@ class TeachersController < ApplicationController
   def edit_constraints
     @teacher = Teacher.find(params[:id])
     teacher_constraint_ids = ConstraintsOwner.find(:all,
-      :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", params[:id]], :select => ['constraint_id'])
+      :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", params[:id]],
+      :select => ['constraint_id'], :group => 'constraint_id')
     @constraints = []
     for id in teacher_constraint_ids do
       if TemporalConstraint.find(id.constraint_id).isHard == 0
@@ -156,51 +157,31 @@ class TeachersController < ApplicationController
       t = TemporalConstraint.new(:description=>params[:description],
         :isHard=>0,:startHour=>params[:start_hour],:endHour=>params[:end_hour],:day=>params[:day])
       teacher = Teacher.find(params[:id])
-      #teacher_graduate_courses = teacher.user.graduate_courses
+      teacher_graduate_courses = teacher.user.graduate_courses
       if t.save
-        #for c in teacher_graduate_courses #devo creare un record in constraint_owner per ogni graduate_course del teacher
-          teacher.constraints << t
-          teacher.save
-        #end
-      end
-
-      respond_to do |format|
-        @teacher = Teacher.find(params[:id])
-        teacher_hard_constraint_ids = ConstraintsOwner.find(:all,
-            :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", params[:id]], :select => ['constraint_id'])
-        @constraints = []
-        for id in teacher_hard_constraint_ids do
-          if TemporalConstraint.find(id.constraint_id).isHard == 0
-            @constraints << TemporalConstraint.find(id.constraint_id)
-          end
+        for c in teacher_graduate_courses #devo creare un record in constraint_owner per ogni graduate_course del teacher
+          co=ConstraintsOwner.new
+          co.constraint=t
+          co.graduate_course=GraduateCourse.find(c.id)
+          co.owner = teacher
+          co.save
         end
-        format.html { render :action => "edit_constraints" }
-      end      
+      end
+      redirect_to edit_constraints_teacher_url
     end
   end
 
   def destroy_constraint
     constraint_to_destroy = TemporalConstraint.find(params[:constraint_id])
     constraint_to_destroy.destroy
-
-    respond_to do |format|
-        @teacher = Teacher.find(params[:id])
-        teacher_hard_constraint_ids = ConstraintsOwner.find(:all,
-            :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", params[:id]], :select => ['constraint_id'])
-        @constraints = []
-        for id in teacher_hard_constraint_ids do
-          if TemporalConstraint.find(id.constraint_id).isHard == 0
-            @constraints << TemporalConstraint.find(id.constraint_id)
-          end
-        end
-        format.html { render :action => "edit_constraints" }
-    end
+    redirect_to edit_constraints_teacher_url
   end
 
   def edit_preferences
     @teacher = Teacher.find(params[:id])
     teacher_constraint_ids = ConstraintsOwner.find(:all,
-      :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", params[:id]], :select => ['constraint_id'])
+      :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", params[:id]],
+      :select => ['constraint_id'], :group => 'constraint_id')
     @constraints = []
     for id in teacher_constraint_ids do
       if TemporalConstraint.find(id.constraint_id).isHard != 0
@@ -212,83 +193,66 @@ class TeachersController < ApplicationController
 
   def create_preference
     if request.post?
-      preference_value = 1 #da calcolare in base ai valori di priorità già presenti
-      t = TemporalConstraint.new(:description=>"Preferenza Docente",
-        :isHard=>preference_value,:startHour=>params[:start_hour],:endHour=>params[:end_hour],:day=>params[:day])
       teacher = Teacher.find(params[:id])
-      #teacher_graduate_courses = teacher.user.graduate_courses
-      if t.save
-        #for c in teacher_graduate_courses #devo creare un record in constraint_owner per ogni graduate_course del teacher
-          teacher.constraints << t
-          teacher.save
-        #end
-      end
-
-      respond_to do |format|
-        @teacher = Teacher.find(params[:id])
-        teacher_constraint_ids = ConstraintsOwner.find(:all,
-            :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", params[:id]], :select => ['constraint_id'])
-        @constraints = []
-        for id in teacher_constraint_ids do
-          if TemporalConstraint.find(id.constraint_id).isHard != 0
-            @constraints << TemporalConstraint.find(id.constraint_id)
-          end
+      teacher_constraint_ids = ConstraintsOwner.find(:all,
+          :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", params[:id]],
+          :select => ['constraint_id'], :group => 'constraint_id')
+      constraints = []
+      for id in teacher_constraint_ids do
+        if TemporalConstraint.find(id.constraint_id).isHard != 0
+         constraints << TemporalConstraint.find(id.constraint_id)
         end
-        @constraints = @constraints.sort_by { |c| c[:isHard] }
-        format.html { render :action => "edit_preferences" }
       end
+      preference_value = constraints.count + 1 #conto il numero delle preferenze nel db e metto la giusta priorità a quella nuova
+      t = TemporalConstraint.new(:description=>"Preferenza docente: " + teacher.name + " " + teacher.surname,
+        :isHard=>preference_value,:startHour=>params[:start_hour],:endHour=>params[:end_hour],:day=>params[:day])     
+      teacher_graduate_courses = teacher.user.graduate_courses
+      if t.save
+        for c in teacher_graduate_courses #devo creare un record in constraint_owner per ogni graduate_course del teacher
+          co=ConstraintsOwner.new
+          co.constraint=t
+          co.graduate_course=GraduateCourse.find(c.id)
+          co.owner = teacher
+          co.save
+        end
+      end
+      redirect_to edit_preferences_teacher_url
     end
   end
 
   def destroy_preference
     constraint_to_destroy = TemporalConstraint.find(params[:constraint_id])
-    constraint_to_destroy.destroy
-
-    respond_to do |format|
-        @teacher = Teacher.find(params[:id])
-        teacher_constraint_ids = ConstraintsOwner.find(:all,
-            :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", params[:id]], :select => ['constraint_id'])
-        @constraints = []
-        for id in teacher_constraint_ids do
-          if TemporalConstraint.find(id.constraint_id).isHard != 0
-            @constraints << TemporalConstraint.find(id.constraint_id)
-          end
+    if constraint_to_destroy.destroy #eliminando una preferenza vanno aggiornate le priorità delle altre preferenze
+      teacher_constraint_ids = ConstraintsOwner.find(:all,
+          :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", 
+            params[:teacher_id]], :group => 'constraint_id')
+      constraints = []
+      for tc in teacher_constraint_ids do
+        if TemporalConstraint.find(tc.constraint_id).isHard != 0
+         constraints << TemporalConstraint.find(tc.constraint_id)
         end
-        @constraints = @constraints.sort_by { |c| c[:isHard] }
-        format.html { render :action => "edit_preferences" }
       end
+      constraints = constraints.sort_by { |c| c[:isHard] }
+      i = 1
+      for c in constraints do
+        c.isHard = i
+        c.save
+        i = i + 1
+      end
+      flash[:notice] = "Preferenza eliminata con successo"
+      redirect_to edit_preferences_teacher_url
+    else
+      flash[:error] = "Errore: preferenza non eliminata"
+      redirect_to edit_preferences_teacher_url
+    end
   end
 
   def teacher_preference_priority_up
-      respond_to do |format|
-        @teacher = Teacher.find(params[:id])
-        teacher_constraint_ids = ConstraintsOwner.find(:all,
-            :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", params[:id]], :select => ['constraint_id'])
-        @constraints = []
-        for id in teacher_constraint_ids do
-          if TemporalConstraint.find(id.constraint_id).isHard != 0
-            @constraints << TemporalConstraint.find(id.constraint_id)
-          end
-        end
-        @constraints = @constraints.sort_by { |c| c[:isHard] }
-        format.html { render :action => "edit_preferences" }
-      end
+    redirect_to edit_preferences_teacher_url
   end
 
   def teacher_preference_priority_down
-    respond_to do |format|
-        @teacher = Teacher.find(params[:id])
-        teacher_constraint_ids = ConstraintsOwner.find(:all,
-            :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", params[:id]], :select => ['constraint_id'])
-        @constraints = []
-        for id in teacher_constraint_ids do
-          if TemporalConstraint.find(id.constraint_id).isHard != 0
-            @constraints << TemporalConstraint.find(id.constraint_id)
-          end
-        end
-        @constraints = @constraints.sort_by { |c| c[:isHard] }
-        format.html { render :action => "edit_preferences" }
-      end
+    redirect_to edit_preferences_teacher_url
   end
 
   private

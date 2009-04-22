@@ -22,6 +22,7 @@ Hai dichiarato la tua preferenza a non sostenere lezioni nei seguenti periodi de
     <td><%=h constraint.endHour.to_s(:time) %></td>
     <td><% form_tag(:action => :destroy_preference) do %>
       <%= hidden_field_tag 'constraint_id', constraint.id %>
+      <%= hidden_field_tag 'teacher_id', @teacher.id %>
       <%= submit_tag "Elimina" %>
     <% end %></td>
     <td><% form_tag(:action => :teacher_preference_priority_up) do %>
