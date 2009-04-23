@@ -164,7 +164,7 @@ class CurriculumsControllerTest < ActionController::TestCase
     assert_redirected_to administration_graduate_courses_url
   end
 
-  test"User con privilegi usa update_teachings attraverso il metodo http delete. Tenta di eliminare un insegnamento non presente" do
+  test"User con privilegi usa update_teachings attraverso il metodo http delete Tenta di eliminare un insegnamento non presente" do
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
     c = Curriculum.new(:id=>:an_id,:name=>:a_name)

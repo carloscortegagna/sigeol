@@ -147,7 +147,7 @@ class GraduateCoursesControllerTest < ActionController::TestCase
     assert_equal flash[:notice], 'GraduateCourse was successfully updated.'
   end
 
-  test"User con privilegi usa metodo update, invalidando il corso laurea"do
+  test"User con privilegi usa metodo update invalidando il corso laurea"do
      @user.stubs(:manage_graduate_courses?).returns(true)
      gc = GraduateCourse.new(:id=>:an_id,:name=>:a_name,:duration=>:a_duration)
      GraduateCourse.stubs(:find).with(:an_id).returns(gc)
