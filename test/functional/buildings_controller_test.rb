@@ -72,7 +72,7 @@ class BuildingsControllerTest < ActionController::TestCase
     @request.session[:user_id] = :an_id
     Building.any_instance.stubs(:save).returns(true)
     Address.any_instance.stubs(:save).returns(true)
-    put :create, :building=>{:name=>:a_name}, :address=>{:city=>"città", :street=>"street",:telephone=>"telephone"}
+    post :create, :building=>{:name=>:a_name}, :address=>{:city=>"città", :street=>"street",:telephone=>"telephone"}
     assert_redirected_to :action => 'administration'
     assert_equal flash[:notice] ,"Inserimento del nuovo edificio avvenuto con successo"
   end
@@ -80,7 +80,7 @@ class BuildingsControllerTest < ActionController::TestCase
   test "User con privilegi crea un palazzo con indirizzo non valido" do
     @request.session[:user_id] = :an_id
     Building.any_instance.stubs(:save).returns(true)
-    put :create, :building=>{:name=>:a_name ,:address_id=>:another_id}, :address=>{:city=>"città", :street=>"street",:telephone=>"telephone"}
+    post :create, :building=>{:name=>:a_name ,:address_id=>:another_id}, :address=>{:city=>"città", :street=>"street",:telephone=>"telephone"}
     assert_template 'new'
   end
 
@@ -122,10 +122,11 @@ class BuildingsControllerTest < ActionController::TestCase
 
      test "User con privilegi elimina un palazzo in modo corretto" do
         @request.session[:user_id] = :an_id
+       address = Address.new(:id=>:another_id,:city=>"città", :street=>"street",:telephone=>"telephone")
        building = Building.new(:id=>:a_id,:name=>:a_name )
        Building.stubs(:find).with(:a_id).returns(building)
-       delete :destroy, :id=>:a_id
+       Address.stubs(:find).returns(address)
+      delete :destroy, :id=>:a_id
        assert_redirected_to :action=>'administration'
      end
-
-end
+   end

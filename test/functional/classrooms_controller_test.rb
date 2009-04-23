@@ -1,7 +1,12 @@
+#QuiXoft - Progetto ”SIGEOL”
+#NOME FILE: classrooms_controller_test.rb
+#AUTORE: Grosselle Alessandro
+
 require 'test_helper'
 
 class ClassroomsControllerTest < ActionController::TestCase
 
+  #inizializzo uno user
   def setup
    @user = stub_everything(:id => :an_id, :mail => :a_mail, :password => :a_password)
    @user.stubs(:active?).returns(true)
@@ -11,6 +16,12 @@ class ClassroomsControllerTest < ActionController::TestCase
 
 
   test "Guest usa Show " do
+    c = Classroom.new(:id=>:an_id,:name=>:a_name)
+    b = Building.new
+    b.stubs(:id=>:an_id,:name=>:a_name)
+    Classroom.stubs(:find).with(:an_id).returns(c)
+    Building.stubs(:find).returns(b)
+    get :show, :id=>:an_id
     
   end
 
@@ -55,21 +66,22 @@ class ClassroomsControllerTest < ActionController::TestCase
     post :add_classroom_graduate_course, :id=>:an_id
     assert_redirected_to new_session_url
   end
-
-=begin
-  test "User con privilegi utilizza show" do
-    @request.session[:user_id] = :an_id
-    classroom = stub(:id=>:an_id,:name=>:a_name, :building_id=>:another_id)
-    building = stub(:id=>:another_id,:name=>:a_name)
-    graduate_course = stub(:id=>:another_id,:name=>:a_name,:duration=>:a_duration)
-    Classroom.stubs(:find).with(:an_id).returns(classroom)
-    Building.stubs(:find).with(:another_id).returns(building)
-    #@user.stubs(:graduate_courses).returns([graduate_course])
-    @user.stubs(:graduate_course_ids).returns([graduate_course.id])
-    User.anything.stubs(:graduate_course_ids).returns([graduate_course.id])
-    get :show, :id=>:an_id
+  
+  test"Guest usa edit_constraints"do
+    get :edit_constraints,:id=>:an_id
+    assert_redirected_to new_session_url
   end
-=end
+
+  test"Guest usa create_constraint"do
+    post :create_constraint,:id=>:an_id
+    assert_redirected_to new_session_url
+  end
+
+  test"Guest usa destroy_constraint"do
+    get :destroy_constraint,:id=>:an_id
+    assert_redirected_to new_session_url
+  end
+
   test "User con privilegi usa new" do
     @request.session[:user_id]=:an_id
     get :new
@@ -164,7 +176,46 @@ class ClassroomsControllerTest < ActionController::TestCase
        post :add_classroom_graduate_course, :id=>:classroom_id, :graduate_course_add=>:another_id
       end
 
-      private
+  test"User con privilegi usa  edit_constraints"do
+    @request.session[:user_id]=:an_id
+    t = TemporalConstraint.new(:id=>:an_id,:startHour=>"19:30",:endHour=>"20:30",:day=>:a_day)
+    c = Classroom.new(:id=>:an_id,:name=>:a_name)
+    Classroom.stubs(:find).with(:an_id).returns(c)
+    co = ConstraintsOwner.new
+    ConstraintsOwner.stubs(:find).returns([co])
+    TemporalConstraint.stubs(:find).returns(t)
+    get :edit_constraints, :id=>:an_id
+    assert_response :success
+  end
+
+  test"User con privilegi usa create constraints"do
+    @request.session[:user_id] = :an_id
+    c = Classroom.new(:id=>:an_id,:name=>"a_name")
+    t = TemporalConstraint.new(:id=>:an_id,:startHour=>"19:30",:endHour=>"20:30",:day=>:a_day)
+    Classroom.stubs(:find).with(:an_id).returns(c)
+    TemporalConstraint.any_instance.stubs(:save).returns(true)
+    c.stubs(:constraints).returns([t])
+    Classroom.any_instance.stubs(:save).returns(true)
+    co = ConstraintsOwner.new
+    ConstraintsOwner.stubs(:find).returns([co])
+    TemporalConstraint.stubs(:find).returns(t)
+    post :create_constraint, :id=>:an_id
+    assert_template 'edit_constraints'
+  end
+
+  test"User con privilegi usa destroy_constraint"do
+    @request.session[:user_id] = :an_id
+    c = Classroom.new(:id=>:an_id,:name=>:a_name)
+    t = TemporalConstraint.new(:id=>:an_id,:startHour=>"19:30",:endHour=>"20:30",:day=>:a_day)
+    Classroom.stubs(:find).with(:an_id).returns(c)
+    TemporalConstraint.stubs(:find).returns(t)
+     co = ConstraintsOwner.new
+    ConstraintsOwner.stubs(:find).returns([co])
+    post :destroy_constraint, :id=>:an_id, :constraint_id=>:another_id
+    assert_template 'edit_constraints'
+  end
+
+  private
        def stubs_comuni 
         b = Building.new
         b.stubs(:id=>:another_id,:name=>:a_name)
