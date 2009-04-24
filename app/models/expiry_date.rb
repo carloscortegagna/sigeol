@@ -1,3 +1,4 @@
+################################################################################
 #QuiXoft - Progetto ”SIGEOL”
 #NOME FILE: expiry_date.rb
 #VERSIONE: 0.3
@@ -8,6 +9,7 @@
 #27/02/09 Aggiunta del metodo is_correct_date?
 #14/02/09 Aggiunta delle validazioni
 #16/02/09 Prima stesura
+################################################################################
 
 class ExpiryDate < ActiveRecord::Base
   belongs_to :graduate_course

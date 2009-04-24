@@ -1,3 +1,4 @@
+################################################################################
 #QuiXoft - Progetto ”SIGEOL”
 #NOME FILE: classroom.rb
 #VERSIONE: 0.3
@@ -8,6 +9,8 @@
 #22/02/09 Piccola correzione all'espressione regolare che valida il nome della classe
 #17/02/09 Aggiunta delle validazioni e dell'associazione polimorfa
 #16/02/09 Prima stesura
+################################################################################
+
 class Classroom < ActiveRecord::Base
   include ApplicationHelper
   

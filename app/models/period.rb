@@ -1,3 +1,4 @@
+################################################################################
 #QuiXoft - Progetto ”SIGEOL”
 #NOME FILE: period.rb
 #VERSIONE: 0.2
@@ -7,6 +8,7 @@
 #03/06/09 Piccole modifiche alle validazioni e alle associazioni
 #17/02/09 Aggiunta delle validazioni
 #16/02/09 Prima stesura
+################################################################################
 
 class Period < ActiveRecord::Base
   has_many :teachings

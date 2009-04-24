@@ -1,3 +1,4 @@
+################################################################################
 #QuiXoft - Progetto ”SIGEOL”
 #NOME FILE: building.rb
 #VERSIONE: 0.3
@@ -8,6 +9,7 @@
 #20/02/09 Modifica all'espressione regolare che valida il nome del palazzo
 #17/02/09 Aggiunta delle validazioni
 #16/02/09 Prima stesura
+################################################################################
 
 class Building < ActiveRecord::Base
   include ApplicationHelper

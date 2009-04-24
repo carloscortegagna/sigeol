@@ -1,3 +1,4 @@
+################################################################################
 #QuiXoft - Progetto ”SIGEOL”
 #NOME FILE: address.rb
 #VERSIONE: 0.3
@@ -8,6 +9,7 @@
 #20/02/09 Piccole correzioni alle espressioni regolari
 #17/02/09 Aggiunta delle validazioni
 #16/02/09 Prima stesura
+################################################################################
 
 class Address < ActiveRecord::Base
   include ApplicationHelper

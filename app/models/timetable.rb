@@ -1,3 +1,4 @@
+################################################################################
 #QuiXoft - Progetto ”SIGEOL”
 #NOME FILE: timetable.rb
 #VERSIONE: 0.3
@@ -7,6 +8,7 @@
 #03/10/09 Modifica del metodo validates_inclusion_of :isPublic e aggiunta del metodo correct_year
 #20/02/09 Aggiunta delle validazioni
 #16/02/09 Prima stesura
+################################################################################
 
 class Timetable < ActiveRecord::Base
   belongs_to :period

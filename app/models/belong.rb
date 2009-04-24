@@ -1,3 +1,4 @@
+################################################################################
 #QuiXoft - Progetto ”SIGEOL”
 #NOME FILE: belong.rb
 #VERSIONE: 0.3
@@ -8,6 +9,7 @@
 #20/02/09 Aggiunta del metodo after_destroy
 #18/02/09 Aggiunta delle validazioni
 #16/02/09 Prima stesura
+################################################################################
 
 class Belong < ActiveRecord::Base
  belongs_to :teaching

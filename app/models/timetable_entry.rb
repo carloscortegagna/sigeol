@@ -1,3 +1,4 @@
+################################################################################
 #QuiXoft - Progetto ”SIGEOL”
 #NOME FILE: classroom.rb
 #VERSIONE: 0.3
@@ -6,6 +7,7 @@
 #REGISTRO DELLE MODIFICHE:
 #17/02/09 Aggiunta delle validazioni
 #16/02/09 Prima stesura
+################################################################################
 
 class TimetableEntry < ActiveRecord::Base
   belongs_to :timetable

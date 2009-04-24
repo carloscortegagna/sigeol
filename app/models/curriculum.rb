@@ -1,3 +1,4 @@
+################################################################################
 #QuiXoft - Progetto ”SIGEOL”
 #NOME FILE: curriculum.rb
 #VERSIONE: 0.3
@@ -8,6 +9,8 @@
 #22/02/09 name accetta anche il carattere spazio
 #18/02/09 Aggiunta delle validazioni
 #16/02/09 Prima stesura
+################################################################################
+
 class Curriculum < ActiveRecord::Base
   include ApplicationHelper
 

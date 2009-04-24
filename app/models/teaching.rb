@@ -1,3 +1,4 @@
+################################################################################
 #QuiXoft - Progetto ”SIGEOL”
 #NOME FILE: teaching.rb
 #VERSIONE: 0.3
@@ -8,6 +9,7 @@
 #24/02/09 Aggiunto il metodo check_durata?
 #18/02/09 Aggiunta delle validazioni
 #16/02/09 Prima stesura
+################################################################################
 
 class Teaching < ActiveRecord::Base
 include ApplicationHelper

@@ -1,3 +1,4 @@
+################################################################################
 #QuiXoft - Progetto ”SIGEOL”
 #NOME FILE: capability.rb
 #VERSIONE: 0.3
@@ -8,6 +9,8 @@
 #22/02/09 Piccola correzione all'espressione regolare che valida il nome
 #17/02/09 Aggiunta delle validazioni
 #16/02/09 Prima stesura
+################################################################################
+
 class Capability < ActiveRecord::Base
  has_and_belongs_to_many :users, :uniq => true
 

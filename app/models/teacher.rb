@@ -1,3 +1,4 @@
+################################################################################
 #QuiXoft - Progetto ”SIGEOL”
 #NOME FILE: teacher.rb
 #VERSIONE: 0.3
@@ -9,6 +10,7 @@
 #15/02/09 Nome e cognome accettano al massimo 30 caratteri; prima ne accattavano 20
 #13/02/09 Aggiunta delle validazioni
 #12/02/09 Prima stesura
+################################################################################
 
 class Teacher < ActiveRecord::Base
   include ApplicationHelper

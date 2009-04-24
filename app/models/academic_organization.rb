@@ -1,3 +1,4 @@
+################################################################################
 #QuiXoft - Progetto ”SIGEOL”
 #NOME FILE: academic_organization.rb
 #VERSIONE: 0.3
@@ -7,7 +8,7 @@
 #26/02/2009 Aggiunta validates_uniqueness_of :name
 #18/02/09 Aggiunta validates_numericality_of :number
 #16/02/09 Prima stesura
-
+################################################################################
 
 class AcademicOrganization < ActiveRecord::Base
   include ApplicationHelper

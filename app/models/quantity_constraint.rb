@@ -1,3 +1,4 @@
+################################################################################
 #QuiXoft - Progetto ”SIGEOL”
 #NOME FILE: quantity_constraint.rb
 #VERSIONE: 0.3
@@ -7,6 +8,7 @@
 #13/03/09 Aggiunta validates_numericality_of :isHard
 #20/02/09 Aggiunta delle validazioni
 #16/02/09 Prima stesura
+################################################################################
 
 class QuantityConstraint < ActiveRecord::Base
 

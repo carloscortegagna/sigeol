@@ -1,3 +1,4 @@
+################################################################################
 #QuiXoft - Progetto ”SIGEOL”
 #NOME FILE: teacher_mailer.rb
 #VERSIONE: 0.3
@@ -5,6 +6,7 @@
 #DATA CREAZIONE: 27/02/09
 #REGISTRO DELLE MODIFICHE:
 #27/02/09 Prima stesura
+################################################################################
 
 class TeacherMailer < ActionMailer::Base
 

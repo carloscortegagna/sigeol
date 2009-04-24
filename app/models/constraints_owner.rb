@@ -1,3 +1,4 @@
+################################################################################
 #QuiXoft - Progetto ”SIGEOL”
 #NOME FILE: constraints_owner.rb
 #VERSIONE: 0.3
@@ -5,6 +6,7 @@
 #DATA CREAZIONE: 19/02/09
 #REGISTRO DELLE MODIFICHE:
 #10/03/09 Aggiunta delle associazioni
+################################################################################
 
 class ConstraintsOwner < ActiveRecord::Base
  belongs_to :graduate_course
