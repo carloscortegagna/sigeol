@@ -230,6 +230,62 @@ test"User usa il metodo edit_teachings su un curriculum che non appartiene a nes
     assert_equal flash[:error], "Questo curriculum non appartiene a nessun tuo corso di laurea"
   end
 
+  test"User che non possiede il privilegio di modificare i corsi di laurea usa new"do
+      @user.stubs(:manage_graduate_courses?).returns(false)
+      @request.session[:user_id] = :an_id
+      get :new
+      assert_equal flash[:error],"Non possiedi i privilegi per effettuare questa operazione"
+      assert_redirected_to timetables_url
+    end
+
+   test"User che non possiede il privilegio di modificare i corsi di laurea usa create"do
+      @user.stubs(:manage_graduate_courses?).returns(false)
+      @request.session[:user_id] = :an_id
+      post :new
+      assert_equal flash[:error],"Non possiedi i privilegi per effettuare questa operazione"
+      assert_redirected_to timetables_url
+    end
+
+   test"User che non possiede il privilegio di modificare i corsi di laurea usa edit"do
+      @user.stubs(:manage_graduate_courses?).returns(false)
+      @request.session[:user_id] = :an_id
+      get :edit,:id=>:an_id
+      assert_equal flash[:error],"Non possiedi i privilegi per effettuare questa operazione"
+      assert_redirected_to timetables_url
+    end
+
+     test"User che non possiede il privilegio di modificare i corsi di laurea usa update"do
+      @user.stubs(:manage_graduate_courses?).returns(false)
+      @request.session[:user_id] = :an_id
+      put :edit,:id=>:an_id
+      assert_equal flash[:error],"Non possiedi i privilegi per effettuare questa operazione"
+      assert_redirected_to timetables_url
+    end
+
+   test"User che non possiede il privilegio di modificare i corsi di laurea usa destroy"do
+      @user.stubs(:manage_graduate_courses?).returns(false)
+      @request.session[:user_id] = :an_id
+      delete :destroy,:id=>:an_id
+      assert_equal flash[:error],"Non possiedi i privilegi per effettuare questa operazione"
+      assert_redirected_to timetables_url
+    end
+
+   test"User che non possiede il privilegio di modificare i corsi di laurea usa edit_teachings"do
+      @user.stubs(:manage_graduate_courses?).returns(false)
+      @request.session[:user_id] = :an_id
+      get :edit_teachings,:id=>:an_id
+      assert_equal flash[:error],"Non possiedi i privilegi per effettuare questa operazione"
+      assert_redirected_to timetables_url
+    end
+
+     test"User che non possiede il privilegio di modificare i corsi di laurea usa update_teachings"do
+      @user.stubs(:manage_graduate_courses?).returns(false)
+      @request.session[:user_id] = :an_id
+      put :update_teachings,:id=>:an_id
+      assert_equal flash[:error],"Non possiedi i privilegi per effettuare questa operazione"
+      assert_redirected_to timetables_url
+    end
+
   private
   def same_graduate_course(c)
     @user.stubs(:graduate_course_ids).returns([:an_id])

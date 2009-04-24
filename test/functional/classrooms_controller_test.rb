@@ -215,6 +215,54 @@ class ClassroomsControllerTest < ActionController::TestCase
     assert_template 'edit_constraints'
   end
 
+  test"User senza privilegi usa administration"do
+     @request.session[:user_id] = :an_id
+     @user.stubs(:manage_classrooms?).returns(false)
+     get :administration
+     assert_equal flash[:error],"Non possiedi i privilegi per effettuare questa operazione"
+     assert_redirected_to timetables_url
+   end
+
+  test"User senza privilegi usa new"do
+     @request.session[:user_id] = :an_id
+     @user.stubs(:manage_classrooms?).returns(false)
+     get :new
+     assert_equal flash[:error],"Non possiedi i privilegi per effettuare questa operazione"
+     assert_redirected_to timetables_url
+   end
+
+  test"User senza privilegi usa edit"do
+     @request.session[:user_id] = :an_id
+     @user.stubs(:manage_classrooms?).returns(false)
+     get :edit,:id=>:an_id
+     assert_equal flash[:error],"Non possiedi i privilegi per effettuare questa operazione"
+     assert_redirected_to timetables_url
+   end
+
+  test"User senza privilegi usa create"do
+     @request.session[:user_id] = :an_id
+     @user.stubs(:manage_classrooms?).returns(false)
+     post :create,:id=>:an_id
+     assert_equal flash[:error],"Non possiedi i privilegi per effettuare questa operazione"
+     assert_redirected_to timetables_url
+   end
+
+  test"User senza privilegi usa update"do
+     @request.session[:user_id] = :an_id
+     @user.stubs(:manage_classrooms?).returns(false)
+     put :update,:id=>:an_id
+     assert_equal flash[:error],"Non possiedi i privilegi per effettuare questa operazione"
+     assert_redirected_to timetables_url
+   end
+
+  test"User senza privilegi usa destroy"do
+     @request.session[:user_id] = :an_id
+     @user.stubs(:manage_classrooms?).returns(false)
+     delete :destroy,:id=>:an_id
+     assert_equal flash[:error],"Non possiedi i privilegi per effettuare questa operazione"
+     assert_redirected_to timetables_url
+   end
+
   private
        def stubs_comuni 
         b = Building.new

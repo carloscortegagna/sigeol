@@ -221,5 +221,37 @@ class GraduateCoursesControllerTest < ActionController::TestCase
     assert_redirected_to timetables_url
   end
 
+  test"User che non ha il privilegio di modificare i corsi di laurea usa administration"do
+    @user.stubs(:manage_graduate_courses?).returns(false)
+    @request.session[:user_id] = :an_id
+    get :administration
+    assert_equal flash[:error],  "Non possiedi i privilegi per effettuare questa operazione"
+    assert_redirected_to timetables_url
+  end
+  
+  test"User che non ha il privilegio di modificare i corsi di laurea usa edit"do
+    @user.stubs(:manage_graduate_courses?).returns(false)
+    @request.session[:user_id] = :an_id
+    get :edit, :id=>:an_id
+    assert_equal flash[:error],  "Non possiedi i privilegi per effettuare questa operazione"
+    assert_redirected_to timetables_url
+  end
+
+  test"User che non ha il privilegio di modificare i corsi di laurea usa update"do
+    @user.stubs(:manage_graduate_courses?).returns(false)
+    @request.session[:user_id] = :an_id
+    put :update, :id=>:an_id
+    assert_equal flash[:error],  "Non possiedi i privilegi per effettuare questa operazione"
+    assert_redirected_to timetables_url
+  end
+
+   test"User che non ha il privilegio di modificare i corsi di laurea usa destroy"do
+    @user.stubs(:manage_graduate_courses?).returns(true)
+    @request.session[:user_id] = :an_id
+    delete :destroy, :id=>:an_id
+    assert_equal flash[:error],  "Non possiedi i privilegi per effettuare questa operazione"
+    assert_redirected_to timetables_url
+  end
+  
 end
 

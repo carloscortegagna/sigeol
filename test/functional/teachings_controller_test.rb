@@ -198,39 +198,94 @@ class TeachingsControllerTest < ActionController::TestCase
   end
 
   #user con same_graduate_course_required uguale a false
-  test"User senza privilegi utilizza edit"do
+  test"User tenta di modificare un insegnamento che non appartiene ad un suo stesso corso di laurea"do
     @request.session[:user_id] = :an_id
     get :edit,:id=>:an_id
    assert_equal flash[:error], "Questo insegnamento non appartiane a nessun tuo corso di laurea"
    assert_redirected_to timetables_url
-  end
+   put :update,:id=>:an_id
+   assert_equal flash[:error], "Questo insegnamento non appartiane a nessun tuo corso di laurea"
+   assert_redirected_to timetables_url
+ end
 
-  test"User senza privilegi utilizza update"do
-    @request.session[:user_id] = :an_id
-    put :update,:id=>:an_id
-    assert_equal flash[:error], "Questo insegnamento non appartiane a nessun tuo corso di laurea"
-    assert_redirected_to timetables_url
-  end
-
-  test"User senza privilegi utilizza destroy"do
+  test"User tenta di eliminare un insegnamento che non appartiene ad un suo stesso corso di laurea"do
     @request.session[:user_id] = :an_id
     delete :destroy,:id=>:an_id
     assert_equal flash[:error], "Questo insegnamento non appartiane a nessun tuo corso di laurea"
     assert_redirected_to timetables_url
   end
   
-  test"User senza privilegi utilizza select_teacher"do
+  test"User tenta di assegnare un decente ad un insegnamento che non appartiene ad un suo stesso corso di laurea"do
     @request.session[:user_id] = :an_id
     get :select_teacher, :id=>:an_id
     assert_equal flash[:error], "Questo insegnamento non appartiane a nessun tuo corso di laurea"
     assert_redirected_to timetables_url
-  end
-
-  test"User senza privilegi utilizza assign_teacher"do
-    @request.session[:user_id] = :an_id
     put :assign_teacher,:id=>:an_id,:teacher_id=>:a_teacher_id
     assert_equal flash[:error], "Questo insegnamento non appartiane a nessun tuo corso di laurea"
     assert_redirected_to timetables_url
   end
-  
+
+  test"User senza il privilegio di poter modificare un insegnamento usa administration"do
+    @user.stubs(:manage_teachings?).returns(false)
+    @request.session[:user_id] = :an_id
+    get :administration
+    assert_equal flash[:error], "Non possiedi i privilegi per effettuare questa operazione"
+    assert_redirected_to timetables_url
+  end
+
+   test"User senza il privilegio di poter modificare un insegnamento usa new"do
+    @user.stubs(:manage_teachings?).returns(false)
+    @request.session[:user_id] = :an_id
+    get :new
+    assert_equal flash[:error], "Non possiedi i privilegi per effettuare questa operazione"
+    assert_redirected_to timetables_url
+  end
+
+   test"User senza il privilegio di poter modificare un insegnamento usa edit"do
+    @user.stubs(:manage_teachings?).returns(false)
+    @request.session[:user_id] = :an_id
+    get :edit, :id=>:an_id
+    assert_equal flash[:error], "Non possiedi i privilegi per effettuare questa operazione"
+    assert_redirected_to timetables_url
+  end
+
+   test"User senza il privilegio di poter modificare un insegnamento usa create"do
+    @user.stubs(:manage_teachings?).returns(false)
+    @request.session[:user_id] = :an_id
+    post :create, :id=>:an_id
+    assert_equal flash[:error], "Non possiedi i privilegi per effettuare questa operazione"
+    assert_redirected_to timetables_url
+  end
+
+   test"User senza il privilegio di poter modificare un insegnamento usa select_teacher"do
+    @user.stubs(:manage_teachings?).returns(false)
+    @request.session[:user_id] = :an_id
+    get :select_teacher, :id=>:an_id
+    assert_equal flash[:error], "Non possiedi i privilegi per effettuare questa operazione"
+    assert_redirected_to timetables_url
+  end
+
+   test"User senza il privilegio di poter modificare un insegnamento usa assign_teacher"do
+    @user.stubs(:manage_teachings?).returns(false)
+    @request.session[:user_id] = :an_id
+    post :assign_teacher, :id=>:an_id
+    assert_equal flash[:error], "Non possiedi i privilegi per effettuare questa operazione"
+    assert_redirected_to timetables_url
+  end
+
+   test"User senza il privilegio di poter modificare un insegnamento usa update"do
+    @user.stubs(:manage_teachings?).returns(false)
+    @request.session[:user_id] = :an_id
+    put :update, :id=>:an_id
+    assert_equal flash[:error], "Non possiedi i privilegi per effettuare questa operazione"
+    assert_redirected_to timetables_url
+  end
+
+   test"User senza il privilegio di poter modificare un insegnamento usa destroy"do
+    @user.stubs(:manage_teachings?).returns(false)
+    @request.session[:user_id] = :an_id
+    delete :destroy, :id=>:an_id
+    assert_equal flash[:error], "Non possiedi i privilegi per effettuare questa operazione"
+    assert_redirected_to timetables_url
+  end
 end

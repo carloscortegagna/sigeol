@@ -204,8 +204,8 @@ class TeachersControllerTest < ActionController::TestCase
   end
 
   test"User con privilegi usa update_graduate_courses"do
-    @user.stubs(:manage_teachers?).returns(true)
-     @request.session[:user_id] = :an_id
+      @user.stubs(:manage_teachers?).returns(true)
+      @request.session[:user_id] = :an_id
       t = Teacher.new
       t.stubs(:id=>:an_id,:name=>"a_name",:surname=>"a_surname")
       gc = GraduateCourse.new(:name=>:a_name,:duration=>:a_duration)
@@ -224,4 +224,11 @@ class TeachersControllerTest < ActionController::TestCase
       assert_redirected_to administration_teachers_url
   end
   
+  test"User con privilegi usa edit_constraints"do
+    @request.session[:user_id] = :an_id
+    t = Teacher.new
+    t.stubs(:id=>:an_id,:name=>"a_name",:surname=>"a_surname")
+    
+  end
+
 end
