@@ -53,16 +53,21 @@ class TeachersController < ApplicationController
   end
 
   def update_capabilities
-    t = Teacher.find(params[:id])
+    @teacher = Teacher.find(params[:id])
+    @capability = Capability.find(params[:ids])
     if request.delete?
-      t.user.capabilities.delete(Capability.find(params[:ids]))
-      flash[:notice] = "Privilegi per il docente #{t.surname} #{t.name} aggiornati con successo"
+      @teacher.user.capabilities.delete(@capability)
     end
     if request.put?
-      t.user.capabilities << (Capability.find(params[:ids]))
-      flash[:notice] = "Privilegi per il docente #{t.surname} #{t.name} aggiornati con successo"
+      @teacher.user.capabilities << (@capability)
     end
-      redirect_to administration_teachers_url
+      respond_to do |format|
+        format.html {
+          flash[:notice] = "Privilegi per il docente #{@teacher.surname} #{@teacher.name} aggiornati con successo"
+          redirect_to administration_teachers_url
+        }
+        format.js {}
+      end
   end
 
   def new

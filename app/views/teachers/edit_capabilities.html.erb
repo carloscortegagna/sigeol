@@ -1,18 +1,25 @@
-<p>
+<div>
     Modifica del docente <%= show_teacher(@teacher)  %>
-</p>
-<p>
   Privilegi posseduti ed amministrabili: <br/>
+  <ul id="manageable_capabilities">
   <% @manageable_capabilities.each do |c| %>
+    <li id='<%= c.id %>'>
       <%=h c.name %>
-      <%= button_to "Rimuovi", update_capabilities_teacher_path(@teacher,:ids => c.id), :method => :delete%>
-      <br/>
+      <% form_remote_tag :html => {:method => :delete}, :url => update_capabilities_teacher_path(@teacher,:ids => c.id), :method => :delete do %>
+        <%= submit_tag "Rimuovi" %>
+      <% end %>
+    <li/>
   <% end %>
-</p>
-<p>
+  </ul>
   Privilegi da aggiungere: <br/>
+  <ul id="selectable_capabilities">
   <% @selectable_capabilities.each do |c| %>
+    <li id='<%= c.id %>'>
     <%=h c.name %>
-    <%= button_to "Aggiungi", update_capabilities_teacher_path(@teacher,:ids => c.id), :method => :put %>
-</p>
+    <% form_remote_tag :html => {:method => :put}, :url => update_capabilities_teacher_path(@teacher,:ids => c.id), :method => :put do %>
+      <%= submit_tag "Aggiungi" %>
+    <% end %>
+    </li>
 <% end %>
+  </ul>
+</div>

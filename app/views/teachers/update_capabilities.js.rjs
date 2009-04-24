@@ -1,0 +1,20 @@
+if request.delete?
+  page.remove @capability.id
+  page.insert_html :bottom, 'selectable_capabilities', :inline => "<li id='<%= @capability.id %>'>" +
+      "<%=h @capability.name %>"+
+      "<% form_remote_tag :html => {:method => :put}, :url => update_capabilities_teacher_path(@teacher,:ids => @capability.id), :method => :put do %>" +
+        "<%= submit_tag 'Aggiungi' %>" +
+      "<% end %>", :layout => false
+  page.visual_effect :grow , @capability.id
+  page.visual_effect :highlight , @capability.id
+end
+if request.put?
+  page.remove @capability.id
+  page.insert_html :bottom, 'manageable_capabilities', :inline => "<li id='<%= @capability.id %>'>" +
+      "<%=h @capability.name %>"+
+      "<% form_remote_tag :html => {:method => :delete}, :url => update_capabilities_teacher_path(@teacher,:ids => @capability.id), :method => :delete do %>" +
+        "<%= submit_tag 'Rimuovi' %>" +
+      "<% end %>", :layout => false
+  page.visual_effect :grow , @capability.id
+  page.visual_effect :highlight , @capability.id
+end
