@@ -12,7 +12,7 @@
         <servlet-name>QuartzInitializer</servlet-name>
         <display-name>Quartz Initializer</display-name>
         <servlet-class>org.quartz.ee.servlet.QuartzInitializerServlet</servlet-class>
-       <!-- <init-param>
+        <!--<init-param>
             <param-name>config-file</param-name>
             <param-value>./sigeol_quartz.properties</param-value>
         </init-param>-->
@@ -37,9 +37,18 @@
             <param-name>output-itc-path</param-name>
             <param-value>/WEB-INF/itc/output/</param-value>
         </init-param>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>HelloServlet</servlet-name>
+        <servlet-class>server.HelloServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SchedulerServlet</servlet-name>
-        <url-pattern>/scheduler</url-pattern>
+        <url-pattern>/scheduler.do</url-pattern>
     </servlet-mapping>
-</web-app>
+    <servlet-mapping>
+        <servlet-name>HelloServlet</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+    </web-app>

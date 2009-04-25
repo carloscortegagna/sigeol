@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE sun-web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Application Server 9.0 Servlet 2.5//EN" "http://www.sun.com/software&#xA/appserver/dtds/sun-web-app_2_5-0.dtd">
+<!DOCTYPE sun-web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Application Server 9.0 Servlet 2.5//EN" "http://www.sun.com/software&amp;#xA/appserver/dtds/sun-web-app_2_5-0.dtd">
+
+<sun-web-app error-url="">
+  <context-root>/middleman</context-root>
+  <class-loader delegate="true"/>
+</sun-web-app>
 <!--
     Document   : sun-web.xml
     Created on : 23 febbraio 2009, 16.26
@@ -7,7 +12,3 @@
     Description:
         Purpose of the document follows.
 -->
-<sun-web-app error-url="">
-  <context-root>/middleman</context-root>
-  <class-loader delegate="true"/>
-</sun-web-app>

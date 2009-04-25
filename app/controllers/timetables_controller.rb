@@ -93,13 +93,13 @@ class TimetablesController < ApplicationController
   #
   def schedule
     #URL della servlet
-    url = URI.parse('http://localhost:8080/middleman/alg')
+    url = URI.parse('http://localhost:8080/middleman/scheduler.do')
     #impostazione del metodo POST
     req = Net::HTTP::Post.new(url.path)
     #parametri di autenticazione
     #req.basic_auth 'jack', 'pass'
     #dati da inviare
-    req.set_form_data({'course'=>'corso', 'date'=>'data_scheduling'}, ';')
+    req.set_form_data({'op'=>'sj', 'course'=>'corso', 'date'=>'data_scheduling'}, ';')
     #connessione alla servlet
     res = Net::HTTP.new(url.host, url.port).start {
       |http| http.request(req)
@@ -143,12 +143,13 @@ class TimetablesController < ApplicationController
     #prepara il file di input
 
     #URL della servlet
-    url = URI.parse('http://localhost/middleman/alg')
+    url = URI.parse('http://localhost/middleman/scheduler.do')
     #impostazione del metodo POST
-    req = Net::HTTP::Get.new(url.path)
+    req = Net::HTTP::Post.new(url.path)
     #parametri di autenticazione
     #req.basic_auth 'jack', 'pass'
     #dati da inviare
+    #TODO prelevare corso, creare file input, scegliere un valore di timeout
     req.set_form_data({'course'=>'corso', 'inputfile'=>'file_name','timeout'=>'time'}, ';')
     #connessione alla servlet
     res = Net::HTTP.start(url.host, url.port) {
@@ -165,7 +166,6 @@ class TimetablesController < ApplicationController
       else
       #errore connessione.. riprovare
     end
-
     return done
   end
 
