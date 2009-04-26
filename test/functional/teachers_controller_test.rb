@@ -224,11 +224,87 @@ class TeachersControllerTest < ActionController::TestCase
       assert_redirected_to administration_teachers_url
   end
   
-  test"User con privilegi usa edit_constraints"do
+    test"User che non ha il privilegio di gestione dei docenti utilizza new"do
+       @user.stubs(:manage_teachers?).returns(false)
+      @request.session[:user_id] = :an_id
+      get :new
+      assert_equal flash[:error], "Non possiedi i privilegi per effettuare questa operazione"
+      assert_redirected_to timetables_url
+    end
+
+    test"User che non ha il privilegio di gestione dei docenti utilizza create"do
+       @user.stubs(:manage_teachers?).returns(false)
+      @request.session[:user_id] = :an_id
+      post :create
+      assert_equal flash[:error], "Non possiedi i privilegi per effettuare questa operazione"
+      assert_redirected_to timetables_url
+    end
+
+    test"User che non ha il privilegio di gestione dei docenti utilizza administration"do
+       @user.stubs(:manage_teachers?).returns(false)
+      @request.session[:user_id] = :an_id
+      get :administration
+      assert_equal flash[:error], "Non possiedi i privilegi per effettuare questa operazione"
+      assert_redirected_to timetables_url
+    end
+
+  test"User che non possiede il privilegio di gestione dei docenti utilizza update_graduate_courses"do
+      @user.stubs(:manage_teachers?).returns(false)
+      @request.session[:user_id] = :an_id
+      put :update_graduate_courses,:id=>:an_id
+      assert_equal flash[:error], "Non possiedi i privilegi per effettuare questa operazione"
+      assert_redirected_to timetables_url
+    end
+
+  test"User che non possiede il privilegio di gestire i privilegi utilizza edit_capabilities "do
+      @user.stubs(:manage_teachers?).returns(true)
+      @user.stubs(:manage_capabilities?).returns(false)
+      @request.session[:user_id] = :an_id
+      get :edit_capabilities,:id=>:an_id
+      assert_equal flash[:error], "Non possiedi i privilegi per effettuare questa operazione"
+      assert_redirected_to timetables_url
+end
+
+  test"User che non possiede il privilegio di gestire i privilegi utilizza update_capabilities "do
+      @user.stubs(:manage_teachers?).returns(true)
+      @user.stubs(:manage_capabilities?).returns(false)
+      @request.session[:user_id] = :an_id
+      put :update_capabilities,:id=>:an_id
+      assert_equal flash[:error], "Non possiedi i privilegi per effettuare questa operazione"
+      assert_redirected_to timetables_url
+end
+
+  test"User con privilegi tenta di associare un docente che non appartiene a nessun suo corso di laurea ad un altro corso di laurea"do
+    @user.stubs(:manage_teachers?).returns(true)
+    @user.stubs(:manage_capabilities?).returns(true)
     @request.session[:user_id] = :an_id
     t = Teacher.new
     t.stubs(:id=>:an_id,:name=>"a_name",:surname=>"a_surname")
-    
+    Teacher.stubs(:find).returns(t)
+     t.user.stubs(:graduate_course_ids).returns([:an_id])
+    @user.stubs(:graduate_course_ids).returns([:another_id])
+    get  :edit_graduate_courses, :id=>:an_id
+    assert_equal flash[:error], "Questo docente non appartiene a nessun tuo corso di laurea"
+    assert_redirected_to timetables_url
+    put  :update_graduate_courses, :id=>:an_id
+    assert_equal flash[:error], "Questo docente non appartiene a nessun tuo corso di laurea"
+    assert_redirected_to timetables_url
   end
 
+    test"User con privilegi tenta di modificare i privilegi di un docente che non appartiene a nessun suo corso di laurea"do
+    @user.stubs(:manage_teachers?).returns(true)
+    @user.stubs(:manage_capabilities?).returns(true)
+    @request.session[:user_id] = :an_id
+    t = Teacher.new
+    t.stubs(:id=>:an_id,:name=>"a_name",:surname=>"a_surname")
+    Teacher.stubs(:find).returns(t)
+     t.user.stubs(:graduate_course_ids).returns([:an_id])
+    @user.stubs(:graduate_course_ids).returns([:another_id])
+    get  :edit_capabilities, :id=>:an_id
+    assert_equal flash[:error], "Questo docente non appartiene a nessun tuo corso di laurea"
+    assert_redirected_to timetables_url
+    put  :update_capabilities, :id=>:an_id
+    assert_equal flash[:error], "Questo docente non appartiene a nessun tuo corso di laurea"
+    assert_redirected_to timetables_url
+  end
 end
