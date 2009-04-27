@@ -171,6 +171,9 @@ class TeachersController < ApplicationController
           co.owner = teacher
           co.save
         end
+        flash[:notice] = "Vincolo inserito con successo"
+      else
+        flash[:error] = "Errore: vincolo non salvato"
       end
       redirect_to edit_constraints_teacher_url
     end
@@ -178,7 +181,11 @@ class TeachersController < ApplicationController
 
   def destroy_constraint
     constraint_to_destroy = TemporalConstraint.find(params[:constraint_id])
-    constraint_to_destroy.destroy
+    if constraint_to_destroy.destroy
+      flash[:notice] = "Vincolo eliminato con successo"
+    else
+      flash[:error] = "Errore: vincolo non eliminato"
+    end
     redirect_to edit_constraints_teacher_url
   end
 
@@ -220,6 +227,9 @@ class TeachersController < ApplicationController
           co.owner = teacher
           co.save
         end
+        flash[:notice] = "Preferenza inserita con successo"
+      else
+        flash[:error] = "Errore: preferenza non salvata"
       end
       redirect_to edit_preferences_teacher_url
     end
@@ -245,18 +255,54 @@ class TeachersController < ApplicationController
         i = i + 1
       end
       flash[:notice] = "Preferenza eliminata con successo"
-      redirect_to edit_preferences_teacher_url
     else
       flash[:error] = "Errore: preferenza non eliminata"
-      redirect_to edit_preferences_teacher_url
     end
+    redirect_to edit_preferences_teacher_url
   end
 
   def teacher_preference_priority_up
+    constraint_to_move_up = TemporalConstraint.find(params[:constraint_id]) #preferenza di cui cambiare la priorità
+    if constraint_to_move_up.isHard == 1 #la preferenza è la prima, non devo cambiare niente
+      flash[:notice] = "La preferenza ha già priorità massima"
+    else
+      teacher_constraint_ids = ConstraintsOwner.find(:all,
+          :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)",
+          params[:teacher_id]], :group => 'constraint_id')
+      constraints = []
+      for tc in teacher_constraint_ids do
+        if TemporalConstraint.find(tc.constraint_id).isHard != 0
+         constraints << TemporalConstraint.find(tc.constraint_id)
+        end
+      end
+      constraints = constraints.sort_by { |c| c[:isHard] } #lista ordinata per priorità crescente delle preferenze
+      c1 = constraints[(constraint_to_move_up.isHard)-1] #c1 è la preferenza di cui devo aumentare la priorità
+      c1.isHard = (constraint_to_move_up.isHard)-1 #imposto il nuovo valore di priorità
+      c2 = constraints[(constraint_to_move_up.isHard)-2] #c2 è la preferenze di cui devo diminuire la priorità, perchè il suo posto è stato preso da c1
+      c2.isHard = (constraint_to_move_up.isHard) #imposto la nuova priorità, il nuovo valore equivale al vecchio + 1
+      if c1.save && c2.save
+        flash[:notice] = "Priorità della preferenza modificata con successo"
+      else
+        flash[:error] = "Errore nel cambio di preferenza"
+      end
+    end    
     redirect_to edit_preferences_teacher_url
   end
 
   def teacher_preference_priority_down
+    constraint_to_move_up = TemporalConstraint.find(params[:constraint_id]) #preferenza di cui cambiare la priorità
+    teacher_constraint_ids = ConstraintsOwner.find(:all,
+          :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)",
+          params[:teacher_id]], :group => 'constraint_id')
+    constraints = []
+    for tc in teacher_constraint_ids do
+      if TemporalConstraint.find(tc.constraint_id).isHard != 0
+         constraints << TemporalConstraint.find(tc.constraint_id)
+      end
+    end
+    constraints = constraints.sort_by { |c| c[:isHard] }
+    max_priority = constraints.count
+    #if constraint_to_move_up.isHard == 1 || constraint_to_move_up.isHard == max_priority
     redirect_to edit_preferences_teacher_url
   end
 
@@ -275,8 +321,8 @@ class TeachersController < ApplicationController
 
   def same_teacher_required
     #l'unless commentato è più sensato e mi sembra sia corretto, ma non funziona...quindi ripiego su quello sotto (bruttino...)
-    #unless @current_user == User.find(:all, :conditions => ["specified_type = 'Teacher' AND specified_id = (?)", Teacher.find(params[:id])])
-    unless @current_user.specified_id.to_s == params[:id]
+    #unless @current_user == User.find(:first, :conditions => ["specified_type = 'Teacher' AND specified_id = (?)", Teacher.find(params[:id])])
+    unless @current_user.specified_id.to_s == params[:id].to_s
       flash[:error] = "Non puoi modificare un utente diverso dal tuo"
       redirect_to timetables_url
     end

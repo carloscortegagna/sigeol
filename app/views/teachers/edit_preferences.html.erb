@@ -27,10 +27,12 @@ Hai dichiarato la tua preferenza a non sostenere lezioni nei seguenti periodi de
     <% end %></td>
     <td><% form_tag(:action => :teacher_preference_priority_up) do %>
       <%= hidden_field_tag 'constraint_id', constraint.id %>
+      <%= hidden_field_tag 'teacher_id', @teacher.id %>
       <%= submit_tag "Su" %>
     <% end %></td>
     <td><% form_tag(:action => :teacher_preference_priority_down) do %>
       <%= hidden_field_tag 'constraint_id', constraint.id %>
+      <%= hidden_field_tag 'teacher_id', @teacher.id %>
       <%= submit_tag "Giu" %>
     <% end %></td>
   </tr>
