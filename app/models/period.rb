@@ -1,14 +1,19 @@
-################################################################################
-#QuiXoft - Progetto ”SIGEOL”
-#NOME FILE: period.rb
-#VERSIONE: 0.2
-#AUTORE: Grosselle Alessandro
-#DATA CREAZIONE: 12/02/09
-#REGISTRO DELLE MODIFICHE:
-#03/06/09 Piccole modifiche alle validazioni e alle associazioni
-#17/02/09 Aggiunta delle validazioni
-#16/02/09 Prima stesura
-################################################################################
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: period.rb
+#VERSIONE:: 1.0.0
+#AUTORE:: Grosselle Alessandro
+#DATA CREAZIONE:: 16/02/09
+#REGISTRO DELLE MODIFICHE::
+# 20/04/09 Approvazione del responsabile
+#
+# 06/03/09 Piccole modifiche alle validazioni e alle associazioni
+#
+# 17/02/09 Aggiunta delle validazioni
+#
+# 16/02/09 Prima stesura
+#
+#Rappresentazione di un periodo dell'anno accademico, inteso come periodo (primo trimestre, secondo semestre ecc.)
+#e anno (primo anno, secondo, anno ecc.).
 
 class Period < ActiveRecord::Base
   has_many :teachings
@@ -29,7 +34,10 @@ class Period < ActiveRecord::Base
   validate_on_create :unique_subperiod_year?
 
   private
-  def unique_subperiod_year?
+
+  #Aggiunge all'oggetto +errors+, contenente gli errori di validazione, un ulteriore errore se
+  #è già presente un periodo con anno e sotto-periodo uguale a quelli dell'oggetto d'invocazione.
+  def unique_subperiod_year? #:doc:
     if Period.find_by_year_and_subperiod(self.year,self.subperiod)
       errors.add_to_base("Sotto periodo e anno già presenti")
     end

@@ -65,6 +65,8 @@ class Teaching < ActiveRecord::Base
                        :message => "Associa un periodo all'insegnamento"
  validate :check_durata?
 
+ #Override del metodo della super classe per impostare il primo carattere del nome in maiusculo
+ #ed i rimanenti in minuscolo, prima delle validazioni.
  def before_validation
   self.name=first_upper(self.name)
  end

@@ -1,15 +1,20 @@
-################################################################################
-#QuiXoft - Progetto ”SIGEOL”
-#NOME FILE: graduate_course.rb
-#VERSIONE: 0.3
-#AUTORE: Grosselle Alessandro
-#DATA CREAZIONE: 16/02/09
-#REGISTRO DELLE MODIFICHE:
-#10/03/09 Aggiunta dell'associazione polimorfa has_many :constraints
-#20/09/09 Aggiunta dell'associazione has_and_belongs_to_many :users e has_and_belongs_to_many :classrooms
-#17/02/09 Aggiunta delle validazioni
-#16/02/09 Prima stesura
-################################################################################
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: graduate_course.rb
+#VERSIONE:: 1.0.0
+#AUTORE:: Grosselle Alessandro
+#DATA CREAZIONE:: 16/02/09
+#REGISTRO DELLE MODIFICHE::
+# 27/04/09 Approvazione del responsabile
+#
+# 10/03/09 Aggiunta dell'associazione polimorfa has_many :constraints
+#
+# 20/02/09 Aggiunta dell'associazione has_and_belongs_to_many :users e has_and_belongs_to_many :classrooms
+#
+# 17/02/09 Aggiunta delle validazioni
+#
+# 16/02/09 Prima stesura
+#
+#Rappresentazione di un corso di laurea.
 
 class GraduateCourse < ActiveRecord::Base
   include ApplicationHelper
@@ -37,11 +42,6 @@ class GraduateCourse < ActiveRecord::Base
   validates_presence_of :academic_organization_id,
                          :message => "Deve essere associata ad un'organizzazione accademica"
 
-  #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
-  def before_validation
-   self.name=first_upper(self.name)
-  end
-
   #validazioni :duration
   validates_numericality_of :duration,
                             :only_integer =>true,
@@ -52,4 +52,9 @@ class GraduateCourse < ActiveRecord::Base
   validates_presence_of  :duration,
                          :message=>"La durata non deve essere vuota"
 
+  #Override del metodo della super classe per impostare il primo carattere del nome in maiusculo
+  #ed i rimanenti in minuscolo, prima delle validazioni.
+  def before_validation
+   self.name=first_upper(self.name)
   end
+ end

@@ -1,4 +1,3 @@
-################################################################################
 #=QuiXoft - Progetto ”SIGEOL”
 #NOME FILE:: teacher.rb
 #VERSIONE:: 1.0.0
@@ -41,7 +40,7 @@ class Teacher < ActiveRecord::Base
                       :message=>"Si accetta solo caratteri",
                       :on => :update
 
-  #Override del metodo della super classe per impostare il primo carattere del nome e del cognome in maisculo
+  #Override del metodo della super classe per impostare il primo carattere del nome e del cognome in maiusculo
   #ed i rimanenti in minuscolo, prima delle validazioni.
   def before_validation
     self.name=first_upper(self.name)
