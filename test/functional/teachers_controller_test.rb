@@ -307,4 +307,64 @@ end
     assert_equal flash[:error], "Questo docente non appartiene a nessun tuo corso di laurea"
     assert_redirected_to timetables_url
   end
+
+  test"User con privilegi utilizza edit_constraints"do
+     @request.session[:user_id] = :an_id
+     @user.stubs(:specified_id).returns(:an_id)
+     teacher = Teacher.new
+     co = ConstraintsOwner.new
+     t = TemporalConstraint.new(:isHard=>0,:startHour=>"9:30",:endHour=>"11:30",:description=>:a_description)
+     teacher.stubs(:id=>:an_id,:name=>"a_name",:surname=>"a_surname")
+    Teacher.stubs(:find).returns(teacher)
+   ConstraintsOwner.stubs(:find).returns([co])
+   TemporalConstraint.stubs(:find).returns(t)
+    get :edit_constraints,:id=>:an_id
+    assert_template 'edit_constraints'
+   end
+
+  test"User con privilegi utilizza create_constraints"do
+    @request.session[:user_id] = :an_id
+    @user.stubs(:specified_id).returns(:an_id)
+    teacher = Teacher.new
+    teacher.stubs(:id=>:an_id,:name=>"a_name",:surname=>"a_surname")
+     t = TemporalConstraint.new(:description=>:a_descrption,:isHard=>0,:startHour=>:a_start_hour,:endHour=>:a_end_hour,:day=>:a_day)
+    TemporalConstraint.any_instance.stubs(:save).returns(true)
+    Teacher.stubs(:find).returns(teacher)
+    gc = GraduateCourse.new(:id=>:an_id,:duration=>:a_duration)
+    teacher.user.stubs(:graduate_courses).returns([gc])
+    GraduateCourse.stubs(:find).returns(gc)
+    post :create_constraint,:id=>:an_id
+   assert_redirected_to :controller=>:teachers,:action=>:edit_constraints
+  end
+
+  test"User con privilegi utilizza destroy_constraint"do
+    @request.session[:user_id] = :an_id
+    @user.stubs(:specified_id).returns(:an_id)
+    t = TemporalConstraint.new(:description=>:a_descrption,:isHard=>0,:startHour=>:a_start_hour,:endHour=>:a_end_hour,:day=>:a_day)
+    TemporalConstraint.stubs(:find).with(:another_id).returns(t)
+    post :destroy_constraint,:id=>:an_id,:constraint_id=>:another_id
+    assert_redirected_to :controller=>:teachers,:action=>:edit_constraints
+  end
+
+  test"User senza privilegi utilizza edit_constraints"do
+    @request.session[:user_id] = :an_id
+    get :edit_constraints,:id=>:an_id
+    assert_equal flash[:error], "Non puoi modificare un utente diverso dal tuo"
+    assert_redirected_to timetables_url
+  end
+
+  test"User senza privilegi utilizza create_constraint"do
+    @request.session[:user_id] = :an_id
+    post :create_constraint,:id=>:an_id
+    assert_equal flash[:error], "Non puoi modificare un utente diverso dal tuo"
+    assert_redirected_to timetables_url
+  end
+
+  test"User senza privilegi utilizza destroy_constraint"do
+    @request.session[:user_id] = :an_id
+    post :destroy_constraint,:id=>:an_id
+    assert_equal flash[:error], "Non puoi modificare un utente diverso dal tuo"
+    assert_redirected_to timetables_url
+  end
+
 end
