@@ -1,0 +1,174 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!--
+
+    Methods
+
+  -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Methods</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="rdoc-style.css" type="text/css" />
+  <base target="docwin" />
+</head>
+<body>
+<div id="index">
+  <h1 class="section-bar">Methods</h1>
+  <div id="index-entries">
+    <a href="classes/TeachersController.html#M000069">activate (TeachersController)</a><br />
+    <a href="classes/TeacherMailer.html#M000115">activate_teacher (TeacherMailer)</a><br />
+    <a href="classes/User.html#M000101">active? (User)</a><br />
+    <a href="classes/ClassroomsController.html#M000025">add_classroom_graduate_course (ClassroomsController)</a><br />
+    <a href="classes/GraduateCoursesController.html#M000002">administration (GraduateCoursesController)</a><br />
+    <a href="classes/BuildingsController.html#M000010">administration (BuildingsController)</a><br />
+    <a href="classes/ClassroomsController.html#M000023">administration (ClassroomsController)</a><br />
+    <a href="classes/TeachingsController.html#M000031">administration (TeachingsController)</a><br />
+    <a href="classes/TeachersController.html#M000070">administration (TeachersController)</a><br />
+    <a href="classes/Belong.html#M000097">after_destroy (Belong)</a><br />
+    <a href="classes/TeachingsController.html#M000036">assign_teacher (TeachingsController)</a><br />
+    <a href="classes/User.html#M000102">authenticate (User)</a><br />
+    <a href="classes/DidacticOffice.html#M000096">before_destroy (DidacticOffice)</a><br />
+    <a href="classes/Teacher.html#M000117">before_destroy (Teacher)</a><br />
+    <a href="classes/Address.html#M000095">before_save (Address)</a><br />
+    <a href="classes/Curriculum.html#M000090">before_validation (Curriculum)</a><br />
+    <a href="classes/GraduateCourse.html#M000091">before_validation (GraduateCourse)</a><br />
+    <a href="classes/Teaching.html#M000093">before_validation (Teaching)</a><br />
+    <a href="classes/Building.html#M000098">before_validation (Building)</a><br />
+    <a href="classes/Teacher.html#M000116">before_validation (Teacher)</a><br />
+    <a href="classes/AcademicOrganization.html#M000119">before_validation (AcademicOrganization)</a><br />
+    <a href="classes/Classroom.html#M000120">before_validation (Classroom)</a><br />
+    <a href="classes/User.html#M000113">calculate_digest (User)</a><br />
+    <a href="classes/Teaching.html#M000094">check_durata? (Teaching)</a><br />
+    <a href="classes/Teacher.html#M000118">complete_name (Teacher)</a><br />
+    <a href="classes/MigrationHelper.html#M000148">constraint_name (MigrationHelper)</a><br />
+    <a href="classes/Timetable.html#M000122">correct_year (Timetable)</a><br />
+    <a href="classes/GraduateCoursesController.html#M000006">create (GraduateCoursesController)</a><br />
+    <a href="classes/BuildingsController.html#M000014">create (BuildingsController)</a><br />
+    <a href="classes/ClassroomsController.html#M000020">create (ClassroomsController)</a><br />
+    <a href="classes/TeachingsController.html#M000034">create (TeachingsController)</a><br />
+    <a href="classes/TimetablesController.html#M000043">create (TimetablesController)</a><br />
+    <a href="classes/CurriculumsController.html#M000055">create (CurriculumsController)</a><br />
+    <a href="classes/TeachersController.html#M000067">create (TeachersController)</a><br />
+    <a href="classes/SessionsController.html#M000080">create (SessionsController)</a><br />
+    <a href="classes/ClassroomsController.html#M000027">create_constraint (ClassroomsController)</a><br />
+    <a href="classes/TeachersController.html#M000072">create_constraint (TeachersController)</a><br />
+    <a href="classes/TeachersController.html#M000075">create_preference (TeachersController)</a><br />
+    <a href="classes/GraduateCoursesController.html#M000008">destroy (GraduateCoursesController)</a><br />
+    <a href="classes/BuildingsController.html#M000016">destroy (BuildingsController)</a><br />
+    <a href="classes/ClassroomsController.html#M000022">destroy (ClassroomsController)</a><br />
+    <a href="classes/TeachingsController.html#M000038">destroy (TeachingsController)</a><br />
+    <a href="classes/TimetablesController.html#M000045">destroy (TimetablesController)</a><br />
+    <a href="classes/CurriculumsController.html#M000059">destroy (CurriculumsController)</a><br />
+    <a href="classes/SessionsController.html#M000081">destroy (SessionsController)</a><br />
+    <a href="classes/ClassroomsController.html#M000028">destroy_constraint (ClassroomsController)</a><br />
+    <a href="classes/TeachersController.html#M000073">destroy_constraint (TeachersController)</a><br />
+    <a href="classes/TeachersController.html#M000076">destroy_preference (TeachersController)</a><br />
+    <a href="classes/ApplicationController.html#M000089">didactic_office_required (ApplicationController)</a><br />
+    <a href="classes/TimetablesController.html#M000048">done (TimetablesController)</a><br />
+    <a href="classes/MigrationHelper.html#M000147">drop_fk (MigrationHelper)</a><br />
+    <a href="classes/GraduateCoursesController.html#M000005">edit (GraduateCoursesController)</a><br />
+    <a href="classes/BuildingsController.html#M000013">edit (BuildingsController)</a><br />
+    <a href="classes/ClassroomsController.html#M000019">edit (ClassroomsController)</a><br />
+    <a href="classes/TeachingsController.html#M000033">edit (TeachingsController)</a><br />
+    <a href="classes/TimetablesController.html#M000042">edit (TimetablesController)</a><br />
+    <a href="classes/UsersController.html#M000050">edit (UsersController)</a><br />
+    <a href="classes/CurriculumsController.html#M000054">edit (CurriculumsController)</a><br />
+    <a href="classes/TeachersController.html#M000063">edit_capabilities (TeachersController)</a><br />
+    <a href="classes/ClassroomsController.html#M000026">edit_constraints (ClassroomsController)</a><br />
+    <a href="classes/TeachersController.html#M000071">edit_constraints (TeachersController)</a><br />
+    <a href="classes/TeachersController.html#M000062">edit_graduate_courses (TeachersController)</a><br />
+    <a href="classes/TeachersController.html#M000074">edit_preferences (TeachersController)</a><br />
+    <a href="classes/CurriculumsController.html#M000057">edit_teachings (CurriculumsController)</a><br />
+    <a href="classes/User.html#M000112">encrypt_password (User)</a><br />
+    <a href="classes/ApplicationHelper.html#M000138">first_upper (ApplicationHelper)</a><br />
+    <a href="classes/MigrationHelper.html#M000146">fk (MigrationHelper)</a><br />
+    <a href="classes/GraduateCoursesController.html#M000001">index (GraduateCoursesController)</a><br />
+    <a href="classes/BuildingsController.html#M000009">index (BuildingsController)</a><br />
+    <a href="classes/TeachingsController.html#M000029">index (TeachingsController)</a><br />
+    <a href="classes/TimetablesController.html#M000039">index (TimetablesController)</a><br />
+    <a href="classes/TeachersController.html#M000060">index (TeachersController)</a><br />
+    <a href="classes/TemporalConstraint.html#M000092">is_correct_time? (TemporalConstraint)</a><br />
+    <a href="classes/TimetableEntry.html#M000099">is_correct_time? (TimetableEntry)</a><br />
+    <a href="classes/ApplicationHelper.html#M000142">link (ApplicationHelper)</a><br />
+    <a href="classes/ApplicationHelper.html#M000139">login_form (ApplicationHelper)</a><br />
+    <a href="classes/ApplicationController.html#M000082">login_required (ApplicationController)</a><br />
+    <a href="classes/User.html#M000106">manage_buildings? (User)</a><br />
+    <a href="classes/ApplicationController.html#M000087">manage_buildings_required (ApplicationController)</a><br />
+    <a href="classes/User.html#M000108">manage_capabilities? (User)</a><br />
+    <a href="classes/ApplicationController.html#M000084">manage_capabilities_required (ApplicationController)</a><br />
+    <a href="classes/User.html#M000105">manage_classrooms? (User)</a><br />
+    <a href="classes/ApplicationController.html#M000086">manage_classrooms_required (ApplicationController)</a><br />
+    <a href="classes/User.html#M000109">manage_graduate_courses? (User)</a><br />
+    <a href="classes/ApplicationController.html#M000085">manage_graduate_courses_required (ApplicationController)</a><br />
+    <a href="classes/User.html#M000103">manage_teachers? (User)</a><br />
+    <a href="classes/ApplicationController.html#M000083">manage_teachers_required (ApplicationController)</a><br />
+    <a href="classes/User.html#M000104">manage_teachings? (User)</a><br />
+    <a href="classes/ApplicationController.html#M000088">manage_teachings_required (ApplicationController)</a><br />
+    <a href="classes/User.html#M000107">manage_timetables? (User)</a><br />
+    <a href="classes/TeachingsHelper.html#M000123">menu_admin (TeachingsHelper)</a><br />
+    <a href="classes/GraduateCoursesHelper.html#M000127">menu_admin (GraduateCoursesHelper)</a><br />
+    <a href="classes/ClassroomsHelper.html#M000130">menu_admin (ClassroomsHelper)</a><br />
+    <a href="classes/BuildingsHelper.html#M000133">menu_admin (BuildingsHelper)</a><br />
+    <a href="classes/TeachersHelper.html#M000143">menu_admin (TeachersHelper)</a><br />
+    <a href="classes/GraduateCoursesController.html#M000004">new (GraduateCoursesController)</a><br />
+    <a href="classes/BuildingsController.html#M000012">new (BuildingsController)</a><br />
+    <a href="classes/ClassroomsController.html#M000018">new (ClassroomsController)</a><br />
+    <a href="classes/TeachingsController.html#M000032">new (TeachingsController)</a><br />
+    <a href="classes/TimetablesController.html#M000041">new (TimetablesController)</a><br />
+    <a href="classes/CurriculumsController.html#M000053">new (CurriculumsController)</a><br />
+    <a href="classes/TeachersController.html#M000066">new (TeachersController)</a><br />
+    <a href="classes/SessionsController.html#M000079">new (SessionsController)</a><br />
+    <a href="classes/User.html#M000114">not_without_graduate_courses (User)</a><br />
+    <a href="classes/TimetablesController.html#M000047">notify (TimetablesController)</a><br />
+    <a href="classes/User.html#M000111">own_by_didactic_office? (User)</a><br />
+    <a href="classes/User.html#M000110">own_by_teacher? (User)</a><br />
+    <a href="classes/TeachersController.html#M000068">pre_activate (TeachersController)</a><br />
+    <a href="classes/ClassroomsController.html#M000024">remove_classroom_graduate_course (ClassroomsController)</a><br />
+    <a href="classes/TimetablesController.html#M000046">schedule (TimetablesController)</a><br />
+    <a href="classes/TeachingsController.html#M000035">select_teacher (TeachingsController)</a><br />
+    <a href="classes/GraduateCoursesController.html#M000003">show (GraduateCoursesController)</a><br />
+    <a href="classes/BuildingsController.html#M000011">show (BuildingsController)</a><br />
+    <a href="classes/ClassroomsController.html#M000017">show (ClassroomsController)</a><br />
+    <a href="classes/TeachingsController.html#M000030">show (TeachingsController)</a><br />
+    <a href="classes/TimetablesController.html#M000040">show (TimetablesController)</a><br />
+    <a href="classes/CurriculumsController.html#M000052">show (CurriculumsController)</a><br />
+    <a href="classes/TeachersController.html#M000061">show (TeachersController)</a><br />
+    <a href="classes/BuildingsHelper.html#M000135">show_building (BuildingsHelper)</a><br />
+    <a href="classes/BuildingsHelper.html#M000134">show_building_admin (BuildingsHelper)</a><br />
+    <a href="classes/ClassroomsHelper.html#M000132">show_classroom (ClassroomsHelper)</a><br />
+    <a href="classes/ClassroomsHelper.html#M000131">show_classroom_admin (ClassroomsHelper)</a><br />
+    <a href="classes/CurriculumsHelper.html#M000137">show_curriculum (CurriculumsHelper)</a><br />
+    <a href="classes/CurriculumsHelper.html#M000136">show_curriculum_admin (CurriculumsHelper)</a><br />
+    <a href="classes/GraduateCoursesHelper.html#M000129">show_graduate_course (GraduateCoursesHelper)</a><br />
+    <a href="classes/GraduateCoursesHelper.html#M000128">show_graduate_course_admin (GraduateCoursesHelper)</a><br />
+    <a href="classes/UsersHelper.html#M000126">show_not_active_users (UsersHelper)</a><br />
+    <a href="classes/TeachersHelper.html#M000145">show_teacher (TeachersHelper)</a><br />
+    <a href="classes/TeachersHelper.html#M000144">show_teacher_admin (TeachersHelper)</a><br />
+    <a href="classes/TeachingsHelper.html#M000125">show_teaching (TeachingsHelper)</a><br />
+    <a href="classes/TeachingsHelper.html#M000124">show_teaching_admin (TeachingsHelper)</a><br />
+    <a href="classes/ApplicationHelper.html#M000140">standard_sidebar (ApplicationHelper)</a><br />
+    <a href="classes/TimetablesController.html#M000049">start (TimetablesController)</a><br />
+    <a href="classes/TeachersController.html#M000078">teacher_preference_priority_down (TeachersController)</a><br />
+    <a href="classes/TeachersController.html#M000077">teacher_preference_priority_up (TeachersController)</a><br />
+    <a href="classes/TimetableEntry.html#M000100">unique? (TimetableEntry)</a><br />
+    <a href="classes/Timetable.html#M000121">unique? (Timetable)</a><br />
+    <a href="classes/GraduateCoursesController.html#M000007">update (GraduateCoursesController)</a><br />
+    <a href="classes/BuildingsController.html#M000015">update (BuildingsController)</a><br />
+    <a href="classes/ClassroomsController.html#M000021">update (ClassroomsController)</a><br />
+    <a href="classes/TeachingsController.html#M000037">update (TeachingsController)</a><br />
+    <a href="classes/TimetablesController.html#M000044">update (TimetablesController)</a><br />
+    <a href="classes/UsersController.html#M000051">update (UsersController)</a><br />
+    <a href="classes/CurriculumsController.html#M000056">update (CurriculumsController)</a><br />
+    <a href="classes/TeachersController.html#M000065">update_capabilities (TeachersController)</a><br />
+    <a href="classes/TeachersController.html#M000064">update_graduate_courses (TeachersController)</a><br />
+    <a href="classes/CurriculumsController.html#M000058">update_teachings (CurriculumsController)</a><br />
+    <a href="classes/ApplicationHelper.html#M000141">user_sidebar (ApplicationHelper)</a><br />
+  </div>
+</div>
+</body>
+</html>
