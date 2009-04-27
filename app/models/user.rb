@@ -159,7 +159,7 @@ class User < ActiveRecord::Base
   end
 
   # Viene utilizzato per sollevare un'eccezzione nel caso si tenti di cancellare l'ultimo corso di
-  # laurea (parametro +graduate_course+)
+  # laurea (parametro +graduate_course+) associato all'oggetto _User_ di invocazione.
   def not_without_graduate_courses(graduate_course) #:doc:
     if self.graduate_courses.size == 1
       raise Exception
