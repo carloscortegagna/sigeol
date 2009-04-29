@@ -1,15 +1,21 @@
-################################################################################
-#QuiXoft - Progetto ”SIGEOL”
-#NOME FILE: curriculum.rb
-#VERSIONE: 0.3
-#AUTORE: Grosselle Alessandro
-#DATA CREAZIONE: 12/02/09
-#REGISTRO DELLE MODIFICHE:
-#14/03/09 Aggiunto il metodo delete_last_teaching
-#22/02/09 name accetta anche il carattere spazio
-#18/02/09 Aggiunta delle validazioni
-#16/02/09 Prima stesura
-################################################################################
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: curriculum.rb
+#VERSIONE:: 1.0.0
+#AUTORE:: Grosselle Alessandro
+#DATA CREAZIONE:: 12/02/09
+#REGISTRO DELLE MODIFICHE::
+# 29/04/09 Approvazione del responsabile
+#
+# 14/03/09 Aggiunto il metodo delete_last_teaching
+#
+# 22/02/09 name accetta anche il carattere spazio
+#
+# 18/02/09 Aggiunta delle validazioni
+#
+# 16/02/09 Prima stesura
+#
+#Rappresentazione di un curriculum. Se un corso di laurea prevede un solo curriculum, questo conterrà
+#nel campo +name+ il valore "Unico".
 
 class Curriculum < ActiveRecord::Base
   include ApplicationHelper
@@ -32,15 +38,19 @@ class Curriculum < ActiveRecord::Base
   validates_presence_of :graduate_course_id,
                         :message => "Deve essere associato ad un corso di laurea"
 
-  #funzione di callback,mette tutto in minuscolo del nome, tranne la prima lettera
- def before_validation
-   self.name=first_upper(self.name)
- end
+  #Override del metodo della super classe per impostare il primo carattere del nome in maiusculo
+  #ed i rimanenti in minuscolo, prima delle validazioni.
+  def before_validation
+    self.name=first_upper(self.name)
+  end
 
-#validazioni unicità curriculum-graduate_course
-validate :unique_curriculum_graduate_course?
+  #validazioni unicità curriculum-graduate_course
+  validate :unique_curriculum_graduate_course?
 
   private
+  
+  #Se esiste già un curriculum uguale a quello di invocazione associato allo stesso corso di laurea,
+  #viene aggiunto all'oggetto +errors+, contenente gli errori di validazione, un ulteriore messaggio.
   def unique_curriculum_graduate_course?
     c=Curriculum.find_by_name_and_graduate_course_id(self.name,self.graduate_course_id)
     if c && c.id!=self.id
@@ -48,10 +58,11 @@ validate :unique_curriculum_graduate_course?
     end
   end
 
+  #Utilizzato dopo l'eliminazione di un curriculum, per rimuovere eventuali insegnamenti che non risultano
+  #associati a nessun altro curriculum.
   def delete_last_teaching(teaching)
     if (teaching.curriculums.size == 0)
       teaching.delete
     end
   end
-
 end
