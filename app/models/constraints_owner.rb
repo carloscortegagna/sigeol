@@ -1,12 +1,18 @@
-################################################################################
-#QuiXoft - Progetto ”SIGEOL”
-#NOME FILE: constraints_owner.rb
-#VERSIONE: 0.3
-#AUTORE: Grosselle Alessandro
-#DATA CREAZIONE: 19/02/09
-#REGISTRO DELLE MODIFICHE:
-#10/03/09 Aggiunta delle associazioni
-################################################################################
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: constraints_owner.rb
+#VERSIONE:: 1.0.0
+#AUTORE:: Grosselle Alessandro
+#DATA CREAZIONE:: 12/02/09
+#REGISTRO DELLE MODIFICHE::
+# 26/03/09 Approvazione del responsabile
+#
+# 10/03/09 Aggiunta delle associazioni
+#
+# 12/02/09 Prima stesura
+#
+#Rappresenta l'associazione tra corsi di laurea (_Graduate_course_), tipologia di
+#vincoli (_Quantity_constraint_, _Temporal_constraint_,_Boolean_constraint_) e
+#possessori di vincoli (_Teacher_,_Classroom_,_Graduate_course_).
 
 class ConstraintsOwner < ActiveRecord::Base
  belongs_to :graduate_course
