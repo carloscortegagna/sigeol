@@ -45,7 +45,8 @@ public class SchedulerServlet extends HttpServlet{
         super.init(config);
 
        ServletContext ctx = config.getServletContext();
-       System.out.println("Initializing SIGEOL scheduler manager..");
+
+       System.out.println("Initializing SIGEOL scheduler manager.. ");
         //StdSchedulerFactory factory = (StdSchedulerFactory) ctx.getAttribute(QuartzInitializerServlet.QUARTZ_FACTORY_KEY);
         try {
             scheduler = StdSchedulerFactory.getDefaultScheduler(); //factory.getScheduler();
@@ -170,9 +171,10 @@ public class SchedulerServlet extends HttpServlet{
     private void initAlgortihmJob(HttpServletRequest request, HttpServletResponse response){
             /** lettura file configurazione servlet **/
             ServletConfig cfg = getServletConfig();
-            System.out.println("cfg: "+cfg.toString());
+            
             String input_path = cfg.getInitParameter("input-itc-path");
             String output_path = cfg.getInitParameter("output-itc-path");
+
             try {
                 PrintWriter out = null;
                 String saveFile = null;
@@ -188,15 +190,14 @@ public class SchedulerServlet extends HttpServlet{
                     String name = item.getFieldName();
                     System.out.println("Name input: "+name);
                     if (name.equals("inputfile") && !item.isFormField()) {
-                        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-HH:mm:ss");
+                        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-HH_mm_ss");
                         Date date = new java.util.Date();
                         String datetime = dateFormat.format(date);
-                        saveFile = input_path + datetime + item.getName();
+                        saveFile = input_path + datetime +"_"+item.getName();
                         
                         byte[] buffer = new byte[4*1024];
                         /***TEST **/
-                        System.out.println("saveFile: "+saveFile+" getcontext: "+getServletContext().getRealPath(saveFile));
-                        FileOutputStream fileStream = new FileOutputStream(getServletContext().getRealPath(saveFile));
+                        FileOutputStream fileStream = new FileOutputStream(this.getServletContext().getRealPath("/")+saveFile);
                         InputStream stream = item.openStream();
                         int len = 0;
                         while (true) {
@@ -209,7 +210,7 @@ public class SchedulerServlet extends HttpServlet{
                         stream.close();
                         fileStream.flush();
                         fileStream.close();
-                        out.println("File salvato: " + saveFile);
+                        System.out.println("File salvato: " + saveFile);
                     }
                 }
 
@@ -234,26 +235,30 @@ public class SchedulerServlet extends HttpServlet{
 
                     /** creazione trigger **/
                     SimpleTrigger trigger = new SimpleTrigger("trigger_" + course, "algoritm_trigger", cal.getTime());
-
-                    /** creazione schedulazione **/
-                    scheduler.scheduleJob(jobDetail, trigger);
-
+                    try{
+                        /** creazione schedulazione **/
+                        scheduler.scheduleJob(jobDetail, trigger);
+                    }catch(org.quartz.ObjectAlreadyExistsException exc){
+                        /** job già esistente. Eliminazione del job precedente e schedulazione del nuovo **/
+                        scheduler.deleteJob(jobDetail.getName(), jobDetail.getGroup());
+                        scheduler.scheduleJob(jobDetail, trigger);
+                    }
                     /** invio risposta di esecuzione job **/
                     response.setStatus(HttpServletResponse.SC_GONE);
-                    /** TEST **/
-                    System.out.println("GONE");
+                    System.out.println("job: " + course+ " creato con successo. \n Start time: "+trigger.getStartTime().toString());
 
                 } else /** invio risposta di errore **/
                 {
                     response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
-                    /** TEST **/
-                    System.out.println("NOT ACCEPTABLE");
+                    System.out.println("Errore.. richiesta creazione job non accettata");
 
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
                 response.setStatus(HttpServletResponse.SC_EXPECTATION_FAILED);
+                System.out.println("Errore.. richiesta creazione job");
+                e.printStackTrace();
+
             }
 
     }
