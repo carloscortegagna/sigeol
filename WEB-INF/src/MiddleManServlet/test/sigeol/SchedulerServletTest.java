@@ -26,6 +26,10 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 
 
+/**
+ *
+ * @author mattia
+ */
 public class SchedulerServletTest extends BasicServletTestCaseAdapter
 {
     @Override
@@ -44,6 +48,10 @@ public class SchedulerServletTest extends BasicServletTestCaseAdapter
 
     }
 
+    /**
+     *
+     * @throws java.lang.Exception
+     */
     public void testServletGet() throws Exception
     {
         doGet();
@@ -55,12 +63,20 @@ public class SchedulerServletTest extends BasicServletTestCaseAdapter
         assertEquals("Sigeol servlet ","sigeol servlet", title.getText().toLowerCase());
     }
 
-     public void testServletNoOperation() throws Exception{
+    /**
+     *
+     * @throws java.lang.Exception
+     */
+    public void testServletNoOperation() throws Exception{
          doPost();
          WebMockObjectFactory s =this.getWebMockObjectFactory();
          assertEquals("Not acceptable operation" , s.getMockResponse().SC_NOT_ACCEPTABLE, s.getMockResponse().getStatusCode());
      }
 
+     /**
+      *
+      * @throws java.lang.Exception
+      */
      public void testServletSJOperation() throws Exception{
          Calendar cal = Calendar.getInstance();
          cal.add(Calendar.SECOND, 30);
@@ -78,6 +94,10 @@ public class SchedulerServletTest extends BasicServletTestCaseAdapter
          //assertEquals(s.getMockResponse().SC_EXPECTATION_FAILED, s.getMockResponse().getStatusCode());
      }
 
+     /**
+      *
+      * @throws java.lang.Exception
+      */
      public void testServletDJOperation() throws Exception{
          addRequestParameter("op", "dj");
          addRequestParameter("course", "test");
@@ -87,7 +107,7 @@ public class SchedulerServletTest extends BasicServletTestCaseAdapter
          WebMockObjectFactory s =this.getWebMockObjectFactory();   
     
         String content = "-----1234\r\n" +
-                        "Content-Disposition: form-data; name=\"inputfile\"; filename=\"foo.tab\"\r\n" +
+                        "Content-Disposition: form-data; name=\"inputfile\"; filename=\"test.ctt\"\r\n" +
                         "Content-Type: text/whatever\r\n" +
                         "\r\n" +
                         "This is the content of the file\n" +
@@ -116,6 +136,10 @@ public class SchedulerServletTest extends BasicServletTestCaseAdapter
          assertEquals(s.getMockResponse().SC_GONE, s.getMockResponse().getStatusCode());
      }
 
+     /**
+      *
+      * @throws java.lang.Exception
+      */
      public void testServletOtherOperation() throws Exception{
          addRequestParameter("op", "other");
          WebMockObjectFactory s =this.getWebMockObjectFactory();
