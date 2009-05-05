@@ -1,13 +1,21 @@
 /*
-
+ * Copyright 2008-2009 QuiXoft
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
  */
 package sigeol;
 
-/**
- *
- * @author Barbiero Mattia
- * 
- */
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.logging.Level;
@@ -17,25 +25,43 @@ import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
+/**
+ * <p>
+ * <code>SchedulerJobListener</code> si occupa di segnalare all'applicazione
+ * Sigeol che deve essere eseguita la generazione dell'orario per un determinato
+ * corso
+ * </p>
+ *
+ * @see org.quartz.Job
+ * @see org.quartz.Trigger
+ * @see sigeol.SchedulerServlet
+ * @author Mattia Barbiero
+ * @version  1.0
+ *
+ *
+ */
+
 public class SchedulerJobListener implements Job {
 
-
     /**
-     * URL per test
-     * String URLName = "http://localhost:8080/timetables_test";
+     *
      */
-    String URLName = "http://localhost:8080/timetables";
-
     public SchedulerJobListener() {}
-
+    
+    /**
+     * <p>
+     * Segnala l'evento all'applicazione Sigeol
+     * </p>
+     *
+     * @param context
+     * @throws JobExecutionException
+     */
     public void execute(JobExecutionContext context) throws JobExecutionException {
         try {
-            // prelevo il nome del job
-            //String jobName = context.getJobDetail().getFullName();
-            // prelevo i parametri passati a questo job
+            // parametri passati al job
             JobDataMap data = context.getJobDetail().getJobDataMap();
             String course = data.getString("course");
-
+            String URLName = data.getString("url_client");
             
             HttpURLConnection.setFollowRedirects(true);
             HttpURLConnection con;
@@ -43,6 +69,7 @@ public class SchedulerJobListener implements Job {
             for (int i = 0; i < 3 && (responseCode != HttpURLConnection.HTTP_OK); i++) {
                 con = (HttpURLConnection) new URL(URLName).openConnection();
                 con.setRequestMethod("POST");
+                con.setRequestProperty("course", course);
                 con.setReadTimeout(0);
                 responseCode = con.getResponseCode();
             }

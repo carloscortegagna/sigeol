@@ -31,6 +31,10 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 
+/**
+ *
+ * @author mattia
+ */
 public class ItcSolver {
     private static String sProblem = null;
     private static File sInputFile = null;
@@ -43,13 +47,19 @@ public class ItcSolver {
     private static DataProperties sConfig = new DataProperties();
     private static Logger sLog = Logger.getLogger(ItcSolver.class);
 
-    /** Generate random seed */
+    /** Generate random seed
+     * @return
+     */
     public static long generateSeed() {
         //return System.currentTimeMillis();
         return Math.round(Long.MAX_VALUE * Math.random());
     }
 
-    /** Setup Log4j logging */
+    /** Setup Log4j logging
+     * @param logFile 
+     * @param info
+     * @param debug
+     */
     public static void setupLogging(File logFile, boolean info, boolean debug) {
         Logger root = Logger.getRootLogger();
         ConsoleAppender console = new ConsoleAppender(new PatternLayout("%m%n"));//%-5p %c{1}> %m%n
@@ -72,7 +82,13 @@ public class ItcSolver {
     }
 
     
-    /** Parse input arguments */
+    /** Parse input arguments
+     * @param inputFile
+     * @param outputFile
+     * @param maxTime
+     * @param seed
+     * @return
+     */
     public static boolean init(String inputFile,String outputFile, String maxTime, String seed) {
         if (inputFile == null) {
             return false;
@@ -165,7 +181,9 @@ public class ItcSolver {
         return solver;
     }
 
-    /** Solve problem */
+    /** Solve problem
+     * @return
+     */
     public static Solution solve() {
         try {
             Solver solver = create();
@@ -252,7 +270,13 @@ public class ItcSolver {
         }
     }
 
-    /** Test given instance, return best found solution */
+    /** Test given instance, return best found solution
+     * @param instance
+     * @param seed
+     * @param properties
+     * @param timeout
+     * @return
+     */
     public static Solution test(String instance, DataProperties properties, long seed, long timeout) {
         ToolBox.setSeed(seed);
         properties.setProperty("General.Seed", String.valueOf(seed));
@@ -270,7 +294,13 @@ public class ItcSolver {
         return solution;
     }
 
-    /** Main method -- parse input arguments, create solver, solve, and output solution on exit */
+    /** Main method -- parse input arguments, create solver, solve, and output solution on exit
+     * @param inputFile
+     * @param timeout
+     * @param outputFile
+     * @param seed
+     * @return
+     */
     public static boolean start(String inputFile,String outputFile, String timeout, String seed) {
         boolean solved = false;
         try {
