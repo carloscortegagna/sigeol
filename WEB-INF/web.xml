@@ -3,7 +3,7 @@
 <!--
     Document   : web.xml
     Created on : 23 febbraio 2009, 16.24
-    Author     : mattia
+    Author     : mattia barbiero
     Description:
         Run quartz scheduler and Algorithm servlet
 -->
@@ -12,10 +12,10 @@
         <servlet-name>QuartzInitializer</servlet-name>
         <display-name>Quartz Initializer</display-name>
         <servlet-class>org.quartz.ee.servlet.QuartzInitializerServlet</servlet-class>
-        <!--<init-param>
+        <init-param>
             <param-name>config-file</param-name>
-            <param-value>./sigeol_quartz.properties</param-value>
-        </init-param>-->
+            <param-value>sigeol_quartz.properties</param-value>
+        </init-param>
         <init-param>
             <param-name>shutdown-on-unload</param-name>
             <param-value>true</param-value>
@@ -37,18 +37,14 @@
             <param-name>output-itc-path</param-name>
             <param-value>/WEB-INF/itc/output/</param-value>
         </init-param>
+        <init-param>
+            <param-name>url-client</param-name>
+            <param-value>http://localhost:8080/timetables</param-value>
+        </init-param>
         <load-on-startup>2</load-on-startup>
-    </servlet>
-    <servlet>
-        <servlet-name>HelloServlet</servlet-name>
-        <servlet-class>server.HelloServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SchedulerServlet</servlet-name>
         <url-pattern>/scheduler.do</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>HelloServlet</servlet-name>
-        <url-pattern>/hello</url-pattern>
-    </servlet-mapping>
-    </web-app>
+</web-app>
