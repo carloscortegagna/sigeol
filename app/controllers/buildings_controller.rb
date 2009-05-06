@@ -9,6 +9,7 @@ class BuildingsController < ApplicationController
     respond_to do |format|
       format.html
     end
+    #respond_to { |format| format.js}
   end
 
   def administration
@@ -17,6 +18,7 @@ class BuildingsController < ApplicationController
 
   def show
     @building = Building.find(params[:id])
+    @building_classrooms = Classroom.find(:all, :conditions => { :building_id => params[:id] })
     @address = Address.find(@building.address_id)
     respond_to do |format|
       format.html # show.html.erb

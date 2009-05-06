@@ -12,6 +12,15 @@
   <b>street:</b>
   <%=h @address.street %>
 </p>
+<br>
+<p>
+  <b>classroms list:</b>
+  <tr>
+    <% for classroom in @building_classrooms %>
+      <td><%= link_to classroom.name, classroom_path(classroom) %></td>
+    <% end %>
+  </tr>
+</p>
 
 <br> <br>
 
