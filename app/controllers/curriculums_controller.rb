@@ -117,3 +117,9 @@ class CurriculumsController < ApplicationController
     end
   end
 end
+#def xml
+#  @curriculums = Building.find(:all)
+#  respond_to do |accepts|
+#    accepts.xml { render :xml => @curriculums.to_xml }
+#  end
+#end

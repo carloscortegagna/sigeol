@@ -89,3 +89,11 @@ class BuildingsController < ApplicationController
     end
   end
 end
+
+#def xml
+#  @buildings = Building.find(:all)
+#  respond_to do |accepts|
+#    accepts.xml { render :xml => @buildings.to_xml }
+#  end
+#end
+

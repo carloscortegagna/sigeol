@@ -170,3 +170,9 @@ class TimetablesController < ApplicationController
   end
 
 end
+#def xml
+#  @timetables = Building.find(:all)
+#  respond_to do |accepts|
+#    accepts.xml { render :xml => @timetables.to_xml }
+#  end
+#end

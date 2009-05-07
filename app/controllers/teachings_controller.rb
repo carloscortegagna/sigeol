@@ -133,3 +133,10 @@ class TeachingsController < ApplicationController
     end
   end
 end
+
+#def xml
+#  @teachings = Building.find(:all)
+#  respond_to do |accepts|
+#    accepts.xml { render :xml => @teachings.to_xml }
+#  end
+#end
