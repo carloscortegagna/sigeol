@@ -17,7 +17,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Piano di Progetto v3.0.0}
+\lfoot{Piano di Progetto v3.1.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -29,13 +29,13 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Piano di Progetto v3.0.0}
+\lfoot{Piano di Progetto v3.1.0}
 \cfoot{}
 \rfoot{}
 }
 \headheight = 46pt
 %definizione del comando "\modfiche" per la creazione del diario delle modifiche
-\newcommand{\modifiche} 
+\newcommand{\modifiche}
 {
 \newpage
 \begin{center}
@@ -45,6 +45,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{08-05-2009} & 3.1.0 & Correzioni varie\\
 \hline
 \textit{07-03-2009} & 3.0.0 & Correzioni varie e approvazione del Responsabile\\
 \hline
@@ -92,8 +94,8 @@
 \bigskip
 \begin{tabbing}
 	\hspace*{0.3\textwidth} \= \hspace*{0.5\textwidth} \kill
-	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Scortegagna Carlo} \\
-	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Beggiato Andrea} \\
+	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Alberti Andrea} \\
+	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Freo Matteo} \\
 	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Formale} \\
 	\parbox{0.3\textwidth}{\textbf{Uso: }} \> \parbox{0.5\textwidth}{Esterno} \\
 	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{QuiXoft} \\
@@ -105,8 +107,8 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Progetto \\ v3.0.0}}
-\author{Redazione: Freo Matteo}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Progetto \\ v3.1.0}}
+\author{Redazione: Beggiato Andrea}
 \maketitle
 \medskip
 \begin{center}
@@ -142,7 +144,7 @@ Il piano si evolve di pari passo col progetto e inizialmente il documento conter
 
 Data la scarsa esperienza del team QuiXoft non si esclude la possibilità che il piano di progetto potrà essere rivisto e rimodellato in corso d'opera.
 \subsection{Scopo del prodotto}
-Il prodotto ''SIGEOL'' si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione. 
+Il prodotto ''SIGEOL'' si prefigge di automatizzare la generazione, la gestione, l'ottimizzazione e la consultazione degli orari di lezione.
 
 Per ulteriori informazioni riguardanti scopi e funzioni del prodotto si prega di fare riferimento al documento \textsc{Analisi dei Requisiti}.
 \subsection{Riferimenti}
@@ -152,7 +154,7 @@ Per ulteriori informazioni riguardanti scopi e funzioni del prodotto si prega di
 	\item GNU General Public License 2.0 \\ \textit{http://www.gnu.org/licenses/gpl-2.0.html}
 	\item \textsc{Norme di Progetto}
 \end{itemize}
-\subsection{Glossario} 
+\subsection{Glossario}
 Le definizioni dei termini specialistici usati nella stesura di questo e di tutti gli altri documenti possono essere trovate nel documento \textsc{Glossario} al fine di eliminare ogni ambiguità e di facilitare la comprensione dei temi trattati. Ogni termine la cui definizione è disponibile all'interno del glossario verrà marcato con una \underline{sottolineatura}.
 \section{Panoramica di progetto}
 \subsection{Vincoli}
@@ -278,7 +280,7 @@ La rotazione dei ruoli durante la fase di analisi è avvenuta il giorno 9/12/200
 
 Verranno ora prese in esame le ore preventivate e le ore effettivamente consuntivate per la fase di analisi:
 
-\bigskip \bigskip 
+\bigskip \bigskip
 \begin{large}\textbf{Preventivo:}\end{large}
 \newline
 A fianco di ogni ruolo sono riportate, tra parentesi, le ore precedentemente preventivate per ogni membro del team:
@@ -297,7 +299,7 @@ Alberti Andrea & Res(4)/Amm(3)/Ver(3) & An(20) \\ \hline
 \end{tabular}
 \end{center}
 
-\bigskip \bigskip 
+\bigskip \bigskip
 \begin{large}\textbf{Consuntivo:}\end{large}
 \newline
 Durante la fase di analisi il Verificatore e l'Analista hanno avuto un ruolo chiave nello sviluppo del progetto.
@@ -334,7 +336,7 @@ Essendo tale revisione andata a buon fine, si è attivata la fase realizzativa d
 Si riportano ora gli schemi di attribuzione e di rotazione dei ruoli durante la fase di progettazione.
 La rotazione dei ruoli è avvenuta il giorno 27/01/2009, ed è rappresentata nella seguente tabella dal passaggio dalla prima fase di progettazione (Progettazione [1]) alla seconda (Progettazione [2]).
 
-\bigskip \bigskip 
+\bigskip \bigskip
 \begin{large}\textbf{Preventivo:}\end{large}
 \newline
 A fianco di ogni ruolo sono riportate, tra parentesi, le ore inizialmente stimate da esercitare:
@@ -353,7 +355,7 @@ Alberti Andrea & Res(3)/Amm(6,5) & Prog(18) \\ \hline
 \end{tabular}
 \end{center}
 
-\bigskip \bigskip 
+\bigskip \bigskip
 \begin{large}\textbf{Consuntivo:}\end{large}
 \newline
 Durante la questa fase il Progettista ha avuto un ruolo chiave nello sviluppo rispetto a quanto preventivato. Come si nota dai dati riportati in seguito, c'è stata la necessità di attribuire più ore di lavoro al Progettista a discapito dei ruoli di Amministratore e Responsabile, che in questa fase erano stati stimati più necessari di quanto in realtà è avvenuto.
@@ -397,7 +399,7 @@ Se la revisione andrà a buon fine il prodotto verrà accettato e il progetto av
 
 Si riportano in seguito gli schemi di attribuzione e di rotazione dei ruoli durante la fase di realizzazione. La rotazione dei ruoli è avvenuta il giorno 02/03/2009.
 
-\bigskip \bigskip 
+\bigskip \bigskip
 \begin{large}\textbf{Preventivo:}\end{large}
 \newline
 A fianco di ogni ruolo sono riportate, tra parentesi, le ore stimate da esercitare:
@@ -416,7 +418,7 @@ Alberti Andrea & Progr(16) & Ver(20) \\ \hline
 \end{tabular}
 \end{center}
 
-\bigskip \bigskip 
+\bigskip \bigskip
 \begin{large}\textbf{Consuntivo:}\end{large}
 \newline
 Durante la prima parte della fase di Realizzazione il Programmatore ha necessitato di alcune ore in più rispetto a quanto previsto, come si nota dai dati riportati in seguito.
@@ -451,13 +453,13 @@ Da tenere anche in considerazione il fatto che seguenti dati sono da considerars
 \hline
 \textsc{Componenti} & \textsc{Res} & \textsc{Amm} & \textsc{An} & \textsc{Prog} & \textsc{Ver} & \textsc{Progr} & \textsc{Totale}\\
 \hline \hline
-BM & 11 & 8.5 & 20 & 20 & 22 & 15 & 96.5 \\ \hline
-BA & 7 & 8.5 & 20 & 20 & 23 & 16 & 94.5 \\ \hline
-FM & 6 & 8.5 & 20 & 21 & 23 & 16 & 94.5 \\ \hline
-GA & 5 & 13.5 & 20 & 19 & 21 & 17 & 95.5 \\ \hline
-SD & 6 & 13.5 & 20 & 18 & 21 & 17 & 95.5 \\ \hline
-SC & 10 & 8.5 & 20 & 19 & 22 & 16 & 95.5 \\ \hline
-AA & 6 & 8.5 & 20 & 20 & 24 & 17 & 95.5 \\ \hline
+BM & 11 & 8.5 & 21 & 20 & 22 & 15 & 97.5 \\ \hline
+BA & 7 & 8.5 & 18 & 20 & 23 & 16 & 92.5 \\ \hline
+FM & 6 & 8.5 & 18 & 21 & 23 & 16 & 92.5 \\ \hline
+GA & 5 & 13.5 & 23 & 19 & 21 & 17 & 98.5 \\ \hline
+SD & 6 & 13.5 & 23 & 18 & 21 & 17 & 98.5 \\ \hline
+SC & 10 & 8.5 & 21 & 19 & 22 & 16 & 96.5 \\ \hline
+AA & 6 & 8.5 & 18 & 20 & 24 & 17 & 93.5 \\ \hline
 \end{tabular}
 \end{center}
 \bigskip
@@ -472,11 +474,11 @@ La seguente tabella rappresenta appunto le ore che ogni ruolo ha svolto in ogni 
 \textsc{Componenti}& \textsc{Analisi} & \textsc{Progettazione} & \textsc{Realizzazione} & \textsc{Tot.} \\ \hline \hline
 Responsabile & 25 & 12 & 14 & 51 \\ \hline
 Amministratore & 30 & 17 & 22.5 & 69.5 \\ \hline
-Analista & 140 & 0 & 0 & 140 \\ \hline
+Analista & 142 & 0 & 0 & 142 \\ \hline
 Progettista & 0 & 137 & 0 & 137 \\ \hline
 Programmatore & 0 & 0 & 114 & 114 \\ \hline
 Verificatore & 23 & 70 & 63 & 156 \\ \hline \hline
-\textsc{Totale} & 218 & 236 & 213.5 & 667.5 \\ \hline
+\textsc{Totale} & 218 & 236 & 213.5 & 669.5 \\ \hline
 \end{tabular}
 \end{center}
 \bigskip
@@ -539,7 +541,7 @@ Vengono a seguito presentati i rischi di sviluppo del progetto marcati da opport
 \subsection{Perdita dei dati}
 LIVELLO DI RISCHIO: alto \\
 PROBABILITA' DI RISCHIO: basso \\
-Il server sul quale ci basiamo per archiviare i documenti e i file sorgenti, potrebbe avere dei problemi di instabilità tali da non avere alcuna possibilità di recuperare le informazioni in esso riposte. 
+Il server sul quale ci basiamo per archiviare i documenti e i file sorgenti, potrebbe avere dei problemi di instabilità tali da non avere alcuna possibilità di recuperare le informazioni in esso riposte.
 Per fronteggiare un tale eventualità prevediamo una regolare creazione di file di backup, che, in caso di indisponibilità del server, possano, garantire comunque la continuazione dell sviluppo dell'applicativo in esame. \\
 SOLUZIONE: è prevista una regolare creazione di file di backup, che, in caso di indisponibilità del server, possano, garantire comunque la continuazione del progetto.
 \subsection{Assenza componente per medio/lungo periodo}
@@ -582,11 +584,11 @@ In pieno rispetto al vincolo ''Budget economico'' della sezione 2.1.2, il costo 
 \textsc{Componenti}& \textsc{Analisi} & \textsc{Progettazione} & \textsc{Realizzazione} & \textsc{Tot.} \\ \hline \hline
 Responsabile & 750 & 450 & 480 & 1680 \\ \hline
 Amministratore & 600 & 400 & 490 & 1490 \\ \hline
-Analista & 3500 & 0 & 0 & 3500 \\ \hline
+Analista & 3550 & 0 & 0 & 3550 \\ \hline
 Progettista & 0 & 2838 & 0 & 2838 \\ \hline
 Programmatore & 0 & 0 & 1760 & 1760 \\ \hline
 Verificatore & 368 & 1120 & 1008 & 2496 \\ \hline \hline
-\textsc{Totale} & 5218 & 4830 & 3738 & 13764 \\ \hline
+\textsc{Totale} & 5218 & 4830 & 3738 & 1384 \\ \hline
 \end{tabular}
 \end{center}
 \subsection{Costi stimati nel progetto per componente}
@@ -617,17 +619,18 @@ Ciò ha portato ai dati riportati di seguito, che illustrano i costi sostenuti d
 \hline
 \textsc{Componenti} & \textsc{Res} & \textsc{Amm} & \textsc{An} & \textsc{Prog} & \textsc{Ver} & \textsc{Progr} & \textsc{Totale}\\
 \hline \hline
-BM & 330 & 0 & 500 & 440 & 192 & 240 & 1702 \\ \hline
-BA & 0 & 60 & 500 & 440 & 368 & 256 & 1624 \\ \hline
-FM & 120 & 170 & 500 & 462 & 368 & 0 & 1620 \\ \hline
-GA & 150 & 270 & 500 & 418 & 336 & 32 & 1674  \\ \hline
-SD & 180 & 270 & 500 & 396 & 144 & 272 & 1762 \\ \hline
-SC & 300 & 170 & 500 & 418 & 352 & 0 & 1740 \\ \hline
-AA & 180 & 170 & 500 & 440 & 64 & 272 & 1626 \\ \hline
+BM & 330 & 0 & 525 & 440 & 192 & 240 & 1727 \\ \hline
+BA & 0 & 60 & 450 & 440 & 368 & 256 & 1574 \\ \hline
+FM & 120 & 170 & 450 & 462 & 368 & 0 & 1570 \\ \hline
+GA & 150 & 270 & 575 & 418 & 336 & 32 & 1749  \\ \hline
+SD & 180 & 270 & 575 & 396 & 144 & 272 & 1837 \\ \hline
+SC & 300 & 170 & 525 & 418 & 352 & 0 & 1765 \\ \hline
+AA & 180 & 170 & 450 & 440 & 64 & 272 & 1576 \\ \hline
 \end{tabular}
 \end{center}
 \bigskip
-Il costo totale sostenuto fin'ora è quindi di 11748\euro. Tale costo è ancora inferiore di 2016\euro \ al costo inizialmente preventivato.
+SISTEMARE QUESTA PARTE
+Il costo totale sostenuto fin'ora è quindi di 11798\euro. Tale costo è ancora inferiore di 1966\euro \ al costo inizialmente preventivato.
 Tale disavanzo verrà impiegato dal team per portare a termine la seconda fase di realizzazione, tutt'ora in corso.
 
 Il costo preventivato inizialmente per la seconda fase di realizzazione è di 2006\euro, molto vicino quindi al valore di 2016\euro \ appena rilevato. Si prevede quindi di riuscire a portare a compimento il progetto restando ampiamente entro i costi preventivati. Il preventivo totale a finire sarà quindi di 13754\euro.
