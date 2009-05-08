@@ -142,8 +142,9 @@ class ClassroomsController < ApplicationController
   def create_constraint
     if request.post?
       classroom = Classroom.find(params[:id])
+      day_nr = from_dayname_to_id(params[:selected_day])
       t = TemporalConstraint.new(:description=>"Vincolo di indisponibilità aula: " + classroom.name,
-        :isHard=>0,:startHour=>params[:start_hour],:endHour=>params[:end_hour],:day=>params[:selected_day])
+        :isHard=>0,:startHour=>params[:start_hour],:endHour=>params[:end_hour],:day=>day_nr)
       if t.save
         classroom.constraints << t
         classroom.save
