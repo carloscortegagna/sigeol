@@ -176,3 +176,7 @@ end
 #    accepts.xml { render :xml => @timetables.to_xml }
 #  end
 #end
+# pdf converter
+ #def _index
+#   @items = Item.find(:all)
+# end
