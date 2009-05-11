@@ -28,4 +28,3 @@ end
 #  respond_to do |accepts|
 #    accepts.xml { render :xml => @users.to_xml }
 #  end
-end
