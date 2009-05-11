@@ -154,8 +154,8 @@ class GraduateCoursesControllerTest < ActionController::TestCase
      @user.graduate_courses.stubs(:find).with(:an_id).returns(gc)
      @request.session[:user_id] = :an_id
      gc.stubs(:update_attributes).returns(false)
-    #put :update,:id=>:an_id
-    #assert_redirected_to 'edit'
+    put :update,:id=>:an_id
+    assert_template 'edit'
   end
 
   test"User con privilegi usa destroy"do
@@ -176,24 +176,25 @@ class GraduateCoursesControllerTest < ActionController::TestCase
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
     @user.graduate_courses.stubs(:find).returns(false)
-    #put :update, :id=>:another_id
-    #assert_equal flash[:error],"Non puoi modificare questo corso di laurea"
+    put :update, :id=>:another_id
+    assert_equal flash[:error],"Non puoi modificare questo corso di laurea"
   end
 
   test"User senza privilegi usa edit"do
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
     @user.graduate_courses.stubs(:find).returns(false)
-    #get :edit, :id=>:another_id
-    #assert_equal flash[:error],"Non puoi modificare questo corso di laurea"
+    get :edit, :id=>:another_id
+    assert_equal flash[:error],"Non puoi modificare questo corso di laurea"
   end
 
   test"User senza privilegi usa destroy"do
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
     @user.graduate_courses.stubs(:find).returns(false)
-    #delete :destroy, :id=>:another_id
-    #assert_equal flash[:error],"Non puoi modificare questo corso di laurea"
+    @user.stubs(:own_by_didactic_office?).returns(true)
+    delete :destroy, :id=>:another_id
+    assert_equal flash[:error],"Non puoi modificare questo corso di laurea"
   end
 
   #Uno user che non è la segreteria tenta di utilizzare le azioni che devono essere eseguite dopo il filtro didactic_office_required
@@ -246,7 +247,7 @@ class GraduateCoursesControllerTest < ActionController::TestCase
   end
 
    test"User che non ha il privilegio di modificare i corsi di laurea usa destroy"do
-    @user.stubs(:manage_graduate_courses?).returns(true)
+    @user.stubs(:manage_graduate_courses?).returns(false)
     @request.session[:user_id] = :an_id
     delete :destroy, :id=>:an_id
     assert_equal flash[:error],  "Non possiedi i privilegi per effettuare questa operazione"

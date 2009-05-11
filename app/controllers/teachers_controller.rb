@@ -332,7 +332,7 @@ class TeachersController < ApplicationController
   end
 
   def same_teacher_required
-    unless @current_user == User.find(:first, :conditions => ["specified_type = 'Teacher' AND specified_id = (?)", Teacher.find(params[:id])])
+    unless @current_user == User.find(:first, :conditions => ["specified_type = 'Teacher' AND specified_id = (?)", params[:id]])
       flash[:error] = "Non puoi modificare un utente diverso dal tuo"
       redirect_to timetables_url
     end
