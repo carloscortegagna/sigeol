@@ -1,3 +1,12 @@
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: graduate_courses.controller.rb
+#VERSIONE:: 1.0.0
+#AUTORE:: ???
+#DATA CREAZIONE:: ???
+#REGISTRO DELLE MODIFICHE::
+# 11/05/2009 Nel filtro graduate_course_required aggiunta l'istruzione redirect_to
+# 11/05/2009 Inizializzata la variabile @academic_organization nell'azione update(caso else)
+
 class GraduateCoursesController < ApplicationController
   skip_before_filter :login_required, :only => :index
   before_filter :manage_graduate_courses_required, :only => [:administration, :edit, :update, :destroy]
@@ -74,6 +83,7 @@ class GraduateCoursesController < ApplicationController
         flash[:notice] = 'GraduateCourse was successfully updated.'
         format.html { redirect_to(@graduate_course) }
       else
+        @academic_organization = AcademicOrganization.find(:all)
         format.html { render :action => "edit" }
       end
     end
@@ -94,6 +104,7 @@ class GraduateCoursesController < ApplicationController
   def same_graduate_course_required
     if (!@current_user.graduate_courses.find(params[:id]))
       flash[:error] = "Non puoi modificare questo corso di laurea"
+      redirect_to timetables_url
     end
   end
 end

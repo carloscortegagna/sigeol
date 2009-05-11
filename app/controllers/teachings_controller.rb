@@ -1,3 +1,12 @@
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: teachings.controller.rb
+#VERSIONE:: 1.0.0
+#AUTORE:: ???
+#DATA CREAZIONE:: ???
+#REGISTRO DELLE MODIFICHE::
+# 11/05/09 Nel filter same_graduate_course_required, sostituito unless graduate_course con unless graduate_course.size != 0
+# 11/05/09 In assign_teacher, sostituito redirected_to select_teacher_url(@teaching) con redirect_to select_teacher_teaching_url(@teaching)
+
 class TeachingsController < ApplicationController
   skip_before_filter :login_required, :only => [:index ,:show]
   before_filter :manage_teachings_required, :except => [:index, :show]
@@ -89,7 +98,7 @@ class TeachingsController < ApplicationController
       flash[:notice] = "Docente assegnato con successo"
       redirect_to administration_teachings_url
     else
-      redirect_to select_teacher_url(@teaching)
+      redirect_to select_teacher_teaching_url(@teaching)
     end
   end
   # PUT /teachings/1
@@ -127,7 +136,7 @@ class TeachingsController < ApplicationController
     ids = @current_user.graduate_course_ids
     graduate_course = GraduateCourse.find(:all, :include => {:curriculums => :teachings},
                                           :conditions => ["graduate_courses.id IN (?) AND teachings.id = ?", ids, params[:id]])
-    unless graduate_course
+    unless graduate_course.size != 0
       flash[:error] = "Questo insegnamento non appartiane a nessun tuo corso di laurea"
       redirect_to timetables_url
     end
