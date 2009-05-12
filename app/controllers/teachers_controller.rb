@@ -1,3 +1,14 @@
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: teacher.controller.rb
+#VERSIONE:: 1.0.0
+#AUTORE:: ???
+#DATA CREAZIONE:: ???
+#REGISTRO DELLE MODIFICHE::
+# 12/05/2009 per gli array è stato sostituito count con size
+# 12/05/2009 sia su proprity_down che su priority_up assegnato a i = constraint_to_move_down.isHard.
+# Usato i come indice per accedere ai valori degli array e non più constraint_to_move_down.isHard(riga 292 e 323)
+
+
 class TeachersController < ApplicationController
   skip_before_filter :login_required, :only => [:index, :show, :pre_activate, :activate]
   before_filter :manage_teachers_required, :only => [:new, :create, :administration, :edit_graduate_courses,
@@ -279,11 +290,12 @@ class TeachersController < ApplicationController
          constraints << TemporalConstraint.find(tc.constraint_id)
         end
       end
+      i =  constraint_to_move_up.isHard
       constraints = constraints.sort_by { |c| c[:isHard] } #lista ordinata per priorità crescente delle preferenze
-      c1 = constraints[(constraint_to_move_up.isHard)-1] #c1 è la preferenza di cui devo aumentare la priorità
-      c1.isHard = (constraint_to_move_up.isHard)-1 #imposto il nuovo valore di priorità
-      c2 = constraints[(constraint_to_move_up.isHard)-2] #c2 è la preferenze di cui devo diminuire la priorità, perchè il suo posto è stato preso da c1
-      c2.isHard = (constraint_to_move_up.isHard) #imposto la nuova priorità, il nuovo valore equivale al vecchio + 1
+      c1 = constraints[i-1] #c1 è la preferenza di cui devo aumentare la priorità
+      c1.isHard = i-1 #imposto il nuovo valore di priorità
+      c2 = constraints[i-2] #c2 è la preferenze di cui devo diminuire la priorità, perchè il suo posto è stato preso da c1
+      c2.isHard = i #imposto la nuova priorità, il nuovo valore equivale al vecchio + 1
       if c1.save && c2.save
         flash[:notice] = "Priorità della preferenza modificata con successo"
       else
@@ -305,13 +317,14 @@ class TeachersController < ApplicationController
       end
     end
     constraints = constraints.sort_by { |c| c[:isHard] }
-    max_priority = constraints.count
+    max_priority = constraints.size
     if constraint_to_move_down.isHard == max_priority #la preferenza è l'ultima, non devo fare niente
       flash[:notice] = "La preferenza ha già priorità minima"
     else
-      c1 = constraints[(constraint_to_move_down.isHard)-1] #c1 è la preferenza di cui devo diminuire la priorità
+      i = constraint_to_move_down.isHard
+      c1 = constraints[i-1] #c1 è la preferenza di cui devo diminuire la priorità
       c1.isHard = (constraint_to_move_down.isHard)+1 #imposto il nuovo valore di priorità
-      c2 = constraints[constraint_to_move_down.isHard] #c2 è la preferenze di cui devo diminuire la priorità, perchè il suo posto è stato preso da c1
+      c2 = constraints[i] #c2 è la preferenze di cui devo diminuire la priorità, perchè il suo posto è stato preso da c1
       c2.isHard = (constraint_to_move_down.isHard) #imposto la nuova priorità, il nuovo valore equivale al vecchio + 1
       if c1.save && c2.save
         flash[:notice] = "Priorità della preferenza modificata con successo"
