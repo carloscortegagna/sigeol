@@ -1,0 +1,152 @@
+html, body {
+    margin: 0;
+    padding:0;
+    font-family:sans-serif;
+    background-color:#acc9e1;
+}
+
+h2 {
+    color:#FF0000;
+}
+
+#header {
+    background-color:#1d2b52;
+    display:block;
+    height:79px;
+    padding:1em;
+}
+
+#header #unipd-logo {
+    display:block;
+    float:left;
+    background:url('images/unipd-logo.gif');
+    height:79px;
+    width:81px;
+}
+
+#header #title {
+    text-align:center;
+    vertical-align:bottom;
+    color:white;
+}
+
+#navigation {
+    clear:both;
+    text-align:center;
+    font-variant:small-caps;
+    background-color:#1d2b52;
+    padding-bottom:0.5em;
+    padding-top:0.5em;
+    margin-top:-1em;
+}
+
+/* Different link-state colors: active, hover and visited */
+#navigation a:active {
+    color:#FFF;
+}
+
+#navigation a:visited {
+    color:#c1a9dd;
+}
+
+#navigation a:hover {
+    color:#72cbe7;
+}
+
+#navigation li {
+    display:inline;
+    list-style:none;
+    margin-left:2em;
+    margin-right:2em;
+}
+
+#path {
+    height:40px;
+    font-size:0.9em;
+    background-image:url('images/fade.gif');
+    background-position:left;
+    background-repeat:repeat-x;
+    padding-left:1em;
+    color:white;
+}
+
+#container {
+    background-color:#acc9e1;
+    padding-top:0.5em;
+}
+
+#leftPanel {
+    float:left;
+    width:19%;
+    margin-left:1%;
+}
+
+#content {
+    margin-left:21%;
+    margin-right:1%;
+}
+
+#footer {
+    padding:0.5em;
+    background-color:#acc9e1;
+    text-align:center;
+}
+
+#footer #quixoft-logo {
+    display:block;
+    float:left;
+    width:81px;
+    text-align:center;
+    font-size:13px;
+}
+
+#footer #quixoft-logo #img {
+    display:block;
+    height:45px;
+    background:url('images/quixoft-logo.gif') top left no-repeat;
+}
+
+#footer h6 {
+    margin:0;
+    padding:0;
+    margin-top:-2em;
+}
+
+a img {
+    border:none;
+}
+
+/* Box drawing */
+.box {
+    background-color:white;
+}
+
+.boxHeader {
+    background:url('images/top.gif') top left no-repeat;
+    height:15px;
+}
+
+.boxHeader span {
+    display:block;
+    float:right;
+    background:url('images/top-right.gif') top right no-repeat;
+    height:15px;
+    width:25px;
+}
+
+.boxContent {
+    margin:0 15px 0 15px;
+}
+
+.boxFooter {
+    background:url('images/bottom.gif') bottom left no-repeat;
+    height:45px;
+}
+
+.boxFooter span {
+    display:block;
+    float:right;
+    background:url('images/bottom-right.gif') bottom right no-repeat;
+    height:45px;
+    width:25px;
+}
