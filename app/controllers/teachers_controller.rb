@@ -215,7 +215,11 @@ class TeachersController < ApplicationController
          constraints << TemporalConstraint.find(id.constraint_id)
         end
       end
-      preference_value = constraints.count + 1 #conto il numero delle preferenze nel db e metto la giusta priorità a quella nuova
+      if constraints.empty?
+        preference_value = 1
+      else
+        preference_value = constraints.size + 1 #conto il numero delle preferenze nel db e metto la giusta priorità a quella nuova
+      end
       t = TemporalConstraint.new(:description=>"Preferenza docente: " + teacher.name + " " + teacher.surname,
         :isHard=>preference_value,:startHour=>params[:start_hour],:endHour=>params[:end_hour],:day=>params[:day])     
       teacher_graduate_courses = teacher.user.graduate_courses
