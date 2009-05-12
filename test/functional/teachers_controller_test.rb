@@ -337,22 +337,49 @@ end
     assert_template 'edit_preferences'
    end
 
-   test"User con privilegi utilizza create_preference"do
+   test"User con privilegi crea una preferenza valida"do
     @request.session[:user_id] = :an_id
-    User.stubs(:find).with(:first,:conditions => ["specified_type = 'Teacher' AND specified_id = (?)",:an_id]).returns(@user)
     teacher = Teacher.new
     teacher.stubs(:id=>:an_id,:name=>"a_name",:surname=>"a_surname")
-     t = TemporalConstraint.new(:description=>:a_descrption,:isHard=>1,:startHour=>:a_start_hour,:endHour=>:a_end_hour,:day=>:a_day)
-    TemporalConstraint.any_instance.stubs(:save).returns(true)
-    Teacher.stubs(:find).returns(teacher)
-    gc = GraduateCourse.new(:id=>:an_id,:duration=>:a_duration)
-    teacher.user.stubs(:graduate_courses).returns([gc])
-    GraduateCourse.stubs(:find).returns(gc)
-    post :create_preference,:id=>:an_id
-   assert_redirected_to :controller=>:teachers,:action=>:edit_constraints
+    Teacher.stubs(:find).with(:an_id).returns(teacher)
+    co = ConstraintsOwner.new
+    co.stubs(:id=>:an_id,:constraint_id=>:another_id)
+    t = TemporalConstraint.new(:id=>:another_id,:description=>"a_description",:isHard=>1)
+   ConstraintsOwner.stubs(:find).returns([co])
+   TemporalConstraint.stubs(:find).with(:another_id).returns(t)
+   gc = GraduateCourse.new()
+   gc.stubs(:id=>:an_id)
+   teacher.user.stubs(:graduate_courses).returns([gc])
+   GraduateCourse.stubs(:find).with(:an_id).returns(gc)
+   post :create_preference,:id=>:an_id,:start_hour=>"9:30",:end_hour=>"11:30",:day=>1
+   assert_equal flash[:notice], "Preferenza inserita con successo"
+   assert_redirected_to edit_preferences_teacher_url
+
+   ConstraintsOwner.stubs(:find).returns([])
+   post :create_preference,:id=>:an_id,:start_hour=>"9:30",:end_hour=>"11:30",:day=>1
+   assert_equal flash[:notice], "Preferenza inserita con successo"
+   assert_redirected_to edit_preferences_teacher_url
+  end
+  
+  test"User con privilegi crea una preferenza non valida"do
+    @request.session[:user_id] = :an_id
+    teacher = Teacher.new
+    teacher.stubs(:id=>:an_id,:name=>"a_name",:surname=>"a_surname")
+    Teacher.stubs(:find).with(:an_id).returns(teacher)
+    co = ConstraintsOwner.new
+    co.stubs(:id=>:an_id,:constraint_id=>:another_id)
+    t = TemporalConstraint.new(:id=>:another_id,:description=>"a_description",:isHard=>1)
+   ConstraintsOwner.stubs(:find).returns([co])
+   TemporalConstraint.stubs(:find).with(:another_id).returns(t)
+   gc = GraduateCourse.new()
+   gc.stubs(:id=>:an_id)
+   teacher.user.stubs(:graduate_courses).returns([gc])
+   post :create_preference,:id=>:an_id,:start_hour=>"11:30",:end_hour=>"9:30",:day=>1
+   assert_equal flash[:error], "Errore: preferenza non salvata"
+   assert_redirected_to edit_preferences_teacher_url
   end
 
-  test"User con privilegi utilizza create_constraint"do
+  test"User con privilegi crea un vincolo valido"do
     @request.session[:user_id] = :an_id
     User.stubs(:find).with(:first,:conditions => ["specified_type = 'Teacher' AND specified_id = (?)",:an_id]).returns(@user)
     teacher = Teacher.new
@@ -367,16 +394,129 @@ end
    assert_redirected_to :controller=>:teachers,:action=>:edit_constraints
   end
 
-  test"User con privilegi utilizza destroy_constraint"do
+  test"User con privilegi crea un vincolo non valido"do
+    @request.session[:user_id] = :an_id
+    User.stubs(:find).with(:first,:conditions => ["specified_type = 'Teacher' AND specified_id = (?)",:an_id]).returns(@user)
+    teacher = Teacher.new
+    teacher.stubs(:id=>:an_id,:name=>"a_name",:surname=>"a_surname")
+     t = TemporalConstraint.new(:description=>:a_descrption,:isHard=>0,:startHour=>:a_start_hour,:endHour=>:a_end_hour,:day=>:a_day)
+    TemporalConstraint.any_instance.stubs(:save).returns(false)
+    Teacher.stubs(:find).returns(teacher)
+    gc = GraduateCourse.new(:id=>:an_id,:duration=>:a_duration)
+    teacher.user.stubs(:graduate_courses).returns([gc])
+    GraduateCourse.stubs(:find).returns(gc)
+    post :create_constraint,:id=>:an_id
+    assert_equal flash[:error], "Errore: vincolo non salvato"
+  end
+
+  test"User con privilegi elimina una preferenza"do
+     @request.session[:user_id] = :an_id
+    t = TemporalConstraint.new(:description=>:a_description,:isHard=>1,:startHour=>:a_start_hour,:endHour=>:a_end_hour,:day=>:a_day)
+   TemporalConstraint.stubs(:find).with(:another_id).returns(t)
+    t2 = TemporalConstraint.new(:description=>:a_description,:isHard=>2,:startHour=>:a_start_hour,:endHour=>:a_end_hour,:day=>:a_day)
+   TemporalConstraint.stubs(:find).with(:another_one_id).returns(t2)
+    co = ConstraintsOwner.new
+    co.stubs(:id=>:an_id,:constraint_id=>:another_one_id)
+   ConstraintsOwner.stubs(:find).returns([co])
+   post :destroy_preference,:id=>:an_id,:constraint_id=>:another_id
+   assert_equal flash[:notice], "Preferenza eliminata con successo"
+   assert_redirected_to edit_preferences_teacher_url
+ end
+
+  test"User con privilegi elimina una preferenza che non puo essere cancellata"do
+     @request.session[:user_id] = :an_id
+    t = TemporalConstraint.new(:description=>:a_description,:isHard=>1,:startHour=>:a_start_hour,:endHour=>:a_end_hour,:day=>:a_day)
+   TemporalConstraint.stubs(:find).with(:another_id).returns(t)
+    TemporalConstraint.any_instance.stubs(:destroy).returns(false)
+    post :destroy_preference,:id=>:an_id,:constraint_id=>:another_id
+   assert_equal flash[:error], "Errore: preferenza non eliminata"
+   assert_redirected_to edit_preferences_teacher_url
+ end
+ 
+   test"User con privilegi elimina un vincolo"do
     @request.session[:user_id] = :an_id
     User.stubs(:find).with(:first,:conditions => ["specified_type = 'Teacher' AND specified_id = (?)",:an_id]).returns(@user)
     t = TemporalConstraint.new(:description=>:a_descrption,:isHard=>0,:startHour=>:a_start_hour,:endHour=>:a_end_hour,:day=>:a_day)
     TemporalConstraint.stubs(:find).with(:another_id).returns(t)
-    teacher = Teacher.new
-    teacher.stubs(:id=>:an_id,:name=>"a_name",:surname=>"a_surname")
-    Teacher.stubs(:find).returns(teacher)
     post :destroy_constraint,:id=>:an_id,:constraint_id=>:another_id
     assert_redirected_to :controller=>:teachers,:action=>:edit_constraints
+  end
+
+   test"User con privilegi tenta di eliminare un vincolo che non puo essere cancellato"do
+    @request.session[:user_id] = :an_id
+    User.stubs(:find).with(:first,:conditions => ["specified_type = 'Teacher' AND specified_id = (?)",:an_id]).returns(@user)
+    t = TemporalConstraint.new(:description=>:a_descrption,:isHard=>0,:startHour=>:a_start_hour,:endHour=>:a_end_hour,:day=>:a_day)
+    TemporalConstraint.stubs(:find).with(:another_id).returns(t)
+    TemporalConstraint.any_instance.stubs(:destroy).returns(false)
+    post :destroy_constraint,:id=>:an_id,:constraint_id=>:another_id
+    assert_redirected_to :controller=>:teachers,:action=>:edit_constraints
+    assert_equal flash[:error], "Errore: vincolo non eliminato"
+  end
+
+  test "User con privilegi utilizza teacher_preference_priority_up"do
+     @request.session[:user_id] = :an_id
+     t = TemporalConstraint.new(:description=>:a_descrption,:isHard=>1,:startHour=>"11:30",:endHour=>"13:30",:day=>1)
+     t2 = TemporalConstraint.new(:description=>:a_descrption,:isHard=>2,:startHour=>"11:30",:endHour=>"13:30",:day=>2)
+    co = ConstraintsOwner.new
+    co.stubs(:id=>:an_id,:constraint_id=>:an_id)
+    co2 = ConstraintsOwner.new
+    co2.stubs(:id=>:an_id,:constraint_id=>:another_id)
+    ConstraintsOwner.stubs(:find).returns([co,co2])
+    TemporalConstraint.stubs(:find).with(:an_id).returns(t)
+    TemporalConstraint.stubs(:find).with(:another_id).returns(t2)
+    post :teacher_preference_priority_up, :id=>:an_id,:teacher_id=>:an_id,:constraint_id=>:an_id
+    assert_equal flash[:notice], "La preferenza ha già priorità massima"
+
+   post :teacher_preference_priority_up, :id=>:an_id,:teacher_id=>:an_id,:constraint_id=>:another_id
+   assert_equal flash[:notice], "Priorità della preferenza modificata con successo"
+ end
+
+ test"Utilizzando teacher_preference_priority_up viene invalidata una preferenza"do
+   @request.session[:user_id] = :an_id
+     t = TemporalConstraint.new(:description=>:a_descrption,:isHard=>1,:startHour=>"18:30",:endHour=>"13:30",:day=>1)
+     t2 = TemporalConstraint.new(:description=>:a_descrption,:isHard=>2,:startHour=>"11:30",:endHour=>"13:30",:day=>2)
+    co = ConstraintsOwner.new
+    co.stubs(:id=>:an_id,:constraint_id=>:an_id)
+    co2 = ConstraintsOwner.new
+    co2.stubs(:id=>:an_id,:constraint_id=>:another_id)
+    ConstraintsOwner.stubs(:find).returns([co,co2])
+    TemporalConstraint.stubs(:find).with(:an_id).returns(t)
+    TemporalConstraint.stubs(:find).with(:another_id).returns(t2)
+    post :teacher_preference_priority_up, :id=>:an_id,:teacher_id=>:an_id,:constraint_id=>:another_id
+    assert_equal flash[:error], "Errore nel cambio di preferenza"
+  end
+
+  test "User con privilegi utilizza teacher_preference_priority_down"do
+     @request.session[:user_id] = :an_id
+     t = TemporalConstraint.new(:description=>:a_descrption,:isHard=>1,:startHour=>"9:30",:endHour=>"11:30",:day=>1)
+     t2 = TemporalConstraint.new(:description=>:a_descrption,:isHard => 2, :startHour => "12:30", :endHour => "13:30", :day => 2)
+    co = ConstraintsOwner.new
+    co.stubs(:id=>:an_id,:constraint_id=>:an_id)
+    co2 = ConstraintsOwner.new
+    co2.stubs(:id=>:an_id,:constraint_id=>:another_id)
+    ConstraintsOwner.stubs(:find).returns([co,co2])
+    TemporalConstraint.stubs(:find).with(:an_id).returns(t)
+    TemporalConstraint.stubs(:find).with(:another_id).returns(t2)
+    post :teacher_preference_priority_down, :id=>:an_id,:teacher_id=>:an_id,:constraint_id=>:an_id
+    assert_equal flash[:notice], "Priorità della preferenza modificata con successo"
+
+    post :teacher_preference_priority_down, :id=>:an_id,:teacher_id=>:an_id,:constraint_id=>:another_id
+    assert_equal flash[:notice], "La preferenza ha già priorità minima"
+  end
+
+  test"Utilizzando teacher_preference_priority_down viene invalidata una preferenza"do
+   @request.session[:user_id] = :an_id
+     t = TemporalConstraint.new(:description=>:a_descrption,:isHard=>1,:startHour=>"18:30",:endHour=>"13:30",:day=>1)
+     t2 = TemporalConstraint.new(:description=>:a_descrption,:isHard=>2,:startHour=>"11:30",:endHour=>"13:30",:day=>2)
+    co = ConstraintsOwner.new
+    co.stubs(:id=>:an_id,:constraint_id=>:an_id)
+    co2 = ConstraintsOwner.new
+    co2.stubs(:id=>:an_id,:constraint_id=>:another_id)
+    ConstraintsOwner.stubs(:find).returns([co,co2])
+    TemporalConstraint.stubs(:find).with(:an_id).returns(t)
+    TemporalConstraint.stubs(:find).with(:another_id).returns(t2)
+    post :teacher_preference_priority_down, :id=>:an_id,:teacher_id=>:an_id,:constraint_id=>:an_id
+    assert_equal flash[:error], "Errore nel cambio di preferenza"
   end
 
   test"User senza privilegi utilizza edit_constraints"do
