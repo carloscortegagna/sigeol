@@ -24,8 +24,15 @@ class TemporalConstraint < ActiveRecord::Base
                           :message => "Deve essere compreso tra 1 e 10"
 
   #validazioni :startTime e :endTime e validazioni :day
-  validates_presence_of :startHour,:endHour,:day,:description,:isHard,
+  validates_presence_of :day,:description,:isHard,
                          :message=>"Alcuni campi sono vuoti"
+                       
+  validates_presence_of :startHour,
+                         :message=>"Ora di inizio non valida"
+
+  validates_presence_of :startHour,:endHour,:day,:description,:isHard,
+                         :message=>"Ora di fine non valida"
+
   validates_numericality_of :day,
                             :only_integer => true,
                             :greater_than_or_equal_to => 1,
