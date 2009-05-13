@@ -1,13 +1,11 @@
-page.assign 'this_constraint_id', @constraint.id
-
-page << "if (this_constraint_id) {"
-  page.visual_effect :highlight , @constraint.id
+if @constraint.id
+  page.visual_effect :highlight , @constraint.id, :color=>"red"
   #page.visual_effect :fade , @constraint.id, :duration=>1
   page.remove @constraint.id
-page << "} else {"
+else
     page.replace_html 'destroy_error', "<div id='destroy_error'>Eliminazione vincolo fallita</div>"
     #delay per vedere il messaggio d'errore
     page.delay(2) do
       page.replace_html 'destroy_error', "<div id='destroy_error'></div>"
     end
-page << "}"
+end
