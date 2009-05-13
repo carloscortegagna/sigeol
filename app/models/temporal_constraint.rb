@@ -30,7 +30,7 @@ class TemporalConstraint < ActiveRecord::Base
   validates_presence_of :startHour,
                          :message=>"Ora di inizio non valida"
 
-  validates_presence_of :startHour,:endHour,:day,:description,:isHard,
+  validates_presence_of :endHour,
                          :message=>"Ora di fine non valida"
 
   validates_numericality_of :day,
