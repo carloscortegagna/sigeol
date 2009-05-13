@@ -1,0 +1,21 @@
+page.assign 'this_constraint_id', @constraint.id
+
+page << "if (this_constraint_id) {"
+  page.insert_html :bottom, 'manageable_constraints', :inline => "  <tr id='<%= @constraint.id %>'>" +
+    "    <td> <%= from_id_to_dayname(@constraint.day) %></td>" +
+    "    <td><%=h @constraint.startHour.to_s(:time) %></td>" +
+    "    <td><%=h @constraint.endHour.to_s(:time) %></td>" +
+    "    <td><% form_remote_tag :url => destroy_constraint_classroom_path(@classroom,:constraint_id => @constraint.id) do %>" +
+    "        <%= submit_tag 'Rimuovi' %>" +
+    "    <% end %></td>" +
+    "  </tr>" , :layout => false
+  #page.visual_effect :grow , @constraint.id
+  page.visual_effect :highlight , @constraint.id, :color=> "green"
+page << "} else {"
+  page.replace_html 'create_error', "<div id='create_error'>Inserimento nuovo vincolo fallito. Controllare i dati inseriti</div>"
+  page.visual_effect :highlight, 'create_error'
+  #delay per vedere il messaggio d'errore
+  page.delay(2) do
+    page.replace_html 'create_error', "<div id='create_error'></div>"
+  end
+page << "}"

@@ -152,14 +152,17 @@ class ClassroomsController < ApplicationController
 
       respond_to do |format|
         @classroom = Classroom.find(params[:id])
+        @constraint= t
+        #parte originale.. forse utilizzabile dal clock
         classroom_constraint_ids = ConstraintsOwner.find(:all,
             :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Classroom' AND owner_id = (?)", params[:id]], :select => ['constraint_id'])
         @constraints = []
         for id in classroom_constraint_ids do
           @constraints << TemporalConstraint.find(id.constraint_id)
         end
-        format.html { render :action => "edit_constraints" }
-      end 
+        #format.html { render :action => "edit_constraints" }
+        format.js{}
+      end
     end
   end
 
@@ -169,13 +172,16 @@ class ClassroomsController < ApplicationController
 
     respond_to do |format|
         @classroom = Classroom.find(params[:id])
+        @constraint = constraint_to_destroy
+        #parte originale.. forse utilizzabile dal clock
         classroom_constraint_ids = ConstraintsOwner.find(:all,
             :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Classroom' AND owner_id = (?)", params[:id]], :select => ['constraint_id'])
         @constraints = []
         for id in classroom_constraint_ids do
           @constraints << TemporalConstraint.find(id.constraint_id)
         end
-        format.html { render :action => "edit_constraints" }
+        #format.html { render :action => "edit_constraints" }
+        format.js{}
     end
   end
 
