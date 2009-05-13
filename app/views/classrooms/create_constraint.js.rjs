@@ -1,4 +1,4 @@
-if @constraint.id
+if @constrain && @constraint.id
   page.insert_html :bottom, 'manageable_constraints', :inline => "  <tr id='<%= @constraint.id %>'>" +
     "    <td> <%= from_id_to_dayname(@constraint.day) %></td>" +
     "    <td><%=h @constraint.startHour.to_s(:time) %></td>" +
@@ -10,7 +10,9 @@ if @constraint.id
   #page.visual_effect :grow , @constraint.id
   page.visual_effect :highlight , @constraint.id, :color=> "green"
 else
-  page.replace_html 'create_error', "<div id='create_error'>Inserimento nuovo vincolo fallito. Controllare i dati inseriti</div>"
+  @constraint.errors.each do |attr,msg|
+    page.insert_html :bottom, 'create_error', "<p>#{msg}</p>"
+  end
   page.visual_effect :highlight, 'create_error', :color=>"red"
   #delay per vedere il messaggio d'errore
   page.delay(2) do
