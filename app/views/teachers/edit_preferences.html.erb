@@ -1,29 +1,30 @@
+<!-- ptTimeSelect files below -->
+<%= stylesheet_link_tag 'jquery.ptTimeSelect.css' %>
+<%= javascript_include_tag 'jquery.ptTimeSelect.js' %>
+<script type="text/javascript">
+  $(function(){
+    $('#start_hour').ptTimeSelect({hoursLabel: "Ore", minutesLabel: "Minuti", setButtonLabel: "Seleziona", onFocusDisplay: false, popupImage: "<IMG SRC='/stylesheets/images/ptTimeSelect_clock.png'"});
+    $('#end_hour').ptTimeSelect({hoursLabel: "Ore", minutesLabel: "Minuti", setButtonLabel: "Seleziona", onFocusDisplay: false, popupImage: "<IMG SRC='/stylesheets/images/ptTimeSelect_clock.png'"});
+});
+</script>
+
 Pagina di show e edit delle preferenze per: <%=h @teacher.name %> <%=h @teacher.surname %>
 <hr>
 
 Hai dichiarato la tua preferenza a non sostenere lezioni nei seguenti periodi della settimana:
-<table>
+<table id="manageable_constraints">
   <tr>
     <th>Giorno</th>
     <th>Ora inizio</th>
     <th>Ora fine</th>
   </tr>
-<% for constraint in @constraints %>
-  <tr>
-    <%
-    case constraint.day
-      when 1 %> <td> Lunedi </td>
-      <% when 2 %> <td> Martedi </td>
-      <% when 3 %> <td> Mercoledi </td>
-      <% when 4 %> <td> Giovedi </td>
-      <% when 5 %> <td> Venerdi </td>
-    <% end %>
+<% @constraints.each do |constraint| %>
+  <tr id='<%= constraint.id %>'>
+    <td><%= from_id_to_dayname(constraint.day) %></td>
     <td><%=h constraint.startHour.to_s(:time) %></td>
     <td><%=h constraint.endHour.to_s(:time) %></td>
-    <td><% form_tag(:action => :destroy_preference) do %>
-      <%= hidden_field_tag 'constraint_id', constraint.id %>
-      <%= hidden_field_tag 'teacher_id', @teacher.id %>
-      <%= submit_tag "Elimina" %>
+    <td><% form_remote_tag :url => destroy_preference_teacher_path(@teacher,:constraint_id => constraint.id) do %>
+        <%= submit_tag "Rimuovi" %>
     <% end %></td>
     <td><% form_tag(:action => :teacher_preference_priority_up) do %>
       <%= hidden_field_tag 'constraint_id', constraint.id %>
@@ -38,6 +39,7 @@ Hai dichiarato la tua preferenza a non sostenere lezioni nei seguenti periodi de
   </tr>
 <% end %>
 </table>
+<div id="destroyupdate_error" ></div>
 <br><br>
 Le preferenze sono ordinate per priorità crescente: spostare in alto le preferenze più importanti e in basso quelle meno importanti. L'algoritmo di calcolo dell'orario di lezione darà maggior peso alle preferenze con priorità più alta.
 <hr>
@@ -45,12 +47,17 @@ Le preferenze sono ordinate per priorità crescente: spostare in alto le prefere
 Nuovo preferenza:
 inserire il giorno della settimana, l'ora di inizio e l'ora di fine.
 <br><br>
-<% form_tag(:action => :create_preference) do %>
-  <%= select_tag "day", "<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>" %>
-  <%= text_field_tag "start_hour", nil, :maxlength => 5, :size => 10 %>
-  <%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %>
-  <%= submit_tag "Inserisci la nuova preferenza" %>
+<% form_remote_tag :url => create_preference_teacher_path(@teacher) do %>
+    <%= label_tag "day", "Giorno interessato" %>
+    <%= select_tag "day", "<option>Lunedi</option><option>Martedi</option><option>Mercoledi</option><option>Giovedi</option><option>Venerdi</option>" %> <br>
+    <%= label_tag "start_hour", "Ora di inizio vincolo" %>
+    <%= text_field_tag "start_hour", nil, :maxlength => 5, :size => 10 %> <br>
+    <%= label_tag "end_hour", "Ora di fine vincolo" %>
+    <%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %> <br>
+    <br />
+    <%= submit_tag "Aggiungi preferenza" %>
 <% end %>
+<div id="create_error" ></div>
 <br><br>
 Inserire il giorno della settimana e l'ora di inizio e fine nel formato xy:zw
 La nuova preferenza verrà inserita in fondo alla lista: avrà quindi piorità più bassa rispetto alle preferenze inserite precedentemente.

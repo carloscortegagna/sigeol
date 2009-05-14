@@ -1,7 +1,8 @@
 if @constraint && @constraint.id
   page.visual_effect :highlight , @constraint.id, :color=>"red"
-  #page.visual_effect :fade , @constraint.id, :duration=>1
-  page.remove @constraint.id
+  page.delay(0.5) do
+    page.remove @constraint.id
+  end
 else
     page.replace_html 'destroy_error', "<div id='destroy_error'>Eliminazione vincolo fallita</div>"
     #delay per vedere il messaggio d'errore

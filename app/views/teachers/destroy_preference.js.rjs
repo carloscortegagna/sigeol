@@ -4,9 +4,9 @@ if @constraint && @constraint.id
     page.remove @constraint.id
   end
 else
-    page.replace_html 'destroy_error', "<div id='destroy_error'>Eliminazione vincolo fallita</div>"
+    page.replace_html 'destroyupdate_error', "<div id='destroy_error'>Eliminazione preferenza fallita</div>"
     #delay per vedere il messaggio d'errore
     page.delay(2) do
-      page.replace_html 'destroy_error', "<div id='destroy_error'></div>"
+      page.replace_html 'destroyupdate_error', "<div id='destroy_error'></div>"
     end
 end

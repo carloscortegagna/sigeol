@@ -226,6 +226,7 @@ class TeachersController < ApplicationController
   def create_preference
     if request.post?
       teacher = Teacher.find(params[:id])
+      day_nr = from_dayname_to_id(params[:day])
       teacher_constraint_ids = ConstraintsOwner.find(:all,
           :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", params[:id]],
           :select => ['constraint_id'], :group => 'constraint_id')
@@ -241,7 +242,7 @@ class TeachersController < ApplicationController
         preference_value = constraints.size + 1 #conto il numero delle preferenze nel db e metto la giusta priorità a quella nuova
       end
       t = TemporalConstraint.new(:description=>"Preferenza docente: " + teacher.name + " " + teacher.surname,
-        :isHard=>preference_value,:startHour=>params[:start_hour],:endHour=>params[:end_hour],:day=>params[:day])     
+        :isHard=>preference_value,:startHour=>params[:start_hour],:endHour=>params[:end_hour],:day=>day_nr)
       teacher_graduate_courses = teacher.user.graduate_courses
       if t.save
         for c in teacher_graduate_courses #devo creare un record in constraint_owner per ogni graduate_course del teacher
@@ -251,11 +252,15 @@ class TeachersController < ApplicationController
           co.owner = teacher
           co.save
         end
-        flash[:notice] = "Preferenza inserita con successo"
-      else
-        flash[:error] = "Errore: preferenza non salvata"
+        #flash[:notice] = "Preferenza inserita con successo"
+      #else
+        #flash[:error] = "Errore: preferenza non salvata"
       end
-      redirect_to edit_preferences_teacher_url
+      respond_to do |format|
+        @teacher = teacher
+        @constraint = t
+        format.js{}
+      end
     end
   end
 
@@ -278,11 +283,14 @@ class TeachersController < ApplicationController
         c.save
         i = i + 1
       end
-      flash[:notice] = "Preferenza eliminata con successo"
-    else
-      flash[:error] = "Errore: preferenza non eliminata"
+      #flash[:notice] = "Preferenza eliminata con successo"
+    #else
+      #flash[:error] = "Errore: preferenza non eliminata"
     end
-    redirect_to edit_preferences_teacher_url
+    respond_to do |format|
+        @constraint = constraint_to_destroy
+        format.js{}
+      end
   end
 
   def teacher_preference_priority_up
