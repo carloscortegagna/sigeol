@@ -9,6 +9,7 @@ class ClassroomsController < ApplicationController
     
     respond_to do |format|
       format.html # show.html.erb
+      format.xml { render :xml => @classroom.to_xml }
     end
   end
 
@@ -186,10 +187,3 @@ class ClassroomsController < ApplicationController
   end
 
 end
-
-#def xml
-#  @classrooms = Building.find(:all)
-#  respond_to do |accepts|
-#    accepts.xml { render :xml => @classrooms.to_xml }
-#  end
-#end

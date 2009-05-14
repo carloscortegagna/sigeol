@@ -49,7 +49,7 @@ class TeachingsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @teaching }
+      format.xml  { render :xml => @teaching.to_xml(:include => :graduate_courses) }
     end
   end
 

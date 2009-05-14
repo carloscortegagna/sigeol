@@ -33,7 +33,7 @@ class TimetablesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @timetable }
+      format.xml  { render :xml => @timetable.to_xml }
     end
   end
 
@@ -170,12 +170,6 @@ class TimetablesController < ApplicationController
   end
 
 end
-#def xml
-#  @timetables = Building.find(:all)
-#  respond_to do |accepts|
-#    accepts.xml { render :xml => @timetables.to_xml }
-#  end
-#end
 # pdf converter
  #def _index
 #   @items = Item.find(:all)

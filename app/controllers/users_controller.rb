@@ -22,9 +22,3 @@ class UsersController < ApplicationController
     end
   end
 end
-
-#def xml
-#  @users = Building.find(:all)
-#  respond_to do |accepts|
-#    accepts.xml { render :xml => @users.to_xml }
-#  end

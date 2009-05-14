@@ -8,6 +8,7 @@ class BuildingsController < ApplicationController
 
     respond_to do |format|
       format.html
+      format.xml { render :xml => @buildings.to_xml(:include =>[:address, :classrooms], :except =>[:created_at, :updated_at]) }
     end
     #respond_to { |format| format.js}
   end
@@ -89,11 +90,3 @@ class BuildingsController < ApplicationController
     end
   end
 end
-
-#def xml
-#  @buildings = Building.find(:all)
-#  respond_to do |accepts|
-#    accepts.xml { render :xml => @buildings.to_xml }
-#  end
-#end
-

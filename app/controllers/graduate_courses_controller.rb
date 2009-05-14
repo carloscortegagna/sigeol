@@ -17,6 +17,7 @@ class GraduateCoursesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.xml { render :xml => @graduate_courses.to_xml }
     end
   end
 
@@ -108,10 +109,3 @@ class GraduateCoursesController < ApplicationController
     end
   end
 end
-
-#def xml
-#  @graduate_courses = Building.find(:all)
-#  respond_to do |accepts|
-#    accepts.xml { render :xml => @graduate_courses.to_xml }
-#  end
-#end

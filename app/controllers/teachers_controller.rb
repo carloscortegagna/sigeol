@@ -31,7 +31,7 @@ class TeachersController < ApplicationController
     @teacher = Teacher.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @teacher }
+      format.xml { render :xml => @teachers.to_xml }
     end
   end
 
@@ -365,10 +365,3 @@ class TeachersController < ApplicationController
   end
   
 end
-
-#def xml
-#  @teachers = Building.find(:all)
-#  respond_to do |accepts|
-#    accepts.xml { render :xml => @teachers.to_xml }
-#  end
-#end
