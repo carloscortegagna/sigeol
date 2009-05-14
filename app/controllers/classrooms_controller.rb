@@ -171,9 +171,9 @@ class ClassroomsController < ApplicationController
     constraint_to_destroy.destroy
 
     respond_to do |format|
-        @classroom = Classroom.find(params[:id])
         @constraint = constraint_to_destroy
         #parte originale.. forse utilizzabile dal clock
+        @classroom = Classroom.find(params[:id])
         classroom_constraint_ids = ConstraintsOwner.find(:all,
             :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Classroom' AND owner_id = (?)", params[:id]], :select => ['constraint_id'])
         @constraints = []

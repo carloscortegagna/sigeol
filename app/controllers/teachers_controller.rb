@@ -170,8 +170,9 @@ class TeachersController < ApplicationController
 
   def create_constraint
     if request.post?
+      day_nr = from_dayname_to_id(params[:day])
       t = TemporalConstraint.new(:description=>params[:description],
-        :isHard=>0,:startHour=>params[:start_hour],:endHour=>params[:end_hour],:day=>params[:day])
+        :isHard=>0,:startHour=>params[:start_hour],:endHour=>params[:end_hour],:day=>day_nr)
       teacher = Teacher.find(params[:id])
       teacher_graduate_courses = teacher.user.graduate_courses
       if t.save
@@ -182,22 +183,30 @@ class TeachersController < ApplicationController
           co.owner = teacher
           co.save
         end
-        flash[:notice] = "Vincolo inserito con successo"
-      else
-        flash[:error] = "Errore: vincolo non salvato"
+        #flash[:notice] = "Vincolo inserito con successo"
+      #else
+      #  flash[:error] = "Errore: vincolo non salvato"
       end
-      redirect_to edit_constraints_teacher_url
+      respond_to do |format|
+        @teacher = teacher
+        @constraint = t
+        format.js{}
+      end
     end
   end
 
   def destroy_constraint
     constraint_to_destroy = TemporalConstraint.find(params[:constraint_id])
-    if constraint_to_destroy.destroy
-      flash[:notice] = "Vincolo eliminato con successo"
-    else
-      flash[:error] = "Errore: vincolo non eliminato"
+    #if
+    constraint_to_destroy.destroy
+    #  flash[:notice] = "Vincolo eliminato con successo"
+    #else
+    #  flash[:error] = "Errore: vincolo non eliminato"
+    #end
+    respond_to do |format|
+       @constraint = constraint_to_destroy
+       format.js{}
     end
-    redirect_to edit_constraints_teacher_url
   end
 
   def edit_preferences

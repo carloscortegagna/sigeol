@@ -1,0 +1,23 @@
+if @constraint && @constraint.id
+  page.insert_html :bottom, 'manageable_constraints', :inline => "<tr id='<%= @constraint.id %>'>" +
+    "<td><%= from_id_to_dayname(@constraint.day) %></td>" +
+    "<td><%=h @constraint.startHour.to_s(:time) %></td>" +
+    "<td><%=h @constraint.endHour.to_s(:time) %></td>" +
+    "<td><%=h @constraint.description %></td>" +
+    "<td><% form_remote_tag :url => destroy_constraint_teacher_path(@teacher,:constraint_id => @constraint.id) do %>" +
+        "<%= submit_tag 'Rimuovi' %>" +
+    "<% end %></td>" +
+  "</tr>", :layout => false
+  #page.visual_effect :grow , @constraint.id
+  page.visual_effect :highlight , @constraint.id, :color=> "green"
+else
+  @constraint.errors.each do |attr,msg|
+      page.insert_html :bottom, 'create_error', "<ul><li>#{msg}</li></ul>"
+  end
+  
+  page.visual_effect :highlight, 'create_error', :color=>"red", :duration=>"0.7"
+  #delay per vedere il messaggio d'errore
+  page.delay(4) do
+    page.replace_html 'create_error', "<div id='create_error'></div>"
+  end
+end
