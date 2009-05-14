@@ -12,12 +12,13 @@ class GraduateCoursesController < ApplicationController
   before_filter :manage_graduate_courses_required, :only => [:administration, :edit, :update, :destroy]
   before_filter :didactic_office_required, :only => [:new, :create, :destroy]
   before_filter :same_graduate_course_required, :only => [:edit, :update, :destroy]
-  def index
+
+def index
     @graduate_courses = GraduateCourse.find(:all)
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml { render :xml => @graduate_courses.to_xml }
+      format.xml  { render :xml => @graduate_courses.to_xml(:include => :curriculums, :except =>[:created_at, :updated_at, :academic_organization_id, :graduate_course_id, :id]) } # index xml
     end
   end
 
@@ -32,6 +33,7 @@ class GraduateCoursesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.xml  { render :xml => @graduate_course.to_xml(:include => :academic_organization) } # show xml
     end
   end
 

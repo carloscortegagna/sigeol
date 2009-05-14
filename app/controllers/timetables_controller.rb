@@ -11,7 +11,7 @@ class TimetablesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @timetables }
+      format.xml  { render :xml => @timetables.to_xml }
     end
   end
 

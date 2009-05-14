@@ -15,6 +15,9 @@ class TeachingsController < ApplicationController
 
   def index
       @teachings = Teaching.find :all
+  respond_to do |format|
+  format.xml  { render :xml => @teachings.to_xml(:except =>[:created_at, :updated_at]) }
+   end
   end
   # GET /teachings/1
   # GET /teachings/1.xml
@@ -23,7 +26,7 @@ class TeachingsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @teaching }
+      format.xml  { render :xml => @teaching.to_xml(:except =>[:created_at, :updated_at, :id, :period_id, :teacher_id]) }
     end
   end
 
@@ -49,7 +52,6 @@ class TeachingsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @teaching.to_xml(:include => :graduate_courses) }
     end
   end
 
@@ -73,13 +75,11 @@ class TeachingsController < ApplicationController
       if curriculum && @teaching.belongs.build(:curriculum => curriculum, :isOptional => optional) && @teaching.save
         flash[:notice] = 'Insegnamento creato correttamente.'
         format.html { redirect_to select_teacher_teaching_url(@teaching) }
-        format.xml  { render :xml => @teaching, :status => :created, :location => @teaching }
       else
         @graduate_courses = @current_user.graduate_courses
         @year = Period.find(:all, :select => "DISTINCT year")
         @subperiod = Period.find(:all, :select => "DISTINCT subperiod")
         format.html { render :action => "new" }
-        format.xml  { render :xml => @teaching.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -110,10 +110,8 @@ class TeachingsController < ApplicationController
       if @teaching.update_attributes(params[:teaching])
         flash[:notice] = 'Teaching was successfully updated.'
         format.html { redirect_to(@teaching) }
-        format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @teaching.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -126,7 +124,6 @@ class TeachingsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(administration_teachings_url) }
-      format.xml  { head :ok }
     end
   end
 
@@ -142,10 +139,3 @@ class TeachingsController < ApplicationController
     end
   end
 end
-
-#def xml
-#  @teachings = Building.find(:all)
-#  respond_to do |accepts|
-#    accepts.xml { render :xml => @teachings.to_xml }
-#  end
-#end

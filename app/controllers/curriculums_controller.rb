@@ -12,7 +12,7 @@ class CurriculumsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @curriculum }
+      format.xml  { render :xml => @curriculum.to_xml(:except =>[:created_at, :updated_at, :id, :graduate_course_id]) } # show xml
     end
   end
 
@@ -23,7 +23,6 @@ class CurriculumsController < ApplicationController
     @graduate_courses = @current_user.graduate_courses
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @curriculum }
     end
   end
 
@@ -117,9 +116,3 @@ class CurriculumsController < ApplicationController
     end
   end
 end
-#def xml
-#  @curriculums = Building.find(:all)
-#  respond_to do |accepts|
-#    accepts.xml { render :xml => @curriculums.to_xml }
-#  end
-#end

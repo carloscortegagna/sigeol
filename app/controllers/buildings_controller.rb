@@ -8,7 +8,7 @@ class BuildingsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.xml { render :xml => @buildings.to_xml(:include =>[:address, :classrooms], :except =>[:created_at, :updated_at]) }
+      format.xml { render :xml => @buildings.to_xml(:include =>[:address, :classrooms], :except =>[:created_at, :updated_at]) } # index xml
     end
     #respond_to { |format| format.js}
   end
@@ -23,6 +23,7 @@ class BuildingsController < ApplicationController
     @address = Address.find(@building.address_id)
     respond_to do |format|
       format.html # show.html.erb
+      format.xml { render :xml => @building.to_xml(:include =>[:address, :classrooms], :except =>[:created_at, :updated_at, :id, :building_id, :address_id]) } # show xml
     end
   end
 

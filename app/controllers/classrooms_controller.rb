@@ -9,7 +9,7 @@ class ClassroomsController < ApplicationController
     
     respond_to do |format|
       format.html # show.html.erb
-      format.xml { render :xml => @classroom.to_xml }
+      format.xml { render :xml => @classroom.to_xml(:include => :building, :except =>[:created_at, :updated_at, :id, :building_id, :address_id]) } # show xml
     end
   end
 
