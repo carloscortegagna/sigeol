@@ -16,7 +16,7 @@ class TeachersController < ApplicationController
   before_filter :manage_capabilities_required, :only => [:edit_capabilities, :update_capabilities]
   before_filter :same_graduate_course_required, :only => [:edit_graduate_courses, :update_graduate_courses,
                                                           :edit_capabilities, :update_capabilities]
-  before_filter :same_teacher_required, :only => [:edit_constraints, :edit_preferences,
+  before_filter :same_teacher_required, :only => [:edit, :update_personal_data, :edit_constraints, :edit_preferences,
                                                           :create_constraint, :destroy_constraint]
 
   # metodi da aggiungere:
@@ -119,6 +119,28 @@ class TeachersController < ApplicationController
         flash[:error] = "La mail inserita è già presente e non corrisponde ad un docente"
         redirect_to new_teacher_url
       end
+    end
+  end
+
+  def edit
+    teacher = Teacher.find(params[:id])
+    @user = User.find(:first, :include => :address,
+            :conditions => ["specified_type = 'Teacher' AND specified_id = (?)", teacher.id])
+  end
+
+  def update_personal_data
+    teacher = Teacher.find(params[:id])
+    user = User.find(:first, :include => :address,
+            :conditions => ["specified_type = 'Teacher' AND specified_id = (?)", teacher.id])
+    user.address.city = params[:city]
+    user.address.street = params[:street]
+    user.address.telephone = params[:telephone]
+    if user.address.save
+      flash[:notice] = 'Dati personali aggiornati correttamente'
+      redirect_to(timetables_url)
+    else
+      flash[:error] = "Errore nell'aggiornamento dei dati personali"
+      redirect_to(edit_teacher_url)
     end
   end
 

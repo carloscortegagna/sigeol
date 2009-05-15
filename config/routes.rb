@@ -32,6 +32,7 @@ ActionController::Routing::Routes.draw do |map|
                                        :update_graduate_courses => [:put, :delete],
                                        :edit_capabilities => :get,
                                        :update_capabilities => [:put, :delete],
+                                       :update_personal_data => :post,
                                        :edit_constraints => :get, :edit_preferences => :get,
                                        :create_constraint => :post, :create_preference => :post,
                                        :destroy_constraint => :post, :destroy_preference => :post,

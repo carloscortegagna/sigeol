@@ -1,0 +1,20 @@
+<h1>Pagina di edit dei dati personali</h1>
+
+<% form_tag(:action => :update_personal_data) do %>
+    <%= error_messages_for :address, :object => @user.address %>
+  <p>
+    <%= label_tag 'city', "Città" %>
+    <%= text_field_tag("city", @user.address.city) %>
+  </p>
+  <p>
+    <%= label_tag 'telephone', "Telefono" %>
+    <%= text_field_tag("telephone", @user.address.telephone) %>
+  </p>
+  <p>
+    <%= label_tag 'street', "Indirizzo" %>
+    <%= text_field_tag("street", @user.address.street) %>
+  </p>
+  <p>
+    <%= submit_tag "Aggiorna dati" %>
+  </p>
+<% end %>
