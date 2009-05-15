@@ -26,15 +26,11 @@ Hai dichiarato la tua preferenza a non sostenere lezioni nei seguenti periodi de
     <td><% form_remote_tag :url => destroy_preference_teacher_path(@teacher,:constraint_id => constraint.id) do %>
         <%= submit_tag "Rimuovi" %>
     <% end %></td>
-    <td><% form_tag(:action => :teacher_preference_priority_up) do %>
-      <%= hidden_field_tag 'constraint_id', constraint.id %>
-      <%= hidden_field_tag 'teacher_id', @teacher.id %>
-      <%= submit_tag "Su" %>
+    <td><% form_remote_tag :url => teacher_preference_priority_up_teacher_path(:teacher_id => @teacher.id,:constraint_id => constraint.id) do %>
+        <%= submit_tag "Su" %>
     <% end %></td>
-    <td><% form_tag(:action => :teacher_preference_priority_down) do %>
-      <%= hidden_field_tag 'constraint_id', constraint.id %>
-      <%= hidden_field_tag 'teacher_id', @teacher.id %>
-      <%= submit_tag "Giu" %>
+    <td><% form_remote_tag :url => teacher_preference_priority_down_teacher_path(:teacher_id => @teacher.id,:constraint_id => constraint.id) do %>
+        <%= submit_tag "Giu" %>
     <% end %></td>
   </tr>
 <% end %>
@@ -44,8 +40,10 @@ Hai dichiarato la tua preferenza a non sostenere lezioni nei seguenti periodi de
 Le preferenze sono ordinate per priorità crescente: spostare in alto le preferenze più importanti e in basso quelle meno importanti. L'algoritmo di calcolo dell'orario di lezione darà maggior peso alle preferenze con priorità più alta.
 <hr>
 <br><br>
-Nuovo preferenza:
-inserire il giorno della settimana, l'ora di inizio e l'ora di fine.
+Nuova preferenza:
+<br>
+ - Inserire il giorno della settimana <br>
+ - Inserire l'ora di inizio e fine nel formato HH:MM
 <br><br>
 <% form_remote_tag :url => create_preference_teacher_path(@teacher) do %>
     <%= label_tag "day", "Giorno interessato" %>
@@ -59,9 +57,6 @@ inserire il giorno della settimana, l'ora di inizio e l'ora di fine.
 <% end %>
 <div id="create_error" ></div>
 <br><br>
-Inserire il giorno della settimana e l'ora di inizio e fine nel formato xy:zw
 La nuova preferenza verrà inserita in fondo alla lista: avrà quindi piorità più bassa rispetto alle preferenze inserite precedentemente.
-<br><br>
-TODO: invece di giorno della settimana in numero metterlo in parola; ajax per scegliere l'ora di inizio e di fine
 <br><br>
 <%= link_to 'Back', :controller => 'timetables' %>

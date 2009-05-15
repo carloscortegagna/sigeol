@@ -6,15 +6,11 @@ if @constraint && @constraint.id
     "<td><% form_remote_tag :url => destroy_preference_teacher_path(@teacher,:constraint_id => @constraint.id) do %>" +
         "<%= submit_tag 'Rimuovi' %>" +
     "<% end %></td>" +
-    "<td><% form_tag(:action => :teacher_preference_priority_up) do %>" +
-      "<%= hidden_field_tag 'constraint_id', @constraint.id %>" +
-      "<%= hidden_field_tag 'teacher_id', @teacher.id %>" +
-      "<%= submit_tag 'Su' %>" +
+    "<td><% form_remote_tag :url => teacher_preference_priority_up_teacher_path(:teacher_id => @teacher.id,:constraint_id => @constraint.id) do %>" +
+        "<%= submit_tag 'Su' %>" +
     "<% end %></td>" +
-    "<td><% form_tag(:action => :teacher_preference_priority_down) do %>" +
-      "<%= hidden_field_tag 'constraint_id', @constraint.id %>" +
-      "<%= hidden_field_tag 'teacher_id', @teacher.id %>" +
-      "<%= submit_tag 'Giu' %>" +
+    "<td><% form_remote_tag :url => teacher_preference_priority_down_teacher_path(:teacher_id => @teacher.id,:constraint_id => @constraint.id) do %>" +
+        "<%= submit_tag 'Giu' %>"+
     "<% end %></td>" +
   "</tr>", :layout => false
   #page.visual_effect :grow , @constraint.id
@@ -22,11 +18,10 @@ if @constraint && @constraint.id
 else
   @constraint.errors.each do |attr,msg|
       page.insert_html :bottom, 'create_error', "<ul><li>#{msg}</li></ul>"
-  end
-  
+  end  
   page.visual_effect :highlight, 'create_error', :color=>"red", :duration=>"0.7"
   #delay per vedere il messaggio d'errore
-  page.delay(4) do
+  page.delay(2) do
     page.replace_html 'create_error', "<div id='create_error'></div>"
   end
 end

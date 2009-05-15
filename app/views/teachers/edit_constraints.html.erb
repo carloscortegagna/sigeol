@@ -36,7 +36,10 @@ Hai dichiarato di non essere disponibile nei seguenti periodi:
 <hr>
 <br><br>
 Nuovo vincolo di indisponibilità:
-Inserire il giorno della settimana, l'ora di inizio, l'ora di fine e una motivazione valida.
+<br>
+ - Inserire il giorno della settimana <br>
+ - Inserire l'ora di inizio e fine nel formato HH:MM <br>
+ - Inserire la motivazione
 <br><br>
 <% form_remote_tag :url => create_constraint_teacher_path(@teacher) do %>
     <%= label_tag "day", "Giorno interessato" %>
@@ -52,6 +55,5 @@ Inserire il giorno della settimana, l'ora di inizio, l'ora di fine e una motivaz
     <%= submit_tag "Aggiungi vincolo" %>
 <% end %>
 <div id="create_error" ></div>
-<br><br>
 <br><br>
 <%= link_to 'Back', :controller => 'timetables' %>

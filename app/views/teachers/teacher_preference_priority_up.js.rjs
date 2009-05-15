@@ -1,0 +1,36 @@
+if @already_up
+  page.replace_html 'destroyupdate_error', "<div id='destroy_error'>La preferenza ha già priorità massima</div>"
+      page.visual_effect :highlight, 'destroyupdate_error', :color=>"red", :duration=>"0.7"
+  #delay per vedere il messaggio d'errore
+  page.delay(2) do
+    page.replace_html 'destroyupdate_error', "<div id='destroy_error'></div>"
+  end
+else
+  if @constraint_up && @constraint_down
+    page.remove @constraint_down.id
+    page.insert_html :after, @constraint_up.id, :inline => "<tr id='<%= @constraint_down.id %>'>" +
+    "<td><%= from_id_to_dayname(@constraint_down.day) %></td>" +
+    "<td><%=h @constraint_down.startHour.to_s(:time) %></td>" +
+    "<td><%=h @constraint_down.endHour.to_s(:time) %></td>" +
+    "<td><% form_remote_tag :url => destroy_preference_teacher_path(@teacher,:constraint_id => @constraint_down.id) do %>" +
+        "<%= submit_tag 'Rimuovi' %>" +
+    "<% end %></td>" +
+    "<td><% form_remote_tag :url => teacher_preference_priority_up_teacher_path(:teacher_id => @teacher.id,:constraint_id => @constraint_down.id) do %>" +
+        "<%= submit_tag 'Su' %>" +
+    "<% end %></td>" +
+    "<td><% form_remote_tag :url => teacher_preference_priority_down_teacher_path(:teacher_id => @teacher.id,:constraint_id => @constraint_down.id) do %>" +
+        "<%= submit_tag 'Giu' %>" +
+    "<% end %></td>" +
+    "</tr>", :layout => false
+    page.visual_effect :highlight , @constraint_up.id
+
+  else
+    page.replace_html 'destroyupdate_error', "<div id='destroy_error'>Errore nel cambio di preferenza</div>"
+    page.visual_effect :highlight, 'destroyupdate_error', :color=>"red", :duration=>"0.7"
+    #delay per vedere il messaggio d'errore
+    page.delay(2) do
+      page.replace_html 'destroyupdate_error', "<div id='destroy_error'></div>"
+    end
+  end
+end
+
