@@ -19,28 +19,24 @@ import org.quartz.xml.CalendarBundle;
  *
  * @author mattia
  */
-public class AlgorithmJobTest extends TestCase {
+public class SchedulerJobListenerTest extends TestCase {
     JobDetail jobDetail ;
     protected Scheduler scheduler = null;
-    
     @Override
     public void setUp() throws SchedulerException{
-         scheduler = StdSchedulerFactory.getDefaultScheduler();  
+         scheduler = StdSchedulerFactory.getDefaultScheduler();
     }
-    
+
     public void testRunningJob() throws SchedulerException{
-        try {
-            File webinf = new File("../..");
-            jobDetail = new JobDetail("job_test", "algorithm_job", AlgorithmJob.class);
-            jobDetail.getJobDataMap().put("input_file", webinf.getCanonicalPath() + "/itc/input/02-05-2009-12_56_27_test.ctt");
-            jobDetail.getJobDataMap().put("output_file", webinf.getCanonicalPath() + "/itc/output/02-05-2009-12_56_27_test_out.ctt");
-            jobDetail.getJobDataMap().put("timeout", "20");
+            
+            jobDetail = new JobDetail("jobListener_test", "listener_job", SchedulerJobListener.class);
+            jobDetail.getJobDataMap().put("course", "test");
             jobDetail.getJobDataMap().put("url_client", "http://localhost:8080/timetables");
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.SECOND, 5);
             //JobExecutionContext context = new JobExecutionContext();
             /** creazione trigger **/
-            SimpleTrigger trigger = new SimpleTrigger("trigger_test", "algoritm_trigger", cal.getTime());
+            SimpleTrigger trigger = new SimpleTrigger("triggerListener_test", "listener_trigger", cal.getTime());
             try {
                 /** creazione schedulazione **/
                 scheduler.scheduleJob(jobDetail, trigger);
@@ -55,12 +51,6 @@ public class AlgorithmJobTest extends TestCase {
             JobExecutionContext context = new JobExecutionContext(scheduler, bundle, job);
             job.execute(context);
             assertTrue(true);
-            
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            assertTrue(false);
-        }
-        
     }
 
 }

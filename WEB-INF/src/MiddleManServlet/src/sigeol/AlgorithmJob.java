@@ -81,9 +81,8 @@ public class AlgorithmJob implements Job {
         try {
             ItcSolver.start(inFileName, outFileName, timeout, null);
             sendResult(outFileName, URLName,course);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Logger.getLogger(AlgorithmJob.class.getName()).log(Level.SEVERE, null, e);
+        } catch (Exception e) {            
+            Logger.getLogger(AlgorithmJob.class.getName()).log(Level.SEVERE, null, "Errore algorithm job: "+e.toString());
             return;
         }
     }
@@ -116,6 +115,7 @@ public class AlgorithmJob implements Job {
         // CLIENT REQUEST
         File outfile = new File(outFileName);
         FileInputStream fileInputStream = new FileInputStream(outfile);
+        System.out.println(URLName);
         URL url = new URL(URLName);
 
         for (int i = 0; i < 3 && (responseCode != HttpURLConnection.HTTP_OK); i++) {

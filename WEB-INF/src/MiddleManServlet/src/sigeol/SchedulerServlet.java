@@ -17,10 +17,14 @@
 package sigeol;
 
 import java.io.FileOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
 import org.quartz.SimpleTrigger;
+import org.quartz.ee.servlet.QuartzInitializerServlet;
 import java.util.Calendar;
 import org.quartz.impl.StdSchedulerFactory;
 import java.text.*;
@@ -52,14 +56,9 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  * @author Mattia Barbiero
  * @version  1.5
  *
- * TODO logger
+ * 
  */
 public class SchedulerServlet extends HttpServlet {
-
-    /**
-     *
-     */
-    protected Scheduler scheduler = null;
 
     /**
      * <p>
@@ -72,16 +71,7 @@ public class SchedulerServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        /*** TODO ServletContext ctx = config.getServletContext();**/
-        System.out.println("Initializing SIGEOL scheduler manager.. ");
-        try {
-            scheduler = StdSchedulerFactory.getDefaultScheduler(); //factory.getScheduler();
-            System.out.println("SIGEOL scheduler manager status: OK");
-        } catch (Exception e) {
-            System.out.println("SIGEOL scheduler manager status: NOT OK");
-            e.printStackTrace();
-        }
-
+        Logger.getLogger(SchedulerServlet.class.getName()).log(Level.INFO, null, "Servlet SIGEOL initialized");
     }
 
     /**<p>
@@ -97,8 +87,7 @@ public class SchedulerServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println("<HTML><head><title>Sigeol Servlet</title></head><BODY BGCOLOR=\"#7F7FFF\"><H1 ALIGN=CENTER>SIGEOL</H1> <br/><h2>Scheduler servlet !</h2></BODY></HTML>");
-        out.close();
-        doPost(request, response);
+        out.close();        
     }
 
     /**<p>
@@ -112,28 +101,29 @@ public class SchedulerServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // HttpSession session = request.getSession(true);
+        //HttpSession session = request.getSession(true);
         //if(!session.isNew())
         String operation = request.getParameter("op");
         if (operation == null) {
             response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+            Logger.getLogger(SchedulerServlet.class.getName()).log(Level.SEVERE, null, "Error: operation null");
             return;
         }
         //Schedule Job
         if (operation.compareTo("sj") == 0) {
             // creazione schedulazione job algoritmo
             scheduleAlgortihmJob(request, response);
-
         } else {
-            //Do Job
             // controllo POST multipart
             boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+            //Do Job
             if (operation.compareTo("dj") == 0 && isMultipart) // inizializzazione e avvio job algoritmo
             {
                 initAlgortihmJob(request, response);
             } else {
                 response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
-            }
+                Logger.getLogger(SchedulerServlet.class.getName()).log(Level.SEVERE, null, "Error: operation "+operation+" not valid");
+           }
         }
     }
 
@@ -154,6 +144,7 @@ public class SchedulerServlet extends HttpServlet {
      * @param response servlet response
      */
     private void scheduleAlgortihmJob(HttpServletRequest request, HttpServletResponse response) {
+        Scheduler scheduler = getScheduler(request);
         try {
             // lettura file configurazione servlet
             ServletConfig cfg = getServletConfig();
@@ -177,36 +168,37 @@ public class SchedulerServlet extends HttpServlet {
             // aggiunta dell'evento nello scheduler
             if (course != null) {
                 // creazione del job da schedulare
-                JobDetail jobDetail = new JobDetail("job_" + course, "algorithm_job", SchedulerJobListener.class);
-                System.out.println("created job_" + course + " algorithm_job");
+                JobDetail jobDetail = new JobDetail("jobListener_" + course, "listener_job", SchedulerJobListener.class);
+                System.out.println("created job_" + course + " listener_job");
                 jobDetail.getJobDataMap().put("url_client", url_client);
                 jobDetail.getJobDataMap().put("course", course);
-                // Rendiamo il job recovarable
+                // rendiamo il job recovarable
                 jobDetail.setRequestsRecovery(true);
-                // Rendiamo il job persistente
-                //jobDetail.setVolatility(false);
+                // rendiamo il job persistente
+                jobDetail.setVolatility(false);
                 // creazione trigger
                 SimpleTrigger trigger = new SimpleTrigger();
-                trigger.setName("trigger_" + course);
-                trigger.setGroup("algoritm_trigger");
+                trigger.setName("triggerListener_" + course);
+                trigger.setGroup("listener_trigger");
                 trigger.setJobGroup("algorithm");
                 trigger.setStartTime(date);
-
-                System.out.println("created trigger_" + course + " algorithm_trigger");
+                trigger.setVolatility(false);
+                System.out.println("created triggerListener_" + course + " listener_trigger");
                 // creazione evento
                 scheduler.scheduleJob(jobDetail, trigger);
-
                 // invio risposta di creazione risorsa
                 response.setStatus(HttpServletResponse.SC_CREATED);
             } else // invio risposta di errore
             {
                 response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+                Logger.getLogger(SchedulerServlet.class.getName()).log(Level.SEVERE, null, "Error creating job: course not valid");
+
             }
         } catch (Exception e) {
             e.printStackTrace();
             // invio risposta di errore
             response.setStatus(HttpServletResponse.SC_EXPECTATION_FAILED);
-
+            Logger.getLogger(SchedulerServlet.class.getName()).log(Level.SEVERE, null, e.toString());
         }
     }
 
@@ -217,6 +209,8 @@ public class SchedulerServlet extends HttpServlet {
      * @param response servlet response
      */
     private void initAlgortihmJob(HttpServletRequest request, HttpServletResponse response) {
+        Scheduler scheduler = getScheduler(request);
+
         // lettura file configurazione servlet
         ServletConfig cfg = getServletConfig();
 
@@ -225,19 +219,14 @@ public class SchedulerServlet extends HttpServlet {
         String url_client = cfg.getInitParameter("url-client");
 
         try {
-            PrintWriter out = null;
             String saveFile = null;
-
-            out = response.getWriter();
             // salvataggio del file con i parametri del corso
             ServletFileUpload upload = new ServletFileUpload();
             FileItemIterator iter = upload.getItemIterator(request);
-            System.out.println("iter: " + iter.toString());
-
+            
             while (iter.hasNext()) {
                 FileItemStream item = iter.next();
                 String name = item.getFieldName();
-                System.out.println("Name input: " + name);
                 if (name.equals("inputfile") && !item.isFormField()) {
                     DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-HH_mm_ss");
                     Date date = new java.util.Date();
@@ -245,7 +234,7 @@ public class SchedulerServlet extends HttpServlet {
                     saveFile = input_path + datetime + "_" + item.getName();
 
                     byte[] buffer = new byte[4 * 1024];
-                    
+
                     FileOutputStream fileStream = new FileOutputStream(this.getServletContext().getRealPath("/") + saveFile);
                     InputStream stream = item.openStream();
                     int len = 0;
@@ -258,7 +247,7 @@ public class SchedulerServlet extends HttpServlet {
                     }
                     stream.close();
                     fileStream.flush();
-                    fileStream.close();                    
+                    fileStream.close();
                 }
             }
 
@@ -280,10 +269,10 @@ public class SchedulerServlet extends HttpServlet {
                 jobDetail.getJobDataMap().put("timeout", timeout);
                 // rendiamo il job ripristinabile
                 jobDetail.setRequestsRecovery(true);
+                jobDetail.setVolatility(false);
                 // ritardo di 30s all'avvio del job
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.SECOND, 30);
-
                 // creazione trigger
                 SimpleTrigger trigger = new SimpleTrigger("trigger_" + course, "algoritm_trigger", cal.getTime());
                 try {
@@ -296,21 +285,28 @@ public class SchedulerServlet extends HttpServlet {
                 }
                 // invio risposta di esecuzione job
                 response.setStatus(HttpServletResponse.SC_GONE);
-                System.out.println("job: " + course + " creato con successo. \n Start time: " + trigger.getStartTime().toString());
+                System.out.println("job: " + course + " created. \n Start time: " + trigger.getStartTime().toString());
 
             } else // invio risposta di errore
             {
                 response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
-                System.out.println("Errore.. richiesta creazione job non accettata");
-
+                Logger.getLogger(SchedulerServlet.class.getName()).log(Level.SEVERE, null, "Error creating job: course null");
             }
-
         } catch (Exception e) {
             response.setStatus(HttpServletResponse.SC_EXPECTATION_FAILED);
-            System.out.println("Errore.. richiesta creazione job");
             e.printStackTrace();
-
+            Logger.getLogger(SchedulerServlet.class.getName()).log(Level.SEVERE, null, "Error creating job: "+e.toString());
         }
+    }
 
+    public Scheduler getScheduler(HttpServletRequest request) {
+        try {
+            ServletContext ctx = request.getSession().getServletContext();
+            StdSchedulerFactory factory = (StdSchedulerFactory) ctx.getAttribute(QuartzInitializerServlet.QUARTZ_FACTORY_KEY);
+            return factory.getScheduler();
+        } catch (SchedulerException ex) {
+            Logger.getLogger(SchedulerServlet.class.getName()).log(Level.SEVERE, null, "Error getting scheduler istance "+ex.toString());
+            return null;
+        }
     }
 }

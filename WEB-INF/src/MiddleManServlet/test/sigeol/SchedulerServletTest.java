@@ -5,7 +5,6 @@
 
 package sigeol;
 
-import com.mockrunner.mock.web.MockHttpServletRequest;
 import com.mockrunner.mock.web.MockServletConfig;
 import com.mockrunner.mock.web.MockServletContext;
 import com.mockrunner.mock.web.WebMockObjectFactory;
@@ -13,16 +12,11 @@ import com.mockrunner.servlet.BasicServletTestCaseAdapter;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
-import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.fileupload.FileUploadTestCase;
 import org.jdom.Element;
-import org.apache.commons.fileupload.ServletFileUploadTest;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
+import org.quartz.Scheduler;
+import org.quartz.impl.StdSchedulerFactory;
+import org.quartz.ee.servlet.QuartzInitializerServlet;
 
 
 
@@ -35,7 +29,9 @@ public class SchedulerServletTest extends BasicServletTestCaseAdapter
     @Override
     protected void setUp() throws Exception
     {
+
         super.setUp();
+        createServlet(org.quartz.ee.servlet.QuartzInitializerServlet.class);
         createServlet(SchedulerServlet.class);
         WebMockObjectFactory s =this.getWebMockObjectFactory();
         MockServletConfig config = s.getMockServletConfig();
@@ -45,7 +41,9 @@ public class SchedulerServletTest extends BasicServletTestCaseAdapter
         config.setServletContext(context);
         config.setInitParameter("input-itc-path", "/WEB-INF/itc/input/");
         config.setInitParameter("output-itc-path", "/WEB-INF/itc/output/");
-
+        config.setInitParameter("shutdown-on-unload", "true");
+        config.setInitParameter("start-scheduler-on-load", "true");
+        config.setInitParameter("url-client","http://localhost:8080/timetables");
     }
 
     /**

@@ -58,11 +58,12 @@ public class SchedulerJobListener implements Job {
      */
     public void execute(JobExecutionContext context) throws JobExecutionException {
         try {
+
             // parametri passati al job
             JobDataMap data = context.getJobDetail().getJobDataMap();
             String course = data.getString("course");
             String URLName = data.getString("url_client");
-            
+            System.out.println("executing job_" + course + " ...");
             HttpURLConnection.setFollowRedirects(true);
             HttpURLConnection con;
             int responseCode = HttpURLConnection.HTTP_UNAVAILABLE;
@@ -74,7 +75,7 @@ public class SchedulerJobListener implements Job {
                 responseCode = con.getResponseCode();
             }
         } catch (Exception ex) {
-           Logger.getLogger(SchedulerJobListener.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(SchedulerJobListener.class.getName()).log(Level.SEVERE, null, "Error Job listener:"+ex.toString());
         }
     }
 }
