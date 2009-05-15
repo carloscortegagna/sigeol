@@ -18,7 +18,7 @@ def index
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @graduate_courses.to_xml(:include => :curriculums, :except =>[:created_at, :updated_at, :academic_organization_id, :graduate_course_id, :id]) } # index xml
+      format.xml  { render :xml => @graduate_courses.to_xml(:include => :curriculums, :except =>[:created_at, :updated_at]) } # index xml
     end
   end
 
@@ -30,7 +30,6 @@ def index
   def show
     @graduate_course = GraduateCourse.find(params[:id])
     @academic_organization = AcademicOrganization.find(@graduate_course.academic_organization_id)
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @graduate_course.to_xml(:include => :academic_organization) } # show xml

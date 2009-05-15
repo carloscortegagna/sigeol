@@ -25,13 +25,16 @@ class TeachersController < ApplicationController
   # update per i dati personali
   def index
     @teachers = User.find_by_specified_type("Teacher")
+    respond_to do |format|
+     format.xml { render :xml => @teachers.to_xml(:include => :teachings) }
+    end
   end
 
   def show
     @teacher = Teacher.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
-    #  format.xml { render :xml => @teachers.to_xml }
+      format.xml { render :xml => @teachers.to_xml(:include => :teachings) }
     end
   end
 

@@ -16,7 +16,7 @@ class TeachingsController < ApplicationController
   def index
       @teachings = Teaching.find :all
   respond_to do |format|
-  format.xml  { render :xml => @teachings.to_xml(:except =>[:created_at, :updated_at]) }
+  format.xml  { render :xml => @teachings.to_xml(:except =>[:created_at, :updated_at])}
    end
   end
   # GET /teachings/1
