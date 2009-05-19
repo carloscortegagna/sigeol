@@ -3,9 +3,7 @@ class BuildingsController < ApplicationController
   before_filter :manage_buildings_required, :except => [:index, :show]
 
   def index
-    @buildings = Building.find(:all)
-    @classrooms = Classroom.find(:all)
-
+    @buildings = (Building.find(:all)).sort_by { |b| b[:name] }
     respond_to do |format|
       format.html
       format.xml { render :xml => @buildings.to_xml(:include => :classrooms, :except =>[:created_at, :updated_at]) } # index xml

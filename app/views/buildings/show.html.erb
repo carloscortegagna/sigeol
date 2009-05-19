@@ -11,7 +11,8 @@ Telefono: <%= @address.telephone %> <br>
   Non sono state registrate aule per questo edificio
 <% else %>
   Aule: <br><br>
-  <% for c in @building_classrooms %> <%=h c.name %> <br>
+  <% for c in @building_classrooms %> 
+    <%=h c.name %> (<%=h c.capacity %> posti)<br>
   <% end %>
 <% end %>
 <br><br>

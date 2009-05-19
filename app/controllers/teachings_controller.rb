@@ -14,7 +14,17 @@ class TeachingsController < ApplicationController
                                                           :select_teacher, :assign_teacher]
 
   def index
-    @teachings = Teaching.find :all
+    @teachings = Teaching.find(:all)
+    @graduate_courses = GraduateCourse.find(:all, :include => :curriculums)
+    @graduate_courses.each do |g|
+      g['teachings'] = []
+      g.curriculums.each do |c|
+        c.teachings.each do |t|
+          g['teachings'] << t
+        end
+      end
+      g['teachings'].uniq!
+    end
     respond_to do |format|
       format.html
       format.xml  { render :xml => @teachings.to_xml(:except =>[:created_at, :updated_at])}
@@ -25,7 +35,10 @@ class TeachingsController < ApplicationController
   # GET /teachings/1.xml
   def show
     @teaching = Teaching.find(params[:id])
-
+    @teacher = nil
+    if @teaching.teacher_id != nil
+      @teacher = Teacher.find(@teaching.teacher_id)
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @teaching.to_xml(:except =>[:created_at, :updated_at, :id, :period_id, :teacher_id]) }
@@ -44,6 +57,7 @@ class TeachingsController < ApplicationController
       g['teachings'].uniq!
     end
   end
+  
   # GET /teachings/new
   # GET /teachings/new.xml
   def new
@@ -85,6 +99,7 @@ class TeachingsController < ApplicationController
       end
     end
   end
+
   def select_teacher
     @teaching = Teaching.find(params[:id])
     ids = @current_user.graduate_course_ids
@@ -92,6 +107,7 @@ class TeachingsController < ApplicationController
                             :conditions => ["graduate_courses.id IN (?) AND users.password IS NOT NULL",ids])
     @teachers.delete(@teaching.teacher)
   end
+
   def assign_teacher
     @teacher = Teacher.find(params[:teacher_id])
     @teaching = Teaching.find(params[:id])
@@ -103,6 +119,7 @@ class TeachingsController < ApplicationController
       redirect_to select_teacher_teaching_url(@teaching)
     end
   end
+  
   # PUT /teachings/1
   # PUT /teachings/1.xml
   def update

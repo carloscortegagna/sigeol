@@ -1,5 +1,19 @@
-<div>
-  <%= show_teaching(@teaching) %>
-</div>
-<%= link_to 'Edit', edit_teaching_path(@teaching) %> |
-<%= link_to 'Back', teachings_path %>
+--------------------------------------------------
+<br><br>
+Nome insegnamento: <%=h @teaching.name %> <br>
+CFU: <%=h @teaching.CFU %> <br>
+Ore settimanali in aula: <%= @teaching.classHours %> <br>
+Ore settimanali in laboratorio: <%= @teaching.labHours %> <br>
+Numero di studenti: <%=h @teaching.studentsNumber %>
+<br><br>
+--------------------------------------------------
+<br><br>
+<% if @teacher == nil %>
+  Non è stato ancora assegnato un docente a quest'insegnamento
+<% else %>
+  Docente assegnato: <br><br>
+    <%= link_to @teacher.surname + " " + @teacher.name, teacher_path(@teacher) %> <br>
+<% end %>
+<br><br>
+--------------------------------------------------
+<br><br>

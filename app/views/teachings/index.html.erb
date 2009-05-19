@@ -1,26 +1,12 @@
-<h3>Lista pubblica degli insegnamenti</h3>
-<br/>
-<table>
-  <tr>
-    <th>name</th>
-    <th>cfu</th>
-    <th>class hours</th>
-    <th>lab hours</th>
-    <th>student number</th>
-  </tr>
-
-<% for teaching in @teachings %>
-  <tr>
-    <td><%=h teaching.name %></td>
-    <td><%=h teaching.CFU %></td>
-    <td><%=h teaching.classHours %></td>
-    <td><%=h teaching.labHours %></td>
-    <td><%=h teaching.studentsNumber %></td>
-  </tr>
+<h3>Lista degli insegnamenti:</h3>
+--------------------------------------------------
+<br><br>
+<% @graduate_courses.each do |g| %> 
+  <%= g.name %>: <br><br>
+  <% g['teachings'].each do |t| %>
+    <%= link_to t.name, teaching_path(t) %> <br>
+  <% end %>
+  <br><br>
+  --------------------------------------------------
+  <br><br>
 <% end %>
-</table>
-
-<br/> <br/>
-
-<br/> N.B. Mancano Teacher, Period
-
