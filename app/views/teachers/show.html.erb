@@ -8,7 +8,9 @@ Indirizzo email: <%= mail_to @user.mail %>
 <br><br>
 Città: <%=h @user.address.city %> <br>
 Indirizzo: <%=h @user.address.street %> <br>
+<% if @user.address.telephone != nil %>
 Telefono: <%=h @user.address.telephone %>
+<% end %>
 <br><br>
 --------------------------------------------------
 <br><br>
