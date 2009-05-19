@@ -47,7 +47,7 @@ public class SchedulerJobListenerTest extends TestCase {
             }
             CalendarBundle calend = new CalendarBundle();
             TriggerFiredBundle bundle = new TriggerFiredBundle(jobDetail, trigger, calend, true, cal.getTime(), null, null, null);
-            AlgorithmJob job = new AlgorithmJob();
+            SchedulerJobListener job = new SchedulerJobListener();
             JobExecutionContext context = new JobExecutionContext(scheduler, bundle, job);
             job.execute(context);
             assertTrue(true);
