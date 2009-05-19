@@ -8,7 +8,7 @@ class QuantityConstraintTest < ActiveSupport::TestCase
  
  #test36: un oggetto con attributi nulli, non deve essere valido. Se non è valido non viene salvato
     # nel database
-  def test_attribute_not_nil
+  test"Il contenuto degli attributi non deve essere nullo"do
     #caso di prova36.1: q ha tutti gli attributi nulli
     #obiettivo: il sistema deve riconoscere q come oggetto non valido; in particolare deve
       #essere segnalato un errore in ogni attributo
@@ -20,7 +20,7 @@ class QuantityConstraintTest < ActiveSupport::TestCase
   end
 
   #test37: isHard deve contenere un intero compreso tra zero e dieci
-  def test_isHard_must_be_valid
+  test"isHard per essere valido deve contenere un intero compreso tra zero e dieci"do
     q=QuantityConstraint.new
     #caso di prova 37.1: isHard contiene un valore maggiore di dieci
     #obiettivo: isHard contiene un valore non valido e quindi q deve essere non valido
@@ -46,7 +46,7 @@ class QuantityConstraintTest < ActiveSupport::TestCase
     end
 
   #test38: quantity deve contenere un intero compreso tra uno e mille
-  def test_quantity_must_be_valid
+  test"quantity per essere valido deve contenere un intero compreso tra uno e mille"do
     #caso di prova 38.1: quantity contiene un valore maggiore di mille
     #obiettivo: quantity contiene un valore non valido e quindi q deve essere non valido
     q=QuantityConstraint.new

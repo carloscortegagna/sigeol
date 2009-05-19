@@ -8,7 +8,7 @@ class CapabilityTest < ActiveSupport::TestCase
   
 #test16: un oggetto con attributi nulli, non deve essere valido. Se non è valido non viene salvato
   # nel database
-def test_attribute_not_nil
+test"Il contenuto degli attributi non deve essere nullo"do
     #caso di prova16.1: c contiene un oggetto con attributi nulli.
     #obiettivo: Il sistema deve riconoscere c come un oggetto non valido.
     c=Capability.new
@@ -17,7 +17,7 @@ def test_attribute_not_nil
    end
 
 #test17: una capability non può avere lo stesso nome di un'altra
-def test_unique_name
+ test"una capability non puo avere lo stesso nome di un altra"do
   #caso di prova17.1: creazione di una capability con lo stesso nome di un'altra
   #obiettivo: il sistema deve riconoscere c come un oggetto non valido
     c=Capability.new

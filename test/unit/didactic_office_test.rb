@@ -6,7 +6,7 @@ require 'test_helper'
 
 class DidacticOfficeTest < ActiveSupport::TestCase
  #test25: eliminazione di un utente di tipo segreteria didattica
-  def test_destroy_didactic_office
+  test"Cancellazione di un utente di tipo segreteria didattica"do
     #caso di prova 25.1: eliminazione dell'oggetto d di tipo DidacticOffice
     #obiettivo: u è un oggetto di tipo User associato a d. Eliminando d, anche lo user associato
      #deve essere cancellato

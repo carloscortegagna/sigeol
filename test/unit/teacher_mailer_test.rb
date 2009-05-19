@@ -19,7 +19,7 @@ class TeacherMailerTest < ActionMailer::TestCase
 
   #test39: attivazione dell'account tramite mail.
   #@sender e @ receiver  sono due oggetti di tipo User
-  def test_activate_teacher
+  test"attivazione dell account tramite mail"do
     t=TeacherMailer.create_activate_teacher(@sender,@receiver)
     #caso di prova39.1: correttezza mail destinatario
     #obiettivo: l'indirizzo del destinatario della mail deve essere uguale al contenuto dell'attributo mail

@@ -8,7 +8,7 @@ class TeachingTest < ActiveSupport::TestCase
 
   #test42: un oggetto con attributi nulli, non deve essere valido. Se non è valido non viene salvato
     # nel database
-  def test_name_period_not_nil
+  test"Il contenuto degli attributi non deve essere nullo"do
     #caso di prova42.1:  t ha tutti gli attributi nulli
     #obiettivo: il sistema deve riconoscere t come oggetto non valido; in particolare deve
       #essere segnalato un errore in ogni attributo
@@ -19,7 +19,7 @@ class TeachingTest < ActiveSupport::TestCase
   end
 
   #test43: cfu, labhours, classhours e studentsNumber devono essere interi
-  def test_cfu_labhours_classhours_must_be_int
+  test"cfu labhours classhours e studentsNumber devono essere interi"do
     #caso di prova43.1: i quattro attributi contengono un valore decimale
     #obiettivo: il sistema deve riconoscere t come non valido; in particolare dovrà riscontrare
       #un errore in tutti e quattro gli attributi sotto studio
@@ -36,7 +36,7 @@ class TeachingTest < ActiveSupport::TestCase
   end
 
   #test44: cfu, labhours e classhours e studentsNumber devono essere positivi
-  def test_lab_hours_classhours_cfu_not_negative
+  test"cfu labhours e classhours e studentsNumber devono essere positivi"do
     #caso di prova44.1: i quattro attributi contengono valori negativi
     #obiettivo: lo stesso del caso di prova 43.1
     t=Teaching.new
@@ -51,10 +51,10 @@ class TeachingTest < ActiveSupport::TestCase
     assert t.errors.invalid?(:studentsNumber)
     end
 
-  #test45: cfu deve essere minore di 20,
+    #test45: cfu deve essere minore di 20,
     # labhours e classhours devono essere minore di 50
     #studentsNumber minore di 1000
-  def test_lab_hours_classhours_cfu_greather_than
+  test"il valore di lab_hours classhours e cfu deve essere interno ad un deteminato intervallo"do
     #caso di prova45.1: i quattro attributi contengono valori superiori rispetto alle soglie
     #obiettivo: lo stesso del caso di prova 43.1
     t=Teaching.new
@@ -71,7 +71,7 @@ class TeachingTest < ActiveSupport::TestCase
 
   #test46: il periodo di un insegnamento deve essere compatibile con la durata e l'organizzazione
   #accademica del corso di laurea a cui appartiene il curriculum associato
-  def test_create_correct_teaching
+  test"Il periodo di un insegnamento deve essere valido"do
     #caso di prova46.1: teaching_3 non è compatibile con curriculum_1
     #obiettivo: il sistema deve riconoscere l'incompatibilità e aggiungere un errore all'attributo period
     #di teachings_3

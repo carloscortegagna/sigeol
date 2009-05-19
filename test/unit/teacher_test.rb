@@ -6,7 +6,7 @@ require 'test_helper'
 class TeacherTest < ActiveSupport::TestCase
 
   #test40: un oggetto se dopo un aggiornamento presenta attributi nulli, non deve essere valido.
-  def test_on_update_attribute_not_nil
+  test"Un oggetto se dopo un aggiornamento presenta attributi nulli non deve essere valido "do
     #caso di prova40.1: t viene aggiornato mettendo tutti gli attributi a nil
     # obiettivo: il sistema deve riconoscere t come oggetto non valido; in particolare deve
       #essere segnalato un errore in ogni attributo
@@ -20,7 +20,7 @@ class TeacherTest < ActiveSupport::TestCase
   end
 
   #test41:  eliminazione di un teacher
-  def test_destroy_teacher
+  test"eliminazione di un teacher"do
     #caso di prova41.1: cancellazione di teacher_1.
     #obiettivo: oltre a teacher_1 devono essere eliminati anche i vincoli(Constraints)
       #e lo User associato. teacher_1 ha un unico vincolo temporale

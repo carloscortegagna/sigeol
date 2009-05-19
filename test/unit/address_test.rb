@@ -11,7 +11,7 @@ class AddressTest < ActiveSupport::TestCase
 
  #test5: un oggetto con attributi nulli, non deve essere valido. Se non è valido non viene salvato
   # nel database
-  def test_attribute_not_nil
+  test"I valori degli attributi non devono essere nulli" do
     #caso di prova5.1: @a contiene un oggetto con tutti gli attributi nulli.
     #obiettivo: il sistema deve riconoscere @a come un oggetto non valido.
    assert !@a.valid?
@@ -20,7 +20,7 @@ class AddressTest < ActiveSupport::TestCase
   end
 
   #test6: l'attributo telephone deve rispettare l'espressione regolare /^[0-9]{2,4}\-[0-9]{6,8}$/
-  def test_correct_telephone
+  test"telephone per essere valido deve rispettare un insieme di regole"do
     #caso di prova6.1: il prefisso ha più di quattro cifre
     #obiettivo: @a non deve essere valido a causa del contenuto non corretto di telephone
     @a.telephone="12345-123456"
@@ -44,7 +44,7 @@ class AddressTest < ActiveSupport::TestCase
 end
 
   #test7: eliminazione di un indirizzo associato ad uno user
-    def test_destroy_address_in_user_address_id_must_nil
+   test"cancellazione di un indirizzo associato ad uno user"do
       #caso di prova 7.1: eliminazione di una tupla della tabella address
       #obiettivo: eliminata la tupla, lo user associato deve avere il contenuto della chiave esterna(address_id) a nil
       addresses(:address_1).delete
@@ -52,7 +52,7 @@ end
     end
 
   #test8: eliminazione di un indirizzo associato ad uno building
-    def test_destroy_address_in_building_address_id_must_nil
+   test"cancellazione di un indirizzo associato ad uno building"do
       #caso di prova8.1:eliminazione di una tupla della tabella address
       #obiettivo: eliminata la tupla, il building associato deve avere il contenuto della chiave esterna(address_id) a nil
       addresses(:address_2).delete
@@ -60,7 +60,7 @@ end
     end
 
    #test9: inserimento di un indirizzo completamente corretto
-    def test_correct_address
+    test"creazione e salvataggio di un indirizzo valido"do
      #caso di prova9.1: inserimento di un indirizzo completamente corretto
      #obiettivo: tutti gli attributi devono essere validi e quindi l'oggetto @a può essere salvato nel db.
     @a.telephone="049-9050231"
@@ -68,5 +68,4 @@ end
     @a.city="Villafranca veronese"
     assert @a.save
   end
-
-  end
+end

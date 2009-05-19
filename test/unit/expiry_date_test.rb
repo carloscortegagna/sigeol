@@ -11,7 +11,7 @@ class ExpiryDateTest < ActiveSupport::TestCase
   
   #test26: un oggetto con attributi nulli, non deve essere valido. Se non è valido non viene salvato
    # nel database
-  def test_attribute_not_nil
+  test"Il contenuto degli attributi non deve essere nullo"do
     #caso di prova26.1: @e ha tutti gli attributi nulli
     #obiettivo: il sistema deve riconoscere @e come oggetto non valido; in particolare deve 
       #essere segnalato un errore in ogni attributo
@@ -22,7 +22,7 @@ class ExpiryDateTest < ActiveSupport::TestCase
   end
 
   #test27: l'attributo date deve essere maggiore od uguale alla data di sistema
-  def test_validate_date
+  test"date per essere valido deve rispettare un insieme di regole"do
     #caso di prova27.1: date contiene una data precedente alla data di sistema
     #obiettivo: il sistema deve riconoscere @e come un oggetto non valido; in particolare deve essere
       #segnalato un errore in date
@@ -32,8 +32,8 @@ class ExpiryDateTest < ActiveSupport::TestCase
     assert_equal "La data deve essere maggiore di quella di oggi(#{::Date.current})." , @e.errors.on(:date)
   end
 
-  #test28: l'attributo period deve contenere un intero compreso tra uno e dieci
-  def test_validate_period
+  #test28: l'attributo period deve contenere un intero compreso tra uno e quattro
+  test"period per essere valido deve rispettare un insieme di regole"do
     #caso di prova28.1: period contiene un valore decimale
     #obiettivo: period contiene un valore non valido e quindi @e deve essere non valido
     @e.period=1.1
@@ -52,7 +52,7 @@ class ExpiryDateTest < ActiveSupport::TestCase
     #caso di prova28.4: period contiene un valore intero compreso tra uno e dieci
     #obiettivo: period contiene un valore valido e quindi in quell'attributo il sistema
     #non deve segnalare nessun errore
-    @e.period=6
+    @e.period=4
     assert !@e.valid?
     assert !@e.errors.invalid?(:period)
   end

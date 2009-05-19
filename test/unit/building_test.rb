@@ -11,7 +11,7 @@ class BuildingTest < ActiveSupport::TestCase
 
  #test13: un oggetto con attributi nulli, non deve essere valido. Se non è valido non viene salvato
   # nel database
- def test_attribute_not_nil
+ test"Il contenuto degli attributi non deve essere nullo"do
    #caso di prova13.1: @b  contiene un oggetto con attributi nulli.
    #obiettivo: il sistema deve riconoscere @b come non valido; in particolare deve riscontrare
      #l'errore nell'unico attributo che possiede(name)
@@ -20,7 +20,7 @@ class BuildingTest < ActiveSupport::TestCase
  end
  
  #test14: non devono esistere due palazzi con lo stesso nome
- def test_unique_name
+ test"Non devono esistere due palazzi con lo stesso nome"do
    #caso di prova 14.1: assegno a @b un nome che è già stato assegnato ad un altro palazzo
    #obiettivo: il sistema deve riconoscere @b come non valido perchè ha lo stesso nome
     #un altro palazzo già presente come tupla
@@ -30,7 +30,7 @@ class BuildingTest < ActiveSupport::TestCase
  end
 
  #test15: eliminazione di un palazzo
- def test_destroy_building
+ test"Eliminazione di un palazzo"do
    #caso di prova 15.1: si elimina la tupla buildings_1
    #obiettivo: eliminandola non deve più esistere l'indirizzo associato e tutte le classi appartenenti.
     #buildings_1 è associato ad un indirizzo(address_2) e ad una classe(classroom_1)

@@ -18,7 +18,7 @@ class UserTest < ActiveSupport::TestCase
 
   #test58: un oggetto con attributi nulli, non deve essere valido. Se non è valido non viene salvato
      # nel database
-  def test_attribute_not_nil
+  test"Il contenuto degli attributi non deve essere nullo"do
     #caso di prova58.1: u ha tutti gli attributi nulli
     #obiettivo: il sistema deve riconoscere u come oggetto non valido; in particolare deve
       #essere segnalato un errore in ogni attributo
@@ -27,7 +27,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   #test59: il contenuto di password deve avere più di sei caratteri di tipo alfanumerico
-  def test_validate_password
+  test"password deve avere piu di sei caratteri di tipo alfanumerico"do
     #caso di prova59.1: la password è vuota
     #obiettivo: non essendo corretto il contenuto di password,
      # il sistema deve riconoscere @u come non valido
@@ -48,7 +48,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
  #test60: mail deve rispettare l'espressione regolare definita
-  def test_validate_mail
+  test"mail deve rispettare l espressione regolare definita"do
     #caso di prova60.1: mail contiene al suo interno un carattere non valido: ?
     #obiettivo: a causa del contenuto della mail non corretto,
       #il sistema deve riconoscere @u come un oggetto non valido
@@ -62,7 +62,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   #test61: non possono esistere due tuple in users con lo stesso valore di mail
-  def test_unique_mail
+  test"Non possono esistere due tuple con lo stesso valore di mail"do
     #caso di prova61.1: u contiene la stessa mail di user_2
     #obiettivo: il sistema deve riconoscere u come non valido dato che possiede una mail già presente
       #in una tupla di users
@@ -72,8 +72,8 @@ class UserTest < ActiveSupport::TestCase
   end
 
  #test62: la password deve essere salvata crittografata
-  def test_encrypt_password
-   #caso di prova62.1: la varibile locale password contiene il valore l'attributo password di user_1
+  test"la password deve essere salvata crittografata"do
+   #caso di prova62.1: la varibile locale password contiene il valore dell'attributo password di user_1
     # p è una variabile locale che contiene la password di user_1(alessandro) crittografata
    #obiettivo: password e p devono contenere lo stesso valore; ovvero la stringa "alessandro"
     #crittografata
@@ -83,7 +83,7 @@ class UserTest < ActiveSupport::TestCase
  end
 
 #test63: uno user deve essere specificato
-  def test_user_must_be_specified
+  test"Uno user deve essere specificato"do
   d=DidacticOffice.new
   d.save
   #caso di prova63.1: u non è specificato
@@ -97,7 +97,7 @@ class UserTest < ActiveSupport::TestCase
 end
 
 #test64: test del metodo authenticate
-  def test_authenticate
+  test"test del metodo authenticate"do
   #caso di prova64.1: ad authenticate vengono passati uno user ed una password non corretti
   #obiettivo: il metodo deve tornare un valore booleano pari a false
    u=User.authenticate("prova@math.unipd.it", "password")
@@ -109,7 +109,7 @@ end
 end
 
  #test65: distuzione corretta di uno user
-  def test_destroy_user
+  test"distuzione corretta di uno user"do
   #caso di prova65.1: cancellazione della tupla riferita dall'oggetto @u
   #obiettivo: oltre alla tupla devono essere eliminati tutti gli elementi associati
   assert @u.destroy
@@ -118,7 +118,7 @@ end
   end
 
  #test66: test dei metodi manage_
-def test_presence_of_capabilities
+test"test dei metodi manage_"do
   #caso di prova66.1: @u contiene tutte i privilegi
   #obiettivo: tutti i metodi manage_ devono ritornare true
   assert @u.manage_buildings?
@@ -131,20 +131,20 @@ def test_presence_of_capabilities
 end
 
 #test67: test dei metodi own_by_
-def test_check_if_user_is_didactic_office
+test"test dei metodi own_by_"do
   #caso di prova67.1: @u è associato ad una segreteria didattica(didactic_office)
   #obiettivo: chiamando su @u, own_by_didactic_office? deve tornare true mentre own_by_teacher? false
   assert @u.own_by_didactic_office?
   assert !@u.own_by_teacher?
 end
-
+#-------------------non serve!!---------------------------------------------------------------------------
 #test68: cancellazione di uno user associato ad almeno un corso di laurea
-def test_try_to_destroy_user_associated_to_graduate_course
+#def test_try_to_destroy_user_associated_to_graduate_course
   #caso di prova68.1: @ u è associato al corso di laurea graduate_course_1
   #obiettivo: tentando di cancellare @u, si deve sollevare un'eccezione. Di conseguenza @u non deve
     #essere eliminato
-  @u.graduate_courses<<graduate_courses(:graduate_course_1)
-  @u.save
-  assert_raise(Exception){@u.destroy}
-end
+  #@u.graduate_courses<<graduate_courses(:graduate_course_1)
+  #@u.save
+  #assert_raise(Exception){@u.destroy}
+#end
 end

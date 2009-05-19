@@ -8,7 +8,7 @@ class TimetableTest < ActiveSupport::TestCase
 
   #test55: un oggetto con attributi nulli, non deve essere valido. Se non è valido non viene salvato
      # nel database
-  def test_attribute_not_nil
+  test"Il contenuto degli attributi non deve essere nullo"do
     #caso di prova55.1: t ha tutti gli attributi nulli
    #obiettivo: il sistema deve riconoscere t come oggetto non valido; in particolare deve
       #essere segnalato un errore in ogni attributo
@@ -24,7 +24,7 @@ class TimetableTest < ActiveSupport::TestCase
   #test56: year deve essere una stringa del tipo 2008-09, dove i primi quattro caratteri devono
     #corrispondere o all'anno di sistema o al precedente e gli ultimi due devono rappresentare
     #un intero incrementato di uno rispetto alle cifra composta dal secondo e terzo carattere
-  def test_validate_year
+  test"year per essere valido deve rispettare un insieme di regole"do
     #caso di prova56.1: year assume un valore totalmente casuale
     #obiettivo: t non deve essere valido perchè l'attributo year possiede un errore
     t=Timetable.new
@@ -49,7 +49,7 @@ class TimetableTest < ActiveSupport::TestCase
   end
 
   #test57: non possono esistere due timetable con gli stessi valori
-  def test_unique
+  test"Non possono esistere due timetable con gli stessi valori"do
     #caso di prova57.1: t assume gli stessi valori di timetable_1
    #obiettivo: il sistema deve ricoscere t come un oggetto non valido
     t=Timetable.new

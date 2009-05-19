@@ -8,7 +8,7 @@ class BooleanConstraintTest < ActiveSupport::TestCase
 
   #test10: un oggetto con attributi nulli, non deve essere valido. Se non è valido non viene salvato
     # nel database
-  def test_attribute_not_nil
+  test"Il contenuto degli attributi non deve essere nullo"do
     #caso di prova10.1: b contiene un oggetto con tutti gli attributi nulli
     #obiettivo: il sistema deve riconoscere b come un oggetto non valido; in particolare deve riscontrare il problema
       #su tutti gli attributi di b
@@ -20,7 +20,7 @@ class BooleanConstraintTest < ActiveSupport::TestCase
   end
 
   #test11: studio del comportamento della variabile booleana bool
-  def test_bool_must_be_valid
+ test"bool per essere valido deve rispettare un insieme di regole"do
     #caso di prova11.1: bool assume il valore 3
     #obiettivo: il valore 3 deve essere convertito a false
     b=BooleanConstraint.new
@@ -37,7 +37,7 @@ class BooleanConstraintTest < ActiveSupport::TestCase
   end
 
   #test12: isHard deve contenere solo valori interi compresi tra 0 e 10
-  def test_isHard_must_be_valid
+  test"isHard per essere valido deve rispettare un insieme di regole"do
     #caso di prova12.1: isHard contiene il valore 11
     #obiettivo: il sistema deve riconoscere che b non è valido; in particolare deve riscontrare
       #l'errore sull'attributo isHard

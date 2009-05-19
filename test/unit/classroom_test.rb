@@ -8,7 +8,7 @@ class ClassroomTest < ActiveSupport::TestCase
   
   #test18: un oggetto con attributi nulli, non deve essere valido. Se non è valido non viene salvato
     # nel database
- def test_attribute_not_nil
+ test"Il contenuto degli attributi non deve essere nullo"do
     #caso di prova18.1: c contiene un oggetto con attributi nulli.
     #obiettivo: Il sistema deve riconoscere c come un oggetto non valido.
     c=Classroom.new
@@ -19,8 +19,8 @@ class ClassroomTest < ActiveSupport::TestCase
 
  #test19: una classe associata ad un palazzo non può avere lo stesso nome di un'altra
   #appartenente allo stesso palazzo
- def test_unique_name_on_same_building
-    #caso di prova19.1: c è un oggetto di tipo Classroom che ha lo stesso nome di un'altra classe
+ test"In un palazzo non possono esistere classi con lo stesso nome"do
+ #caso di prova19.1: c è un oggetto di tipo Classroom che ha lo stesso nome di un'altra classe
     #obiettivo: il sistema deve riconoscere c come un oggetto non valido in quanto possiede un
      #problema nell'attributo name
     c=Classroom.new
@@ -31,7 +31,7 @@ class ClassroomTest < ActiveSupport::TestCase
   end
 
  #test20: eliminazione di una classe
- def test_destroy
+ test"Cancellazione di una classe"do
     #caso di prova20.1: eliminazione della tupla classroom_1
     #obiettivo: eliminandola non devono più esistere i constraints associati.
      #b è un vincolo booleano associato a c e rappresenta l'unica tupla presente nella tabella

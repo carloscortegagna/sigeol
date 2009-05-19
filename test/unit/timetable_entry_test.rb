@@ -8,7 +8,7 @@ class TimeTableEntryTest < ActiveSupport::TestCase
   
   #test51: un oggetto con attributi nulli, non deve essere valido. Se non è valido non viene salvato
      # nel database
-  def test_attribute_not_nil
+  test"Il contenuto degli attributi non deve essere nullo"do
    #caso di prova51.1: t ha tutti gli attributi nulli
    #obiettivo: il sistema deve riconoscere t come oggetto non valido; in particolare deve
       #essere segnalato un errore in ogni attributo
@@ -21,7 +21,7 @@ class TimeTableEntryTest < ActiveSupport::TestCase
   end
 
  #test52: day deve assumere un valore intero compreso tra uno e cinque
-  def test_day_must_be_valid
+  test"day deve assumere un valore intero compreso tra uno e cinque"do
     #caso di prova 52.1: day contiene un valore maggiore di cinque
     #obiettivo: day contiene un valore non valido e quindi t deve essere non valido
     t=TimetableEntry.new
@@ -47,7 +47,7 @@ class TimeTableEntryTest < ActiveSupport::TestCase
   end
 
  #test53: il valore di startTime deve essere minore di quello contenuto in endTime
- def test_correct_time
+ test"Il valore di startTime deve essere minore di quello contenuto in endTime"do
   #caso di prova53.1: startTime assume un valore più grande di endTime
   #obiettivo: t non deve essere valido
   t=TimetableEntry.new
@@ -58,7 +58,7 @@ class TimeTableEntryTest < ActiveSupport::TestCase
  end
 
 #test54: non possono esistere due timetable_entry con gli stessi valori
- def test_unique
+ test"Non possono esistere due tuple con gli stessi valori"do
    #caso di prova54.1: t2 assume gli stessi valori di t
    #obiettivo: il sistema deve ricoscere t2 come un oggetto non valido
    t=create_timetable_entry

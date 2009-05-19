@@ -8,7 +8,7 @@ class CurriculumTest < ActiveSupport::TestCase
 
   #test21: un oggetto con attributi nulli, non deve essere valido. Se non è valido non viene salvato
     # nel database
-  def test_name_not_nil
+  test"Il contenuto di name non deve essere nullo"do
     #caso di prova21.1: c è un oggetto di tipo Curriculum con tutti gli attributi nulli
     #obiettivo: il sistema deve riconoscere c come oggetto non valido
     c=Curriculum.new
@@ -17,7 +17,7 @@ class CurriculumTest < ActiveSupport::TestCase
   end
 
   #test22: un curriculum non può avere lo stesso nome di un altro associato allo stesso corso di laurea
-  def test_unique_curriculum_graduate_course
+  test"Curricula associati allo stesso corso di laurea non possono avere lo stesso nome"do
     #caso di prova22.1: c è un oggetto che contiene lo stesso nome e corso di laurea di una tupla
       #già presente nel db
     #obiettivo: poichè esiste già una tupla con lo stesso nome e corso di laurea, il sistema deve riconoscere
@@ -32,7 +32,7 @@ class CurriculumTest < ActiveSupport::TestCase
   #test23: eliminazione  di un insegnamento associato
     #teaching_1 è un insegnamento( con name=Ingegneria del software) associato a due curriculum:
     #curriculum_1 e curriculum_2
-  def test_delete_last_teaching
+  test"Cancellazione di un insegnamento associato a due curricula"do
     #caso di prova 23.1: curriculum_1 non è più associato a teaching_1
     #obiettivo: dopo l'operazione c.teachings.delete(t), teaching_1 deve essere ancora presente nel db
     c=curriculums(:curriculum_1)
@@ -49,7 +49,7 @@ class CurriculumTest < ActiveSupport::TestCase
 
   #test24: eliminazione di un curriculum.
     #curriculum_1 e curriculum_2 sono associati ad uno stesso insegnamento nominato Ingegneria del software
-  def test_destroy
+  test"cancellazione di un curriculum"do
     #caso di prova24.1: eliminazione di curriculum_1
     #obiettivo: dopo aver eliminato curriculum_1 l'insegnamento con nome uguale a Ingegneria del software
       #deve essere ancora presente

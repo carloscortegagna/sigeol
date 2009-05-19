@@ -4,10 +4,10 @@
 
 require 'test_helper'
 
-class BooleanConstraintTest < ActiveSupport::TestCase
+class BelongTest < ActiveSupport::TestCase
 
  #test69: creare un'associazione tra un curriculum ed un insegnamento che già esiste
-  def test_create_association_curriculum_teaching_that_exists_yet
+ test"creare un associazione tra un curriculum ed un insegnamento che gia esiste"do
     #caso di prova69.1: si crea un'associazione tra :curriculum_1 e :teaching_1
     #obiettivo: poichè è già esistente, il sistema deve riconoscere che l'associazione non è valida
      c=curriculums(:curriculum_1)

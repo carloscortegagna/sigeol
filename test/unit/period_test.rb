@@ -8,7 +8,7 @@ class PeriodTest < ActiveSupport::TestCase
 
   #test32: un oggetto con attributi nulli, non deve essere valido. Se non è valido non viene salvato
     # nel database
- def test_attribute_not_nil
+ test"Il contenuto degli attributi non deve essere nullo"do
     #caso di prova32.1: p ha tutti gli attributi nulli
     #obiettivo: il sistema deve riconoscere p come oggetto non valido; in particolare deve
       #essere segnalato un errore in ogni attributo
@@ -19,7 +19,7 @@ class PeriodTest < ActiveSupport::TestCase
   end
 
  #test33: year deve contenere un intero compreso tra uno e sei
- def test_year_must_valid
+  test"year per essere valido deve rispettare un insieme di regole"do
    p=Period.new
    #caso di prova33.1: year contiene un valore negativo
    #obiettivo: year contiene un valore non valido e quindi p deve essere non valido
@@ -45,7 +45,7 @@ class PeriodTest < ActiveSupport::TestCase
   end
 
 #test34: subperiod deve contenere un intero compreso tra uno e quattro
- def test_subperiod_must_valid
+ test"subperiod per essere valido deve rispettare un insieme di regole"do
     p=Period.new
     #caso di prova34.1: subperiod contiene un valore negativo
     #obiettivo: subperiod contiene un valore non valido e quindi p deve essere non valido
@@ -71,7 +71,7 @@ class PeriodTest < ActiveSupport::TestCase
   end
 
 #test35: non devono essere presenti periodi con gli stessi valori contenuti negli attributi
- def test_unique_subperiod_year
+ test"Non devono essere presenti periodi con gli stessi valori di year e subperiod"do
   #caso di prova35.1: p è un oggetto Period con lo stesso year e subperiod di period_1
   #obiettivo: il sistema deve riconoscere p come non valido in quanto i valori dei suoi attributi
     #sono già presenti in un'altra tupla

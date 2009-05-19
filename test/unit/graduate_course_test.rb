@@ -8,7 +8,7 @@ class GraduateCourseTest < ActiveSupport::TestCase
  
   #test29: un oggetto con attributi nulli, non deve essere valido. Se non è valido non viene salvato
     # nel database
-  def test_attribute_not_nil
+  test"Il contenuto degli attributi non deve essere nullo"do
     #caso di prova29.1: g ha tutti gli attributi nulli
     #obiettivo: il sistema deve riconoscere g come oggetto non valido; in particolare deve
       #essere segnalato un errore in ogni attributo
@@ -20,7 +20,7 @@ class GraduateCourseTest < ActiveSupport::TestCase
  end
 
   #test30: duration deve contenere un intero compreso tra uno e sei
-   def test_valid_duration
+   test"duration per essere valido deve rispettare un insieme di regole"do
     #caso di prova 30.1: duration contiene un valore negativo
     #obiettivo: duration contiene un valore non valido e quindi @e deve essere non valido
     g=GraduateCourse.new
@@ -46,7 +46,7 @@ class GraduateCourseTest < ActiveSupport::TestCase
    end
 
   #test31: eliminazione di un corso di laurea
-   def test_destroy_graduate_course
+   test"Cancellazione di un corso di laurea"do
     #caso di prova 31.1: eliminazione di graduate_course_1. Quest'ultimo è associato
       #ad un academic_organizations, a due curriculums, ad un ExpiryDate e ad un BooleanConstraint.
     #A sua volta i due curriculum sono associati a due identici teaching.
