@@ -27,8 +27,8 @@ class ExpiryDate < ActiveRecord::Base
   validates_numericality_of :period,
                             :only_integer =>true,
                             :greater_than_or_equal_to =>1,
-                            :less_than_or_equal_to =>10,
-                            :message=>"Attenzione il periodo deve essere compreso tra 1 e 10"
+                            :less_than_or_equal_to =>4,
+                            :message=>"Attenzione il periodo deve essere compreso tra 1 e 4"
 
   validates_presence_of :date,
                         :message=>"La data non deve essere vuota"

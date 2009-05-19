@@ -40,8 +40,8 @@ class AcademicOrganization < ActiveRecord::Base
   validates_numericality_of :number,
                             :only_integer => true,
                             :greater_than_or_equal_to => 1,
-                            :less_than_or_equal_to => 6,
-                            :message => "Il numero deve essere compreso tra 1 e 6"
+                            :less_than_or_equal_to => 4,
+                            :message => "Il numero deve essere compreso tra 1 e 4"
 
   validates_presence_of  :number,
                          :message => "Il numero di periodi non deve essere vuoto"

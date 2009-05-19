@@ -26,7 +26,7 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
   belongs_to :specified, :polymorphic => true, :dependent=>:destroy
   has_and_belongs_to_many :capabilities, :uniq => true
-  has_and_belongs_to_many :graduate_courses, :uniq => true, :before_remove => :not_without_graduate_courses
+  has_and_belongs_to_many :graduate_courses, :uniq => true
   belongs_to :address, :dependent => :destroy
   before_save :encrypt_password
   before_validation :calculate_digest
@@ -136,6 +136,18 @@ class User < ActiveRecord::Base
     self.specified_type == "DidacticOffice"
   end
 
+  # Viene utilizzato per sollevare un'eccezzione nel caso si tenti di cancellare l'ultimo corso di
+  # laurea (parametro +graduate_course+) associato all'oggetto _User_ di invocazione.
+  def before_destroy
+      corsi = self.graduate_courses
+      corsi.each do |c|
+        if c.users.size == 1
+          puts "ok"
+          raise Exception
+        end
+      end
+    end
+     
   private
 
   # Se è presente l'attributo +password+ per lo _User_ oggetto d'invocazione, questa viene
@@ -157,12 +169,4 @@ class User < ActiveRecord::Base
       puts self.digest
     end
   end
-
-  # Viene utilizzato per sollevare un'eccezzione nel caso si tenti di cancellare l'ultimo corso di
-  # laurea (parametro +graduate_course+) associato all'oggetto _User_ di invocazione.
-  def not_without_graduate_courses(graduate_course) #:doc:
-    if self.graduate_courses.size == 1
-      raise Exception
-    end
-  end
- end
+end
