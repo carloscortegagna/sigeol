@@ -16,7 +16,9 @@
  */
 package sigeol;
 
+import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,14 +42,14 @@ import org.quartz.JobExecutionException;
  *
  *
  */
-
 public class SchedulerJobListener implements Job {
 
     /**
      *
      */
-    public SchedulerJobListener() {}
-    
+    public SchedulerJobListener() {
+    }
+
     /**
      * <p>
      * Segnala l'evento all'applicazione Sigeol
@@ -58,8 +60,8 @@ public class SchedulerJobListener implements Job {
      */
     public void execute(JobExecutionContext context) throws JobExecutionException {
         try {
-
             // parametri passati al job
+            int retry = 3;
             JobDataMap data = context.getJobDetail().getJobDataMap();
             String course = data.getString("course");
             String URLName = data.getString("url_client");
@@ -67,15 +69,17 @@ public class SchedulerJobListener implements Job {
             HttpURLConnection.setFollowRedirects(true);
             HttpURLConnection con;
             int responseCode = HttpURLConnection.HTTP_UNAVAILABLE;
-            for (int i = 0; i < 3 && (responseCode != HttpURLConnection.HTTP_OK); i++) {
+            for (int i = 0; i < retry && (responseCode != HttpURLConnection.HTTP_OK); i++) {
                 con = (HttpURLConnection) new URL(URLName).openConnection();
                 con.setRequestMethod("POST");
                 con.setRequestProperty("course", course);
                 con.setReadTimeout(0);
                 responseCode = con.getResponseCode();
             }
-        } catch (Exception ex) {
-           Logger.getLogger(SchedulerJobListener.class.getName()).log(Level.SEVERE, null, "Error Job listener:"+ex.toString());
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(SchedulerJobListener.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(SchedulerJobListener.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

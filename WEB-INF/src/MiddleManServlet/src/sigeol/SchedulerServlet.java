@@ -299,6 +299,11 @@ public class SchedulerServlet extends HttpServlet {
         }
     }
 
+     /**<p>
+     * Ritorna un riferimento all'istanza scheduler
+     * </p>
+     * @param request servlet request     *
+     */
     public Scheduler getScheduler(HttpServletRequest request) {
         try {
             ServletContext ctx = request.getSession().getServletContext();
