@@ -70,7 +70,7 @@ public class SchedulerJobListener implements Job {
             HttpURLConnection con;
             int responseCode = HttpURLConnection.HTTP_UNAVAILABLE;
             for (int i = 0; i < retry && (responseCode != HttpURLConnection.HTTP_OK); i++) {
-                con = (HttpURLConnection) new URL(URLName).openConnection();
+                con = (HttpURLConnection) new URL(URLName+"/"+course+"/notify").openConnection();
                 con.setRequestMethod("POST");
                 con.setRequestProperty("course", course);
                 con.setReadTimeout(0);

@@ -116,8 +116,14 @@ public class AlgorithmJob implements Job {
             File outfile = new File(outFileName);
             fileInputStream = new FileInputStream(outfile);
             
-            URL url = new URL(URLName);
-            //for (int i = 0; i < 3 && (responseCode != HttpURLConnection.HTTP_OK); i++) {
+            URL url = new URL(URLName+"/"+course+"/done");
+            for (int i = 0; i < 3 && (responseCode != HttpURLConnection.HTTP_OK); i++) {
+                if(i>0)
+                    try {
+                        this.wait(10000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(AlgorithmJob.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 // connessione HTTP all'applicazione Sigeol
                 conn = (HttpURLConnection) url.openConnection();
                 // permette input
@@ -157,9 +163,11 @@ public class AlgorithmJob implements Job {
                 dos.flush();
                 dos.close();
                 responseCode = conn.getResponseCode();
-            //}
+               
+            }
             // chiude gli stream
                 fileInputStream.close();
+
         } catch (MalformedURLException ex) {
             Logger.getLogger(AlgorithmJob.class.getName()).log(Level.SEVERE, null, ex);
         } catch (FileNotFoundException ex) {
