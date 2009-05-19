@@ -387,45 +387,45 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su AcademicOrganization}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline 
 \hline
  1.1 & 
  Istanza di un oggetto con attributi nulli.& 
  Il sistema deve riconoscere l'oggetto come non valido. & 
- \checkmark & \\
+ \checkmark \\
 \hline\hline
  2.1 & 
  Il contenuto dell'attributo number dell'oggetto d'istanza è 0.& 
  number può contenere solo valori interi compresi tra 1 e 4. Non essendo valido l'oggetto non dovrà essere salvato nel database.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  2.2 & 
  number contiene il valore 7.& 
  Lo stesso del caso di prova 2.1.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  2.3 & 
  number contiene il valore 3.& 
  number contiene un valore corretto e quindi non devono essere riscontrati errori di validazione su di esso.& 
- \checkmark & \\
+ \checkmark \\
  \hline\hline
  3.1& 
  Il contenuto dell'attributo name dell'oggetto d'istanza è 12a34.& 
  name può contenere solo caratteri alfabetici. Non essendo valido l'oggetto non dovrà essere salvato nel database.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  3.2& 
  name contiene un valore valido.& 
  Non devono essere riscontrati errori di validazione su name.& 
- \checkmark & \\
+ \checkmark \\
  \hline \hline
  4.1&
  Agli attributi name e number dell'oggetto da salvare nel db vengono assegnati gli stessi valori di una tupla già presente.&
  Non devono esistere più tuple con la stessa coppia di valori contenuti in name e number. Non essendo valido l'oggetto non dovrà essere salvato nel database.&
- \checkmark & \\
+ \checkmark \\
  \hline
  \end{tabular}
 \end{small}
@@ -434,50 +434,50 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su Address}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline 
 \hline
  5.1 & 
  Istanza di un oggetto con attributi nulli.& 
  Il sistema deve riconoscere l'oggetto come non valido. & 
- \checkmark & \\
+ \checkmark \\
 \hline\hline
  6.1& 
  Il contenuto dell'attributo telephone è 12345-123456.& 
  Il prefisso ha più di quattro cifre e quindi non è valido. L'oggetto per questo motivo non deve essere salvato nel db.&
- \checkmark & \\
+ \checkmark \\
  \hline
  6.2 & 
  telephone contiene il valore 1234-12345.& 
  Il prefisso è corretto ma il numero contiene meno di sei cifre. L'oggetto per questo motivo non deve essere salvato nel db.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  6.3 & 
  telephone contiene il valore 1a23-12345.& 
  Contiene un carattere alfabetico. L'oggetto per questo motivo non deve essere salvato nel db.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  6.4 & 
  telephone rispetta l'espressione regolare.& 
  Non devono essere riscontrati errori di validazione su telephone.& 
- \checkmark & \\
+ \checkmark \\
  \hline\hline
  7.1& 
  Cancellazione di un indirizzo associato ad uno user.& 
  Eliminato l'indirizzo, lo user associato deve avere il contenuto della chiave esterna(address\_id) a nil.& 
- \checkmark & \\
+ \checkmark \\
  \hline \hline
  8.1&
  Cancellazione di un indirizzo associato ad un palazzo.&
  Eliminato l'indirizzo, il palazzo associato deve avere il contenuto della chiave esterna(address\_id) a nil.&
- \checkmark & \\
+ \checkmark \\
  \hline \hline
  9.1&
  Creazione e salvataggio di un indirizzo valido.&
  L'oggetto deve essere salvato nel database.& 	
- \checkmark & \\
+ \checkmark \\
  \hline 
  \end{tabular}
 \end{small}
@@ -487,50 +487,50 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su BooleanConstraint}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline 
 \hline
  10.1 & 
  Istanza di un oggetto con attributi nulli.& 
  Il sistema deve riconoscere l'oggetto come non valido. & 
- \checkmark & \\
+ \checkmark \\
 \hline\hline
  11.1& 
  L'attributo bool dell'oggetto d'istanza contiene il valore 3.& 
  Il valore 3 deve essere convertito a false.&
- \checkmark & \\
+ \checkmark \\
  \hline
  11.2 & 
  bool assume il valore 1& 
  Il valore 1 deve essere convertito a true.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  11.3 & 
  bool assume il valore 0.& 
  Il valore 0 deve essere convertito a false.& 
- \checkmark & \\
+ \checkmark \\
  \hline\hline
  12.1 & 
  L'attributo isHard dell'oggetto d'istanza contiene il valore 11.& 
  isHard deve contenere solo valori interi compresi tra 0 e 10. L'oggetto per questo motivo non deve essere salvato nel db.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  12.2& 
  isHard contiene il valore negativo -1.& 
  Lo stesso del caso di prova 12.1& 
- \checkmark & \\
+ \checkmark \\
  \hline
  12.3&
  isHard contiene il valore 1.1.&
  Lo stesso del caso di prova 12.1&
- \checkmark & \\
+ \checkmark \\
  \hline
  12.4&
  isHard contiene il valore 0.&
  Non devono essere riscontrati errori di validazione su isHard.& 	
- \checkmark & \\
+ \checkmark \\
  \hline 
  \end{tabular}
 \end{small}
@@ -539,25 +539,25 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su Building}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline 
 \hline
  13.1 & 
  Istanza di un oggetto con attributi nulli.& 
  Il sistema deve riconoscere l'oggetto come non valido. & 
- \checkmark & \\
+ \checkmark \\
 \hline\hline
  14.1& 
  L'attributo name dell'oggetto da salvare assume un valore uguale a quello di un oggetto già salvato.  & 
  Non devono esistere due palazzi con lo stesso nome. Quindi l'istanza del caso di prova non essendo valida non deve essere salvata nel db. &
- \checkmark & \\
+ \checkmark \\
  \hline\hline
  15.1 & 
  Eliminazione di un oggetto di tipo Building.& 
  Non deve più esistere nel database il palazzo, l'indirizzo associato e tutte le classi appartenenti.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  \end{tabular}
  \end{small}
@@ -566,20 +566,20 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su Capability}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline 
 \hline
  16.1 & 
  Istanza di un oggetto con attributi nulli.& 
  Il sistema deve riconoscere l'oggetto come non valido. & 
- \checkmark & \\
+ \checkmark \\
 \hline\hline
  17.1 & 
  L'attributo name dell'oggetto da salvare assume un valore uguale a quello di un oggetto già salvato.& 
  Una capability non può avere lo stesso nome di un'altra. Quindi l'istanza del caso di prova non essendo valida non deve essere salvata nel db. &
- \checkmark & \\
+ \checkmark \\
  \hline 
  \end{tabular}
 \end{small}
@@ -588,25 +588,25 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su Classroom}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline 
 \hline
  18.1 & 
  Istanza di un oggetto con attributi nulli.& 
  Il sistema deve riconoscere l'oggetto come non valido. & 
- \checkmark & \\
+ \checkmark \\
 \hline\hline
  19.1& 
  L'attributo name dell'oggetto da salvare assume un valore uguale a quello di un oggetto già salvato. Inoltre entrambi possiedono lo stesso valore di building\_id(chiave esterna per building)& 
  In un stesso palazzo non possono esistere classi con lo stesso nome. L'istanza del caso di prova non essendo valida non deve essere salvata nel db.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  20.1 & 
  Eliminazione di un oggetto di tipo Classroom.& 
  Non devono più esistere nel database la classe e tutti i vincoli associati.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  \end{tabular}
 \end{small}
@@ -616,35 +616,35 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su Curriculum}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline 
 \hline
  21.1 & 
  Istanza di un oggetto con attributi nulli.& 
  Il sistema deve riconoscere l'oggetto come non valido. & 
- \checkmark & \\
+ \checkmark \\
 \hline\hline
  22.1& 
  L'attributo name dell'oggetto da salvare assume un valore uguale a quello di un oggetto già salvato. Inoltre entrambi possiedono lo stesso valore di graduate\_course\_id(chiave esterna per graduate\_course)& 
  In un stesso corso di laurea non possono esistere due curricula con lo stesso nome. L'istanza del caso di prova non essendo valida non deve essere salvata nel db.& 
- \checkmark & \\
+ \checkmark \\
  \hline\hline
  23.1 & 
  Un insegnamento(oggetto di tipo Teacher) è associato a due curricula. Cancellazione di uno dei due.& 
  Dopo l'operazione di eliminazione, l'insegnamento deve essere ancora presente nel db.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  23.2 & 
  Cancellazione dell'altro curriculum.& 
  Dopo l'operazione di eliminazione l'insegnamento non deve essere più presente nel db.& 
- \checkmark & \\
+ \checkmark \\
  \hline\hline
  24.1 & 
  Eliminazione di un oggetto di tipo Curriculum associato ad un insegnamento.& 
  Non devono più esistere nel database il curriculum e l'insegnamento associato dato che non apparteneva ad altri curricula.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  \end{tabular}
 \end{small}
@@ -653,15 +653,15 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su DidacticOffice}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline 
 \hline
  25.1 & 
  Eliminazione di un oggetto di tipo DidacticOffice(Segreteria didattica).& 
  Non devono più esistere nel database la segreteria e lo user associato.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  \end{tabular}
 \end{small}
@@ -671,40 +671,40 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su ExpiryDate}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline 
 \hline
  26.1 & 
  Istanza di un oggetto con attributi nulli.& 
  Il sistema deve riconoscere l'oggetto come non valido. & 
- \checkmark & \\
+ \checkmark \\
 \hline\hline
  27.1& 
  L'attributo date dell'oggetto d'istanza contiene una data precedente alla data di sistema.& 
  Per essere valida la data deve essere maggiore o uguale alla data di sistema. L'oggetto per questo motivo non deve essere salvato nel db.&  
- \checkmark & \\
+ \checkmark \\
  \hline\hline
  28.1 & 
  L'attributo period dell'oggetto d'istanza contiene il valore decimale 1.1& 
  period deve contenere un intero compreso tra uno e quattro. L'oggetto per questo motivo non deve essere salvato nel db.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  28.2 & 
  period contiene il valore negativo -1.& 
  Lo stesso del caso di prova 28.1.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  28.3 & 
  period contiene il valore 11.& 
  Lo stesso del caso di prova 28.1.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  28.4 & 
  periodo contiene il valore 6.& 
  Non devono essere riscontrati errori di validazione su period.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  \end{tabular}
 \end{small}
@@ -714,40 +714,40 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su GraduateCourse}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline 
 \hline
  29.1 & 
  Istanza di un oggetto con attributi nulli.& 
  Il sistema deve riconoscere l'oggetto come non valido. & 
- \checkmark & \\
+ \checkmark \\
 \hline\hline
  30.1& 
  L'attributo duration dell'oggetto d'istanza contiene un valore negativo pari a -1.& 
  Per essere valido duration deve contenere un intero compreso tra uno e sei. L'oggetto per questo motivo non deve essere salvato nel db.&  
- \checkmark & \\
+ \checkmark \\
  \hline
  30.2 & 
  duration contiene il valore decimale 1.1.& 
  Lo stesso del caso di prova 30.1.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  30.3 & 
  duration contiene il valore 7.& 
  Lo stesso del caso di prova 30.1.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  30.4 & 
  duration contiene il valore 6.& 
  Non devono essere riscontrati errori di validazione su duration.&
- \checkmark & \\ 
+ \checkmark \\ 
  \hline\hline
  31.1 & 
  Eliminazione di un corso di laurea(GraduateCourse) associato a due curricula. Entrambi sono associati ad uno stesso insegnamento(Teaching).& 
  Non devono più esistere nel database il corso di laurea, i due curricula e l'insegnamento associato.&
- \checkmark & \\ 
+ \checkmark \\ 
  \hline 
  \end{tabular}
 \end{small}
@@ -757,60 +757,60 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su Period}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline 
 \hline
  32.1 & 
  Istanza di un oggetto con attributi nulli.& 
  Il sistema deve riconoscere l'oggetto come non valido. & 
- \checkmark & \\
+ \checkmark \\
 \hline\hline
  33.1& 
  L'attributo year dell'oggetto d'istanza contiene un valore negativo pari a -1.& 
  Per essere valido year deve contenere un intero compreso tra uno e sei. L'oggetto per questo motivo non deve essere salvato nel db.&  
- \checkmark & \\
+ \checkmark \\
  \hline
  33.2 & 
  year contiene il valore decimale 1.2.& 
  Lo stesso del caso di prova 33.1.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  33.3 & 
  year contiene il valore 7.& 
  Lo stesso del caso di prova 33.1.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  33.4 & 
  year contiene il valore 6.& 
  Non devono essere riscontrati errori di validazione su year.&
- \checkmark & \\ 
+ \checkmark \\ 
  \hline\hline
  34.1& 
  L'attributo subperiod dell'oggetto d'istanza contiene un valore negativo pari a -1.& 
  Per essere valido subperiod deve contenere un intero compreso tra uno e quattro. L'oggetto per questo motivo non deve essere salvato nel db.&  
- \checkmark & \\
+ \checkmark \\
  \hline
  34.2 & 
  subperiod contiene il valore decimale 1.2.& 
  Lo stesso del caso di prova 34.1.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  34.3 & 
  subperiod contiene il valore 5.& 
  Lo stesso del caso di prova 34.1.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  34.4 & 
  subperiod contiene il valore 4.& 
  Non devono essere riscontrati errori di validazione su subperiod.&
- \checkmark & \\ 
+ \checkmark \\ 
  \hline\hline
  35.1 & 
  A subperiod ed year vengono assegnati gli stessi valori di un oggetto già salvato.& 
  Non possono esistere due periodi con gli stessi valori di subperiod ed year. L'istanza del caso di prova non essendo valida non deve essere salvata nel db.& 
-\checkmark & \\ 
+\checkmark \\ 
  \hline
  \end{tabular}
 \end{small}
@@ -820,54 +820,54 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su QuantityConstraint}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline \hline
  36.1 & 
  Istanza di un oggetto con attributi nulli.& 
  Il sistema deve riconoscere l'oggetto come non valido. & 
- \checkmark & \\
+ \checkmark \\
  \hline \hline
  37.1 & 
  L'attributo isHard dell'oggetto d'istanza contiene il valore 11.& 
  isHard deve contenere solo valori interi compresi tra 0 e 10. L'oggetto per questo motivo non deve essere salvato nel db.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  37.2& 
  isHard contiene il valore -1.& 
  Lo stesso del caso di prova 12.1& 
- \checkmark & \\
+ \checkmark \\
  \hline
  37.3&
  isHard contiene il valore 1.1.&
  Lo stesso del caso di prova 12.1&
- \checkmark & \\
+ \checkmark \\
  \hline
  37.4&
  isHard contiene il valore 0.&
  Non devono essere riscontrati errori di validazione su isHard.& 	
- \checkmark & \\ 
+ \checkmark \\ 
  \hline\hline
  38.1 & 
  L'attributo quantity dell'oggetto d'istanza contiene il valore 1001.& 
  quantity deve contenere solo valori interi compresi tra 1 e 1000. L'oggetto per questo motivo non deve essere salvato nel db.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  38.2 & 
  quantity contiene il valore -1.& 
  Lo stesso del caso di prova 38.1& 
- \checkmark & \\
+ \checkmark \\
  \hline
  38.3 & 
  quantity contiene il valore 1.1.& 
  Lo stesso del caso di prova 38.1& 
- \checkmark & \\
+ \checkmark \\
  \hline
  38.4 & 
  quantity contiene il valore 1.& 
  Non devono essere riscontrati errori di validazione su quantity.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  \end{tabular}
 \end{small}
@@ -877,29 +877,29 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su TeacherMailer}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline \hline
  39.1 & 
  Creazione di una mail contenente le istruzioni per l'attivazione di uno User tramite il metodo activate\_teacher(sender, receiver). Sender e Receiver sono due oggetti di tipo User opportunamente creati che corrispondono al mittente e al destinatario.& 
  L'indirizzo del destinatario della mail deve essere uguale al contenuto dell'attributo mail di receiver.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  39.2 & 
  Stessa descrizione per il caso di prova 39.1.&
  L'indirizzo del mittente della mail deve essere uguale al contenuto dell'attributo mail di sender.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  39.3& 
  Stessa descrizione per il caso di prova 39.1.& 
  Il subject della mail deve essere il seguente: Creazione account SIGEOL.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  39.4&
  Stessa descrizione per il caso di prova 39.1.&
  L'url necessario all'attivazione dell'account, presente nel corpo della mail, deve essere originato correttamente.&
- \checkmark & \\
+ \checkmark \\
  \hline 
  \end{tabular}
 \end{small}
@@ -908,19 +908,19 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su Teacher}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline \hline
  40.1 & 
  Aggiornamento di un oggetto di tipo Teacher lasciando degli attributi nulli.& 
  Il sistema deve riconoscere l'oggetto come non valido e quindi non aggiornare la corrispondente tupla nel database.& 
- \checkmark & \\
+ \checkmark \\
  \hline \hline
  41.1 & 
  Eliminazione di un oggetto Teacher.& 
  Non devono più esistere nel database il docente, lo user associato e tutti i vincoli e le preferenze.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  \end{tabular}
 \end{small}
@@ -930,35 +930,35 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su Teaching}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline 
 \hline
  42.1 & 
  Istanza di un oggetto con attributi nulli.& 
  Il sistema deve riconoscere l'oggetto come non valido. & 
- \checkmark & \\
+ \checkmark \\
 \hline\hline
  43.1& 
  cfu, labhours, classhours e studentsNumber contengono il valore 12.5.& 
  Tutti e quattro devono contenere un valore numerico intero positivo. L'oggetto non è valido e non deve essere salvato nel db.&  
- \checkmark & \\
+ \checkmark \\
  \hline \hline
  44.1 & 
  cfu, labhours, classhours e studentsNumber contengono il valore -12.& 
  Lo stesso del caso di prova 43.1.& 
- \checkmark & \\
+ \checkmark \\
  \hline \hline
  45.1 & 
  cfu assume il valore 21, labhours e classhours il valore 51 e studentsNumber il valore 1001.& 
  Tutti e quattro gli attributi superano di un'unità le soglie imposte e quindi deve essere riscontrato un errore di validazione su ognuno di essi.& 
- \checkmark & \\
+ \checkmark \\
  \hline \hline
  46.1& 
  Creazione di un insegnamento associato ad un periodo non compatibile con l'organizzazione accademica del corso di laurea dell'insegnamento.& 
  L'oggetto d'istanza non essendo valido non deve essere salvato nel database.&
- \checkmark & \\ 
+ \checkmark \\ 
  \hline\hline
  \end{tabular}
 \end{small}
@@ -968,60 +968,60 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su TemporalConstraint}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline 
 \hline
  47.1 & 
  Istanza di un oggetto con attributi nulli.& 
  Il sistema deve riconoscere l'oggetto come non valido. & 
- \checkmark & \\
+ \checkmark \\
 \hline\hline
  48.1& 
  L'attributo day dell'oggetto d'istanza contiene il valore 6.& 
  day deve contenere solo valori interi compresi tra 1 e 5. L'oggetto per questo motivo non deve essere salvato nel db.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  48.2& 
  day contiene il valore 0.& 
  Lo stesso del caso di prova 48.1.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  48.3& 
  day contiene il valore 1.5.& 
  Lo stesso del caso di prova 48.1.&
- \checkmark & \\
+ \checkmark \\
  \hline
  48.4& 
  day contiene il valore 1.& 
  Non deve essere riscontrato nessun errore di validazione su day.& 
- \checkmark & \\
+ \checkmark \\
  \hline \hline
  49.1& 
  L'attributo isHard dell'oggetto d'istanza contiene il valore 11.& 
  isHard deve contenere solo valori interi compresi tra 0 e 10. L'oggetto per questo motivo non deve essere salvato nel db.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  49.2& 
  isHard contiene il valore -1.& 
  Lo stesso del caso di prova 49.1& 
- \checkmark & \\
+ \checkmark \\
  \hline
  49.3&
  isHard contiene il valore 1.1.&
  Lo stesso del caso di prova 49.1&
- \checkmark & \\
+ \checkmark \\
  \hline
  49.4&
  isHard contiene il valore 0.&
  Non devono essere riscontrati errori di validazione su isHard.& 	
- \checkmark & \\ 
+ \checkmark \\ 
  \hline\hline
  50.1& 
  Il valore contenuto in startHour assume un valore più grande di quello in endHour& 
  Ovviamente l'ora d'inizio(startHour) dell'indisponibilità non può essere più grande dell'ora fine(endHour). Quindi non essendo valido l'oggetto non deve essere salvato nel db.&
- \checkmark & \\ 
+ \checkmark \\ 
  \hline
  \end{tabular}
 \end{small}
@@ -1031,45 +1031,45 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su TimetableEntry}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline 
 \hline
  51.1 & 
  Istanza di un oggetto con attributi nulli.& 
  Il sistema deve riconoscere l'oggetto come non valido. & 
- \checkmark & \\
+ \checkmark \\
 \hline\hline
  52.1& 
  L'attributo day dell'oggetto d'istanza contiene il valore 6.& 
  day deve contenere solo valori interi compresi tra 1 e 5. L'oggetto per questo motivo non deve essere salvato nel db.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  52.2& 
  day contiene il valore 0.& 
  Lo stesso del caso di prova 52.1.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  52.3& 
  day contiene il valore 1.5.& 
  Lo stesso del caso di prova 52.1.&
- \checkmark & \\
+ \checkmark \\
  \hline
  52.4 & 
  day contiene il valore 1.& 
  Non deve essere riscontrato nessun errore di validazione su day.& 
- \checkmark & \\
+ \checkmark \\
  \hline \hline
  53.1& 
  Il valore contenuto in startTime assume un valore più grande di quello in endTime& 
  Ovviamente l'ora d'inizio(startTime) di un riga dello schema d'orario non può essere più grande dell'ora fine(endHour). Quindi non essendo valido l'oggetto non deve essere salvato nel db.&
- \checkmark & \\ 
+ \checkmark \\ 
  \hline\hline
  54.1& 
  Creazione di un oggetto TimetableEntry con gli stessi valori di day, StartTime, EndTime, classroom\_id e timetable\_id di un oggetto già salvato. & 
  Per evitare sovrapposizioni, in uno stesso schema d'orario identificato da timetable\_id non possono esistere righe con ugual giorno, ora di inizio, ora di fine e classe occupata. L'istanza appena creata non essendo valida non deve essere salvata nel db.&
- \checkmark & \\ 
+ \checkmark \\ 
  \hline
  \end{tabular}
 \end{small}
@@ -1079,40 +1079,40 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su Timetable}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline 
 \hline
  55.1 & 
  Istanza di un oggetto con attributi nulli.& 
  Il sistema deve riconoscere l'oggetto come non valido. & 
- \checkmark & \\
+ \checkmark \\
 \hline\hline
  56.1& 
  L'attributo year dell'oggetto d'istanza contiene il valore 20000-20.& 
  il contenuto di year non è valido. L'oggetto per questo motivo non deve essere salvato nel db.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  56.2& 
  year contiene 2007-08.& 
  year, per essere valido deve assumere nei primi quattro caratteri(2007) un valore successivo all'anno di sistema-1. L'anno di sistema nel caso di prova corrisponde a 2009. Non essendo valido, l'oggetto non deve essere salvato nel db& 
- \checkmark & \\
+ \checkmark \\
  \hline
  56.3& 
  year contiene 2008-10. & 
  year per essere valido doveva avere nelle ultime due cifre i caratteri 09. Non essendo valido, l'oggetto non deve essere salvato nel db&
- \checkmark & \\
+ \checkmark \\
  \hline
  56.4 & 
  year contiene 2008-09.& 
  Non deve essere riscontrato nessun errore di validazione su year.& 
- \checkmark & \\
+ \checkmark \\
  \hline \hline
  57.1& 
  Creazione di un oggetto Timetable con gli stessi valori di year, graduate\_course\_id(chiave esterna per il corso di laurea) e period\_id(chiave esterna per il periodo) di un oggetto già salvato.& 
  Non possono esistere per uno stesso corso di laurea, periodo e anno più schemi d'orario.& 
- \checkmark & \\ 
+ \checkmark \\ 
  \hline
  \end{tabular}
 \end{small}
@@ -1122,55 +1122,55 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su User}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline 
 \hline
  58.1 & 
  Istanza di un oggetto con attributi nulli.& 
  Il sistema deve riconoscere l'oggetto come non valido. & 
- \checkmark & \\
+ \checkmark \\
 \hline\hline
  59.1& 
  L'attributo password dell'oggetto d'istanza è vuoto.& 
  password deve essere di almeno sei caratteri di tipo alfanumerico più il carattere'.'. L'oggetto per questo motivo non deve essere salvato nel db.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  59.2& 
  password contiene la stringa prova.& 
  prova contiene meno di sei caratteri. Non essendo valido, l'oggetto non deve essere salvato nel db& 
- \checkmark & \\
+ \checkmark \\
  \hline
  59.3& 
  password contiene pro.va. & 
  Non deve essere riscontrato nessun errore di validazione su password.&
- \checkmark & \\
+ \checkmark \\
  \hline \hline
  60.1& 
  L'attributo mail dell'oggetto d'istanza contiene la stringa prova?id=1@math.unipd.it& 
  mail contiene al suo interno un carattere non valido:?. Non essendo valido, l'oggetto non deve essere salvato nel db. & 
- \checkmark & \\ 
+ \checkmark \\ 
  \hline
  60.2& 
  L'attributo mail contiene la stringa agrossel@math.unipd.it.& 
  Non deve essere riscontrato nessun errore di validazione su mail.& 
- \checkmark & \\ 
+ \checkmark \\ 
  \hline \hline
  61.1& 
  Creazione di uno user con lo stesso valore dell'attributo mail di un altro oggetto già salvato.& 
  Non possono esistere due user con la stessa mail; quindi l'oggetto appena istanziato non è valido e non deve essere salvato.& 
- \checkmark & \\ 
+ \checkmark \\ 
  \hline \hline
  62.1& 
  Creazione di uno user con password uguale ad alessandro.& 
  L'oggetto istanziato viene correttamente salvato nel database. Il contenuto di password deve essere uguale alla stringa alessandro crittografata con algoritmo SHA\-1.& 
- \checkmark & \\ 
+ \checkmark \\ 
  \hline \hline
  63.1& 
  Creazione di uno user senza specificarlo.& 
  Un oggetto di tipo user deve appartenere o ad una segreteria o ad un insegnante; se non è associato a nulla l'istanza non è valida e non deve essere salvata nel db.& 
- \checkmark & \\
+ \checkmark \\
  \hline
  \end{tabular}
 \end{small}
@@ -1178,35 +1178,35 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 
 \begin{center}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline 
 \hline
 64.1& 
  Al metodo authenticate vengono passati uno user ed una password non corretti.& 
  Il metodo deve ritornare un valore booleano pari a false.& 
- \checkmark & \\ 
+ \checkmark \\ 
  \hline
  64.2& 
  Ora vengono passati uno user ed una password corretti.& 
  Il metodo deve ritornare un valore booleano pari a true.& 
- \checkmark & \\
+ \checkmark \\
  \hline \hline
  65.1& 
  Eliminazione di un oggetto User.& 
  Non devono più esistere nel database lo user, l'indirizzo e il docente o la segreteria associata.& 
- \checkmark & \\
+ \checkmark \\
  \hline \hline
  66.1& 
  Creazione di uno user associato a tutte le possibili capabilities(privilegi).& 
  I metodi che iniziano con manage\_ di un oggetto User ritornano true se l'istanza possiede quel determinato privilegio. In questo caso di prova ogni metodo deve ritornare true. & 
- \checkmark & \\
+ \checkmark \\
  \hline
  67.1& 
  Creazione di uno user associato ad una segreteria didattica.& 
  Lo user appartiene ad una segreteria quindi il metodo own\_by\_didactic\_office? deve ritornare true e own\_by\_teacher? false. & 
- \checkmark & \\
+ \checkmark \\
  \hline
  \end{tabular}
 \end{small}
@@ -1215,14 +1215,14 @@ Di seguito sono riportate le tabelle che riassumono l'intera campagna di test de
 \begin{center}
 \textbf{Test su Belong}
 \begin{small}
-\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c{1.0cm}|}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
 \hline
-\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}&\\ 
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
 \hline
  69.1& 
  Creazione di un oggetto di tipo Belong che associa un curriculum ad un insegnamento già associati.& 
  Esistendo già l'associazione, l'istanza non deve essere salvata.&
- \checkmark & \\
+ \checkmark \\
  \hline
 \end{tabular}
 \end{small}
