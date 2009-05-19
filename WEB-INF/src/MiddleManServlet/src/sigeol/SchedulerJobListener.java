@@ -67,15 +67,16 @@ public class SchedulerJobListener implements Job {
             String URLName = data.getString("url_client");
             System.out.println("executing job_" + course + " ...");
             HttpURLConnection.setFollowRedirects(true);
-            HttpURLConnection con;
+            URL url = new URL(URLName+"/"+course+"/notify");
+            HttpURLConnection con ;
             int responseCode = HttpURLConnection.HTTP_UNAVAILABLE;
-            for (int i = 0; i < retry && (responseCode != HttpURLConnection.HTTP_OK); i++) {
-                con = (HttpURLConnection) new URL(URLName+"/"+course+"/notify").openConnection();
+            //for (int i = 0; i < retry && (responseCode != HttpURLConnection.HTTP_OK); i++) {
+                con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod("POST");
                 con.setRequestProperty("course", course);
                 con.setReadTimeout(0);
                 responseCode = con.getResponseCode();
-            }
+            //}
         } catch (MalformedURLException ex) {
             Logger.getLogger(SchedulerJobListener.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
