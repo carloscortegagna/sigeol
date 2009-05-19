@@ -39,7 +39,7 @@
         </init-param>
         <init-param>
             <param-name>url-client</param-name>
-            <param-value>http://localhost:8080/timetables</param-value>
+            <param-value>http://localhost:8080/sigeol/timetables</param-value>
         </init-param>
         <load-on-startup>2</load-on-startup>
     </servlet>

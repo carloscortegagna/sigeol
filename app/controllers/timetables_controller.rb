@@ -131,6 +131,7 @@ class TimetablesController < ApplicationController
   #
   def done
     #prendi valore course e effettuta operazione di finalizzazione
+    @timetable = Timetable.find(params[:id])
     if true
     head :ok
     else
