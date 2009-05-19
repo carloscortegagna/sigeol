@@ -306,13 +306,9 @@ public class ItcSolver {
         try {
             if (init(inputFile,outputFile, timeout, seed)) {
                 Solver solver = create();
-
                 Runtime.getRuntime().addShutdownHook(new ShutdownHook(solver));
-
                 solver.start();
-
                 solver.getSolverThread().join();
-
                 solved = true;
             }
         } catch (Exception e) {

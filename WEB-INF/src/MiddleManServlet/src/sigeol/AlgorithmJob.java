@@ -99,6 +99,7 @@ public class AlgorithmJob implements Job {
      * @param  String course
      *          Nome del corso
      */
+    @SuppressWarnings("static-access")
     private void sendResult(String outFileName, String URLName, String course) {
         FileInputStream fileInputStream = null;
         try {
@@ -120,7 +121,7 @@ public class AlgorithmJob implements Job {
             for (int i = 0; i < 3 && (responseCode != HttpURLConnection.HTTP_OK); i++) {
                 if(i>0)
                     try {
-                        this.wait(10000);
+                        Thread.currentThread().sleep(10000*i);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(AlgorithmJob.class.getName()).log(Level.SEVERE, null, ex);
                     }
