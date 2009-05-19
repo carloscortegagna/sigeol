@@ -7,6 +7,7 @@
 # 12/05/2009 per gli array è stato sostituito count con size
 # 12/05/2009 sia su proprity_down che su priority_up assegnato a i = constraint_to_move_down.isHard.
 # Usato i come indice per accedere ai valori degli array e non più constraint_to_move_down.isHard(riga 292 e 323)
+# 19/05/2009 sistemate le action index e show per gli utenti non loggati
 
 
 class TeachersController < ApplicationController
@@ -24,14 +25,17 @@ class TeachersController < ApplicationController
   # edit per i dati personali
   # update per i dati personali
   def index
-    @teachers = User.find_by_specified_type("Teacher")
+    @teachers = (Teacher.find(:all)).sort_by { |t| t[:surname] }
     respond_to do |format|
-     format.xml { render :xml => @teachers.to_xml(:include => :teachings) }
+      format.html
+      format.xml { render :xml => @teachers.to_xml(:include => :teachings) }
     end
   end
 
   def show
     @teacher = Teacher.find(params[:id])
+    @user = User.find(:first, :include => :address,
+            :conditions => ["specified_type = 'Teacher' AND specified_id = (?)", params[:id]])
     respond_to do |format|
       format.html # show.html.erb
       format.xml { render :xml => @teachers.to_xml(:include => :teachings) }

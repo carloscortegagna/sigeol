@@ -1,1 +1,6 @@
-<h3>Tutti i docenti</h3>
+<h3>Lista completa di tutti i docenti:</h3> 
+<br>
+<% for t in @teachers do %>
+  <%= link_to t.surname + " " + t.name, teacher_path(t) %>
+  <br> <br>
+<% end %>

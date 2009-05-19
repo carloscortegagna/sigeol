@@ -1,16 +1,25 @@
-<p>
-  <b>Nome:</b>
-  <%=h @teacher.name %>
-</p>
-<p>
-  <b>Cognome:</b>
-  <%=h @teacher.surname %>
-</p>
-<div>
-  Insegnamenti tenuti:
+--------------------------------------------------
+<br><br>
+Nome: <%=h @teacher.name %> <br>
+Cognome: <%=h @teacher.surname %> <br>
+Indirizzo email: <%= mail_to @user.mail %>
+<br><br>
+--------------------------------------------------
+<br><br>
+Città: <%=h @user.address.city %> <br>
+Indirizzo: <%=h @user.address.street %> <br>
+Telefono: <%=h @user.address.telephone %>
+<br><br>
+--------------------------------------------------
+<br><br>
+<% if @teacher.teachings.empty? %>
+  Al momento, il docente non tiene nessun insegnamento.
+<% else %>
+  Insegnamenti tenuti: <br><br>
   <% @teacher.teachings.each do |t| %>
-  <p>
-    <%=h t.name %>
-  </p>
+    <%= link_to t.name, teaching_path(t) %> <br>
   <% end %>
-</div>
+<% end %>
+<br><br>
+--------------------------------------------------
+<br><br>

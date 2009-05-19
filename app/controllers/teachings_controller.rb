@@ -14,11 +14,13 @@ class TeachingsController < ApplicationController
                                                           :select_teacher, :assign_teacher]
 
   def index
-      @teachings = Teaching.find :all
-  respond_to do |format|
-  format.xml  { render :xml => @teachings.to_xml(:except =>[:created_at, :updated_at])}
-   end
+    @teachings = Teaching.find :all
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @teachings.to_xml(:except =>[:created_at, :updated_at])}
+    end
   end
+
   # GET /teachings/1
   # GET /teachings/1.xml
   def show

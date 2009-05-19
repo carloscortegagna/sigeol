@@ -1,27 +1,19 @@
-<p>
-  <b>name:</b>
-  <%=h @building.name %>
-</p>
-<p>
-  <b>city:</b>
-  <%=h @address.city %>
-</p><p>
-  <b>telephone:</b>
-  <%=h @address.telephone %>
-</p><p>
-  <b>street:</b>
-  <%=h @address.street %>
-</p>
-<br>
-<p>
-  <b>classroms list:</b>
-  <tr>
-    <% for classroom in @building_classrooms %>
-      <td><%= link_to classroom.name, classroom_path(classroom) %></td>
-    <% end %>
-  </tr>
-</p>
-
-<br> <br>
-
-<%= link_to 'Back', :action => 'administration' %>
+--------------------------------------------------
+<br><br>
+Nome: <%=h @building.name %> <br>
+Città: <%=h @address.city %> <br>
+Indirizzo: <%= @address.street %> <br>
+Telefono: <%= @address.telephone %> <br>
+<br><br>
+--------------------------------------------------
+<br><br>
+<% if @building_classrooms.empty? %>
+  Non sono state registrate aule per questo edificio
+<% else %>
+  Aule: <br><br>
+  <% for c in @building_classrooms %> <%=h c.name %> <br>
+  <% end %>
+<% end %>
+<br><br>
+--------------------------------------------------
+<br><br>
