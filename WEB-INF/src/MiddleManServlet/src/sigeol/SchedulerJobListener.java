@@ -71,8 +71,8 @@ public class SchedulerJobListener implements Job {
             URL url = new URL(URLName+"/"+course+"/notify");
             HttpURLConnection con ;
             int responseCode = HttpURLConnection.HTTP_UNAVAILABLE;
-            /*for (int i = 0; i < retry && (responseCode != HttpURLConnection.HTTP_OK); i++) {
-                if(i>0)
+            for (int i = 0; i < retry && (responseCode != HttpURLConnection.HTTP_OK); i++) {
+             /*   if(i>0)
                     try {
                         Thread.currentThread().sleep(10000*i);
                     } catch (InterruptedException ex) {
@@ -83,7 +83,7 @@ public class SchedulerJobListener implements Job {
                 con.setRequestProperty("course", course);
                 con.setReadTimeout(0);
                 responseCode = con.getResponseCode();
-            //}
+            }
         } catch (MalformedURLException ex) {
             Logger.getLogger(SchedulerJobListener.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
