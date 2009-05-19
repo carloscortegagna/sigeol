@@ -31,7 +31,7 @@ public class SchedulerJobListenerTest extends TestCase {
             
             jobDetail = new JobDetail("jobListener_test", "listener_job", SchedulerJobListener.class);
             jobDetail.getJobDataMap().put("course", "test");
-            jobDetail.getJobDataMap().put("url_client", "http://localhost:8080/timetables");
+            jobDetail.getJobDataMap().put("url_client", "http://localhost:8080/sigeol/timetables");
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.SECOND, 5);
             //JobExecutionContext context = new JobExecutionContext();

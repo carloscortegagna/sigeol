@@ -35,7 +35,7 @@ public class AlgorithmJobTest extends TestCase {
             jobDetail.getJobDataMap().put("input_file", webinf.getCanonicalPath() + "/itc/input/02-05-2009-12_56_27_test.ctt");
             jobDetail.getJobDataMap().put("output_file", webinf.getCanonicalPath() + "/itc/output/02-05-2009-12_56_27_test_out.ctt");
             jobDetail.getJobDataMap().put("timeout", "20");
-            jobDetail.getJobDataMap().put("url_client", "http://localhost:8080/timetables");
+            jobDetail.getJobDataMap().put("url_client", "http://localhost:8080/sigeol/timetables");
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.SECOND, 5);
             //JobExecutionContext context = new JobExecutionContext();

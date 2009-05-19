@@ -43,7 +43,7 @@ public class SchedulerServletTest extends BasicServletTestCaseAdapter
         config.setInitParameter("output-itc-path", "/WEB-INF/itc/output/");
         config.setInitParameter("shutdown-on-unload", "true");
         config.setInitParameter("start-scheduler-on-load", "true");
-        config.setInitParameter("url-client","http://localhost:8080/timetables");
+        config.setInitParameter("url-client","http://localhost:8080/sigeol/timetables");
     }
 
     /**

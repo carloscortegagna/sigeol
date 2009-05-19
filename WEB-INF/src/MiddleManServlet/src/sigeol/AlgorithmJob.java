@@ -99,70 +99,73 @@ public class AlgorithmJob implements Job {
      * @param  String course
      *          Nome del corso
      */
-    private void sendResult(String outFileName, String URLName, String course) throws FileNotFoundException, MalformedURLException, IOException {
-        // variabile contenente il risultato della comunicazione
-        // con l'applicazione Sigeol
-        int responseCode = HttpURLConnection.HTTP_UNAVAILABLE;
-        HttpURLConnection conn = null;
-        DataOutputStream dos = null;
-        String lineEnd = "\r\n";
-        String twoHyphens = "--";
-        String boundary = "*****";
-        int bytesRead, bytesAvailable, bufferSize;
-        byte[] buffer;
-        int maxBufferSize = 1 * 1024 * 1024;
-
-        // CLIENT REQUEST
-        File outfile = new File(outFileName);
-        FileInputStream fileInputStream = new FileInputStream(outfile);
-        System.out.println(URLName);
-        URL url = new URL(URLName);
-
-        for (int i = 0; i < 3 && (responseCode != HttpURLConnection.HTTP_OK); i++) {
-            // connessione HTTP all'applicazione Sigeol
-            conn = (HttpURLConnection) url.openConnection();
-            // permette input
-            conn.setDoInput(true);
-            // permette output
-            conn.setDoOutput(true);
-            // cache disabilitata
-            conn.setUseCaches(false);
-            // utilizzo metodo POST
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Connection", "Keep-Alive");
-            conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
-            dos = new DataOutputStream(conn.getOutputStream());
-            dos.writeBytes(twoHyphens + boundary + lineEnd);
-            dos.writeBytes("Content-Disposition: form-data; name=\"upload\";" + " filename=\"" + outfile.getName() + "\"" + lineEnd);
-            dos.writeBytes(lineEnd);
-
-            // crea buffer di dimensioni massime
-            bytesAvailable = fileInputStream.available();
-            bufferSize = Math.min(bytesAvailable, maxBufferSize);
-            buffer = new byte[bufferSize];
-
-            // legge il file e lo scrive nel form
-            bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-            while (bytesRead > 0) {
-                dos.write(buffer, 0, bufferSize);
+    private void sendResult(String outFileName, String URLName, String course) {
+        FileInputStream fileInputStream = null;
+        try {
+            int responseCode = HttpURLConnection.HTTP_UNAVAILABLE;
+            HttpURLConnection conn = null;
+            DataOutputStream dos = null;
+            String lineEnd = "\r\n";
+            String twoHyphens = "--";
+            String boundary = "*****";
+            int bytesRead;
+            int bytesAvailable;
+            int bufferSize;
+            byte[] buffer;
+            int maxBufferSize = 1 * 1024 * 1024;
+            File outfile = new File(outFileName);
+            fileInputStream = new FileInputStream(outfile);
+            
+            URL url = new URL(URLName);
+            //for (int i = 0; i < 3 && (responseCode != HttpURLConnection.HTTP_OK); i++) {
+                // connessione HTTP all'applicazione Sigeol
+                conn = (HttpURLConnection) url.openConnection();
+                // permette input
+                conn.setDoInput(true);
+                // permette output
+                conn.setDoOutput(true);
+                // cache disabilitata
+                conn.setUseCaches(false);
+                // utilizzo metodo POST
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Connection", "Keep-Alive");
+                conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+                dos = new DataOutputStream(conn.getOutputStream());
+                dos.writeBytes(twoHyphens + boundary + lineEnd);
+                dos.writeBytes("Content-Disposition: form-data; name=\"upload\";" + " filename=\"" + outfile.getName() + "\"" + lineEnd);
+                dos.writeBytes(lineEnd);
+                // crea buffer di dimensioni massime
                 bytesAvailable = fileInputStream.available();
                 bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                buffer = new byte[bufferSize];
+                // legge il file e lo scrive nel form
                 bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-            }
-
-            // conclude la creazione del form multipart
-            dos.writeBytes(lineEnd);
-            dos.writeBytes(twoHyphens + boundary + lineEnd);
-            dos.writeBytes("Content-Disposition: form-data; name=\"course\"" + lineEnd);
-            dos.writeBytes(lineEnd);
-            dos.writeBytes(course+lineEnd);
-            dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
-
+                while (bytesRead > 0) {
+                    dos.write(buffer, 0, bufferSize);
+                    bytesAvailable = fileInputStream.available();
+                    bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                    bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+                }
+                // conclude la creazione del form multipart
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(twoHyphens + boundary + lineEnd);
+                dos.writeBytes("Content-Disposition: form-data; name=\"course\"" + lineEnd);
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(course + lineEnd);
+                dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
+                
+                dos.flush();
+                dos.close();
+                responseCode = conn.getResponseCode();
+            //}
             // chiude gli stream
-            fileInputStream.close();
-            dos.flush();
-            dos.close();
-            responseCode = conn.getResponseCode();
-        }
+                fileInputStream.close();
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(AlgorithmJob.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AlgorithmJob.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AlgorithmJob.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 }
