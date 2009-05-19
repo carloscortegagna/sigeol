@@ -119,12 +119,12 @@ public class AlgorithmJob implements Job {
             
             URL url = new URL(URLName+"/"+course+"/done");
             for (int i = 0; i < 3 && (responseCode != HttpURLConnection.HTTP_OK); i++) {
-                if(i>0)
+                /*if(i>0)
                     try {
                         Thread.currentThread().sleep(10000*i);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(AlgorithmJob.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    }*/
                 // connessione HTTP all'applicazione Sigeol
                 conn = (HttpURLConnection) url.openConnection();
                 // permette input
