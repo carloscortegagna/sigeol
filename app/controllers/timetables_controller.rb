@@ -32,7 +32,7 @@ class TimetablesController < ApplicationController
     @timetable = Timetable.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.xml  { render :xml => @timetable.to_xml }
     end
   end
