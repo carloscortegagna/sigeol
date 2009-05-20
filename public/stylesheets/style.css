@@ -5,6 +5,11 @@ html, body {
     background-color:#acc9e1;
 }
 
+span{
+    font-size:0.7em;
+    color:red
+}
+
 h2 {
     color:#FF0000;
 }
