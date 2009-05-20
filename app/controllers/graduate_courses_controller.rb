@@ -61,17 +61,21 @@ def index
           if c.save
             flash[:notice] = 'Corso di laurea creato correttamente'
             format.html { redirect_to administration_graduate_courses_url }
+            format.js{render(:update) {|page| page.redirect_to administration_graduate_courses_url}}
           else
             flash[:error] = 'Errore nella creazione del corso di laurea'
             format.html { redirect_to administration_graduate_courses_url }
+            format.js{render(:update) {|page| page.redirect_to administration_graduate_courses_url}}
           end
         else
           flash[:notice] = "Inserire un curriculum per il corso di laurea #{@graduate_course.name}"
           format.html { redirect_to new_curriculum_url}
+          format.js{render(:update) {|page| page.redirect_to new_curriculum_url}}
         end
       else
         @academic_organization = AcademicOrganization.find(:all)
-        format.html { render :action => "new" }
+         format.html { render :action => "new" }
+         format.js{}
       end
     end
   end
@@ -84,9 +88,11 @@ def index
       if @graduate_course.update_attributes(params[:graduate_course])
         flash[:notice] = 'GraduateCourse was successfully updated.'
         format.html { redirect_to(@graduate_course) }
+        format.js{render(:update) {|page| page.redirect_to(@graduate_course)}}
       else
         @academic_organization = AcademicOrganization.find(:all)
         format.html { render :action => "edit" }
+        format.js{}
       end
     end
   end
