@@ -1,0 +1,2 @@
+page.replace_html "errors_name", "*"+@graduate_course.errors.on(:name)
+page.visual_effect :highlight, 'errors_name', :color=>"red", :duration=>"0.7"

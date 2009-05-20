@@ -1,18 +1,19 @@
 <h1>Edit del corso di Laurea</h1>
 
-<% form_for(@graduate_course) do |f| %>
+<% remote_form_for(@graduate_course) do |f| %>
   <%= f.error_messages %>
    <p>
     <%= f.label 'Nome del Corso di Laurea' %><br />
     <%= f.text_field :name %>
+    <span id="errors_name"><%=  @graduate_course.errors.on(:name) %></span>
   </p>
   <p>
     <%= f.label 'Durata in anni' %><br />
-    <%= f.text_field :duration %>
+    <%= select_tag "graduate_course[duration]", "<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>" %>
   </p>
   <p>
      <%= f.label "Organizzazione Accademica" %><br />
      <%= select_tag "graduate_course[academic_organization_id]" , options_from_collection_for_select(@academic_organization, "id", "name", @graduate_course.academic_organization_id) %>
-    <%= f.submit "Update" %>
+    <%= f.submit "Aggiorna" %>
   </p>
 <% end %>

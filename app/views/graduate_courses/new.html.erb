@@ -1,10 +1,10 @@
 <h1>Inserimento nuovo corso di laurea</h1>
 
-<% form_for(@graduate_course) do |f| %>
+<% remote_form_for(@graduate_course) do |f| %>
    <p>
     <%= f.label 'Nome del Corso di Laurea' %><br />
     <%= f.text_field :name %>
-    <%= error_message_on @graduate_course, :name %>
+    <span id="errors_name"><%=  @graduate_course.errors.on(:name) %></span>
 </p>
   <p>
     <%= f.label 'Durata in anni' %><br />
@@ -19,7 +19,7 @@
     <%= check_box_tag 'unico' %>
   </p>
   <p>
-    <%= f.submit "Create" %>
+    <%= f.submit "Crea" %>
   </p>
 <% end %>
 
