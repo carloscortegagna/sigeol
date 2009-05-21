@@ -17,7 +17,7 @@
 </head>
 <body>
   <div id="header">
-    <span id="unipd-logo"></span>
+    <span title="Università degli studi di Padova" id="unipd-logo"></span>
     <h1 id="title"><acronym title="SIstema per la GEstione degli Orari di Lezione">SIGEOL</acronym></h1>
   </div>
   <div id="navigation">
@@ -32,7 +32,31 @@
         <span></span>
       </div>
       <div class="boxContent">
-        <%= login_form %>
+        <% if (!session[:user_id]) %>
+        <h5>Login</h5>
+        <% form_tag session_path do -%>
+          <div id="loginEmail">
+            <div id="loginEmailLabel"><label for="mail">e-mail:</label></div>
+            <div id="loginEmailTextField">
+              <input type="text" name="mail" size="10" />
+            </div>
+          </div>
+          <br />
+          <div id="loginPassword">
+            <div id="loginPasswordLabel"><label for="password">pass:</label></div>
+            <div id="loginPasswordTextField">
+              <input type="password" name="password" size="10" />
+            </div>
+          </div>
+          <p>
+            <%= submit_tag 'Log in' %>
+            <input type="reset" value="Cancella"/>
+          </p>
+        <% end -%>
+        <% end %>
+        <% if (session[:user_id]) %>
+          <%= link_to 'Logout', session_path, :method => :delete, :id => "logout" %>
+        <% end %>
         <%= user_sidebar %>
       </div>
       <div class="boxFooter">
@@ -61,8 +85,8 @@
   </div>
   <div id="footer">
     <div id="quixoft-logo">
-      <a href="http://quixoft.forumup.it" title="Forum del team QuiXoft"><span id="img"></span></a><br />
       <h6 lang="en">developed by</h6>
+      <a href="mailto:quixoft.sol@gmail.com" title="quixoft.sol@gmail.com"><span id="img"></span></a><br />
     </div>
     <p>
       <a href="http://validator.w3.org/check?uri=referer" class="valid">

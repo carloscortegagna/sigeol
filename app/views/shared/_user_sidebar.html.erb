@@ -1,8 +1,9 @@
-<ul class="linkone">
-  <% user_sidebar.each do |url| %>
-    <%=h url[:cat]%>
+<% user_sidebar.each do |url| %>
+  <span class="categoria"><%=h url[:cat]%></span>
+  <%= image_tag url[:cat]+".jpg" %>
+  <ul class="linkone">
     <% url[:link].each do |link| %>
-    <li><%= link_to link[:name], link[:url] %></li>
+      <li><%= link_to link[:name], link[:url] %></li>
     <% end %>
-  <% end %>
-</ul>
+  </ul>
+<% end %>

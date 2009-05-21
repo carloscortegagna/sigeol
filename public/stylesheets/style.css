@@ -1,8 +1,9 @@
 html, body {
     margin: 0;
     padding:0;
-    font-family:sans-serif;
+    font-family:serif, sans-serif;
     background-color:#acc9e1;
+    font-size:1em;
 }
 
 span{
@@ -58,6 +59,10 @@ h2 {
     color:#72cbe7;
 }
 
+a:hover {
+    color:#72cbe7;
+}
+
 #navigation li {
     display:inline;
     list-style:none;
@@ -86,6 +91,37 @@ h2 {
     margin-left:1%;
 }
 
+#loginEmailLabel, #loginPasswordLabel {
+    float:left;
+    font-size:0.9em;
+}
+
+#loginEmailTextField, #loginPasswordTextField {
+    margin-left:3.2em;
+}
+
+#loginForm p {
+    text-align:center;
+}
+
+#leftPanel img {
+    height:1.2em;
+    width:1.2em;
+}
+
+#leftPanel li {
+    list-style-type:circle;
+}
+
+#leftPanel #logout {
+    display:block;
+    margin-bottom:1em;
+}
+
+#leftPanel .categoria {
+    font-variant:small-caps;
+}
+
 #content {
     margin-left:21%;
     margin-right:1%;
@@ -95,6 +131,7 @@ h2 {
     padding:0.5em;
     background-color:#acc9e1;
     text-align:center;
+    clear:both;
 }
 
 #footer #quixoft-logo {
@@ -114,7 +151,6 @@ h2 {
 #footer h6 {
     margin:0;
     padding:0;
-    margin-top:-2em;
 }
 
 a img {
