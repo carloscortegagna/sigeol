@@ -1,20 +1,29 @@
-<h1>Editing building</h1>
+<h1>Modifica di un edificio</h1>
 
-<% form_for(@building) do |f| %>
-  <%= f.error_messages %>
+<% remote_form_for(@building) do |f| %>
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
+    <span id="errors_name"> <%= @building.errors.on(:name) %></span>
   </p>
-  <br><br>
-  <%= error_messages_for :address %>
+  <fieldset>
+    <legend>Indirizzo:</legend>
     <% fields_for :address do |a| %>
-      Città: <%= a.text_field :city %><br/>
-      Telefono: <%= a.text_field :telephone %><br/>
-      Via: <%= a.text_field :street %><br/>
+      <%= f.label 'Città:' %><br/>
+      <%= a.text_field :city %>
+      <span id="errors_city"> <%=  @address.errors.on(:city) %></span>
+     <p>
+       <%= f.label'Telefono(campo non obbligatorio):' %><br/>
+      <%=  text_field_tag 'prefisso', '', :size => 4 %>-<%=  text_field_tag 'telefono', '', :size => 8 %>
+      <span id="errors_telephone"> <%=  @address.errors.on(:telephone) %></span>
+     </p>
+      <%= f.label 'Via:' %><br/>
+      <%= a.text_field :street %>
+      <span id="errors_street"> <%=  @address.errors.on(:street) %></span>
     <% end %>
+    </fieldset>
   <p>
-    <%= f.submit "Update" %>
+    <%= f.submit "Aggiorna" %>
   </p>
 <% end %>
 

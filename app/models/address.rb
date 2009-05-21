@@ -39,7 +39,7 @@ class Address < ActiveRecord::Base
                       :maximum => 13,
                       :message => "Il numero di telefono è troppo lungo"
   validates_format_of :telephone,
-                      :with => /^[0-9]{2,4}\-[0-9]{6,8}$/,
+                      :with => /^([0-9]{2,4}\-[0-9]{6,8})*$/,
                       :message => "Inserisci in questo modo: prefisso-numero"
 
   #validazioni :street
@@ -49,7 +49,7 @@ class Address < ActiveRecord::Base
                       :maximum => 50,
                       :message => "Il nome della via è troppo lungo"
   validates_format_of :street,
-                      :with => /^[a-zA-Z0-9àòèéùì\s]*$/,
+                      :with => /^[a-zA-Z0-9àòèéùì\s,]*$/,
                       :message=>"Si accettano solo caratteri"
 
   #Override del metodo della super classe per impostare il primo carattere del nome della città e della via  in maiusculo
