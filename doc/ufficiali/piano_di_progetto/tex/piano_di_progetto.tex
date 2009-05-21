@@ -17,7 +17,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Piano di Progetto v3.1.0}
+\lfoot{Piano di Progetto v4.0.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -29,7 +29,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Piano di Progetto v3.1.0}
+\lfoot{Piano di Progetto v4.0.0}
 \cfoot{}
 \rfoot{}
 }
@@ -117,7 +117,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Progetto \\ v3.1.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Progetto \\ v4.0.0}}
 \author{Redazione: Beggiato Andrea}
 \maketitle
 \medskip
@@ -147,9 +147,9 @@ Documento contenente il piano di progetto \textit{SIGEOL}, commissionato dalla p
 \section{Introduzione}
 \subsection{Scopo del documento}
 Questo documento espone la pianificazione dello sviluppo del progetto denominato ''SIGEOL''.
-Al suo interno è possibile trovare una stima delle tempistiche e dei costi del progetto, il tutto illustrato attraverso l'utilizzo di tabelle e del diagramma di Gantt.
+Al suo interno è possibile trovare una stima e un consuntivo delle tempistiche e dei costi del progetto, il tutto illustrato attraverso l'utilizzo di tabelle e del diagramma di Gantt.
 
-Si mostrerà anche come è stata pianificata la rotazione dei ruoli per ogni fase del progetto e la ripartizione del carico di lavoro individuale.
+Si mostrerà anche come è stata pianificata ed effettuata la rotazione dei ruoli per ogni fase del progetto e la ripartizione del carico di lavoro individuale.
 Il piano si evolve di pari passo col progetto e inizialmente il documento conterrà solamente previsioni e stime, in seguito anche i consuntivi delle ore spese e dei costi.
 
 Data la scarsa esperienza del team QuiXoft il piano di progetto è stato rivisto e rimodellato in corso d'opera.
@@ -511,8 +511,7 @@ SC & 10 & 9,5 & 20 & 18 & 22 & 16 & 95,5 \\ \hline
 AA & 7 & 9,5 & 20 & 18 & 23 & 16 & 93,5 \\ \hline
 \end{tabular}
 \end{center}
-
-\\
+\bigskip
 \begin{center}
 \begin{tabular}{|c||c|c|c||c|}
 \hline
@@ -528,7 +527,7 @@ Verificatore & 23 & 69 & 64 & 156 \\ \hline \hline
 \end{center}
 
 
-Dalla visione di queste tabelle confrontate con le precedenti si può notare che i ruoli di Responsabile e Amministratore sono stati leggermente sovrastimati in fase di preventivo, sono stati invece leggermente sottostimati i ruoli di Verificatore, Progettista e Programmatore. La stima iniziale non si è comunque discostata di molto dalla realtà dei fatti.
+Dalla visione di queste tabelle confrontate con le precedenti si può notare che i ruoli di Responsabile e Amministratore sono stati leggermente sovrastimati in fase di preventivo, sono stati invece leggermente sottostimati i ruoli di Verificatore, Progettista e Programmatore. Questa stima errata è dovuta essenzialmente alla scarsa esperienza del team in progetti del genere. La stima iniziale non si è comunque discostata di molto dalla realtà dei fatti.
 \bigskip
 \subsection{Panoramica delle revisioni}
 Durante lo sviluppo del progetto il team QuiXoft dovrà sostenere quattro revisioni: la prima e l'ultima sono esterne e saranno condotte dal committente, le rimanenti due sono interne al team, con il coinvolgimento del professore designato.
@@ -582,7 +581,7 @@ Se la revisione andrà a buon fine il progetto verrà accettato e il progetto po
 \subsection{Ritardo nella presentazione della revisione di accettazione}
 Nella parte finale di realizzazione del progetto il team Quixoft ha avuto un ritardo nelle tempistiche dovute essenzialmente all'inesperienza in quanto ha sottovalutato le tempistiche di programmazione adibendo in preventivo troppe poche ore a questa attività non sufficienti a coprire la realizzazione intera del prodotto.
 
-Il tempo è stato però recuperato senza un aumento di costi a scapito del commitente in quanto alcuni ruoli più costosi in termine di ora-lavoro erano stati sempre per poca esperienza soppravvalutati come il Responsabile e l'Amministratore.
+Il tempo è stato però recuperato senza un aumento dei costi pattuiti inizialmente con il commitente in quanto alcuni ruoli più costosi in termine di ora-lavoro erano stati sempre per poca esperienza soppravvalutati come il Responsabile e l'Amministratore.
 \bigskip
 \subsection{Diagramma di Gantt}
 Al presente documento viene allegato il file \textsc{gantt.pdf}, contenente la pianificazione delle attività per ogni fase.
@@ -647,7 +646,7 @@ AA & 150 & 150 & 450 & 440 & 432 & 296 & 1918 \\ \hline
 \end{tabular}
 \end{center}
 \bigskip
-Il costo totale sostenuto per lo sviluppo dell'intero progetto è quindi di 13760\euro in pieno rispetto al vincolo ''Budget economico'' della sezione 2.1.2
+Il costo totale sostenuto per lo sviluppo dell'intero progetto è quindi di 13760\euro. E' stato quindi rispettato in pieno il vincolo ''Budget economico'' della sezione 2.1.2.
 
 Si può redigere inoltre la seguente tabella, che mostra i costi reali (in \euro) per ruolo in relazione alle varie fasi del progetto.
 \begin{center}
@@ -668,6 +667,7 @@ Verificatore & 496 & 1104 & 1016 & 2616 \\ \hline \hline
 La tabella sottostante illustra le stime iniziali sui costi (in \euro) di ogni componente del team in relazione al ruolo ricoperto.
 
 Emerge un peso economico pressochè identico tra i vari membri del team QuiXoft al termine di tutte le fasi di sviluppo.
+\bigskip
 \begin{center}
 \begin{tabular}{|c||c|c|c|c|c|c||c|}
 \hline
@@ -682,7 +682,9 @@ SC & 300 & 190 & 500 & 396 & 352 & 256 & 1994 \\ \hline
 AA & 210 & 190 & 500 & 396 & 368 & 256 & 1920 \\ \hline
 \end{tabular}
 \end{center}
-Sempre come confronto l'altra tabella:
+\bigskip
+Sempre come confronto la seguente tabella con i costi stimati per ruolo in relazione alle varie fasi di progetto:
+
 \begin{center}
 \begin{tabular}{|c||c|c|c||c|}
 \hline
