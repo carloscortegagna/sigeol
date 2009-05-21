@@ -1,9 +1,9 @@
 if @already_up
-  page.replace_html 'destroyupdate_error', "<div id='destroy_error'>La preferenza ha già priorità massima</div>"
+  page.replace_html 'destroyupdate_error', "La preferenza ha già priorità massima"
       page.visual_effect :highlight, 'destroyupdate_error', :color=>"red", :duration=>"0.7"
   #delay per vedere il messaggio d'errore
   page.delay(2) do
-    page.replace_html 'destroyupdate_error', "<div id='destroy_error'></div>"
+    page.replace_html 'destroyupdate_error', ''
   end
 else
   if @constraint_up && @constraint_down
@@ -25,11 +25,11 @@ else
     page.visual_effect :highlight , @constraint_up.id
 
   else
-    page.replace_html 'destroyupdate_error', "<div id='destroy_error'>Errore nel cambio di preferenza</div>"
+    page.replace_html 'destroyupdate_error', "Errore nel cambio di preferenza"
     page.visual_effect :highlight, 'destroyupdate_error', :color=>"red", :duration=>"0.7"
     #delay per vedere il messaggio d'errore
     page.delay(2) do
-      page.replace_html 'destroyupdate_error', "<div id='destroy_error'></div>"
+      page.replace_html 'destroyupdate_error', ''
     end
   end
 end

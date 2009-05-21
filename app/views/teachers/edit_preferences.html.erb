@@ -12,6 +12,7 @@ Pagina di show e edit delle preferenze per: <%=h @teacher.name %> <%=h @teacher.
 <hr>
 
 Hai dichiarato la tua preferenza a non sostenere lezioni nei seguenti periodi della settimana:
+<br><br>
 <table id="manageable_constraints">
   <tr>
     <th>Giorno</th>
@@ -35,7 +36,7 @@ Hai dichiarato la tua preferenza a non sostenere lezioni nei seguenti periodi de
   </tr>
 <% end %>
 </table>
-<div id="destroyupdate_error" ></div>
+<span id="destroyupdate_error" ></span><br>
 <br><br>
 Le preferenze sono ordinate per priorità crescente: spostare in alto le preferenze più importanti e in basso quelle meno importanti. L'algoritmo di calcolo dell'orario di lezione darà maggior peso alle preferenze con priorità più alta.
 <hr>
@@ -49,13 +50,14 @@ Nuova preferenza:
     <%= label_tag "day", "Giorno interessato" %>
     <%= select_tag "day", "<option>Lunedi</option><option>Martedi</option><option>Mercoledi</option><option>Giovedi</option><option>Venerdi</option>" %> <br>
     <%= label_tag "start_hour", "Ora di inizio vincolo" %>
-    <%= text_field_tag "start_hour", nil, :maxlength => 5, :size => 10 %> <br>
+    <%= text_field_tag "start_hour", nil, :maxlength => 5, :size => 10 %>
+    <span id="errors_start"></span> <br>
     <%= label_tag "end_hour", "Ora di fine vincolo" %>
-    <%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %> <br>
-    <br />
+    <%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %>
+    <span id="errors_end"></span> <br>
+    <br> <span id="errors_others"></span><br>
     <%= submit_tag "Aggiungi preferenza" %>
 <% end %>
-<div id="create_error" ></div>
 <br><br>
 La nuova preferenza verrà inserita in fondo alla lista: avrà quindi piorità più bassa rispetto alle preferenze inserite precedentemente.
 <br><br>

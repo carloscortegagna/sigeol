@@ -4,10 +4,10 @@ if @constraint && @constraint.id
     page.remove @constraint.id
   end
 else
-    page.replace_html 'destroyupdate_error', "<div id='destroy_error'>Eliminazione preferenza fallita</div>"
+    page.replace_html 'destroyupdate_error', "Eliminazione preferenza fallita"
     page.visual_effect :highlight, 'destroyupdate_error', :color=>"red", :duration=>"0.7"  
     #delay per vedere il messaggio d'errore
     page.delay(2) do
-      page.replace_html 'destroyupdate_error', "<div id='destroy_error'></div>"
+      page.replace_html 'destroyupdate_error', ''
     end
 end

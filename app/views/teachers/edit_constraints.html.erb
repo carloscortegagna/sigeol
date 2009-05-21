@@ -12,6 +12,7 @@ Pagina di show e edit dei vincoli di non disponibilità per: <%=h @teacher.name 
 <hr>
 
 Hai dichiarato di non essere disponibile nei seguenti periodi:
+<br><br>
 <table id="manageable_constraints">
   <tr>
     <th>Giorno</th>
@@ -31,7 +32,7 @@ Hai dichiarato di non essere disponibile nei seguenti periodi:
   </tr>
 <% end %>
 </table>
-<div id="destroy_error" ></div>
+ <span id="errors_destroy"></span> <br>
 
 <hr>
 <br><br>
@@ -45,15 +46,16 @@ Nuovo vincolo di indisponibilità:
     <%= label_tag "day", "Giorno interessato" %>
     <%= select_tag "day", "<option>Lunedi</option><option>Martedi</option><option>Mercoledi</option><option>Giovedi</option><option>Venerdi</option>" %> <br>
     <%= label_tag "start_hour", "Ora di inizio vincolo" %>
-    <%= text_field_tag "start_hour", nil, :maxlength => 5, :size => 10 %> <br>
+    <%= text_field_tag "start_hour", nil, :maxlength => 5, :size => 10 %>
+    <span id="errors_start"></span> <br>
     <%= label_tag "end_hour", "Ora di fine vincolo" %>
-    <%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %> <br>
+    <%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %>
+    <span id="errors_end"></span> <br>
     <br><%= label_tag "description", "Motivazione" %><br>
     <%= text_area_tag 'description', nil, :rows => 5, :cols => 25 %>
-    <br><br>
-    <br />
+    <span id="errors_description"></span> <br>
+    <br><span id="errors_others"></span><br>
     <%= submit_tag "Aggiungi vincolo" %>
 <% end %>
-<div id="create_error" ></div>
 <br><br>
 <%= link_to 'Back', :controller => 'timetables' %>

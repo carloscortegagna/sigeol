@@ -15,13 +15,29 @@ if @constraint && @constraint.id
   "</tr>", :layout => false
   #page.visual_effect :grow , @constraint.id
   page.visual_effect :highlight , @constraint.id, :color=> "green"
+  #cleanup degli errori precedenti
+  page.replace_html 'errors_start', ''
+  page.replace_html 'errors_end', ''
+  page.replace_html 'errors_others', ''
+
 else
-  @constraint.errors.each do |attr,msg|
-      page.insert_html :bottom, 'create_error', "<ul><li>#{msg}</li></ul>"
-  end  
-  page.visual_effect :highlight, 'create_error', :color=>"red", :duration=>"0.7"
-  #delay per vedere il messaggio d'errore
-  page.delay(2) do
-    page.replace_html 'create_error', "<div id='create_error'></div>"
+
+  if(@constraint.errors.on(:startHour))
+    page.replace_html 'errors_start', "*"+@constraint.errors.on(:startHour)
+    page.visual_effect :highlight, 'errors_start', :color=>"red", :duration=>"0.7"
+  else
+    page.replace_html 'errors_start', ''
+  end
+  if(@constraint.errors.on(:endHour))
+    page.replace_html 'errors_end', "*"+@constraint.errors.on(:endHour)
+    page.visual_effect :highlight, 'errors_end', :color=>"red", :duration=>"0.7"
+  else
+    page.replace_html 'errors_end', ''
+  end
+  if(@constraint.errors.on( [:starHour,:endHour]))
+    page.replace_html 'errors_others', "*"+@constraint.errors.on( [:starHour,:endHour])+"<br>"
+    page.visual_effect :highlight, 'errors_others', :color=>"red", :duration=>"0.7"
+  else
+    page.replace_html 'errors_others', ''
   end
 end
