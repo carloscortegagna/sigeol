@@ -38,7 +38,7 @@ import org.quartz.JobExecutionException;
  * @see org.quartz.Trigger
  * @see sigeol.SchedulerServlet
  * @author Mattia Barbiero
- * @version  1.0
+ * @version  1.3
  *
  *
  */

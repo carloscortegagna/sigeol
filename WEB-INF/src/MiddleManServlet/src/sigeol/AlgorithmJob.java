@@ -45,7 +45,7 @@ import org.quartz.JobExecutionException;
  * @see sigeol.SchedulerServlet
  * @see sigeol.ItcSolver
  * @author Mattia Barbiero
- * @version  1.1
+ * @version  1.3
  *
  *
  */

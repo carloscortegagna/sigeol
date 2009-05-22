@@ -1,14 +1,22 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright 2008-2009 QuiXoft
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
  */
+
 
 package sigeol;
-
-/**
- *
- * @author mattia
- */
 
 import java.io.File;
 import java.io.FileWriter;
@@ -32,8 +40,25 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 
 /**
+ * <p>
+ * <code>ItcSolver</code> si occupa di eseguire l'algoritmo, mediante l'utilizzo
+ * della libreria Cpsolver, per la generazione degli orari sulla base della
+ * configurazione scritta su file di input.
  *
- * @author mattia
+ * </p>
+ *
+ * @see net.sf.cpsolver.ifs.solution.Solution;
+ * @see net.sf.cpsolver.ifs.solution.SolutionListener;
+ * @see net.sf.cpsolver.ifs.solver.Solver;
+ * @see net.sf.cpsolver.ifs.util.DataProperties;
+ * @see net.sf.cpsolver.ifs.util.JProf;
+ * @see net.sf.cpsolver.ifs.util.Progress;
+ * @see net.sf.cpsolver.ifs.util.ToolBox;
+ * @see net.sf.cpsolver.itc.ItcModel;
+ * @author Mattia Barbiero
+ * @version  1.1
+ *
+ *
  */
 public class ItcSolver {
     private static String sProblem = null;
@@ -96,6 +121,7 @@ public class ItcSolver {
         sProblem = "ctt";
         sInputFile = new File(inputFile);
         if (!sInputFile.exists()) {
+            System.err.println("Input file '"+sInputFile+"' does not exist.");
             return false;
         }
         

@@ -90,7 +90,7 @@ class TimetablesController < ApplicationController
   
   #
   #metodo usato nella creazione di una nuova istanza di schedulazione
-  #
+  #chiamato dalla gui
   def schedule
     #URL della servlet
     url = URI.parse('http://localhost:8080/middleman/scheduler.do')
@@ -98,7 +98,7 @@ class TimetablesController < ApplicationController
     req = Net::HTTP::Post.new(url.path)
     #parametri di autenticazione
     #req.basic_auth 'jack', 'pass'
-    #dati da inviare
+    #dati da inviare op = ScheduleJob
     req.set_form_data({'op'=>'sj', 'course'=>'corso', 'date'=>'data_scheduling'}, ';')
     #connessione alla servlet
     res = Net::HTTP.new(url.host, url.port).start {
@@ -117,7 +117,7 @@ class TimetablesController < ApplicationController
   
   #
   #metodo per la segnalazione di avvio calcolo algoritmo
-  #
+  #chiamato dalla servlet via get
   def notify
     if start
       head :ok
@@ -128,7 +128,7 @@ class TimetablesController < ApplicationController
 
   #
   #metodo per la segnalazione del calcolo dell'algoritmo eseguito
-  #
+  #eseguito dalla servlet via get
   def done
     #prendi valore course e effettuta operazione di finalizzazione
     @timetable = Timetable.find(params[:id])
@@ -139,6 +139,7 @@ class TimetablesController < ApplicationController
     end
   end
 
+  #eseguito dalla GUI
   def start
     done = false
     #prepara il file di input
@@ -149,14 +150,13 @@ class TimetablesController < ApplicationController
     req = Net::HTTP::Post.new(url.path)
     #parametri di autenticazione
     #req.basic_auth 'jack', 'pass'
-    #dati da inviare
+    #dati da inviare op = DoJob
     #TODO prelevare corso, creare file input, scegliere un valore di timeout
-    req.set_form_data({'course'=>'corso', 'inputfile'=>'file_name','timeout'=>'time'}, ';')
+    req.set_form_data({'op'=>'dj','course'=>'', 'inputfile'=>'','timeout'=>''}, ';')
     #connessione alla servlet
     res = Net::HTTP.start(url.host, url.port) {
       |http| http.request(req)
     }
-
     #controllo del codice di errore
     case res
       when Net::HTTPSuccess, Net::HTTPRedirection

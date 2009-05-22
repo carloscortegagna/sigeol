@@ -54,7 +54,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  * @see sigeol.AlgorithmJob
  * @see sigeol.SchedulerJobListener
  * @author Mattia Barbiero
- * @version  1.5
+ * @version  2.0
  *
  * 
  */
