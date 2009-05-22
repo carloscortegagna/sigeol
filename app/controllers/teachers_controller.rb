@@ -25,7 +25,10 @@ class TeachersController < ApplicationController
   # edit per i dati personali
   # update per i dati personali
   def index
-    @teachers = (Teacher.find(:all)).sort_by { |t| t[:surname] }
+    @teachers = []
+    if(Teacher.find(:all).size == 0)
+     @teachers = (Teacher.find(:all)).sort_by { |t| t[:surname] }
+    end
     respond_to do |format|
       format.html
       format.xml { render :xml => @teachers.to_xml(:include => :teachings) }

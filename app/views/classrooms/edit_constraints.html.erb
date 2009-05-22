@@ -38,12 +38,12 @@ Nuovo vincolo di indisponibilità dell'aula:
 inserire il giorno della settimana, l'ora di inizio e l'ora di fine
 <br>
  - Inserire il giorno della settimana <br>
- - Inserire l'ora di inizio e fine nel formato HH:MM
+ - Inserire l'ora di inizio e fine nel formato HH:MM oppure cliccare sull'orologio
 <br><br>
 <% form_remote_tag :url => create_constraint_classroom_path(@classroom) do %>
     <%= label_tag "selected_day", "Giorno interessato" %>
     <%= select_tag "selected_day", "<option>Lunedi</option><option>Martedi</option><option>Mercoledi</option><option>Giovedi</option><option>Venerdi</option>" %> <br>
-    <%= label_tag "start_hour", "Ora di inizio vincolo" %> 
+    <%= label_tag "start_hour", "Ora di inizio vincolo" %>
     <%= text_field_tag "start_hour", nil, :maxlength => 5, :size => 10 %> 
     <span id="errors_start"></span> <br>
     <%= label_tag "end_hour", "Ora di fine vincolo" %>

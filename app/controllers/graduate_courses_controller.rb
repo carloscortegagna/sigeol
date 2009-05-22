@@ -32,7 +32,7 @@ def index
     @academic_organization = AcademicOrganization.find(@graduate_course.academic_organization_id)
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @graduate_course.to_xml(:include => :academic_organization) } # show xml
+      format.xml { render :xml => @graduate_course.to_xml }
     end
   end
 
