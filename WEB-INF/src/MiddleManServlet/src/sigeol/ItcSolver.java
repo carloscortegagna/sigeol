@@ -124,9 +124,13 @@ public class ItcSolver {
             System.err.println("Input file '"+sInputFile+"' does not exist.");
             return false;
         }
-        
-        sSeed = Long.parseLong(seed);
-        sTimeOut = Long.parseLong(maxTime);
+        if(seed!=null)
+            sSeed = Long.parseLong(seed);
+        else
+            sSeed = generateSeed();
+        if(maxTime!=null)
+            sTimeOut = Long.parseLong(maxTime);
+        else sTimeOut=10;
         if (ItcSolver.class.getResource("/"+sProblem+".properties")!=null) {
             try {
                 sConfig.load(ItcSolver.class.getResourceAsStream("/"+sProblem+".properties"));
@@ -338,6 +342,7 @@ public class ItcSolver {
                 solved = true;
             }
         } catch (Exception e) {
+            e.printStackTrace();
             sLog.error("Unable to solve problem, reason: "+e.getMessage(),e);
         }
         return solved;
