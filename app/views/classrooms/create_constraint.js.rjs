@@ -14,6 +14,12 @@ if @constraint && @constraint.id
   page.replace_html 'errors_end', ''
   page.replace_html 'errors_others', ''
 
+  if @constraints.size == 0
+    page.replace_html 'message', 'L\'aula non possiede vincoli di non disponibilità impostati.'
+  else
+    page.replace_html 'message', 'L\'aula è stata dichiarata non disponibile nei seguenti periodi:'
+  end
+
 else
 
   if(@constraint.errors.on(:startHour))
@@ -29,7 +35,7 @@ else
     page.replace_html 'errors_end', ''
   end
   if(@constraint.errors.on( [:starHour,:endHour]))
-    page.replace_html 'errors_others', "*"+@constraint.errors.on( [:starHour,:endHour])+"<br>"
+    page.replace_html 'errors_others', "*"+@constraint.errors.on( [:starHour,:endHour])
     page.visual_effect :highlight, 'errors_others', :color=>"red", :duration=>"0.7"
   else
     page.replace_html 'errors_others', ''

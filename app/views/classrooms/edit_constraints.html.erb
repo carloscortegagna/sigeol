@@ -12,7 +12,13 @@
 Pagina di show e edit dei vincoli di non disponibilità per l'aula "<%=h @classroom.name %>"
 <hr>
 <br>
-L'aula è stata dichiarata non disponibile nei seguenti periodi:
+
+<% if @constraints.size == 0 %>
+  <span id="message">L'aula non possiede vincoli di non disponibilità impostati.</span>
+<% else %>
+  <span id="message">L'aula è stata dichiarata non disponibile nei seguenti periodi:</span>
+<% end %>
+
 <br><br>
 <table id="manageable_constraints">
   <tr>
@@ -31,7 +37,8 @@ L'aula è stata dichiarata non disponibile nei seguenti periodi:
   </tr>
 <% end %>
 </table>
-<span id="errors_destroy"></span> <br>
+<span id="errors_destroy" class="warning"></span> <br>
+
 <hr>
 <br>
 Nuovo vincolo di indisponibilità dell'aula:
@@ -45,11 +52,11 @@ inserire il giorno della settimana, l'ora di inizio e l'ora di fine
     <%= select_tag "selected_day", "<option>Lunedi</option><option>Martedi</option><option>Mercoledi</option><option>Giovedi</option><option>Venerdi</option>" %> <br>
     <%= label_tag "start_hour", "Ora di inizio vincolo" %>
     <%= text_field_tag "start_hour", nil, :maxlength => 5, :size => 10 %> 
-    <span id="errors_start"></span> <br>
+    <span id="errors_start" class="warning"><% if (@constraint) %> <%=@constraint.errors.on(:startHour)%><% end %></span> <br>
     <%= label_tag "end_hour", "Ora di fine vincolo" %>
-    <%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %> 
-    <span id="errors_end"></span> <br>
-    <br> <span id="errors_others"></span><br>
+    <%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %>
+    <span id="errors_end" class="warning"><% if (@constraint) %> <%=@constraint.errors.on(:endHour)%><% end %></span> <br>
+    <br> <span id="errors_others" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:starHour,:endHour])%><% end %></span> <br><br>
     <%= submit_tag "Aggiungi vincolo" %>
 <% end %>
 <br><br>

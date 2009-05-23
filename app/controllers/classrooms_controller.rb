@@ -177,7 +177,7 @@ class ClassroomsController < ApplicationController
         for id in classroom_constraint_ids do
           @constraints << TemporalConstraint.find(id.constraint_id)
         end
-        #format.html { render :action => "edit_constraints" }
+        format.html { render :action => "edit_constraints" }
         format.js{}
       end
     end
@@ -197,7 +197,7 @@ class ClassroomsController < ApplicationController
         for id in classroom_constraint_ids do
           @constraints << TemporalConstraint.find(id.constraint_id)
         end
-        #format.html { render :action => "edit_constraints" }
+        format.html { render :action => "edit_constraints" }
         format.js{}
     end
   end
