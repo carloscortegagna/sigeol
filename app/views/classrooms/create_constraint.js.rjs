@@ -14,12 +14,8 @@ if @constraint && @constraint.id
   page.replace_html 'errors_end', ''
   page.replace_html 'errors_others', ''
 
-  if @constraints.size == 0
-    page.replace_html 'message', 'L\'aula non possiede vincoli di non disponibilità impostati.'
-  else
-    page.replace_html 'message', 'L\'aula è stata dichiarata non disponibile nei seguenti periodi:'
-  end
-
+  page.replace_html 'message', 'L\'aula è stata dichiarata non disponibile nei seguenti periodi:'
+  
 else
 
   if(@constraint.errors.on(:startHour))

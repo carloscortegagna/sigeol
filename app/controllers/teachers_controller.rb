@@ -222,6 +222,9 @@ class TeachersController < ApplicationController
       respond_to do |format|
         @teacher = teacher
         @constraint = t
+        format.html { edit_constraints 
+                      render :action => "edit_constraints"
+        }
         format.js{}
       end
     end
@@ -236,8 +239,12 @@ class TeachersController < ApplicationController
     #  flash[:error] = "Errore: vincolo non eliminato"
     #end
     respond_to do |format|
-       @constraint = constraint_to_destroy
-       format.js{}
+      @constraint = constraint_to_destroy
+      #necessario per controllo `size` su js
+      format.html { edit_constraints
+                    render :action => "edit_constraints"
+      }
+      format.js { edit_constraints }
     end
   end
 
@@ -291,7 +298,8 @@ class TeachersController < ApplicationController
       respond_to do |format|
         @teacher = teacher
         @constraint = t
-        format.js{}
+        format.html { render :action => "edit_preferences" }
+        format.js{ edit_preferences }
       end
     end
   end
@@ -320,8 +328,9 @@ class TeachersController < ApplicationController
       #flash[:error] = "Errore: preferenza non eliminata"
     end
     respond_to do |format|
-        @constraint = constraint_to_destroy
-        format.js{}
+      @constraint = constraint_to_destroy
+      format.html { render :action => "edit_preferences" }
+      format.js{ edit_preferences }
       end
   end
 
