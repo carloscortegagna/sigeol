@@ -11,7 +11,11 @@
 <h3>Modifica delle preferenze per: <%=h @teacher.name %> <%=h @teacher.surname %></h3>
 <hr>
 <br>
-Hai dichiarato la tua preferenza a non sostenere lezioni nei seguenti periodi della settimana:
+<% if @constraints.size == 0 %>
+  <span id="message">Non possiedi preferenze impostate.</span>
+<% else %>
+  <span id="message">Hai dichiarato la tua preferenza a non sostenere lezioni nei seguenti periodi:</span>
+<% end %>
 <br><br>
 <table id="manageable_constraints">
   <tr>
@@ -36,7 +40,8 @@ Hai dichiarato la tua preferenza a non sostenere lezioni nei seguenti periodi de
   </tr>
 <% end %>
 </table>
-<span id="destroyupdate_error" ></span><br>
+<span id="destroyupdate_error" class="warning"></span> <br>
+
 <br>
   <strong>Attenzione:</strong>
 <p>Le preferenze sono ordinate per <em>priorità decrescente:</em> spostare in alto le preferenze <em>più importanti</em> e in basso quelle <em>meno importanti.</em> L'algoritmo di calcolo dell'orario di lezione darà <em>maggior peso alle preferenze con priorità più alta.</em></p>
@@ -52,11 +57,11 @@ Nuova preferenza:
     <%= select_tag "day", "<option>Lunedi</option><option>Martedi</option><option>Mercoledi</option><option>Giovedi</option><option>Venerdi</option>" %> <br>
     <%= label_tag "start_hour", "Ora di inizio vincolo" %>
     <%= text_field_tag "start_hour", nil, :maxlength => 5, :size => 10 %>
-    <span id="errors_start"></span> <br>
+    <span id="errors_start" class="warning"><% if (@constraint) %> <%=@constraint.errors.on(:startHour)%><% end %></span> <br>
     <%= label_tag "end_hour", "Ora di fine vincolo" %>
     <%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %>
-    <span id="errors_end"></span> <br>
-    <br> <span id="errors_others"></span><br>
+    <span id="errors_end" class="warning"><% if (@constraint) %> <%=@constraint.errors.on(:endHour)%><% end %></span> <br>
+    <br> <span id="errors_others" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:starHour,:endHour])%><% end %></span> <br><br>
     <%= submit_tag "Aggiungi preferenza" %>
 <% end %>
 <br><br>

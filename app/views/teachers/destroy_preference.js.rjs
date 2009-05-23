@@ -3,6 +3,13 @@ if @constraint && @constraint.id
   page.delay(0.5) do
     page.remove @constraint.id
   end
+
+  if @constraints.size == 0
+    page.replace_html 'message', 'Non possiedi preferenze impostate.'
+  else
+    page.replace_html 'message', 'Hai dichiarato la tua preferenza a non sostenere lezioni nei seguenti periodi:'
+  end
+
 else
     page.replace_html 'destroyupdate_error', "Eliminazione preferenza fallita"
     page.visual_effect :highlight, 'destroyupdate_error', :color=>"red", :duration=>"0.7"  

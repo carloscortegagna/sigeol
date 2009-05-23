@@ -298,7 +298,9 @@ class TeachersController < ApplicationController
       respond_to do |format|
         @teacher = teacher
         @constraint = t
-        format.html { render :action => "edit_preferences" }
+        format.html { edit_preferences
+                      render :action => "edit_preferences"
+        }
         format.js{ edit_preferences }
       end
     end
@@ -329,7 +331,9 @@ class TeachersController < ApplicationController
     end
     respond_to do |format|
       @constraint = constraint_to_destroy
-      format.html { render :action => "edit_preferences" }
+      format.html { edit_preferences
+                    render :action => "edit_preferences"
+      }
       format.js{ edit_preferences }
       end
   end
@@ -371,6 +375,9 @@ class TeachersController < ApplicationController
       @constraint_down = c2
       @already_up = already_up
       @teacher = Teacher.find(params[:teacher_id])
+      format.html { edit_preferences
+                    render :action => "edit_preferences"
+      }
       format.js{}
     end
   end
@@ -412,6 +419,9 @@ class TeachersController < ApplicationController
       @constraint_down = c1
       @already_down = already_down
       @teacher = Teacher.find(params[:teacher_id])
+      format.html { edit_preferences
+                    render :action => "edit_preferences"
+      }
       format.js{}
     end
   end
