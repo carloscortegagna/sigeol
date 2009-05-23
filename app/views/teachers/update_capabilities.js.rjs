@@ -1,20 +1,70 @@
 if request.delete?
-  page.remove @capability.id
-  page.insert_html :bottom, 'selectable_capabilities', :inline => "<li id='<%= @capability.id %>'>" +
-      "<%=h @capability.name %>"+
-      "<% form_remote_tag :html => {:method => :put}, :url => update_capabilities_teacher_path(@teacher,:ids => @capability.id), :method => :put do %>" +
-        "<%= submit_tag 'Aggiungi' %>" +
-      "<% end %>", :layout => false
-  page.visual_effect :grow , @capability.id
-  page.visual_effect :highlight , @capability.id
+  if @capability && @capability.id
+
+    page.visual_effect :fade , @capability.id, :duration=>"0.5"
+    page.remove @capability.id
+
+    page.insert_html :bottom, 'selectable_capabilities', :inline => "<tr id='<%= @capability.id %>'>" +
+      "<td><%=h @capability.name %></td>" +
+      "<td><% form_remote_tag :html => {:method => :put}, :url => update_capabilities_teacher_path(@teacher,:ids => @capability.id), :method => :put do %>" +
+          "<%= submit_tag 'Aggiungi' %>"+
+      "<% end %></td>"+
+    "</tr>", :layout => false
+    #page.visual_effect :grow , @capability.id
+    page.visual_effect :highlight , @capability.id
+    #cleanup errori precedenti
+    page.replace_html 'errors_destroy', ''
+    page.replace_html 'errors_add', ''
+
+  else
+
+    page.replace_html 'errors_add', 'Errore durante l\'aggiunta del nuovo privilegio'
+    page.visual_effect :highlight, 'errors_add', :color=>"red", :duration=>"0.7"
+    #delay per vedere il messaggio d'errore
+    page.delay(2) do
+      page.replace_html 'errors_add', ''
+    end
+
+  end
 end
+
 if request.put?
-  page.remove @capability.id
-  page.insert_html :bottom, 'manageable_capabilities', :inline => "<li id='<%= @capability.id %>'>" +
-      "<%=h @capability.name %>"+
-      "<% form_remote_tag :html => {:method => :delete}, :url => update_capabilities_teacher_path(@teacher,:ids => @capability.id), :method => :delete do %>" +
-        "<%= submit_tag 'Rimuovi' %>" +
-      "<% end %>", :layout => false
-  page.visual_effect :grow , @capability.id
-  page.visual_effect :highlight , @capability.id
+  if @capability && @capability.id
+
+    page.visual_effect :fade , @capability.id, :duration=>"0.5"
+    page.remove @capability.id
+    
+    page.insert_html :bottom, 'manageable_capabilities', :inline =>"<tr id='<%= @capability.id %>'>" +
+      "<td><%=h @capability.name %></td> "+
+      "<td><% form_remote_tag :html => {:method => :delete}, :url => update_capabilities_teacher_path(@teacher,:ids => @capability.id), :method => :delete do %>" +
+          "<%= submit_tag 'Rimuovi' %>" +
+      "<% end %></td>" +
+    "</tr>", :layout => false
+    #page.visual_effect :grow , @capability.id
+    page.visual_effect :highlight , @capability.id, :color=>"green"
+    #cleanup errori precedenti
+    page.replace_html 'errors_destroy', ''
+    page.replace_html 'errors_add', ''
+
+  else
+    
+    page.replace_html 'errors_destroy', 'Errore durante l\'eliminazione del privilegio'
+    page.visual_effect :highlight, 'errors_destroy', :color=>"red", :duration=>"0.7"
+    #delay per vedere il messaggio d'errore
+    page.delay(2) do
+      page.replace_html 'errors_destroy', ''
+    end
+  
+  end
+end
+
+if @manageable_capabilities.size == 0
+  page.replace_html 'message1', '<em>Nessun privilegio selezionato</em>'
+else
+  page.replace_html 'message1', ''
+end
+if @selectable_capabilities.size == 0
+  page.replace_html 'message2', '<em>Non esistono altri privilegi da aggiungere</em>'
+else
+  page.replace_html 'message2', ''
 end

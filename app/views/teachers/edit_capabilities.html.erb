@@ -1,25 +1,53 @@
 <div>
-    Modifica del docente <%= show_teacher(@teacher)  %>
-  Privilegi posseduti ed amministrabili: <br/>
-  <ul id="manageable_capabilities">
-  <% @manageable_capabilities.each do |c| %>
-    <li id='<%= c.id %>'>
-      <%=h c.name %>
-      <% form_remote_tag :html => {:method => :delete}, :url => update_capabilities_teacher_path(@teacher,:ids => c.id), :method => :delete do %>
-        <%= submit_tag "Rimuovi" %>
-      <% end %>
-    <li/>
+
+  Modifica del docente <%= show_teacher(@teacher)  %>
+  <br><br>
+
+  <% if @manageable_capabilities.size == 0 %>
+    <span id="message1"><em>Nessun privilegio selezionato</em></span>
+  <% else %>
+    <span id="message1"></span>
   <% end %>
-  </ul>
-  Privilegi da aggiungere: <br/>
-  <ul id="selectable_capabilities">
-  <% @selectable_capabilities.each do |c| %>
-    <li id='<%= c.id %>'>
-    <%=h c.name %>
-    <% form_remote_tag :html => {:method => :put}, :url => update_capabilities_teacher_path(@teacher,:ids => c.id), :method => :put do %>
-      <%= submit_tag "Aggiungi" %>
-    <% end %>
-    </li>
-<% end %>
-  </ul>
+
+  <br>
+
+  <table id="manageable_capabilities">
+    <tr>
+       <th>Privilegi posseduti ed amministrabili</th>
+    </tr>
+  <% @manageable_capabilities.each do |m| %>
+    <tr id='<%= m.id %>'>
+      <td><%=h m.name %></td>
+      <td><% form_remote_tag :html => {:method => :delete}, :url => update_capabilities_teacher_path(@teacher,:ids => m.id), :method => :delete do %>
+          <%= submit_tag "Rimuovi" %>
+      <% end %></td>
+    </tr>
+  <% end %>
+  </table>
+  <span id="errors_destroy" class="warning"></span> <br>
+
+  <br>
+
+  <% if @selectable_capabilities.size == 0 %>
+    <span id="message2"><em>Non esistono altri privilegi da aggiungere</em></span>
+  <% else %>
+    <span id="message2"></span>
+  <% end %>
+
+  <br><br>
+  <table id="selectable_capabilities">
+  <tr>
+     <th>Privilegi disponibili da aggiungere</th>
+  </tr>
+
+  <% @selectable_capabilities.each do |s| %>
+    <tr id='<%= s.id %>'>
+      <td><%=h s.name %></td>
+      <td><% form_remote_tag :html => {:method => :put}, :url => update_capabilities_teacher_path(@teacher,:ids => s.id), :method => :put do %>
+          <%= submit_tag "Aggiungi" %>
+      <% end %></td>
+    </tr>
+  <% end %>
+  </table>
+  <span id="errors_add" class="warning"></span> <br>
 </div>

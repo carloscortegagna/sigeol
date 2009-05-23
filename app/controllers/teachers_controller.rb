@@ -54,7 +54,8 @@ class TeachersController < ApplicationController
   end
 
   def edit_capabilities
-    total_capabilities = @current_user.capabilities
+    #total_capabilities = @current_user.capabilities
+    total_capabilities = Capability.find(:all)
     @teacher = Teacher.find(params[:id])
     teacher_capabilities = @teacher.user.capabilities
     @manageable_capabilities = total_capabilities & teacher_capabilities
@@ -83,11 +84,12 @@ class TeachersController < ApplicationController
       @teacher.user.capabilities << (@capability)
     end
       respond_to do |format|
-        format.html {
-          flash[:notice] = "Privilegi per il docente #{@teacher.surname} #{@teacher.name} aggiornati con successo"
-          redirect_to administration_teachers_url
-        }
-        format.js {}
+        format.html { edit_capabilities
+                      render :action => "edit_capabilities"
+        }             
+          #flash[:notice] = "Privilegi per il docente #{@teacher.surname} #{@teacher.name} aggiornati con successo"
+          #redirect_to administration_teachers_url
+        format.js {edit_capabilities}
       end
   end
 
