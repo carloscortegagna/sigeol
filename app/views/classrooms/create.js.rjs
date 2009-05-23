@@ -1,0 +1,13 @@
+if(@classroom.errors.on(:name))
+ page.replace_html 'errors_name', "*"+@classroom.errors.on(:name)
+ page.visual_effect :highlight, 'errors_name', :color=>"red", :duration=>"0.7"
+else
+  page.replace_html 'errors_name', ''
+end
+
+if(@classroom.errors.on(:capacity))
+ page.replace_html 'errors_capacity', "*"+@classroom.errors.on(:capacity)
+ page.visual_effect :highlight, 'errors_capacity', :color=>"red", :duration=>"0.7"
+else
+  page.replace_html 'errors_capacity', ''
+end

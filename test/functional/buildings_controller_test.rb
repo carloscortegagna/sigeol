@@ -72,7 +72,7 @@ class BuildingsControllerTest < ActionController::TestCase
     @request.session[:user_id] = :an_id
     Building.any_instance.stubs(:save).returns(true)
     Address.any_instance.stubs(:save).returns(true)
-    post :create, :building=>{:name=>:a_name}, :address=>{:city=>"città", :street=>"street",:telephone=>"telephone"}
+    post :create, :building=>{:name=>:a_name}, :address=>{:city=>"città", :street=>"street",:telephone=>"telephone"},:prefisso=>"049",:telefono=>"9075656"
     assert_redirected_to :action => 'administration'
     assert_equal flash[:notice] ,"Inserimento del nuovo edificio avvenuto con successo"
   end
@@ -80,7 +80,7 @@ class BuildingsControllerTest < ActionController::TestCase
   test "User con privilegi crea un palazzo con indirizzo non valido" do
     @request.session[:user_id] = :an_id
     Building.any_instance.stubs(:save).returns(true)
-    post :create, :building=>{:name=>:a_name ,:address_id=>:another_id}, :address=>{:city=>"città", :street=>"street",:telephone=>"telephone"}
+    post :create, :building=>{:name=>:a_name ,:address_id=>:another_id}, :address=>{:city=>"", :street=>"street",:telephone=>"telephone"},:prefisso=>"049",:telefono=>"9075333"
     assert_template 'new'
   end
 
@@ -91,7 +91,7 @@ class BuildingsControllerTest < ActionController::TestCase
        Building.any_instance.stubs(:address_id).returns(:another_id)
        Address.any_instance.stubs(:save).returns(true)
        Address.stubs(:find).with(:another_id).returns(address)
-       post :create,  :address=> {:city=>"città", :street=>"street",:telephone=>"telephone"}
+       post :create,  :address=> {:city=>"città", :street=>"street",:telephone=>"telephone"},:prefisso=>"049",:telefono=>"9075333"
        assert_template 'new'
      end
 
@@ -103,7 +103,7 @@ class BuildingsControllerTest < ActionController::TestCase
        Address.stubs(:find).returns(address)
        building.stubs(:update_attributes).returns(true)
        address.stubs(:update_attributes).returns(true)
-      put  :update, :id=>:a_id
+      put  :update, :id=>:a_id,:prefisso=>"049",:telefono=>"9075333"
       assert_equal flash[:notice] ,"Modifica dell'edificio completata correttamente"
       assert_redirected_to :action=>'administration'
      end
@@ -116,7 +116,8 @@ class BuildingsControllerTest < ActionController::TestCase
        Address.stubs(:find).returns(address)
        building.stubs(:update_attributes).returns(false)
        address.stubs(:update_attributes).returns(false)
-      put  :update, :id=>:a_id
+      put  :update, :id=>:a_id,:prefisso=>"049",:telefono=>"9075333"
+
       assert_template 'edit'
      end
 

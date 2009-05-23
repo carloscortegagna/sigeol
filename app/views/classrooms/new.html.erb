@@ -1,21 +1,25 @@
 <h1>Nuova aula</h1>
 
-<% form_for(@classroom) do |f| %>
-  <%= f.error_messages %>
+<% remote_form_for(@classroom) do |f| %>
+  <fieldset>
+  <legend>Aula:</legend>
   <p>
     <%= f.label "Nome" %><br />
     <%= f.text_field :name %>
+    <span id="errors_name"> <%=  @classroom.errors.on(:name) %></span>
   </p>
   <p>
-    <%= f.label "Capacità" %><br />
-    <%= f.text_field :capacity %>
+    <%= f.label "Capacità(non obbligatorio):" %><br />
+    <%= f.text_field :capacity,:size=>4 %>
+    <span id="errors_capacity"> <%=  @classroom.errors.on(:capacity) %></span>
   </p>
   <p>
     Edificio
     <%= select_tag "classroom[building_id]" , options_from_collection_for_select(@buildings, "id", "name") %>
   </p>
+  </fieldset>
   <p>
-    <%= f.submit "Create" %>
+    <%= f.submit "Crea" %>
   </p>
 <% end %>
 <br>

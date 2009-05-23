@@ -1,0 +1,16 @@
+page.remove params[:graduate_course_canc]
+page.remove 'graduate_course_canc'
+page.insert_html :before,'remove',:inline=>"<%= select_tag 'graduate_course_canc' , options_from_collection_for_select(@graduate_courses_associati, 'id', 'name') %>"
+page.remove 'graduate_course_add'
+page.insert_html :before,'add',:inline=>"<%= select_tag 'graduate_course_add' , options_from_collection_for_select(@graduate_courses_non_associati, 'id', 'name') %>"
+
+ if(@graduate_courses_associati.size == 0)
+   page.hide 'remove_form'
+   page.replace_html 'message', 'L\'aula non è a disposizione di nessun corso di laurea'
+   page.visual_effect :highlight, 'message', :color=>"red", :duration=>"0.7"
+   page.hide 'graduate'
+  end
+
+ if(@graduate_courses_non_associati.size == 1)
+   page.show 'add_form'
+ end

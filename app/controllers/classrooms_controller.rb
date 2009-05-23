@@ -1,3 +1,15 @@
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: buildings_controller.rb
+#VERSIONE:: 1.0.0
+#AUTORE:: ???
+#DATA CREAZIONE:: ???
+#REGISTRO DELLE MODIFICHE::
+# 21/05/2009 Riga 77: Commentata; questo perchè se si re-inizializza la variabile @classroom perdo gli errori associati.
+# 21/05/2009 Aggiunto sia su create che su update le istruzioni necessarie per renderizzare il contenuto con js:
+#  format.js{render(:update) {|page| page.redirect_to :action => 'administration'}}
+
+
+
 class ClassroomsController < ApplicationController
   skip_before_filter :login_required, :only => :show
   before_filter :manage_classrooms_required, :except => :show
@@ -44,9 +56,11 @@ class ClassroomsController < ApplicationController
         @classroom.graduate_courses << @current_user.graduate_courses
         flash[:notice] = 'Classroom was successfully created.'
         format.html { redirect_to(administration_classrooms_url) }
+        format.js{render(:update) {|page| page.redirect_to :action => 'administration'}}
       else
         @buildings = Building.find(:all)
         format.html { render :action => "new" }
+        format.js{}
       end
     end
   end
@@ -59,9 +73,10 @@ class ClassroomsController < ApplicationController
       if @classroom.update_attributes(params[:classroom])
         flash[:notice] = 'Classroom was successfully updated.'
         format.html { redirect_to(administration_classrooms_url) }
+        format.js{render(:update) {|page| page.redirect_to :action => 'administration'}}
       else
         @buildings = Building.find(:all)
-        @classroom = Classroom.find(params[:id])
+        #@classroom = Classroom.find(params[:id])
         ids = @current_user.graduate_course_ids
         @graduate_courses = GraduateCourse.find(ids)
         @graduate_courses_associati = GraduateCourse.find(:all, :include => {:classrooms => :graduate_courses},
@@ -69,6 +84,7 @@ class ClassroomsController < ApplicationController
                                    AND classrooms_graduate_courses.classroom_id IN (?)", ids, @classroom.id])
         @graduate_courses_non_associati = @graduate_courses - @graduate_courses_associati
         format.html { render :action => "edit" }
+        format.js{render :action=>"create.js.rjs"}
       end
     end
   end
@@ -89,13 +105,13 @@ class ClassroomsController < ApplicationController
   end
 
   def remove_classroom_graduate_course
-    if request.post?
+    if request.post? && params[:graduate_course_canc]
       graduate_course_to_remove = GraduateCourse.find(params[:graduate_course_canc])
       classroom_to_modify = graduate_course_to_remove.classrooms.find(params[:id])
       if classroom_to_modify
         graduate_course_to_remove.classrooms.delete(classroom_to_modify)
       end
-
+    end
       respond_to do |format|
         @classroom = Classroom.find(params[:id])
         @buildings = Building.find(:all)
@@ -106,17 +122,17 @@ class ClassroomsController < ApplicationController
                                    AND classrooms_graduate_courses.classroom_id IN (?)", ids, @classroom.id])
         @graduate_courses_non_associati = @graduate_courses - @graduate_courses_associati
         format.html { render :action => "edit" }
+        format.js{}
        end
     end
-  end
 
   def add_classroom_graduate_course
-    if request.post?
+    if request.post? && params[:graduate_course_add]
       classroom_to_modify = Classroom.find(params[:id])
       graduate_course_to_add = GraduateCourse.find(params[:graduate_course_add])
       classroom_to_modify.graduate_courses << graduate_course_to_add
-
-      respond_to do |format|
+    end
+    respond_to do |format|
         @classroom = Classroom.find(params[:id])
         @buildings = Building.find(:all)
         ids = @current_user.graduate_course_ids
@@ -126,9 +142,9 @@ class ClassroomsController < ApplicationController
                                    AND classrooms_graduate_courses.classroom_id IN (?)", ids, @classroom.id])
         @graduate_courses_non_associati = @graduate_courses - @graduate_courses_associati
         format.html { render :action => "edit" }
+        format.js{}
        end
     end
-  end
 
   def edit_constraints
     @classroom = Classroom.find(params[:id])

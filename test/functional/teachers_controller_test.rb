@@ -143,6 +143,8 @@ class TeachersControllerTest < ActionController::TestCase
     assert_not_nil flash[:error]
   end
 
+
+
   test"Utente con privilegi usa metodo administration"do
     @user.stubs(:manage_teachers?).returns(true)
     @request.session[:user_id] = :an_id

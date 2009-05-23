@@ -1,62 +1,72 @@
-<h1>Aggiornamento dati Aula</h1>
-<% form_for(@classroom) do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label 'Nome' %><br />
+ <script type="text/javascript">
+   $(document).ready(function(){
+     <% if  @graduate_courses_non_associati.size == 0 %>
+         $('#add_form').hide();
+       <%  end %>
+     <% if  @graduate_courses_associati.size == 0 %>
+         $('#remove_form').hide();
+       <%  end %>
+     })
+       </script>
+  
+ <h3>Aggiornamento dati Aula</h3>
+<% remote_form_for(@classroom) do |f| %>
+ <fieldset>
+   <legend>Aula:</legend>
+ <p>
+    <%= f.label 'Nome:' %><br />
     <%= f.text_field :name %>
+    <span id="errors_name" class="warning"> <%=  @classroom.errors.on(:name) %></span>
   </p>
   <p>
-    <%= f.label 'Capacità' %><br />
+    <%= f.label 'Capacità(non obbligatorio):' %><br />
     <%= f.text_field :capacity %>
+    <span id="errors_capacity"> <%=  @classroom.errors.on(:capacity) %></span>
   </p>
   <p>
-     <%= f.label "Edificio" %><br />
+     <%= f.label "Edificio:" %><br />
      <%= select_tag "classroom[building_id]" , options_from_collection_for_select(@buildings, "id", "name", @classroom.building_id) %>
   </p>
+  </fieldset>
   <p>
     <%= f.submit "Salva modifiche" %>
   </p>
 <% end %>
 
-<br><br>
-<% if @graduate_courses_associati.size == 0 %>
+ <% if @graduate_courses_associati.size == 0 %>
+  <span id="message">L'aula non è a disposizione di nessun corso di laurea</span>
+  <% else %>
+ <span id="message">Quest'aula è a disposizione dei seguenti corsi di laurea:</span>
+ <%  end %>
+ 
 <br>
-  L'aula non è a disposizione di nessun corso di laurea
-<br>
-<% else %>
-Quest'aula è a disposizione dei seguenti corsi di laurea:
-<br>
-<% for graduate_course in @graduate_courses_associati %>
-<br>
-  <tr>
-    <td><%= show_graduate_course(graduate_course) %></td>
-    <% end %>
-  </tr>
-<br><br><br>
-<tr>
-  <% form_tag(:action => :remove_classroom_graduate_course) do%>
-    <p>
-      Corso di laurea da disassociare
-      <%= select_tag "graduate_course_canc" , options_from_collection_for_select(@graduate_courses_associati, "id", "name") %>
-      <%= submit_tag 'Rimuovi' %>
-    </p>
-  <% end %>
-</tr>
-<br><br>
-<% end %>
-<% if @graduate_courses_non_associati.size == 0 %>
-  <br>
-  L'aula è messa a disposizione di tutti i corsi di laurea disponibili
-<% else %>
-<tr>
-  <% form_tag(:action => :add_classroom_graduate_course) do%>
-    <p>
-      Corso di laurea da associare
+  <ul id="graduate_courses" >
+    <% for graduate_course in @graduate_courses_associati %>
+     <li id="<%=graduate_course.id%>">
+    <%= show_graduate_course(graduate_course) %>
+    </li>
+     <% end %>
+     </ul>
+
+  <div id="remove_form">
+    <% form_remote_tag :url => {:controller => 'classrooms', :action => 'remove_classroom_graduate_course'}do %>
+       <%= select_tag "graduate_course_canc" , options_from_collection_for_select(@graduate_courses_associati, "id", "name") %>
+        <span id="remove">
+        <%= submit_tag 'Rimuovi Corso' %>
+       </span>
+     <% end %>
+  </div>
+    
+    <p/>
+
+   <div id="add_form">
+     <% form_remote_tag :url => {:controller => 'classrooms', :action => 'add_classroom_graduate_course'}do %>
       <%= select_tag "graduate_course_add" , options_from_collection_for_select(@graduate_courses_non_associati, "id", "name") %>
-      <%= submit_tag 'Aggiungi' %>
-    </p>
-  <% end %>
-</tr>
-<% end %>
-<br><br>
+     <span id="add">
+     <%= submit_tag 'Aggiungi Corso' %>
+     </span>
+     <% end %>
+     </div>
+
+ <p/>
 <%= link_to 'Back', :action => 'administration' %>

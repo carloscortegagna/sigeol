@@ -5,7 +5,7 @@
    <p>
     <%= f.label 'Nome del Corso di Laurea' %><br />
     <%= f.text_field :name %>
-    <span id="errors_name"><%=  @graduate_course.errors.on(:name) %></span>
+    <span id="errors_name" class="warning"><%=  @graduate_course.errors.on(:name) %></span>
   </p>
   <p>
     <%= f.label 'Durata in anni' %><br />
