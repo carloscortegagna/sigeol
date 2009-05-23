@@ -276,7 +276,7 @@ public class ItcSolver {
         return solution;
     }
 
-    /** Stop solver and output solution when Ctrl^C is pressed. */
+    /** Stop solver and output solution when Ctrl^C is pressed. *
     private static class ShutdownHook extends Thread {
         Solver iSolver = null;
         public ShutdownHook(Solver solver) {
@@ -299,14 +299,14 @@ public class ItcSolver {
             }
         }
     }
-
+*/
     /** Test given instance, return best found solution
      * @param instance
      * @param seed
      * @param properties
      * @param timeout
      * @return
-     */
+     *
     public static Solution test(String instance, DataProperties properties, long seed, long timeout) {
         ToolBox.setSeed(seed);
         properties.setProperty("General.Seed", String.valueOf(seed));
@@ -322,7 +322,7 @@ public class ItcSolver {
         sLogFile = null;
         Solution solution = solve();
         return solution;
-    }
+    }*/
 
     /** Main method -- parse input arguments, create solver, solve, and output solution on exit
      * @param inputFile
@@ -335,15 +335,7 @@ public class ItcSolver {
        
         try {
             if (init(inputFile,outputFile, timeout, seed)) {
-                solve();
-                /* Solver solver = create();
-
-                Runtime.getRuntime().addShutdownHook(new ShutdownHook(solver));
-
-                solver.start();
-
-                solver.getSolverThread().join();
-                */
+                solve();                
             }
         } catch (Exception e) {
             e.printStackTrace();
