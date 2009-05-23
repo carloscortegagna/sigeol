@@ -68,6 +68,7 @@ public class AlgorithmJob implements Job {
      * @param context
      * @throws JobExecutionException
      */
+    @SuppressWarnings("static-access")
     public void execute(JobExecutionContext context) throws JobExecutionException {
         // recupero parametri passati al job 
         JobDataMap data = context.getJobDetail().getJobDataMap();
@@ -79,8 +80,9 @@ public class AlgorithmJob implements Job {
 
         // utilizzo dell'algoritmo
         try {
-            ItcSolver.start(inFileName, outFileName, timeout, null);
-            sendResult(outFileName, URLName,course);
+            File outfile = ItcSolver.start(inFileName, outFileName, timeout, null);
+                  
+            sendResult(outfile, URLName,course);
         } catch (Exception e) {            
             Logger.getLogger(AlgorithmJob.class.getName()).log(Level.SEVERE, null, "Errore algorithm job: "+e.toString());
             return;
@@ -100,7 +102,7 @@ public class AlgorithmJob implements Job {
      *          Nome del corso
      */
     @SuppressWarnings("static-access")
-    private void sendResult(String outFileName, String URLName, String course) {
+    private void sendResult(File outFileName, String URLName, String course) {
         FileInputStream fileInputStream = null;
         try {
             int responseCode = HttpURLConnection.HTTP_UNAVAILABLE;
@@ -114,7 +116,7 @@ public class AlgorithmJob implements Job {
             int bufferSize;
             byte[] buffer;
             int maxBufferSize = 1 * 1024 * 1024;
-            File outfile = new File(outFileName);
+            File outfile = outFileName;
             fileInputStream = new FileInputStream(outfile);
             
             URL url = new URL(URLName+"/"+course+"/done");

@@ -130,7 +130,7 @@ public class ItcSolver {
             sSeed = generateSeed();
         if(maxTime!=null)
             sTimeOut = Long.parseLong(maxTime);
-        else sTimeOut=10;
+        else sTimeOut=Long.parseLong(System.getProperty("timeout", String.valueOf(sTimeOut)));
         if (ItcSolver.class.getResource("/"+sProblem+".properties")!=null) {
             try {
                 sConfig.load(ItcSolver.class.getResourceAsStream("/"+sProblem+".properties"));
@@ -331,21 +331,27 @@ public class ItcSolver {
      * @param seed
      * @return
      */
-    public static boolean start(String inputFile,String outputFile, String timeout, String seed) {
-        boolean solved = false;
+    public static File start(String inputFile,String outputFile, String timeout, String seed) {
+       
         try {
             if (init(inputFile,outputFile, timeout, seed)) {
-                Solver solver = create();
+                solve();
+                /* Solver solver = create();
+
                 Runtime.getRuntime().addShutdownHook(new ShutdownHook(solver));
+
                 solver.start();
+
                 solver.getSolverThread().join();
-                solved = true;
+                */
             }
         } catch (Exception e) {
             e.printStackTrace();
             sLog.error("Unable to solve problem, reason: "+e.getMessage(),e);
         }
-        return solved;
+        if(sOutputFile!=null)
+            return sOutputFile;
+        return null;
     }
 
 }

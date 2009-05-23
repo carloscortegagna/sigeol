@@ -4,7 +4,6 @@ package sigeol;
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.List;
 import junit.framework.TestCase;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
@@ -32,9 +31,9 @@ public class AlgorithmJobTest extends TestCase {
         try {
             File webinf = new File("../..");
             jobDetail = new JobDetail("job_test", "algorithm_job", AlgorithmJob.class);
-            jobDetail.getJobDataMap().put("input_file", webinf.getCanonicalPath() + "/itc/input/02-05-2009-12_56_27_test.ctt");
-            jobDetail.getJobDataMap().put("output_file", webinf.getCanonicalPath() + "/itc/output/02-05-2009-12_56_27_test_out.ctt");
-            jobDetail.getJobDataMap().put("timeout", "20");
+            jobDetail.getJobDataMap().put("input_file", webinf.getCanonicalPath() + "/itc/input/test.ctt");
+            jobDetail.getJobDataMap().put("output_file", webinf.getCanonicalPath() + "/itc/output/");
+            jobDetail.getJobDataMap().put("timeout", "50");
             jobDetail.getJobDataMap().put("url_client", "http://localhost:8080/sigeol/timetables");
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.SECOND, 5);
