@@ -1,10 +1,10 @@
  <script type="text/javascript">
    $(document).ready(function(){
      <% if  @graduate_courses_non_associati.size == 0 %>
-         $('#add_form').hide();
+         $('#add_form').toggle();
        <%  end %>
      <% if  @graduate_courses_associati.size == 0 %>
-         $('#remove_form').hide();
+         $('#remove_form').toggle();
        <%  end %>
      })
        </script>

@@ -8,9 +8,9 @@ page.remove 'graduate_course_canc'
 page.insert_html :top,'remove',:inline=>"<%= select_tag 'graduate_course_canc' , options_from_collection_for_select(@graduate_courses_associati, 'id', 'name') %>"
 
 if(@graduate_courses_non_associati.size == 0)
-  page.hide 'add_form'
+  page.toggle 'add_form'
 end
 
 if(@graduate_courses_associati.size == 1)
-  page.show 'remove_form'
+  page.toggle 'remove_form'
 end
