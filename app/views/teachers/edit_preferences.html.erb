@@ -8,7 +8,7 @@
 });
 </script>
 
-Pagina di show e edit delle preferenze per: <%=h @teacher.name %> <%=h @teacher.surname %>
+<h3>Modifica delle preferenze per: <%=h @teacher.name %> <%=h @teacher.surname %></h3>
 <hr>
 <br>
 Hai dichiarato la tua preferenza a non sostenere lezioni nei seguenti periodi della settimana:
@@ -38,7 +38,8 @@ Hai dichiarato la tua preferenza a non sostenere lezioni nei seguenti periodi de
 </table>
 <span id="destroyupdate_error" ></span><br>
 <br>
-Le preferenze sono ordinate per priorità crescente: spostare in alto le preferenze più importanti e in basso quelle meno importanti. L'algoritmo di calcolo dell'orario di lezione darà maggior peso alle preferenze con priorità più alta.
+  <strong>Attenzione:</strong>
+<p>Le preferenze sono ordinate per <em>priorità decrescente:</em> spostare in alto le preferenze <em>più importanti</em> e in basso quelle <em>meno importanti.</em> L'algoritmo di calcolo dell'orario di lezione darà <em>maggior peso alle preferenze con priorità più alta.</em></p>
 <hr>
  <br>
 Nuova preferenza:

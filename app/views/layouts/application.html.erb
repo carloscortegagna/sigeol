@@ -24,7 +24,6 @@
     <%= standard_sidebar %>
   </div>
   <div id="path">
-    Ti trovi in: Home
   </div>
   <div id="container">
     <div id="leftPanel" class="box">
@@ -63,29 +62,27 @@
         <span></span>
       </div>
     </div>
-    <% if flash[:error] %>
-      <div class="errors">
-        <%= flash[:error] %>
-      </div>
-    <%end%>
-    <% if flash[:notice] %>
-      <div class="notices">
-        <%= flash[:notice] %>
-      </div>
-    <%end%>
     <div id="content" class="box">
       <div class="boxHeader">
         <span></span>
       </div>
-      <div class="boxContent"><%= yield  %></div>
+      <div class="boxContent">
+        <% if flash[:error] %>
+          <p id="error"><%= flash[:error] %></p>
+        <% end %>
+        <% if flash[:notice] %>
+          <p id="notice"><%= flash[:notice] %></p>
+        <% end %>
+        <%= yield  %>
+      </div>
       <div class="boxFooter">
         <span></span>
       </div>
     </div>
   </div>
+  <div id="preFooter"></div>
   <div id="footer">
     <div id="quixoft-logo">
-      <h6 lang="en">developed by</h6>
       <a href="mailto:quixoft.sol@gmail.com" title="quixoft.sol@gmail.com"><span id="img"></span></a><br />
     </div>
     <p>
