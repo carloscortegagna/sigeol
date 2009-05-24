@@ -1,18 +1,42 @@
-<h1>Pagina di edit dei dati personali</h1>
+<h3>Modifica dei dati personali</h3>
 
-<% form_tag(:action => :update_personal_data) do %>
+<% form_tag(:action => :update_personal_data, :id => "form_docEdit") do %>
     <%= error_messages_for :address, :object => @user.address %>
   <p>
-    <%= label_tag 'city', "Città" %>
-    <%= text_field_tag("city", @user.address.city) %>
+    <% tmp = "" %>
+    <% if (@user.address) %>
+      <% tmp = @user.address.city %>
+    <% end %>
+    <div>
+      <div class="lbl_docEdit">
+        <%= label_tag('city', "Città:", :class => "formLabel") %>
+      </div>
+      <div class="txt_docEdit">
+        <%= text_field_tag("city", tmp, :class => "formTxt") %>
+      </div>
+    </div>
   </p>
   <p>
-    <%= label_tag 'telephone', "Telefono" %>
-    <%= text_field_tag("telephone", @user.address.telephone) %>
-  </p>
+    <% if (@user.address) %>
+      <% tmp = @user.address.telephone %>
+    <% end %>
+    <div class="lbl_docEdit">
+      <%= label_tag('telephone', "Telefono:", :class => "formLabel") %>
+    </div>
+    <div class="txt_docEdit">
+      <%= text_field_tag("telephone", tmp, :class => "formTxt") %>
+    </div>
+</p>
   <p>
-    <%= label_tag 'street', "Indirizzo" %>
-    <%= text_field_tag("street", @user.address.street) %>
+    <% if (@user.address) %>
+      <% tmp = @user.address.street %>
+    <% end %>
+    <div class="lbl_docEdit">
+      <%= label_tag('street', "Indirizzo:", :class => "formLabel") %>
+    </div>
+    <div class="txt_docEdit">
+      <%= text_field_tag("street", tmp, :class => "formTxt") %>
+    </div>
   </p>
   <p>
     <%= submit_tag "Aggiorna dati" %>

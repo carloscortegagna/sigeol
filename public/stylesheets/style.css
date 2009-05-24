@@ -10,6 +10,10 @@ h2 {
     color:#FF0000;
 }
 
+table {
+    text-align:center;
+}
+
 #header {
     background-color:#1d2b52;
     display:block;
@@ -81,19 +85,7 @@ a:hover {
     float:left;
     width:19%;
     margin-left:1%;
-}
-
-#loginEmailLabel, #loginPasswordLabel {
-    float:left;
-    font-size:0.9em;
-}
-
-#loginEmailTextField, #loginPasswordTextField {
-    margin-left:3.2em;
-}
-
-#loginForm p {
-    text-align:center;
+    min-width:1em;
 }
 
 #leftPanel img {
@@ -199,3 +191,12 @@ a img {
     font-size:0.7em;
     color:red
     }
+
+.formLabel {
+    display:block;
+    float:left;
+}
+
+.formTxt {
+    margin-left:2em;
+}

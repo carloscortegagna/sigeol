@@ -9,14 +9,12 @@
 </script>
 
 <h3>Modifica delle preferenze per: <%=h @teacher.name %> <%=h @teacher.surname %></h3>
-<hr>
-<br>
+<hr />
 <% if @constraints.size == 0 %>
-  <span id="message">Non possiedi preferenze impostate.</span>
+  <p id="message">Non hai ancora impostato le tue preferenze.</p>
 <% else %>
-  <span id="message">Hai dichiarato la tua preferenza a non sostenere lezioni nei seguenti periodi:</span>
+  <p id="message">Hai dichiarato la tua preferenza a non sostenere lezioni nei seguenti periodi:</p>
 <% end %>
-<br><br>
 <table id="manageable_constraints">
   <tr>
     <th>Giorno</th>
@@ -42,29 +40,31 @@
 </table>
 <span id="destroyupdate_error" class="warning"></span> <br>
 
-<br>
   <strong>Attenzione:</strong>
-<p>Le preferenze sono ordinate per <em>priorità decrescente:</em> spostare in alto le preferenze <em>più importanti</em> e in basso quelle <em>meno importanti.</em> L'algoritmo di calcolo dell'orario di lezione darà <em>maggior peso alle preferenze con priorità più alta.</em></p>
-<hr>
- <br>
-Nuova preferenza:
-<br>
- - Inserire il giorno della settimana <br>
- - Inserire l'ora di inizio e fine nel formato HH:MM
-<br><br>
-<% form_remote_tag :url => create_preference_teacher_path(@teacher) do %>
-    <%= label_tag "day", "Giorno interessato" %>
-    <%= select_tag "day", "<option>Lunedi</option><option>Martedi</option><option>Mercoledi</option><option>Giovedi</option><option>Venerdi</option>" %> <br>
-    <%= label_tag "start_hour", "Ora di inizio vincolo" %>
-    <%= text_field_tag "start_hour", nil, :maxlength => 5, :size => 10 %>
-    <span id="errors_start" class="warning"><% if (@constraint) %> <%=@constraint.errors.on(:startHour)%><% end %></span> <br>
-    <%= label_tag "end_hour", "Ora di fine vincolo" %>
-    <%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %>
-    <span id="errors_end" class="warning"><% if (@constraint) %> <%=@constraint.errors.on(:endHour)%><% end %></span> <br>
-    <br> <span id="errors_others" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:starHour,:endHour])%><% end %></span> <br><br>
-    <%= submit_tag "Aggiungi preferenza" %>
+<p>Le preferenze sono ordinate per <strong>priorità decrescente:</strong> spostare in alto le preferenze <em>più importanti</em> e in basso quelle <em>meno importanti.</em> L'algoritmo di calcolo dell'orario di lezione darà <em>maggior peso alle preferenze con priorità più alta.</em></p>
+<hr />
+Per inserire una nuova preferenza:
+<ul>
+  <li>inserire il giorno della settimana in cui <strong>non</strong> si vuole fare lezione</li>
+  <li>inserire l'ora di inizio e fine nel formato HH:MM</li>
+</ul>
+<% form_remote_tag(:url => create_preference_teacher_path(@teacher), :html => {:id => "form_docEditPref"}) do %>
+  <p>
+    <div class="lbl_docEditPref"><%= label_tag "day", "Giorno interessato:" %></div>
+    <div class="txt_docEditPref"><%= select_tag "day", "<option>Lunedi</option><option>Martedi</option><option>Mercoledi</option><option>Giovedi</option><option>Venerdi</option>" %></div>
+  </p>
+  <p>
+    <div class="lbl_docEditPref"><%= label_tag "start_hour", "Ora di inizio vincolo:" %></div>
+    <div class="txt_docEditPref"><%= text_field_tag "start_hour", nil, :maxlength => 5, :size => 10 %></div>
+    <span id="errors_start" class="warning"><% if (@constraint) %> <%=@constraint.errors.on(:startHour)%><% end %></span>
+  </p>
+  <p>
+    <div class="lbl_docEditPref"><%= label_tag "end_hour", "Ora di fine vincolo:" %></div>
+    <div class="txt_docEditPref"><%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %></div>
+    <span id="errors_end" class="warning"><% if (@constraint) %> <%=@constraint.errors.on(:endHour)%><% end %></span>
+    <span id="errors_others" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:starHour,:endHour])%><% end %></span>
+  </p>
+  <p id="submit_docEditPref"><%= submit_tag "Aggiungi preferenza" %></p>
 <% end %>
-<br><br>
-La nuova preferenza verrà inserita in fondo alla lista: avrà quindi piorità più bassa rispetto alle preferenze inserite precedentemente.
-<br><br>
-<%= link_to 'Back', :controller => 'timetables' %>
+<p><strong>Nota:</strong> la nuova preferenza verrà inserita in fondo alla lista.</p>
+<p><%= link_to 'Indietro', :controller => 'timetables' %></p>

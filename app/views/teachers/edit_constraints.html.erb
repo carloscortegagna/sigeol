@@ -9,14 +9,12 @@
 </script>
 
 <h3>Modifica dei vincoli di non disponibilità per: <%=h @teacher.name %> <%=h @teacher.surname %></h3>
-<hr>
-<br>
+<hr />
 <% if @constraints.size == 0 %>
-  <span id="message">Non possiedi vincoli di non disponibilità impostati</span>
+  <span id="message">Non hai ancora impostato alcun vincolo.</span>
 <% else %>
-  <span id="message">Sei stato/a dichiarato/a non disponibile nei seguenti periodi:</span>
+  <span id="message">Hai dichiarato di non disponibile nei seguenti periodi:</span>
 <% end %>
-<br><br>
 
 <table id="manageable_constraints">
   <tr>
@@ -37,30 +35,39 @@
   </tr>
 <% end %>
 </table>
-<span id="errors_destroy" class="warning"></span> <br>
+<span id="errors_destroy" class="warning"></span>
+<p><strong>Nota:</strong> l'ordine di inserimento dei vincoli è indifferente.</p>
+<hr />
+<p>Per inserire un nuovo vincolo:
+<ul>
+<li>inserire il giorno della settimana in cui si è impossibilitati a fare lezione</li>
+<li>inserire l'ora di inizio e fine nel formato HH:MM</li>
+<li>inserire la motivazione</li>
+</ul>
+</p>
 
-<hr>
-<br>
-Nuovo vincolo di indisponibilità:
-<br>
- - Inserire il giorno della settimana <br>
- - Inserire l'ora di inizio e fine nel formato HH:MM <br>
- - Inserire la motivazione
-<br><br>
-<% form_remote_tag :url => create_constraint_teacher_path(@teacher) do %>
-    <%= label_tag "day", "Giorno interessato" %>
-    <%= select_tag "day", "<option>Lunedi</option><option>Martedi</option><option>Mercoledi</option><option>Giovedi</option><option>Venerdi</option>" %> <br>
-    <%= label_tag "start_hour", "Ora di inizio vincolo" %>
-    <%= text_field_tag "start_hour", nil, :maxlength => 5, :size => 10 %>
-    <span id="errors_start" class="warning"><% if (@constraint) %> <%=@constraint.errors.on(:startHour)%><% end %></span> <br>
-    <%= label_tag "end_hour", "Ora di fine vincolo" %>
-    <%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %>
-    <span id="errors_end" class="warning"><% if (@constraint) %> <%=@constraint.errors.on(:endHour)%><% end %></span> <br>
-    <br><%= label_tag "description", "Motivazione" %><br>
-    <%= text_area_tag 'description', nil, :rows => 5, :cols => 25 %>
-    <span id="errors_description" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:description])%><% end %></span> <br>
-    <br> <span id="errors_others" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:starHour,:endHour])%><% end %></span> <br><br>
-    <%= submit_tag "Aggiungi vincolo" %>
+<% form_remote_tag(:url => create_constraint_teacher_path(@teacher), :html => {:id => "form_docEditConstr"}) do %>
+  <p>
+    <div class="lbl_docEditConstr"><%= label_tag "day", "Giorno interessato:" %></div>
+    <div class="txt_docEditConstr"><%= select_tag "day", "<option>Lunedi</option><option>Martedi</option><option>Mercoledi</option><option>Giovedi</option><option>Venerdi</option>" %></div>
+  </p>
+  <p>
+    <div class="lbl_docEditConstr"><%= label_tag "start_hour", "Ora di inizio vincolo:" %></div>
+    <div class="txt_docEditConstr"><%= text_field_tag "start_hour", nil, :maxlength => 5, :size => 10 %></div>
+    <span id="errors_start" class="warning"><% if (@constraint) %> <%=@constraint.errors.on(:startHour)%><% end %></span>
+  </p>
+  <p>
+    <div class="lbl_docEditConstr"><%= label_tag "end_hour", "Ora di fine vincolo:" %></div>
+    <div class="txt_docEditConstr"><%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %></div>
+    <span id="errors_end" class="warning"><% if (@constraint) %> <%=@constraint.errors.on(:endHour)%><% end %></span>
+  </p>
+  <p>
+    <div id="motiv_docEditConstr"><%= label_tag "description", "Motivazione:" %><br />
+    <%= text_area_tag 'description', nil, :rows => 5, :cols => 25 %></div>
+    <span id="errors_description" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:description])%><% end %></span>
+    <br> <span id="errors_others" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:starHour,:endHour])%><% end %></span>
+  </p>
+  <p id="submit_docEditConstr"><%= submit_tag "Aggiungi vincolo" %></p>
 <% end %>
-<br><br>
-<%= link_to 'Back', :controller => 'timetables' %>
+
+<%= link_to 'Indietro', :controller => 'timetables' %>

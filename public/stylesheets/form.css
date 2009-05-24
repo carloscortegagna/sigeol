@@ -1,0 +1,49 @@
+.lbl_layout {
+    float:left;
+}
+
+.txt_layout {
+    margin-left:3.2em;
+}
+
+#form_layout p {
+    text-align:center;
+    margin:1.5em 0 0 0
+}
+
+.lbl_docEdit {
+    float:left;
+}
+.txt_docEdit {
+    margin-left:5em;
+}
+
+#form_docEditPref, #form_docEditConstr {
+    margin-top:2em;
+}
+
+#form_docEditPref p, #form_docEditConstr p {
+    margin:0;
+}
+
+.lbl_docEditPref, .lbl_docEditConstr {
+    float:left;
+    margin-top:0.4em;
+}
+
+.txt_docEditPref, .txt_docEditConstr {
+    margin-left:11em;
+    margin-top:-0.2em;
+}
+
+#submit_docEditPref {
+    padding-top:1em;
+}
+
+#motiv_docEditConstr {
+    margin:1em 0 0 0;
+}
+
+#submit_docEditConstr {
+    padding-bottom:1em;
+}

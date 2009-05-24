@@ -11,6 +11,7 @@
   <meta name="author" content="QuiXoft" />
   <meta name="language" content="italian it" />
   <%= stylesheet_link_tag 'style' %>
+  <%= stylesheet_link_tag 'form' %>
   <%= stylesheet_link_tag 'ui.core' %>
   <%= stylesheet_link_tag 'ui.theme' %>
   <%= javascript_include_tag :defaults %>
@@ -32,21 +33,20 @@
       </div>
       <div class="boxContent">
         <% if (!session[:user_id]) %>
-        <h5>Login</h5>
-        <% form_tag session_path do -%>
-          <div id="loginEmail">
-            <div id="loginEmailLabel"><label for="mail">e-mail:</label></div>
-            <div id="loginEmailTextField">
-              <input type="text" name="mail" size="10" />
+        <h4>Login</h4>
+        <% form_tag(session_path, :id => "form_layout") do -%>
+          <p>
+            <div class="lbl_layout"><label for="mail">mail:</label></div>
+            <div class="txt_layout">
+              <input type="text" name="mail" style="width:7.5em" />
             </div>
-          </div>
-          <br />
-          <div id="loginPassword">
-            <div id="loginPasswordLabel"><label for="password">pass:</label></div>
-            <div id="loginPasswordTextField">
-              <input type="password" name="password" size="10" />
+          </p>
+          <p>
+            <div class="lbl_layout"><label for="password">pass:</label></div>
+            <div class="txt_layout">
+              <input type="password" name="password" style="width:7.5em" />
             </div>
-          </div>
+          </p>
           <p>
             <%= submit_tag 'Log in' %>
             <input type="reset" value="Cancella"/>
