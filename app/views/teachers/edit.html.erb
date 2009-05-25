@@ -1,7 +1,6 @@
 <h3>Modifica dei dati personali</h3>
 
-<% form_tag(:action => :update_personal_data, :id => "form_docEdit") do %>
-    <%= error_messages_for :address, :object => @user.address %>
+<% form_remote_tag(:action => :update_personal_data, :id => @user.id) do %>
   <p>
     <% tmp = "" %>
     <% if (@user.address) %>

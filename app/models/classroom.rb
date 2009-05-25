@@ -65,7 +65,7 @@ class Classroom < ActiveRecord::Base
   def unique_building_classroom? #:doc:
     c=Classroom.find_by_name_and_building_id(self.name,self.building_id)
     if c && c.id!=self.id
-      errors.add_to_base("Nell'edificio è gia presente un'aula con questo nome")
+      errors.add(:name,"Nell'edificio è gia presente un'aula con questo nome")
     end
   end
 end

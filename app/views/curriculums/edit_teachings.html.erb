@@ -1,17 +1,35 @@
 <div>
   <% if @curriculum.teachings.empty? %>
-    <%=h "Nessun insegnamento presente"%>
+    <p>
+    <h3> Nessun insegnamento è presente nel curriculum</h3>
+    </p>
   <% else %>
-    <%=h "Insegnamenti presenti:" %>
+    <h3> Insegnamenti presenti: </h3>
+    <p/>
     <% @curriculum.teachings.each do |t|  %>
-      <%= show_teaching(t) %>
-      <%= link_to "Rimuovi", update_teachings_curriculum_path(@curriculum,:t_to_remove => t.id), :method => :delete %>
+      <table>
+      <tr>
+        <td>
+         <%= show_teaching(t) %>
+        </td>
+        <td>
+         <%= link_to "Rimuovi", update_teachings_curriculum_path(@curriculum,:t_to_remove => t.id), :method => :delete %>
+        </td>
+      </tr>
+      </table>
     <% end %>
   <% end %>
+  <p/>
+  <% if @teachings.size != 0 %>
   <% form_for @curriculum, :url => update_teachings_curriculum_path(@curriculum), :method => :put do %>
-    Aggiungi insegnamento:
+  <h3>Aggiungi insegnamento:</h3><p/>
     <%= select_tag "teaching_id", options_from_collection_for_select(@teachings, "id", "name") %><br/>
-    Opzionale: <%= check_box_tag "isOptional"%> <br/>
+    Opzionale: <%= check_box_tag "isOptional"%>
+    <p>
     <%= submit_tag "Aggiungi" %>
+    </p>
+  <% end %>
+    <% else %>
+   <%= link_to 'Back', administration_graduate_courses_path %>
   <% end %>
 </div>

@@ -100,7 +100,8 @@ class TeachersController < ApplicationController
 
   def create
     user = User.find_by_mail(params[:mail])
-    if user == nil
+    respond_to do |format|
+     if user == nil
       @teacher = User.new()
       @teacher.mail = params[:mail]
       @teacher.random = rand(120)
@@ -110,26 +111,31 @@ class TeachersController < ApplicationController
       a.save false
       @teacher.specified = t
       @teacher.address = a
-      if @teacher.save
+        if @teacher.save
         @teacher.graduate_courses << GraduateCourse.find(params[:graduate_course_id])
         flash[:notice] = "Docente invitato con successo"
         TeacherMailer.deliver_activate_teacher(@current_user, @teacher)
-        redirect_to new_teacher_url
+        format.html{redirect_to new_teacher_url}
+        format.js{render(:update) {|page| page.redirect_to new_teacher_url}}
       else
         @graduate_courses = @current_user.graduate_courses
-        render :action => :new
-      end
+        format.html{render :action => :new}
+        format.js{}
+        end
     else
       if user.own_by_teacher?
         user.graduate_courses << GraduateCourse.find(params[:graduate_course_id])
         flash[:notice] = "Docente invitato con successo"
-        redirect_to new_teacher_url
+        format.html{redirect_to new_teacher_url}
+        format.js{render(:update) {|page| page.redirect_to new_teacher_url}}
       else
         flash[:error] = "La mail inserita è già presente e non corrisponde ad un docente"
-        redirect_to new_teacher_url
+        format.html{redirect_to new_teacher_url}
+        format.js{render(:update) {|page| page.redirect_to new_teacher_url}}
       end
     end
   end
+end
 
   def edit
     teacher = Teacher.find(params[:id])
