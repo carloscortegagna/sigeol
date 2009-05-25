@@ -1,0 +1,6 @@
+if(@curriculum.errors.on(:name))
+ page.replace_html 'errors_name', "*"+@curriculum.errors.on(:name)
+ page.visual_effect :highlight, 'errors_name', :color=>"red", :duration=>"0.7"
+else
+  page.replace_html 'errors_name', ''
+end

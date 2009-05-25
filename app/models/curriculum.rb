@@ -54,7 +54,7 @@ class Curriculum < ActiveRecord::Base
   def unique_curriculum_graduate_course?
     c=Curriculum.find_by_name_and_graduate_course_id(self.name,self.graduate_course_id)
     if c && c.id!=self.id
-      errors.add_to_base("E' gia presente un curriculum con questo nome")
+      errors.add(:name,"E' gia presente un curriculum con questo nome")
     end
   end
 

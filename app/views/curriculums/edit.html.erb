@@ -1,18 +1,21 @@
-<h1>Editing curriculum</h1>
+<h1>Aggiornamento dati curriculum</h1>
 
-<% form_for(@curriculum) do |f| %>
-  <%= f.error_messages %>
+<fieldset>
+<legend>Curriculum:</legend>
+<% remote_form_for(@curriculum) do |f| %>
   <p>
     <%= f.label 'Nome del Curriculum' %><br />
     <%= f.text_field :name %>
+    <span id="errors_name"class="warning"><%=  @curriculum.errors.on(:name) %></span>
   </p>
   <p>
     <%= f.label 'Corso di Laurea associato' %><br />
      <%= select_tag "curriculum[graduate_course_id]" , options_from_collection_for_select(@graduate_courses, "id", "name", @curriculum.graduate_course_id) %>
   </p>
   <p>
-    <%= f.submit "Update" %>
+    <%= f.submit "Aggiorna" %>
   </p>
+  </fieldset>
 <% end %>
 
 <%= link_to 'Back', :controller => 'graduate_courses', :action => 'administration' %>

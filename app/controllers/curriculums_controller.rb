@@ -1,3 +1,12 @@
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: buildings_controller.rb
+#VERSIONE:: 1.0.0
+#AUTORE:: ???
+#DATA CREAZIONE:: ???
+#REGISTRO DELLE MODIFICHE::
+# 25/05/2009 Aggiunte su create e update le istruzioni necessarie per renderizzare il contenuto con js:
+#  format.js{render(:update) {|page| page.redirect_to :controller=>"graduate_course",:action => 'administration'}}
+
 class CurriculumsController < ApplicationController
   skip_before_filter :login_required, :only => :show
   before_filter :manage_graduate_courses_required, :only => [:new, :create, :edit, :update, :destroy,
@@ -40,10 +49,12 @@ class CurriculumsController < ApplicationController
       if @curriculum.save
         flash[:notice] = 'Curriculum creato con successo'
         format.html { redirect_to :controller => 'graduate_courses', :action => 'administration'}
+        format.js{render(:update) {|page| page.redirect_to :controller => 'graduate_courses', :action => 'administration'}}
       else
         @graduate_courses = @current_user.graduate_courses
         format.html { render :action => "new" }
-      end
+        format.js{}
+        end
     end
   end
 
@@ -56,9 +67,11 @@ class CurriculumsController < ApplicationController
       if @curriculum.update_attributes(params[:curriculum])
         flash[:notice] = 'Curriculum modificato con successo'
         format.html { redirect_to :controller => 'graduate_courses', :action => 'administration' }
+        format.js{render(:update) {|page| page.redirect_to :controller => 'graduate_courses', :action => 'administration'}}
       else
         @graduate_courses = @current_user.graduate_courses
         format.html { render :action => "edit" }
+        format.js{ render :action => "create.js.rjs" }
       end
     end
   end
