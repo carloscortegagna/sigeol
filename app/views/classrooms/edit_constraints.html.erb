@@ -9,17 +9,21 @@
 </script>
 
 
-Pagina di show e edit dei vincoli di non disponibilità per l'aula "<%=h @classroom.name %>"
+<h3>Modifica dei vincoli di non disponibilità per l'aula "<%=h @classroom.name %>"</h3>
 <hr>
-<br>
 
 <% if @constraints.size == 0 %>
-  <span id="message">L'aula non possiede vincoli di non disponibilità impostati.</span>
+  <span id="message">Non sono ancora stati impostati vincoli per quest'aula.</span>
+  <table id="manageable_constraints" style="display:none">
+    <tr>
+      <th>Giorno</th>
+      <th>Ora inizio</th>
+      <th>Ora fine</th>
+    </tr>
+  </table>
 <% else %>
   <span id="message">L'aula è stata dichiarata non disponibile nei seguenti periodi:</span>
-<% end %>
 
-<br><br>
 <table id="manageable_constraints">
   <tr>
     <th>Giorno</th>
@@ -28,7 +32,7 @@ Pagina di show e edit dei vincoli di non disponibilità per l'aula "<%=h @classr
   </tr>
 <% @constraints.each do |constraint| %>
   <tr id='<%= constraint.id %>'>
-    <td> <%= from_id_to_dayname(constraint.day) %></td>
+    <td><%= from_id_to_dayname(constraint.day) %></td>
     <td><%=h constraint.startHour.to_s(:time) %></td>
     <td><%=h constraint.endHour.to_s(:time) %></td>
     <td><% form_remote_tag :url => destroy_constraint_classroom_path(@classroom,:constraint_id => constraint.id) do %>
@@ -37,27 +41,32 @@ Pagina di show e edit dei vincoli di non disponibilità per l'aula "<%=h @classr
   </tr>
 <% end %>
 </table>
-<span id="errors_destroy" class="warning"></span> <br>
+<% end %>
+<span id="errors_destroy" class="warning"></span>
 
 <hr>
-<br>
-Nuovo vincolo di indisponibilità dell'aula:
-<br>
- - Inserire il giorno della settimana <br>
- - Inserire l'ora di inizio e fine nel formato HH:MM oppure cliccare sull'orologio
-<br><br>
-<% form_remote_tag :url => create_constraint_classroom_path(@classroom) do %>
-    <%= label_tag "selected_day", "Giorno interessato" %>
-    <%= select_tag "selected_day", "<option>Lunedi</option><option>Martedi</option><option>Mercoledi</option><option>Giovedi</option><option>Venerdi</option>" %> <br>
-    <%= label_tag "start_hour", "Ora di inizio vincolo" %>
-    <%= text_field_tag "start_hour", nil, :maxlength => 5, :size => 10 %> 
-    <span id="errors_start" class="warning"><% if (@constraint) %> <%=@constraint.errors.on(:startHour)%><% end %></span> <br>
-    <%= label_tag "end_hour", "Ora di fine vincolo" %>
-    <%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %>
-    <span id="errors_end" class="warning"><% if (@constraint) %> <%=@constraint.errors.on(:endHour)%><% end %></span> <br>
-    <br> <span id="errors_others" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:starHour,:endHour])%><% end %></span> <br><br>
-    <%= submit_tag "Aggiungi vincolo" %>
+Per inserire un nuovo vincolo:
+<ul>
+  <li>inserire il giorno della settimana in cui l'aula è <strong>indisponibile</strong></li>
+  <li>inserire l'ora di inizio e fine nel formato HH:MM, oppure cliccare sull'orologio per un inserimento grafico</li>
+</ul>
+<% form_remote_tag(:url => create_constraint_classroom_path(@classroom), :html => {:id => "form_classEditConstr"}) do %>
+  <p>
+    <div class="lbl_classEditConstr"><%= label_tag "selected_day", "Giorno interessato:" %></div>
+    <div class="txt_classEditConstr"><%= select_tag "selected_day", "<option>Lunedi</option><option>Martedi</option><option>Mercoledi</option><option>Giovedi</option><option>Venerdi</option>" %> <br></div>
+  </p>
+  <p>
+    <div class="lbl_classEditConstr"><%= label_tag "start_hour", "Ora di inizio vincolo:" %></div>
+    <div class="txt_classEditConstr"><%= text_field_tag "start_hour", nil, :maxlength => 5, :size => 10 %></div>
+    <span id="errors_start" class="warning"><% if (@constraint) %> <%=@constraint.errors.on(:startHour)%><% end %></span>
+  </p>
+  <p>
+    <div class="lbl_classEditConstr"><%= label_tag "end_hour", "Ora di fine vincolo:" %></div>
+    <div class="txt_classEditConstr"><%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %></div>
+    <span id="errors_end" class="warning"><% if (@constraint) %> <%=@constraint.errors.on(:endHour)%><% end %></span>
+    <span id="errors_others" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:starHour,:endHour])%><% end %></span>
+  </p>
+  <p id="submit_classEditConstr"><%= submit_tag "Aggiungi vincolo" %></p>
 <% end %>
-<br><br>
   
-<%= link_to 'Back', :action => 'administration' %>
+<%= link_to 'Indietro', :action => 'administration' %>

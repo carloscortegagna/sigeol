@@ -10,6 +10,10 @@ h2 {
     color:#FF0000;
 }
 
+h3 {
+    font-size:1.5em;
+}
+
 table {
     text-align:center;
 }
@@ -118,6 +122,11 @@ a:hover {
 
 #notice {
     color:#080;
+}
+
+.titoloLista {
+    font-variant:small-caps;
+    font-size:1em;
 }
 
 /*

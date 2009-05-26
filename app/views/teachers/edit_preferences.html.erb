@@ -11,16 +11,22 @@
 <h3>Modifica delle preferenze per: <%=h @teacher.name %> <%=h @teacher.surname %></h3>
 <hr />
 <% if @constraints.size == 0 %>
-  <p id="message">Non hai ancora impostato le tue preferenze.</p>
+  <p id="message">Al momento non hai impostato preferenze.</p>
+  <table id="manageable_constraints" style="display:none">
+    <tr>
+      <th>Giorno</th>
+      <th>Ora inizio</th>
+      <th>Ora fine</th>
+    </tr>
+  </table>
 <% else %>
   <p id="message">Hai dichiarato la tua preferenza a non sostenere lezioni nei seguenti periodi:</p>
-<% end %>
-<table id="manageable_constraints">
-  <tr>
-    <th>Giorno</th>
-    <th>Ora inizio</th>
-    <th>Ora fine</th>
-  </tr>
+  <table id="manageable_constraints">
+    <tr>
+      <th>Giorno</th>
+      <th>Ora inizio</th>
+      <th>Ora fine</th>
+    </tr>
 <% @constraints.each do |constraint| %>
   <tr id='<%= constraint.id %>'>
     <td><%= from_id_to_dayname(constraint.day) %></td>
@@ -39,7 +45,7 @@
 <% end %>
 </table>
 <span id="destroyupdate_error" class="warning"></span> <br>
-
+<% end %>
   <strong>Attenzione:</strong>
 <p>Le preferenze sono ordinate per <strong>priorità decrescente:</strong> spostare in alto le preferenze <em>più importanti</em> e in basso quelle <em>meno importanti.</em> L'algoritmo di calcolo dell'orario di lezione darà <em>maggior peso alle preferenze con priorità più alta.</em></p>
 <hr />

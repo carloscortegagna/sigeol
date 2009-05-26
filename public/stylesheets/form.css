@@ -18,25 +18,25 @@
     margin-left:5em;
 }
 
-#form_docEditPref, #form_docEditConstr {
+#form_docEditPref, #form_docEditConstr, #form_classEditConstr {
     margin-top:2em;
 }
 
-#form_docEditPref p, #form_docEditConstr p {
+#form_docEditPref p, #form_docEditConstr p, #form_classEditConstr p {
     margin:0;
 }
 
-.lbl_docEditPref, .lbl_docEditConstr {
+.lbl_docEditPref, .lbl_docEditConstr, .lbl_classEditConstr {
     float:left;
     margin-top:0.4em;
 }
 
-.txt_docEditPref, .txt_docEditConstr {
+.txt_docEditPref, .txt_docEditConstr, .txt_classEditConstr {
     margin-left:11em;
     margin-top:-0.2em;
 }
 
-#submit_docEditPref {
+#submit_docEditPref, #submit_classEditConstr {
     padding-top:1em;
 }
 
@@ -44,6 +44,22 @@
     margin:1em 0 0 0;
 }
 
-#submit_docEditConstr {
+#submit_docEditConstr, #submit_classEditConstr {
     padding-bottom:1em;
+}
+
+.lbl_docPreActiv {
+    float:left;
+}
+
+#pswd_docPreActiv {
+    margin-left:6.8em;
+}
+
+.txt_docPreActiv {
+    margin-left:6em;
+}
+
+#form_docPreActiv fieldset {
+    margin:1em 0 1em 0;
 }

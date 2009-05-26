@@ -1,15 +1,8 @@
-<div>
-  <div>
-  <%= link_to classroom_admin.name, classroom_path(classroom_admin) %>
-  </div>
-  <div>
-  <%= link_to "Modifica", edit_classroom_path(classroom_admin) %>
-  </div>
-  <div>
-  <%= link_to "Elimina", classroom_admin, :method => :delete%>
-  </div>
-  <div>
-  <%= link_to "Disponibilità", edit_constraints_classroom_path(classroom_admin) %>
-  </div>
-  <hr>
-</div>
+<p>
+  <%= link_to classroom_admin.name, classroom_path(classroom_admin), :class => "titoloLista", :title => "Riepilogo" %>
+  <ul>
+    <li><%= link_to "Modifica", edit_classroom_path(classroom_admin) %></li>
+    <li><%= link_to "Elimina", classroom_admin, :method => :delete%></li>
+    <li><%= link_to "Disponibilità", edit_constraints_classroom_path(classroom_admin) %></li>
+  </ul>
+</p>

@@ -11,10 +11,17 @@
 <h3>Modifica dei vincoli di non disponibilità per: <%=h @teacher.name %> <%=h @teacher.surname %></h3>
 <hr />
 <% if @constraints.size == 0 %>
-  <span id="message">Non hai ancora impostato alcun vincolo.</span>
+  <span id="message">Non hai impostato vincoli.</span>
+  <table id="manageable_constraints" style="display:none">
+    <tr>
+      <th>Giorno</th>
+      <th>Ora inizio</th>
+      <th>Ora fine</th>
+      <th>Motivazione</th>
+    </tr>
+  </table>
 <% else %>
   <span id="message">Hai dichiarato di non disponibile nei seguenti periodi:</span>
-<% end %>
 
 <table id="manageable_constraints">
   <tr>
@@ -36,6 +43,7 @@
 <% end %>
 </table>
 <span id="errors_destroy" class="warning"></span>
+<% end %>
 <p><strong>Nota:</strong> l'ordine di inserimento dei vincoli è indifferente.</p>
 <hr />
 <p>Per inserire un nuovo vincolo:

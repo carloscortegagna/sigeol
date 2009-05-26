@@ -5,7 +5,9 @@ if @constraint && @constraint.id
   end
 
   if @constraints.size == 0
-    page.replace_html 'message', 'L\'aula non possiede vincoli di non disponibilità impostati.'
+    page.replace_html 'message', 'Non sono ancora stati impostati vincoli per quest\'aula.'
+    page.visual_effect :fade , 'manageable_constraints', :duration=>"0.5"
+    page.delay(0.5) do page.hide 'manageable_constraints' end
   else
     page.replace_html 'message', 'L\'aula è stata dichiarata non disponibile nei seguenti periodi:'
   end

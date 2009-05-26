@@ -1,4 +1,5 @@
 if @constraint && @constraint.id
+  page.show 'manageable_constraints'
   page.insert_html :bottom, 'manageable_constraints', :inline => "<tr id='<%= @constraint.id %>'>" +
     "<td><%= from_id_to_dayname(@constraint.day) %></td>" +
     "<td><%=h @constraint.startHour.to_s(:time) %></td>" +

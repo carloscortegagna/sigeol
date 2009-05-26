@@ -5,7 +5,9 @@ if @constraint && @constraint.id
   end
 
   if @constraints.size == 0
-    page.replace_html 'message', 'Non possiedi vincoli di non disponibilità impostati.'
+    page.replace_html 'message', 'Non hai impostato vincoli.'
+    page.visual_effect :fade , 'manageable_constraints', :duration=>"0.5"
+    page.delay(0.5) do page.hide 'manageable_constraints' end
   else
     page.replace_html 'message', 'Sei stato/a dichiarato/a non disponibile nei seguenti periodi:'
   end

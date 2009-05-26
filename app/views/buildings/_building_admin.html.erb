@@ -1,5 +1,7 @@
-<div>
-  <%= link_to building_admin.name, building_path(building_admin) %>
-  <%= link_to "Modifica", edit_building_path(building_admin) %>
-  <%= link_to "Elimina", building_admin, :method => :delete%>
-</div>
+<p>
+  <%= link_to building_admin.name, building_path(building_admin), :class => "titoloLista" %>
+  <ul>
+    <li><%= link_to "Modifica", edit_building_path(building_admin) %></li>
+    <li><%= link_to "Elimina", building_admin, :method => :delete%></li>
+  </ul>
+</p>
