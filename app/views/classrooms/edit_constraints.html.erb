@@ -13,7 +13,7 @@
 <hr>
 
 <% if @constraints.size == 0 %>
-  <span id="message">Non sono ancora stati impostati vincoli per quest'aula.</span>
+  <p id="message">Non sono ancora stati impostati vincoli per quest'aula.</p>
   <table id="manageable_constraints" style="display:none">
     <tr>
       <th>Giorno</th>
@@ -22,7 +22,7 @@
     </tr>
   </table>
 <% else %>
-  <span id="message">L'aula è stata dichiarata non disponibile nei seguenti periodi:</span>
+  <p id="message">L'aula è stata dichiarata non disponibile nei seguenti periodi:</p>
 
 <table id="manageable_constraints">
   <tr>
@@ -64,7 +64,9 @@ Per inserire un nuovo vincolo:
     <div class="lbl_classEditConstr"><%= label_tag "end_hour", "Ora di fine vincolo:" %></div>
     <div class="txt_classEditConstr"><%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %></div>
     <span id="errors_end" class="warning"><% if (@constraint) %> <%=@constraint.errors.on(:endHour)%><% end %></span>
-    <span id="errors_others" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:starHour,:endHour])%><% end %></span>
+  </p>
+ <p>
+    <br><span id="errors_others" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:starHour,:endHour])%><% end %></span>
   </p>
   <p id="submit_classEditConstr"><%= submit_tag "Aggiungi vincolo" %></p>
 <% end %>
