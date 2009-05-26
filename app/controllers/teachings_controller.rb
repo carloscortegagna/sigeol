@@ -86,7 +86,9 @@ class TeachingsController < ApplicationController
   # POST /teachings.xml
   def create
     @teaching = Teaching.new(params[:teaching])
-    curriculum = Curriculum.find(params[:curriculum_id])
+    if params[:curriculum_id]
+     curriculum = Curriculum.find(params[:curriculum_id])
+    end
     optional = false
     optional = true if params[:isOptional]
     period = Period.find_by_subperiod_and_year(params[:subperiod], params[:year])
@@ -94,6 +96,7 @@ class TeachingsController < ApplicationController
       @teaching.period = period
     end
     respond_to do |format|
+      @teaching.save
       if curriculum && @teaching.belongs.build(:curriculum => curriculum, :isOptional => optional) && @teaching.save
         flash[:notice] = 'Insegnamento creato correttamente.'
         format.html { redirect_to select_teacher_teaching_url(@teaching) }
