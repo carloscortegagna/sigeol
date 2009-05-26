@@ -14,7 +14,12 @@
       <span id="errors_city" class="warning"> <%=  @address.errors.on(:city) %></span>
      <p>
        <%= f.label'Telefono:' %><br/>
-      <%=  text_field_tag 'prefisso', '', :size => 4 %>-<%=  text_field_tag 'telefono', '', :size => 8 %>
+       <% if(@address.telephone != '') %>
+        <% i = (@address.telephone) =~ /-/ %>
+        <%=  text_field_tag 'prefisso', @address.telephone[0..i-1], :size => 4 %>-<%=  text_field_tag 'telefono', @address.telephone[i+1..(@address.telephone.size)-1], :size => 8 %>
+      <%else%>
+        <%=  text_field_tag 'prefisso', '', :size => 4 %>-<%=  text_field_tag 'telefono', '', :size => 8 %>
+      <% end %>
       <span id="errors_telephone" class="warning"> <%=  @address.errors.on(:telephone) %></span>
      </p>
       <%= f.label '*Via:' %><br/>
