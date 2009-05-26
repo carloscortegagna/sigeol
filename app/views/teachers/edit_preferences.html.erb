@@ -68,7 +68,9 @@ Per inserire una nuova preferenza:
     <div class="lbl_docEditPref"><%= label_tag "end_hour", "Ora di fine vincolo:" %></div>
     <div class="txt_docEditPref"><%= text_field_tag "end_hour", nil, :maxlength => 5, :size => 10 %></div>
     <span id="errors_end" class="warning"><% if (@constraint) %> <%=@constraint.errors.on(:endHour)%><% end %></span>
-    <span id="errors_others" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:starHour,:endHour])%><% end %></span>
+  </p>
+ <p>
+    <br><span id="errors_others" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:starHour,:endHour])%><% end %></span>
   </p>
   <p id="submit_docEditPref"><%= submit_tag "Aggiungi preferenza" %></p>
 <% end %>

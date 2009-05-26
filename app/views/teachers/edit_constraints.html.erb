@@ -11,7 +11,7 @@
 <h3>Modifica dei vincoli di non disponibilità per: <%=h @teacher.name %> <%=h @teacher.surname %></h3>
 <hr />
 <% if @constraints.size == 0 %>
-  <span id="message">Non hai impostato vincoli.</span>
+  <p> id="message">Non hai impostato vincoli.</p>
   <table id="manageable_constraints" style="display:none">
     <tr>
       <th>Giorno</th>
@@ -21,7 +21,7 @@
     </tr>
   </table>
 <% else %>
-  <span id="message">Hai dichiarato di non disponibile nei seguenti periodi:</span>
+  <p id="message">Hai dichiarato di non disponibile nei seguenti periodi:</p>
 
 <table id="manageable_constraints">
   <tr>
@@ -73,9 +73,11 @@
     <div id="motiv_docEditConstr"><%= label_tag "description", "Motivazione:" %><br />
     <%= text_area_tag 'description', nil, :rows => 5, :cols => 25 %></div>
     <span id="errors_description" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:description])%><% end %></span>
-    <br> <span id="errors_others" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:starHour,:endHour])%><% end %></span>
   </p>
-  <p id="submit_docEditConstr"><%= submit_tag "Aggiungi vincolo" %></p>
+  <p>
+    <br><span id="errors_others" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:starHour,:endHour])%><% end %></span>
+  </p>
+  <br><p id="submit_docEditConstr"><%= submit_tag "Aggiungi vincolo" %></p>
 <% end %>
 
 <%= link_to 'Indietro', :controller => 'timetables' %>
