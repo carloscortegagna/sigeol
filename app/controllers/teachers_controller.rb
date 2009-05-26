@@ -149,7 +149,10 @@ end
             :conditions => ["specified_type = 'Teacher' AND specified_id = (?)", teacher.id])
     user.address.city = params[:city]
     user.address.street = params[:street]
-    user.address.telephone = params[:telephone]
+    user.address.telephone= ""
+    if(params[:prefisso] != "" || params[:telefono] != "")
+      user.address.telephone = params[:prefisso]+"-"+params[:telefono]
+    end
     if user.address.save
       flash[:notice] = 'Dati personali aggiornati correttamente'
       redirect_to(timetables_url)
@@ -171,7 +174,11 @@ end
     @user = User.find params[:id]
     respond_to do |format|
       if @user != nil && @user.specified_type == "Teacher" && !@user.active? && @user.digest == params[:digest]
-        if @user.specified.update_attributes(params[:teacher]) && @user.address.update_attributes(params[:address])
+        @user.address.telephone= ""
+        if(params[:prefisso] != "" || params[:telefono] != "")
+          @user.address.telephone = params[:prefisso]+"-"+params[:telefono]
+         end
+      if @user.specified.update_attributes(params[:teacher]) && @user.address.update_attributes(params[:address])
             @user.password = params[:user][:password]
            if @user.save
               flash[:notice] = "Account attivato correttamente"
