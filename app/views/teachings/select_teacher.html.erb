@@ -1,11 +1,15 @@
 <div>
   <h3><%= show_teaching(@teaching) %></h3>
+  Docente da assegnare(facoltativo):
+  <% if @teachers.size != 0 %>
   <% form_for @teaching, :url => assign_teacher_teaching_path(@teaching), :method => :put do %>
-    Docente da assegnare(facoltativo):
     <%= select_tag "teacher_id", options_from_collection_for_select(@teachers, "id", "complete_name")%>
     <%= submit_tag "Assegna" %>
+    <% end %>
+  <%else%>
+     Nessun docente a disposizione!
+  <%  end %>
     <p>
     <%= link_to 'back', teachings_path %>
     </p>
-  <% end %>
 </div>

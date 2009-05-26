@@ -11,6 +11,7 @@
   <p>
     <%= f.label '*Corso di Laurea associato:' %><br />
      <%= select_tag "curriculum[graduate_course_id]" , options_from_collection_for_select(@graduate_courses, "id", "name") %>
+     <span id="errors_graduate_course"class="warning"><%=  @curriculum.errors.on(:graduate_course_id) %></span>
   </p>
    <p>
    (*) = campi obbligatori

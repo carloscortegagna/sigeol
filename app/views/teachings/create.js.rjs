@@ -33,3 +33,9 @@ else
  page.replace_html 'errors_studentsNumber', ''
 end
 
+ if @graduate_courses.size == 0
+  page.replace_html 'errors_curriculums', "*Deve essere associato ad un curriculum"
+  page.visual_effect :highlight, 'errors_curriculums', :color=>"red", :duration=>"0.7"
+  else
+  page.replace_html 'errors_curriculums', ''
+ end

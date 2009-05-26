@@ -16,6 +16,7 @@
   <p>
     <%= f.label "*Edificio:" %><br />
     <%= select_tag "classroom[building_id]" , options_from_collection_for_select(@buildings, "id", "name") %>
+    <span class="warning "id="errors_building"> <%=  @classroom.errors.on(:building_id) %></span>
   </p>
    <p>
    (*) = campi obbligatori
