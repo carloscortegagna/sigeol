@@ -864,11 +864,14 @@ Esso implementa le seguenti operazioni:
 Servlet che si occupa di ricevere le richieste (di tipo HTTP POST e GET) dall'applicazione:
 \begin{description}
 \item[POST]
-Parametri: course, date\\
+Parametri: course, date, op=sj\\
 crea una nuovo trigger che si attiverà alla data (date) per il corso di laurea (course) specificato
-\item[GET]
-Parametri: course, inputfile, timeout\\
+
+Parametri: course, inputfile, timeout, op=dj\\
 viene inizializzata ed eseguita la componente \verb|Algorithm| con i parametri ricevuti
+\item[GET]
+Parametri: \\
+visualizza una semplice pagina del progetto
 \end{description}
 \subsubsection{SchedulerJobListener}
 Classe che viene richiamata all'attivazione di un evento precedentemente schedulato (nel nostro caso la generazione dell'orario di un determinato corso di laurea ad una certa data).
