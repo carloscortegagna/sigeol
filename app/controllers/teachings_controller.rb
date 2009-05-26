@@ -1,11 +1,17 @@
-#=QuiXoft - Progetto ”SIGEOL”
-#NOME FILE:: teachings.controller.rb
-#VERSIONE:: 1.0.0
-#AUTORE:: ???
-#DATA CREAZIONE:: ???
-#REGISTRO DELLE MODIFICHE::
-# 11/05/09 Nel filter same_graduate_course_required, sostituito unless graduate_course con unless graduate_course.size != 0
-# 11/05/09 In assign_teacher, sostituito redirected_to select_teacher_url(@teaching) con redirect_to select_teacher_teaching_url(@teaching)
+# QuiXoft - Progetto ”SIGEOL”
+# NOME FILE: teachings.controller.rb
+# AUTORE: Scortegagna Carlo
+# DATA CREAZIONE: 13/02/2009
+#
+# REGISTRO DELLE MODIFICHE:
+# 
+# 14/05/2009 finite le viste xml
+#
+# 14/03/2009 aggiunta l'assegnazione dei docenti agli insegnamenti e l'assegnazione degli insegnamenti ai curriculum
+#
+# 24/02/2009 aggiunta la gestione dei curriculum
+# 
+# 16/02/2009 action "index" resa pubblica. Creata una nuova action "administration", accessibile solamente dagli utenti loggati
 
 class TeachingsController < ApplicationController
   skip_before_filter :login_required, :only => [:index ,:show]
@@ -139,8 +145,7 @@ class TeachingsController < ApplicationController
     end
   end
 
-  # DELETE /teachings/1
-  # DELETE /teachings/1.xml
+  # cancellazione di un insegnamento
   def destroy
     @teaching = Teaching.find(params[:id])
     @teaching.destroy

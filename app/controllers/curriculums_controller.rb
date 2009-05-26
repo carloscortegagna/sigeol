@@ -1,11 +1,15 @@
-#=QuiXoft - Progetto ”SIGEOL”
-#NOME FILE:: buildings_controller.rb
-#VERSIONE:: 1.0.0
-#AUTORE:: ???
-#DATA CREAZIONE:: ???
-#REGISTRO DELLE MODIFICHE::
-# 25/05/2009 Aggiunte su create e update le istruzioni necessarie per renderizzare il contenuto con js:
-#  format.js{render(:update) {|page| page.redirect_to :controller=>"graduate_course",:action => 'administration'}}
+# QuiXoft - Progetto ”SIGEOL”
+# NOME FILE: curriculums_controller.rb
+# AUTORE: Carlo Scortegagna
+# DATA CREAZIONE: 13/02/2009
+#
+# REGISTRO DELLE MODIFICHE:
+#
+# 14/05/2009 completate le viste xml
+#
+# 02/03/2009 eliminate le azioni inutilizzate
+#
+# 13/02/2009 prima stesura del file
 
 class CurriculumsController < ApplicationController
   skip_before_filter :login_required, :only => :show
@@ -128,4 +132,5 @@ class CurriculumsController < ApplicationController
       redirect_to timetables_url
     end
   end
+  
 end

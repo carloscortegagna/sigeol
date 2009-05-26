@@ -1,11 +1,19 @@
-#=QuiXoft - Progetto ”SIGEOL”
-#NOME FILE:: buildings_controller.rb
-#VERSIONE:: 1.0.0
-#AUTORE:: ???
-#DATA CREAZIONE:: ???
-#REGISTRO DELLE MODIFICHE::
-# 21/05/2009 Aggiunto sia su create che su update le istruzioni che generano il contenuto di telephone usando i paramentri prefisso e telefono.
+# QuiXoft - Progetto ”SIGEOL”
+# NOME FILE: buildings_controller.rb
+# AUTORE: Carlo Scortegagna
+# DATA CREAZIONE: 13/02/2009
+#
+# REGISTRO DELLE MODIFICHE:
+#
+# 21/05/2009 Aggiunto sia su create che su update le istruzioni che generano il contenuto di telephone usando i parametri prefisso e telefono.
 # Inoltre inserite istruzioni necessarie per renderizzare il contenuto con js.
+#
+# 14/05/2009 completate le viste xml
+#
+# 03/03/2009 Aggiornato il controller buildings con l'aggiunta dei filtri che mancavano
+#
+# 13/02/2009 prima stesura del controller
+
 
 class BuildingsController < ApplicationController
   skip_before_filter :login_required, :only => [:index, :show]
@@ -37,7 +45,6 @@ class BuildingsController < ApplicationController
   def new
     @building = Building.new
     @address = Address.new
-
     respond_to do |format|
       format.html # new.html.erb
     end
@@ -108,4 +115,5 @@ class BuildingsController < ApplicationController
       format.html { redirect_to :action => 'administration' }
     end
   end
+
 end

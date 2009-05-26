@@ -1,11 +1,18 @@
-#=QuiXoft - Progetto ”SIGEOL”
-#NOME FILE:: graduate_courses.controller.rb
-#VERSIONE:: 1.0.0
-#AUTORE:: ???
-#DATA CREAZIONE:: ???
-#REGISTRO DELLE MODIFICHE::
+# QuiXoft - Progetto ”SIGEOL”
+# NOME FILE: graduate_courses_controller.rb
+# AUTORE: Beggiato Andrea
+# DATA CREAZIONE: 13/02/2009
+#
+# REGISTRO DELLE MODIFICHE:
+# 
+# 19/05/2009 sistemate le action index e show per gli utenti non loggati
+# 
 # 11/05/2009 Nel filtro graduate_course_required aggiunta l'istruzione redirect_to
+#
 # 11/05/2009 Inizializzata la variabile @academic_organization nell'azione update(caso else)
+#
+# 18/02/2009 aggiunto l'inserimento di un corso di laurea e dei relativi curriculum
+
 
 class GraduateCoursesController < ApplicationController
   skip_before_filter :login_required, :only => :index
@@ -13,7 +20,7 @@ class GraduateCoursesController < ApplicationController
   before_filter :didactic_office_required, :only => [:new, :create, :destroy]
   before_filter :same_graduate_course_required, :only => [:edit, :update, :destroy]
 
-def index
+  def index
     @graduate_courses = GraduateCourse.find(:all)
 
     respond_to do |format|
@@ -115,4 +122,5 @@ def index
       redirect_to timetables_url
     end
   end
+  
 end

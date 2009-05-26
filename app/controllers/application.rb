@@ -1,3 +1,18 @@
+# QuiXoft - Progetto ”SIGEOL”
+# NOME FILE: application.rb
+# AUTORE: Beggiato Andrea
+# DATA CREAZIONE: 06/02/2009
+#
+# REGISTRO DELLE MODIFICHE:
+#
+# 08/05/2009 aggiunti i metodi di conversione [id->giorno = from_id_to_dayname] e [giorno->id = from_dayname_to_id];
+#
+# 18/02/2009 completata la gestione delle capabilities
+#
+# 13/02/2009 creato il filtro login_required
+
+
+
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 

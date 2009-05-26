@@ -1,13 +1,26 @@
-#=QuiXoft - Progetto ”SIGEOL”
-#NOME FILE:: teacher.controller.rb
-#VERSIONE:: 1.0.0
-#AUTORE:: ???
-#DATA CREAZIONE:: ???
-#REGISTRO DELLE MODIFICHE::
-# 12/05/2009 per gli array è stato sostituito count con size
+# QuiXoft - Progetto ”SIGEOL”
+# NOME FILE: teachers.controller.rb
+# AUTORE: Scortegagna Carlo
+# DATA CREAZIONE: 17/02/2009
+#
+# REGISTRO DELLE MODIFICHE:
+# 
+# 19/05/2009 sistemate le action index e show per gli utenti non loggati
+#
 # 12/05/2009 sia su proprity_down che su priority_up assegnato a i = constraint_to_move_down.isHard.
 # Usato i come indice per accedere ai valori degli array e non più constraint_to_move_down.isHard(riga 292 e 323)
-# 19/05/2009 sistemate le action index e show per gli utenti non loggati
+# 
+# 12/05/2009 per gli array è stato sostituito count con size
+#
+# 27/04/2009 Completata la gestione delle preferenze
+#
+# 21/04/2009 Aggiunta la gestione dei vincoli
+#
+# 14/03/2009 Sistemata l'assegnazione dei docenti agli insegnamenti
+#
+# 29/02/2009 Aggiunta l'azione administration
+#
+# 17/02/2009 Aggiunto l'invito dei docenti da parte di chi ha i permessi per farlo
 
 
 class TeachersController < ApplicationController
@@ -20,14 +33,10 @@ class TeachersController < ApplicationController
   before_filter :same_teacher_required, :only => [:edit, :update_personal_data, :edit_constraints, :edit_preferences,
                                                           :create_constraint, :destroy_constraint]
 
-  # metodi da aggiungere:
-  # destroy
-  # edit per i dati personali
-  # update per i dati personali
   def index
     @teachers = []
-    if(Teacher.find(:all).size == 0)
-     @teachers = (Teacher.find(:all)).sort_by { |t| t[:surname] }
+    if(Teacher.find(:all).size != 0)
+     @teachers = (Teacher.find(:all, :conditions => ['name != "" AND surname != ""'], :order => "surname ASC"))
     end
     respond_to do |format|
       format.html

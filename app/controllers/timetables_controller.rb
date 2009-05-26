@@ -1,11 +1,18 @@
+# QuiXoft - Progetto ”SIGEOL”
+# NOME FILE: timetables.controller.rb
+# AUTORE: Barbiero Mattia
+# DATA CREAZIONE: 13/02/2009
+#
+# REGISTRO DELLE MODIFICHE:
+#
+# 13/02/2009 aggiunto il controller per timetables. L'home page del progetto è l'index di questo controller
+
 require 'net/http'
 require 'net/https'
 
 class TimetablesController < ApplicationController
   skip_before_filter :login_required
   
-  # GET /timetables
-  # GET /timetables.xml
   def index
     @timetables = Timetable.find(:all)
 
@@ -15,8 +22,6 @@ class TimetablesController < ApplicationController
     end
   end
 
-  # GET /timetables/1
-  # GET /timetables/1.xml
   def show
     @timetable = Timetable.find(params[:id])
 
@@ -26,8 +31,6 @@ class TimetablesController < ApplicationController
     end
   end
 
-  # GET /timetables/new
-  # GET /timetables/new.xml
   def new
     @timetable = Timetable.new
 
@@ -37,13 +40,10 @@ class TimetablesController < ApplicationController
     end
   end
 
-  # GET /timetables/1/edit
   def edit
     @timetable = Timetable.find(params[:id])
   end
 
-  # POST /timetables
-  # POST /timetables.xml
   def create
     @timetable = Timetable.new(params[:timetable])
 
@@ -59,8 +59,6 @@ class TimetablesController < ApplicationController
     end
   end
 
-  # PUT /timetables/1
-  # PUT /timetables/1.xml
   def update
     @timetable = Timetable.find(params[:id])
 
@@ -76,8 +74,6 @@ class TimetablesController < ApplicationController
     end
   end
 
-  # DELETE /timetables/1
-  # DELETE /timetables/1.xml
   def destroy
     @timetable = Timetable.find(params[:id])
     @timetable.destroy
@@ -88,7 +84,6 @@ class TimetablesController < ApplicationController
     end
   end
   
-  #
   #metodo usato nella creazione di una nuova istanza di schedulazione
   #chiamato dalla gui
   def schedule
@@ -126,7 +121,6 @@ class TimetablesController < ApplicationController
     end
   end
 
-  #
   #metodo per la segnalazione del calcolo dell'algoritmo eseguito
   #eseguito dalla servlet via get
   def done

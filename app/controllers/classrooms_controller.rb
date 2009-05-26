@@ -1,13 +1,20 @@
-#=QuiXoft - Progetto ”SIGEOL”
-#NOME FILE:: buildings_controller.rb
-#VERSIONE:: 1.0.0
-#AUTORE:: ???
-#DATA CREAZIONE:: ???
-#REGISTRO DELLE MODIFICHE::
+# QuiXoft - Progetto ”SIGEOL”
+# NOME FILE: classrooms_controller.rb
+# AUTORE: Carlo Scortegagna
+# DATA CREAZIONE: 13/02/2009
+#
+# REGISTRO DELLE MODIFICHE:
+#
 # 21/05/2009 Riga 77: Commentata; questo perchè se si re-inizializza la variabile @classroom perdo gli errori associati.
-# 21/05/2009 Aggiunto sia su create che su update le istruzioni necessarie per renderizzare il contenuto con js:
+#
+# 20/05/2009 Aggiunto sia su create che su update le istruzioni necessarie per renderizzare il contenuto con js:
 #  format.js{render(:update) {|page| page.redirect_to :action => 'administration'}}
-
+#
+# 22/04/2009 completata la gestione dei vincoli
+#
+# 03/03/2009 completata l'assegnazione delle aule ai vari corsi di laurea
+#  
+# 13/02/2009 prima stesura del file
 
 
 class ClassroomsController < ApplicationController
@@ -156,6 +163,7 @@ class ClassroomsController < ApplicationController
     end
   end
 
+  # creazione e salvataggio nel DB di un nuovo vincolo temporale
   def create_constraint
     if request.post?
       classroom = Classroom.find(params[:id])
@@ -183,6 +191,7 @@ class ClassroomsController < ApplicationController
     end
   end
 
+  # action per eliminare un vicolo temporale assegnato all'aula
   def destroy_constraint
     constraint_to_destroy = TemporalConstraint.find(params[:constraint_id])
     constraint_to_destroy.destroy
