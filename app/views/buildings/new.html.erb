@@ -1,25 +1,28 @@
 <h1>Inserimento di un nuovo edificio</h1>
 <% remote_form_for :building, :url => { :action => :create } do |form| %>
   <p>
-  <%= form.label 'Nome:'  %><br/>
+  <%= form.label '*Nome:'  %><br/>
   <%= form.text_field :name %>
   <span id="errors_name" class="warning"> <%= @building.errors.on(:name) %></span>
  </p>
   <fieldset>
     <legend>Indirizzo:</legend>
 <% fields_for :address do |address| %>
-  <%= form.label 'Città:' %><br/>
+  <%= form.label '*Città:' %><br/>
   <%= address.text_field :city %>
   <span id="errors_city" class="warning"> <%=  @address.errors.on(:city) %></span>
   <p>
-   <%= form.label'Telefono(campo non obbligatorio):' %><br/>
+   <%= form.label'Telefono:' %><br/>
    <%=  text_field_tag 'prefisso', '', :size => 4 %>-<%=  text_field_tag 'telefono', '', :size => 8 %>
    <span id="errors_telephone" class="warning"> <%=  @address.errors.on(:telephone) %></span>
    </p>
-   <%= form.label' Via:'%><br/>
+   <%= form.label' *Via:'%><br/>
    <%= address.text_field :street %>
    <span id="errors_street" class="warning"> <%=  @address.errors.on(:street) %></span>
    <% end %>
+   <p>
+   (*) = campi obbligatori
+   </p>
    </fieldset>
    <p>
     <%= submit_tag "Crea"%>

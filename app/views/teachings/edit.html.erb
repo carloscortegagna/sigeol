@@ -4,7 +4,7 @@
   <fieldset>
   <legend> Insegnamento: </legend>
    <p>
-    <%= f.label :name %><br />
+    <%= f.label '*nome:' %><br />
     <%= f.text_field :name %>
     <span class="warning" id="errors_name"><%= @teaching.errors.on(:name) %> </span>
   </p>
@@ -29,10 +29,13 @@
     <span class="warning" id="errors_studentsNumber"><%= @teaching.errors.on(:studentsNumber) %> </span>
   </p>
   <p>
-    <%= f.submit "Aggiorna" %>
-  </p>
+   (*) = campi obbligatori
+   </p>
   </fieldset>
-<% end %>
+   <p>
+    <%= f.submit "Aggiorna" %>
+   </p>
+   <% end %>
 
 <%= link_to 'Show', @teaching %> 
 <%= link_to 'Back', teachings_path %>

@@ -2,45 +2,51 @@
 
 <% remote_form_for @user, :url => {:action => :activate, :digest => params[:digest]}, :html => {:method => :post, :id => "form_docPreActiv"} do |f| %>
    <p>
-    <div class="lbl_docPreActiv"><%= label_tag 'password:' %></div>
+    <div class="lbl_docPreActiv"><%= label_tag '*password:' %></div>
     <div id ="pswd_docPreActiv" class="txt_docPreActiv"><%= f.password_field :password %>
     <span class="warning" id="password_errors"><%= @user.errors.on(:password) %> </span>
     </div>
   </p>
   <fieldset>
-    <legend>Dati personali</legend>
+    <legend>Dati personali:</legend>
     <% fields_for :teacher, @user.specified do |field| %>
   <p>
-    <div class="lbl_docPreActiv"><%= label_tag 'Nome:' %></div>
+    <div class="lbl_docPreActiv"><%= label_tag '*Nome:' %></div>
     <div class="txt_docPreActiv"><%= field.text_field :name %></div>
     <span class="warning" id="name_errors"><%= (@user.specified).errors.on(:name) %> </span>
   </p>
   <p>
-    <div class="lbl_docPreActiv"><%= label_tag 'Cognome:' %></div>
+    <div class="lbl_docPreActiv"><%= label_tag '*Cognome:' %></div>
     <div class="txt_docPreActiv"><%= field.text_field :surname %></div>
     <span class="warning" id="surname_errors"><%= (@user.specified).errors.on(:surname) %> </span>
   </p>
   <% end %>
+  <p>
+   (*) = campi obbligatori
+   </p>
   </fieldset>
   <fieldset>
-    <legend>Indirizzo</legend>
+    <legend>Indirizzo:</legend>
     <% fields_for :address, @user.address do |field| %>
     <p>
-      <div class="lbl_docPreActiv"><%= label_tag 'Città:' %></div>
+      <div class="lbl_docPreActiv"><%= label_tag '*Città:' %></div>
       <div class="txt_docPreActiv"><%= field.text_field :city %></div>
       <span class="warning" id="city_errors"><%= (@user.address).errors.on(:city) %> </span>
     </p>
     <p>
-      <div class="lbl_docPreActiv"><%= label_tag 'Telefono:' %></div>
+      <div class="lbl_docPreActiv"><%= label_tag '*Telefono:' %></div>
       <div class="txt_docPreActiv"><%= field.text_field :telephone %></div>
       <span class="warning" id="telephone_errors"><%= (@user.address).errors.on(:telephone) %> </span>
    </p>
     <p>
-      <div class="lbl_docPreActiv"><%= label_tag 'Via:' %></div>
+      <div class="lbl_docPreActiv"><%= label_tag '*Via:' %></div>
       <div class="txt_docPreActiv"><%= field.text_field :street %></div>
       <span class="warning" id="street_errors"><%= (@user.address).errors.on(:street) %> </span>
     </p>
     <% end %>
+    <p>
+   (*) = campi obbligatori
+   </p>
   </fieldset>
     <% #  hidden_field_tag 'digest', params[:digest]  %>
   <p>

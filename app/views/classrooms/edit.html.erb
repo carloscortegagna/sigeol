@@ -14,19 +14,22 @@
  <fieldset>
    <legend>Aula:</legend>
  <p>
-    <%= f.label 'Nome:' %><br />
+    <%= f.label '*Nome:' %><br />
     <%= f.text_field :name %>
     <span id="errors_name" class="warning"> <%=  @classroom.errors.on(:name) %></span>
   </p>
   <p>
-    <%= f.label 'Capacità(non obbligatorio):' %><br />
+    <%= f.label 'Capacità:' %><br />
     <%= f.text_field :capacity %>
     <span id="errors_capacity"> <%=  @classroom.errors.on(:capacity) %></span>
   </p>
   <p>
-     <%= f.label "Edificio:" %><br />
+     <%= f.label "*Edificio:" %><br />
      <%= select_tag "classroom[building_id]" , options_from_collection_for_select(@buildings, "id", "name", @classroom.building_id) %>
   </p>
+   <p>
+   (*) = campi obbligatori
+   </p>
   </fieldset>
   <p>
     <%= f.submit "Salva modifiche" %>

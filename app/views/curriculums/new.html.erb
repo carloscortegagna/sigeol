@@ -4,16 +4,19 @@
   <fieldset>
   <legend>Curriculum:</legend>
   <p>
-    <%= f.label 'Nome del Curriculum' %><br />
+    <%= f.label '*Nome del Curriculum:' %><br />
     <%= f.text_field :name %>
     <span class="warning" id="errors_name"><%=  @curriculum.errors.on(:name) %></span>
   </p>
   <p>
-    <%= f.label 'Corso di Laurea associato' %><br />
+    <%= f.label '*Corso di Laurea associato:' %><br />
      <%= select_tag "curriculum[graduate_course_id]" , options_from_collection_for_select(@graduate_courses, "id", "name") %>
   </p>
+   <p>
+   (*) = campi obbligatori
+   </p>
+   </fieldset>
   <p>
     <%= f.submit "Crea" %>
   </p>
-  </fieldset>
 <% end %>

@@ -2,25 +2,28 @@
 
 <% remote_form_for(@building) do |f| %>
   <p>
-    <%= f.label :name %><br />
+    <%= f.label '*Nome:' %><br />
     <%= f.text_field :name %>
     <span id="errors_name" class="warning"> <%= @building.errors.on(:name) %></span>
   </p>
   <fieldset>
     <legend>Indirizzo:</legend>
     <% fields_for :address do |a| %>
-      <%= f.label 'Città:' %><br/>
+      <%= f.label '*Città:' %><br/>
       <%= a.text_field :city %>
       <span id="errors_city" class="warning"> <%=  @address.errors.on(:city) %></span>
      <p>
-       <%= f.label'Telefono(campo non obbligatorio):' %><br/>
+       <%= f.label'Telefono:' %><br/>
       <%=  text_field_tag 'prefisso', '', :size => 4 %>-<%=  text_field_tag 'telefono', '', :size => 8 %>
       <span id="errors_telephone" class="warning"> <%=  @address.errors.on(:telephone) %></span>
      </p>
-      <%= f.label 'Via:' %><br/>
+      <%= f.label '*Via:' %><br/>
       <%= a.text_field :street %>
       <span id="errors_street" class="warning"> <%=  @address.errors.on(:street) %></span>
     <% end %>
+    <p>
+   (*) = campi obbligatori
+   </p>
     </fieldset>
   <p>
     <%= f.submit "Aggiorna" %>

@@ -4,7 +4,7 @@
   <fieldset> 
   <legend> Insegnamento: </legend>
   <p>
-    <%= f.label "Nome:" %><br />
+    <%= f.label "*Nome:" %><br />
     <%= f.text_field :name %>
     <span class="warning" id="errors_name"><%= @teaching.errors.on(:name) %> </span>
   </p>
@@ -45,7 +45,10 @@
     <%= select_tag "subperiod" , options_from_collection_for_select(@subperiod, "subperiod", "subperiod") %>
   </p>
   <p>
+   (*) = campi obbligatori
+   </p>
+  </fieldset>
+  <p>
     <%= f.submit "Crea" %>
   </p>
-  </fieldset>
-<% end %>
+  <% end %>

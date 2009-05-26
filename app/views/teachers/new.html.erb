@@ -2,16 +2,19 @@
 
 <% form_remote_tag :url => {:controller => 'teachers', :action => 'create'} do %>
    <p>
-    <%= label_tag 'mail', "Mail:" %>
+    <%= label_tag 'mail', "*Mail:" %>
     <%= text_field_tag "mail" %>
     <span class="warning" id="errors_mail">
         <%= @teacher.errors.on(:mail) %>
      </span>
   </p>
   <p>
-    <%= label_tag 'graduate_course_id', 'Corso di laurea:' %>
+    <%= label_tag 'graduate_course_id', '*Corso di laurea:' %>
     <%= select_tag "graduate_course_id", options_from_collection_for_select(@graduate_courses, "id", "name") %>
   </p>
+  <p>
+   (*) = campi obbligatori
+   </p>
   <p>
     <%= submit_tag "Invita docente" %>
   </p>
