@@ -1,19 +1,21 @@
-#=QuiXoft - Progetto ”SIGEOL”
-#NOME FILE:: graduate_course.rb
-#VERSIONE:: 1.0.0
-#AUTORE:: Grosselle Alessandro
-#DATA CREAZIONE:: 16/02/09
-#REGISTRO DELLE MODIFICHE::
-# 27/04/09 Approvazione del responsabile
+# QuiXoft - Progetto ”SIGEOL”
+# NOME FILE: graduate_course.rb
+# AUTORE: Grosselle Alessandro
+# DATA CREAZIONE: 16/02/2009
 #
-# 10/03/09 Aggiunta dell'associazione polimorfa has_many :constraints
+# REGISTRO DELLE MODIFICHE:
 #
-# 20/02/09 Aggiunta dell'associazione has_and_belongs_to_many :users e has_and_belongs_to_many :classrooms
+# 27/04/2009 Approvazione del responsabile
 #
-# 17/02/09 Aggiunta delle validazioni
+# 10/03/2009 Aggiunta dell'associazione polimorfa has_many :constraints
 #
-# 16/02/09 Prima stesura
+# 20/02/2009 Aggiunta dell'associazione has_and_belongs_to_many :users e has_and_belongs_to_many :classrooms
 #
+# 17/02/2009 Aggiunta delle validazioni
+#
+# 16/02/2009 Prima stesura
+
+
 #Rappresentazione di un corso di laurea.
 
 class GraduateCourse < ActiveRecord::Base

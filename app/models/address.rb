@@ -1,21 +1,23 @@
-#=QuiXoft - Progetto ”SIGEOL”
-#NOME FILE:: address.rb
-#VERSIONE:: 1.0.0
-#AUTORE:: Grosselle Alessandro
-#DATA CREAZIONE:: 16/02/09
-#REGISTRO DELLE MODIFICHE::
-# 24/04/09 Approvazione del responsabile
+# QuiXoft - Progetto ”SIGEOL”
+# NOME FILE: address.rb
+# AUTORE: Grosselle Alessandro
+# DATA CREAZIONE: 16/02/2009
+# 
+# REGISTRO DELLE MODIFICHE:
 #
-# 27/02/09 Diminuite da 15 a 13 il numero di cifre per il numero di telefono
+# 24/04/2009 Approvazione del responsabile
 #
-# 20/02/09 Piccole correzioni alle espressioni regolari
+# 27/02/2009 Diminuite da 15 a 13 il numero di cifre per il numero di telefono
 #
-# 17/02/09 Aggiunta delle validazioni
+# 20/02/2009 Piccole correzioni alle espressioni regolari
 #
-# 16/02/09 Prima stesura
+# 17/02/2009 Aggiunta delle validazioni
 #
-#Rappresentazione di un indirizzo civico, che può essere associato ad un utente(_User_) o ad un
-#edificio (_Building_).
+# 16/02/2009 Prima stesura
+
+
+# Rappresentazione di un indirizzo civico, che può essere associato ad un utente(_User_) o ad un
+# edificio (_Building_).
 
 class Address < ActiveRecord::Base
   include ApplicationHelper

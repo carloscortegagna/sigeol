@@ -1,27 +1,30 @@
-require 'digest/sha1'
-#=QuiXoft - Progetto ”SIGEOL”
-#NOME FILE:: user.rb
-#VERSIONE:: 1.0.0
-#AUTORE:: Grosselle Alessandro
-#DATA CREAZIONE:: 16/02/09
-#REGISTRO DELLE MODIFICHE::
-# 24/04/09 Approvazione del responsabile
+# QuiXoft - Progetto ”SIGEOL”
+# NOME FILE: user.rb
+# AUTORE: Grosselle Alessandro
+# DATA CREAZIONE: 16/02/2009
 #
-# 02/04/09 Verificato ed aggiornati i commenti in stile RDoc
+# REGISTRO DELLE MODIFICHE:
 #
-# 14/03/09 Aggiunto il metodo not_without_graduate_courses(graduate_course)
+# 24/04/2009 Approvazione del responsabile
 #
-# 22/02/09 Aggiunta dei metodi own_by_
+# 02/04/2009 Verificato ed aggiornati i commenti in stile RDoc
 #
-# 20/02/09 Aggiunta metodi manage_
+# 14/03/2009 Aggiunto il metodo not_without_graduate_courses(graduate_course)
 #
-# 18/02/09 Aggiunta del metodo per l'autenticazione
+# 22/02/2009 Aggiunta dei metodi own_by_
 #
-# 18/02/09 Aggiunta delle prime validazioni
+# 20/02/2009 Aggiunta metodi manage_
+#
+# 18/02/2009 Aggiunta del metodo per l'autenticazione
+#
+# 18/02/2009 Aggiunta delle prime validazioni
 # 
-# 16/02/09 Prima stesura
-#
+# 16/02/2009 Prima stesura
+
+
 #Utente generico del sistema Sigeol. Non viene resa possibile la creazione diretta di uno _User_, ma può essere creato solo tramite un'associazione con una tipologia di utente,  come ad esempio _DidacticOffice_ o _Teacher_.
+
+require 'digest/sha1'
 
 class User < ActiveRecord::Base
   belongs_to :specified, :polymorphic => true, :dependent=>:destroy

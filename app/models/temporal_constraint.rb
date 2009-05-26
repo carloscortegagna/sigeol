@@ -1,17 +1,19 @@
-#=QuiXoft - Progetto ”SIGEOL”
-#NOME FILE:: temporal_contraint.rb
-#VERSIONE:: 1.0.0
-#AUTORE:: Grosselle Alessandro
-#DATA CREAZIONE:: 16/02/09
-#REGISTRO DELLE MODIFICHE::
-# 27/04/09 Approvazione del responsabile
+# QuiXoft - Progetto ”SIGEOL”
+# NOME FILE: temporal_contraint.rb
+# AUTORE: Grosselle Alessandro
+# DATA CREAZIONE: 16/02/2009
 #
-# 13/03/09 Aggiunta validates_numericality_of :isHard
+# REGISTRO DELLE MODIFICHE:
 #
-# 20/02/09 Aggiunta delle validazioni
+# 27/04/2009 Approvazione del responsabile
 #
-# 16/02/09 Prima stesura
+# 13/03/2009 Aggiunta validates_numericality_of :isHard
 #
+# 20/02/2009 Aggiunta delle validazioni
+#
+# 16/02/2009 Prima stesura
+
+
 #Rappresentazione dei vincoli temporali. Con questa tipologia di vincolo si intendono le restrizioni del
 #tipo, ad esempio, "l'aula è indisponibile il lunedì dalle 9:30 alle 12:30".
 

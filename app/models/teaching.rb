@@ -1,19 +1,21 @@
-#=QuiXoft - Progetto ”SIGEOL”
-#NOME FILE:: teaching.rb
-#VERSIONE:: 1.0.0
-#AUTORE:: Grosselle Alessandro
-#DATA CREAZIONE:: 16/02/09
-#REGISTRO DELLE MODIFICHE::
-# 22/04/09 Approvazione del responsabile
+# QuiXoft - Progetto ”SIGEOL”
+# NOME FILE:: teaching.rb
+# AUTORE:: Grosselle Alessandro
+# DATA CREAZIONE:: 16/02/2009
 #
-# 28/02/09 Aggiunto il metodo validates_presence_of :period_id,
+# REGISTRO DELLE MODIFICHE:
 #
-# 24/02/09 Aggiunto il metodo check_durata?
+# 22/04/2009 Approvazione del responsabile
 #
-# 18/02/09 Aggiunta delle validazioni
+# 28/02/2009 Aggiunto il metodo validates_presence_of :period_id,
 #
-# 16/02/09 Prima stesura
+# 24/02/2009 Aggiunto il metodo check_durata?
 #
+# 18/02/2009 Aggiunta delle validazioni
+#
+# 16/02/2009 Prima stesura
+
+
 #Rappresentazione di un insegnamento. Contiene informazioni quali il periodo (_Period_) ed il curriculum (_Curriculum_)
 #di appartenenza, nonchè il docente (_Teacher_) titolare del corso d'insegnamento.
 

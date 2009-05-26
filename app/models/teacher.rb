@@ -1,21 +1,23 @@
-#=QuiXoft - Progetto ”SIGEOL”
-#NOME FILE:: teacher.rb
-#VERSIONE:: 1.0.0
-#AUTORE:: Grosselle Alessandro
-#DATA CREAZIONE:: 12/02/09
-#REGISTRO DELLE MODIFICHE::
-# 21/04/09 Approvazione del responsabile
+# QuiXoft - Progetto ”SIGEOL”
+# NOME FILE: teacher.rb
+# AUTORE: Grosselle Alessandro
+# DATA CREAZIONE: 12/02/2009
 #
-# 10/03/09 Aggiunta dell'associazione polimorfa has_many :constraints
+# REGISTRO DELLE MODIFICHE:
 #
-# 26/02/09 Override del metodo before_destroy
+# 21/04/2009 Approvazione del responsabile
 #
-# 15/02/09 Corrette le restrizioni su alcune validazioni
+# 10/03/2009 Aggiunta dell'associazione polimorfa has_many :constraints
 #
-# 13/02/09 Aggiunta delle validazioni
+# 26/02/2009 Override del metodo before_destroy
 #
-# 12/02/09 Prima stesura
+# 15/02/2009 Corrette le restrizioni su alcune validazioni
 #
+# 13/02/2009 Aggiunta delle validazioni
+#
+# 12/02/2009 Prima stesura
+
+
 #Rappresentazione di un docente. Utilizzato per la creazione dello _User_ associato ad un docente. Contiene
 #inoltre i dati personali del docente.
 

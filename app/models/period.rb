@@ -1,17 +1,19 @@
-#=QuiXoft - Progetto ”SIGEOL”
-#NOME FILE:: period.rb
-#VERSIONE:: 1.0.0
-#AUTORE:: Grosselle Alessandro
-#DATA CREAZIONE:: 16/02/09
-#REGISTRO DELLE MODIFICHE::
-# 20/04/09 Approvazione del responsabile
+# QuiXoft - Progetto ”SIGEOL”
+# NOME FILE: period.rb
+# AUTORE: Grosselle Alessandro
+# DATA CREAZIONE: 16/02/2009
 #
-# 06/03/09 Piccole modifiche alle validazioni e alle associazioni
+# REGISTRO DELLE MODIFICHE:
 #
-# 17/02/09 Aggiunta delle validazioni
+# 20/04/2009 Approvazione del responsabile
 #
-# 16/02/09 Prima stesura
+# 06/03/2009 Piccole modifiche alle validazioni e alle associazioni
 #
+# 17/02/2009 Aggiunta delle validazioni
+#
+# 16/02/2009 Prima stesura
+
+
 #Rappresentazione di un periodo dell'anno accademico, inteso come periodo (primo trimestre, secondo semestre ecc.)
 #e anno (primo anno, secondo, anno ecc.).
 

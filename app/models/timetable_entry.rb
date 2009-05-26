@@ -1,17 +1,19 @@
-#=QuiXoft - Progetto ”SIGEOL”
-#NOME FILE:: timetable_entry.rb
-#VERSIONE:: 1.0.0
-#AUTORE:: Grosselle Alessandro
-#DATA CREAZIONE:: 16/02/09
-#REGISTRO DELLE MODIFICHE::
-# 24/04/09 Approvazione del responsabile
+# QuiXoft - Progetto ”SIGEOL”
+# NOME FILE: timetable_entry.rb
+# AUTORE: Grosselle Alessandro
+# DATA CREAZIONE: 16/02/2009
 #
-# 01/03/09 Aggiunti i metodi is_correct_time? e unique?
+# REGISTRO DELLE MODIFICHE:
 #
-# 20/02/09 Aggiunta delle prime validazioni
+# 24/04/2009 Approvazione del responsabile
 #
-# 16/02/09 Prima stesura
+# 01/03/2009 Aggiunti i metodi is_correct_time? e unique?
 #
+# 20/02/2009 Aggiunta delle prime validazioni
+#
+# 16/02/2009 Prima stesura
+
+
 #Rappresentazione di un elemento della tabella oraria. Esso comprendete l'ora di inizio,
 #l'ora finale, il giorno, l'aula, e l'insegnamento di una specifica lezione.
 

@@ -1,19 +1,21 @@
-#=QuiXoft - Progetto ”SIGEOL”
-#NOME FILE:: expiry_date.rb
-#VERSIONE:: 1.0.0
-#AUTORE:: Grosselle Alessandro
-#DATA CREAZIONE:: 16/02/09
-#REGISTRO DELLE MODIFICHE::
-# 29/04/09 Approvazione del responsabile
+# QuiXoft - Progetto ”SIGEOL”
+# NOME FILE: expiry_date.rb
+# AUTORE: Grosselle Alessandro
+# DATA CREAZIONE: 16/02/2009
 #
-# 28/02/09 Aggiunta nel metodo correct_date dell'istruzione self.date.to_date
+# REGISTRO DELLE MODIFICHE:
 #
-# 27/02/09 Aggiunta del metodo is_correct_date?
+# 29/04/2009 Approvazione del responsabile
 #
-# 14/02/09 Aggiunta delle validazioni
+# 28/02/2009 Aggiunta nel metodo correct_date dell'istruzione self.date.to_date
 #
-# 16/02/09 Prima stesura
+# 27/02/2009 Aggiunta del metodo is_correct_date?
 #
+# 14/02/2009 Aggiunta delle validazioni
+#
+# 16/02/2009 Prima stesura
+
+
 #Rappresentazione di una data di scadenza per l'immissione di vincoli e preferenze
 #riguardante aule, docenti e corsi di laurea. Utilizzata iniltre per la schedulazione
 #programmata della generazione dell'orario.
