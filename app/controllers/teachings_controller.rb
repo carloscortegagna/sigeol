@@ -91,11 +91,13 @@ class TeachingsController < ApplicationController
       if curriculum && @teaching.belongs.build(:curriculum => curriculum, :isOptional => optional) && @teaching.save
         flash[:notice] = 'Insegnamento creato correttamente.'
         format.html { redirect_to select_teacher_teaching_url(@teaching) }
+        format.js{render(:update) {|page| page.redirect_to select_teacher_teaching_url(@teaching)}}
       else
         @graduate_courses = @current_user.graduate_courses
         @year = Period.find(:all, :select => "DISTINCT year")
         @subperiod = Period.find(:all, :select => "DISTINCT subperiod")
         format.html { render :action => "new" }
+        format.js{}
       end
     end
   end
@@ -129,8 +131,10 @@ class TeachingsController < ApplicationController
       if @teaching.update_attributes(params[:teaching])
         flash[:notice] = 'Teaching was successfully updated.'
         format.html { redirect_to(@teaching) }
+        format.js{render(:update) {|page| page.redirect_to(@teaching)}}
       else
         format.html { render :action => "edit" }
+        format.js{render :action => 'create.js.rjs'}
       end
     end
   end

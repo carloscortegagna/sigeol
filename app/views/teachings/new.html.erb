@@ -1,33 +1,39 @@
-<h1>New teaching</h1>
+<h3>Nuovo insegnamento</h3>
 
-<% form_for(@teaching) do |f| %>
-  <%= f.error_messages %>
+<% remote_form_for(@teaching) do |f| %>
+  <fieldset> 
+  <legend> Insegnamento: </legend>
   <p>
-    <%= f.label "Nome" %><br />
+    <%= f.label "Nome:" %><br />
     <%= f.text_field :name %>
+    <span class="warning" id="errors_name"><%= @teaching.errors.on(:name) %> </span>
   </p>
   <p>
-    <%= f.label "CFU" %><br />
-    <%= f.text_field :CFU %>
+    <%= f.label "CFU:" %><br />
+    <%= f.text_field :CFU, :size => 2 %>
+    <span class="warning" id="errors_cfu"><%= @teaching.errors.on(:CFU) %> </span>
   </p>
   <p>
-    <%= f.label "Ore settimanali in aula" %><br />
-    <%= f.text_field :classHours %>
+    <%= f.label "Ore settimanali in aula:" %><br />
+    <%= f.text_field :classHours, :size => 2 %>
+    <span class="warning" id="errors_classHours"><%= @teaching.errors.on(:classHours) %> </span>
   </p>
   <p>
-    <%= f.label "Ore settimanali in laboratorio" %><br />
-    <%= f.text_field :labHours %>
+    <%= f.label "Ore settimanali in laboratorio:" %><br />
+    <%= f.text_field :labHours, :size => 2 %>
+    <span class="warning" id="errors_labHours"><%= @teaching.errors.on(:labHours) %> </span>
   </p>
   <p>
-    <%= f.label "Numero stimato di studenti" %><br />
-    <%= f.text_field :studentsNumber %>
+    <%= f.label "Numero stimato di studenti:"%><br />
+    <%= f.text_field :studentsNumber, :size => 4  %>
+    <span class="warning" id="errors_studentsNumber"><%= @teaching.errors.on(:studentsNumber) %> </span>
   </p>
   <p>
     Curriculum <br/>
     <%= select_tag "curriculum_id" , option_groups_from_collection_for_select(@graduate_courses, :curriculums, "name", "id", "name") %>
   </p>
   <p>
-    Opzionale
+    Opzionale:
     <%= check_box_tag "optional" %>
   </p>
   <p>
@@ -39,6 +45,7 @@
     <%= select_tag "subperiod" , options_from_collection_for_select(@subperiod, "subperiod", "subperiod") %>
   </p>
   <p>
-    <%= f.submit "Create" %>
+    <%= f.submit "Crea" %>
   </p>
+  </fieldset>
 <% end %>

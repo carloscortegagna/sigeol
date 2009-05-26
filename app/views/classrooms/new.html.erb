@@ -6,12 +6,12 @@
   <p>
     <%= f.label "Nome" %><br />
     <%= f.text_field :name %>
-    <span id="errors_name"> <%=  @classroom.errors.on(:name) %></span>
+    <span class="warning "id="errors_name"> <%=  @classroom.errors.on(:name) %></span>
   </p>
   <p>
     <%= f.label "Capacità(non obbligatorio):" %><br />
     <%= f.text_field :capacity,:size=>4 %>
-    <span id="errors_capacity"> <%=  @classroom.errors.on(:capacity) %></span>
+    <span class="warning "id="errors_capacity"> <%=  @classroom.errors.on(:capacity) %></span>
   </p>
   <p>
     Edificio

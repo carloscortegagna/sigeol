@@ -63,7 +63,7 @@ class BuildingsController < ApplicationController
         if @building.save
           flash[:notice] = 'Inserimento del nuovo edificio avvenuto con successo'
           format.html { redirect_to :action => 'administration' }
-          format.js{redirect_to :action => 'administration'}
+          format.js{render(:update) {|page| page.redirect_to :action => 'administration'}}
         else
           Address.find(@building.address_id).destroy # cancello l'address salvato nel DB, non è puntato da nessun building
           format.html { render :action => "new" }

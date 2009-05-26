@@ -1,8 +1,11 @@
 <div>
-  <%= show_teaching(@teaching) %>
+  <h3><%= show_teaching(@teaching) %></h3>
   <% form_for @teaching, :url => assign_teacher_teaching_path(@teaching), :method => :put do %>
-    Docente da assegnare
+    Docente da assegnare(facoltativo):
     <%= select_tag "teacher_id", options_from_collection_for_select(@teachers, "id", "complete_name")%>
     <%= submit_tag "Assegna" %>
+    <p>
+    <%= link_to 'back', teachings_path %>
+    </p>
   <% end %>
 </div>

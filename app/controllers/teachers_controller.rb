@@ -169,22 +169,27 @@ end
 
   def activate
     @user = User.find params[:id]
-    if @user != nil && @user.specified_type == "Teacher" && !@user.active? && @user.digest == params[:digest]
+    respond_to do |format|
+      if @user != nil && @user.specified_type == "Teacher" && !@user.active? && @user.digest == params[:digest]
         if @user.specified.update_attributes(params[:teacher]) && @user.address.update_attributes(params[:address])
             @user.password = params[:user][:password]
-            if @user.save
+           if @user.save
               flash[:notice] = "Account attivato correttamente"
-              redirect_to timetables_url
-            else
-              render :action => :pre_activate, :digest => @user.digest
+               format.html{redirect_to timetables_url}
+               format.js{render(:update) {|page| page.redirect_to timetables_url}}
+             else
+              format.html{render :action => :pre_activate, :digest => @user.digest}
+              format.js{}
             end
         else
-          render :action => :pre_activate, :digest => @user.digest
+          format.html{render :action => :pre_activate, :digest => @user.digest}
+          format.js{}
         end
     else
       flash[:error] = "L'utente non esiste od è già attivo"
       redirect_to timetables_url
     end
+  end
   end
 
   def administration
