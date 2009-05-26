@@ -59,12 +59,16 @@ if request.put?
 end
 
 if @manageable_capabilities.size == 0
-  page.replace_html 'message1', '<em>Nessun privilegio selezionato</em>'
+  page.replace_html 'manageable_capabilities_header', 'Nessun privilegio posseduto'
 else
-  page.replace_html 'message1', ''
+  if @manageable_capabilities.size == 1
+    page.replace_html 'manageable_capabilities_header', 'Privilegi posseduti ed amministrabili'
+  end
 end
 if @selectable_capabilities.size == 0
-  page.replace_html 'message2', '<em>Non esistono altri privilegi da aggiungere</em>'
+  page.replace_html 'selectable_capabilities_header', 'Non esistono altri privilegi da aggiungere'
 else
-  page.replace_html 'message2', ''
+  if @selectable_capabilities.size == 1
+    page.replace_html 'selectable_capabilities_header', 'Privilegi disponibili da aggiungere'
+  end
 end

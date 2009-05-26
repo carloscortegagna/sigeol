@@ -1,53 +1,52 @@
-<div>
-
   Modifica del docente <%= show_teacher(@teacher)  %>
-  <br><br>
 
+<hr>
+<p>
   <% if @manageable_capabilities.size == 0 %>
-    <span id="message1"><em>Nessun privilegio selezionato</em></span>
+    <table id="manageable_capabilities">
+      <tr>
+      <th id="manageable_capabilities_header">Nessun privilegio posseduto</th>
+      </tr>
+    <table>
   <% else %>
-    <span id="message1"></span>
+    <table id="manageable_capabilities">
+      <tr>
+      <th id="manageable_capabilities_header">Privilegi posseduti ed amministrabili</th>
+      </tr>
+      <% @manageable_capabilities.each do |m| %>
+        <tr id='<%= m.id %>'>
+          <td><%=h m.name %></td>
+          <td><% form_remote_tag :html => {:method => :delete}, :url => update_capabilities_teacher_path(@teacher,:ids => m.id), :method => :delete do %>
+              <%= submit_tag "Rimuovi" %>
+          <% end %></td>
+        </tr>
+      <% end %>
+    </table>
   <% end %>
-
-  <br>
-
-  <table id="manageable_capabilities">
-    <tr>
-       <th>Privilegi posseduti ed amministrabili</th>
-    </tr>
-  <% @manageable_capabilities.each do |m| %>
-    <tr id='<%= m.id %>'>
-      <td><%=h m.name %></td>
-      <td><% form_remote_tag :html => {:method => :delete}, :url => update_capabilities_teacher_path(@teacher,:ids => m.id), :method => :delete do %>
-          <%= submit_tag "Rimuovi" %>
-      <% end %></td>
-    </tr>
-  <% end %>
-  </table>
   <span id="errors_destroy" class="warning"></span> <br>
+</p>
 
-  <br>
-
+<p>
   <% if @selectable_capabilities.size == 0 %>
-    <span id="message2"><em>Non esistono altri privilegi da aggiungere</em></span>
-  <% else %>
-    <span id="message2"></span>
+    <table id="selectable_capabilities">
+      <tr>
+        <th id="selectable_capabilities_header">Non esistono altri privilegi da aggiungere</th>
+      </tr>
+    </table>
+  <%  else %>
+    <table id="selectable_capabilities">
+      <tr>
+        <th id="selectable_capabilities_header">Privilegi disponibili da aggiungere</th>
+      </tr>
+      <% @selectable_capabilities.each do |s| %>
+        <tr id='<%= s.id %>'>
+          <td><%=h s.name %></td>
+          <td><% form_remote_tag :html => {:method => :put}, :url => update_capabilities_teacher_path(@teacher,:ids => s.id), :method => :put do %>
+              <%= submit_tag "Aggiungi" %>
+          <% end %></td>
+        </tr>
+      <% end %>
+    </table>
   <% end %>
-
-  <br><br>
-  <table id="selectable_capabilities">
-  <tr>
-     <th>Privilegi disponibili da aggiungere</th>
-  </tr>
-
-  <% @selectable_capabilities.each do |s| %>
-    <tr id='<%= s.id %>'>
-      <td><%=h s.name %></td>
-      <td><% form_remote_tag :html => {:method => :put}, :url => update_capabilities_teacher_path(@teacher,:ids => s.id), :method => :put do %>
-          <%= submit_tag "Aggiungi" %>
-      <% end %></td>
-    </tr>
-  <% end %>
-  </table>
   <span id="errors_add" class="warning"></span> <br>
-</div>
+</p>
