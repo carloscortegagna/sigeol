@@ -3,11 +3,20 @@
 <% unless @not_active_users.empty? %>
   <%= show_not_active_users(@not_active_users) %>
 <% end %>
+<br>Lista completa dei docenti:<br>
+<% @teachers.each do |q| %>
+  <br>
+  <%= show_teacher_admin(q) %>
+<% end %>
+<br><br>
+Lista dei docenti divisi per Corso di Laurea
 <% @graduate_courses.each do |g| %>
   <div class="first_div">
     <%= show_graduate_course_admin(g) %>
+    <br>
     <% g.users.each do |t| %>
       <%= show_teacher_admin(t.specified) %>
+      <br>
     <% end %>
   </div>
 <% end %>

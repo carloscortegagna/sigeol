@@ -222,6 +222,7 @@ class TeachersController < ApplicationController
   end
 
   def administration
+    @teachers = Teacher.find(:all, :conditions => ['name != "" AND surname != ""'], :order => "surname ASC")
     ids = @current_user.graduate_course_ids
     @graduate_courses = GraduateCourse.find(:all, :include => :users,
                 :conditions => ["specified_type = 'Teacher' AND users.password is NOT null AND graduate_courses.id IN (?)",ids])
@@ -475,7 +476,7 @@ class TeachersController < ApplicationController
     teacher_ids = teacher.user.graduate_course_ids
     current_user_ids = @current_user.graduate_course_ids
     common_ids = current_user_ids & teacher_ids
-    if common_ids == []
+    if common_ids == [] && teacher_ids.size != 0
       flash[:error] = "Questo docente non appartiene a nessun tuo corso di laurea"
       redirect_to timetables_url
     end
