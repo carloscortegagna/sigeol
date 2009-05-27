@@ -131,20 +131,30 @@ class TeachersController < ApplicationController
         format.html{render :action => :new}
         format.js{}
         end
-    else
-      if user.own_by_teacher?
-        user.graduate_courses << GraduateCourse.find(params[:graduate_course_id])
-        flash[:notice] = "Docente invitato con successo"
-        format.html{redirect_to new_teacher_url}
-        format.js{render(:update) {|page| page.redirect_to new_teacher_url}}
       else
-        flash[:error] = "La mail inserita è già presente e non corrisponde ad un docente"
-        format.html{redirect_to new_teacher_url}
-        format.js{render(:update) {|page| page.redirect_to new_teacher_url}}
+        if user.own_by_teacher?
+          user.graduate_courses << GraduateCourse.find(params[:graduate_course_id])
+          flash[:notice] = "Docente invitato con successo"
+          format.html{redirect_to new_teacher_url}
+          format.js{render(:update) {|page| page.redirect_to new_teacher_url}}
+        else
+          flash[:error] = "La mail inserita è già presente e non corrisponde ad un docente"
+          format.html{redirect_to new_teacher_url}
+          format.js{render(:update) {|page| page.redirect_to new_teacher_url}}
+        end
       end
     end
   end
-end
+
+  def destroy
+    @user = User.find(:first, :include => :address,
+            :conditions => ["specified_type = 'Teacher' AND specified_id = (?)", params[:id]])
+    @teacher = Teacher.find(@user.specified_id)
+    @teacher.destroy
+    @user.address.destroy
+    @user.destroy
+    redirect_to(administration_teachers_url)
+  end
 
   def edit
     teacher = Teacher.find(params[:id])
