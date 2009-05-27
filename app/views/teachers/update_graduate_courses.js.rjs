@@ -1,0 +1,76 @@
+if request.delete?
+  if  @graduate_course &&  @graduate_course.id
+
+    page.visual_effect :fade ,  @graduate_course.id, :duration=>"0.5"
+    page.remove  @graduate_course.id
+
+    page.insert_html :bottom, 'selectable_graduate_courses', :inline => "<tr id='<%=  @graduate_course.id %>'>" +
+      "<td><%=h  @graduate_course.name %></td>" +
+      "<td><% form_remote_tag :html => {:method => :put}, :url => update_graduate_courses_teacher_path(@teacher,:ids => @graduate_course.id), :method => :put do %>" +
+          "<%= submit_tag 'Aggiungi' %>"+
+      "<% end %></td>"+
+    "</tr>", :layout => false
+    #page.visual_effect :grow , @capability.id
+    page.visual_effect :highlight ,  @graduate_course.id
+    #cleanup errori precedenti
+    page.replace_html 'errors_destroy', ''
+    page.replace_html 'errors_add', ''
+
+  else
+
+    page.replace_html 'errors_add', 'Errore durante l\'aggiunta del nuovo corso di laurea'
+    page.visual_effect :highlight, 'errors_add', :color=>"red", :duration=>"0.7"
+    #delay per vedere il messaggio d'errore
+    page.delay(2) do
+      page.replace_html 'errors_add', ''
+    end
+
+  end
+end
+
+if request.put?
+  if  @graduate_course &&  @graduate_course.id
+
+    page.visual_effect :fade ,  @graduate_course.id, :duration=>"0.5"
+    page.remove  @graduate_course.id
+
+    page.insert_html :bottom, 'manageable_graduate_courses', :inline =>"<tr id='<%=  @graduate_course.id %>'>" +
+      "<td><%=h  @graduate_course.name %></td> "+
+      "<td><% form_remote_tag :html => {:method => :delete}, :url => update_graduate_courses_teacher_path(@teacher,:ids =>  @graduate_course.id), :method => :delete do %>" +
+          "<%= submit_tag 'Rimuovi' %>" +
+      "<% end %></td>" +
+    "</tr>", :layout => false
+    #page.visual_effect :grow , @capability.id
+    page.visual_effect :highlight ,  @graduate_course.id, :color=>"green"
+    #cleanup errori precedenti
+    page.replace_html 'errors_destroy', ''
+    page.replace_html 'errors_add', ''
+
+  else
+
+    page.replace_html 'errors_destroy', 'Errore durante l\'eliminazione del corso di laurea'
+    page.visual_effect :highlight, 'errors_destroy', :color=>"red", :duration=>"0.7"
+    #delay per vedere il messaggio d'errore
+    page.delay(2) do
+      page.replace_html 'errors_destroy', ''
+    end
+
+  end
+end
+
+if @manageable_graduate_courses.size == 0
+  page.replace_html 'manageable_graduate_courses_header', 'Nessun corso di laurea posseduto'
+else
+  if @manageable_graduate_courses.size == 1
+    page.replace_html 'manageable_graduate_courses_header', 'Corsi di laurea posseduti ed amministrabili'
+    page.show 'manageable_graduate_courses'
+  end
+end
+if @selectable_graduate_courses.size == 0
+  page.replace_html 'selectable_graduate_courses_header', 'Non esistono altri corsi di laurea aggiungibili'
+else
+  if @selectable_graduate_courses.size == 1
+    page.replace_html 'selectable_graduate_courses_header', 'Corsi di laurea aggiungibili'
+        page.show 'selectable_graduate_courses'
+  end
+end
