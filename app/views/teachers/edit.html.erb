@@ -1,6 +1,6 @@
 <h3>Modifica dei dati personali</h3>
 
-<% form_tag(:action => :update_personal_data, :html => {:id => "form_docEdit"}) do %>
+<% form_remote_tag(:url=> update_personal_data_teacher_path, :html => {:id => "form_docEdit"}) do %>
    <p>
     <% tmp = "" %>
     <% if (@user.address) %>
@@ -12,7 +12,8 @@
       </div>
       <div class="txt_docEdit">
         <%= text_field_tag("city", tmp, :class => "formTxt") %>
-      </div>
+        <span class="warning" id="city_errors"> <%=  (@user.address).errors.on(:city) %> </span>
+       </div>
     </div>
   </p>
   <p>
@@ -26,11 +27,12 @@
       <% if(@user.address.telephone != '') %>
         <% i = (@user.address.telephone) =~ /-/ %>
         <%=  text_field_tag 'prefisso', @user.address.telephone[0..i-1], :size => 4 %>-<%=  text_field_tag 'telefono', @user.address.telephone[i+1..(@user.address.telephone.size)-1], :size => 8 %>
-      <%else%>
+        <%else%>
         <%=  text_field_tag 'prefisso', '', :size => 4 %>-<%=  text_field_tag 'telefono', '', :size => 8 %>
       <% end %>
-    </div>
-</p>
+     <span class="warning" id="telephone_errors"> <%=  (@user.address).errors.on(:telephone) %> </span>
+   </div>
+   </p>
   <p>
     <% if (@user.address) %>
       <% tmp = @user.address.street %>
@@ -40,6 +42,7 @@
     </div>
     <div class="txt_docEdit">
       <%= text_field_tag("street", tmp, :class => "formTxt") %>
+      <span class="warning" id="street_errors"> <%=  (@user.address).errors.on(:street) %> </span>
     </div>
   </p>
   <p>

@@ -34,7 +34,7 @@
       <span class="warning" id="city_errors"><%= (@user.address).errors.on(:city) %> </span>
     </p>
     <p>
-      <div class="lbl_docPreActiv"><%= label_tag '*Telefono:' %></div>
+      <div class="lbl_docPreActiv"><%= label_tag 'Telefono:' %></div>
       <div class="txt_docPreActiv"><%=  text_field_tag 'prefisso', '', :size => 4 %>-<%=  text_field_tag 'telefono', '', :size => 8 %></div>
       <span class="warning" id="telephone_errors"><%= (@user.address).errors.on(:telephone) %> </span>
    </p>

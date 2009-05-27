@@ -1,0 +1,21 @@
+ if(@user.address).errors.on(:city)
+  page.replace_html 'city_errors' ,"*"+(@user.address).errors.on(:city)
+  page.visual_effect :highlight, 'city_errors', :color=>"red", :duration=>"0.7"
+  else
+  page.replace_html 'city_errors', ''
+end
+
+if(@user.address).errors.on(:street)
+  page.replace_html 'street_errors', "*"+(@user.address).errors.on(:street)
+  page.visual_effect :highlight, 'street_errors', :color=>"red", :duration=>"0.7"
+else
+  page.replace_html 'street_errors', ''
+end
+
+if(@user.address).errors.on(:telephone)
+ page.replace_html 'telephone_errors', "*"+(@user.address).errors.on(:telephone)
+ page.visual_effect :highlight, 'telephone_errors', :color=>"red", :duration=>"0.7"
+else
+ page.replace_html 'telephone_errors', ''
+end
+

@@ -167,22 +167,26 @@ class TeachersController < ApplicationController
 
   def update_personal_data
     teacher = Teacher.find(params[:id])
-    user = User.find(:first, :include => :address,
+    @user = User.find(:first, :include => :address,
             :conditions => ["specified_type = 'Teacher' AND specified_id = (?)", teacher.id])
-    user.address.city = params[:city]
-    user.address.street = params[:street]
-    user.address.telephone= ""
+    @user.address.city = params[:city]
+    @user.address.street = params[:street]
+    @user.address.telephone= ""
     if(params[:prefisso] != "" || params[:telefono] != "")
-      user.address.telephone = params[:prefisso]+"-"+params[:telefono]
+      @user.address.telephone = params[:prefisso]+"-"+params[:telefono]
     end
-    if user.address.save
+    respond_to do |format|
+    if @user.address.save
       flash[:notice] = 'Dati personali aggiornati correttamente'
-      redirect_to(timetables_url)
+      format.html{redirect_to(timetables_url)}
+      format.js{render(:update) {|page| page.redirect_to timetables_url}}
     else
       flash[:error] = "Errore nell'aggiornamento dei dati personali"
-      redirect_to(edit_teacher_url)
-    end
+      format.html{render :action=>'edit'}
+      format.js{}
+    end 
   end
+end
 
   def pre_activate
     @user = User.find params[:id]
