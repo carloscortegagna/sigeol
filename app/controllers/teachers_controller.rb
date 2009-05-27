@@ -76,7 +76,7 @@ class TeachersController < ApplicationController
     if request.delete?
       t.user.graduate_courses.delete(GraduateCourse.find(params[:ids]))
       if t.user.graduate_courses.size == 0
-         t.user.teachings.delete_all
+         t.teachings.delete_all
       end
     end
     if request.put?
