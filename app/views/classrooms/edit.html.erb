@@ -2,10 +2,10 @@
    $(document).ready(function(){
      <% if  @graduate_courses_non_associati.size == 0 %>
          $('#add_form').toggle();
-       <%  end %>
+       <% end %>
      <% if  @graduate_courses_associati.size == 0 %>
          $('#remove_form').toggle();
-       <%  end %>
+       <% end %>
      })
        </script>
   
@@ -41,9 +41,9 @@
   <span id="message">L'aula non è a disposizione di nessun corso di laurea</span>
   <% else %>
  <span id="message">Quest'aula è a disposizione dei seguenti corsi di laurea:</span>
- <%  end %>
+ <% end %>
  
-<br>
+<br />
   <ul id="graduate_courses" >
     <% for graduate_course in @graduate_courses_associati %>
      <li id="<%=graduate_course.id%>">
@@ -54,7 +54,8 @@
 
   <div id="remove_form">
     <% form_remote_tag :url => {:controller => 'classrooms', :action => 'remove_classroom_graduate_course'}do %>
-       <%= select_tag "graduate_course_canc" , options_from_collection_for_select(@graduate_courses_associati, "id", "name") %>
+        <label for="graduate_course_canc">Rimuovi un corso di laurea dalla lista:</label>
+        <%= select_tag "graduate_course_canc" , options_from_collection_for_select(@graduate_courses_associati, "id", "name") %>
         <span id="remove">
         <%= submit_tag 'Rimuovi Corso' %>
        </span>
@@ -63,14 +64,15 @@
     
     <p/>
 
-   <div id="add_form">
-     <% form_remote_tag :url => {:controller => 'classrooms', :action => 'add_classroom_graduate_course'}do %>
+    <div id="add_form">
+      <% form_remote_tag :url => {:controller => 'classrooms', :action => 'add_classroom_graduate_course'}do %>
+      <label for="graduate_course_add">Aggiungi un corso di laurea alla lista:</label>
       <%= select_tag "graduate_course_add" , options_from_collection_for_select(@graduate_courses_non_associati, "id", "name") %>
-     <span id="add">
-     <%= submit_tag 'Aggiungi Corso' %>
-     </span>
-     <% end %>
-     </div>
+      <span id="add">
+      <%= submit_tag 'Aggiungi Corso' %>
+      </span>
+      <% end %>
+    </div>
 
  <p/>
 <%= link_to 'Back', :action => 'administration' %>

@@ -6,25 +6,20 @@
     <% if (@user.address) %>
       <% tmp = @user.address.city %>
     <% end %>
-    <div>
       <div class="lbl_docEdit">
         <%= label_tag('city', "Città:", :class => "formLabel") %>
       </div>
       <div class="txt_docEdit">
-        <%= text_field_tag("city", tmp, :class => "formTxt") %>
+        <%= text_field_tag("city", tmp) %>
         <span class="warning" id="city_errors"> <%=  (@user.address).errors.on(:city) %> </span>
        </div>
-    </div>
   </p>
   <p>
-    <% if (@user.address) %>
-      <% tmp = @user.address.telephone %>
-    <% end %>
     <div class="lbl_docEdit">
       <%= label_tag('telephone', "Telefono:", :class => "formLabel") %>
     </div>
     <div class="txt_docEdit">
-      <% if(@user.address.telephone != '') %>
+      <% if(@user.address && @user.address.telephone != '') %>
         <% i = (@user.address.telephone) =~ /-/ %>
         <%=  text_field_tag 'prefisso', @user.address.telephone[0..i-1], :size => 4 %>-<%=  text_field_tag 'telefono', @user.address.telephone[i+1..(@user.address.telephone.size)-1], :size => 8 %>
         <%else%>
@@ -41,7 +36,7 @@
       <%= label_tag('street', "Indirizzo:", :class => "formLabel") %>
     </div>
     <div class="txt_docEdit">
-      <%= text_field_tag("street", tmp, :class => "formTxt") %>
+      <%= text_field_tag("street", tmp) %>
       <span class="warning" id="street_errors"> <%=  (@user.address).errors.on(:street) %> </span>
     </div>
   </p>
