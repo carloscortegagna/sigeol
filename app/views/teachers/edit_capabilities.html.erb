@@ -3,16 +3,13 @@
 <hr>
 <p>
   <% if @manageable_capabilities.size == 0 %>
-    <table id="manageable_capabilities">
-      <tr>
-      <th id="manageable_capabilities_header">Nessun privilegio posseduto</th>
-      </tr>
-    <table>
+    <p id="manageable_capabilities_header">Nessun privilegio posseduto</p>
+    <table id="manageable_capabilities" style="display:none">
+    
+    </table>
   <% else %>
+    <p id="manageable_capabilities_header">Privilegi posseduti ed amministrabili</p>
     <table id="manageable_capabilities">
-      <tr>
-      <th id="manageable_capabilities_header">Privilegi posseduti ed amministrabili</th>
-      </tr>
       <% @manageable_capabilities.each do |m| %>
         <tr id='<%= m.id %>'>
           <td><%=h m.name %></td>
@@ -28,25 +25,22 @@
 
 <p>
   <% if @selectable_capabilities.size == 0 %>
-    <table id="selectable_capabilities">
-      <tr>
-        <th id="selectable_capabilities_header">Non esistono altri privilegi da aggiungere</th>
-      </tr>
+    <p id="selectable_capabilities_header">Non esistono altri privilegi da aggiungere</p>
+    <table id="selectable_capabilities" style="display:none">
+  
     </table>
   <%  else %>
+    <p id="selectable_capabilities_header">Privilegi disponibili da aggiungere</p>
     <table id="selectable_capabilities">
-      <tr>
-        <th id="selectable_capabilities_header">Privilegi disponibili da aggiungere</th>
-      </tr>
-      <% @selectable_capabilities.each do |s| %>
-        <tr id='<%= s.id %>'>
-          <td><%=h s.name %></td>
-          <td><% form_remote_tag :html => {:method => :put}, :url => update_capabilities_teacher_path(@teacher,:ids => s.id), :method => :put do %>
-              <%= submit_tag "Aggiungi" %>
-          <% end %></td>
-        </tr>
-      <% end %>
-    </table>
+     <% @selectable_capabilities.each do |s| %>
+       <tr id='<%= s.id %>'>
+         <td><%=h s.name %></td>
+         <td><% form_remote_tag :html => {:method => :put}, :url => update_capabilities_teacher_path(@teacher,:ids => s.id), :method => :put do %>
+             <%= submit_tag "Aggiungi" %>
+         <% end %></td>
+       </tr>
+     <% end %>
+   </table>
   <% end %>
   <span id="errors_add" class="warning"></span> <br>
 </p>

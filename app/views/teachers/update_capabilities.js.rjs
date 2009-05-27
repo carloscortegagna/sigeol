@@ -63,6 +63,7 @@ if @manageable_capabilities.size == 0
 else
   if @manageable_capabilities.size == 1
     page.replace_html 'manageable_capabilities_header', 'Privilegi posseduti ed amministrabili'
+    page.show 'manageable_capabilities'
   end
 end
 if @selectable_capabilities.size == 0
@@ -70,5 +71,6 @@ if @selectable_capabilities.size == 0
 else
   if @selectable_capabilities.size == 1
     page.replace_html 'selectable_capabilities_header', 'Privilegi disponibili da aggiungere'
+    page.show 'selectable_capabilities'
   end
 end

@@ -1,18 +1,46 @@
-<p>
   Modifica del docente <%= show_teacher(@teacher)%>
-</p>
+
+<hr>
 <p>
-  Corsi di laurea posseduti ed amministrabili: <br/>
-  <% @manageable_graduate_courses.each do |g| %>
-      <%=h g.name %>
-      <%= link_to "Rimuovi", update_graduate_courses_teacher_path(@teacher, :ids => g.id), :method => :delete %>
-      <br/>
+  <% if @manageable_graduate_courses.size == 0 %>
+    <p id="manageable_graduate_courses_header">Nessun corso di laurea posseduto</p>
+    <table id="manageable_graduate_courses" style="display:none">
+   
+    </table>
+  <% else %>
+    <p id="manageable_graduate_courses_header">Corsi di laurea posseduti ed amministrabili</p>
+    <table id="manageable_graduate_courses">      
+      <% @manageable_graduate_courses.each do |m| %>
+        <tr id='<%= m.id %>'>
+          <td><%=h m.name %></td>
+          <td><% form_remote_tag :html => {:method => :delete}, :url => update_graduate_courses_teacher_path(@teacher,:ids => m.id), :method => :delete do %>
+              <%= submit_tag "Rimuovi" %>
+          <% end %></td>
+        </tr>
+      <% end %>
+    </table>
   <% end %>
+  <span id="errors_destroy" class="warning"></span> <br>
 </p>
+
 <p>
-  Corsi di laurea da aggiungere: <br/>
-  <% @selectable_graduate_courses.each do |g| %>
-    <%=h g.name %>
-    <%= button_to "Aggiungi", update_graduate_courses_teacher_path(@teacher, :ids => g.id), :method => :put, :ids => g.id %>
+  <% if @selectable_graduate_courses.size == 0 %>
+    <p id="selectable_graduate_courses_header">Non esistono altri corsi di laurea aggiungibili</p>
+    <table id="selectable_graduate_courses" style="display:none">
+
+    </table>
+  <%  else %>
+    <p id="selectable_graduate_courses_header">Corsi di laurea aggiungibili</p>
+    <table id="selectable_graduate_courses">
+      <% @selectable_graduate_courses.each do |s| %>
+        <tr id='<%= s.id %>'>
+          <td><%=h s.name %></td>
+          <td><% form_remote_tag :html => {:method => :put}, :url =>  update_graduate_courses_teacher_path(@teacher,:ids => s.id), :method => :put do %>
+              <%= submit_tag "Aggiungi" %>
+          <% end %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+  <span id="errors_add" class="warning"></span> <br>
 </p>
-<% end %>

@@ -55,7 +55,8 @@ class TeachersController < ApplicationController
   end
 
   def edit_graduate_courses
-    total_graduate_courses = @current_user.graduate_courses
+    #total_graduate_courses = @current_user.graduate_courses
+    total_graduate_courses = GraduateCourse.find(:all)
     @teacher = Teacher.find(params[:id])
     teacher_graduate_courses = @teacher.user.graduate_courses
     @manageable_graduate_courses = total_graduate_courses & teacher_graduate_courses
@@ -72,18 +73,25 @@ class TeachersController < ApplicationController
   end
 
   def update_graduate_courses
-    t = Teacher.find(params[:id])
+    @teacher = Teacher.find(params[:id])
+    @graduate_course = GraduateCourse.find(params[:ids])
     if request.delete?
-      t.user.graduate_courses.delete(GraduateCourse.find(params[:ids]))
-      if t.user.graduate_courses.size == 0
-         t.teachings.delete_all
+      @teacher.user.graduate_courses.delete( @graduate_course)
+      if @teacher.user.graduate_courses.size == 0
+         @teacher.teachings.delete_all
       end
     end
     if request.put?
-      t.user.graduate_courses << (GraduateCourse.find(params[:ids]))
+      @teacher.user.graduate_courses << (@graduate_course)
     end
-    flash[:notice] = "Corsi di laurea per il docente #{t.surname} #{t.name} aggiornati con successo"
-    redirect_to administration_teachers_url
+    respond_to do |format|
+        format.html { edit_graduate_courses
+                      render :action => "edit_graduate_courses"
+        }
+        #flash[:notice] = "Corsi di laurea per il docente #{@teacher.surname} #{@teacher.name} aggiornati con successo"
+        #redirect_to administration_teachers_url
+        format.js {edit_graduate_courses}
+    end
   end
 
   def update_capabilities
