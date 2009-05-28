@@ -1,0 +1,20 @@
+if @current_user.errors.on(:password)
+  page.replace_html 'password_errors', "*"+@current_user.errors.on(:password)
+  page.visual_effect :highlight, 'password_errors', :color=>"red", :duration=>"0.7"
+ else
+  page.replace_html 'password_errors', ''
+end
+
+if @repeat_password != 1
+  page.replace_html 'password_errors_bis', "*Attenzione non coincide"
+  page.visual_effect :highlight, 'password_errors_bis', :color=>"red", :duration=>"0.7"
+ else
+  page.replace_html 'password_errors_bis', ''
+end
+
+if @old_password != 1
+  page.replace_html 'old_password_errors', "*Password non corretta"
+  page.visual_effect :highlight, 'old_password_errors', :color=>"red", :duration=>"0.7"
+ else
+  page.replace_html 'password_errors_bis', ''
+end

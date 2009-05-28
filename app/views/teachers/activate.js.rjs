@@ -40,3 +40,10 @@ else
  page.replace_html 'telephone_errors', ''
 end
 
+  if @repeat_password != 1
+  page.replace_html 'password_errors_bis', "* Attenzione non coincide"
+  page.visual_effect :highlight, 'password_errors_bis', :color=>"red", :duration=>"0.7"
+ else
+  page.replace_html 'password_errors_bis', ''
+end
+

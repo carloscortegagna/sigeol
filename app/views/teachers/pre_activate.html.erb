@@ -7,6 +7,13 @@
     <span class="warning" id="password_errors"><%= @user.errors.on(:password) %> </span>
     </div>
   </p>
+  <p>
+    <div class="lbl_docPreActiv"><%= label_tag '*Conferma password:' %></div>
+    <div class="txt_docPreActiv"><%= password_field_tag 'repeat_password' %>
+    <span class="warning" id="password_errors_bis"><% if @repeat_password != 1 %> Attenzione non coincide <%  end %>
+    </span>
+    </div>
+  </p>
   <fieldset>
     <legend>Dati personali:</legend>
     <% fields_for :teacher, @user.specified do |field| %>
