@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     else  
       @repeat_password = 0
     end
-    if @current_user.update_attributes(params[:user]) && @old_password == 1 && @repeat_password == 1
+    if @old_password == 1 && @repeat_password == 1 && @current_user.update_attributes(params[:user])
         flash[:notice] = "Password cambiata con successo"
         format.html{redirect_to timetables_url}
         format.js{render(:update) {|page| page.redirect_to timetables_url}}
