@@ -39,8 +39,12 @@ if(@constraint.errors.on(:startHour))
   else
     page.replace_html 'errors_description', ''
   end
-  if(@constraint.errors.on( [:starHour,:endHour]))
-    page.replace_html 'errors_others', "*"+@constraint.errors.on( [:starHour,:endHour])
+  if(@constraint.errors.on([:starHour,:endHour]) || @constraint.errors.on(:base))
+    if(@constraint.errors.on([:starHour,:endHour]))
+      page.replace_html 'errors_others', "*"+@constraint.errors.on([:starHour,:endHour])
+    else
+      page.replace_html 'errors_others', "*"+@constraint.errors.on(:base)
+    end
     page.visual_effect :highlight, 'errors_others', :color=>"red", :duration=>"0.7"
   else
     page.replace_html 'errors_others', ''
