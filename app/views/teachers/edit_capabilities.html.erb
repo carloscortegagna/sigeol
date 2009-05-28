@@ -14,7 +14,11 @@
         <tr id='<%= m.id %>'>
           <td><%=h m.name %></td>
           <td><% form_remote_tag :html => {:method => :delete}, :url => update_capabilities_teacher_path(@teacher,:ids => m.id), :method => :delete do %>
+            <% if m.id == 6 %>
+              <%= submit_tag 'Rimuovi', :confirm => "Sei sicuro di voler eliminare il privilegio <Manage capabilities> ?" %>
+            <% else %>
               <%= submit_tag "Rimuovi" %>
+            <% end %>
           <% end %></td>
         </tr>
       <% end %>
