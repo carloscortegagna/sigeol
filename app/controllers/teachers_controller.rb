@@ -57,8 +57,8 @@ class TeachersController < ApplicationController
   end
 
   def edit_graduate_courses
-    #total_graduate_courses = @current_user.graduate_courses
-    total_graduate_courses = GraduateCourse.find(:all)
+    total_graduate_courses = @current_user.graduate_courses
+    #total_graduate_courses = GraduateCourse.find(:all)
     @teacher = Teacher.find(params[:id])
     teacher_graduate_courses = @teacher.user.graduate_courses
     @manageable_graduate_courses = total_graduate_courses & teacher_graduate_courses
@@ -66,8 +66,8 @@ class TeachersController < ApplicationController
   end
 
   def edit_capabilities
-    #total_capabilities = @current_user.capabilities
-    total_capabilities = Capability.find(:all)
+    total_capabilities = @current_user.capabilities
+    #total_capabilities = Capability.find(:all)
     @teacher = Teacher.find(params[:id])
     teacher_capabilities = @teacher.user.capabilities
     @manageable_capabilities = total_capabilities & teacher_capabilities
