@@ -4,6 +4,8 @@
 # DATA CREAZIONE: 17/02/2009
 #
 # REGISTRO DELLE MODIFICHE:
+#
+# 28/09/2009 aggiunta in administration la lista dei docenti non associati a nessun corso di laurea
 # 
 # 19/05/2009 sistemate le action index e show per gli utenti non loggati
 #
@@ -234,10 +236,15 @@ end
   end
 
   def administration
-    @teachers = Teacher.find(:all, :conditions => ['name != "" AND surname != ""'], :order => "surname ASC")
+    # lista degli user (docenti) già attivi ma che non sono associati a nessun corso di laurea
+    @not_associated_users = User.find(:all, :include => :graduate_courses,
+                :conditions => ["specified_type = 'Teacher' AND graduate_courses.id IS null AND users.password is NOT null"])
+              
     ids = @current_user.graduate_course_ids
     @graduate_courses = GraduateCourse.find(:all, :include => :users,
                 :conditions => ["specified_type = 'Teacher' AND users.password is NOT null AND graduate_courses.id IN (?)",ids])
+
+    # lista degli users che non hanno ancora completato la registrazione
     @not_active_users = User.find(:all, :include => :graduate_courses,
                 :conditions => ["users.password IS null AND graduate_courses.id IN (?)",ids])
   end

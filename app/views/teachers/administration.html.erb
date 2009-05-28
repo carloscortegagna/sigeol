@@ -1,19 +1,18 @@
 <%= menu_admin() %>
-<h3>Amministrazione docenti</h3>
+<h1>Amministrazione docenti</h1>
 <% unless @not_active_users.empty? %>
   <%= show_not_active_users(@not_active_users) %>
 <% end %>
-<br>Lista completa dei docenti:<br>
-<% @teachers.each do |q| %>
-  <br>
-  <%= show_teacher_admin(q) %>
+<% unless @not_associated_users.empty? %>
+  <h3>Docenti non associati</h3>
+  <% @not_associated_users.each do |n| %>
+  <%= show_teacher_admin(n.specified) %>
+  <% end %>
 <% end %>
-<br><br>
-Lista dei docenti divisi per Corso di Laurea
+<h3>Docenti divisi per corso di laurea</h3>
 <% @graduate_courses.each do |g| %>
   <div class="first_div">
-    <%= show_graduate_course_admin(g) %>
-    <br>
+    <h2><%= g.name %></h2>
     <% g.users.each do |t| %>
       <%= show_teacher_admin(t.specified) %>
       <br>
