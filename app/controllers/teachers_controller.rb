@@ -200,6 +200,7 @@ end
 
   def pre_activate
     @user = User.find params[:id]
+    @repeat_password = 1
     unless @user != nil && @user.specified_type == "Teacher" && !@user.active? && @user.digest == params[:digest]
       flash[:notice] = "Questo docente è già attivo o non esiste"
       redirect_to timetables_url
@@ -207,6 +208,7 @@ end
   end
 
   def activate
+    @repeat_password = params[:repeat_password]
     @user = User.find params[:id]
     respond_to do |format|
       if @user != nil && @user.specified_type == "Teacher" && !@user.active? && @user.digest == params[:digest]
@@ -214,7 +216,11 @@ end
         if(params[:prefisso] != "" || params[:telefono] != "")
           @user.address.telephone = params[:prefisso]+"-"+params[:telefono]
          end
-      if @user.specified.update_attributes(params[:teacher]) && @user.address.update_attributes(params[:address])
+      if @repeat_password == params[:user][:password] 
+          @repeat_password = 1
+       else @repeat_password = 0
+      end
+      if @user.specified.update_attributes(params[:teacher]) && @user.address.update_attributes(params[:address]) &&  @repeat_password == 1
             @user.password = params[:user][:password]
            if @user.save
               flash[:notice] = "Account attivato correttamente"
