@@ -1,27 +1,27 @@
 <h3>Cambio password</h3>
   <% remote_form_for :user, :url => {:action => :update}, :html=> {:method => :put} do |f| %>
     <p>
-      <%= label_tag '*Password attuale:' %>
-      <%= password_field_tag 'old_password' %>
+      <div class="lbl_userEdit"><%= label_tag '*Password attuale:' %></div>
+      <div class="txt_userEdit"><%= password_field_tag 'old_password' %>
       <span class="warning" id="old_password_errors">
         <% if @old_password != 1%>
          Password non corretta
        <% end %>
-     </span>
+     </span></div>
     </p>
     <p>
-      <%= f.label '*Nuova password:' %>
-      <%= f.password_field :password %>
-      <span class="warning" id="password_errors"> <%= @current_user.errors.on(:password) %> </span>
+      <div class="lbl_userEdit"><%= f.label '*Nuova password:' %></div>
+      <div class="txt_userEdit"><%= f.password_field :password %>
+      <span class="warning" id="password_errors"> <%= @current_user.errors.on(:password) %> </span></div>
     </p>
     <p>
-      <%= label_tag '*Conferma password:' %>
-      <%= password_field_tag 'repeat_password' %>
+      <div class="lbl_userEdit"><%= label_tag '*Conferma nuova password:' %></div>
+      <div class="txt_userEdit"><%= password_field_tag 'repeat_password' %>
       <span class="warning" id="password_errors_bis">
         <% if @repeat_password != 1%>
         Attenzione non coincide
        <% end %>
-     </span>
+     </span></div>
    </p>
     <p>
       <%= f.submit "Cambia password" %>

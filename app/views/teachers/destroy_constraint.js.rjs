@@ -5,7 +5,7 @@ if @constraint && @constraint.id
   end
 
   if @constraints.size == 0
-    page.replace_html 'message', 'Non hai impostato vincoli.'
+    page.replace_html 'message', 'Al momento non hai impostato vincoli.'
     page.visual_effect :fade , 'manageable_constraints', :duration=>"0.5"
     page.delay(0.5) do page.hide 'manageable_constraints' end
   else

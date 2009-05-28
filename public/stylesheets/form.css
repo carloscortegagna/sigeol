@@ -26,7 +26,7 @@
     margin:0;
 }
 
-.lbl_docEditPref, .lbl_docEditConstr, .lbl_classEditConstr {
+.lbl_docEditPref, .lbl_docEditConstr, .lbl_classEditConstr, .lbl_userEdit {
     float:left;
     margin-top:0.4em;
 }
@@ -52,14 +52,18 @@
     float:left;
 }
 
-#pswd_docPreActiv {
-    margin-left:6.8em;
+.pswd_docPreActiv {
+    margin-left:11.7em;
 }
 
 .txt_docPreActiv {
-    margin-left:6em;
+    margin-left:11em;
 }
 
 #form_docPreActiv fieldset {
     margin:1em 0 1em 0;
+}
+
+.txt_userEdit {
+    margin-left:14.5em;
 }

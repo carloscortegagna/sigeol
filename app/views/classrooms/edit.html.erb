@@ -54,25 +54,26 @@
 
   <div id="remove_form">
     <% form_remote_tag :url => {:controller => 'classrooms', :action => 'remove_classroom_graduate_course'}do %>
-        <label for="graduate_course_canc">Rimuovi un corso di laurea dalla lista:</label>
+        <label for="graduate_course_canc"><strong>Rimuovi</strong> un corso di laurea dalla lista:</label>
         <%= select_tag "graduate_course_canc" , options_from_collection_for_select(@graduate_courses_associati, "id", "name") %>
         <span id="remove">
         <%= submit_tag 'Rimuovi Corso' %>
        </span>
      <% end %>
   </div>
-    
-    <p/>
 
+    
+  <p>
     <div id="add_form">
       <% form_remote_tag :url => {:controller => 'classrooms', :action => 'add_classroom_graduate_course'}do %>
-      <label for="graduate_course_add">Aggiungi un corso di laurea alla lista:</label>
+      <label for="graduate_course_add"><strong>Aggiungi</strong> un corso di laurea alla lista:</label>
       <%= select_tag "graduate_course_add" , options_from_collection_for_select(@graduate_courses_non_associati, "id", "name") %>
       <span id="add">
       <%= submit_tag 'Aggiungi Corso' %>
       </span>
       <% end %>
     </div>
-
- <p/>
-<%= link_to 'Back', :action => 'administration' %>
+  </p>
+<p>
+  <%= link_to 'Indietro', :action => 'administration' %>
+</p>

@@ -11,7 +11,7 @@
 <h3>Modifica dei vincoli di non disponibilità per: <%=h @teacher.name %> <%=h @teacher.surname %></h3>
 <hr />
 <% if @constraints.size == 0 %>
-  <p> id="message">Non hai impostato vincoli.</p>
+  <p id="message">Al momento non hai impostato vincoli.</p>
   <table id="manageable_constraints" style="display:none">
     <tr>
       <th>Giorno</th>
@@ -49,7 +49,7 @@
 <p>Per inserire un nuovo vincolo:
 <ul>
 <li>inserire il giorno della settimana in cui si è impossibilitati a fare lezione</li>
-<li>inserire l'ora di inizio e fine nel formato HH:MM</li>
+<li>inserire l'ora di inizio e fine nel formato HH:MM, oppure cliccare sull'icona dell'orologio per un inserimento grafico</li>
 <li>inserire la motivazione</li>
 </ul>
 </p>

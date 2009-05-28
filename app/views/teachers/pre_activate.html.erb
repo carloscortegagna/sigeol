@@ -3,13 +3,13 @@
 <% remote_form_for @user, :url => {:action => :activate, :digest => params[:digest]}, :html => {:method => :post, :id => "form_docPreActiv"} do |f| %>
    <p>
     <div class="lbl_docPreActiv"><%= label_tag '*password:' %></div>
-    <div id ="pswd_docPreActiv" class="txt_docPreActiv"><%= f.password_field :password %>
+    <div class ="pswd_docPreActiv"><%= f.password_field :password %>
     <span class="warning" id="password_errors"><%= @user.errors.on(:password) %> </span>
     </div>
   </p>
   <p>
     <div class="lbl_docPreActiv"><%= label_tag '*Conferma password:' %></div>
-    <div class="txt_docPreActiv"><%= password_field_tag 'repeat_password' %>
+    <div class="pswd_docPreActiv"><%= password_field_tag 'repeat_password' %>
     <span class="warning" id="password_errors_bis"><% if @repeat_password != 1 %> Attenzione non coincide <%  end %>
     </span>
     </div>
