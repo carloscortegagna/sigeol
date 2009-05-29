@@ -20,15 +20,6 @@ class GraduateCoursesController < ApplicationController
   before_filter :didactic_office_required, :only => [:new, :create, :destroy]
   before_filter :same_graduate_course_required, :only => [:edit, :update, :destroy]
 
-  def index
-    @graduate_courses = GraduateCourse.find(:all)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @graduate_courses.to_xml(:include => :curriculums, :except =>[:created_at, :updated_at]) } # index xml
-    end
-  end
-
   def administration
     ids = @current_user.graduate_course_ids
     @graduate_courses = GraduateCourse.find(ids, :include => :curriculums)
