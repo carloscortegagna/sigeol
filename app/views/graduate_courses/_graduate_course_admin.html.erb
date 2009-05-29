@@ -1,11 +1,7 @@
-<div>
-  <h3>
-    <%= link_to graduate_course_admin.name, graduate_course_path(graduate_course_admin) %>
-  </h3>
-  <div>
-    <%= link_to "Modifica", edit_graduate_course_path(graduate_course_admin) %>
-  </div>
-  <div>
-    <%= link_to "Elimina", graduate_course_admin, :method => :delete%>
-  </div>
- </div>
+<h4>
+  <%= link_to graduate_course_admin.name, graduate_course_path(graduate_course_admin) %>
+</h4>
+  <ul>
+    <li><%= link_to "Modifica", edit_graduate_course_path(graduate_course_admin) %></li>
+    <li><%= link_to "Elimina", graduate_course_admin, :method => :delete%></li>
+  </ul>

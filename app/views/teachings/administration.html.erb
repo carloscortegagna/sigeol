@@ -1,10 +1,12 @@
 <%= menu_admin() %>
-<h1> Amministrazione insegnamenti </h1>
+<h3> Amministrazione insegnamenti </h3>
 <% @graduate_courses.each do |g| %>
   <div class ="first_div">
-    <%= show_graduate_course(g) %>
-    <% g['teachings'].each do |t|  %>
-      <%= show_teaching_admin(t) %>
-    <% end %>
+    <p class="titoloLista"><%= show_graduate_course(g) %></p>
+    <ul>
+      <% g['teachings'].each do |t|  %>
+        <li><%= show_teaching_admin(t) %></li>
+      <% end %>
+    </ul>
   </div>
  <% end %>

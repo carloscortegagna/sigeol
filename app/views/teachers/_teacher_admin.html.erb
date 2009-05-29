@@ -1,14 +1,8 @@
-<div>
-  <div>
-    <%= link_to teacher_admin.complete_name, teacher_path(teacher_admin) %>
-  </div>
-  <div>
-    <%= link_to "Elimina definitivamente", teacher_admin, :method => :delete %>
-  </div>
-  <div>
-    <%= link_to "Gestione corsi", edit_graduate_courses_teacher_path(teacher_admin)%>
-  </div>
-  <div>
-    <%= link_to "Gestione privilegi", edit_capabilities_teacher_path(teacher_admin)%>
-  </div>
-</div>
+<p>
+    <%= link_to teacher_admin.complete_name, teacher_path(teacher_admin), :class => "titoloLista" %>
+    <ul>
+    <li><%= link_to "Elimina definitivamente", teacher_admin, :method => :delete %></li>
+    <li><%= link_to "Gestione corsi", edit_graduate_courses_teacher_path(teacher_admin)%></li>
+    <li><%= link_to "Gestione privilegi", edit_capabilities_teacher_path(teacher_admin)%></li>
+    </ul>
+</p>

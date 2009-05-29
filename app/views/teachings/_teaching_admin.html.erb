@@ -1,21 +1,14 @@
-<div>
-  <div>
-    <%= link_to teaching_admin.name, teaching_path(teaching_admin) %>
-  </div>
-  <div>
-    <%= link_to "Modifica", edit_teaching_path(teaching_admin) %>
-  </div>
-  <div>
-    <%= link_to "Elimina", teaching_admin, :method => :delete %>
-  </div>
-  <div>
-    <% if teaching_admin.teacher %>
-       <%= show_teacher(teaching_admin.teacher) %>
-    <% else %>
-       <%=h "Nessun docente" %>
-    <% end %>
-  </div>
-  <div>
-    <%= link_to "Assegna docente", select_teacher_teaching_path(teaching_admin) %>
-  </div>
-</div>
+<p>
+    <span><%= link_to teaching_admin.name, teaching_path(teaching_admin) %></span>
+    <ul>
+      <li><%= link_to "Modifica", edit_teaching_path(teaching_admin) %></li>
+      <li><%= link_to "Elimina", teaching_admin, :method => :delete %></li>
+      <% if teaching_admin.teacher %>
+         <li>Docente di riferimento: <%= show_teacher(teaching_admin.teacher) %>
+             (<%= link_to "Riassegna docente", select_teacher_teaching_path(teaching_admin) %>)</li>
+      <% else %>
+         <li><%=h "Nessun docente assegnato" %> (<%= link_to "Assegna docente", select_teacher_teaching_path(teaching_admin) %>)</li>
+      <% end %>
+      <span></span>
+    </ul>
+</p>

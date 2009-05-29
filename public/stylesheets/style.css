@@ -132,6 +132,10 @@ a:hover {
 #graduate_courses li {
     font-size:1.2em;
 }
+
+.li_indentation {
+    margin-left:2em;
+}
 /*
 #preFooter {
     clear:both;

@@ -1,14 +1,20 @@
 <%= menu_admin() %>
-<h3>Corsi di laurea e relativi Curriculum</h3>
+<h3>Corsi di laurea e relativi Curricula</h3>
 <% @graduate_courses.each do |g| %>
   <div class="first_div">
     <%= show_graduate_course_admin(g) %>
-    <% if g.curriculums.empty? %>
-      <%=h "Nessun curriculum presente" %>
-    <% else %>
-      <% g.curriculums.each do |c| %>
-        <%= show_curriculum_admin(c) %>
+      <ul>
+        <% if g.curriculums.empty? %>
+          <span>Nessun curriculum presente</span>
+        <% else %>
+        <span>Curricula:</span>
+        <% g.curriculums.each do |c| %>
+          <li><%= show_curriculum_admin(c) %></li>
+        <% end %>
       <% end %>
-    <% end %>
+    </ul>
   </div>
+  <% if (g != @graduate_courses[@graduate_courses.size-1]) %>
+    <hr />
+  <% end %>
 <% end %>

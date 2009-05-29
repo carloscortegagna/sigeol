@@ -12,7 +12,7 @@
 <h3>Docenti divisi per corso di laurea</h3>
 <% @graduate_courses.each do |g| %>
   <div class="first_div">
-    <h2><%= g.name %></h2>
+    <h4><%= g.name %></h4>
     <% g.users.each do |t| %>
       <%= show_teacher_admin(t.specified) %>
       <br>
