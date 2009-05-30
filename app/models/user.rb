@@ -40,12 +40,12 @@ class User < ActiveRecord::Base
                         :on => :update
   validates_length_of :password,
                       :minimum=> 6,
-                      :message=>"La password troppo corta. Min 6 caratteri",
+                      :message=>"Minimo 6 caratteri",
                       :on => :update
 
   validates_format_of :password,
                       :with => /^[a-zA-Z0-9\.]*$/,
-                      :message=>"Si accettano solo caratteri numeri e il carattere .",
+                      :message=>"Si accettano solo caratteri alfanumerici e il carattere punto",
                       :on => :update
 
   #validazioni mail
@@ -55,6 +55,11 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :mail,
                           :message=>"La mail è già presente",
                           :on => :create
+
+  validates_length_of :mail,
+                      :maximum=> 35,
+                      :message=>"La mail è troppo lunga. Max 35 caratteri",
+                      :on => :update
 
   #la mail deve essere del tipo account@qualcosa.it oppure account@qualcosa.qualcosa.it
   validates_format_of :mail,

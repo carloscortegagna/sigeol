@@ -1,34 +1,50 @@
  if (@teaching).errors.on(:name)
-  page.replace_html 'errors_name', "*"+(@teaching).errors.on(:name)
+  page.replace_html 'errors_name',''
+   ((@teaching).errors.on(:name)).each do |c|
+    page.insert_html :bottom,'errors_name', "*"+c+'.   '
+   end
   page.visual_effect :highlight, 'errors_name', :color=>"red", :duration=>"0.7"
  else
   page.replace_html 'errors_name', ''
  end
 
  if(@teaching).errors.on(:CFU)
-  page.replace_html 'errors_cfu', "*"+(@teaching).errors.on(:CFU)
-  page.visual_effect :highlight, 'errors_cfu', :color=>"red", :duration=>"0.7"
+  page.replace_html 'errors_cfu', ''
+  ((@teaching).errors.on(:CFU)).each do |c|
+    page.insert_html :bottom, 'errors_cfu', "*"+c+'.   '
+  end
+   page.visual_effect :highlight, 'errors_cfu', :color=>"red", :duration=>"0.7"
  else
   page.replace_html 'errors_cfu', ''
 end
 
+
  if(@teaching).errors.on(:classHours)
-  page.replace_html 'errors_classHours' ,"*"+(@teaching).errors.on(:classHours)
-  page.visual_effect :highlight, 'errors_classHours', :color=>"red", :duration=>"0.7"
+  page.replace_html 'errors_classHours' ,''
+  (@teaching.errors.on(:classHours)).each do |c|
+   page.insert_html  :bottom, 'errors_classHours', "*"+c+'.   '
+  end
+   page.visual_effect :highlight, 'errors_classHours', :color=>"red", :duration=>"0.7"
   else
   page.replace_html 'errors_classHours', ''
 end
 
 if(@teaching).errors.on(:labHours)
-  page.replace_html 'errors_labHours', "*"+(@teaching).errors.on(:labHours)
+  page.replace_html 'errors_labHours', ''
+  (@teaching.errors.on(:labHours)).each do |c|
+    page.insert_html  :bottom, 'errors_labHours', "*"+c+'.   '
+  end
   page.visual_effect :highlight, 'errors_labHours', :color=>"red", :duration=>"0.7"
 else
   page.replace_html 'errors_labHours', ''
 end
 
 if(@teaching).errors.on(:studentsNumber)
- page.replace_html 'errors_studentsNumber', "*"+(@teaching).errors.on(:studentsNumber)
- page.visual_effect :highlight, 'errors_studentsNumber', :color=>"red", :duration=>"0.7"
+ page.replace_html 'errors_studentsNumber', ''
+ (@teaching.errors.on(:studentsNumber)).each do |c|
+   page.insert_html  :bottom, 'errors_studentsNumber', "*"+c+'.   '
+  end
+  page.visual_effect :highlight, 'errors_studentsNumber', :color=>"red", :duration=>"0.7"
 else
  page.replace_html 'errors_studentsNumber', ''
 end

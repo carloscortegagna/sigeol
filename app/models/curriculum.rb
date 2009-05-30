@@ -36,7 +36,7 @@ class Curriculum < ActiveRecord::Base
                       :message => "Il nome è troppo lungo"
   validates_format_of :name,
                       :with => /^[a-zA-Zàòèéùì\s]*$/,
-                      :message =>"Si accetta solo caratteri"
+                      :message =>"Si accettano solo caratteri alfabetici"
   validates_presence_of :graduate_course_id,
                         :message => "Deve essere associato ad un corso di laurea"
 

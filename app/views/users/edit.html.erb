@@ -1,6 +1,6 @@
 <h3>Cambio password</h3>
   <% remote_form_for :user, :url => {:action => :update}, :html=> {:method => :put} do |f| %>
-    <p>
+  <p>
       <div class="lbl_userEdit"><%= label_tag '*Password attuale:' %></div>
       <div class="txt_userEdit"><%= password_field_tag 'old_password' %>
       <span class="warning" id="old_password_errors">

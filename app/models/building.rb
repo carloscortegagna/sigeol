@@ -34,7 +34,7 @@ class Building < ActiveRecord::Base
                      :message=>"Il nome è troppo lungo"
  validates_format_of :name,
                      :with => /^[a-zA-Z0-9àòèéùì\s]*$/,
-                     :message=>"Si accetta solo caratteri"
+                     :message=>"Si accettano solo caratteri alfanumerici"
  #validazione presenza indirizzo
   validates_associated :address,
                        :message=>"Immetti un indirizzo valido"

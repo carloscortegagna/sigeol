@@ -1,26 +1,39 @@
 if(@building.errors.on(:name))
- page.replace_html "errors_name", "*"+@building.errors.on(:name)
- page.visual_effect :highlight, 'errors_name', :color=>"red", :duration=>"0.7"
+ page.replace_html 'errors_name', ''
+ @building.errors.on(:name).each do |c|
+ page.insert_html :bottom, 'errors_name','*'+c+'.   '
+end
+page.visual_effect :highlight, 'errors_name', :color=>"red", :duration=>"0.7"
 else
   page.replace_html 'errors_name', ''
 end
 
 if(@address.errors.on(:city))
- page.replace_html "errors_city", "*"+@address.errors.on(:city)
- page.visual_effect :highlight, 'errors_city', :color=>"red", :duration=>"0.7"
+ page.replace_html 'errors_city', ''
+  @address.errors.on(:city).each do |c|
+     page.insert_html :bottom, 'errors_city','*'+c+'.   '
+  end
+  page.visual_effect :highlight, 'errors_city', :color=>"red", :duration=>"0.7"
+
  else
   page.replace_html 'errors_city', ''
 end
 
 if(@address.errors.on(:telephone))
- page.replace_html "errors_telephone", "*"+@address.errors.on(:telephone)
+  page.replace_html 'errors_telephone', ''
+  @address.errors.on(:telephone).each do |c|
+    page.insert_html :bottom, 'errors_telephone','*'+c+'.   '
+  end
  page.visual_effect :highlight, 'errors_telephone', :color=>"red", :duration=>"0.7"
 else
  page.replace_html 'errors_telephone',''
 end
 
 if(@address.errors.on(:street))
- page.replace_html "errors_street", "*"+@address.errors.on(:street)
+ page.replace_html 'errors_street', ''
+ @address.errors.on(:street).each do |c|
+   page.insert_html :bottom, 'errors_street','*'+c+'.   '
+ end
  page.visual_effect :highlight, 'errors_street', :color=>"red", :duration=>"0.7"
 else
   page.replace_html 'errors_street',''

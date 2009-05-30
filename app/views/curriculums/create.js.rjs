@@ -1,12 +1,18 @@
 if(@curriculum.errors.on(:name))
- page.replace_html 'errors_name', "*"+@curriculum.errors.on(:name)
+ page.replace_html 'errors_name', ''
+ @curriculum.errors.on(:name).each do |c|
+   page.insert_html :bottom, 'errors_name',  "*"+c+".   "
+ end
  page.visual_effect :highlight, 'errors_name', :color=>"red", :duration=>"0.7"
 else
   page.replace_html 'errors_name', ''
 end
 
 if(@curriculum.errors.on(:graduate_course_id))
- page.replace_html 'errors_graduate_course', "*"+@curriculum.errors.on(:graduate_course_id)
+ page.replace_html 'errors_graduate_course', ''
+ @curriculum.errors.on(:graduate_course_id).each do |c|
+   page.insert_html :bottom, 'errors_graduate_course',  "*"+c+".   "
+ end
  page.visual_effect :highlight, 'errors_graduate_course', :color=>"red", :duration=>"0.7"
 else
   page.replace_html 'errors_graduate_course', ''

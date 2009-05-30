@@ -1,5 +1,17 @@
 if(@teacher.errors.on(:mail))
- page.replace_html 'errors_mail', "*"+@teacher.errors.on(:mail)
- page.visual_effect :highlight, 'errors_name', :color=>"red", :duration=>"0.7"
+ page.replace_html 'errors_mail', ''
+ @teacher.errors.on(:mail).each do |c|
+   page.insert_html :bottom, 'errors_mail', '*'+c+'.   '
+ end
+ page.visual_effect :highlight, 'errors_mail', :color=>"red", :duration=>"0.7"
+ page.remove 'error'
+end
+
+if(@teacher.errors.on(:graduate_courses))
+ page.replace_html 'errors_graduate_courses', ''
+ @teacher.errors.on(:graduate_courses).each do |c|
+   page.insert_html :bottom, 'errors_graduate_courses', '*'+c+'.   '
+ end
+ page.visual_effect :highlight, 'errors_graduate_courses', :color=>"red", :duration=>"0.7"
  page.remove 'error'
 end

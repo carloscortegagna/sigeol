@@ -1,6 +1,9 @@
 
 if @current_user.errors.on(:password)
-  page.replace_html 'password_errors', "*"+@current_user.errors.on(:password)
+  page.replace_html 'password_errors', ''
+  (@current_user.errors.on(:password)).each do |c|
+    page.insert_html :bottom,'password_errors', '*'+c+'.   '
+  end
   page.visual_effect :highlight, 'password_errors', :color=>"red", :duration=>"0.7"
  else
   page.replace_html 'password_errors', ''

@@ -34,10 +34,11 @@ class Teaching < ActiveRecord::Base
  validates_presence_of :period_id,
                        :message => "Devi associare un periodo"
  validates_length_of :name,
-                     :maximum => 30
+                     :maximum => 30,
+                     :message => "Il nome è troppo lungo. Massimo 30 caratteri"
  validates_format_of :name,
                      :with => /^[a-zA-Zàòèéùì\s0-9]*$/,
-                     :message =>"Si accetta solo caratteri numeri e il carattere spazio"
+                     :message =>"Si accettano solo caratteri alfanumerici e il carattere spazio"
  
  #validazioni :CFU,:classHours,:labHours,:studentsNumber,
  validates_numericality_of :CFU,
@@ -45,21 +46,21 @@ class Teaching < ActiveRecord::Base
                            :greater_than_or_equal_to => 0,
                            :less_than_or_equal_to => 20,
                            :allow_nil=>true,
-                           :message=>"Attenzione il numero deve essere compreso tra 0 e 20"
+                           :message=>"Il numero deve essere compreso tra 0 e 20"
 
  validates_numericality_of :labHours,:classHours,
                            :only_integer => true,
                            :greater_than_or_equal_to => 0,
                            :less_than_or_equal_to => 50,
                            :allow_nil => true,
-                           :message => "Attenzione il numero deve essere compreso tra 0 e 50"
+                           :message => "Il numero deve essere compreso tra 0 e 50"
 
  validates_numericality_of :studentsNumber,
                            :only_integer => true,
                            :greater_than_or_equal_to => 0,
                            :less_than_or_equal_to => 1000,
                            :allow_nil => true,
-                           :message => "Attenzione il numero deve essere compreso tra 0 e 1000"
+                           :message => "Il numero deve essere compreso tra 0 e 1000"
  validates_associated :teacher,
                       :message => "Il teacher associato non è valido"
 
@@ -90,7 +91,7 @@ class Teaching < ActiveRecord::Base
   maxsubperiod = AcademicOrganization.minimum("number", :include => [:graduate_courses => :curriculums],
                                               :conditions => ["curriculums.id IN (?)", ids])
   if (self.period && (self.period.subperiod > maxsubperiod.to_i || self.period.year > maxyear.to_i))
-    errors.add(:period, "Non puo assegnare questo periodo a questo insegnamento" + maxyear.to_s + " " + maxsubperiod.to_s)
+    errors.add(:period, "Non puoi assegnare questo periodo a questo insegnamento" + maxyear.to_s + " " + maxsubperiod.to_s)
   end
  end
 end

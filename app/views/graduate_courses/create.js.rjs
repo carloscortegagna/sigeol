@@ -1,2 +1,24 @@
-page.replace_html "errors_name", "*"+@graduate_course.errors.on(:name)
-page.visual_effect :highlight, 'errors_name', :color=>"red", :duration=>"0.7"
+
+if @graduate_course.errors.on(:name)
+  page.replace_html 'errors_name', ''
+  @graduate_course.errors.on(:name).each do |c|
+    page.insert_html :bottom, 'errors_name', '*'+c+'.   '
+  end 
+  page.visual_effect :highlight, 'errors_name', :color=>"red", :duration=>"0.7"
+end
+
+if @graduate_course.errors.on(:duration)
+  page.replace_html 'errors_duration', ''
+  @graduate_course.errors.on(:duration).each do |c|
+    page.insert_html :bottom, 'errors_duration', '*'+c+'.   '
+  end
+  page.visual_effect :highlight, 'errors_duration', :color=>"red", :duration=>"0.7"
+end
+
+if @graduate_course.errors.on(:academic_organization_id)
+  page.replace_html 'errors_academic_organization', ''
+  @graduate_course.errors.on(:academic_organization_id).each do |c|
+    page.insert_html :bottom, 'errors_academic_organization', '*'+c+'.   '
+  end
+  page.visual_effect :highlight, 'errors_academic_organization', :color=>"red", :duration=>"0.7"
+end

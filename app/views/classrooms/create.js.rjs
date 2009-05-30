@@ -1,19 +1,28 @@
 if(@classroom.errors.on(:name))
- page.replace_html 'errors_name', "*"+@classroom.errors.on(:name)
+ page.replace_html 'errors_name', ''
+ @classroom.errors.on(:name).each do |c|
+   page.insert_html :bottom, 'errors_name', '*'+c+'.   '
+ end
  page.visual_effect :highlight, 'errors_name', :color=>"red", :duration=>"0.7"
 else
   page.replace_html 'errors_name', ''
 end
 
 if(@classroom.errors.on(:capacity))
- page.replace_html 'errors_capacity', "*"+@classroom.errors.on(:capacity)
+ page.replace_html 'errors_capacity', ''
+ @classroom.errors.on(:capacity).each do |c|
+   page.insert_html :bottom, 'errors_capacity', '*'+c+'.   '
+ end
  page.visual_effect :highlight, 'errors_capacity', :color=>"red", :duration=>"0.7"
 else
   page.replace_html 'errors_capacity', ''
 end
 
 if(@classroom.errors.on(:building_id))
- page.replace_html 'errors_building', "*"+@classroom.errors.on(:building_id)
+ page.replace_html 'errors_building', ''
+ @classroom.errors.on(:building_id).each do |c|
+   page.insert_html :bottom, 'errors_building', '*'+c+'.   '
+ end
  page.visual_effect :highlight, 'errors_building', :color=>"red", :duration=>"0.7"
 else
   page.replace_html 'errors_building', ''

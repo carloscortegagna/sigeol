@@ -40,7 +40,7 @@ class GraduateCourse < ActiveRecord::Base
                        :message=>"Il nome è troppo lungo"
   validates_format_of :name,
                        :with => /^[a-zA-Zàòèéùì\s]*$/,
-                       :message => "Si accetta solo caratteri"
+                       :message => "Si accettano solo caratteri alfabetici"
   validates_presence_of :academic_organization_id,
                          :message => "Deve essere associata ad un'organizzazione accademica"
 

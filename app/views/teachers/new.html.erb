@@ -11,6 +11,9 @@
   <p>
     <%= label_tag 'graduate_course_id', '*Corso di laurea:' %>
     <%= select_tag "graduate_course_id", options_from_collection_for_select(@graduate_courses, "id", "name") %>
+    <span class="warning" id="errors_graduate_courses">
+        <%= @teacher.errors.on(:graduate_courses) %>
+     </span>
   </p>
   <p>
    (*) = campi obbligatori

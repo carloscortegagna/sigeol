@@ -133,8 +133,10 @@ class TeachersController < ApplicationController
       a.save false
       @teacher.specified = t
       @teacher.address = a
-        if @teacher.save
+      if params[:graduate_course_id]
         @teacher.graduate_courses << GraduateCourse.find(params[:graduate_course_id])
+      end
+        if @teacher.save
         flash[:notice] = "Docente invitato con successo"
         TeacherMailer.deliver_activate_teacher(@current_user, @teacher)
         format.html{redirect_to new_teacher_url}
@@ -146,7 +148,9 @@ class TeachersController < ApplicationController
         end
       else
         if user.own_by_teacher?
+          if params[:graduate_course_id]
           user.graduate_courses << GraduateCourse.find(params[:graduate_course_id])
+        end
           flash[:notice] = "Docente invitato con successo"
           format.html{redirect_to new_teacher_url}
           format.js{render(:update) {|page| page.redirect_to new_teacher_url}}
