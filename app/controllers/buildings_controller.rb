@@ -5,6 +5,8 @@
 #
 # REGISTRO DELLE MODIFICHE:
 #
+# 01/06/2009 aggiunta lista delle aula nella vista pubblica index
+#
 # 21/05/2009 Aggiunto sia su create che su update le istruzioni che generano il contenuto di telephone usando i parametri prefisso e telefono.
 # Inoltre inserite istruzioni necessarie per renderizzare il contenuto con js.
 #
@@ -21,6 +23,7 @@ class BuildingsController < ApplicationController
 
   def index
     @buildings = (Building.find(:all)).sort_by { |b| b[:name] }
+    @classrooms = Classroom.find(:all)
     respond_to do |format|
       format.html
       format.xml { render :xml => @buildings.to_xml(:include => :classrooms, :except =>[:created_at, :updated_at]) } # index xml
@@ -34,7 +37,7 @@ class BuildingsController < ApplicationController
 
   def show
     @building = Building.find(params[:id])
-    @building_classrooms = Classroom.find(:all, :conditions => { :building_id => params[:id] })
+    @building_classrooms = Classroom.find(:all, :conditions => { :building_id => params[:id] }) #lista delle aule di quell'edificio
     @address = Address.find(@building.address_id)
     respond_to do |format|
       format.html # show.html.erb
@@ -61,18 +64,18 @@ class BuildingsController < ApplicationController
     @building = Building.new(params[:building])
     @address = Address.new(params[:address])
     @address.telephone= ""
-    if(params[:prefisso] != "" || params[:telefono] != "")
+    if(params[:prefisso] != "" || params[:telefono] != "") #se i parametri prefisso e telefono non sono vuoti compilo il campo dati telephone
     @address.telephone = params[:prefisso]+"-"+params[:telefono]
     end
     respond_to do |format|
-      if @address.save
-        @building.address = @address
-        if @building.save
+      if @address.save #salvo innanzitutto l'indirizzo
+        @building.address = @address #lego l'indirizzo all'edificio da salvare
+        if @building.save #se il salvataggio dell'edificio va a buon fine...
           flash[:notice] = 'Inserimento del nuovo edificio avvenuto con successo'
           format.html { redirect_to :action => 'administration' }
           format.js{render(:update) {|page| page.redirect_to :action => 'administration'}}
         else
-          Address.find(@building.address_id).destroy # cancello l'address salvato nel DB, non è puntato da nessun building
+          Address.find(@building.address_id).destroy #cancello l'address salvato nel DB, non è puntato da nessun building
           format.html { render :action => "new" }
           format.js{}
         end
@@ -83,17 +86,15 @@ class BuildingsController < ApplicationController
     end
   end
 
-  # PUT /buildings/1
-  # PUT /buildings/1.xml
   def update
-    @building = Building.find(params[:id])
-    @address = Address.find(@building.address_id)
+    @building = Building.find(params[:id]) #edificio da modificare
+    @address = Address.find(@building.address_id) #relativo indirizzo da modificare
     @address.telephone= ""
-    if(params[:prefisso] != "" || params[:telefono] != "")
+    if(params[:prefisso] != "" || params[:telefono] != "") #se i parametri prefisso e telefono non sono vuoti compilo il campo dati telephone
     @address.telephone = params[:prefisso]+"-"+params[:telefono]
     end
     respond_to do |format|
-      if @building.update_attributes(params[:building]) and @address.update_attributes(params[:address])
+      if @building.update_attributes(params[:building]) and @address.update_attributes(params[:address]) #se l'aggiornamento dell'edificio e dell'indirizzo vanno a buon fine
         flash[:notice] = "Modifica dell'edificio completata correttamente"
         format.html { redirect_to :action => 'administration' }
         format.js{render(:update) {|page| page.redirect_to :action => 'administration'}}
@@ -104,11 +105,9 @@ class BuildingsController < ApplicationController
     end
   end
 
-  # DELETE /buildings/1
-  # DELETE /buildings/1.xml
   def destroy
     @building = Building.find(params[:id])
-    Address.find(@building.address_id).destroy
+    Address.find(@building.address_id).destroy #distruzione dell'indirizzo relativo al building da cancellare
     @building.destroy
 
     respond_to do |format|

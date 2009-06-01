@@ -2,5 +2,13 @@
 <br>
 <% for b in @buildings do %>
   <%= link_to b.name, building_path(b) %>
+  <br><br>
+  <% for c in @classrooms %>
+    <% if b.id == c.building_id %>
+      <%=h c.name %> (<%=h c.capacity %> posti)<br>
+    <% end %>
+  <% end %>
+<br><br>
+--------------------------------------------------
   <br> <br>
 <% end %>
