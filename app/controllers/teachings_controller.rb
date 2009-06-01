@@ -1,10 +1,8 @@
-# QuiXoft - Progetto ”SIGEOL”
-# NOME FILE: teachings.controller.rb
-# AUTORE: Scortegagna Carlo
-# DATA CREAZIONE: 13/02/2009
-#
-# REGISTRO DELLE MODIFICHE:
-# 
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: teachings.controller.rb
+#AUTORE:: Scortegagna Carlo
+#DATA CREAZIONE:: 13/02/2009
+#REGISTRO DELLE MODIFICHE::
 # 14/05/2009 finite le viste xml
 #
 # 14/03/2009 aggiunta l'assegnazione dei docenti agli insegnamenti e l'assegnazione degli insegnamenti ai curriculum

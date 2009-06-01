@@ -1,10 +1,8 @@
-# QuiXoft - Progetto ”SIGEOL”
-# NOME FILE: buildings_controller.rb
-# AUTORE: Carlo Scortegagna
-# DATA CREAZIONE: 13/02/2009
-#
-# REGISTRO DELLE MODIFICHE:
-#
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: buildings_controller.rb
+#AUTORE:: Carlo Scortegagna
+#DATA CREAZIONE:: 13/02/2009
+#REGISTRO DELLE MODIFICHE::
 # 01/06/2009 aggiunta lista delle aula nella vista pubblica index
 #
 # 21/05/2009 Aggiunto sia su create che su update le istruzioni che generano il contenuto di telephone usando i parametri prefisso e telefono.

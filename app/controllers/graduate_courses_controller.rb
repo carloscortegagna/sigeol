@@ -1,10 +1,8 @@
-# QuiXoft - Progetto ”SIGEOL”
-# NOME FILE: graduate_courses_controller.rb
-# AUTORE: Beggiato Andrea
-# DATA CREAZIONE: 13/02/2009
-#
-# REGISTRO DELLE MODIFICHE:
-# 
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: graduate_courses_controller.rb
+#AUTORE:: Beggiato Andrea
+#DATA CREAZIONE:: 13/02/2009
+#REGISTRO DELLE MODIFICHE::
 # 19/05/2009 sistemate le action index e show per gli utenti non loggati
 # 
 # 11/05/2009 Nel filtro graduate_course_required aggiunta l'istruzione redirect_to

@@ -1,10 +1,8 @@
-# QuiXoft - Progetto ”SIGEOL”
-# NOME FILE: users.controller.rb
-# AUTORE: Beggiato Andrea
-# DATA CREAZIONE: 22/02/2009
-# 
-# REGISTRO DELLE MODIFICHE:
-#
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: users.controller.rb
+#AUTORE:: Beggiato Andrea
+#DATA CREAZIONE:: 22/02/2009
+#REGISTRO DELLE MODIFICHE::
 # 28/05/2009 aggiunte modifiche su edit inserendo le righe 21 e 22.
 #aggiunte modifiche ad update inserendo le istruzioni utili al controllo della password.
 # 

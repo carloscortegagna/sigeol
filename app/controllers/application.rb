@@ -1,10 +1,8 @@
-# QuiXoft - Progetto ”SIGEOL”
-# NOME FILE: application.rb
-# AUTORE: Beggiato Andrea
-# DATA CREAZIONE: 06/02/2009
-#
-# REGISTRO DELLE MODIFICHE:
-#
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: application.rb
+#AUTORE:: Beggiato Andrea
+#DATA CREAZIONE:: 06/02/2009
+#REGISTRO DELLE MODIFICHE::
 # 08/05/2009 aggiunti i metodi di conversione [id->giorno = from_id_to_dayname] e [giorno->id = from_dayname_to_id];
 #
 # 18/02/2009 completata la gestione delle capabilities

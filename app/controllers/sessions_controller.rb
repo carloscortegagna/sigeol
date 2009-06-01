@@ -1,10 +1,8 @@
-# QuiXoft - Progetto ”SIGEOL”
-# NOME FILE: sessions.controller.rb
-# AUTORE: Beggiato Andrea
-# DATA CREAZIONE: 13/02/2009
-#
-# REGISTRO DELLE MODIFICHE:
-# 
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: sessions.controller.rb
+#AUTORE:: Beggiato Andrea
+#DATA CREAZIONE:: 13/02/2009
+#REGISTRO DELLE MODIFICHE::
 # 17/02/2009 modifica dei redirect
 #
 # 13/02/2009 prima stesura del session controller

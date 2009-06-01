@@ -1,10 +1,8 @@
-# QuiXoft - Progetto ”SIGEOL”
-# NOME FILE: classrooms_controller.rb
-# AUTORE: Carlo Scortegagna
-# DATA CREAZIONE: 13/02/2009
-#
-# REGISTRO DELLE MODIFICHE:
-#
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: classrooms_controller.rb
+#AUTORE:: Carlo Scortegagna
+#DATA CREAZIONE:: 13/02/2009
+#REGISTRO DELLE MODIFICHE::
 # 21/05/2009 Riga 77: Commentata; questo perchè se si re-inizializza la variabile @classroom perdo gli errori associati.
 #
 # 20/05/2009 Aggiunto sia su create che su update le istruzioni necessarie per renderizzare il contenuto con js:

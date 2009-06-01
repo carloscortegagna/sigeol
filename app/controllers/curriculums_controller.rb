@@ -1,10 +1,8 @@
-# QuiXoft - Progetto ”SIGEOL”
-# NOME FILE: curriculums_controller.rb
-# AUTORE: Carlo Scortegagna
-# DATA CREAZIONE: 13/02/2009
-#
-# REGISTRO DELLE MODIFICHE:
-#
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: curriculums_controller.rb
+#AUTORE:: Carlo Scortegagna
+#DATA CREAZIONE:: 13/02/2009
+#REGISTRO DELLE MODIFICHE::
 # 14/05/2009 completate le viste xml
 #
 # 02/03/2009 eliminate le azioni inutilizzate

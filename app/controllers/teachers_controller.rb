@@ -1,10 +1,8 @@
-# QuiXoft - Progetto ”SIGEOL”
-# NOME FILE: teachers.controller.rb
-# AUTORE: Scortegagna Carlo
-# DATA CREAZIONE: 17/02/2009
-#
-# REGISTRO DELLE MODIFICHE:
-#
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: teachers.controller.rb
+#AUTORE:: Scortegagna Carlo
+#DATA CREAZIONE:: 17/02/2009
+#REGISTRO DELLE MODIFICHE::
 # 28/09/2009 aggiunta in administration la lista dei docenti non associati a nessun corso di laurea
 # 
 # 19/05/2009 sistemate le action index e show per gli utenti non loggati
