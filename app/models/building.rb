@@ -1,21 +1,19 @@
-# QuiXoft - Progetto ”SIGEOL”
-# NOME FILE: building.rb
-# AUTORE: Grosselle Alessandro
-# DATA CREAZIONE: 16/02/2009
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: building.rb
+#VERSIONE:: 1.0.0
+#AUTORE:: Grosselle Alessandro
+#DATA CREAZIONE:: 16/02/09
+#REGISTRO DELLE MODIFICHE::
+# 20/04/09 Approvazione del responsabile
 #
-# REGISTRO DELLE MODIFICHE:
+# 13/03/09 Aggiunta del metodo validates_associated :address
 #
-# 20/04/2009 Approvazione del responsabile
+# 20/02/09 Modifica all'espressione regolare che valida il nome del palazzo
 #
-# 13/03/2009 Aggiunta del metodo validates_associated :address
+# 17/02/09 Aggiunta delle validazioni
 #
-# 20/02/2009 Modifica all'espressione regolare che valida il nome del palazzo
+# 16/02/09 Prima stesura
 #
-# 17/02/2009 Aggiunta delle validazioni
-#
-# 16/02/2009 Prima stesura
-
-
 #Rappresentazione di un edificio contenente le aule (_Classroom_).
 
 class Building < ActiveRecord::Base

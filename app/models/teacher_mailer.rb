@@ -1,15 +1,13 @@
-# QuiXoft - Progetto ”SIGEOL”
-# NOME FILE:: teacher_mailer.rb
-# AUTORE:: Beggiato Andrea
-# DATA CREAZIONE:: 27/02/2009
-# 
-# REGISTRO DELLE MODIFICHE:
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: teacher_mailer.rb
+#VERSIONE:: 1.0.0
+#AUTORE:: Beggiato Andrea
+#DATA CREAZIONE:: 27/02/09
+#REGISTRO DELLE MODIFICHE::
+# 14/03/09 Approvazione del responsabile
 #
-# 14/03/2009 Approvazione del responsabile
+# 27/02/09 Prima stesura
 #
-# 27/02/2009 Prima stesura
-
-
 # Rappresenta lo strumento con il quale vengono inviate le notifiche ai docenti
 
 class TeacherMailer < ActionMailer::Base

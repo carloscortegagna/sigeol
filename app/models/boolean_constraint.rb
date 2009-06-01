@@ -1,14 +1,14 @@
-# QuiXoft - Progetto ”SIGEOL”
-# NOME FILE: boolean_constraint.rb
-# AUTORE: Grosselle Alessandro
-# DATA CREAZIONE: 16/02/2009
-#
-# REGISTRO DELLE MODIFICHE:
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: boolean_constraint.rb
+#VERSIONE:: 1.0.0
+#AUTORE:: Grosselle Alessandro
+#DATA CREAZIONE:: 16/02/09
+#REGISTRO DELLE MODIFICHE::
 #
 # 13/03/2009 validates_numericality_of :isHard
 #
 # 20/02/2009 Aggiunta delle validazioni
-# 
+#
 # 16/02/2009 Prima stesura
 
 class BooleanConstraint < ActiveRecord::Base

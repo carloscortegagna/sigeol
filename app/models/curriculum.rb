@@ -1,21 +1,19 @@
-# QuiXoft - Progetto ”SIGEOL”
-# NOME FILE: curriculum.rb
-# AUTORE: Grosselle Alessandro
-# DATA CREAZIONE: 12/02/2009
+#=QuiXoft - Progetto ”SIGEOL”
+#NOME FILE:: curriculum.rb
+#VERSIONE:: 1.0.0
+#AUTORE:: Grosselle Alessandro
+#DATA CREAZIONE:: 12/02/09
+#REGISTRO DELLE MODIFICHE::
+# 29/04/09 Approvazione del responsabile
 #
-# REGISTRO DELLE MODIFICHE:
+# 14/03/09 Aggiunto il metodo delete_last_teaching
 #
-# 29/04/2009 Approvazione del responsabile
+# 22/02/09 name accetta anche il carattere spazio
 #
-# 14/03/2009 Aggiunto il metodo delete_last_teaching
+# 18/02/09 Aggiunta delle validazioni
 #
-# 22/02/2009 name accetta anche il carattere spazio
+# 16/02/09 Prima stesura
 #
-# 18/02/2009 Aggiunta delle validazioni
-#
-# 16/02/2009 Prima stesura
-
-
 #Rappresentazione di un curriculum. Se un corso di laurea prevede un solo curriculum, questo conterrà
 #nel campo +name+ il valore "Unico".
 
