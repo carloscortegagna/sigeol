@@ -1,7 +1,7 @@
 <p>
     <%= link_to teacher_admin.complete_name, teacher_path(teacher_admin), :class => "titoloLista" %>
+    <%= link_to(image_tag("/images/delete.png"), teacher_admin, :method => :delete, :confirm => "Sei sicuro di voler eliminare definitivamente il docente dal sistema SIGEOL?") %>
     <ul>
-    <li><%= link_to "Elimina definitivamente", teacher_admin, :method => :delete %></li>
     <li><%= link_to "Gestione corsi", edit_graduate_courses_teacher_path(teacher_admin)%></li>
     <li><%= link_to "Gestione privilegi", edit_capabilities_teacher_path(teacher_admin)%></li>
     </ul>
