@@ -30,8 +30,8 @@ class Timetable < ActiveRecord::Base
                         :message => "Aggiungi l'anno accademico o il periodo o il corso di laurea"
 
   validates_format_of :year,
-                     :with => /^[0-9]{4,4}\-[0-9]{2,2}$/,
-                     :message => "deve essere scritto nella forma aaaa-aa"
+                     :with => /^[0-9]{4,4}\/[0-9]{2,2}$/,
+                     :message => "deve essere scritto nella forma aaaa/aa"
 
   validate :correct_year
   validate :unique?
