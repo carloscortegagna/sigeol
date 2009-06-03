@@ -233,19 +233,24 @@ Durante tutto lo svolgimento del progetto, il team QuiXoft utilizzarà i seguent
 Il sistema Sigeol è strutturato seguendo il paradigma MVC, con l'aggiunta di ulteriori componenti: Helper, MiddleMan e Algorithm.
 \subsection{Componente Model}\label{model}
 \subsubsection{Introduzione}
-Ogni classe appartente al model deriva direttamente da \verb|ActiveRecord::Base| ed ogni istanza di tale classe viene anche chiamata oggetto di tipo Active Record, dove gli attributi non vengono specificati direttamente, ma dedotti dalla tabella associata.
+ActiveRecord è una libreria scritta in Ruby per poter interagire con le basi di dati ed è una delle componenti essenziali del framework Rails.
+Implementa il pattern ORM rappresentando ogni tabella come una classe e un'istanza come un record.
+Queste classi fanno parte della componente model ed ereditatano ed estendono una classe astratta (ActiveRecord::Base).
+Un oggetto model non è altro che un'istanza di una delle classi sopra descritte. 
 
-Un'istanza di una classe model corrisponde ad una riga della tabella associata, quindi se viene cancellato verrà eliminata anche la riga corrispondente.
 
-Da \verb|ActiveRecord:Base| si ereditano diversi metodi di pubblica utilità tra i quali:
+Da ActiveRecord:Base si ereditano diversi metodi di pubblica utilità tra i quali:
 \begin{itemize}
  \item \verb|save|: salva l'oggetto model. Se il model è nuovo viene creato un record nel database, altrimenti il record esistente viene aggiornato.
  \item \verb|destroy|: elimina il record associato. Ovviamente dopo questa operazione l'oggetto model corrispondente alla riga cancellata, non potrà più modificare gli attributi.
-\end{itemize}
-\subsubsection*{Validazioni}
-Grazie alla libreria Active Record è possibile validare gli attributi di un oggetto model. La validazione viene effettuata automaticamente prima della creazione del record o del suo aggiornamento nel database. Se la convalida fallisce, la tupla del database resterà invariata mentre all'istanza verrà aggiunto l'errore di validazione verificatosi. Inoltre è possibile specificare differenti validazioni per nuovi record, per aggiornamenti di tuple esistenti o per ogni operazione di salvataggio.
+ \item un set di metodi per la validazione degli attributi.
+ \item un set di metodi che permettono di definire le associazioni(anche polimorfe) tra le tabelle.
+ \item un set di metodi chiamato callback che permettono il controllo dello stato dell'oggetto.
+ \end{itemize}
 
-\verb|Active Record| infine, mette ha disposizione un set di metodi ausiliari che implementano validazioni comuni a molti models come ad esempio il controllo della presenza di un attributo. Se il controllo fallisce, verrà aggiunto all'oggetto un messaggio di errore per lo specifico attributo.
+
+\subsubsection*{Validazioni}
+ActiveRecord mette ha disposizione un set di metodi ausiliari che implementano validazioni comuni a molti models come ad esempio il controllo della presenza di un attributo. Se il controllo fallisce, verrà aggiunto all'oggetto un messaggio di errore per lo specifico attributo e la tupla del database resterà invariata.
 Ad esempio nel model \verb|User|, per controllare la presenza dell'attributo \verb|mail|, si potrà utilizzare l'helper method \verb|validates_presence_of:| in questo modo:\\
 \begin{verbatim}
 validates_presence_of :mail,
@@ -254,11 +259,11 @@ validates_presence_of :mail,
 \end{verbatim}
 dove \verb|:message| contiene il messaggio d'errore e \verb|:on| specifica in che fase effettuare la validazione(\verb|:create|, \verb|:update| o \verb|:save|); se \verb|:on| è omesso questi assumerà il valore di default \verb|save|.
 
-Per creare, invece, una validazione non presente in quelle fornite dalle librerie di Rails è necessario aggiungere alle chiamate di \verb|validate|,\\ \verb|validate_on_update|,\verb|validate_on_create|, la lista dei metodi che si vuole aggiungere, passati come simboli.
+Invece per creare una validazione è sufficiente ridefinire i metodi \verb|validate|,\\ \verb|validate_on_update|,\verb|validate_on_create| ereditati dalla classe ActiveRecord::Base.
 \begin{itemize}
- \item \verb|validate|: la validazione viene eseguita prima di ogni operazione di scrittura nel database; quindi sia in fase di creazione che di modifica
- \item \verb|validate_on_create|: la validazione viene eseguita solamente alla creazione di una nuova tupla
- \item \verb|validate_on_update|: la validazione viene eseguita solamente alla modifica di un record esistente.
+ \item \verb|validate|: viene eseguito automaticamente prima di ogni operazione di scrittura nel database; quindi sia in fase di creazione che di modifica
+ \item \verb|validate_on_create|: viene eseguito automaticamente alla creazione di una nuova tupla
+ \item \verb|validate_on_update|: viene eseguito automaticamente alla modifica di un record esistente.
 \end{itemize}
 
 Ad esempio, nel model \verb|ExpiryDate|, per controllare che la data immessa sia maggiore di quella di oggi si implementerà il metodo \verb|is_correct_date?|. Il nome quindi verrà aggiunto come simbolo alla chiamata di \verb|validate| nel seguente modo: \\
@@ -266,7 +271,7 @@ Ad esempio, nel model \verb|ExpiryDate|, per controllare che la data immessa sia
 validate :is_correct_date?
 \end{verbatim}
 \subsubsection*{Associazioni}
-Oltre alle validazioni, nel model vengono definite le relazione tra le tabelle, e quindi delle stesse classi. \verb|Active record| supporta tre tipi di associazioni: one-to-one, one-to-many, many-to-many.
+ActiveRecord implementa e mette a disposizione tre tipi di associazioni: one-to-one, one-to-many, many-to-many.
 Per dichiarare una relazione, è necessario richiamare opportunamente i metodi \verb|has_one|, \verb|has_many|, \verb|belongs_to| e \verb|has_and_belongs_to_many| nelle classi del model.
 Anche qui è necessario seguire delle convenizioni:
 \begin{itemize}
@@ -275,12 +280,10 @@ Anche qui è necessario seguire delle convenizioni:
  \item dopo \verb|belongs_to| e \verb|has_one| deve essere aggiunto (come simbolo) il nome al singolare della tabella
 \end{itemize}
 
-E' possibile modificare le associazioni aggiungendo delle opzioni; in particolare nel progetto Sigeol si è utilizzata l'opzione \verb|:dependent| che indica ad \verb|Active record| come comportarsi quando si elimina una riga di una tabella che è associata ad un altra tramite chiave esterna (rapporto tra parent table e child table)
-Ad esempio nel model \verb|GraduateCourse| la relazione con la classe \verb|Curriculum| dovrà essere definita come \verb|has_many :curriculums|,\\ \verb|:dependent => :destroy|, per indicare che eliminando un record di \\ \verb|graduate_courses|, verranno cancellate tutte le tuple di \verb|curriculums| associate ad esso.
 \subsubsection*{Associazioni polimorfe}
 Nel progetto Sigeol sono presenti due associazioni polimorfe.
 
-Uno \verb|User| ha uno tipo specifico; ad esempio può essere o un \verb|Teacher| o un \verb|DidacticOffice|\\
+Uno \verb|User| ha un tipo specifico; ad esempio può essere o un \verb|Teacher| o un \verb|DidacticOffice|\\
 Per implementare quest'associazione, si deve aggiungere alla tabella \verb|users| due attributi: \verb|specified_id| e \verb|specified_type|.
 In \verb|User| si specificherà la relazione polimorfa:\\
 \verb|belongs_to :specified, :polymorphic => true|.\\
@@ -292,13 +295,12 @@ Il secondo tipo di associazione è chiamato \textit{associazione polimorfa doppi
 Per implementare questa associazione si farà uso di un plugin chiamato :\verb|has_many_polymorphs|.
 
 Per il corretto uso del plugin, si dovrà aggiungere una nuova classe model che associerà tutti i tipi di vincoli con tutti i tipi di proprietari. Questo tipo di model prende il nome di join model.
-\subsubsection*{Funzioni di callback}
-\verb|ActiveRecord| mette a disposizione dei metodi che monitorano lo stato dell'oggetto; è possibile quindi definire delle operazioni da eseguire prima o dopo l'alterazione dello stato dell'oggetto.
+\subsubsection*{Funzioni di callback} ActiveRecord mette a disposizione un insieme di metodi chiamati callback che monitorano lo stato dell'oggetto; in questo modo è possibile definire delle operazioni da eseguire prima o dopo l'alterazione dello stato dell'oggetto.
 
 Ad esempio, per eseguire determinate istruzioni prima della validazione dell'oggetto, basterà ridefinire la funzione di callback \verb|before_validation|.
 Oltre a \verb|before_validation| sono presenti altre funzioni tra cui \verb|before_create|, \verb|before_destroy|. \verb|after_create|.
 \subsection{Descrizione dei models}
-Di seguito è riportato il diagramma delle classi che illustra questa componente. Per aumentare la leggibilità è stata omessa la derivazione delle classi da \verb|ActiveRecord::Base|. \\
+Di seguito è riportato il diagramma delle classi che illustra questa componente. Per aumentare la leggibilità è stata omessa la derivazione delle classi da ActiveRecord::Base. \\
 \bigskip \\
 \includegraphics[scale=0.34]{images/Model_ClassDiagram.png}
 \subsubsection{AcademicOrganization}
@@ -551,7 +553,7 @@ Si accettano tutti i tipi di indirizzo e-mail con un numero di caratteri compres
 \end{itemize}
 \subsubsection*{Funzioni di callback}
 \begin{itemize}
- \item \verb|before_save :encrypt_password|: prima di salvare l'oggetto di tipo \verb|User| nel database, la password viene crittografata attraverso l'algoritmo SHA1.
+ \item \verb|before_save :encrypt_password|: prima di salvare l'oggetto di tipo \verb|User| nel database viene chiamato il metodo \verb|encrypt_password| che modifica il contenuto di password crittografandolo attraverso l'algoritmo SHA1. In questo modo il database non conterrà le password in chiaro.  
 \item \verb|encrypt_password| è un metodo privato. utilizzato nella precedente funzione.
 \item \verb|before_validation :calculate_digest|: prima di validare l'oggetto, viene chiamato il metodo \verb|calculate_digest|. Questo metodo calcola il digest, tramite l'algoritmo SHA1, della stringa contenuta in \verb|mail|, concatenata ad un numero casuale (contenuto nell'attributo \verb|random|). Il risultato infine viene salvato nell'attributo \verb|digest|.
 \item \verb|calculate_digest| è un metodo privato utilizzato nella precedente funzione.
