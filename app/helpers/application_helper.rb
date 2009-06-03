@@ -99,17 +99,4 @@ module ApplicationHelper
    end
    day_name
  end
-
- def from_dayname_to_id(name)
-  day_nr = case name
-    when "Lunedi" then 1
-    when "Martedi"then 2
-    when "Mercoledi" then 3
-    when "Giovedi" then 4
-    when "Venerdi" then 5
-    else 0
-  end
-  day_nr
- end
-
 end
