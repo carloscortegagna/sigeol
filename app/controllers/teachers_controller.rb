@@ -238,7 +238,8 @@ end
         end
     else
       flash[:error] = "L'utente non esiste od è già attivo"
-      redirect_to timetables_url
+      format.html{redirect_to timetables_url}
+      format.js{render(:update) {|page| page.redirect_to timetables_url}}
     end
   end
   end
@@ -430,8 +431,6 @@ end
       c1.isHard = i-1 #imposto il nuovo valore di priorità
       c2 = constraints[i-2] #c2 è la preferenze di cui devo diminuire la priorità, perchè il suo posto è stato preso da c1
       c2.isHard = i #imposto la nuova priorità, il nuovo valore equivale al vecchio + 1
-      
-
       c1.save
       c2.save
       #if c1.save && c2.save

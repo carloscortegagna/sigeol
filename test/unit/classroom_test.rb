@@ -27,7 +27,7 @@ class ClassroomTest < ActiveSupport::TestCase
     c.name=classrooms(:classroom_1).name
     c.building=classrooms(:classroom_1).building
     assert !c.valid?
-    assert_equal "Nell'edificio è gia presente un'aula con questo nome", c.errors.on(:base)
+    assert_equal "Nell'edificio è gia presente un'aula con questo nome", c.errors.on(:name)
   end
 
  #test20: eliminazione di una classe

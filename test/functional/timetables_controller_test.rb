@@ -7,9 +7,4 @@ class TimetablesControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:timetables)
   end
-
-  test"Guest usa new"do
-    get :new
-    assert_template 'new'
-  end
 end

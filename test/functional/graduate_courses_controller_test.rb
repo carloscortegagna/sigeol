@@ -8,12 +8,6 @@ class GraduateCoursesControllerTest < ActionController::TestCase
      User.stubs(:find).returns(@user)
     end
 
-  test "Guest usa index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:graduate_courses)
-  end
-
   test "Guest usa administration" do
     get :administration
     assert_redirected_to new_session_url

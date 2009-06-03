@@ -17,7 +17,10 @@ class TeachingsControllerTest < ActionController::TestCase
 
   test"Guest usa show"do
     t = Teaching.new
-    t.stubs(:id=>:an_id,:name=>:a_name)
+    t.stubs(:id=>:an_id,:name=>:a_name, :teacher_id=>:another_id)
+    teacher = Teacher.new
+    teacher.stubs(:id=>:an_id,:name=>"name", :surname=>"surname")
+    Teacher.stubs(:find).with(:another_id).returns(teacher)
     Teaching.stubs(:find).with(:an_id).returns(t)
     get :show,:id=>:an_id
   end

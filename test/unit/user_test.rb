@@ -39,7 +39,7 @@ class UserTest < ActiveSupport::TestCase
     #obiettivo: lo stesso dele caso prova 59.2
     @u.password="prova"
     assert !@u.save
-    assert_equal "La password troppo corta. Min 6 caratteri", @u.errors.on(:password)
+    assert_equal "Minimo 6 caratteri", @u.errors.on(:password)
 
     #caso di prova59.3: la password contiene un valore corretto
     #obiettivo: il sistema non deve riscontrare nessun errore in password

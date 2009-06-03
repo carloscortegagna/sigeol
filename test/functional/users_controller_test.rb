@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
+require 'digest/sha1'
 
   def setup
    @user = User.new
@@ -31,7 +32,8 @@ class UsersControllerTest < ActionController::TestCase
    test"User loggato usa update ed aggiorna correttamente la password"do
       @request.session[:user_id] = :an_id
       @user.stubs(:update_attributes).returns(true)
-      put :update,:id=>:an_id
+      @user.stubs(:password).returns(Digest::SHA1.hexdigest('123456'))
+      put :update,:id=>:an_id, :old_password=>'', :user=>{:password=>"123456"},:repeat_password=>"123456", :old_password => "123456"
       assert_equal flash[:notice], "Password cambiata con successo"
       assert_redirected_to timetables_url
    end
@@ -39,7 +41,7 @@ class UsersControllerTest < ActionController::TestCase
    test"User loggato usa update ed aggiorna non correttamente la password"do
       @request.session[:user_id] = :an_id
       @user.stubs(:update_attributes).returns(false)
-      put :update,:id=>:an_id
+      put :update,:id=>:an_id,:old_password => "123456", :user=>{:password=>"123456"}
       assert_template 'edit'
     end
 

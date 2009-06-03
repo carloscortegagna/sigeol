@@ -82,6 +82,11 @@ class TemporalConstraintTest < ActiveSupport::TestCase
     t.endHour=Time.parse("09:30")
     assert !t.valid?
     assert_equal "Attenzione l'ora di inizio è piu grande dell'ora di fine", t.errors.on([:starHour,:endHour])
+    t= TemporalConstraint.new()
+    t.startHour= temporal_constraints(:temporal1).startHour
+    t.endHour= temporal_constraints(:temporal1).endHour
+    t.day= temporal_constraints(:temporal1).day
+    t.save
+    assert_equal "Nel periodo indicato è già presente una indisponibilità", t.errors.on(:base)
   end
-
-  end
+end

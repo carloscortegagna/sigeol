@@ -34,8 +34,8 @@ class TeacherTest < ActiveSupport::TestCase
     u.specified=t
     u.save
     t.destroy
-    #prima della cancellazione di teacher_1, TemporalConstraint conteneva una tupla
-    assert_equal TemporalConstraint.count, 0
+    #prima della cancellazione di teacher_1, TemporalConstraint conteneva due tuple
+    assert_equal TemporalConstraint.count, 1
     assert_raise(ActiveRecord::RecordNotFound){User.find(u.id)}
   end
 end

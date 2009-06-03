@@ -26,7 +26,7 @@ class CurriculumTest < ActiveSupport::TestCase
     c.graduate_course=curriculums(:curriculum_1).graduate_course
     c.name=curriculums(:curriculum_1).name
     assert !c.valid?
-    assert_equal "E' gia presente un curriculum con questo nome", c.errors.on(:base)
+    assert_equal "E' gia presente un curriculum con questo nome", c.errors.on(:name)
   end
 
   #test23: eliminazione  di un insegnamento associato

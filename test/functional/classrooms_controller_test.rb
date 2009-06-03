@@ -191,15 +191,16 @@ class ClassroomsControllerTest < ActionController::TestCase
   test"User con privilegi usa create_constraints"do
     @request.session[:user_id] = :an_id
     c = Classroom.new(:id=>:an_id,:name=>"a_name")
-    t = TemporalConstraint.new(:id=>:an_id,:startHour=>"19:30",:endHour=>"20:30",:day=>:a_day)
+    t = TemporalConstraint.new(:id=>:an_id,:startHour=>"19:30",:endHour=>"20:30",:day=>1)
     Classroom.stubs(:find).with(:an_id).returns(c)
     c.stubs(:constraints).returns([t])
     Classroom.any_instance.stubs(:save).returns(true)
     co = ConstraintsOwner.new
     ConstraintsOwner.stubs(:find).returns([co])
     TemporalConstraint.stubs(:find).returns(t)
+    TemporalConstraint.any_instance.stubs(:save).returns(true)
     post :create_constraint, :id=>:an_id, :start_hour=>"9:30",:end_hour=>"11:30",:selected_day=>"lunedi"
-   assert_template 'create_constraint.js.rjs'
+   assert_template 'edit_constraints.html.erb'
   end
 
   test"User con privilegi usa destroy_constraint"do
@@ -211,7 +212,7 @@ class ClassroomsControllerTest < ActionController::TestCase
      co = ConstraintsOwner.new
     ConstraintsOwner.stubs(:find).returns([co])
     post :destroy_constraint, :id=>:an_id, :constraint_id=>:another_id
-    assert_template 'destroy_constraint.js.rjs'
+    assert_template 'edit_constraints.html.erb'
   end
 
   test"User senza privilegi usa administration"do

@@ -61,7 +61,7 @@ class BuildingsControllerTest < ActionController::TestCase
   test "User con privilegi usa edit" do
      @request.session[:user_id] = :an_id
       building = Building.new(:id=>:a_id,:name=>:a_name )
-      address = Address.new(:id=>:another_id,:city=>"città", :street=>"street",:telephone=>"telephone")
+      address = Address.new(:id=>:another_id,:city=>"città", :street=>"street",:telephone=>"049-9075393")
      Building.stubs(:find).with(:a_id).returns(building)
      Address.stubs(:find).returns(address)
      get :edit, :id=>:a_id
