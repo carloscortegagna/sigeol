@@ -50,7 +50,7 @@ class TeachersController < ApplicationController
             :conditions => ["specified_type = 'Teacher' AND specified_id = (?)", params[:id]])
     respond_to do |format|
       format.html # show.html.erb
-      format.xml { render :xml => @teacher.to_xml(:include => :user, :except =>[:created_at, :updated_at, :digest, :password, :random]) }
+      format.xml { render :xml => @user.to_xml(:include => [:address], :except =>[:created_at, :updated_at, :digest, :password, :random]) }
     end
   end
 
