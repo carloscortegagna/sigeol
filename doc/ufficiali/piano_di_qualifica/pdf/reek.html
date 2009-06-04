@@ -1,0 +1,4799 @@
+<html>
+<head>
+	<title>Reek Results</title>
+	<style>
+	body {
+	background-color: #efefef;
+	margin: 20px;
+	padding: 0;
+	font: 12px verdana, arial, helvetica;
+}
+
+table {
+	border-collapse: collapse;
+	border: 1px solid #666;
+	background: #fff;
+	margin-bottom: 20px;	
+}
+
+	table tr.light {
+	 	background: #fff;
+	}
+
+	table tr.dark {
+		background: #f9f9f9;
+	}
+
+	table td, table th {
+		padding: 4px 10px;
+		font-size: 13px;
+	}
+	table th {
+		text-align: center;
+		color: #fc0;
+		background: #336;		
+		font-weight: bold;
+		border: #d0d0d0 1px solid;
+	}
+
+	table td {
+		border: #d0d0d0 1px solid;
+	}
+	
+		table td.score {
+			text-align: right;
+		}	
+
+.warning {
+	background: yellow;
+}
+.rcov_code td {
+  border-bottom: 1px solid #ddd ;
+  padding: 0;
+  margin: 0;
+}
+.rcov_code tr {
+  border: 0px;
+  padding:0px;
+  margin: 0px;
+}
+.rcov_code pre {
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+.rcov_run {}
+.rcov_not_run {
+  background-color: #d88;
+}
+	
+	</style>
+</head>
+
+<body>
+	<h1>Reek Results</h1>
+	<p><a href="http://reek.rubyforge.org/">Reek</a> detects common code smells in ruby code.</p>
+	<table>
+		<tr>
+		  <th>File Path</th>
+      <th>Method</th>
+      <th>Description</th>
+      <th>Type</th>
+    </tr>
+    
+    
+      
+  		  <tr class='light'>
+  		    <td>app/models/teacher_mailer.rb</td>
+          <td>
+            TeacherMailer#activate_teacher
+          </td>
+          <td>
+            has approx 7 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='dark'>
+  		    <td>app/models/timetable.rb</td>
+          <td>
+            Timetable#correct_year
+          </td>
+          <td>
+            calls self.year multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/models/timetable.rb</td>
+          <td>
+            Timetable#correct_year
+          </td>
+          <td>
+            has approx 6 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/models/timetable.rb</td>
+          <td>
+            Timetable#unique?
+          </td>
+          <td>
+            has the variable name 't'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='light'>
+  		    <td>app/models/teaching.rb</td>
+          <td>
+            Teaching#check_durata?
+          </td>
+          <td>
+            calls self.period multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/models/teaching.rb</td>
+          <td>
+            Teaching#check_durata?
+          </td>
+          <td>
+            has approx 6 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/models/teaching.rb</td>
+          <td>
+            Teaching#check_durata?
+          </td>
+          <td>
+            has the variable name 'c'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/models/teaching.rb</td>
+          <td>
+            Teaching#check_durata?/block
+          </td>
+          <td>
+            has the variable name 'k'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='light'>
+  		    <td>app/models/belong.rb</td>
+          <td>
+            Belong#unique_curriculum_id_and_teaching_id?
+          </td>
+          <td>
+            calls self.teaching_id multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/models/belong.rb</td>
+          <td>
+            Belong#unique_curriculum_id_and_teaching_id?
+          </td>
+          <td>
+            has the variable name 'b'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='light'>
+  		    <td>app/models/temporal_constraint.rb</td>
+          <td>
+            TemporalConstraint#is_correct_time?
+          </td>
+          <td>
+            calls self.endHour multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/models/temporal_constraint.rb</td>
+          <td>
+            TemporalConstraint#is_correct_time?
+          </td>
+          <td>
+            calls self.startHour multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/models/temporal_constraint.rb</td>
+          <td>
+            is_unique_constraint?
+          </td>
+          <td>
+            has the variable name 't'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='dark'>
+  		    <td>app/models/didactic_office.rb</td>
+          <td>
+            DidacticOffice#before_destroy
+          </td>
+          <td>
+            has the variable name 'u'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='light'>
+  		    <td>app/models/teacher.rb</td>
+          <td>
+            Teacher#before_destroy
+          </td>
+          <td>
+            has the variable name 'u'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='dark'>
+  		    <td>app/models/user.rb</td>
+          <td>
+            User#before_destroy/block
+          </td>
+          <td>
+            has the variable name 'c'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='light'>
+  		    <td>app/models/curriculum.rb</td>
+          <td>
+            Curriculum#delete_last_teaching
+          </td>
+          <td>
+            doesn't depend on instance state
+    		  </td>
+    		  <td>
+            Utility Function
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/models/curriculum.rb</td>
+          <td>
+            Curriculum#delete_last_teaching
+          </td>
+          <td>
+            refers to teaching more than self
+    		  </td>
+    		  <td>
+            Feature Envy
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/models/curriculum.rb</td>
+          <td>
+            Curriculum#unique_curriculum_graduate_course?
+          </td>
+          <td>
+            has the variable name 'c'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='dark'>
+  		    <td>app/models/timetable_entry.rb</td>
+          <td>
+            TimetableEntry#is_correct_time?
+          </td>
+          <td>
+            calls self.endTime multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/models/timetable_entry.rb</td>
+          <td>
+            TimetableEntry#is_correct_time?
+          </td>
+          <td>
+            calls self.startTime multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/models/timetable_entry.rb</td>
+          <td>
+            TimetableEntry#unique?
+          </td>
+          <td>
+            has the variable name 't'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='light'>
+  		    <td>app/models/classroom.rb</td>
+          <td>
+            Classroom#unique_building_classroom?
+          </td>
+          <td>
+            has the variable name 'c'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='dark'>
+  		    <td>app/models/expiry_date.rb</td>
+          <td>
+            ExpiryDate#is_correct_date?
+          </td>
+          <td>
+            calls self.date multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#create
+          </td>
+          <td>
+            calls administration_graduate_courses_url multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#create
+          </td>
+          <td>
+            calls flash multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#create
+          </td>
+          <td>
+            calls format.html multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#create
+          </td>
+          <td>
+            calls format.js multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#create
+          </td>
+          <td>
+            calls new_curriculum_url multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#create
+          </td>
+          <td>
+            calls page.redirect_to(administration_graduate_courses_url) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#create
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#create
+          </td>
+          <td>
+            calls redirect_to(administration_graduate_courses_url) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#create
+          </td>
+          <td>
+            calls render(:update) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#create
+          </td>
+          <td>
+            has approx 19 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#create/block
+          </td>
+          <td>
+            has the variable name 'c'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#create/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#create/block/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#destroy/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#show/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#update
+          </td>
+          <td>
+            calls format.html multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#update
+          </td>
+          <td>
+            calls format.js multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#update
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#update
+          </td>
+          <td>
+            has approx 8 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#update/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/graduate_courses_controller.rb</td>
+          <td>
+            GraduateCoursesController#update/block/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/sessions_controller.rb</td>
+          <td>
+            SessionsController#create
+          </td>
+          <td>
+            calls flash multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/sessions_controller.rb</td>
+          <td>
+            SessionsController#create
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/sessions_controller.rb</td>
+          <td>
+            SessionsController#create
+          </td>
+          <td>
+            has approx 7 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#administration
+          </td>
+          <td>
+            calls g["teachings"] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#administration
+          </td>
+          <td>
+            refers to g more than self
+    		  </td>
+    		  <td>
+            Feature Envy
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#administration/block
+          </td>
+          <td>
+            has the variable name 'g'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#administration/block/block
+          </td>
+          <td>
+            has the variable name 'c'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#administration/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#administration/block/block/block
+          </td>
+          <td>
+            has the variable name 't'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#administration/block/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#assign_teacher
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#assign_teacher
+          </td>
+          <td>
+            has approx 6 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#create
+          </td>
+          <td>
+            calls @teaching.save multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#create
+          </td>
+          <td>
+            calls format.html multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#create
+          </td>
+          <td>
+            calls format.js multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#create
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#create
+          </td>
+          <td>
+            calls params[:curriculum_id] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#create
+          </td>
+          <td>
+            calls select_teacher_teaching_url(@teaching) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#create
+          </td>
+          <td>
+            has approx 17 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#create/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#create/block/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#destroy/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#index
+          </td>
+          <td>
+            calls g["teachings"] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#index
+          </td>
+          <td>
+            has approx 9 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#index/block
+          </td>
+          <td>
+            has the variable name 'g'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#index/block/block
+          </td>
+          <td>
+            has the variable name 'c'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#index/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#index/block/block/block
+          </td>
+          <td>
+            has the variable name 't'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#index/block/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#show
+          </td>
+          <td>
+            calls @teaching.teacher_id multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#show
+          </td>
+          <td>
+            has approx 6 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#show/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#update
+          </td>
+          <td>
+            calls format.html multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#update
+          </td>
+          <td>
+            calls format.js multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#update
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#update
+          </td>
+          <td>
+            has approx 7 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#update/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachings_controller.rb</td>
+          <td>
+            TeachingsController#update/block/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController
+          </td>
+          <td>
+            has at least 20 instance variables
+    		  </td>
+    		  <td>
+            Large Class
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#activate
+          </td>
+          <td>
+            calls @user.address multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#activate
+          </td>
+          <td>
+            calls @user.digest multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#activate
+          </td>
+          <td>
+            calls flash multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#activate
+          </td>
+          <td>
+            calls format.html multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#activate
+          </td>
+          <td>
+            calls format.js multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#activate
+          </td>
+          <td>
+            calls page.redirect_to(timetables_url) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#activate
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#activate
+          </td>
+          <td>
+            calls params[:prefisso] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#activate
+          </td>
+          <td>
+            calls params[:telefono] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#activate
+          </td>
+          <td>
+            calls params[:user] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#activate
+          </td>
+          <td>
+            calls params[:user][:password] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#activate
+          </td>
+          <td>
+            calls redirect_to(timetables_url) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#activate
+          </td>
+          <td>
+            calls render(:action => :pre_activate, :digest => (@user.digest)) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#activate
+          </td>
+          <td>
+            calls render(:update) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#activate
+          </td>
+          <td>
+            calls timetables_url multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#activate
+          </td>
+          <td>
+            has approx 19 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#activate/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#activate/block/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create
+          </td>
+          <td>
+            calls GraduateCourse.find(params[:graduate_course_id]) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create
+          </td>
+          <td>
+            calls flash multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create
+          </td>
+          <td>
+            calls flash[:notice] = "Docente invitato con successo" multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create
+          </td>
+          <td>
+            calls format.html multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create
+          </td>
+          <td>
+            calls format.js multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create
+          </td>
+          <td>
+            calls new_teacher_url multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create
+          </td>
+          <td>
+            calls page.redirect_to(new_teacher_url) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create
+          </td>
+          <td>
+            calls params[:graduate_course_id] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create
+          </td>
+          <td>
+            calls params[:mail] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create
+          </td>
+          <td>
+            calls redirect_to(new_teacher_url) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create
+          </td>
+          <td>
+            calls render(:update) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create
+          </td>
+          <td>
+            has approx 27 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create/block
+          </td>
+          <td>
+            has the variable name 'a'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create/block
+          </td>
+          <td>
+            has the variable name 't'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create/block/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create_constraint
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create_constraint
+          </td>
+          <td>
+            has approx 18 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create_constraint
+          </td>
+          <td>
+            has the variable name 'c'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create_constraint
+          </td>
+          <td>
+            has the variable name 't'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create_constraint/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create_preference
+          </td>
+          <td>
+            calls TemporalConstraint.find(id.constraint_id) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create_preference
+          </td>
+          <td>
+            calls edit_preferences multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create_preference
+          </td>
+          <td>
+            calls id.constraint_id multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create_preference
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create_preference
+          </td>
+          <td>
+            calls params[:id] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create_preference
+          </td>
+          <td>
+            has approx 22 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create_preference
+          </td>
+          <td>
+            has the variable name 'c'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create_preference
+          </td>
+          <td>
+            has the variable name 't'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#create_preference/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#destroy
+          </td>
+          <td>
+            has approx 6 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#destroy_constraint
+          </td>
+          <td>
+            calls edit_constraints multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#destroy_constraint
+          </td>
+          <td>
+            has approx 8 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#destroy_constraint/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#destroy_preference
+          </td>
+          <td>
+            calls TemporalConstraint.find(tc.constraint_id) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#destroy_preference
+          </td>
+          <td>
+            calls edit_preferences multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#destroy_preference
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#destroy_preference
+          </td>
+          <td>
+            calls tc.constraint_id multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#destroy_preference
+          </td>
+          <td>
+            has approx 17 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#destroy_preference
+          </td>
+          <td>
+            has the variable name 'c'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#destroy_preference
+          </td>
+          <td>
+            has the variable name 'i'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#destroy_preference/block
+          </td>
+          <td>
+            has the variable name 'c'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#destroy_preference/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#edit_constraints
+          </td>
+          <td>
+            calls TemporalConstraint.find(id.constraint_id) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#edit_constraints
+          </td>
+          <td>
+            calls id.constraint_id multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#edit_constraints
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#edit_constraints
+          </td>
+          <td>
+            calls params[:id] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#edit_preferences
+          </td>
+          <td>
+            calls TemporalConstraint.find(id.constraint_id) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#edit_preferences
+          </td>
+          <td>
+            calls id.constraint_id multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#edit_preferences
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#edit_preferences
+          </td>
+          <td>
+            calls params[:id] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#edit_preferences/block
+          </td>
+          <td>
+            has the variable name 'c'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#index/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#pre_activate
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#same_graduate_course_required
+          </td>
+          <td>
+            has approx 7 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#show
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#show
+          </td>
+          <td>
+            calls params[:id] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#show/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_down
+          </td>
+          <td>
+            calls TemporalConstraint.find(tc.constraint_id) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_down
+          </td>
+          <td>
+            calls constraint_to_move_down.isHard multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_down
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_down
+          </td>
+          <td>
+            calls params[:teacher_id] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_down
+          </td>
+          <td>
+            calls tc.constraint_id multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_down
+          </td>
+          <td>
+            has approx 24 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_down
+          </td>
+          <td>
+            has the variable name 'c1'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_down
+          </td>
+          <td>
+            has the variable name 'c2'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_down
+          </td>
+          <td>
+            has the variable name 'i'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_down/block
+          </td>
+          <td>
+            has the variable name 'c'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_down/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_up
+          </td>
+          <td>
+            calls (i - 1) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_up
+          </td>
+          <td>
+            calls TemporalConstraint.find(tc.constraint_id) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_up
+          </td>
+          <td>
+            calls constraint_to_move_up.isHard multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_up
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_up
+          </td>
+          <td>
+            calls params[:teacher_id] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_up
+          </td>
+          <td>
+            calls tc.constraint_id multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_up
+          </td>
+          <td>
+            has approx 23 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_up
+          </td>
+          <td>
+            has the variable name 'c1'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_up
+          </td>
+          <td>
+            has the variable name 'c2'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_up
+          </td>
+          <td>
+            has the variable name 'i'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_up/block
+          </td>
+          <td>
+            has the variable name 'c'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#teacher_preference_priority_up/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_capabilities
+          </td>
+          <td>
+            calls @teacher.user multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_capabilities
+          </td>
+          <td>
+            calls @teacher.user.capabilities multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_capabilities
+          </td>
+          <td>
+            calls edit_capabilities multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_capabilities
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_capabilities
+          </td>
+          <td>
+            calls request multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_capabilities
+          </td>
+          <td>
+            has approx 9 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_capabilities/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_graduate_courses
+          </td>
+          <td>
+            calls @teacher.user multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_graduate_courses
+          </td>
+          <td>
+            calls @teacher.user.graduate_courses multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_graduate_courses
+          </td>
+          <td>
+            calls edit_graduate_courses multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_graduate_courses
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_graduate_courses
+          </td>
+          <td>
+            calls request multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_graduate_courses
+          </td>
+          <td>
+            has approx 11 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_graduate_courses/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_personal_data
+          </td>
+          <td>
+            calls @user.address multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_personal_data
+          </td>
+          <td>
+            calls flash multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_personal_data
+          </td>
+          <td>
+            calls format.html multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_personal_data
+          </td>
+          <td>
+            calls format.js multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_personal_data
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_personal_data
+          </td>
+          <td>
+            calls params[:prefisso] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_personal_data
+          </td>
+          <td>
+            calls params[:telefono] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_personal_data
+          </td>
+          <td>
+            calls timetables_url multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_personal_data
+          </td>
+          <td>
+            has approx 13 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_personal_data/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/teachers_controller.rb</td>
+          <td>
+            TeachersController#update_personal_data/block/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/application.rb</td>
+          <td>
+            ApplicationController#login_required
+          </td>
+          <td>
+            calls session multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/application.rb</td>
+          <td>
+            ApplicationController#login_required
+          </td>
+          <td>
+            calls session[:user_id] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/application.rb</td>
+          <td>
+            ApplicationController#login_required/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/users_controller.rb</td>
+          <td>
+            UsersController#update
+          </td>
+          <td>
+            calls format.html multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/users_controller.rb</td>
+          <td>
+            UsersController#update
+          </td>
+          <td>
+            calls format.js multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/users_controller.rb</td>
+          <td>
+            UsersController#update
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/users_controller.rb</td>
+          <td>
+            UsersController#update
+          </td>
+          <td>
+            calls params[:user] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/users_controller.rb</td>
+          <td>
+            UsersController#update
+          </td>
+          <td>
+            calls timetables_url multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/users_controller.rb</td>
+          <td>
+            UsersController#update
+          </td>
+          <td>
+            has approx 12 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/users_controller.rb</td>
+          <td>
+            UsersController#update/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/users_controller.rb</td>
+          <td>
+            UsersController#update/block/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/timetables_controller.rb</td>
+          <td>
+            TimetablesController#create
+          </td>
+          <td>
+            calls format.html multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/timetables_controller.rb</td>
+          <td>
+            TimetablesController#create
+          </td>
+          <td>
+            calls format.xml multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/timetables_controller.rb</td>
+          <td>
+            TimetablesController#create
+          </td>
+          <td>
+            has approx 7 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/timetables_controller.rb</td>
+          <td>
+            TimetablesController#create/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/timetables_controller.rb</td>
+          <td>
+            TimetablesController#destroy/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/timetables_controller.rb</td>
+          <td>
+            TimetablesController#index/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/timetables_controller.rb</td>
+          <td>
+            TimetablesController#new/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/timetables_controller.rb</td>
+          <td>
+            TimetablesController#schedule
+          </td>
+          <td>
+            doesn't depend on instance state
+    		  </td>
+    		  <td>
+            Utility Function
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/timetables_controller.rb</td>
+          <td>
+            TimetablesController#schedule
+          </td>
+          <td>
+            refers to url more than self
+    		  </td>
+    		  <td>
+            Feature Envy
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/timetables_controller.rb</td>
+          <td>
+            TimetablesController#show/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/timetables_controller.rb</td>
+          <td>
+            TimetablesController#start
+          </td>
+          <td>
+            doesn't depend on instance state
+    		  </td>
+    		  <td>
+            Utility Function
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/timetables_controller.rb</td>
+          <td>
+            TimetablesController#start
+          </td>
+          <td>
+            has approx 7 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/timetables_controller.rb</td>
+          <td>
+            TimetablesController#start
+          </td>
+          <td>
+            refers to url more than self
+    		  </td>
+    		  <td>
+            Feature Envy
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/timetables_controller.rb</td>
+          <td>
+            TimetablesController#update
+          </td>
+          <td>
+            calls format.html multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/timetables_controller.rb</td>
+          <td>
+            TimetablesController#update
+          </td>
+          <td>
+            calls format.xml multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/timetables_controller.rb</td>
+          <td>
+            TimetablesController#update
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/timetables_controller.rb</td>
+          <td>
+            TimetablesController#update
+          </td>
+          <td>
+            has approx 7 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/timetables_controller.rb</td>
+          <td>
+            TimetablesController#update/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController
+          </td>
+          <td>
+            has at least 10 instance variables
+    		  </td>
+    		  <td>
+            Large Class
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#add_classroom_graduate_course
+          </td>
+          <td>
+            calls Classroom.find(params[:id]) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#add_classroom_graduate_course
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#add_classroom_graduate_course
+          </td>
+          <td>
+            calls params[:graduate_course_add] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#add_classroom_graduate_course
+          </td>
+          <td>
+            calls params[:id] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#add_classroom_graduate_course
+          </td>
+          <td>
+            has approx 13 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#add_classroom_graduate_course/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#create
+          </td>
+          <td>
+            calls format.html multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#create
+          </td>
+          <td>
+            calls format.js multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#create
+          </td>
+          <td>
+            has approx 9 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#create/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#create/block/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#create_constraint
+          </td>
+          <td>
+            calls Classroom.find(params[:id]) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#create_constraint
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#create_constraint
+          </td>
+          <td>
+            calls params[:id] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#create_constraint
+          </td>
+          <td>
+            has approx 15 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#create_constraint
+          </td>
+          <td>
+            has the variable name 't'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#create_constraint/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#destroy/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#destroy_constraint
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#destroy_constraint
+          </td>
+          <td>
+            calls params[:id] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#destroy_constraint
+          </td>
+          <td>
+            has approx 10 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#destroy_constraint/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#edit
+          </td>
+          <td>
+            has approx 6 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#edit_constraints
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#edit_constraints
+          </td>
+          <td>
+            calls params[:id] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#remove_classroom_graduate_course
+          </td>
+          <td>
+            calls graduate_course_to_remove.classrooms multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#remove_classroom_graduate_course
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#remove_classroom_graduate_course
+          </td>
+          <td>
+            calls params[:graduate_course_canc] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#remove_classroom_graduate_course
+          </td>
+          <td>
+            calls params[:id] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#remove_classroom_graduate_course
+          </td>
+          <td>
+            has approx 13 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#remove_classroom_graduate_course/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#show/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#update
+          </td>
+          <td>
+            calls format.html multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#update
+          </td>
+          <td>
+            calls format.js multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#update
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#update
+          </td>
+          <td>
+            has approx 12 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#update/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/classrooms_controller.rb</td>
+          <td>
+            ClassroomsController#update/block/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#create
+          </td>
+          <td>
+            calls format.html multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#create
+          </td>
+          <td>
+            calls format.js multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#create
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#create
+          </td>
+          <td>
+            calls params[:prefisso] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#create
+          </td>
+          <td>
+            calls params[:telefono] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#create
+          </td>
+          <td>
+            calls render(:action => "new") multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#create
+          </td>
+          <td>
+            has approx 15 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#create/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#create/block/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#destroy/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#index/block
+          </td>
+          <td>
+            has the variable name 'b'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#index/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#show
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#show
+          </td>
+          <td>
+            calls params[:id] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#show
+          </td>
+          <td>
+            has approx 6 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#show/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#update
+          </td>
+          <td>
+            calls format.html multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#update
+          </td>
+          <td>
+            calls format.js multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#update
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#update
+          </td>
+          <td>
+            calls params[:prefisso] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#update
+          </td>
+          <td>
+            calls params[:telefono] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#update
+          </td>
+          <td>
+            has approx 10 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#update/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/buildings_controller.rb</td>
+          <td>
+            BuildingsController#update/block/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#create
+          </td>
+          <td>
+            calls format.html multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#create
+          </td>
+          <td>
+            calls format.js multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#create
+          </td>
+          <td>
+            has approx 8 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#create/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#create/block/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#destroy/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#show/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#update
+          </td>
+          <td>
+            calls format.html multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#update
+          </td>
+          <td>
+            calls format.js multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#update
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#update
+          </td>
+          <td>
+            has approx 8 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#update/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#update/block/block/block
+          </td>
+          <td>
+            is nested
+    		  </td>
+    		  <td>
+            Nested Iterators
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#update_teachings
+          </td>
+          <td>
+            calls @curriculum.teachings multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#update_teachings
+          </td>
+          <td>
+            calls Curriculum.find(params[:id]) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#update_teachings
+          </td>
+          <td>
+            calls administration_graduate_courses_url multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#update_teachings
+          </td>
+          <td>
+            calls flash multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#update_teachings
+          </td>
+          <td>
+            calls params multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#update_teachings
+          </td>
+          <td>
+            calls params[:id] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#update_teachings
+          </td>
+          <td>
+            calls redirect_to(administration_graduate_courses_url) multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#update_teachings
+          </td>
+          <td>
+            calls request multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/controllers/curriculums_controller.rb</td>
+          <td>
+            CurriculumsController#update_teachings
+          </td>
+          <td>
+            has approx 15 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='dark'>
+  		    <td>app/helpers/application_helper.rb</td>
+          <td>
+            ApplicationHelper::first_upper
+          </td>
+          <td>
+            doesn't depend on instance state
+    		  </td>
+    		  <td>
+            Utility Function
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/helpers/application_helper.rb</td>
+          <td>
+            ApplicationHelper::first_upper
+          </td>
+          <td>
+            is controlled by argument name
+    		  </td>
+    		  <td>
+            Control Couple
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/helpers/application_helper.rb</td>
+          <td>
+            ApplicationHelper::first_upper
+          </td>
+          <td>
+            refers to name more than self
+    		  </td>
+    		  <td>
+            Feature Envy
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/helpers/application_helper.rb</td>
+          <td>
+            ApplicationHelper::link
+          </td>
+          <td>
+            calls user.specified_id multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/helpers/application_helper.rb</td>
+          <td>
+            ApplicationHelper::link
+          </td>
+          <td>
+            has approx 20 statements
+    		  </td>
+    		  <td>
+            Long Method
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/helpers/application_helper.rb</td>
+          <td>
+            ApplicationHelper::link
+          </td>
+          <td>
+            refers to user more than self
+    		  </td>
+    		  <td>
+            Feature Envy
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='dark'>
+  		    <td>app/helpers/application_helper.rb</td>
+          <td>
+            ApplicationHelper::user_sidebar
+          </td>
+          <td>
+            calls session multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>app/helpers/application_helper.rb</td>
+          <td>
+            ApplicationHelper::user_sidebar
+          </td>
+          <td>
+            calls session[:user_id] multiple times
+    		  </td>
+    		  <td>
+            Duplication
+    		  </td>
+        </tr>
+        
+      
+    
+      
+  		  <tr class='dark'>
+  		    <td>lib/migration_helper.rb</td>
+          <td>
+            MigrationHelper::fk
+          </td>
+          <td>
+            has 4 parameters
+    		  </td>
+    		  <td>
+            Long Parameter List
+    		  </td>
+        </tr>
+        
+      
+  		  <tr class='light'>
+  		    <td>lib/migration_helper.rb</td>
+          <td>
+            MigrationHelper::fk
+          </td>
+          <td>
+            has the variable name 'c'
+    		  </td>
+    		  <td>
+            Uncommunicative Name
+    		  </td>
+        </tr>
+        
+      
+    
+
+	</table>
+	<p>Generated on Thu Jun 04 16:19:06 +0200 2009</p>
+</body>
+</html>
