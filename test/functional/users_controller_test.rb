@@ -10,18 +10,21 @@ require 'digest/sha1'
    User.stubs(:find).with(:an_id).returns(@user)
   end
 
+  #ID = 182
   test"Guest usa edit"do
     get :edit,:id=>:an_id
     assert_redirected_to new_session_url
     assert_equal "Effettuare il login" , flash[:notice]
   end
 
+  #ID = 183
   test"Guest usa update"do
     put :update,:id=>:an_id
     assert_redirected_to new_session_url
     assert_equal "Effettuare il login" , flash[:notice]
   end
 
+  #ID = 184
   test"User loggato usa edit"do
     @request.session[:user_id] = :an_id
     get :edit,:id=>:an_id
@@ -29,7 +32,8 @@ require 'digest/sha1'
     assert_template 'edit'
    end
 
-   test"User loggato usa update ed aggiorna correttamente la password"do
+  #ID = 185
+  test"User loggato usa update ed aggiorna correttamente la password"do
       @request.session[:user_id] = :an_id
       @user.stubs(:update_attributes).returns(true)
       @user.stubs(:password).returns(Digest::SHA1.hexdigest('123456'))
@@ -38,13 +42,15 @@ require 'digest/sha1'
       assert_redirected_to timetables_url
    end
 
-   test"User loggato usa update ed aggiorna non correttamente la password"do
+  #ID = 186
+  test"User loggato usa update ed aggiorna non correttamente la password"do
       @request.session[:user_id] = :an_id
       @user.stubs(:update_attributes).returns(false)
       put :update,:id=>:an_id,:old_password => "123456", :user=>{:password=>"123456"}
       assert_template 'edit'
     end
 
+  #ID = 187
   test"User loggato tenta di modificare un altro user"do
     user = User.new
     user.stubs(:id => :another_id, :mail => :a_mail, :password => :a_password)

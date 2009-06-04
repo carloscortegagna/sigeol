@@ -9,6 +9,7 @@ class CurriculumsControllerTest < ActionController::TestCase
    User.stubs(:find).returns(@user)
   end
 
+  #ID 51
   test "Guest usa show" do
     curriculum=Curriculum.new
     curriculum.stubs(:id=>:an_id,:name=>:a_name)
@@ -16,50 +17,57 @@ class CurriculumsControllerTest < ActionController::TestCase
     get :show, :id=>:an_id
     assert_template 'show'
   end
-
   
+  #ID 52
   test "Guest usa New" do
     get :new
     assert_redirected_to new_session_url
     assert_equal "Effettuare il login" , flash[:notice]
   end
 
+  #ID 53
   test "Guest usa edit" do
     get :edit, :id=>:an_id
     assert_redirected_to new_session_url
     assert_equal "Effettuare il login" , flash[:notice]
   end
 
+  #ID 54
   test"Guest usa create" do
     post :create, :curriculum=>{:name=>:a_name}
     assert_redirected_to new_session_url
     assert_equal "Effettuare il login" , flash[:notice]
   end
 
+  #ID 55
   test"Guest usa update" do
     put :update, :id=>:an_id
     assert_redirected_to new_session_url
     assert_equal "Effettuare il login" , flash[:notice]
   end
 
+  #ID 56
   test"Guest usa edit_teachings" do
         get :edit_teachings, :id=>:an_id
       assert_redirected_to new_session_url
       assert_equal "Effettuare il login" , flash[:notice]
   end
 
+  #ID 57
   test"Guest usa update_teachings"do
     put :update_teachings, :id=>:an_id, :teaching_id=>:another_id
     assert_redirected_to new_session_url
     assert_equal "Effettuare il login" , flash[:notice]
  end
   
+  #ID 58
   test"Guest usa destroy" do
     delete :destroy, :id=>:an_id
     assert_redirected_to new_session_url
     assert_equal "Effettuare il login" , flash[:notice]
   end
-  
+
+  #ID 59
   test "User con privilegi usa new" do
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
@@ -69,6 +77,7 @@ class CurriculumsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  #ID 60
   test "User con privilegi usa edit" do
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
@@ -81,6 +90,7 @@ class CurriculumsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  #ID 61
   test "User con privilegi crea correttamente un curriculum(metodo create)" do
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
@@ -90,6 +100,7 @@ class CurriculumsControllerTest < ActionController::TestCase
     assert_equal flash[:notice], 'Curriculum creato con successo'
   end
 
+  #ID 62
   test "User con privilegi crea un curriculum non valido(metodo create)" do
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
@@ -100,6 +111,7 @@ class CurriculumsControllerTest < ActionController::TestCase
     assert_template 'new'
   end
 
+  #ID 63
   test "User con privilegi modifica correttamente un curriculum(metodo update)" do
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
@@ -112,6 +124,7 @@ class CurriculumsControllerTest < ActionController::TestCase
     assert_equal flash[:notice],  'Curriculum modificato con successo'
   end
 
+  #ID 64
   test "User con privilegi modifica un curriculum e lo rendo non valido(metodo update)" do
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
@@ -125,6 +138,7 @@ class CurriculumsControllerTest < ActionController::TestCase
     assert_template 'edit'
   end
 
+  #ID 65
   test "User con privilegi usa edit_teachings" do
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
@@ -137,6 +151,7 @@ class CurriculumsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  #ID 66
   test "User con privilegi usa update_teachings attraverso il metodo http put" do
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
@@ -151,6 +166,7 @@ class CurriculumsControllerTest < ActionController::TestCase
     assert_redirected_to administration_graduate_courses_url
   end
 
+  #ID 67
   test"User con privilegi usa update_teachings attraverso il metodo http delete." do
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
@@ -164,6 +180,7 @@ class CurriculumsControllerTest < ActionController::TestCase
     assert_redirected_to administration_graduate_courses_url
   end
 
+  #ID 68
   test"User con privilegi usa update_teachings attraverso il metodo http delete Tenta di eliminare un insegnamento non presente" do
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
@@ -177,6 +194,7 @@ class CurriculumsControllerTest < ActionController::TestCase
     assert_redirected_to administration_graduate_courses_url
   end
 
+  #ID 69
   test"User con privilegi usa destroy" do
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
@@ -186,6 +204,7 @@ class CurriculumsControllerTest < ActionController::TestCase
    assert_redirected_to  :controller => 'graduate_courses', :action => 'administration'
   end
 
+  #ID 70
   test"User usa il metodo edit su un curriculum che non appartiene a nessun suo corso di laurea"do
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
@@ -197,6 +216,7 @@ class CurriculumsControllerTest < ActionController::TestCase
     assert_equal flash[:error], "Questo curriculum non appartiene a nessun tuo corso di laurea"
   end
 
+  #ID 71
   test"User usa il metodo update su un curriculum che non appartiene a nessun suo corso di laurea"do
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
@@ -208,7 +228,8 @@ class CurriculumsControllerTest < ActionController::TestCase
     assert_equal flash[:error], "Questo curriculum non appartiene a nessun tuo corso di laurea"
   end
 
-test"User usa il metodo edit_teachings su un curriculum che non appartiene a nessun suo corso di laurea"do
+#ID 72
+  test"User usa il metodo edit_teachings su un curriculum che non appartiene a nessun suo corso di laurea"do
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
     c = Curriculum.new(:id=>:an_id,:name=>:a_name)
@@ -219,6 +240,7 @@ test"User usa il metodo edit_teachings su un curriculum che non appartiene a nes
     assert_equal flash[:error], "Questo curriculum non appartiene a nessun tuo corso di laurea"
   end
   
+  #ID 73
   test"User usa il metodo update_teachings su un curriculum che non appartiene a nessun suo corso di laurea"do
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
@@ -230,6 +252,7 @@ test"User usa il metodo edit_teachings su un curriculum che non appartiene a nes
     assert_equal flash[:error], "Questo curriculum non appartiene a nessun tuo corso di laurea"
   end
 
+  #ID 74
   test"User che non possiede il privilegio di modificare i corsi di laurea usa new"do
       @user.stubs(:manage_graduate_courses?).returns(false)
       @request.session[:user_id] = :an_id
@@ -238,7 +261,8 @@ test"User usa il metodo edit_teachings su un curriculum che non appartiene a nes
       assert_redirected_to timetables_url
     end
 
-   test"User che non possiede il privilegio di modificare i corsi di laurea usa create"do
+  #ID 75
+  test"User che non possiede il privilegio di modificare i corsi di laurea usa create"do
       @user.stubs(:manage_graduate_courses?).returns(false)
       @request.session[:user_id] = :an_id
       post :new
@@ -246,7 +270,8 @@ test"User usa il metodo edit_teachings su un curriculum che non appartiene a nes
       assert_redirected_to timetables_url
     end
 
-   test"User che non possiede il privilegio di modificare i corsi di laurea usa edit"do
+  #ID 76
+  test"User che non possiede il privilegio di modificare i corsi di laurea usa edit"do
       @user.stubs(:manage_graduate_courses?).returns(false)
       @request.session[:user_id] = :an_id
       get :edit,:id=>:an_id
@@ -254,7 +279,8 @@ test"User usa il metodo edit_teachings su un curriculum che non appartiene a nes
       assert_redirected_to timetables_url
     end
 
-     test"User che non possiede il privilegio di modificare i corsi di laurea usa update"do
+  #ID 77
+  test"User che non possiede il privilegio di modificare i corsi di laurea usa update"do
       @user.stubs(:manage_graduate_courses?).returns(false)
       @request.session[:user_id] = :an_id
       put :edit,:id=>:an_id
@@ -262,7 +288,8 @@ test"User usa il metodo edit_teachings su un curriculum che non appartiene a nes
       assert_redirected_to timetables_url
     end
 
-   test"User che non possiede il privilegio di modificare i corsi di laurea usa destroy"do
+  #ID 78
+  test"User che non possiede il privilegio di modificare i corsi di laurea usa destroy"do
       @user.stubs(:manage_graduate_courses?).returns(false)
       @request.session[:user_id] = :an_id
       delete :destroy,:id=>:an_id
@@ -270,7 +297,8 @@ test"User usa il metodo edit_teachings su un curriculum che non appartiene a nes
       assert_redirected_to timetables_url
     end
 
-   test"User che non possiede il privilegio di modificare i corsi di laurea usa edit_teachings"do
+  #ID 79
+  test"User che non possiede il privilegio di modificare i corsi di laurea usa edit_teachings"do
       @user.stubs(:manage_graduate_courses?).returns(false)
       @request.session[:user_id] = :an_id
       get :edit_teachings,:id=>:an_id
@@ -278,7 +306,8 @@ test"User usa il metodo edit_teachings su un curriculum che non appartiene a nes
       assert_redirected_to timetables_url
     end
 
-     test"User che non possiede il privilegio di modificare i corsi di laurea usa update_teachings"do
+  #ID 80
+  test"User che non possiede il privilegio di modificare i corsi di laurea usa update_teachings"do
       @user.stubs(:manage_graduate_courses?).returns(false)
       @request.session[:user_id] = :an_id
       put :update_teachings,:id=>:an_id
