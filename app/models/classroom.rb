@@ -32,11 +32,7 @@ class Classroom < ActiveRecord::Base
   validates_length_of :name,
                       :maximum => 30,
                       :message => "Il nome è troppo lungo"
-  validates_format_of :name,
-                      :with => /^[a-zA-Z0-9àòèéùì\s]*$/,
-                      :message => "Si accettano solo caratteri alfanumerici"
-
- 
+                    
   #validazioni :capacity
   validates_numericality_of :capacity,
                             :only_integer => true,
@@ -51,12 +47,6 @@ class Classroom < ActiveRecord::Base
                        
   #validazioni unicità palazzo-classe
   validate :unique_building_classroom?
-
-  #Override del metodo della super classe per impostare il primo carattere del nome in maiusculo
-  #ed i rimanenti in minuscolo, prima delle validazioni.
-  def before_validation
-    self.name=first_upper(self.name)
-  end
 
   private
   
