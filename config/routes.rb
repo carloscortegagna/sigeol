@@ -1,7 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :addresses
-
-  map.resources :timetables
 
   map.resources :graduate_courses, :collection => {:administration => :get}
 
@@ -41,7 +38,12 @@ ActionController::Routing::Routes.draw do |map|
                                        
   map.resources :users, :only => [:edit, :update]
 
-  map.resources :timetables, :collection => {:administration => :get}
+  map.resources :timetables,    :except => :destroy,
+                                :collection => {:administration => :get,
+                                                :destroy_all => :delete,
+                                                :notify => :post,
+                                                :done => :post
+                                }
 
   map.resources :temporal_constraints
   
