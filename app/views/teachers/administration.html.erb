@@ -1,5 +1,4 @@
-<%= menu_admin() %>
-<h1>Amministrazione docenti</h1>
+<h1 style="margin-bottom:1.5em">Amministrazione docenti</h1>
 <% unless @not_active_users.empty? %>
   <%= show_not_active_users(@not_active_users) %>
 <% end %>
@@ -28,3 +27,5 @@
       <% end %>
     </table>
 <% end %>
+<h3>Invito nuovi docenti</h3>
+<%= menu_admin() %>

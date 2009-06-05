@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
       redirect_to timetables_url
     else
       flash[:error] = "E-mail o password errati."
-      render :action => :new
+      redirect_to timetables_url
     end
   end
 
@@ -35,7 +35,7 @@ class SessionsController < ApplicationController
     reset_session
     @current_user = nil
     flash[:notice] = "Logout effettuato con successo."
-    redirect_to new_session_url
+    redirect_to timetables_url
   end
 
 end

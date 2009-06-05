@@ -1,5 +1,4 @@
-<%= menu_admin() %>
-<h3>Amministrazione edifici</h3>
+<h1>Amministrazione edifici</h1>
 <% if @buildings.empty? %>
    <%=h "Nessun edificio presente" %>
 <% else %>
@@ -13,3 +12,5 @@
       <% end %>
   </table>
 <% end %>
+<h3>Inserimento nuovo edificio</h3>
+<%= menu_admin() %>

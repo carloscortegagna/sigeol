@@ -5,13 +5,17 @@ html, body {
     background-color:#acc9e1;
     font-size:0.9em;
 }
+h1 {
+    font-size:1.7em;
+}
 
 h2 {
     color:#FF0000;
 }
 
 h3 {
-    font-size:1.5em;
+    font-size:1.2em;
+    margin-top:2.0em;
 }
 
 table {
@@ -185,6 +189,11 @@ a:hover {
     text-align:left;
     width:15em;
 }
+
+.inner_menu li {
+    list-style-type:none;
+}
+
 /*
 #preFooter {
     clear:both;

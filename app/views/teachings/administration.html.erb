@@ -1,5 +1,4 @@
-<%= menu_admin() %>
-<h3> Amministrazione insegnamenti </h3>
+<h1> Amministrazione insegnamenti </h1>
 <% @graduate_courses.each do |g| %>
   <p class="list_title"><%= show_graduate_course(g) %></p>
   <% teaching_number = g['teachings'].size %>
@@ -17,3 +16,5 @@
     </table>
   <% end %>
 <% end %>
+<h3>Inserimento nuovo insegnamento </h3>
+<%= menu_admin() %>

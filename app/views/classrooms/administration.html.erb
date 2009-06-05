@@ -1,5 +1,4 @@
-<%= menu_admin() %>
-<h3>Amministrazione aule</h3>
+<h1>Amministrazione aule</h1>
 <% if @classrooms.empty? %>
    <%=h "Nessuna aula presente" %>
 <% else %>
@@ -13,3 +12,5 @@
     <% end %>
   </table>
 <% end %>
+<h3>Inserimento nuova aula</h3>
+<%= menu_admin() %>
