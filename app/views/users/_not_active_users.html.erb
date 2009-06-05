@@ -7,7 +7,7 @@
   <% not_active_users.each do |u| %>
     <tr>
       <td class="list_table_first_item"><%= u.mail %></td>
-      <td></td>
+      <td><%= link_to(image_tag("/images/delete.png"),u.specified, :method => :delete, :title => "Elimina definitivamente dal sistema", :confirm => "Sei sicuro di voler eliminare definitivamente il docente dal sistema SIGEOL?") %></td>
     </tr>
   <% end %>
 </table>

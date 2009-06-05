@@ -90,43 +90,43 @@ class User < ActiveRecord::Base
   # Restituisce *true* se lo _User_ oggetto d'invocazione possiede i privilegi per amministrare i docenti,
   # altrimenti ritorna *false*.
   def manage_teachers?
-    self.capabilities.find_by_name("Manage teachers") != nil
+    self.capabilities.find_by_name("Gestione docenti") != nil
   end
 
   # Restituisce *true* se lo _User_ oggetto d'invocazione possiede i privilegi per amministrare gli insegnamenti,
   # altrimenti ritorna *false*.
   def manage_teachings?
-    self.capabilities.find_by_name("Manage teachings") != nil
+    self.capabilities.find_by_name("Gestione insegnamenti") != nil
   end
 
   # Restituisce *true* se lo _User_ oggetto d'invocazione possiede i privilegi per amministrare le aule,
   # altrimenti ritorna *false*.
   def manage_classrooms?
-    self.capabilities.find_by_name("Manage classrooms") != nil
+    self.capabilities.find_by_name("Gestione aule") != nil
   end
 
   # Restituisce *true* se lo _User_ oggetto d'invocazione possiede i privilegi per amministrare gli edifici,
   # altrimenti ritorna *false*.
   def manage_buildings?
-    self.capabilities.find_by_name("Manage buildings") != nil
+    self.capabilities.find_by_name("Gestione edifici") != nil
   end
 
   # Restituisce *true* se lo _User_ oggetto d'invocazione possiede i privilegi per amministrare gli orari,
   # altrimenti ritorna *false*.
   def manage_timetables?
-    self.capabilities.find_by_name("Manage timetables") != nil
+    self.capabilities.find_by_name("Gestione schemi d'orario") != nil
   end
 
   # Restituisce *true* se lo _User_ oggetto d'invocazione possiede i privilegi per amministrare i privilegi,
   # altrimenti ritorna *false*.
   def manage_capabilities?
-    self.capabilities.find_by_name("Manage capabilities") != nil
+    self.capabilities.find_by_name("Gestione privilegi") != nil
   end
 
   # Restituisce *true* se lo _User_ oggetto d'invocazione possiede i privilegi per amministrare i corsi di laurea,
   # altrimenti ritorna *false*.
   def manage_graduate_courses?
-    self.capabilities.find_by_name("Manage graduate courses") != nil
+    self.capabilities.find_by_name("Gestione corsi di laurea") != nil
   end
 
   # Restituisce *true* se lo _User_ oggetto d'invocazione è detenuto da un docente (_Teacher_),
@@ -141,18 +141,6 @@ class User < ActiveRecord::Base
     self.specified_type == "DidacticOffice"
   end
 
-  # Viene utilizzato per sollevare un'eccezzione nel caso si tenti di cancellare l'ultimo corso di
-  # laurea (parametro +graduate_course+) associato all'oggetto _User_ di invocazione.
-  def before_destroy
-      corsi = self.graduate_courses
-      corsi.each do |c|
-        if c.users.size == 1
-          puts "ok"
-          raise Exception
-        end
-      end
-    end
-     
   private
 
   # Se è presente l'attributo +password+ per lo _User_ oggetto d'invocazione, questa viene
