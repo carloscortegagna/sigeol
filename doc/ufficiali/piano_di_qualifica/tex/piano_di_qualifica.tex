@@ -1255,6 +1255,519 @@ class SessionsControllerTest < ActionController::TestCase
   end
 end
 \end{verbatim}
+
+Di seguito sono riportate le tabelle che riassumono la campagna di test delle classi appartenenti al componente controller. 
+Dato il gran numero di test effettuati(186 tests) si elencheranno solo i più significativi.
+
+\newpage
+\begin{center}
+\textbf{Test su BuildingsController}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline
+da 1 a 5&
+Un utente non autentificato(guest) richiede l'esecuzione di azioni riservate ad utenti con privilegi.&
+L'utente dev'essere indirizzato alla pagina di login.&
+\checkmark \\
+\hline
+\hline
+7&
+Un utente autentificato con privilegio di modificare edifici richiede l'esecuzione dell'azione \verb|new| .&
+L'utente dev'essere indirizzato alla pagina di creazione edificio.&
+\checkmark \\
+\hline
+8&
+Lo stesso tipo di utente del test 7 richiede l'esecuzione dell'azione \verb|edit| .&
+L'utente dev'essere indirizzato alla pagina di modifica dei dati relativi ad un edificio.&
+\checkmark \\
+\hline
+9&
+Lo stesso tipo di utente del test 7 crea correttamente un edificio.&
+L'utente dev'essere indirizzato alla pagina di amministazione edifici.&
+\checkmark \\
+\hline
+da 10 a 11&
+Lo stesso tipo di utente del test 7 tenta di creare un edificio con attributi non validi.&
+L'utente non dev'essere indirizzato, deve rimanere nella pagina di creazione edificio.&
+\checkmark \\
+\hline
+12&
+Lo stesso tipo di utente del test 7 modifica correttamente un edificio.&
+L'utente dev'essere indirizzato alla pagina di amministazione edifici.&
+\checkmark \\
+\hline
+13&
+Lo stesso tipo di utente del test 7 tenta di modificare un edificio con attributi non validi.&
+L'utente non dev'essere indirizzato, deve rimanere nella pagina di creazione edificio.&
+\checkmark \\
+\hline
+14&
+Lo stesso tipo di utente del test 7 elimina correttamente un edificio.&
+L'utente dev'essere indirizzato alla pagina di amministrazione edifici.& 
+\checkmark \\
+\hline
+da 15 a 20&
+Un utente autentificato privo del privilegio di modificare edifici richiede l'esecuzione di azioni riservate ad utenti che ne siano in possesso.&
+L'utente dev'essere indirizzato alla pagina principale.&
+\checkmark \\
+\hline
+\end{tabular}
+\end{small}
+
+
+\newpage
+\begin{center}
+\textbf{Test su ClassroomsController }
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline 
+\hline
+ da 21 a 32 e da 47 a 51& 
+ Un utente non autenticato(guest) richiede l'esecuzione di azioni riservate ad utenti con privilegi. & 
+ Il guest deve essere indirizzato alla pagina di login. & 
+ \checkmark \\
+ \hline \hline
+ 33& 
+ Un utente autenticato con il privilegio di poter modificare le aule richiede l'esecuzione dell'azione new.& 
+ L'utente deve essere indirizzato alla pagina di creazione di un'aula. & 
+ \checkmark \\
+ \hline
+ 35& 
+ Lo stesso tipo di utente del test 33 crea correttamente una classe.& 
+ L'utente deve essere indirizzato alla pagina di amministazione aule. & 
+ \checkmark \\
+ \hline
+ 36& 
+ Lo stesso tipo di utente del test 33 crea una classe con attributi non validi.& 
+ L'utente non deve essere indirizzato ma rimanere nella pagina di creazione della classe.& 
+ \checkmark \\
+ \hline
+ 37& 
+ Lo stesso tipo di utente del test 33 modifica correttamente una classe.& 
+ L'utente deve essere indirizzato alla pagina di amministazione aule. & 
+ \checkmark \\
+ \hline
+ 38& 
+ Lo stesso tipo di utente del test 33 modifica una classe con attributi non validi.& 
+ L'utente non deve essere indirizzato ma rimanere nella pagina di creazione della classe.&
+ \checkmark \\
+ \hline
+ 39& 
+ Lo stesso tipo di utente del test 33 elimina una classe.& 
+ L'utente deve essere indirizzato alla pagina di amministazione aule.&
+ \checkmark \\
+ \hline
+ 44& 
+ Lo stesso tipo di utente del test 33 crea un vincolo associato ad una determinata classe.& 
+ Deve essere renderizzata la pagina di modifica aule.&
+ \checkmark \\
+ \hline
+ 45& 
+ Lo stesso tipo di utente del test 33 elimina un vincolo associato ad una determinata classe.& 
+ Deve essere renderizzata la pagina di modifica aule.&
+ \checkmark \\
+ \hline
+ \end{tabular}
+\end{small}
+\end{center}
+
+\newpage
+\textbf{Test su CurriculumsController}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline
+\hline
+da 51 a 58&
+Un utente non autentificato(guest) richiede l'esecuzione di azioni riservate ad utenti con privilegi.&
+L'utente dev'essere indirizzato alla pagina di login.&
+\checkmark \\
+\hline
+\hline
+59&
+Un utente autentificato con privilegio di modificare curricula richiede l'esecuzione dell'azione \verb|new| .&
+L'utente dev'essere indirizzato alla pagina di creazione curriculum.&
+\checkmark \\
+\hline
+60&
+Lo stesso tipo di utente del test 59 richiede l'esecuzione dell'azione \verb|edit| .&
+L'utente dev'essere indirizzato alla pagina di modifica dei dati relativi ad un curriculum.&
+\checkmark \\
+\hline
+61&
+Lo stesso tipo di utente del test 59 crea correttamente un curriculum.&
+L'utente dev'essere indirizzato alla pagina di amministazione curricula.&
+\checkmark \\
+\hline
+62&
+Lo stesso tipo di utente del test 59 tenta di creare un curriculum con attributi non validi.&
+L'utente non dev'essere indirizzato, deve rimanere nella pagina di creazione curriculum.&
+\checkmark \\
+\hline
+63&
+Lo stesso tipo di utente del test 59 modifica correttamente un curriculum.&
+L'utente dev'essere indirizzato alla pagina di amministazione curricula.&
+\checkmark \\
+\hline
+64&
+Lo stesso tipo di utente del test 59 tenta di modificare un curriculum con attributi non validi.&
+L'utente non dev'essere indirizzato, deve rimanere nella pagina di modifica curriculum.&
+\checkmark \\
+\hline
+65&
+Lo stesso tipo di utente del test 59 richiede l'esecuzione dell'azione \verb|edit_teachings| .&
+L'utente dev'essere indirizzato alla pagina di amministrazione degli insegnamenti di un curriculum.&
+\checkmark \\
+\hline
+da 66 a 68&
+Lo stesso tipo di utente del test 59 modifica gli insegnamenti di un curriculum.&
+L'utente dev'essere indirizzato alla pagina di amministrazione degli insegnamenti di un curriculum.&
+\checkmark \\
+\hline
+69&
+Lo stesso tipo di utente del test 59 elimina correttamente un curriculum.&
+L'utente dev'essere indirizzato alla pagina di amministrazione curricula.&
+\checkmark \\
+\hline
+\hline
+da 74 a 80&
+Un utente autentificato privo del privilegio di modificare curricula richiede l'esecuzione di azioni riservate ad utenti che ne siano in possesso.&
+L'utente dev'essere indirizzato alla pagina principale.&
+\checkmark \\
+\hline
+\end{tabular}
+\end{small}
+
+\newpage
+\begin{center}
+\textbf{Test su GraduateCoursesController }
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline \hline 
+ da 81 a 86& 
+ Un utente non autenticato(guest) richiede l'esecuzione di azioni riservate ad utenti con privilegi. & 
+ Il guest deve essere indirizzato alla pagina di login. & 
+ \checkmark \\
+ \hline \hline
+ 91 e 93& 
+ Un utente di tipo segreteria(privilegio "didactic\_office\_required") crea correttamente un corso di laurea.& 
+ L'utente deve essere indirizzato alla pagina di amministrazione dei corsi di laurea. & 
+ \checkmark \\
+ \hline
+ 92 e 94& 
+ Lo stesso tipo di utente del test 91 crea un corso di laurea con attributi non validi.& 
+ L'utente deve essere indirizzato alla pagina di amministrazione dei corsi di laurea riportando un errore nella creazione.& 
+ \checkmark \\
+ \hline \hline
+ 95& 
+ Un utente autenticato con il privilegio di modificare i corsi di laurea("manage\_graduate\_courses\_ required") ne modifica uno.& 
+ L'utente deve essere indirizzato alla pagina di amministrazione dei corsi di laurea riportando un messaggio di avvenuta modifica.& 
+ \checkmark \\
+ \hline
+ 96& 
+ Lo stesso tipo di utente del test 95 modifica un suo corso di laurea invalidando qualche attributo.& 
+ Deve essere renderizzata la pagina di modifica corso di laurea riportando quali errori son stati commessi. & 
+ \checkmark \\
+ \hline \hline
+ 97& 
+ Un utente autenticato con i privilegi "manage\_graduate\_courses\_ required" e "didactic\_office\_required" elimina un suo corso di laurea.& 
+ L'utente deve essere indirizzato alla pagine di amministrazione del corso di laurea.&
+ \checkmark \\
+ \hline \hline
+ 98& 
+ Lo stesso tipo di utente del test 95 tenta di modificare un corso di laurea che non gli appartiene.& 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "Non puoi modificare questo corso di laurea".&
+ \checkmark \\
+ \hline
+\end{tabular}
+\end{small}
+\end{center}
+
+\begin{center}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\
+\hline \hline
+100& 
+ Lo stesso tipo di utente del test 97 tenta di eliminare un corso di laurea che non gli appartiene.& 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "Non puoi modificare questo corso di laurea".&
+ \checkmark \\
+ \hline
+ 102& 
+ Uno user che non è segreteria didattica(quindi non ha il privilegio "didactic\_office\_required") tenta di creare un nuovo corso di laurea.& 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "Non possiedi i privilegi per effettuare questa operazione".&
+ \checkmark \\
+ \hline
+ 103& 
+ Uno user che non è segreteria didattica(quindi non ha il privilegio "didactic\_office\_required") tenta di eliminare un corso di laurea.& 
+ Lo stesso del test 102.&
+ \checkmark \\
+ \hline
+ 106& 
+ Uno user che non possiede il privilegio di modifica dei corsi di laurea(quindi non ha il privilegio "manage\_graduate\_courses\_ required") tenta di modificare un corso di laurea.& 
+ Lo stesso del test 102.&
+ \checkmark \\
+ \hline
+\end{tabular}
+\end{small}
+\end{center}
+
+\newpage
+\textbf{Test su SessionsController}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline
+\hline
+108&
+Un utente non autentificato(guest) richiede l'esecuzione dell'azione \verb|new| .&
+L'utente non dev'essere indirizzato, deve rimanere nella pagina di login.&
+\checkmark \\
+\hline
+109&
+Un utente non autentificato(guest) inserisce correttamente username e password.&
+L'utente dev'essere indirizzato alla pagina principale.&
+\checkmark \\
+\hline
+110&
+Un utente non autentificato(guest) inserisce username e/o password scorretti.&
+L'utente non dev'essere indirizzato, deve rimanere nella pagina di login.&
+\checkmark \\
+\hline
+\hline
+111&
+Un utente autentificato richiede l'esecuzione dell'azione \verb|destroy| .&
+L'utente dev'essere indirizzato alla pagina di login.&
+\checkmark \\
+\hline
+\end{tabular}
+\end{small}
+
+\newpage
+\begin{center}
+\textbf{Test su TeachersController }
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline \hline 
+ 115 & 
+ Un docente attiva correttamente il proprio user. & 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "Account attivato correttamente". & 
+ \checkmark \\
+ \hline
+ 116& 
+ Attivazione di un account già esistente& 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "L'utente non esiste od è già attivo".& 
+ \checkmark \\
+ \hline \hline
+ 122& 
+ Un utente autenticato con il privilegio di modificare docenti("manage\_teachers\_required") ne invita uno.& 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "Docente invitato con successo".& 
+ \checkmark \\
+ \hline
+ 126& 
+ Un utente autenticato con il privilegio di modificare privilegi("manage\_capabilities\_required") ne aggiunge uno ad un docente.& 
+ L'utente deve essere indirizzato alla pagina di modifica privilegi.& 
+ \checkmark \\
+ \hline
+ 128& 
+ Un utente dello stesso tipo del test 122 assegna ad un docente un corso di laurea.& 
+ L'utente deve essere indirizzato alla pagina di modifica corsi di laurea.& 
+ \checkmark \\
+ \hline
+ 129& 
+ Un utente dello stesso tipo del test 122 tenta di associare un docente che non appartiene a nessun suo corso di laurea ad un altro corso di laurea.& 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "Questo docente non appartiene a nessun tuo corso di laurea".&
+ \checkmark \\
+ \hline
+ 130& 
+ Lo stesso tipo di utente del test 126 tenta di modificare i privilegi di un docente che non appartiene a nessun suo corso di laurea.& 
+ Lo stesso del test 129.&
+ \checkmark \\
+ \hline
+ 131& 
+ Lo stesso tipo di utente del test 126 tenta di modificare i privilegi di un docente che non appartiene a nessun suo corso di laurea.& 
+ Lo stesso del test 129.&
+ \checkmark \\
+ \hline
+\end{tabular}
+\end{small}
+\end{center}
+
+\begin{center}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline \hline 
+133& 
+ Uno user autenticato come docente(privilegio same\_teacher\_required) crea una preferenza valida.& 
+ Deve essere renderizzata la pagina di modifica preferenza riportando nell'elenco quella appena creata.&
+ \checkmark \\
+ \hline
+ 134& 
+ Lo stesso tipo di user del test 133 crea un vincolo valido.& 
+ Deve essere renderizzata la pagina di modifica vincolo riportando nell'elenco quello appena creata.&
+ \checkmark \\
+ \hline
+ 135& 
+ Lo stesso tipo di user del test 133 elimina una preferenza.& 
+ Deve essere renderizzata la pagina di modifica preferenza eliminando nell'elenco quella appena cancellata.&
+ \checkmark \\
+ \hline
+ 136& 
+ Lo stesso tipo di user del test 133 elimina un vincolo.& 
+ Deve essere renderizzata la pagina di modifica vincolo eliminando nell'elenco quello appena cancellato.&
+ \checkmark \\
+ \hline
+ 140& 
+ Lo stesso tipo di user del test 133 modifica i propri dati personali.& 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "Dati personali aggiornati correttamente".&
+ \checkmark \\
+ \hline
+ da 142 a 145& 
+ Uno user autenticato senza il privilegio di modifica docenti(manage\_teachers\_ required) richiede l'esecuzione di azioni che ne richiedono il possesso.& 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "Non possiedi i privilegi per effettuare questa operazione".&
+ \checkmark \\
+ \hline
+ da 146 a 147& 
+ Uno user autenticato senza il privilegio di modifica privilegi(manage\_capabilities\_ required) richiede l'esecuzione di azioni che ne richiedono il possesso.& 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "Non possiedi i privilegi per effettuare questa operazione".&
+ \checkmark \\
+ \hline
+\end{tabular}
+\end{small}
+\end{center}
+
+\newpage
+\textbf{Test su TeachingsController}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline
+\hline
+da 151 a 159&
+Un utente non autentificato(guest) richiede l'esecuzione di azioni riservate ad utenti con privilegi.&
+L'utente dev'essere indirizzato alla pagina di login.&
+\checkmark \\
+\hline
+\hline
+161&
+Un utente autentificato con privilegio di modificare insegnamenti richiede l'esecuzione dell'azione \verb|new| .&
+L'utente dev'essere indirizzato alla pagina di creazione insegnamento.&
+\checkmark \\
+\hline
+162&
+Lo stesso tipo di utente del test 161 richiede l'esecuzione dell'azione \verb|edit| .&
+L'utente dev'essere indirizzato alla pagina di modifica dei dati relativi ad un insegnamento.&
+\checkmark \\
+\hline
+163&
+Lo stesso tipo di utente del test 161 crea correttamente un insegnamento.&
+L'utente dev'essere indirizzato alla pagina di selezione docente.&
+\checkmark \\
+\hline
+164&
+Lo stesso tipo di utente del test 161 tenta di creare un insegnamento con attributi non validi.&
+L'utente non dev'essere indirizzato, deve rimanere nella pagina di creazione insegnamento.&
+\checkmark \\
+\hline
+165&
+Lo stesso tipo di utente del test 161 richiede l'esecuzione dell'azione \verb|select_teacher| .&
+L'utente dev'essere indirizzato alla pagina di selezione docente.&
+\checkmark \\
+\hline
+166&
+Lo stesso tipo di utente del test 161 assegna correttamente un docente ad un insegnamento.&
+L'utente dev'essere indirizzato alla pagina di amministrazione insegnamenti.&
+\checkmark \\
+\hline
+167&
+Lo stesso tipo di utente del test 161 non assegna correttamente un docente ad un insegnamento.&
+L'utente non dev'essere indirizzato, deve rimanere nella pagina di selezione docente.&
+\checkmark \\
+\hline
+168&
+Lo stesso tipo di utente del test 161 modifica correttamente un insegnamento.&
+L'utente dev'essere indirizzato alla pagina di amministazione insegnamenti.&
+\checkmark \\
+\hline
+\end{tabular}
+\end{small}
+
+\newpage
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+169&
+Lo stesso tipo di utente del test 161 tenta di modificare un insegnamento con attributi non validi.&
+L'utente non dev'essere indirizzato, deve rimanere nella pagina di modifica insegnamento.&
+\checkmark \\
+\hline
+170&
+Lo stesso tipo di utente del test 161 elimina correttamente un insegnamento.&
+L'utente dev'essere indirizzato alla pagina di amministrazione insegnamenti.&
+\checkmark \\
+\hline
+\hline
+da 174 a 181&
+Un utente autentificato privo del privilegio di modificare curricula richiede l'esecuzione di azioni riservate ad utenti che ne siano in possesso.&
+L'utente dev'essere indirizzato alla pagina principale.&
+\checkmark \\
+\hline
+\hline
+\end{tabular}
+\end{small}
+
+\newpage
+\textbf{Test su UsersController}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline
+\hline
+da 182 a 183&
+Un utente non autentificato(guest) richiede l'esecuzione di azioni riservate ad utenti autentificati.&
+L'utente dev'essere indirizzato alla pagina di login.&
+\checkmark \\
+\hline
+\hline
+184&
+Un utente autentificato richiede l'esecuzione dell'azione \verb|edit| .&
+L'utente viene indirizzato alla pagina di modifica password.&
+\checkmark \\
+\hline
+185&
+Un utente autentificato modifica correttamente la password.&
+L'utente viene indirizzato alla pagine principale.&
+\checkmark \\
+\hline
+186&
+Un utente autentificato non modifica correttamente la password.&
+L'utente non viene indirizzato, deve rimanere nella pagina di modifica password.&
+\checkmark \\
+\hline
+187&
+Un utente autentificato richiede l'esecuzione dell'azione \verb|destroy| .&
+L'utente viene indirizzato alla pagina di login.&
+\checkmark \\
+\hline
+\end{tabular}
+\end{small}
+\end{center}
+
 \subsubsection{Copertura dei test sul codice}
 Come descritto precedentemente sarà utilizzato uno strumento per il linguaggio di programmazione Ruby per misurare la copertura dei test sul codice. Il team QuiXoft utilizzerà la metrica C0, ovvero sarà controllata la copertura di ogni istruzione. L'attuale situazione di coprtura dei test sul codice è riportato nel file \verb|coverage.pdf| allegato al presente documento.
 
