@@ -1,4 +1,5 @@
 <% user_sidebar.each do |url| %>
+<% unless url[:link].empty? %>
   <span class="categoria"><%=h url[:cat]%></span>
   <%= image_tag url[:cat]+".jpg" %>
   <ul class="linkone">
@@ -6,4 +7,5 @@
       <li><%= link_to link[:name], link[:url] %></li>
     <% end %>
   </ul>
+<% end %>
 <% end %>
