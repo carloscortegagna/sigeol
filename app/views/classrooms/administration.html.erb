@@ -1,7 +1,15 @@
 <%= menu_admin() %>
 <h3>Amministrazione aule</h3>
-<% @classrooms.each do |g| %>
-  <div class="first_div">
-    <%= show_classroom_admin(g) %>
-  </div>
+<% if @classrooms.empty? %>
+   <%=h "Nessuna aula presente" %>
+<% else %>
+  <table class="list_table">
+    <tr>
+      <th>Nome</th>
+      <th colspan="3">Opzioni</th>
+    </tr>
+    <% @classrooms.each do |g| %>
+      <%= show_classroom_admin(g) %>
+    <% end %>
+  </table>
 <% end %>

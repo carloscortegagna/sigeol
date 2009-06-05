@@ -1,14 +1,16 @@
-<p>
-    <span><%= link_to teaching_admin.name, teaching_path(teaching_admin) %></span>
-    <ul>
-      <li><%= link_to "Modifica", edit_teaching_path(teaching_admin) %></li>
-      <li><%= link_to "Elimina", teaching_admin, :method => :delete %></li>
-      <% if teaching_admin.teacher %>
-         <li>Docente di riferimento: <%= show_teacher(teaching_admin.teacher) %>
-             (<%= link_to "Riassegna docente", select_teacher_teaching_path(teaching_admin) %>)</li>
-      <% else %>
-         <li><%=h "Nessun docente assegnato" %> (<%= link_to "Assegna docente", select_teacher_teaching_path(teaching_admin) %>)</li>
-      <% end %>
-      <span></span>
-    </ul>
-</p>
+<tr>
+  <% if teaching_admin.teacher %>
+    <% title = "Riassegna docente di riferimento" %>
+    <% docente = show_teacher(teaching_admin.teacher) %>
+  <% else %>
+    <% title = "Assegna docente di riferimento" %>
+    <% docente = "Nessun docente assegnato" %>
+  <% end %>
+  <td class="list_table_first_item"><%= link_to teaching_admin.name, teaching_path(teaching_admin) %></td>
+  <td><%= link_to image_tag("/images/Amministrazione.jpg"), edit_teaching_path(teaching_admin) %></td>
+  <td><%= link_to image_tag("/images/delete.png"), teaching_admin, :method => :delete %></td>
+  <td><%= link_to image_tag("/images/Docente.jpg"), select_teacher_teaching_path(teaching_admin), :title => title %></td>
+  <td><%= docente %>
+  </td>
+  <!--<span></span>-->
+</tr>

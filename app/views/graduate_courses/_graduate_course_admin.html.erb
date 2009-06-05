@@ -1,7 +1,5 @@
-<h4>
-  <%= link_to graduate_course_admin.name, graduate_course_path(graduate_course_admin) %>
-</h4>
-  <ul>
-    <li><%= link_to "Modifica", edit_graduate_course_path(graduate_course_admin) %></li>
-    <li><%= link_to "Elimina", graduate_course_admin, :method => :delete%></li>
-  </ul>
+<p>
+  <%= link_to graduate_course_admin.name, graduate_course_path(graduate_course_admin), :class => "list_title" %>
+  <span><%= link_to image_tag("/images/Amministrazione.jpg"), edit_graduate_course_path(graduate_course_admin), :title => "Modifica i dati" %></span>
+  <span><%= link_to image_tag("/images/delete.png"), graduate_course_admin, :method => :delete, :title => "Elimina definitivamente dal sistema" %></span>
+</p>

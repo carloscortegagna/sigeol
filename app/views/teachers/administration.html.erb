@@ -5,17 +5,26 @@
 <% end %>
 <% unless @not_associated_users.empty? %>
   <h3>Docenti non associati</h3>
-  <% @not_associated_users.each do |n| %>
-  <%= show_teacher_admin(n.specified) %>
-  <% end %>
+  <table class="list_table">
+    <tr>
+      <th>Nome</th>
+      <th colspan="3">Opzioni</th>
+    </tr>
+    <% @not_associated_users.each do |n| %>
+      <%= show_teacher_admin(n.specified) %>
+    <% end %>
+  </table>
 <% end %>
 <h3>Docenti divisi per corso di laurea</h3>
 <% @graduate_courses.each do |g| %>
-  <div class="first_div">
     <h4><%= g.name %></h4>
-    <% g.users.each do |t| %>
-      <%= show_teacher_admin(t.specified) %>
-      <br>
-    <% end %>
-  </div>
+    <table class="list_table">
+    <tr>
+      <th>Nome</th>
+      <th colspan="3">Opzioni</th>
+    </tr>
+      <% g.users.each do |t| %>
+        <%= show_teacher_admin(t.specified) %>
+      <% end %>
+    </table>
 <% end %>

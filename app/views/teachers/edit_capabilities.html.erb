@@ -35,16 +35,18 @@
     </table>
   <%  else %>
     <p id="selectable_capabilities_header">Privilegi disponibili da aggiungere</p>
-    <table id="selectable_capabilities">
-     <% @selectable_capabilities.each do |s| %>
-       <tr id='<%= s.id %>'>
-         <td><%=h s.name %></td>
-         <td><% form_remote_tag :html => {:method => :put}, :url => update_capabilities_teacher_path(@teacher,:ids => s.id), :method => :put do %>
-             <%= submit_tag "Aggiungi" %>
-         <% end %></td>
-       </tr>
-     <% end %>
-   </table>
+    <table border="1" id="selectable_capabilities" class="list_table">
+      <% @selectable_capabilities.each do |s| %>
+        <tr id='<%= s.id %>'>
+          <td class="list_table_first_item"><%=h s.name %></td>
+          <td>
+            <% form_remote_tag :html => {:method => :put}, :url => update_capabilities_teacher_path(@teacher,:ids => s.id), :method => :put do %>
+              <%= image_submit_tag "/images/aggiungi.png", :title => "Aggiungi il privilegio" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
   <% end %>
   <span id="errors_add" class="warning"></span> <br>
 </p>

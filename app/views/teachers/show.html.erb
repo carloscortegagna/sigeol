@@ -1,19 +1,21 @@
---------------------------------------------------
-<br><br>
-Nome: <%=h @teacher.name %> <br>
-Cognome: <%=h @teacher.surname %> <br>
-Indirizzo email: <%= mail_to @user.mail %>
-<br><br>
---------------------------------------------------
-<br><br>
-Città: <%=h @user.address.city %> <br>
-Indirizzo: <%=h @user.address.street %> <br>
-<% if @user.address.telephone != nil %>
-Telefono: <%=h @user.address.telephone %>
-<% end %>
-<br><br>
---------------------------------------------------
-<br><br>
+<h3>Informazioni sul docente</h3>
+<table id="trademark">
+  <tr>
+  <td><span id="unipd-logo-white"></span></td>
+  <td id="trademark_info">
+  <h4>Università di Padova</h4>
+    <p><em><%=h @teacher.name %> <%=h @teacher.surname %></em></p>
+    <p><%=h @user.address.street %></p>
+    <p><%=h @user.address.city %></p>
+    <% if @user.address.telephone != nil %>
+      <p>Tel. <%=h @user.address.telephone %></p>
+    <% end %>
+    <br />
+    <p><%= mail_to @user.mail %></p>
+  </td>
+  </tr>
+</table>
+<p>
 <% if @teacher.teachings.empty? %>
   Al momento, il docente non tiene nessun insegnamento.
 <% else %>
@@ -22,6 +24,4 @@ Telefono: <%=h @user.address.telephone %>
     <%= link_to t.name, teaching_path(t) %> <br>
   <% end %>
 <% end %>
-<br><br>
---------------------------------------------------
-<br><br>
+</p>

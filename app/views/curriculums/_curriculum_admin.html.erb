@@ -1,8 +1,6 @@
-<p>
-    <%= link_to curriculum_admin.name, curriculum_path(curriculum_admin) %>
-    <ul>
-        <li><%= link_to "Modifica", edit_curriculum_path(curriculum_admin) %></li>
-        <li><%= link_to "Elimina", curriculum_admin, :method => :delete %></li>
-        <li><%= link_to "Gestisci insegnamenti", edit_teachings_curriculum_path(curriculum_admin) %></li>
-    </ul>
-</p>
+<tr>
+  <td class="list_table_first_item"><%= link_to curriculum_admin.name, curriculum_path(curriculum_admin) %></td>
+  <td><%= link_to image_tag("/images/Amministrazione.jpg"), edit_curriculum_path(curriculum_admin), :title => "Modifica i dati" %></td>
+  <td><%= link_to image_tag("/images/delete.png"), curriculum_admin, :method => :delete, :title => "Elimina definitivamente dal sistema" %></td>
+  <td><%= link_to image_tag("/images/teaching.jpeg"), edit_teachings_curriculum_path(curriculum_admin), :title => "Gestisci gli insegnamenti" %></td>
+</tr>

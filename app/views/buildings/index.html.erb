@@ -1,8 +1,13 @@
 <h3>Strutture</h3>
-<br>
+<br/>
 <% for b in @buildings do %>
   <%= link_to b.name, building_path(b) %>
-  <br><br>
+  <form action="http://maps.google.com/maps" method="get" style="display:inline" target="_blank">
+    <%= image_submit_tag "/images/maps.gif", :title => "Cerca l'indirizzo con Google Maps", :style => "padding:1em 0 0 1em" %>
+    <input type="hidden" name="q" value="<%= b.address.city %> <%= b.address.street %>" />
+    <input type="hidden" name="hl" value="it" />
+</form>
+<br><br>
   <% for c in @classrooms %>
     <% if b.id == c.building_id %>
       <%=h c.name %> (<%=h c.capacity %> posti)<br>

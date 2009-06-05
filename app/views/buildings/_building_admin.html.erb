@@ -1,7 +1,5 @@
-<p>
-  <%= link_to building_admin.name, building_path(building_admin), :class => "titoloLista" %>
-  <ul>
-    <li><%= link_to "Modifica", edit_building_path(building_admin) %></li>
-    <li><%= link_to "Elimina", building_admin, :method => :delete%></li>
-  </ul>
-</p>
+<tr>
+  <td class="list_table_first_item"><%= link_to building_admin.name, building_path(building_admin), :class => "titoloLista" %></td>
+  <td><%= link_to image_tag("/images/Amministrazione.jpg"), edit_building_path(building_admin), :title => "Modifica i dati" %></td>
+  <td><%= link_to image_tag("/images/delete.png"), building_admin, :method => :delete, :title => "Elimina definitivamente dal sistema" %></td>
+</tr>

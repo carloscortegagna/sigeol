@@ -1,8 +1,13 @@
-<div>
-  <h3>Docenti non attivi</h3>
+<h3>Docenti non attivi</h3>
+<table class="list_table">
+  <tr>
+    <th>E-mail</th>
+    <th>Opzioni</th>
+  </tr>
   <% not_active_users.each do |u| %>
-    <div>
-    <%= u.mail %>
-    </div>
+    <tr>
+      <td class="list_table_first_item"><%= u.mail %></td>
+      <td></td>
+    </tr>
   <% end %>
-</div>
+</table>
