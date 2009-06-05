@@ -32,7 +32,11 @@ class Classroom < ActiveRecord::Base
   validates_length_of :name,
                       :maximum => 30,
                       :message => "Il nome è troppo lungo"
-                    
+  validates_format_of :name,
+                      :with => /^[a-zA-Z0-9àòèéùì\s]*$/,
+                      :message => "Si accettano solo caratteri alfanumerici"
+
+ 
   #validazioni :capacity
   validates_numericality_of :capacity,
                             :only_integer => true,
