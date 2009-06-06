@@ -1,11 +1,13 @@
 require 'test_helper'
 
 class TeachingsControllerTest < ActionController::TestCase
-
+ include TeachingsHelper
+ include ApplicationHelper
   def setup
    @user = stub_everything(:id => :an_id, :mail => :a_mail, :password => :a_password)
    @user.stubs(:active?).returns(true)
    User.stubs(:find).returns(@user)
+   menu_admin
    @user.stubs(:manage_teachings?).returns(true)
   end
 
@@ -21,7 +23,9 @@ class TeachingsControllerTest < ActionController::TestCase
     t = Teaching.new
     t.stubs(:id=>:an_id,:name=>:a_name, :teacher_id=>:another_id)
     teacher = Teacher.new
+    show_teaching_admin(Teaching.new)
     teacher.stubs(:id=>:an_id,:name=>"name", :surname=>"surname")
+     show_teaching(Teaching.new)
     Teacher.stubs(:find).with(:another_id).returns(teacher)
     Teaching.stubs(:find).with(:an_id).returns(t)
     get :show,:id=>:an_id
@@ -30,6 +34,7 @@ class TeachingsControllerTest < ActionController::TestCase
   #ID = 153
   test "Guest usa Administration" do
     get :administration
+    login_form
     assert_redirected_to new_session_url
     assert_equal "Effettuare il login" , flash[:notice]
   end
@@ -324,4 +329,9 @@ class TeachingsControllerTest < ActionController::TestCase
     assert_equal flash[:error], "Non possiedi i privilegi per effettuare questa operazione"
     assert_redirected_to timetables_url
   end
+
+  private
+       def render(a)
+         a = "Sigeol"
+       end
 end

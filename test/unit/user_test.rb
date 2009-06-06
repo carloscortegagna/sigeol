@@ -121,7 +121,11 @@ end
 test"test dei metodi manage_"do
   #caso di prova66.1: @u contiene tutte i privilegi
   #obiettivo: tutti i metodi manage_ devono ritornare true
-  assert @u.manage_buildings?
+  c =Capability.find(:all)
+   c.each do |v|
+     puts v.name
+   end
+   assert @u.manage_buildings?
   assert @u.manage_capabilities?
   assert @u.manage_classrooms?
   assert @u.manage_graduate_courses?

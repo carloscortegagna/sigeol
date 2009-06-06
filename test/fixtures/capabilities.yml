@@ -1,15 +1,15 @@
 capability_1:
-  name: Manage graduate courses
+  name: Gestione docenti
 capability_2:
-    name: Manage teachers
+    name: Gestione insegnamenti
 capability_3:
-     name: Manage teachings
+     name: Gestione aule
 capability_4:
-    name: Manage classrooms
+    name: Gestione edifici
 capability_5:
-    name: Manage buildings
+    name: Gestione schemi d'orario
 capability_6:
-   name: Manage timetables
+   name: Gestione corsi di laurea
 capability_7:
-   name: Manage capabilities
+   name: Gestione privilegi
   

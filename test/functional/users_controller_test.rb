@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
 require 'digest/sha1'
-
+include UsersHelper
   def setup
    @user = User.new
    @user.stubs(:id => :an_id, :mail => :a_mail, :password => :a_password)
@@ -13,6 +13,7 @@ require 'digest/sha1'
   #ID = 182
   test"Guest usa edit"do
     get :edit,:id=>:an_id
+    show_not_active_users(User.new)
     assert_redirected_to new_session_url
     assert_equal "Effettuare il login" , flash[:notice]
   end
@@ -63,5 +64,8 @@ require 'digest/sha1'
     assert_equal flash[:error], "Non puoi modificare un utente diverso dal tuo"
     assert_redirected_to timetables_url
   end
-    
-end
+  private
+    def render(a)
+      a = "Sigeol"
+    end
+  end

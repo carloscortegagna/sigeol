@@ -43,7 +43,7 @@ class TimetableTest < ActiveSupport::TestCase
     assert t.errors.invalid?(:year)
     #caso di prova56.4: year è valido
     #obiettivo: il sistema non deve rilevare errori nell'attributo year
-    t.year="2008-09"
+    t.year="2008/09"
     assert !t.valid?
     assert !t.errors.invalid?(:year)
   end

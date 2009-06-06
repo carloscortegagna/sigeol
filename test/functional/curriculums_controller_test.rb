@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class CurriculumsControllerTest < ActionController::TestCase
-
+  include CurriculumsHelper
   #inizializzo uno user
   def setup
    @user = stub_everything(:id => :an_id, :mail => :a_mail, :password => :a_password)
@@ -208,6 +208,8 @@ class CurriculumsControllerTest < ActionController::TestCase
   test"User usa il metodo edit su un curriculum che non appartiene a nessun suo corso di laurea"do
     @user.stubs(:manage_graduate_courses?).returns(true)
     @request.session[:user_id] = :an_id
+    show_curriculum(Curriculum.new)
+    show_curriculum_admin(Classroom.new)
     c = Curriculum.new(:id=>:an_id,:name=>:a_name)
     Curriculum.stubs(:find).with(:an_id).returns(c)
     c.stubs(:graduate_course_id).returns(:an_id)
@@ -320,4 +322,8 @@ class CurriculumsControllerTest < ActionController::TestCase
     @user.stubs(:graduate_course_ids).returns([:an_id])
     c.stubs(:graduate_course_id).returns(:an_id)
   end
+  
+  def render(a)
+         a = "Sigeol"
+       end
 end

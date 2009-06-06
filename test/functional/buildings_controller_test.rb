@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class BuildingsControllerTest < ActionController::TestCase
-
+  include BuildingsHelper
   def setup
     @user = stub_everything(:id => :an_id, :mail => :a_mail, :password => :a_password)
     @user.stubs(:active?).returns(true)
@@ -52,9 +52,11 @@ class BuildingsControllerTest < ActionController::TestCase
   test "User con privilegi usa administration" do
     @request.session[:user_id] = :an_id
     get :administration
-   assert_template 'buildings/administration'
-   assert_response :success
-
+    show_building(Building.new)
+    menu_admin
+    show_building_admin(Building.new)
+    assert_template 'buildings/administration'
+    assert_response :success
   end
 
   #ID = 7
@@ -184,6 +186,7 @@ class BuildingsControllerTest < ActionController::TestCase
   test"User senza privilegi usa update"do
     @request.session[:user_id] = :an_id
     @user.stubs(:manage_buildings?).returns(false)
+    menu_admin
     put :update,:id=>:an_id
     assert_equal flash[:error],"Non possiedi i privilegi per effettuare questa operazione"
     assert_redirected_to timetables_url
@@ -197,4 +200,9 @@ class BuildingsControllerTest < ActionController::TestCase
     assert_equal flash[:error],"Non possiedi i privilegi per effettuare questa operazione"
     assert_redirected_to timetables_url
   end
+
+  private
+    def render(a)
+       a = "Sigeol"
+    end
 end
