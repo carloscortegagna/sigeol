@@ -1,19 +1,23 @@
-<h3>Strutture</h3>
-<br/>
+<h1>Strutture</h1>
 <% for b in @buildings do %>
-  <%= link_to b.name, building_path(b) %>
-  <form action="http://maps.google.com/maps" method="get" style="display:inline" target="_blank">
-    <%= image_submit_tag "/images/maps.gif", :title => "Cerca l'indirizzo con Google Maps", :style => "padding:1em 0 0 1em" %>
-    <input type="hidden" name="q" value="<%= b.address.city %> <%= b.address.street %>" />
-    <input type="hidden" name="hl" value="it" />
-</form>
-<br><br>
-  <% for c in @classrooms %>
-    <% if b.id == c.building_id %>
-      <%=h c.name %> (<%=h c.capacity %> posti)<br>
+  <h3>
+    <%= link_to b.name, building_path(b) %>
+    <form action="http://maps.google.com/maps" method="get" style="display:inline" target="_blank">
+      <%= image_submit_tag "/images/maps.gif", :title => "Cerca l'indirizzo con Google Maps", :style => "padding:1em 0 0 1em" %>
+      <input type="hidden" name="q" value="<%= b.address.street %> <%= b.address.city %> Veneto Italia" />
+      <input type="hidden" name="hl" value="it" />
+    </form>
+  </h3>
+  <table class="list_table">
+    <tr>
+      <th>Nome aula</th>
+      <th>Capacità</th>
+    </tr>
+    <% for c in @classrooms %>
+      <% if b.id == c.building_id %>
+        <td><%=h c.name %></td>
+        <td><%=h c.capacity %></td>
+      <% end %>
     <% end %>
-  <% end %>
-<br><br>
---------------------------------------------------
-  <br> <br>
+  </table>
 <% end %>
