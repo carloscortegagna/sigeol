@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Norme di Progetto v1.3.2}
+\lfoot{Norme di Progetto v1.4.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Norme di Progetto v1.3.2}
+\lfoot{Norme di Progetto v1.4.0}
 \cfoot{}
 \rfoot{}
 }
@@ -44,6 +44,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{06-06-2009} & 1.4.0 & Aggiunta sezione sul codice Java e correzione sezione codice Ruby\\
 \hline
 \textit{07-03-2009} & 1.3.2 & Correzioni varie\\
 \hline
@@ -87,7 +89,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Norme di Progetto \\ v1.3.2}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Norme di Progetto \\ v1.4.0}}
 \author{Redazione: Scortegagna Carlo}
 \maketitle
 \medskip
@@ -293,20 +295,78 @@ Tale intestazione deve essere cosi formattata: \\
 \textit{REGISTRO DELLE MODIFICHE:}
 
 \textit{\{data e resoconto delle modifiche, in ordine cronologico decrescente\}}
-\subsection{Altre convenzioni}
+
+\subsection{Codice Ruby}
 La scelta di Ruby on Rails come framework per lo sviluppo del progetto porta già con se una gran quantità di convenzioni riguardanti la stesura del codice, senza che debbano essere scelte dal team di sviluppo.
 La filosofia che sta alla base di tutto ciò è denominata Convention over Configuration, che prevede configurazione minima (o addirittura assente) per il programmatore che utilizza tale framework, obbligandolo a configurare solo gli aspetti che si differenziano dalle implementazioni standard o che non rispettano particolari convenzioni di denominazione o simili.
 
-A seguire, un basilare elenco delle norme da seguire nella stesura del codice:
-
+Di seguito sono elencate le convenzioni utilizzate negli elementi sviluppati
+con il linguaggio \underline{Ruby}.
+\subsubsection{Convenzioni sui nomi}
 \begin{itemize}
-  \item Convenzioni sui nomi: i nomi delle costanti sono scritti completamente in maiuscolo (upper case), usando l’underscore per separarare i termini. Per convenzione ogni variabile scritta completamente in maiuscolo è interpretata da Ruby come costante. I nomi di classi e moduli adottano il PascalCase, ovvero l’uso del carattere maiuscolo per ogni parola che compone il nome. I nomi di metodi e variabili adottano lo snake case, ovvero completamente minuscolo con i termini separati da un carattere underscore.
-  \item La lunghezza massima delle righe è fissata in 80 caratteri, per agevolare la visualizzazione e l'impaginazione del codice, anche in caso di eventuali stampe
-  \item Per quanto riguarda le \underline{indentazioni}, la convenzione è di non utilizzare Tab ma Soft Tab (ovvero tab convertite in automatico in spazi) o spazi direttamente. La dimensione di ogni Soft Tab è fissata a 2 caratteri.
-  \item i commenti sul codice seguono le convenzioni di Rdoc. Per maggiori informazioni è sufficiente consultarne la documentazione.
+\item\textbf{Variabili locali:}
+prima lettera minuscola, seguita da altri caratteri minuscoli. Se la variabile comprende più parole, queste andranno separate con un \_ (underscore). Esempio: \texttt{variabile\_locale}
+\item\textbf{Variabili d'instanza:}
+si utilizza la stessa convenzione adottata nelle variabili locali, con l’aggiunta
+di un @ (at) prima del nome. Esempio: \texttt{@variabile\_istanza}
+\item\textbf{Variabili di classe:}
+si utilizza la stessa convenzione adottata nelle variabili locali, con l’aggiunta
+di una doppia @ (at) prima del nome. Esempio: \texttt{@@variabile\_classe}
+\item\textbf{Variabili globali:}
+si utilizza la stessa convenzione adottata nella variabili locali, con l’aggiunta
+di un \$ (dollar) prima del nome. Esempio: \texttt{\$variabile\_globale}
+\item\textbf{Costanti:}
+prima lettera maiuscola, seguita da altri caratteri maiuscoli. Se la variabile comprende più parole, queste andranno separate con un \_ (underscore). Esempio: \texttt{UNA\_COSTANTE}
+\item\textbf{Metodi d'istanza:}
+prima lettera minuscola, seguita da altri caratteri minuscoli. Se il nome comprende più parole, queste andranno separate con un \_ (underscore). Esempio: \texttt{metodo\_istanza}
+\item\textbf{Classi e moduli:}
+prima lettera maiuscola, seguita da altri caratteri minuscoli. Se il nome
+comprende più parole, la prima lettera di ogni parola deve essere maiuscola. Esempio: \texttt{UnaClasse}
+\item\textbf{Model:}
+si utilizza la stessa convenzione per le classi ed inoltre il nome dovrà essere il singolare (in lingua inglese) del nome della tabella del database a cui si riferisce. Esempio: \texttt{Order}
+\item\textbf{Controller:}
+si utilizza la stessa convenzione per le classi ed inoltre il nome dovrà essere il plurale (in lingua inglese) del nome del Model a cui si riferisce, seguito dalla parola Controller. Esempio: \texttt{OrdersController}
+\item\textbf{Tabelle del database:}
+prima lettera minuscola, seguita da altri caratteri minuscoli. Se il nome comprende più parole, queste andranno separate con un \_ (underscore). Inoltre il nome deve essere il plurale del model (in lingua inglese) a cui la tabella si riferisce. Esempio: \texttt{orders}
+\item\textbf{Chiave primaria:}
+il nome della chiave primaria dovrà essere \texttt{id}
+\item\textbf{Chiavi esterne:}
+il nome della chiave esterna dovrà essere il singolare (in lingua inglese) della tabella di riferimento, seguito da un \_ (underscore) e dalla parola id, con ogni carattere minuscolo. Esempio: \texttt{order\_id}
+\item\textbf{Tabelle per le relazioni molti a molti:}
+concatenazione tramite \_ (underscore) dei nomi al plurale (in lingua inglese) dei model coinvolti in ordine alfabetico, con ogni carattere minuscolo. Esempio: \texttt{items\_orders}
+\item\textbf{File:}
+ogni nome di file è caratterizzato dalla presenza di soli caratteri minuscoli e la concatenazione di più parole viene effettuata tramite \_ (underscore).
 \end{itemize}
+\subsubsection{Altre convenzioni}
+\begin{itemize}
+\item\textbf{Lunghezza delle righe:} la lunghezza massima delle righe è fissata in 80 caratteri, per agevolare la visualizzazione e l'impaginazione del codice, anche in caso di eventuali stampe
+\item\textbf{Indentazioni:} la convenzione prevede di non utilizzare Tab ma Soft Tab (ovvero tab convertite in automatico in spazi) o spazi. La dimensione di ogni Soft Tab è fissata a 2 caratteri
+\item\textbf{Commenti:} i commenti sul codice seguono le convenzioni di Rdoc. Per maggiori
+informazioni consultare la relativa documentazione.
+\end{itemize}
+
+
 Tutto quanto non esplicitamente indicato è da intendersi regolamentato dalle norme fissate dal framework Ruby on Rails, dal linguaggio di programmazione Ruby e dai vari plugin che verranno utilizzati durante lo sviluppo del progetto.
 Per la lista completa delle regole da rispettare è sufficiente consultare la relativa documentazione.
+
+\subsection{Codice Java}
+Data la scelta di utilizzare un algoritmo per il calcolo dell'orario già scritto, in linguaggio Java, e la necessità di aggiungere ad esso piccole funzionalità e moduli, il team ha scritto il codice Java attenendosi alle seguenti convenzioni.
+\subsubsection{Convenzioni sui nomi}
+\begin{itemize}
+\item\textbf{Variabili:}
+prima lettera minuscola, seguita da altri caratteri minuscoli. Se la variabile comprende più parole, la lettera iniziale di ogni parola (tranne la prima) dovrà essere maiuscola. Esempio: \texttt{variabileLocale}
+\item\textbf{Metodi:}
+valgono le stesse convenzioni adottate per le variabili
+\item\textbf{Classi:}
+valgono le stesse convenzioni adottate per le variabili, escluso il fatto che la prima lettera deve essere maiuscola. Esempio: \texttt{ClassePubblica}
+\item\textbf{File:}
+il nome di ogni file deve essere esattamente uguale al nome dell'unica classe pubblica contenuta in esso, seguito dall'estensione ''.java''. Esempio: \texttt{ClassePubblica.java}
+\end{itemize}
+\subsubsection{Altre convenzioni}
+\begin{itemize}
+\item\textbf{Lunghezza delle righe:} segue la convenzione omonima per il codice Ruby
+\item\textbf{Indentazioni:} similmente alla omonima convenzione per Ruby è previsto l'utilizzo dei Soft Tab oppure degli spazi. La dimensione dei Soft Tab, per coerenza con il codice non scritto dal team, è fissata in 4 spazi.
+\end{itemize}
 
 \section{Compiti}
 \subsection{Ticket}
