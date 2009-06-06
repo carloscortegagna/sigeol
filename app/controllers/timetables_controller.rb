@@ -11,7 +11,7 @@ require 'net/https'
 
 class TimetablesController < ApplicationController
   skip_before_filter :login_required
-  protect_from_forgery :only => [:create, :update, :destroy]
+  protect_from_forgery :only => [:create, :update, :destroy, :show, :index, :new, :edit]
   def index
     @timetables = Timetable.find(:all)
 
