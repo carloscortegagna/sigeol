@@ -149,6 +149,9 @@ public class SchedulerServlet extends HttpServlet {
             // lettura file configurazione servlet
             ServletConfig cfg = getServletConfig();
             String url_client = cfg.getInitParameter("url-client");
+            String mail = cfg.getInitParameter("mail");
+            String password = cfg.getInitParameter("password");
+
             // recupero parametri del POST
             String course = request.getParameter("course");
             String sdate = request.getParameter("date");
@@ -172,6 +175,8 @@ public class SchedulerServlet extends HttpServlet {
                 System.out.println("created job_" + course + " listener_job");
                 jobDetail.getJobDataMap().put("url_client", url_client);
                 jobDetail.getJobDataMap().put("course", course);
+                jobDetail.getJobDataMap().put("mail", mail);
+                jobDetail.getJobDataMap().put("password", password);
                 // rendiamo il job recovarable
                 jobDetail.setRequestsRecovery(true);
                 // rendiamo il job persistente
@@ -217,7 +222,8 @@ public class SchedulerServlet extends HttpServlet {
         String input_path = cfg.getInitParameter("input-itc-path");
         String output_path = cfg.getInitParameter("output-itc-path");
         String url_client = cfg.getInitParameter("url-client");
-
+        String mail = cfg.getInitParameter("mail");
+        String password = cfg.getInitParameter("password");
         try {
             String saveFile = null;
             // salvataggio del file con i parametri del corso
@@ -267,6 +273,8 @@ public class SchedulerServlet extends HttpServlet {
                 jobDetail.getJobDataMap().put("output_file", output_path);
                 jobDetail.getJobDataMap().put("url_client", url_client);
                 jobDetail.getJobDataMap().put("timeout", timeout);
+                jobDetail.getJobDataMap().put("mail", mail);
+                jobDetail.getJobDataMap().put("password", password);
                 // rendiamo il job ripristinabile
                 jobDetail.setRequestsRecovery(true);
                 jobDetail.setVolatility(false);
@@ -302,7 +310,8 @@ public class SchedulerServlet extends HttpServlet {
      /**<p>
      * Ritorna un riferimento all'istanza scheduler
      * </p>
-     * @param request servlet request     *
+      * @param request servlet request     *
+      * @return
      */
     public Scheduler getScheduler(HttpServletRequest request) {
         try {

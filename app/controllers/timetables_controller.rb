@@ -5,12 +5,13 @@
 #REGISTRO DELLE MODIFICHE::
 # 13/02/2009 aggiunto il controller per timetables. L'home page del progetto è l'index di questo controller
 
+
 require 'net/http'
 require 'net/https'
 
 class TimetablesController < ApplicationController
   skip_before_filter :login_required
-  
+  protect_from_forgery :only => [:create, :update, :destroy]
   def index
     @timetables = Timetable.find(:all)
 

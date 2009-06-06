@@ -21,17 +21,29 @@ import org.quartz.xml.CalendarBundle;
  */
 public class SchedulerJobListenerTest extends TestCase {
     JobDetail jobDetail ;
+    /**
+     * 
+     */
     protected Scheduler scheduler = null;
+    /**
+     *
+     * @throws org.quartz.SchedulerException
+     */
     @Override
     public void setUp() throws SchedulerException{
          scheduler = StdSchedulerFactory.getDefaultScheduler();
     }
 
+    /**
+     *
+     * @throws org.quartz.SchedulerException
+     */
     public void testRunningJob() throws SchedulerException{
             
             jobDetail = new JobDetail("jobListener_test", "listener_job", SchedulerJobListener.class);
-            jobDetail.getJobDataMap().put("course", "test");
-            jobDetail.getJobDataMap().put("url_client", "http://localhost:8080/sigeol/timetables");
+            jobDetail.getJobDataMap().put("course", "1");
+            jobDetail.getJobDataMap().put("url_client", "http://localhost:8080/sigeol");
+
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.SECOND, 5);
             //JobExecutionContext context = new JobExecutionContext();

@@ -20,13 +20,24 @@ import org.quartz.xml.CalendarBundle;
  */
 public class AlgorithmJobTest extends TestCase {
     JobDetail jobDetail ;
+    /**
+     *
+     */
     protected Scheduler scheduler = null;
     
+    /**
+     *
+     * @throws org.quartz.SchedulerException
+     */
     @Override
     public void setUp() throws SchedulerException{
          scheduler = StdSchedulerFactory.getDefaultScheduler();  
     }
     
+    /**
+     *
+     * @throws org.quartz.SchedulerException
+     */
     public void testRunningJob() throws SchedulerException{
         try {
             File webinf = new File("../..");
@@ -34,7 +45,10 @@ public class AlgorithmJobTest extends TestCase {
             jobDetail.getJobDataMap().put("input_file", webinf.getCanonicalPath() + "/itc/input/test.ctt");
             jobDetail.getJobDataMap().put("output_file", webinf.getCanonicalPath() + "/itc/output/");
             jobDetail.getJobDataMap().put("timeout", "50");
-            jobDetail.getJobDataMap().put("url_client", "http://localhost:8080/sigeol/timetables");
+            jobDetail.getJobDataMap().put("url_client", "http://localhost:8080/sigeol");
+            jobDetail.getJobDataMap().put("mail", "barraemme@math.unipd.it");
+            jobDetail.getJobDataMap().put("password", "qwerty");
+
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.SECOND, 5);
             //JobExecutionContext context = new JobExecutionContext();

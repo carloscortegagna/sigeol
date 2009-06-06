@@ -37,5 +37,4 @@ class SessionsController < ApplicationController
     flash[:notice] = "Logout effettuato con successo."
     redirect_to timetables_url
   end
-
 end

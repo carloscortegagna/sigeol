@@ -26,6 +26,10 @@ import org.quartz.ee.servlet.QuartzInitializerServlet;
  */
 public class SchedulerServletTest extends BasicServletTestCaseAdapter
 {
+    /**
+     *
+     * @throws java.lang.Exception
+     */
     @Override
     protected void setUp() throws Exception
     {
@@ -43,7 +47,7 @@ public class SchedulerServletTest extends BasicServletTestCaseAdapter
         config.setInitParameter("output-itc-path", "/WEB-INF/itc/output/");
         config.setInitParameter("shutdown-on-unload", "true");
         config.setInitParameter("start-scheduler-on-load", "true");
-        config.setInitParameter("url-client","http://localhost:8080/sigeol/timetables");
+        config.setInitParameter("url-client","http://localhost:8080/sigeol");
     }
 
     /**
@@ -98,7 +102,7 @@ public class SchedulerServletTest extends BasicServletTestCaseAdapter
       */
      public void testServletDJOperation() throws Exception{
          addRequestParameter("op", "dj");
-         addRequestParameter("course", "test");
+         addRequestParameter("course", "1");
          addRequestParameter("timeout", "15");
          File testfile = new File("test.ctt");
                 //FileInputStream fileInputStream = new FileInputStream(outfile);

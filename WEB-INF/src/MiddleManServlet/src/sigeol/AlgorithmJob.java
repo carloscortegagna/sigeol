@@ -77,7 +77,7 @@ public class AlgorithmJob implements Job {
         String outFileName = data.getString("output_file");
         String URLName = data.getString("url_client");
         String timeout = data.getString("timeout");
-
+        
         // utilizzo dell'algoritmo
         try {
             File outfile = ItcSolver.start(inFileName, outFileName, timeout, null);
@@ -115,12 +115,15 @@ public class AlgorithmJob implements Job {
             int bytesAvailable;
             int bufferSize;
             byte[] buffer;
+            int retry = 3;
             int maxBufferSize = 1 * 1024 * 1024;
             File outfile = outFileName;
             fileInputStream = new FileInputStream(outfile);
-            
-            URL url = new URL(URLName+"/"+course+"/done");
-            for (int i = 0; i < 3 && (responseCode != HttpURLConnection.HTTP_OK); i++) {
+            URL url;
+            HttpURLConnection con ;
+
+            url = new URL(URLName+"/timetables/done");
+            for (int i = 0; i < retry && (responseCode != HttpURLConnection.HTTP_OK); i++) {
                 /*if(i>0)
                     try {
                         Thread.currentThread().sleep(10000*i);
@@ -168,6 +171,8 @@ public class AlgorithmJob implements Job {
                 responseCode = conn.getResponseCode();
                
             }
+            System.out.println(URLName+"/timetables"+"/done"+"responseCode "+responseCode);
+
             // chiude gli stream
                 fileInputStream.close();
 

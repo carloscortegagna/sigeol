@@ -16,10 +16,14 @@
  */
 package sigeol;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.quartz.Job;
@@ -67,10 +71,14 @@ public class SchedulerJobListener implements Job {
             String course = data.getString("course");
             String URLName = data.getString("url_client");
             System.out.println("executing job_" + course + " ...");
-            HttpURLConnection.setFollowRedirects(true);
-            URL url = new URL(URLName+"/"+course+"/notify");
+            URL url ;
             HttpURLConnection con ;
+            
             int responseCode = HttpURLConnection.HTTP_UNAVAILABLE;
+            
+            url = new URL(URLName+"/timetables/notify");
+            
+            responseCode = HttpURLConnection.HTTP_UNAVAILABLE;
             for (int i = 0; i < retry && (responseCode != HttpURLConnection.HTTP_OK); i++) {
              /*   if(i>0)
                     try {
@@ -84,6 +92,8 @@ public class SchedulerJobListener implements Job {
                 con.setReadTimeout(0);
                 responseCode = con.getResponseCode();
             }
+            System.out.println(URLName+"/timetables"+"/notify"+"responseCode "+responseCode);
+
         } catch (MalformedURLException ex) {
             Logger.getLogger(SchedulerJobListener.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
