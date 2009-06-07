@@ -1,19 +1,11 @@
---------------------------------------------------
-<br><br>
-Nome insegnamento: <%=h @teaching.name %> <br>
-CFU: <%=h @teaching.CFU %> <br>
-Ore settimanali in aula: <%= @teaching.classHours %> <br>
-Ore settimanali in laboratorio: <%= @teaching.labHours %> <br>
-Numero di studenti: <%=h @teaching.studentsNumber %>
-<br><br>
---------------------------------------------------
-<br><br>
+<h1><%=h @teaching.name %></h1>
+<p><strong>CFU:</strong> <%=h @teaching.CFU %></p>
+<p><strong>Ore settimanali in aula:</strong> <%= @teaching.classHours %></p>
+<p><strong>Ore settimanali in laboratorio:</strong> <%= @teaching.labHours %></p>
+<p><strong>Numero di studenti stimato:</strong> <%=h @teaching.studentsNumber %></p>
 <% if @teacher == nil %>
   Non è stato ancora assegnato un docente a quest'insegnamento
 <% else %>
-  Docente assegnato: <br><br>
+  <h3 style="margin-top:3.5em">Docente assegnato:</h3>
     <%= link_to @teacher.surname + " " + @teacher.name, teacher_path(@teacher) %> <br>
 <% end %>
-<br><br>
---------------------------------------------------
-<br><br>

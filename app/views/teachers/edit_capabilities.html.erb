@@ -1,23 +1,21 @@
-  Modifica del docente <%= show_teacher(@teacher)  %>
-
-<hr>
+<h1>Modifica del docente <%= show_teacher(@teacher)  %></h1>
 <p>
   <% if @manageable_capabilities.size == 0 %>
-    <p id="manageable_capabilities_header">Nessun privilegio posseduto</p>
+    <h4 id="manageable_capabilities_header">Nessun privilegio posseduto</h4>
     <table id="manageable_capabilities" style="display:none">
     
     </table>
   <% else %>
-    <p id="manageable_capabilities_header">Privilegi posseduti ed amministrabili</p>
+    <h4 id="manageable_capabilities_header">Privilegi posseduti ed amministrabili:</h4>
     <table id="manageable_capabilities">
       <% @manageable_capabilities.each do |m| %>
         <tr id='<%= m.id %>'>
-          <td><%=h m.name %></td>
+          <td class="list_table_first_item"><%=h m.name %></td>
           <td><% form_remote_tag :html => {:method => :delete}, :url => update_capabilities_teacher_path(@teacher,:ids => m.id), :method => :delete do %>
-            <% if m.name == 'Manage capabilities' %>
-              <%= submit_tag 'Rimuovi', :confirm => "Sei sicuro di voler eliminare il privilegio <Manage capabilities> ?" %>
+            <% if m.name == 'Gestione privilegi' %>
+              <%= image_submit_tag "/images/togli.gif", :title => "Togli privilegio", :class => "plus_less", :confirm => "Sei sicuro di voler eliminare il privilegio \"Gestione privilegi\"?" %>
             <% else %>
-              <%= submit_tag "Rimuovi" %>
+              <%= image_submit_tag "/images/togli.gif", :title => "Togli privilegio", :class => "plus_less" %>
             <% end %>
           <% end %></td>
         </tr>
@@ -34,14 +32,14 @@
   
     </table>
   <%  else %>
-    <p id="selectable_capabilities_header">Privilegi disponibili da aggiungere</p>
-    <table border="1" id="selectable_capabilities" class="list_table">
+    <h4 id="selectable_capabilities_header">Privilegi disponibili da aggiungere:</h4>
+    <table id="selectable_capabilities">
       <% @selectable_capabilities.each do |s| %>
         <tr id='<%= s.id %>'>
           <td class="list_table_first_item"><%=h s.name %></td>
           <td>
             <% form_remote_tag :html => {:method => :put}, :url => update_capabilities_teacher_path(@teacher,:ids => s.id), :method => :put do %>
-              <%= image_submit_tag "/images/aggiungi.png", :title => "Aggiungi il privilegio" %>
+              <%= image_submit_tag "/images/aggiungi.gif", :title => "Aggiungi privilegio", :class => "plus_less" %>
             <% end %>
           </td>
         </tr>

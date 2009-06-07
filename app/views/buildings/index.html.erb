@@ -15,8 +15,10 @@
     </tr>
     <% for c in @classrooms %>
       <% if b.id == c.building_id %>
-        <td><%=h c.name %></td>
-        <td><%=h c.capacity %></td>
+        <tr>
+          <td><%=h c.name %></td>
+          <td><%=h c.capacity %></td>
+        </tr>
       <% end %>
     <% end %>
   </table>

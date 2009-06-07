@@ -1,4 +1,4 @@
-<h3>Lista dei docenti iscritti al SIGEOL</h3>
+<h1>Lista dei docenti iscritti al SIGEOL</h1>
 <% for t in @teachers do %>
   <p><%= link_to t.surname + " " + t.name, teacher_path(t) %></p>
 <% end %>

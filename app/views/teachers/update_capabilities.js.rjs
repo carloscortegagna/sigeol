@@ -5,9 +5,9 @@ if request.delete?
     page.remove @capability.id
 
     page.insert_html :bottom, 'selectable_capabilities', :inline => "<tr id='<%= @capability.id %>'>" +
-      "<td><%=h @capability.name %></td>" +
+      "<td class='list_table_first_item'><%=h @capability.name %></td>" +
       "<td><% form_remote_tag :html => {:method => :put}, :url => update_capabilities_teacher_path(@teacher,:ids => @capability.id), :method => :put do %>" +
-          "<%= submit_tag 'Aggiungi' %>"+
+          "<%= image_submit_tag '/images/aggiungi.gif', :title => 'Aggiungi privilegio', :class => 'plus_less' %>"+
       "<% end %></td>"+
     "</tr>", :layout => false
     #page.visual_effect :grow , @capability.id
@@ -35,9 +35,9 @@ if request.put?
     page.remove @capability.id
     
     page.insert_html :bottom, 'manageable_capabilities', :inline =>"<tr id='<%= @capability.id %>'>" +
-      "<td><%=h @capability.name %></td> "+
+      "<td class='list_table_first_item'><%=h @capability.name %></td> "+
       "<td><% form_remote_tag :html => {:method => :delete}, :url => update_capabilities_teacher_path(@teacher,:ids => @capability.id), :method => :delete do %>" +
-          "<%= submit_tag 'Rimuovi' %>" +
+          "<%= image_submit_tag '/images/togli.gif', :title => 'Togli privilegio', :class => 'plus_less' %>" +
       "<% end %></td>" +
     "</tr>", :layout => false
     #page.visual_effect :grow , @capability.id
@@ -62,7 +62,7 @@ if @manageable_capabilities.size == 0
   page.replace_html 'manageable_capabilities_header', 'Nessun privilegio posseduto'
 else
   if @manageable_capabilities.size == 1
-    page.replace_html 'manageable_capabilities_header', 'Privilegi posseduti ed amministrabili'
+    page.replace_html 'manageable_capabilities_header', 'Privilegi posseduti ed amministrabili:'
     page.show 'manageable_capabilities'
   end
 end

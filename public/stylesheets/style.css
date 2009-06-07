@@ -7,7 +7,20 @@ html, body {
 }
 h1 {
     font-size:1.7em;
+    margin-bottom:1.5em;
 }
+
+#title {
+    font-size:2.2em;
+    margin-bottom:0.2em;
+    margin-top:0.4em;
+}
+#subtitle {
+    color:white;
+    margin-top:0;
+    text-align:center;
+}
+
 
 h2 {
     color:#FF0000;
@@ -194,6 +207,10 @@ a:hover {
     list-style-type:none;
 }
 
+.plus_less {
+    margin-left:1em;
+}
+
 /*
 #preFooter {
     clear:both;
@@ -208,18 +225,6 @@ a:hover {
     background-color:#acc9e1;
     text-align:center;
     clear:both;
-}
-
-#footer #quixoft-logo {
-    display:block;
-    float:right;
-    width:81px;
-}
-
-#footer #quixoft-logo #img {
-    display:block;
-    height:45px;
-    background:url('images/quixoft-logo.gif') top left no-repeat;
 }
 
 a img {

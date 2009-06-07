@@ -1,12 +1,9 @@
-<h3>Insegnamenti</h3>
---------------------------------------------------
-<br><br>
+<h1>Insegnamenti</h1>
 <% @graduate_courses.each do |g| %> 
-  <%= g.name %>: <br><br>
-  <% g['teachings'].each do |t| %>
-    <%= link_to t.name, teaching_path(t) %> <br>
-  <% end %>
-  <br><br>
-  --------------------------------------------------
-  <br><br>
+  <h3><%= g.name %></h3>
+  <ul>
+    <% g['teachings'].each do |t| %>
+      <li><%= link_to t.name, teaching_path(t) %></li>
+    <% end %>
+  </ul>
 <% end %>

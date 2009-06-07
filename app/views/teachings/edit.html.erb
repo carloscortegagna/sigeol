@@ -4,27 +4,27 @@
   <fieldset>
   <legend> Insegnamento: </legend>
    <p>
-    <%= f.label '*nome:' %><br />
+    <%= f.label '*Nome:' %><br />
     <%= f.text_field :name %>
     <span class="warning" id="errors_name"><%= @teaching.errors.on(:name) %> </span>
   </p>
   <p>
-    <%= f.label :CFU %><br />
+    <%= f.label "CFU:" %><br />
     <%= f.text_field :CFU, :size=> 2 %>
     <span class="warning" id="errors_cfu"><%= @teaching.errors.on(:CFU) %> </span>
   </p>
   <p>
-    <%= f.label :classHours %><br />
+    <%= f.label "Ore in classe:" %><br />
     <%= f.text_field :classHours, :size=> 2 %>
     <span class="warning" id="errors_classHours"><%= @teaching.errors.on(:classHours) %> </span>
   </p>
   <p>
-    <%= f.label :labHours %><br />
+    <%= f.label "Ore in laboratorio:" %><br />
     <%= f.text_field :labHours, :size=> 2 %>
     <span class="warning" id="errors_labHours"><%= @teaching.errors.on(:labHours) %> </span>
   </p>
   <p>
-    <%= f.label :studentsNumber %><br />
+    <%= f.label "Numero di studenti stimato:" %><br />
     <%= f.text_field :studentsNumber, :size=> 4 %>
     <span class="warning" id="errors_studentsNumber"><%= @teaching.errors.on(:studentsNumber) %> </span>
   </p>
@@ -37,5 +37,5 @@
    </p>
    <% end %>
 
-<%= link_to 'Show', @teaching %> 
-<%= link_to 'Back', teachings_path %>
+<%= link_to 'Mostra', @teaching %>
+<%= link_to 'Indietro', teachings_path %>

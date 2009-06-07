@@ -7,7 +7,7 @@ if request.delete?
     page.insert_html :bottom, 'selectable_graduate_courses', :inline => "<tr id='<%=  @graduate_course.id %>'>" +
       "<td><%=h  @graduate_course.name %></td>" +
       "<td><% form_remote_tag :html => {:method => :put}, :url => update_graduate_courses_teacher_path(@teacher,:ids => @graduate_course.id), :method => :put do %>" +
-          "<%= submit_tag 'Aggiungi' %>"+
+          "<%= image_submit_tag '/images/aggiungi.gif', :style => 'padding-left:1em', :title => 'Aggiungi corso di laurea' %>"+
       "<% end %></td>"+
     "</tr>", :layout => false
     #page.visual_effect :grow , @capability.id
@@ -37,7 +37,7 @@ if request.put?
     page.insert_html :bottom, 'manageable_graduate_courses', :inline =>"<tr id='<%=  @graduate_course.id %>'>" +
       "<td><%=h  @graduate_course.name %></td> "+
       "<td><% form_remote_tag :html => {:method => :delete}, :url => update_graduate_courses_teacher_path(@teacher,:ids =>  @graduate_course.id), :method => :delete do %>" +
-          "<%= submit_tag 'Rimuovi' %>" +
+          "<%= image_submit_tag '/images/togli.gif', :style => 'padding-left:1em', :title => 'Togli corso di laurea' %>" +
       "<% end %></td>" +
     "</tr>", :layout => false
     #page.visual_effect :grow , @capability.id

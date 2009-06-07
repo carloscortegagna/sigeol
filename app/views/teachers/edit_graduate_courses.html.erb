@@ -1,20 +1,18 @@
-  Modifica del docente <%= show_teacher(@teacher)%>
-
-<hr>
+<h1>Modifica del docente <%= show_teacher(@teacher)%></h1>
 <p>
   <% if @manageable_graduate_courses.size == 0 %>
-    <p id="manageable_graduate_courses_header">Nessun corso di laurea posseduto</p>
+    <p id="manageable_graduate_courses_header">Nessun corso di laurea associato</p>
     <table id="manageable_graduate_courses" style="display:none">
    
     </table>
   <% else %>
-    <p id="manageable_graduate_courses_header">Corsi di laurea posseduti ed amministrabili</p>
+    <h4 id="manageable_graduate_courses_header">Corsi di laurea associati:</h4>
     <table id="manageable_graduate_courses">      
       <% @manageable_graduate_courses.each do |m| %>
         <tr id='<%= m.id %>'>
           <td><%=h m.name %></td>
           <td><% form_remote_tag :html => {:method => :delete}, :url => update_graduate_courses_teacher_path(@teacher,:ids => m.id), :method => :delete do %>
-              <%= submit_tag "Rimuovi" %>
+              <%= image_submit_tag "/images/togli.gif", :style => "padding-left:1em", :title => "Togli corso di laurea" %>
           <% end %></td>
         </tr>
       <% end %>
@@ -30,13 +28,13 @@
 
     </table>
   <%  else %>
-    <p id="selectable_graduate_courses_header">Corsi di laurea aggiungibili</p>
+    <h4 id="selectable_graduate_courses_header">Corsi di laurea aggiungibili:</h4>
     <table id="selectable_graduate_courses">
       <% @selectable_graduate_courses.each do |s| %>
         <tr id='<%= s.id %>'>
           <td><%=h s.name %></td>
           <td><% form_remote_tag :html => {:method => :put}, :url =>  update_graduate_courses_teacher_path(@teacher,:ids => s.id), :method => :put do %>
-              <%= submit_tag "Aggiungi" %>
+              <%= image_submit_tag "/images/aggiungi.gif", :style => "padding-left:1em", :title => "Aggiungi corso di laurea" %>
           <% end %></td>
         </tr>
       <% end %>
