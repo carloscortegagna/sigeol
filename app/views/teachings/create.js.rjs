@@ -49,6 +49,16 @@ else
  page.replace_html 'errors_studentsNumber', ''
 end
 
+ if(@teaching).errors.on(:period)
+ page.replace_html 'errors_period', ''
+ (@teaching.errors.on(:period)).each do |c|
+   page.insert_html  :bottom, 'errors_period', "*"+c+'.   '
+  end
+  page.visual_effect :highlight, 'errors_period', :color=>"red", :duration=>"0.7"
+else
+ page.replace_html 'errors_period', ''
+end
+
  if @graduate_courses.size == 0
   page.replace_html 'errors_curriculums', "*Deve essere associato ad un curriculum"
   page.visual_effect :highlight, 'errors_curriculums', :color=>"red", :duration=>"0.7"

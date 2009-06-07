@@ -46,6 +46,7 @@
     <p>
     Periodo <br/>
     <%= select_tag "subperiod" , options_from_collection_for_select(@subperiod, "subperiod", "subperiod") %>
+    <span class="warning" id="errors_period"><%= @teaching.errors.on(:period) %></span>
   </p>
   <p>
    (*) = campi obbligatori
