@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Norme di Progetto v1.4.0}
+\lfoot{Norme di Progetto v2.0.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -34,7 +34,7 @@
 }
 \headheight = 46pt
 %definizione del comando "\modfiche" per la creazione del diario delle modifiche
-\newcommand{\modifiche} 
+\newcommand{\modifiche}
 {
 \newpage
 \begin{center}
@@ -44,6 +44,10 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{09-06-2009} & 2.0.0 & Approvazione del responsabile e passaggio in stato di Formale\\
+\hline
+\textit{07-06-2009} & 1.6.0 & Correzioni ortografiche varie\\
 \hline
 \textit{06-06-2009} & 1.4.0 & Aggiunta sezione sul codice Java e correzione sezione codice Ruby\\
 \hline
@@ -89,8 +93,8 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Norme di Progetto \\ v1.4.0}}
-\author{Redazione: Scortegagna Carlo}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Norme di Progetto \\ v2.0.0}}
+\author{Redazione: Scarpa Davide}
 \maketitle
 \medskip
 \begin{center}
@@ -192,9 +196,9 @@ Come sopra, si raccomanda di aderire coerentemente al template, completando tutt
 \subsection{Norme tipografiche}
 I documenti redatti, oltre che seguire la struttura  dei template messi a disposizione, dovranno anche rispettare le seguenti convenzioni tipografiche:
 \begin{itemize}
-	\item gli indirizzi internet e i percorsi di cartella dovranno essere scritti in corsivo utilizzando il comando \LaTeX \space /textit 
+	\item gli indirizzi internet e i percorsi di cartella dovranno essere scritti in corsivo utilizzando il comando \LaTeX \space /textit
 \\ (esempio: \textit{http://www.assembla.com});
-	\item i riferimenti a documenti esterni o a file (comprensivi di \underline{estensione}) andranno scritti usando il comando \LaTeX \space /textsc 
+	\item i riferimenti a documenti esterni o a file (comprensivi di \underline{estensione}) andranno scritti usando il comando \LaTeX \space /textsc
 \\ (esempio: \textsc{template\_resoconto.tex});
 	\item i termini definiti nel glossario verranno contrassegnati da una sottolineatura con il comando \LaTeX \space /underline (esempio: template);
 	\item punto, virgola, punto e virgola, due punti, punto esclamativo e punto interrogativo sono attaccate alla parola che li precede, mentre sono separate con uno spazio dalla parola che li segue;
@@ -233,9 +237,9 @@ I tipi di resoconto degli incontri che è possibile organizzare sono caratterizz
 \subsubsection{Documenti ufficiali interni ed esterni}
 I documenti ufficiali prodotti dal team QuiXoft dovranno essere salvati sul repository in due modi:
 \begin{itemize}
-	\item in formato Pdf nella cartella 
+	\item in formato Pdf nella cartella
 \\ \textsc{/doc/ufficiali/\{nome\_documento\}/pdf}
-	\item in sorgente \LaTeX \space nella cartella 
+	\item in sorgente \LaTeX \space nella cartella
 \\ \textsc{/doc/ufficiali/\{nome\_documento\}/tex}
 \\ Insieme al file sorgente \LaTeX \space dovranno essere inseriti nella medesima cartella anche tutti gli altri file necessari alla compilazione (immagini che differiscano da quelle usate nel template, grafici, ecc...)
 \end{itemize}
@@ -344,6 +348,7 @@ ogni nome di file è caratterizzato dalla presenza di soli caratteri minuscoli e
 \item\textbf{Commenti:} i commenti sul codice seguono le convenzioni di Rdoc. Per maggiori
 informazioni consultare la relativa documentazione.
 \end{itemize}
+
 
 
 Tutto quanto non esplicitamente indicato è da intendersi regolamentato dalle norme fissate dal framework Ruby on Rails, dal linguaggio di programmazione Ruby e dai vari plugin che verranno utilizzati durante lo sviluppo del progetto.
