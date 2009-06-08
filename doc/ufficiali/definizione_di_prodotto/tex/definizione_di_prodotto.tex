@@ -46,6 +46,16 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
+\textit{8 giugno 2009} & 2.0.0 & Approvazione del responsabile e passaggio allo stato di Formale  \\
+\hline
+\textit{29 maggio 2009} & 1.9.0 & Modifiche della disposizione dei paragrafi ed aggiunta di testo  \\
+\hline
+\textit{20 maggio 2009} & 1.6.0 & Aggiornamento dei digrammi delle classi  \\
+\hline
+\textit{17 maggio 2009} & 1.4.0 & Correzione dei digrammi delle classi  \\
+\hline
+\textit{8 maggio 2009} & 1.2.0 & Correzioni ortografiche varie \\
+\hline
 \textit{7 marzo 2009} & 1.0.1 & Correzione dell'impostazione delle pagine \\
 \hline
 \textit{1 marzo 2009} & 1.0.0 & Approvazione del responsabile e passaggio di stato a Formale \\
@@ -58,7 +68,8 @@
 \hline
 \textit{21 febbraio 2009} & 0.8.0 & Stesura sezione Componente MiddleMan e Algorithm \\
 \hline
-\textit{21 febbraio 2009} & 0.7.0 & Completata stesura sezione Componente Controller e redatta la sezione Componente Helper\\
+\textit{21 febbraio 2009} & 0.7.0 & Completata stesura sezione Componente Controller e redatta la sezione  Componente Helper\\
+\hline
 \textit{20 febbraio 2009} & 0.6.0 & Completata stesura sezione Componente View ed inserimento immagine layout \\
 \hline
 \textit{20 febbraio 2009} & 0.5.2 & Inseriti i diagrammi delle classi della Componente Controller e Model\\
@@ -739,8 +750,10 @@ Per evitare fastidiose ripetizioni di seguito sono riportate le descrizioni dei 
  per amministrarle.
  \item \verb|new_constraint.html.erb|: presenta un form per l'inserimento di un nuovo vincolo o preferenza
 \end{itemize}
-Inoltre per garantire l'interoperabilità dei dati sono presenti i templates XML per tutte le azioni \verb|index| e \verb|show| autogenerati dal controller attraverso un metodo proprio di ruby on rails (to_xml).
-E' presente inoltre un template PDF per l'azione \verb|show| di \verb|TimetablesController| che sfrutta il plugin RTex alla versione 2.0.1 renderizzando un documento secondo il linguaggio \LaTeX.
+Per garantire l'interoperabilità dei dati sono presenti i templates XML per tutte le azioni \verb|index| e \verb|show| autogenerati dal controller attraverso il metodo proprio di ruby on rails di renderizzazione in linguaggio XML \verb|to_xml|.
+
+Per l'azione \verb|show| di \verb|TimetablesController| è presente inoltre un template PDF che sfrutta il plugin RTex alla versione 2.0.1 renderizzando un documento secondo il linguaggio \LaTeX. Per maggiori dettagli sul funzionamento si può consultare il suo manuale di utilizzo al sito \\ \textit{http://rtex.rubyforge.org/manual/}.
+
 E' anche implementato il template per la mail che sarà inviata al docente per l'attivazione del proprio user.
 \subsubsection*{Template per TeachingsController}
 Il template XHTML \verb|select_teacher.html.erb| è presente per il \\ \verb|TeachingsController| per l'azione \verb|select_teacher|.  Presenta un form per l'assegnamento di un docente ad un insegnamento utilizzando metodi per la presentazione automatica della lista dei docenti come i tag XHTML \verb|<select>| e \verb|<option>|.
@@ -857,158 +870,7 @@ Ogni singola istanza della classe \verb|AlgorithmJob| esegue il calcolo dell'ora
 \subsubsection{ItcSolver}
 Classe che si occupa di leggere il file di input (contenente tutte le informazioni richieste relative al calcolo e generazione dell'orario) ed eseguire effettivamente l'algoritmo.
 \subsubsection{Descrizione dell'algoritmo}
-L'algoritmo utilizzato per la generazione dell'orario si basa su \verb|Constraint| \verb|Solver Library| (CPSolver 1.1,  copyright (C) 2007 Tomáš Müller): tale libreria permette la modellazione di una realtà universitaria al fine di elaborare diverse tipologie di orari, in base alle necessità.
-\subsubsection*{Risultati internazionali}
-Il CPSolver 1.1 ha concorso nella \verb|International Timetabling Competition| \verb|2007 (ITC 2007)|: tale competizione era strutturata in 3 diverse tipologie di problemi da risolvere:
-\begin{enumerate}
- \item Generazione di orari d'esame
- \item Generazione di orari di lezione basati sulla struttura del corso di laurea
- \item Generazione di orari di lezione basati sulle iscrizioni dei diversi studenti ai corsi
-\end{enumerate}
-L'algoritmo è giunto tra i finalisti in tutti i diversi problemi, aggiudicandosi il primo posto nelle tipologie 1 e 2.
-\\
-(sito web ufficiale: \textit{http://www.cs.qub.ac.uk/itc2007/index.htm})
-\subsubsection*{Motivazioni della scelta}
-CPSolver 1.1 è stato scelto dal nostro team in seguito ad un'attenta analisi. Le motivazioni che ci hanno portato ad adottarlo sono riassumibili nei seguenti punti cardine:
-\begin{itemize}
- \item Ottimi risultati a livello internazionale
- \item Totalmente open source
- \item Libreria scritta interamente in Java e Ruby, tramite l'implementazione JRuby, supporta in maniera eccellente Java
- \item Il codice sorgente è strutturato in maniera ordinata e corretta
- \item La documentazione relativa è ampia e facilmente accessibile
-\end{itemize}
-\subsubsection*{Curriculum Course Timetabling}
-Il \verb|Curriculum Corse Timetabling (CCT)| rappresenta la sezione del CPSolver 1.1 che risolve il problema della generazione di orari di lezione basati sulla struttura dei corso di laurea. Qui di seguito ne verranno analizzati gli aspetti di maggiore importanza.
-\paragraph{Entità coinvolte}
-Le entità coinvolte  nella generazione dell'orario sono:
-\begin{itemize}
- \item i corsi di laurea su cui si desidera elaborare l'orario delle lezioni
- \item gli insegnamenti appartenenti ai corsi di laurea interessati
- \item il numero dei giorni di lezione (solitamente 5)
- \item il numero di fasce orarie giornaliere
-\end{itemize}
-\subsubsection*{Vincoli}
-I vincoli che l'algoritmo deve rispettare sono:
-\begin{itemize}
- \item tutte le lezioni di un insegnamento devono essere presenti all'interno dell'orario, ed assegnate a giorni e/o fasce orarie differenti
- \item due lezioni non possono tenersi contemporaneamente nella stessa aula
- \item due lezioni non possono tenersi contemporaneamente nello stesso giorno e nella stessa fascia oraria
- \item tutte le lezioni dello stesso anno devono essere tenute in giorni e/o fasce orarie differenti, vietando sovrapposizioni
- \item tutte le lezioni tenute dallo stesso docente devono essere tenute in giorni e/o fasce orarie differenti
- \item tutti i giorni e/o fasce orarie caratterizzati da indisponibilità devono essere rispettati/e
-\end{itemize}
-\subsubsection*{Fattori di scelta}
-La soluzione migliore viene trovata in base ai seguenti fattori:
-\begin{itemize}
- \item la capacità dell'aula preposta ad ospitare la lezione di un determinato insegnamento deve cercare di garantire il posto a sedere agli studenti previsti dall'insegnamento stesso
- \item le lezioni di un determinato insegnamento devono essere tenute almeno in un numero minimo prefissato di giorni diversi
- \item le lezioni dello stesso anno devono essere il più possibile adiacenti le une con le altre, riducendo le eventuali ore buche
- \item le lezioni dello stesso insegnamento devono essere tenute il più possibile nella stessa aula
- \item le preferenze sui singoli insegnamenti devono essere il più possibile rispettate
-\end{itemize}
-\subsubsection*{Componenti interne}
-Tutte le informazioni relative a CPSolver 1.1, compresa la relativa documentazione, sono reperibili all'indirizzo: \textit{http://cpsolver.sourceforge.net/api/index.html}.
-
-La versione originale dell'algoritmo permette la sola gestione dei vincoli. Al fine di garantire un prodotto il più possibile adattabile alle diverse realtà universitarie, il team QuiXoft ha innestato all'interno della libreria la gestione delle preferenze sui singoli insegnamenti. Tali modifiche sono state apportate nel modo ritenuto meno invasivo, lasciando il più incontaminato possibile il codice sorgente originale.
-
-Prima di continuare la trattazione delle componenti, occorre rendere nota la seguente convenzione in uso da parte del CPSolver 1.1, che è stata mantenuta durante il nostro sviluppo:
-\begin{itemize}
- \item i giorni interessati nella generazione dell'orario vengono individuati tramite valore numerico, ove: N°Giorni rappresenta il numero dei giorni di lezione, 0,1, .. N°Giorni-1 rappresenta in formato numerico, i giorni di interesse. Ipotizzando, ad esempio, 5 giorni a disposizione: 0 = LUN, 1 = MAR, .. , 4 = VEN
- \item le fasce orarie vengono individuate tramite valore numerico, ove: N°FasceOrarie rappresenta il numero di fasce orarie giornaliere, 0,1 .. N°FasceOrarie rappresenta in formato numerico le fasce orarie. Ipotizzando, ad esempio, 6 fasce orarie: 0 = 1° fascia, 1 = 2°fascia, .. , 5 = 6°fascia
-\end{itemize}
-I nomi delle classi e dei metodi rispecchiano le convenzioni standard di Java. La lingua di riferimento adottata, come nel CPSolver 1.1,  è la lingua inglese, commenti compresi.
-\subsubsection*{La classe MyPreferences\_DaySlot}
-La classe \verb|MyPreferences_DaySlot| rappresenta il gestore delle preferenze. Le preferenze che gestisce sono relative ad un insegnamento, in particolare rappresentano i giorni e/o le fasce orarie in cui non si desidera tenere tale insegnamento.
-L'insieme delle preferenze è organizzato sotto forma di \verb|Vector| (\textit{http://java.sun.com/j2se/1.4.2/docs/api/java/util/Vector.html}), il cui tipo base è \verb|DaySlot_PreferenceInfo|.
-\subsubsection*{La classe interna DaySlot\_PreferenceInfo}
-La classe \verb|DaySlot_PreferenceInfo| rappresenta una singola preferenza. Ogni preferenza è caratterizzata da diverse informazioni quali:
-\begin{itemize}
-\item	il codice identificativo dell'insegnamento a cui (essa) fa riferimento
-\item	il giorno e la fascia oraria in cui non si desidera tenere l'insegnamento
-\item	il peso della preferenza stessa
-\end{itemize}
-Il peso costituisce un valore numerico attraverso il quale si assegna un valore di importanza ad una preferenza. Tale peso permette all'algoritmo di tenere in maggiore considerazione le preferenze ``molto desiderabili'', rispetto, ad esempio, a preferenze minori.
-
-\paragraph{Pesi e priorità delle preferenze}
-L'assegnazione dei pesi viene gestita internamente alla classe in base ad una scala di priorità. I valori dei pesi sono stati scelti dal team QuiXoft in modo da garantire una corretta ed efficiente elaborazione. La relazione tra il valore di priorità ed il peso che tale priorità associa alla preferenza è riassumibile con la tabella seguente:
-
-\begin{center}
- \includegraphics[scale=0.8]{images/Algoritm_WeightPriorityRelation.png}
-\end{center}
-\subsubsection*{I metodi}
-I metodi privati presenti all'interno della classe \verb|MyPrefereces_DaySlot| sono:
-\begin{itemize}
-\item \verb|int getWeightFromPriority (int)| : in base al valore di priorità restituisce il peso corrispondente secondo la tabella precedente.
-\item \verb|DaySlot_PreferenceInfo getPreference (String, int, int)| : restituisce un riferimento alla preferenza di uno specifico insegnamento, in base al giorno ed alla fascia oraria. Nel caso in cui tale preferenza non esistesse il valore restituito è \verb|null|.
-\item \verb|bool existsCoursePreference (String)| : in base al codice identificativo di un insegnamento, restituisce TRUE se esiste almeno una preferenza relativa allo stesso, FALSE nel caso in cui non ne esista alcuna.
-\end{itemize}
-
-I metodi pubblici messi a disposizione sono:
-\begin{itemize}
-\item \verb|addPreference(String, int, int, int)| : aggiunge una preferenza all'insieme delle preferenze. I parametri formali rappresentano l'identificativo dell'insegnamento, il giorno e la fascia oraria nella quale è preferibile non tenere alcuna lezione dell'insegnamento specificato, ed il valore di priorità che la preferenza assumerà all'interno del sistema di calcolo.
-\item \verb|getPreferencesPenality(String)| : restituisce il valore di penalità associato ad un determinato insegnamento. I valore di penalità viene calcolato in base alle preferenze non soddisfatte.
-\end{itemize}
-\subsubsection*{Dati di input}\label{Algo_Input}
-Per quanto riguarda l'input, l'algoritmo si basa su un file con estensione \verb|.cct| (Curriculum Course Timetabling) il quale contiene i dati necessari all'elaborazione dell'orario delle lezioni.
-
-La struttura interna del file di input è definibile attraverso le diverse sezioni che la compongono; più precisamente esse sono:
-\begin{itemize}
-\item	Sezione \verb|MODEL|: informazioni generali
-\item	Sezione \verb|COURSES|: elenco dei vari insegnamenti
-\item	Sezione \verb|ROOMS|: elenco delle aule
-\item	Sezione \verb|CURRICULA|: elenco dei relativi corsi di laurea
-\item	Sezione \verb|UNAVAIBILITY_CONSTRAINTS|: elenco delle indisponibilità
-\item	Sezione \verb|PREFERENCES|: elenco delle preferenze
-\end{itemize}
-La sezione \verb|MODEL| rappresenta il preambolo del file. Tratta le informazioni di carattere generale riguardanti la realtà universitaria sulla quale si genererà l'orario delle lezioni. Si suddivide nei seguenti campi:
-\begin{itemize}
-\item	\verb|Name|: indica il nome della realtà di riferimento
-\item	\verb|Courses|: indica il numero complessivo dei corsi
-\item	\verb|Rooms|: indica il numero delle aule a disposizione
-\item	\verb|Days|: indica il numero di giorni di lezione
-\item	\verb|Periods_per_day|: indica il numero di fasce orarie in cui è suddiviso ogni giorno
-\item	\verb|Curricula|: indica il numero dei corsi di laurea e relativi curricula interessati nella generazione dell'orario
-\item	\verb|Constraints|: indica il numero di vincoli di indisponibilità
-\end{itemize}
-
-Per la trattazione delle sezioni seguenti occorre avvalersi della seguente convenzione:
-\begin{itemize}
-\item il carattere | indica la divisione dal campo precedente al successivo, e corrisponde al carattere \verb|blank| nel file reale
-\item i campi preceduti dal carattere \# indicano campi a cui è assegnata un'informazione di tipo numerico
-\end{itemize}
-
-La sezione \verb|COURSES| identifica quella nella quale vengono elencati tutti gli insegnamenti e loro caratteristiche. Ogni riga di questa sezione rappresenta un singolo corso, e si attiene alla struttura seguente: \begin{verbatim}
- CourseID | Teacher | #Lectures | MinWorkingDays | #Students
-\end{verbatim}
-
-La sezione \verb|ROOMS| identifica la sezione nella quale vengono elencate tutte le aule a disposizione e relativa capacità. Ogni riga di questa sezione rappresenta una singola aula, e si attiene alla  struttura seguente:
-\begin{verbatim}
- RoomID | #Capacity
-\end{verbatim}
-
-La sezione \verb|CURRICULA| identifica la sezione nella quale vengono elencati tutti i corsi di laurea con i relativi curricula ed i relativi insegnamenti che ne fanno parte. Ogni riga di questa sezione rappresenta un singolo corso di laurea, e si attiene alla struttura seguente:
-\begin{verbatim}
- CurriculumID | #Courses | CourseID ... CourseID
-\end{verbatim}
-
-La sezione \verb|UNAVAILABILITY_CONSTRAINTS| identifica la sezione nella quale vengono elencati tutti i vincoli di indisponibilità degli insegnamenti. Ogni riga di questa sezione rappresenta un singolo vincolo, e si attiene alla struttura seguente:
-\begin{verbatim}
- CourseID | #Day | #TimeSlot
-\end{verbatim}
-
-
-La sezione \verb|PREFERENCES| identifica la sezione nella quale vengono elencate tutte le preferenze degli insegnamenti: rappresenta il desiderio di non tenere una lezione di un determinato insegnamento. Ogni riga di questa sezione rappresenta una singola preferenza, e si attiene alla struttura seguente:
-\begin{verbatim}
- CourseID | #Day | #TimeSlot
-\end{verbatim}
-
-\subsubsection*{Dati di output}
-Per quanto riguarda l'output l'algoritmo produce un file che rappresenta l'intero orario delle lezioni. Ogni riga rappresenta una singola lezione, e si attiene alla struttura seguente:
-\begin{verbatim}
- CourseID | RoomID | #Day | #TimeSlot
-\end{verbatim}
-
-I valori identificativi dell'insegnamento (\verb|CourseID|) e dell'aula (\verb|RoomID|) derivano dai valori delle sezioni \verb|COURSES| e \verb|ROOMS| trattate nella sezione \ref{Algo_Input}
+L'algoritmo utilizzato per la generazione dell'orario si basa sul CPSolver di Tomáš Müller, per descrizione dettagliata vedere l'Appendice  alla fine di questo documento.
 \section{Organizzazione delle directories}
 Per facilitare la comprensione dell'organizzazione del sistema Sigeol, viene presentata in questa sezione la struttura delle directories. Per un dettaglio maggiore dell'organizzazione si prega di far riferimento al sito ufficiale di Ruby on Rails. Nella figura che segue viene illustrata la gerarchia \\
 \includegraphics[scale=0.59]{images/gerarchiacartelle.png} \\
@@ -1136,6 +998,161 @@ RID0.0 & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
 \end{tabular}
 \end{small}
 \end{center}
+\bigskip
+\section*{Appendice}
+\subsection*{Descrizione dell'algoritmo}
+L'algoritmo utilizzato per la generazione dell'orario si basa su \verb|Constraint| \verb|Solver Library| (CPSolver 1.1,  copyright (C) 2007 Tomáš Müller): tale libreria permette la modellazione di una realtà universitaria al fine di elaborare diverse tipologie di orari, in base alle necessità.
+\subsection*{Risultati internazionali}
+Il CPSolver 1.1 ha concorso nella \verb|International Timetabling Competition| \verb|2007 (ITC 2007)|: tale competizione era strutturata in 3 diverse tipologie di problemi da risolvere:
+\begin{enumerate}
+ \item Generazione di orari d'esame
+ \item Generazione di orari di lezione basati sulla struttura del corso di laurea
+ \item Generazione di orari di lezione basati sulle iscrizioni dei diversi studenti ai corsi
+\end{enumerate}
+L'algoritmo è giunto tra i finalisti in tutti i diversi problemi, aggiudicandosi il primo posto nelle tipologie 1 e 2.
+\\
+(sito web ufficiale: \textit{http://www.cs.qub.ac.uk/itc2007/index.htm})
+\subsection*{Motivazioni della scelta}
+CPSolver 1.1 è stato scelto dal nostro team in seguito ad un'attenta analisi. Le motivazioni che ci hanno portato ad adottarlo sono riassumibili nei seguenti punti cardine:
+\begin{itemize}
+ \item Ottimi risultati a livello internazionale
+ \item Totalmente open source
+ \item Libreria scritta interamente in Java e Ruby, tramite l'implementazione JRuby, supporta in maniera eccellente Java
+ \item Il codice sorgente è strutturato in maniera ordinata e corretta
+ \item La documentazione relativa è ampia e facilmente accessibile
+\end{itemize}
+\subsection*{Curriculum Course Timetabling}
+Il \verb|Curriculum Corse Timetabling (CCT)| rappresenta la sezione del CPSolver 1.1 che risolve il problema della generazione di orari di lezione basati sulla struttura dei corso di laurea. Qui di seguito ne verranno analizzati gli aspetti di maggiore importanza.
+\paragraph{Entità coinvolte}
+Le entità coinvolte  nella generazione dell'orario sono:
+\begin{itemize}
+ \item i corsi di laurea su cui si desidera elaborare l'orario delle lezioni
+ \item gli insegnamenti appartenenti ai corsi di laurea interessati
+ \item il numero dei giorni di lezione (solitamente 5)
+ \item il numero di fasce orarie giornaliere
+\end{itemize}
+\subsection*{Vincoli}
+I vincoli che l'algoritmo deve rispettare sono:
+\begin{itemize}
+ \item tutte le lezioni di un insegnamento devono essere presenti all'interno dell'orario, ed assegnate a giorni e/o fasce orarie differenti
+ \item due lezioni non possono tenersi contemporaneamente nella stessa aula
+ \item due lezioni non possono tenersi contemporaneamente nello stesso giorno e nella stessa fascia oraria
+ \item tutte le lezioni dello stesso anno devono essere tenute in giorni e/o fasce orarie differenti, vietando sovrapposizioni
+ \item tutte le lezioni tenute dallo stesso docente devono essere tenute in giorni e/o fasce orarie differenti
+ \item tutti i giorni e/o fasce orarie caratterizzati da indisponibilità devono essere rispettati/e
+\end{itemize}
+\subsection*{Fattori di scelta}
+La soluzione migliore viene trovata in base ai seguenti fattori:
+\begin{itemize}
+ \item la capacità dell'aula preposta ad ospitare la lezione di un determinato insegnamento deve cercare di garantire il posto a sedere agli studenti previsti dall'insegnamento stesso
+ \item le lezioni di un determinato insegnamento devono essere tenute almeno in un numero minimo prefissato di giorni diversi
+ \item le lezioni dello stesso anno devono essere il più possibile adiacenti le une con le altre, riducendo le eventuali ore buche
+ \item le lezioni dello stesso insegnamento devono essere tenute il più possibile nella stessa aula
+ \item le preferenze sui singoli insegnamenti devono essere il più possibile rispettate
+\end{itemize}
+\subsection*{Componenti interne}
+Tutte le informazioni relative a CPSolver 1.1, compresa la relativa documentazione, sono reperibili all'indirizzo: \textit{http://cpsolver.sourceforge.net/api/index.html}.
+
+La versione originale dell'algoritmo permette la sola gestione dei vincoli. Al fine di garantire un prodotto il più possibile adattabile alle diverse realtà universitarie, il team QuiXoft ha innestato all'interno della libreria la gestione delle preferenze sui singoli insegnamenti. Tali modifiche sono state apportate nel modo ritenuto meno invasivo, lasciando il più incontaminato possibile il codice sorgente originale.
+
+Prima di continuare la trattazione delle componenti, occorre rendere nota la seguente convenzione in uso da parte del CPSolver 1.1, che è stata mantenuta durante il nostro sviluppo:
+\begin{itemize}
+ \item i giorni interessati nella generazione dell'orario vengono individuati tramite valore numerico, ove: N°Giorni rappresenta il numero dei giorni di lezione, 0,1, .. N°Giorni-1 rappresenta in formato numerico, i giorni di interesse. Ipotizzando, ad esempio, 5 giorni a disposizione: 0 = LUN, 1 = MAR, .. , 4 = VEN
+ \item le fasce orarie vengono individuate tramite valore numerico, ove: N°FasceOrarie rappresenta il numero di fasce orarie giornaliere, 0,1 .. N°FasceOrarie rappresenta in formato numerico le fasce orarie. Ipotizzando, ad esempio, 6 fasce orarie: 0 = 1° fascia, 1 = 2°fascia, .. , 5 = 6°fascia
+\end{itemize}
+I nomi delle classi e dei metodi rispecchiano le convenzioni standard di Java. La lingua di riferimento adottata, come nel CPSolver 1.1,  è la lingua inglese, commenti compresi.
+\subsection*{La classe MyPreferences\_DaySlot}
+La classe \verb|MyPreferences_DaySlot| rappresenta il gestore delle preferenze. Le preferenze che gestisce sono relative ad un insegnamento, in particolare rappresentano i giorni e/o le fasce orarie in cui non si desidera tenere tale insegnamento.
+L'insieme delle preferenze è organizzato sotto forma di \verb|Vector| (\textit{http://java.sun.com/j2se/1.4.2/docs/api/java/util/Vector.html}), il cui tipo base è \verb|DaySlot_PreferenceInfo|.
+\subsection*{La classe interna DaySlot\_PreferenceInfo}
+La classe \verb|DaySlot_PreferenceInfo| rappresenta una singola preferenza. Ogni preferenza è caratterizzata da diverse informazioni quali:
+\begin{itemize}
+\item	il codice identificativo dell'insegnamento a cui (essa) fa riferimento
+\item	il giorno e la fascia oraria in cui non si desidera tenere l'insegnamento
+\item	il peso della preferenza stessa
+\end{itemize}
+Il peso costituisce un valore numerico attraverso il quale si assegna un valore di importanza ad una preferenza. Tale peso permette all'algoritmo di tenere in maggiore considerazione le preferenze ``molto desiderabili'', rispetto, ad esempio, a preferenze minori.
+
+\paragraph{Pesi e priorità delle preferenze}
+L'assegnazione dei pesi viene gestita internamente alla classe in base ad una scala di priorità. I valori dei pesi sono stati scelti dal team QuiXoft in modo da garantire una corretta ed efficiente elaborazione. La relazione tra il valore di priorità ed il peso che tale priorità associa alla preferenza è riassumibile con la tabella seguente:
+
+\begin{center}
+ \includegraphics[scale=0.8]{images/Algoritm_WeightPriorityRelation.png}
+\end{center}
+\subsection*{I metodi}
+I metodi privati presenti all'interno della classe \verb|MyPrefereces_DaySlot| sono:
+\begin{itemize}
+\item \verb|int getWeightFromPriority (int)| : in base al valore di priorità restituisce il peso corrispondente secondo la tabella precedente.
+\item \verb|DaySlot_PreferenceInfo getPreference (String, int, int)| : restituisce un riferimento alla preferenza di uno specifico insegnamento, in base al giorno ed alla fascia oraria. Nel caso in cui tale preferenza non esistesse il valore restituito è \verb|null|.
+\item \verb|bool existsCoursePreference (String)| : in base al codice identificativo di un insegnamento, restituisce TRUE se esiste almeno una preferenza relativa allo stesso, FALSE nel caso in cui non ne esista alcuna.
+\end{itemize}
+
+I metodi pubblici messi a disposizione sono:
+\begin{itemize}
+\item \verb|addPreference(String, int, int, int)| : aggiunge una preferenza all'insieme delle preferenze. I parametri formali rappresentano l'identificativo dell'insegnamento, il giorno e la fascia oraria nella quale è preferibile non tenere alcuna lezione dell'insegnamento specificato, ed il valore di priorità che la preferenza assumerà all'interno del sistema di calcolo.
+\item \verb|getPreferencesPenality(String)| : restituisce il valore di penalità associato ad un determinato insegnamento. I valore di penalità viene calcolato in base alle preferenze non soddisfatte.
+\end{itemize}
+\subsection*{Dati di input}\label{Algo_Input}
+Per quanto riguarda l'input, l'algoritmo si basa su un file con estensione \verb|.cct| (Curriculum Course Timetabling) il quale contiene i dati necessari all'elaborazione dell'orario delle lezioni.
+
+La struttura interna del file di input è definibile attraverso le diverse sezioni che la compongono; più precisamente esse sono:
+\begin{itemize}
+\item	Sezione \verb|MODEL|: informazioni generali
+\item	Sezione \verb|COURSES|: elenco dei vari insegnamenti
+\item	Sezione \verb|ROOMS|: elenco delle aule
+\item	Sezione \verb|CURRICULA|: elenco dei relativi corsi di laurea
+\item	Sezione \verb|UNAVAIBILITY_CONSTRAINTS|: elenco delle indisponibilità
+\item	Sezione \verb|PREFERENCES|: elenco delle preferenze
+\end{itemize}
+La sezione \verb|MODEL| rappresenta il preambolo del file. Tratta le informazioni di carattere generale riguardanti la realtà universitaria sulla quale si genererà l'orario delle lezioni. Si suddivide nei seguenti campi:
+\begin{itemize}
+\item	\verb|Name|: indica il nome della realtà di riferimento
+\item	\verb|Courses|: indica il numero complessivo dei corsi
+\item	\verb|Rooms|: indica il numero delle aule a disposizione
+\item	\verb|Days|: indica il numero di giorni di lezione
+\item	\verb|Periods_per_day|: indica il numero di fasce orarie in cui è suddiviso ogni giorno
+\item	\verb|Curricula|: indica il numero dei corsi di laurea e relativi curricula interessati nella generazione dell'orario
+\item	\verb|Constraints|: indica il numero di vincoli di indisponibilità
+\end{itemize}
+
+Per la trattazione delle sezioni seguenti occorre avvalersi della seguente convenzione:
+\begin{itemize}
+\item il carattere | indica la divisione dal campo precedente al successivo, e corrisponde al carattere \verb|blank| nel file reale
+\item i campi preceduti dal carattere \# indicano campi a cui è assegnata un'informazione di tipo numerico
+\end{itemize}
+
+La sezione \verb|COURSES| identifica quella nella quale vengono elencati tutti gli insegnamenti e loro caratteristiche. Ogni riga di questa sezione rappresenta un singolo corso, e si attiene alla struttura seguente: \begin{verbatim}
+ CourseID | Teacher | #Lectures | MinWorkingDays | #Students
+\end{verbatim}
+
+La sezione \verb|ROOMS| identifica la sezione nella quale vengono elencate tutte le aule a disposizione e relativa capacità. Ogni riga di questa sezione rappresenta una singola aula, e si attiene alla  struttura seguente:
+\begin{verbatim}
+ RoomID | #Capacity
+\end{verbatim}
+
+La sezione \verb|CURRICULA| identifica la sezione nella quale vengono elencati tutti i corsi di laurea con i relativi curricula ed i relativi insegnamenti che ne fanno parte. Ogni riga di questa sezione rappresenta un singolo corso di laurea, e si attiene alla struttura seguente:
+\begin{verbatim}
+ CurriculumID | #Courses | CourseID ... CourseID
+\end{verbatim}
+
+La sezione \verb|UNAVAILABILITY_CONSTRAINTS| identifica la sezione nella quale vengono elencati tutti i vincoli di indisponibilità degli insegnamenti. Ogni riga di questa sezione rappresenta un singolo vincolo, e si attiene alla struttura seguente:
+\begin{verbatim}
+ CourseID | #Day | #TimeSlot
+\end{verbatim}
+
+
+La sezione \verb|PREFERENCES| identifica la sezione nella quale vengono elencate tutte le preferenze degli insegnamenti: rappresenta il desiderio di non tenere una lezione di un determinato insegnamento. Ogni riga di questa sezione rappresenta una singola preferenza, e si attiene alla struttura seguente:
+\begin{verbatim}
+ CourseID | #Day | #TimeSlot
+\end{verbatim}
+
+\subsection*{Dati di output}
+Per quanto riguarda l'output l'algoritmo produce un file che rappresenta l'intero orario delle lezioni. Ogni riga rappresenta una singola lezione, e si attiene alla struttura seguente:
+\begin{verbatim}
+ CourseID | RoomID | #Day | #TimeSlot
+\end{verbatim}
+
+I valori identificativi dell'insegnamento (\verb|CourseID|) e dell'aula (\verb|RoomID|) derivano dai valori delle sezioni \verb|COURSES| e \verb|ROOMS| trattate nella sezione \ref{Algo_Input}
 \medskip
 
 \modifiche
