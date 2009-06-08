@@ -1,6 +1,7 @@
 <tr>
     <td class="list_table_first_item"><%= link_to teacher_admin.complete_name, teacher_path(teacher_admin), :class => "titoloLista" %></td>
-    <td><%= link_to(image_tag("/images/delete.png"), teacher_admin, :method => :delete, :title => "Elimina definitivamente dal sistema", :confirm => "Sei sicuro di voler eliminare definitivamente il docente dal sistema SIGEOL?") %></td>
     <td><%= link_to image_tag("/images/laurea.jpg"), edit_graduate_courses_teacher_path(teacher_admin), :title => "Gestione dei corsi di laurea associati"%></td>
     <td><%= link_to image_tag("/images/divieto.gif"), edit_capabilities_teacher_path(teacher_admin), :title => "Gestione dei privilegi all'interno del sistema SIGEOL"%></td>
+    <td><%= link_to image_tag("/images/disponibilita.png"), manage_constraints_teacher_path(teacher_admin), :title => "Gestione dei vincoli e delle preferenze del docente"%></td>
+    <td><%= link_to(image_tag("/images/delete.png"), teacher_admin, :method => :delete, :title => "Elimina definitivamente dal sistema", :confirm => "Sei sicuro di voler eliminare definitivamente il docente dal sistema SIGEOL?") %></td>
 </tr>

@@ -1,0 +1,27 @@
+<h1>Modifica del docente <%= show_teacher(@teacher)  %></h1>
+<p>
+    <% if @constraints.size != 0 %>
+      <h4>Vincoli inseriti dal docente:</h4>
+      <table id="manageable_constraints">
+        <tr>
+          <th>Giorno</th>
+          <th>Ora inizio</th>
+          <th>Ora fine</th>
+          <th>Motivazione</th>
+        </tr>
+      <% @constraints.each do |constraint| %>
+        <tr id='<%= constraint.id %>'>
+          <td><%= from_id_to_dayname(constraint.day) %></td>
+          <td><%=h constraint.startHour.to_s(:time) %></td>
+          <td><%=h constraint.endHour.to_s(:time) %></td>
+          <td><%=h constraint.description %></td>
+          <td><% form_remote_tag :url => destroy_constraint_teacher_path(@teacher,:constraint_id => constraint.id) do %>
+            <%= submit_tag "Rimuovi" %>
+          <% end %></td>
+        </tr>
+    <% end %>
+    </table>
+  <% else %>
+    <h4>Il docente non ha inserito nessun vincolo</h4>
+  <% end %>
+</p>

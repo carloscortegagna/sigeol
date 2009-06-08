@@ -3,6 +3,8 @@
 #AUTORE:: Scortegagna Carlo
 #DATA CREAZIONE:: 17/02/2009
 #REGISTRO DELLE MODIFICHE::
+# 05/06/2009 aggiunta l'action manage_constraints
+#
 # 28/09/2009 aggiunta in administration la lista dei docenti non associati a nessun corso di laurea
 # 
 # 19/05/2009 sistemate le action index e show per gli utenti non loggati
@@ -26,7 +28,7 @@
 class TeachersController < ApplicationController
   skip_before_filter :login_required, :only => [:index, :show, :pre_activate, :activate]
   before_filter :manage_teachers_required, :only => [:new, :create, :administration, :edit_graduate_courses,
-                                                     :update_graduate_courses]
+                                                     :update_graduate_courses, :manage_constraints]
   before_filter :manage_capabilities_required, :only => [:edit_capabilities, :update_capabilities]
   before_filter :same_graduate_course_required, :only => [:edit_graduate_courses, :update_graduate_courses,
                                                           :edit_capabilities, :update_capabilities]
@@ -56,7 +58,6 @@ class TeachersController < ApplicationController
 
   def edit_graduate_courses
     total_graduate_courses = @current_user.graduate_courses
-    #total_graduate_courses = GraduateCourse.find(:all)
     @teacher = Teacher.find(params[:id])
     teacher_graduate_courses = @teacher.user.graduate_courses
     @manageable_graduate_courses = total_graduate_courses & teacher_graduate_courses
@@ -65,7 +66,6 @@ class TeachersController < ApplicationController
 
   def edit_capabilities
     total_capabilities = @current_user.capabilities
-    #total_capabilities = Capability.find(:all)
     @teacher = Teacher.find(params[:id])
     teacher_capabilities = @teacher.user.capabilities
     @manageable_capabilities = total_capabilities & teacher_capabilities
@@ -495,6 +495,57 @@ end
     end
   end
 
+  def manage_constraints
+    @teacher = Teacher.find(params[:id])
+    teacher_constraint_ids = ConstraintsOwner.find(:all,
+      :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", params[:id]],
+      :select => ['constraint_id'], :group => 'constraint_id')
+    @constraints = []
+    for c_id in teacher_constraint_ids do
+      if TemporalConstraint.find(c_id.constraint_id).isHard == 0
+        @constraints << TemporalConstraint.find(c_id.constraint_id)
+      end
+    end
+  end
+
+=begin #### metodo per trasformare un vincolo in una preferenza...mi sa che è meglio lasciarlo stare, sorgono un sacco di casini se lo si usa....meglio cancellare direttamente il vincolo
+  def transform_constraint_in_preference
+    teacher = Teacher.find(params[:teacher])
+    constraint_to_transform_in_preference = TemporalConstraint.find(params[:constraint_id])
+
+    teacher_constraint_ids = ConstraintsOwner.find(:all,
+          :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", params[:teacher]],
+          :select => ['constraint_id'], :group => 'constraint_id')
+    preferences = []
+    for id in teacher_constraint_ids do
+      if TemporalConstraint.find(id.constraint_id).isHard != 0
+       preferences << TemporalConstraint.find(id.constraint_id)
+      end
+    end
+    redirect_to(timetabfghles_url)
+    t = TemporalConstraint.new(:description=>"Preferenza docente: " + teacher.name + " " + teacher.surname,
+        :isHard=>1,:startHour=>constraint_to_transform_in_preference.startHour,
+        :endHour=>constraint_to_transform_in_preference.endHour,:day=>constraint_to_transform_in_preference.day)
+    
+    teacher_graduate_courses = teacher.user.graduate_courses
+    if t.save
+      preferences.each do |p|
+        p.isHard = p.isHard + 1
+        p.save
+      end
+      constraint_to_transform_in_preference.destroy
+      for c in teacher_graduate_courses #devo creare un record in constraint_owner per ogni graduate_course del teacher
+        co=ConstraintsOwner.new
+        co.constraint=t
+        co.graduate_course=GraduateCourse.find(c.id)
+        co.owner = teacher
+        co.save
+      end
+    end
+    
+  end
+=end
+  
   private
 
   def same_graduate_course_required
