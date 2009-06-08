@@ -165,7 +165,7 @@ Secondo il \underline{pattern} Active Record esiste una relazione molto stretta 
 \end{description}
 
 \section{Standard di progetto}
-\subsubsection{UML}
+\subsection{UML}
 Il linguaggio \underline{UML} è utilizzato per la modellazione architetturale di un sistema, in quanto, grazie alla sua capacità e chiarezza espressiva, risulta di facile comprensione anche ad estranei al lavoro. Il team QuiXoft ha utilizzato UML 2.0 per:
 \begin{itemize}
  \item Diagrammi use-case nel documento \textsc{Analisi dei Requisiti}
@@ -181,9 +181,9 @@ Lo schema di denominazione deve essere determinante per la comprensione del flus
 \subsection{Standard di programmazione}\label{programmazione}
 Ogni file deve contenere esattamente una classe od un modulo, eccezion fatta per i \underline{template}.E' inoltre necessaria ai fini di una migliore leggibilità, l'uso di una corretta indentazione, fornita dall'ambiente di sviluppo.
 \subsubsection{Ruby e framework Rails}
-Le convenzioni utilizzate negli elementi sviluppati con il linguaggio \underline{Ruby} si trovano all'interno del documento NORME DI PROGETTO al capitolo XX.
+Le convenzioni utilizzate negli elementi sviluppati con il linguaggio \underline{Ruby} si trovano all'interno del documento \textsc{Norme di Progetto} nella sezione 7.2.
 \subsubsection{Java}
-Le convenzioni utilizzate negli elementi sviluppati con il linguaggio Java si trovano all'interno del documento NORME DI PROGETTO al capitolo XX.
+Le convenzioni utilizzate negli elementi sviluppati con il linguaggio Java si trovano all'interno del documento \textsc{Norme di Progetto} nella sezione 7.3.
 
 \subsection{Strumenti di lavoro}
 Durante tutto lo svolgimento del progetto, il team QuiXoft utilizzarà i seguenti strumenti:
@@ -657,12 +657,12 @@ I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e s
  \item \verb|same_graduate_course_required| è utilizzato nelle azioni \verb|edit|,\\ \verb|update|, \verb|select_teaching| e \verb|assign_teaching|.
 \end{itemize}
 \subsubsection{UsersController}
-Il controller \verb|UsersController| dispone solamente delle azioni \verb|edit| e \verb|update| e del metodo privato \verb|same_user_required| (utilizzato come filtro anteposto alle due azioni assieme al filtro \verb|login_required|). Questa scelta progettuale deriva dalla relazione tra i model \verb|Teacher|, \verb|DidacticOffice| e \verb|User|. Per un confronto vedere la sezione \ref{model}.
+Il controller \verb|UsersController| dispone solamente delle azioni \verb|edit| e \verb|update| e del metodo privato \verb|same_user_required| (utilizzato come filtro anteposto alle due azioni assieme al filtro \verb|login_required|). Questa scelta progettuale deriva dalla relazione tra i model \verb|Teacher|, \verb|DidacticOffice| e \verb|User|. Per un confronto vedere nella sezione \ref{model}.
 Il metodo privato \verb|same_user_required| garantisce che non si stia cercando di modificare un utente diverso dal proprio.
 \subsubsection{TeachersController}
-Il controller \verb|TeachersController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare i docenti dei propri corsi di laurea, nonchè di attribuire ad essi nuovi privilegi e corsi di laurea. Attraverso l'azione \verb|new| viene richiesto un indirizzo e-mail di un docente e l'azione \verb|create| verificherà se questo è presente o meno nel database. Nel primo caso se il docente appartiene già a quel corso di laurea verrà segnalato un errore, altrimenti verrà aggiunto; nel secondo caso verrà inviata al nuovo docente una mail con le istruzioni per la registrazione al sistema. Il nuovo docente tramite l'azione \verb|pre_activate|, raggiungibile mediante una richista GET all'indirizzo /teachers/id/pre\_activate?digest=, potrà completare la creazione del proprio user e del relativo indirizzo, generati dall'azione \verb|activate|, raggiungibile mediante una richiesta POST all'indirizzo /teachers/id/activate?digest=. La certezza che solamente il docente invitato potrà creare il proprio account è assicurata attraverso tramite il parametro \verb|digest| che solamente chi ha ha ricevuto la mail di invito può conoscere.
+Il controller \verb|TeachersController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare i docenti dei propri corsi di laurea, nonchè di attribuire ad essi nuovi privilegi e corsi di laurea. Attraverso l'azione \verb|new| viene richiesto un indirizzo e-mail di un docente e l'azione \verb|create| verificherà se questo è presente o meno nel database. Nel primo caso, se il docente appartiene già a quel corso di laurea, verrà segnalato un errore, altrimenti verrà aggiunto; nel secondo caso verrà inviata al nuovo docente una mail con le istruzioni per la registrazione al sistema. Il nuovo docente tramite l'azione \verb|pre_activate|, raggiungibile mediante una richista GET all'indirizzo /teachers/id/pre\_activate?digest=, potrà completare la creazione del proprio user e del relativo indirizzo, generati dall'azione \verb|activate|, raggiungibile mediante una richiesta POST all'indirizzo /teachers/id/activate?digest=. La certezza che solamente il docente invitato potrà creare il proprio account è assicurata attraverso tramite il parametro \verb|digest| che solamente chi ha ha ricevuto la mail di invito può conoscere.
 
-Infine attraverso le azioni \verb|edit_graduate_courses|, \verb|edit_capabilities|, \verb|update_graduate_courses| e \verb|update_capabilities|, raggiungibili rispettivamente mediante una richiesta GET all'indirizzo \\ /teachers/id/edit\_graduate\_courses o /teachers/id/edit\_capabilities e mediante una richiesta POST all'indirizzo /teachers/is/update\_graduate\_courses o /teachers/id/update\_capabilities, è possibilile modificare o rimuovere corsi di laurea e privilegi ai docenti da user che ne hanno la facoltà.
+Infine attraverso le azioni \verb|edit_graduate_courses|, \verb|edit_capabilities|, \verb|update_graduate_courses| e \verb|update_capabilities|, raggiungibili rispettivamente mediante una richiesta GET all'indirizzo \\ /teachers/id/edit\_graduate\_courses o /teachers/id/edit\_capabilities e mediante una richiesta POST all'indirizzo /teachers/is/update\_graduate\_courses o /teachers/id/update\_capabilities, è possibilile, per users che ne hanno la facoltà, modificare o rimuovere corsi di laurea e privilegi dei docenti.
 I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
 \begin{itemize}
  \item \verb|login_required| non è utilizzato nelle azioni \verb|index|, \verb|show| ed \verb|activate|
@@ -673,7 +673,7 @@ I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e s
 \subsubsection{SessionsController}
 Il controller \verb|SessionsController| permette la creazione di una sessione al momento dell'autenticazione dello user. Utilizza quindi le azioni \verb|new|, \verb|create| e \verb|destroy| senza alcun filtro, raggiungibili rispettivamente con una richiesta GET all'indirizzo /session/new, POST all'indirizzo /session e DELETE all'indirizzo /session/id.
 \subsubsection{TeachingsController}
-Il controller \verb|TeachingsController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare le informazioni relative agli insegnamenti dei propri corsi di laurea, nonchè di aggiungere o rimuovere il docente che tiene l'insegnamento in questione attraverso le azioni \verb|select_teacher|, raggiungibile mediante una richiesta GET all'indirizzo \\ /teachings/id/select\_teacher, e \verb|assign_teacher|, raggiungibile mediante una richiesta POST all'indirizzo /teachers/id/assign\_teacher. Il primo fornisce alla view una lista dei docenti presenti nel corso di laurea a cui il curriculum appartiene, mentre il secondo crea questa associazione tramite il model.
+Il controller \verb|TeachingsController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare le informazioni relative agli insegnamenti dei propri corsi di laurea, nonchè di aggiungere o rimuovere il docente che tiene l'insegnamento in questione attraverso le azioni \verb|select_teacher|, raggiungibile mediante una richiesta GET all'indirizzo \\ /teachings/id/select\_teacher, e \verb|assign_teacher|, raggiungibile mediante una richiesta POST all'indirizzo /teachers/id/assign\_teacher. Il primo fornisce alla view una lista dei docenti presenti nel corso di laurea ai quali il curriculum appartiene, mentre il secondo crea questa associazione tramite il model.
 I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
 \begin{itemize}
  \item \verb|login_required| non è utilizzato nelle azioni \verb|index| e \verb|show|
@@ -689,7 +689,7 @@ I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e s
 \end{itemize}
 Non è presente il filtro \verb|same_graduate_course_required| in quanto un edificio non appartiene ad uno o più corsi di laurea, bensì all'intero sistema universitario.
 \subsubsection{ClassroomsController}
-Il controller \verb|ClassroomsController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare le informazioni relative alle aule, nonchè di aggiungere o rimuovere le aule ai propri corsi di laurea attraverso le azione \verb|add_classroom_graduate_course| e \\ \verb|remove_classroom_graduate_course| raggiungibili attraverso una richiesta POST agli indirizzi, rispettivamente,\\ /classrooms/id/add\_classroom\_graduate\_course e \\ /classrooms/id/remove\_classroom\_graduate\_course
+Il controller \verb|ClassroomsController| permette all'utente con gli opportuni privilegi di creare, modificare ed eliminare le informazioni relative alle aule, nonchè di aggiungere o rimuovere le aule associate ai propri corsi di laurea attraverso le azione \verb|add_classroom_graduate_course| e \\ \verb|remove_classroom_graduate_course| raggiungibili attraverso una richiesta POST agli indirizzi, rispettivamente,\\ /classrooms/id/add\_classroom\_graduate\_course e \\ /classrooms/id/remove\_classroom\_graduate\_course
 I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e sono i seguenti:
 \begin{itemize}
  \item \verb|login_required| non è utilizzato solamente nell'azione \verb|show|
@@ -710,7 +710,7 @@ I filtri utilizzati in questo controller vengono tutti anteposti alle azioni e s
  \item \verb|login_required| non è utilizzato nelle azioni \verb|index| e \verb|show|
  \item \verb|manage_timetables_required| non è utilizzato nelle azione \verb|index| e \verb|show|
  \item \verb|same_graduate_course_required| non è utilizzato nelle azioni \verb|index|, \verb|show|, \verb|new|, \verb|create|
- \item \verb|public_required| è utilizzato nell'azione \verb|show| ed assicura che l'orario che si intente visualizzare sia stato dichiarato pubblico da un utente con gli opportuni privilegi.
+ \item \verb|public_required| è utilizzato nell'azione \verb|show| ed assicura che l'orario che si intende visualizzare sia stato dichiarato pubblico da un utente con gli opportuni privilegi.
 \end{itemize}
 \subsection{Componente View}
 Il componente View si occupa di presentare le informazioni presenti nel sistema a chiunque le richieda, sia esso un utente finale o un altro sistema software. Per far ciò sono presenti diversi elementi in questa componente, tra i quali:
@@ -729,42 +729,42 @@ Di seguito è riportata una immagine esplicativa della struttura del layout:
 \subsubsection{Templates}
 Il sistema Sigeol prevede un diverso template per ogni azione raggiungibile attraverso una richiesta GET presente in ogni controller. Di seguito viene riportata una descrizione di ogni template:
 \subsubsection*{Template comuni a più controller}
-Per evitare fastidiose ripetizione di seguito sono riportate le descrizioni dei template per le azioni che figurano in più controller:
+Per evitare fastidiose ripetizioni di seguito sono riportate le descrizioni dei template per le azioni che figurano in più controller:
 \begin{itemize}
  \item \verb|new.html.erb|: presenta un \underline{form} per l'inserimento di una nuova istanza.
  \item \verb|edit.html.erb|: presenta un form per la modifica di un'istanza esistente.
  \item \verb|index.html.erb|: presenta un elenco ordinato di un insieme di istanze.
- \item \verb|show.html.erb|: presenta le informazioni relativa ad una determinata istanza.
- \item \verb|administration.html.erb|: presenta un elenco ordinato di un insieme di istanza e le relative funzioni
+ \item \verb|show.html.erb|: presenta le informazioni relative ad una determinata istanza.
+ \item \verb|administration.html.erb|: presenta un elenco ordinato di un insieme di istanze e le relative funzioni
  per amministrarle.
  \item \verb|new_constraint.html.erb|: presenta un form per l'inserimento di un nuovo vincolo o preferenza
 \end{itemize}
 Inoltre per garantire l'interoperabilità dei dati sono presenti i template XML per tutte le azioni \verb|index| e \verb|show|, nonchè un template PDF per l'azione \verb|show| di \verb|TimetablesController|. Infine è presente il template per la mail che sarà inviata al docente per l'attivazione del proprio user.
 \subsubsection*{Template per TeachingsController}
-Il template XHTML \verb|select_teacher.html.erb| è presente per il \\ \verb|TeachingsController| per l'azione \verb|select_teacher|.  Questo presenta un form per l'assegnamento di un docente ad un insegnamento utilizzando metodi per la presentazione automatica della lista dei docenti come i tag XHTML \verb|<select>| e \verb|<option>|.
+Il template XHTML \verb|select_teacher.html.erb| è presente per il \\ \verb|TeachingsController| per l'azione \verb|select_teacher|.  Presenta un form per l'assegnamento di un docente ad un insegnamento utilizzando metodi per la presentazione automatica della lista dei docenti come i tag XHTML \verb|<select>| e \verb|<option>|.
 \subsubsection*{Template per CurriculumsController}
 Il template XHTML \verb|select_teaching.html.erb| è presente per il \\ \verb|CurriculumsController| per l'azione \verb|select_teaching|.  Questo presenta un form per l'assegnamento di un insegnamento ad un curriculum utilizzando metodi per la presentazione automatica della lista degli insegnamenti come i tag XHTML \verb|<select>| e \verb|<option>|.
 \subsubsection*{Template per TeachersController}
 Il \verb|TeachersController| prevede diverse azioni raggiungibili attraverso una richiesta GET ed i relativi template XHTML sono i seguenti:
 \begin{itemize}
  \item \verb|pre_activate.html.erb|: presenta un form per l'attivazione dello \verb|user| del docente invitato
- \item \verb|edit_capabilities.html.erb|: presenta un form per l'assegnazione di nuovi privilegi allo \verb|user| detenuto dal docente utilizzando metodi per la presentazione automatica della lista dei privilegi come li tag XHTML \verb|<input type="checkbox">|
+ \item \verb|edit_capabilities.html.erb|: presenta un form per l'assegnazione di nuovi privilegi allo \verb|user| detenuto dal docente utilizzando metodi per la presentazione automatica della lista dei privilegi come il tag XHTML \verb|<input type="checkbox">|
  \item \verb|edit_graduate_courses.html.erb|: presenta un form per l'assegnazione di nuovi corsi di laurea allo \verb|user| detenuto dal docente utilizzando metodi per la presentazione automatica della lista dei corsi di laurea come i tag XHTML \verb|<select>| e \verb|<option>|
 \end{itemize}
 \subsubsection{Partials}
-Il sistema Sigeol prevede l'uso di partials per la visualizzazione delle informazioni che sono riutilizzate in più view. Ognuno di essi è caratterizzato dalla presenza di un \_ (underscore) prima del nome del file che sono della forma \verb|_nomemodel.html.erb| e \verb|_nomemodel_admin.html.erb| e dovranno essere contenuti nella rispettiva directory che contiene i template del controller associato a \verb|nomemodel| (ad esempio \verb|_teaching.html.erb| è contenuto all'interno della directory \verb|app\views\teachings|. I partial del primo tipo visualizzano le informazioni dell'oggetto di tipo \verb|nomemodel| per le azioni di pubblico accesso, mentre i secondi per le azioni di amministrazione con le relative funzioni.
+Il sistema Sigeol prevede l'uso di partials per la visualizzazione delle informazioni che sono riutilizzate in più view. Ognuno di essi è caratterizzato dalla presenza di un \_ (underscore) prima del nome del file è nella forma \verb|_nomemodel.html.erb| e \verb|_nomemodel_admin.html.erb| e dovrà essere contenuto nella rispettiva directory che contiene i template del controller associato a \verb|nomemodel| (ad esempio \verb|_teaching.html.erb| è contenuto all'interno della directory \verb|app\views\teachings|). I partial del primo tipo visualizzano le informazioni dell'oggetto di tipo \verb|nomemodel| per le azioni di pubblico accesso, mentre i secondi per le azioni di amministrazione con le relative funzioni.
 
 Per i controller che presentano l'azione \verb|administration| e necessitano di un menu di amministrazione è presente un partial \verb|_menu_admin.html.erb| per la visualizzazione del suddetto menu che risiederà nella stessa directory che contiene i template del controller in questione.
 
-I partials, infine, che vengono utilizzati dal layout sono contenuti nella directory \verb|app\views\shared|, come ad esempio \verb|_user_sidebar.html.erb|.
+Infine i partials che vengono utilizzati dal layout sono contenuti nella directory \verb|app\views\shared|, come ad esempio \verb|_user_sidebar.html.erb|.
 \subsection{Componente Helper}\label{helper}
 Il componente Helper si occupa di raccogliere le funzionalità di utilità necessarie ai componenti del pattern MVC. Ogni file che rappresenta un Helper non conterrà una classe, bensì un modulo, ovvero un insieme di metodi di pubblica utilità. Per ogni controller è previsto lo specifico Helper, anche se non è necessario che siano presenti dei metodi in quanto non tutti i controller (e le rispettive view) necessitano di funzioni ausiliarie.
 \subsubsection{ApplicationHelper}
 L' \verb|ApplicationHelper| contiene i metodi di utilità che non trovano una collocazione logica negli altri helper, nonchè tutte le funzionalità ausiliare richieste da più classi delle diverse componenti.
 I metodi presenti all'interno dell' \verb|ApplicationHelper| sono i seguenti:
 \begin{itemize}
- \item \verb|first_upper(name)|: metodo che restituisce la stringa \verb|name| a cui viene reso maiscolo il primo carattere e minuscoli i rimanenti.
- \item \verb|login_form|: metodo che \underline{renderizza} il partial per la form per il login.
+ \item \verb|first_upper(name)|: metodo che restituisce la stringa \verb|name| a cui viene reso maiuscolo il primo carattere e minuscoli i rimanenti.
+ \item \verb|login_form|: metodo che \underline{renderizza} il partial per il form per il login.
  \item \verb|standard_sidebar|: metodo che renderizza il partial per il menu pubblico.
  \item \verb|user_sidebar|: metodo che renderizza il partial per il menu privato.
  \item \verb|link(user)|: metodo che restituisce l'insieme dei link disponibili per \verb|user|.
@@ -867,11 +867,11 @@ L'algoritmo è giunto tra i finalisti in tutti i diversi problemi, aggiudicandos
 \\
 (sito web ufficiale: \textit{http://www.cs.qub.ac.uk/itc2007/index.htm})
 \subsubsection*{Motivazioni della scelta}
-CPSolver 1.1 è stato scelto dal nostro team in seguito ad un'attenta analisi. Le motivazioni che ci hanno portato ad adottarlo sono riassumibili in:
+CPSolver 1.1 è stato scelto dal nostro team in seguito ad un'attenta analisi. Le motivazioni che ci hanno portato ad adottarlo sono riassumibili nei seguenti punti cardine:
 \begin{itemize}
  \item Ottimi risultati a livello internazionale
  \item Totalmente open source
- \item La libreria è scritta interamente in Java, e Ruby, tramite l'implementazione JRuby, supporta in maniera eccellente Java
+ \item Libreria scritta interamente in Java e Ruby, tramite l'implementazione JRuby, supporta in maniera eccellente Java
  \item Il codice sorgente è strutturato in maniera ordinata e corretta
  \item La documentazione relativa è ampia e facilmente accessibile
 \end{itemize}
@@ -907,25 +907,25 @@ La soluzione migliore viene trovata in base ai seguenti fattori:
 \subsubsection*{Componenti interne}
 Tutte le informazioni relative a CPSolver 1.1, compresa la relativa documentazione, sono reperibili all'indirizzo: \textit{http://cpsolver.sourceforge.net/api/index.html}.
 
-La versione originale dell'algoritmo permette la sola gestione dei vincoli. Al fine di garantire un prodotto il più possibile adattabile alle diverse realtà universitarie, il team QuiXoft ha innestato all'interno della libreria la gestione delle preferenze sui singoli insegnamenti. Tali modifiche sono state apportate nel modo meno invasivo possibile, lasciando il più incontaminato possibile il codice sorgente originale.
+La versione originale dell'algoritmo permette la sola gestione dei vincoli. Al fine di garantire un prodotto il più possibile adattabile alle diverse realtà universitarie, il team QuiXoft ha innestato all'interno della libreria la gestione delle preferenze sui singoli insegnamenti. Tali modifiche sono state apportate nel modo ritenuto meno invasivo, lasciando il più incontaminato possibile il codice sorgente originale.
 
-Prima di continuare la trattazione delle componenti occorre rendere nota la seguente convenzione in uso da parte del CPSolver 1.1 e che è stata mantenuta durante il nostro sviluppo:
+Prima di continuare la trattazione delle componenti, occorre rendere nota la seguente convenzione in uso da parte del CPSolver 1.1, che è stata mantenuta durante il nostro sviluppo:
 \begin{itemize}
- \item i giorni interessati nella generazione dell'orario vengono individuati tramite valore numerico: ove N°Giorni rappresenta il numero dei giorni di lezione, 0,1, .. N°Giorni-1 rappresentano in formato numerico i giorni di interesse. Ipotizzando, ad esempio, 5 giorni a disposizione: 0 = LUN, 1 = MAR, .. , 4 = VEN
- \item le fasce orarie vengono individuate tramite valore numerico: ove N°FasceOrarie rappresenta il numero di fasce orarie giornaliere, 0,1 .. N°FasceOrarie rappresentano in formato numerico le fasce orarie. Ipotizzando, ad esempio, 6 fasce orarie: 0 = 1° fascia, 1 = 2°fascia, .. , 5 = 6°fascia
+ \item i giorni interessati nella generazione dell'orario vengono individuati tramite valore numerico, ove: N°Giorni rappresenta il numero dei giorni di lezione, 0,1, .. N°Giorni-1 rappresenta in formato numerico, i giorni di interesse. Ipotizzando, ad esempio, 5 giorni a disposizione: 0 = LUN, 1 = MAR, .. , 4 = VEN
+ \item le fasce orarie vengono individuate tramite valore numerico, ove: N°FasceOrarie rappresenta il numero di fasce orarie giornaliere, 0,1 .. N°FasceOrarie rappresenta in formato numerico le fasce orarie. Ipotizzando, ad esempio, 6 fasce orarie: 0 = 1° fascia, 1 = 2°fascia, .. , 5 = 6°fascia
 \end{itemize}
 I nomi delle classi e dei metodi rispecchiano le convenzioni standard di Java. La lingua di riferimento adottata, come nel CPSolver 1.1,  è la lingua inglese, commenti compresi.
 \subsubsection*{La classe MyPreferences\_DaySlot}
-La classe \verb|MyPreferences_DaySlot| rappresenta il gestore delle preferenze. Le preferenze che gestisce sono relative ad un insegnamento, in particolare rappresentano i giorni e/o le fasce orarie in cui tale insegnamento non è desiderabile venga tenuto.
+La classe \verb|MyPreferences_DaySlot| rappresenta il gestore delle preferenze. Le preferenze che gestisce sono relative ad un insegnamento, in particolare rappresentano i giorni e/o le fasce orarie in cui non si desidera tenere tale insegnamento.
 L'insieme delle preferenze è organizzato sotto forma di \verb|Vector| (\textit{http://java.sun.com/j2se/1.4.2/docs/api/java/util/Vector.html}), il cui tipo base è \verb|DaySlot_PreferenceInfo|.
 \subsubsection*{La classe interna DaySlot\_PreferenceInfo}
 La classe \verb|DaySlot_PreferenceInfo| rappresenta una singola preferenza. Ogni preferenza è caratterizzata da diverse informazioni quali:
 \begin{itemize}
-\item	il codice identificativo dell'insegnamento a cui essa fa riferimento
-\item	il giorno e la fascia oraria in cui è desiderabile non venga tenuto l'insegnamento
+\item	il codice identificativo dell'insegnamento a cui (essa) fa riferimento
+\item	il giorno e la fascia oraria in cui non si desidera tenere l'insegnamento
 \item	il peso della preferenza stessa
 \end{itemize}
-Il peso rappresenta un valore numerico attraverso il quale si assegna un valore di importanza ad una preferenza. Tale peso permette all'algoritmo di tenere in maggiore considerazione le preferenze ``molto desiderabili'', rispetto, ad esempio, a preferenze minori.
+Il peso costituisce un valore numerico attraverso il quale si assegna un valore di importanza ad una preferenza. Tale peso permette all'algoritmo di tenere in maggiore considerazione le preferenze ``molto desiderabili'', rispetto, ad esempio, a preferenze minori.
 
 \paragraph{Pesi e priorità delle preferenze}
 L'assegnazione dei pesi viene gestita internamente alla classe in base ad una scala di priorità. I valori dei pesi sono stati scelti dal team QuiXoft in modo da garantire una corretta ed efficiente elaborazione. La relazione tra il valore di priorità ed il peso che tale priorità associa alla preferenza è riassumibile con la tabella seguente:
@@ -937,13 +937,13 @@ L'assegnazione dei pesi viene gestita internamente alla classe in base ad una sc
 I metodi privati presenti all'interno della classe \verb|MyPrefereces_DaySlot| sono:
 \begin{itemize}
 \item \verb|int getWeightFromPriority (int)| : in base al valore di priorità restituisce il peso corrispondente secondo la tabella precedente.
-\item \verb|DaySlot_PreferenceInfo getPreference (String, int, int)| : restituisce un riferimento alla preferenza di uno specifico insegnamento, in base al giorno ed alla fascia oraria di interesse. Nel caso in cui tale preferenza non esistesse il valore restituito è \verb|null|.
+\item \verb|DaySlot_PreferenceInfo getPreference (String, int, int)| : restituisce un riferimento alla preferenza di uno specifico insegnamento, in base al giorno ed alla fascia oraria. Nel caso in cui tale preferenza non esistesse il valore restituito è \verb|null|.
 \item \verb|bool existsCoursePreference (String)| : in base al codice identificativo di un insegnamento, restituisce TRUE se esiste almeno una preferenza relativa allo stesso, FALSE nel caso in cui non ne esista alcuna.
 \end{itemize}
 
 I metodi pubblici messi a disposizione sono:
 \begin{itemize}
-\item \verb|addPreference(String, int, int, int)| : aggiunge una preferenza all'insieme delle preferenze. I parametri formali rappresentano l'identificativo dell'insegnamento, il giorno e la fascia oraria in cui è desiderabile non venga tenuta alcuna lezione dell'insegnamento specificato, ed il valore di priorità che la preferenza assumerà all'interno del sistema di calcolo.
+\item \verb|addPreference(String, int, int, int)| : aggiunge una preferenza all'insieme delle preferenze. I parametri formali rappresentano l'identificativo dell'insegnamento, il giorno e la fascia oraria nella quale è preferibile non tenere alcuna lezione dell'insegnamento specificato, ed il valore di priorità che la preferenza assumerà all'interno del sistema di calcolo.
 \item \verb|getPreferencesPenality(String)| : restituisce il valore di penalità associato ad un determinato insegnamento. I valore di penalità viene calcolato in base alle preferenze non soddisfatte.
 \end{itemize}
 \subsubsection*{Dati di input}\label{Algo_Input}
@@ -954,7 +954,7 @@ La struttura interna del file di input è definibile attraverso le diverse sezio
 \item	Sezione \verb|MODEL|: informazioni generali
 \item	Sezione \verb|COURSES|: elenco dei vari insegnamenti
 \item	Sezione \verb|ROOMS|: elenco delle aule
-\item	Sezione \verb|CURRICULA|: elenco dei relativa corsi di laurea
+\item	Sezione \verb|CURRICULA|: elenco dei relativi corsi di laurea
 \item	Sezione \verb|UNAVAIBILITY_CONSTRAINTS|: elenco delle indisponibilità
 \item	Sezione \verb|PREFERENCES|: elenco delle preferenze
 \end{itemize}
@@ -975,7 +975,7 @@ Per la trattazione delle sezioni seguenti occorre avvalersi della seguente conve
 \item i campi preceduti dal carattere \# indicano campi a cui è assegnata un'informazione di tipo numerico
 \end{itemize}
 
-La sezione \verb|COURSES| identifica la sezione nella quale vengono elencati tutti gli insegnamenti e relative caratteristiche. Ogni riga di questa sezione rappresenta un singolo corso, e si attiene alla struttura seguente: \begin{verbatim}
+La sezione \verb|COURSES| identifica quella nella quale vengono elencati tutti gli insegnamenti e loro caratteristiche. Ogni riga di questa sezione rappresenta un singolo corso, e si attiene alla struttura seguente: \begin{verbatim}
  CourseID | Teacher | #Lectures | MinWorkingDays | #Students
 \end{verbatim}
 
@@ -995,7 +995,7 @@ La sezione \verb|UNAVAILABILITY_CONSTRAINTS| identifica la sezione nella quale v
 \end{verbatim}
 
 
-La sezione \verb|PREFERENCES| identifica la sezione nella quale vengono elencate tutte le preferenze degli insegnamenti: rappresentano quando non è desiderabile venga tenuta una lezione di un determinato insegnamento. Ogni riga di questa sezione rappresenta una singola preferenza, e si attiene alla struttura seguente:
+La sezione \verb|PREFERENCES| identifica la sezione nella quale vengono elencate tutte le preferenze degli insegnamenti: rappresenta il desiderio di non tenere una lezione di un determinato insegnamento. Ogni riga di questa sezione rappresenta una singola preferenza, e si attiene alla struttura seguente:
 \begin{verbatim}
  CourseID | #Day | #TimeSlot
 \end{verbatim}
@@ -1013,7 +1013,7 @@ Per facilitare la comprensione dell'organizzazione del sistema Sigeol, viene pre
 \\
 A differenza delle consuete applicazioni sviluppate tramite il framework Rails, il sistema Sigeol presenta la cartella \verb|WEB-INF| che contiene tutte le classi e librerie utilizzate dalla servlet e il suo file di configurazione web.xml.\\ Per ulteriori informazioni sulla tecnologia servlet visitare il sito \\ http://java.sun.com/products/servlet/ .
 \section{Tracciamento componenti-requisiti}
-Di seguito è riportato il tracciamento dei requisiti descritti nel documento denominato \textsc{Analisi dei Requisiti} con le componenti descritti nel presente.\\
+Di seguito è riportato il tracciamento dei requisiti descritti nel documento denominato \textsc{Analisi dei Requisiti}, con le componenti descritte nella presente tabella.\\
 \begin{center}
 \begin{small}
 \begin{tabular}{|c||c|c|c|c|c|}
