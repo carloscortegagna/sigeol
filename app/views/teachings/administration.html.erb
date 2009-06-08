@@ -14,6 +14,11 @@
         <%= show_teaching_admin(t) %>
       <% end %>
     </table>
+  <% else %>
+    <p>Nessun insegnamento presente.</p>
+  <% end %>
+  <% if (g != @graduate_courses[@graduate_courses.size-1]) %>
+    <hr />
   <% end %>
 <% end %>
 <h3>Inserimento nuovo insegnamento </h3>
