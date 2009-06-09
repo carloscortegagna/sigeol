@@ -1,0 +1,24 @@
+<h1>Amministrazione tabelle orarie</h1>
+<% @timetables.each do |k, v| %>
+  <div class="first_div">
+    <%= k.name %>
+    <% v.each do |key, value| %>
+      <%= key %>
+      <table>
+        <% value.each do |ke, val| %>
+          <tr>
+            <td><%= ke %></td>
+            <% if val %>
+              <% val.each do |t|%>
+                <td><%= link_to "Anno " + t.period.year.to_s, t %></td>
+              <% end %>
+              <td><%= link_to "Elimina", destroy_all_timetables_path(:year => key, :subperiod => ke, :graduate_course => k.id), :method => :delete %></td>
+            <% else %>
+              <td><%= link_to "Genera", :action => :new, :subperiod => ke, :graduate_course => k.id, :year => key%></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+<% end %>

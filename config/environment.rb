@@ -80,21 +80,21 @@ ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.
     merge!(:default => '%d/%m/%Y')
 
 ValidatesTimeliness::Formats.remove_us_formats
-ActionMailer::Base.default_url_options[:host] = MAIL_CONFIG['host']
-if MAIL_CONFIG['authentication'] == 'plain'
+ActionMailer::Base.default_url_options[:host] = CONFIG['host']
+if CONFIG['authentication'] == 'plain'
   #ActionMailer::Base.smtp.settings = {:authentication => :plain}
 end
-if MAIL_CONFIG['authentication'] == 'login'
+if CONFIG['authentication'] == 'login'
   #ActionMailer::Base.smtp.settings = {:authentication => :login}
 end
 ActionMailer::Base.smtp_settings = {
-    :tls => MAIL_CONFIG['tls'],
-    :address => MAIL_CONFIG['address'],
-    :port => MAIL_CONFIG['port'].to_i,
-    :domain => MAIL_CONFIG['domain'],
-    :authentication => MAIL_CONFIG['authentication'],
-    :user_name => MAIL_CONFIG['user_name'],
-    :password => MAIL_CONFIG['password']
+    :tls => CONFIG['mail']['tls'],
+    :address => CONFIG['mail']['address'],
+    :port => CONFIG['mail']['port'].to_i,
+    :domain => CONFIG['mail']['domain'],
+    :authentication => CONFIG['mail']['authentication'],
+    :user_name => CONFIG['mail']['user_name'],
+    :password => CONFIG['mail']['password']
   }
 if RUBY_PLATFORM =~ /java/
   Dir["#{RAILS_ROOT}/lib/jar/*.jar"].each do |jarfile|

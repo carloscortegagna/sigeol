@@ -1,0 +1,18 @@
+<h3>Creazione dell' orario del periodo <%= params[:subperiod]%> anno accademico <%= params[:year]%> </h3>
+<% form_tag(:action => :create, :graduate_course => params[:graduate_course], :subperiod => params[:subperiod], :year => params[:year]) do %>
+   Data di scadenza:
+   <%= date_select("range", "expiry_date", :order => [:day,:month, :year], :start_year => Time.now.year, :use_month_names => TimetablesHelper::MONTHS_NAMES) %>
+   <br/>
+   Orario di lezione
+   <%= text_field_tag "start_hour1", nil, :maxlength => 5, :size => 10 %>
+   <%= text_field_tag "end_hour1", nil, :maxlength => 5, :size => 10 %>
+   <br/>
+   Orario della pausa(facoltativo)
+   <%= text_field_tag "start_hour2", nil, :maxlength => 5, :size => 10 %>
+   <%= text_field_tag "end_hour2", nil, :maxlength => 5, :size => 10 %>
+   <br/>
+   Durata di una lezione (in minuti)
+   <%= text_field_tag "duration", nil, :maxlength => 5, :size => 10 %>
+   <%= submit_tag "Crea" %>
+<%end%>
+
