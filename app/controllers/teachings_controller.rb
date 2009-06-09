@@ -78,6 +78,9 @@ class TeachingsController < ApplicationController
   # GET /teachings/1/edit
   def edit
     @teaching = Teaching.find(params[:id])
+    @period = @teaching.period
+    @year = Period.find(:all, :select => "DISTINCT year", :conditions=> ["year !=  #{@period.year} "])
+    @subperiod = Period.find(:all, :select => "DISTINCT subperiod",:conditions=> ["subperiod !=  #{@period.subperiod}"])
   end
 
   # POST /teachings
@@ -133,13 +136,20 @@ class TeachingsController < ApplicationController
   # PUT /teachings/1.xml
   def update
     @teaching = Teaching.find(params[:id])
-
+    @period = @teaching.period
+    period = Period.find_by_subperiod_and_year(params[:subperiod], params[:year])
+    if period
+      @teaching.period = period
+    end
     respond_to do |format|
       if @teaching.update_attributes(params[:teaching])
         flash[:notice] = 'Insegnamento aggiornato con successo'
         format.html { redirect_to(@teaching) }
         format.js{render(:update) {|page| page.redirect_to(@teaching)}}
       else
+        @graduate_courses = @current_user.graduate_courses
+        @year = Period.find(:all, :select => "DISTINCT year")
+        @subperiod = Period.find(:all, :select => "DISTINCT subperiod")
         format.html { render :action => "edit" }
         format.js{render :action => 'create.js.rjs'}
       end
