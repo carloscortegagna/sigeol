@@ -106,6 +106,899 @@ Ogni risultato ottenuto dalle attività di verifica, validazione e qualifica dov
 
 \subsection{Dettaglio delle verifiche tramite test}
 Per l'esecuzione delle attività di verifica tramite test verranno utilizzati i moduli e le classi rese disponibili dal framework Rails, e più precisamente ogni test di unità dovrà estendere la classe ActiveSupport::TestCase ed ogni test funzionale dovrà estendere la classe ActionController::TestCase.
+
+\subsubsection{Unit Tests}
+Nello sviluppo di un'applicazione tramite il framework Rails, i test di unità (unit test) sono specifici per la verifica degli elementi appartenenti al componente Model. Data la particolare importanza di questa componente in quanto gestisce la persistenza dei dati, il team QuiXoft ha scelto di effettuare gli unit tests attraverso l'uso di fixtures, ovvero con istanze reali di un determiato model opportunamente salvate in file con estensione \verb|yml| all'interno della directory \verb|test/fixtures|. Prima dell'esecuzione della verifica il database di test sarà inizializzato con i dati contenuti nelle fixtures che vengono utilizzate in quel particolare test.
+
+Ogni classe che implementa un insieme di test per un particolare model dovrà essere denominata \verb|NomeModelTest| ed essere salvata su di un file chiamato \verb|nome_model_test.rb| all'interno della directory \verb|test/unit|.
+
+Un esempio di unit test per il model \verb|address| e delle relative fixtures utilizzate è dato dalla seguente porzione di codice:
+
+nel file \verb|address_test.rb|
+\begin{verbatim}
+class AddressTest < ActiveSupport::TestCase
+  fixtures :addresses, :buildings
+
+  def setup
+    @a=Address.new
+  end
+  
+  def test_correct_address
+    @a.telephone="049-9050231"
+    @a.street="Via Belzoni 6"
+    @a.city="Villafranca veronese"
+    assert @a.save
+  end
+
+  def test_destroy_address_in_building_address_id_must_nil
+    addresses(:address_2).delete
+    !assert(buildings(:building_1).address_id)
+  end
+end
+\end{verbatim}
+
+nel file \verb|adresses.yml|
+\begin{verbatim}
+address_2:
+  city: Vicenza
+  telephone: 049-9075393
+  street: via rossini 9
+\end{verbatim}
+
+nel file \verb|buildings.yml|
+\begin{verbatim}
+building_1:
+  name: Torre Archimede
+  address: address_2
+\end{verbatim}
+
+
+Di seguito sono riportate le tabelle che riassumono l'intera campagna di test delle classi appartenenti al componente model.
+
+\begin{center}
+\textbf{Test su AcademicOrganization}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline 
+\hline
+ 1.1 & 
+ Istanza di un oggetto con attributi nulli.& 
+ Il sistema deve riconoscere l'oggetto come non valido. & 
+ \checkmark \\
+\hline\hline
+ 2.1 & 
+ Il contenuto dell'attributo number dell'oggetto d'istanza è 0.& 
+ number può contenere solo valori interi compresi tra 1 e 4. Non essendo valido l'oggetto non dovrà essere salvato nel database.& 
+ \checkmark \\
+ \hline
+ 2.2 & 
+ number contiene il valore 7.& 
+ Lo stesso del caso di prova 2.1.& 
+ \checkmark \\
+ \hline
+ 2.3 & 
+ number contiene il valore 3.& 
+ number contiene un valore corretto e quindi non devono essere riscontrati errori di validazione su di esso.& 
+ \checkmark \\
+ \hline\hline
+ 3.1& 
+ Il contenuto dell'attributo name dell'oggetto d'istanza è 12a34.& 
+ name può contenere solo caratteri alfabetici. Non essendo valido l'oggetto non dovrà essere salvato nel database.& 
+ \checkmark \\
+ \hline
+ 3.2& 
+ name contiene un valore valido.& 
+ Non devono essere riscontrati errori di validazione su name.& 
+ \checkmark \\
+ \hline \hline
+ 4.1&
+ Agli attributi name e number dell'oggetto da salvare nel db vengono assegnati gli stessi valori di una tupla già presente.&
+ Non devono esistere più tuple con la stessa coppia di valori contenuti in name e number. Non essendo valido l'oggetto non dovrà essere salvato nel database.&
+ \checkmark \\
+ \hline
+ \end{tabular}
+\end{small}
+\end{center}
+
+\begin{center}
+\textbf{Test su Address}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline 
+\hline
+ 5.1 & 
+ Istanza di un oggetto con attributi nulli.& 
+ Il sistema deve riconoscere l'oggetto come non valido. & 
+ \checkmark \\
+\hline\hline
+ 6.1& 
+ Il contenuto dell'attributo telephone è 12345-123456.& 
+ Il prefisso ha più di quattro cifre e quindi non è valido. L'oggetto per questo motivo non deve essere salvato nel db.&
+ \checkmark \\
+ \hline
+ 6.2 & 
+ telephone contiene il valore 1234-12345.& 
+ Il prefisso è corretto ma il numero contiene meno di sei cifre. L'oggetto per questo motivo non deve essere salvato nel db.& 
+ \checkmark \\
+ \hline
+ 6.3 & 
+ telephone contiene il valore 1a23-12345.& 
+ Contiene un carattere alfabetico. L'oggetto per questo motivo non deve essere salvato nel db.& 
+ \checkmark \\
+ \hline
+ 6.4 & 
+ telephone rispetta l'espressione regolare.& 
+ Non devono essere riscontrati errori di validazione su telephone.& 
+ \checkmark \\
+ \hline\hline
+ 7.1& 
+ Cancellazione di un indirizzo associato ad uno user.& 
+ Eliminato l'indirizzo, lo user associato deve avere il contenuto della chiave esterna(address\_id) a nil.& 
+ \checkmark \\
+ \hline \hline
+ 8.1&
+ Cancellazione di un indirizzo associato ad un palazzo.&
+ Eliminato l'indirizzo, il palazzo associato deve avere il contenuto della chiave esterna(address\_id) a nil.&
+ \checkmark \\
+ \hline \hline
+ 9.1&
+ Creazione e salvataggio di un indirizzo valido.&
+ L'oggetto deve essere salvato nel database.& 	
+ \checkmark \\
+ \hline 
+ \end{tabular}
+\end{small}
+\end{center}
+
+\newpage 
+\begin{center}
+\textbf{Test su BooleanConstraint}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline 
+\hline
+ 10.1 & 
+ Istanza di un oggetto con attributi nulli.& 
+ Il sistema deve riconoscere l'oggetto come non valido. & 
+ \checkmark \\
+\hline\hline
+ 11.1& 
+ L'attributo bool dell'oggetto d'istanza contiene il valore 3.& 
+ Il valore 3 deve essere convertito a false.&
+ \checkmark \\
+ \hline
+ 11.2 & 
+ bool assume il valore 1& 
+ Il valore 1 deve essere convertito a true.& 
+ \checkmark \\
+ \hline
+ 11.3 & 
+ bool assume il valore 0.& 
+ Il valore 0 deve essere convertito a false.& 
+ \checkmark \\
+ \hline\hline
+ 12.1 & 
+ L'attributo isHard dell'oggetto d'istanza contiene il valore 11.& 
+ isHard deve contenere solo valori interi compresi tra 0 e 10. L'oggetto per questo motivo non deve essere salvato nel db.& 
+ \checkmark \\
+ \hline
+ 12.2& 
+ isHard contiene il valore negativo -1.& 
+ Lo stesso del caso di prova 12.1& 
+ \checkmark \\
+ \hline
+ 12.3&
+ isHard contiene il valore 1.1.&
+ Lo stesso del caso di prova 12.1&
+ \checkmark \\
+ \hline
+ 12.4&
+ isHard contiene il valore 0.&
+ Non devono essere riscontrati errori di validazione su isHard.& 	
+ \checkmark \\
+ \hline 
+ \end{tabular}
+\end{small}
+\end{center}
+
+\begin{center}
+\textbf{Test su Building}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline 
+\hline
+ 13.1 & 
+ Istanza di un oggetto con attributi nulli.& 
+ Il sistema deve riconoscere l'oggetto come non valido. & 
+ \checkmark \\
+\hline\hline
+ 14.1& 
+ L'attributo name dell'oggetto da salvare assume un valore uguale a quello di un oggetto già salvato.  & 
+ Non devono esistere due palazzi con lo stesso nome. Quindi l'istanza del caso di prova non essendo valida non deve essere salvata nel db. &
+ \checkmark \\
+ \hline\hline
+ 15.1 & 
+ Eliminazione di un oggetto di tipo Building.& 
+ Non deve più esistere nel database il palazzo, l'indirizzo associato e tutte le classi appartenenti.& 
+ \checkmark \\
+ \hline
+ \end{tabular}
+ \end{small}
+ \end{center}
+\newpage
+\begin{center}
+\textbf{Test su Capability}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline 
+\hline
+ 16.1 & 
+ Istanza di un oggetto con attributi nulli.& 
+ Il sistema deve riconoscere l'oggetto come non valido. & 
+ \checkmark \\
+\hline\hline
+ 17.1 & 
+ L'attributo name dell'oggetto da salvare assume un valore uguale a quello di un oggetto già salvato.& 
+ Una capability non può avere lo stesso nome di un'altra. Quindi l'istanza del caso di prova non essendo valida non deve essere salvata nel db. &
+ \checkmark \\
+ \hline 
+ \end{tabular}
+\end{small}
+\end{center}
+
+\begin{center}
+\textbf{Test su Classroom}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline 
+\hline
+ 18.1 & 
+ Istanza di un oggetto con attributi nulli.& 
+ Il sistema deve riconoscere l'oggetto come non valido. & 
+ \checkmark \\
+\hline\hline
+ 19.1& 
+ L'attributo name dell'oggetto da salvare assume un valore uguale a quello di un oggetto già salvato. Inoltre entrambi possiedono lo stesso valore di building\_id(chiave esterna per building)& 
+ In un stesso palazzo non possono esistere classi con lo stesso nome. L'istanza del caso di prova non essendo valida non deve essere salvata nel db.& 
+ \checkmark \\
+ \hline
+ 20.1 & 
+ Eliminazione di un oggetto di tipo Classroom.& 
+ Non devono più esistere nel database la classe e tutti i vincoli associati.& 
+ \checkmark \\
+ \hline
+ \end{tabular}
+\end{small}
+\end{center}
+
+\newpage
+\begin{center}
+\textbf{Test su Curriculum}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline 
+\hline
+ 21.1 & 
+ Istanza di un oggetto con attributi nulli.& 
+ Il sistema deve riconoscere l'oggetto come non valido. & 
+ \checkmark \\
+\hline\hline
+ 22.1& 
+ L'attributo name dell'oggetto da salvare assume un valore uguale a quello di un oggetto già salvato. Inoltre entrambi possiedono lo stesso valore di graduate\_course\_id(chiave esterna per graduate\_course)& 
+ In un stesso corso di laurea non possono esistere due curricula con lo stesso nome. L'istanza del caso di prova non essendo valida non deve essere salvata nel db.& 
+ \checkmark \\
+ \hline\hline
+ 23.1 & 
+ Un insegnamento(oggetto di tipo Teacher) è associato a due curricula. Cancellazione di uno dei due.& 
+ Dopo l'operazione di eliminazione, l'insegnamento deve essere ancora presente nel db.& 
+ \checkmark \\
+ \hline
+ 23.2 & 
+ Cancellazione dell'altro curriculum.& 
+ Dopo l'operazione di eliminazione l'insegnamento non deve essere più presente nel db.& 
+ \checkmark \\
+ \hline\hline
+ 24.1 & 
+ Eliminazione di un oggetto di tipo Curriculum associato ad un insegnamento.& 
+ Non devono più esistere nel database il curriculum e l'insegnamento associato dato che non apparteneva ad altri curricula.& 
+ \checkmark \\
+ \hline
+ \end{tabular}
+\end{small}
+\end{center}
+
+\begin{center}
+\textbf{Test su DidacticOffice}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline 
+\hline
+ 25.1 & 
+ Eliminazione di un oggetto di tipo DidacticOffice(Segreteria didattica).& 
+ Non devono più esistere nel database la segreteria e lo user associato.& 
+ \checkmark \\
+ \hline
+ \end{tabular}
+\end{small}
+\end{center}
+
+\newpage
+\begin{center}
+\textbf{Test su ExpiryDate}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline 
+\hline
+ 26.1 & 
+ Istanza di un oggetto con attributi nulli.& 
+ Il sistema deve riconoscere l'oggetto come non valido. & 
+ \checkmark \\
+\hline\hline
+ 27.1& 
+ L'attributo date dell'oggetto d'istanza contiene una data precedente alla data di sistema.& 
+ Per essere valida la data deve essere maggiore o uguale alla data di sistema. L'oggetto per questo motivo non deve essere salvato nel db.&  
+ \checkmark \\
+ \hline\hline
+ 28.1 & 
+ L'attributo period dell'oggetto d'istanza contiene il valore decimale 1.1& 
+ period deve contenere un intero compreso tra uno e quattro. L'oggetto per questo motivo non deve essere salvato nel db.& 
+ \checkmark \\
+ \hline
+ 28.2 & 
+ period contiene il valore negativo -1.& 
+ Lo stesso del caso di prova 28.1.& 
+ \checkmark \\
+ \hline
+ 28.3 & 
+ period contiene il valore 11.& 
+ Lo stesso del caso di prova 28.1.& 
+ \checkmark \\
+ \hline
+ 28.4 & 
+ periodo contiene il valore 6.& 
+ Non devono essere riscontrati errori di validazione su period.& 
+ \checkmark \\
+ \hline
+ \end{tabular}
+\end{small}
+\end{center}
+
+\newpage
+\begin{center}
+\textbf{Test su GraduateCourse}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline 
+\hline
+ 29.1 & 
+ Istanza di un oggetto con attributi nulli.& 
+ Il sistema deve riconoscere l'oggetto come non valido. & 
+ \checkmark \\
+\hline\hline
+ 30.1& 
+ L'attributo duration dell'oggetto d'istanza contiene un valore negativo pari a -1.& 
+ Per essere valido duration deve contenere un intero compreso tra uno e sei. L'oggetto per questo motivo non deve essere salvato nel db.&  
+ \checkmark \\
+ \hline
+ 30.2 & 
+ duration contiene il valore decimale 1.1.& 
+ Lo stesso del caso di prova 30.1.& 
+ \checkmark \\
+ \hline
+ 30.3 & 
+ duration contiene il valore 7.& 
+ Lo stesso del caso di prova 30.1.& 
+ \checkmark \\
+ \hline
+ 30.4 & 
+ duration contiene il valore 6.& 
+ Non devono essere riscontrati errori di validazione su duration.&
+ \checkmark \\ 
+ \hline\hline
+ 31.1 & 
+ Eliminazione di un corso di laurea(GraduateCourse) associato a due curricula. Entrambi sono associati ad uno stesso insegnamento(Teaching).& 
+ Non devono più esistere nel database il corso di laurea, i due curricula e l'insegnamento associato.&
+ \checkmark \\ 
+ \hline 
+ \end{tabular}
+\end{small}
+\end{center}
+
+\newpage
+\begin{center}
+\textbf{Test su Period}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline 
+\hline
+ 32.1 & 
+ Istanza di un oggetto con attributi nulli.& 
+ Il sistema deve riconoscere l'oggetto come non valido. & 
+ \checkmark \\
+\hline\hline
+ 33.1& 
+ L'attributo year dell'oggetto d'istanza contiene un valore negativo pari a -1.& 
+ Per essere valido year deve contenere un intero compreso tra uno e sei. L'oggetto per questo motivo non deve essere salvato nel db.&  
+ \checkmark \\
+ \hline
+ 33.2 & 
+ year contiene il valore decimale 1.2.& 
+ Lo stesso del caso di prova 33.1.& 
+ \checkmark \\
+ \hline
+ 33.3 & 
+ year contiene il valore 7.& 
+ Lo stesso del caso di prova 33.1.& 
+ \checkmark \\
+ \hline
+ 33.4 & 
+ year contiene il valore 6.& 
+ Non devono essere riscontrati errori di validazione su year.&
+ \checkmark \\ 
+ \hline\hline
+ 34.1& 
+ L'attributo subperiod dell'oggetto d'istanza contiene un valore negativo pari a -1.& 
+ Per essere valido subperiod deve contenere un intero compreso tra uno e quattro. L'oggetto per questo motivo non deve essere salvato nel db.&  
+ \checkmark \\
+ \hline
+ 34.2 & 
+ subperiod contiene il valore decimale 1.2.& 
+ Lo stesso del caso di prova 34.1.& 
+ \checkmark \\
+ \hline
+ 34.3 & 
+ subperiod contiene il valore 5.& 
+ Lo stesso del caso di prova 34.1.& 
+ \checkmark \\
+ \hline
+ 34.4 & 
+ subperiod contiene il valore 4.& 
+ Non devono essere riscontrati errori di validazione su subperiod.&
+ \checkmark \\ 
+ \hline\hline
+ 35.1 & 
+ A subperiod ed year vengono assegnati gli stessi valori di un oggetto già salvato.& 
+ Non possono esistere due periodi con gli stessi valori di subperiod ed year. L'istanza del caso di prova non essendo valida non deve essere salvata nel db.& 
+\checkmark \\ 
+ \hline
+ \end{tabular}
+\end{small}
+\end{center}
+
+\newpage
+\begin{center}
+\textbf{Test su QuantityConstraint}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline \hline
+ 36.1 & 
+ Istanza di un oggetto con attributi nulli.& 
+ Il sistema deve riconoscere l'oggetto come non valido. & 
+ \checkmark \\
+ \hline \hline
+ 37.1 & 
+ L'attributo isHard dell'oggetto d'istanza contiene il valore 11.& 
+ isHard deve contenere solo valori interi compresi tra 0 e 10. L'oggetto per questo motivo non deve essere salvato nel db.& 
+ \checkmark \\
+ \hline
+ 37.2& 
+ isHard contiene il valore -1.& 
+ Lo stesso del caso di prova 12.1& 
+ \checkmark \\
+ \hline
+ 37.3&
+ isHard contiene il valore 1.1.&
+ Lo stesso del caso di prova 12.1&
+ \checkmark \\
+ \hline
+ 37.4&
+ isHard contiene il valore 0.&
+ Non devono essere riscontrati errori di validazione su isHard.& 	
+ \checkmark \\ 
+ \hline\hline
+ 38.1 & 
+ L'attributo quantity dell'oggetto d'istanza contiene il valore 1001.& 
+ quantity deve contenere solo valori interi compresi tra 1 e 1000. L'oggetto per questo motivo non deve essere salvato nel db.& 
+ \checkmark \\
+ \hline
+ 38.2 & 
+ quantity contiene il valore -1.& 
+ Lo stesso del caso di prova 38.1& 
+ \checkmark \\
+ \hline
+ 38.3 & 
+ quantity contiene il valore 1.1.& 
+ Lo stesso del caso di prova 38.1& 
+ \checkmark \\
+ \hline
+ 38.4 & 
+ quantity contiene il valore 1.& 
+ Non devono essere riscontrati errori di validazione su quantity.& 
+ \checkmark \\
+ \hline
+ \end{tabular}
+\end{small}
+\end{center}
+
+\newpage
+\begin{center}
+\textbf{Test su TeacherMailer}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline \hline
+ 39.1 & 
+ Creazione di una mail contenente le istruzioni per l'attivazione di uno User tramite il metodo activate\_teacher(sender, receiver). Sender e Receiver sono due oggetti di tipo User opportunamente creati che corrispondono al mittente e al destinatario.& 
+ L'indirizzo del destinatario della mail deve essere uguale al contenuto dell'attributo mail di receiver.& 
+ \checkmark \\
+ \hline
+ 39.2 & 
+ Stessa descrizione per il caso di prova 39.1.&
+ L'indirizzo del mittente della mail deve essere uguale al contenuto dell'attributo mail di sender.& 
+ \checkmark \\
+ \hline
+ 39.3& 
+ Stessa descrizione per il caso di prova 39.1.& 
+ Il subject della mail deve essere il seguente: Creazione account SIGEOL.& 
+ \checkmark \\
+ \hline
+ 39.4&
+ Stessa descrizione per il caso di prova 39.1.&
+ L'url necessario all'attivazione dell'account, presente nel corpo della mail, deve essere originato correttamente.&
+ \checkmark \\
+ \hline 
+ \end{tabular}
+\end{small}
+\end{center}
+
+\begin{center}
+\textbf{Test su Teacher}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline \hline
+ 40.1 & 
+ Aggiornamento di un oggetto di tipo Teacher lasciando degli attributi nulli.& 
+ Il sistema deve riconoscere l'oggetto come non valido e quindi non aggiornare la corrispondente tupla nel database.& 
+ \checkmark \\
+ \hline \hline
+ 41.1 & 
+ Eliminazione di un oggetto Teacher.& 
+ Non devono più esistere nel database il docente, lo user associato e tutti i vincoli e le preferenze.& 
+ \checkmark \\
+ \hline
+ \end{tabular}
+\end{small}
+\end{center}
+
+\newpage
+\begin{center}
+\textbf{Test su Teaching}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline 
+\hline
+ 42.1 & 
+ Istanza di un oggetto con attributi nulli.& 
+ Il sistema deve riconoscere l'oggetto come non valido. & 
+ \checkmark \\
+\hline\hline
+ 43.1& 
+ cfu, labhours, classhours e studentsNumber contengono il valore 12.5.& 
+ Tutti e quattro devono contenere un valore numerico intero positivo. L'oggetto non è valido e non deve essere salvato nel db.&  
+ \checkmark \\
+ \hline \hline
+ 44.1 & 
+ cfu, labhours, classhours e studentsNumber contengono il valore -12.& 
+ Lo stesso del caso di prova 43.1.& 
+ \checkmark \\
+ \hline \hline
+ 45.1 & 
+ cfu assume il valore 21, labhours e classhours il valore 51 e studentsNumber il valore 1001.& 
+ Tutti e quattro gli attributi superano di un'unità le soglie imposte e quindi deve essere riscontrato un errore di validazione su ognuno di essi.& 
+ \checkmark \\
+ \hline \hline
+ 46.1& 
+ Creazione di un insegnamento associato ad un periodo non compatibile con l'organizzazione accademica del corso di laurea dell'insegnamento.& 
+ L'oggetto d'istanza non essendo valido non deve essere salvato nel database.&
+ \checkmark \\ 
+ \hline\hline
+ \end{tabular}
+\end{small}
+\end{center}
+
+\newpage
+\begin{center}
+\textbf{Test su TemporalConstraint}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline 
+\hline
+ 47.1 & 
+ Istanza di un oggetto con attributi nulli.& 
+ Il sistema deve riconoscere l'oggetto come non valido. & 
+ \checkmark \\
+\hline\hline
+ 48.1& 
+ L'attributo day dell'oggetto d'istanza contiene il valore 6.& 
+ day deve contenere solo valori interi compresi tra 1 e 5. L'oggetto per questo motivo non deve essere salvato nel db.& 
+ \checkmark \\
+ \hline
+ 48.2& 
+ day contiene il valore 0.& 
+ Lo stesso del caso di prova 48.1.& 
+ \checkmark \\
+ \hline
+ 48.3& 
+ day contiene il valore 1.5.& 
+ Lo stesso del caso di prova 48.1.&
+ \checkmark \\
+ \hline
+ 48.4& 
+ day contiene il valore 1.& 
+ Non deve essere riscontrato nessun errore di validazione su day.& 
+ \checkmark \\
+ \hline \hline
+ 49.1& 
+ L'attributo isHard dell'oggetto d'istanza contiene il valore 11.& 
+ isHard deve contenere solo valori interi compresi tra 0 e 10. L'oggetto per questo motivo non deve essere salvato nel db.& 
+ \checkmark \\
+ \hline
+ 49.2& 
+ isHard contiene il valore -1.& 
+ Lo stesso del caso di prova 49.1& 
+ \checkmark \\
+ \hline
+ 49.3&
+ isHard contiene il valore 1.1.&
+ Lo stesso del caso di prova 49.1&
+ \checkmark \\
+ \hline
+ 49.4&
+ isHard contiene il valore 0.&
+ Non devono essere riscontrati errori di validazione su isHard.& 	
+ \checkmark \\ 
+ \hline\hline
+ 50.1& 
+ Il valore contenuto in startHour assume un valore più grande di quello in endHour& 
+ Ovviamente l'ora d'inizio(startHour) dell'indisponibilità non può essere più grande dell'ora fine(endHour). Quindi non essendo valido l'oggetto non deve essere salvato nel db.&
+ \checkmark \\ 
+ \hline
+ \end{tabular}
+\end{small}
+\end{center}
+
+\newpage
+\begin{center}
+\textbf{Test su TimetableEntry}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline 
+\hline
+ 51.1 & 
+ Istanza di un oggetto con attributi nulli.& 
+ Il sistema deve riconoscere l'oggetto come non valido. & 
+ \checkmark \\
+\hline\hline
+ 52.1& 
+ L'attributo day dell'oggetto d'istanza contiene il valore 6.& 
+ day deve contenere solo valori interi compresi tra 1 e 5. L'oggetto per questo motivo non deve essere salvato nel db.& 
+ \checkmark \\
+ \hline
+ 52.2& 
+ day contiene il valore 0.& 
+ Lo stesso del caso di prova 52.1.& 
+ \checkmark \\
+ \hline
+ 52.3& 
+ day contiene il valore 1.5.& 
+ Lo stesso del caso di prova 52.1.&
+ \checkmark \\
+ \hline
+ 52.4 & 
+ day contiene il valore 1.& 
+ Non deve essere riscontrato nessun errore di validazione su day.& 
+ \checkmark \\
+ \hline \hline
+ 53.1& 
+ Il valore contenuto in startTime assume un valore più grande di quello in endTime& 
+ Ovviamente l'ora d'inizio(startTime) di un riga dello schema d'orario non può essere più grande dell'ora fine(endHour). Quindi non essendo valido l'oggetto non deve essere salvato nel db.&
+ \checkmark \\ 
+ \hline\hline
+ 54.1& 
+ Creazione di un oggetto TimetableEntry con gli stessi valori di day, StartTime, EndTime, classroom\_id e timetable\_id di un oggetto già salvato. & 
+ Per evitare sovrapposizioni, in uno stesso schema d'orario identificato da timetable\_id non possono esistere righe con ugual giorno, ora di inizio, ora di fine e classe occupata. L'istanza appena creata non essendo valida non deve essere salvata nel db.&
+ \checkmark \\ 
+ \hline
+ \end{tabular}
+\end{small}
+\end{center}
+
+\newpage
+\begin{center}
+\textbf{Test su Timetable}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline 
+\hline
+ 55.1 & 
+ Istanza di un oggetto con attributi nulli.& 
+ Il sistema deve riconoscere l'oggetto come non valido. & 
+ \checkmark \\
+\hline\hline
+ 56.1& 
+ L'attributo year dell'oggetto d'istanza contiene il valore 20000-20.& 
+ il contenuto di year non è valido. L'oggetto per questo motivo non deve essere salvato nel db.& 
+ \checkmark \\
+ \hline
+ 56.2& 
+ year contiene 2007-08.& 
+ year, per essere valido deve assumere nei primi quattro caratteri(2007) un valore successivo all'anno di sistema-1. L'anno di sistema nel caso di prova corrisponde a 2009. Non essendo valido, l'oggetto non deve essere salvato nel db& 
+ \checkmark \\
+ \hline
+ 56.3& 
+ year contiene 2008-10. & 
+ year per essere valido doveva avere nelle ultime due cifre i caratteri 09. Non essendo valido, l'oggetto non deve essere salvato nel db&
+ \checkmark \\
+ \hline
+ 56.4 & 
+ year contiene 2008-09.& 
+ Non deve essere riscontrato nessun errore di validazione su year.& 
+ \checkmark \\
+ \hline \hline
+ 57.1& 
+ Creazione di un oggetto Timetable con gli stessi valori di year, graduate\_course\_id(chiave esterna per il corso di laurea) e period\_id(chiave esterna per il periodo) di un oggetto già salvato.& 
+ Non possono esistere per uno stesso corso di laurea, periodo e anno più schemi d'orario.& 
+ \checkmark \\ 
+ \hline
+ \end{tabular}
+\end{small}
+\end{center}
+
+\newpage
+\begin{center}
+\textbf{Test su User}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline 
+\hline
+ 58.1 & 
+ Istanza di un oggetto con attributi nulli.& 
+ Il sistema deve riconoscere l'oggetto come non valido. & 
+ \checkmark \\
+\hline\hline
+ 59.1& 
+ L'attributo password dell'oggetto d'istanza è vuoto.& 
+ password deve essere di almeno sei caratteri di tipo alfanumerico più il carattere'.'. L'oggetto per questo motivo non deve essere salvato nel db.& 
+ \checkmark \\
+ \hline
+ 59.2& 
+ password contiene la stringa prova.& 
+ prova contiene meno di sei caratteri. Non essendo valido, l'oggetto non deve essere salvato nel db& 
+ \checkmark \\
+ \hline
+ 59.3& 
+ password contiene pro.va. & 
+ Non deve essere riscontrato nessun errore di validazione su password.&
+ \checkmark \\
+ \hline \hline
+ 60.1& 
+ L'attributo mail dell'oggetto d'istanza contiene la stringa prova?id=1@math.unipd.it& 
+ mail contiene al suo interno un carattere non valido:?. Non essendo valido, l'oggetto non deve essere salvato nel db. & 
+ \checkmark \\ 
+ \hline
+ 60.2& 
+ L'attributo mail contiene la stringa agrossel@math.unipd.it.& 
+ Non deve essere riscontrato nessun errore di validazione su mail.& 
+ \checkmark \\ 
+ \hline \hline
+ 61.1& 
+ Creazione di uno user con lo stesso valore dell'attributo mail di un altro oggetto già salvato.& 
+ Non possono esistere due user con la stessa mail; quindi l'oggetto appena istanziato non è valido e non deve essere salvato.& 
+ \checkmark \\ 
+ \hline \hline
+ 62.1& 
+ Creazione di uno user con password uguale ad alessandro.& 
+ L'oggetto istanziato viene correttamente salvato nel database. Il contenuto di password deve essere uguale alla stringa alessandro crittografata con algoritmo SHA\-1.& 
+ \checkmark \\ 
+ \hline \hline
+ 63.1& 
+ Creazione di uno user senza specificarlo.& 
+ Un oggetto di tipo user deve appartenere o ad una segreteria o ad un insegnante; se non è associato a nulla l'istanza non è valida e non deve essere salvata nel db.& 
+ \checkmark \\
+ \hline
+ \end{tabular}
+\end{small}
+\end{center}
+
+\begin{center}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline 
+\hline
+64.1& 
+ Al metodo authenticate vengono passati uno user ed una password non corretti.& 
+ Il metodo deve ritornare un valore booleano pari a false.& 
+ \checkmark \\ 
+ \hline
+ 64.2& 
+ Ora vengono passati uno user ed una password corretti.& 
+ Il metodo deve ritornare un valore booleano pari a true.& 
+ \checkmark \\
+ \hline \hline
+ 65.1& 
+ Eliminazione di un oggetto User.& 
+ Non devono più esistere nel database lo user, l'indirizzo e il docente o la segreteria associata.& 
+ \checkmark \\
+ \hline \hline
+ 66.1& 
+ Creazione di uno user associato a tutte le possibili capabilities(privilegi).& 
+ I metodi che iniziano con manage\_ di un oggetto User ritornano true se l'istanza possiede quel determinato privilegio. In questo caso di prova ogni metodo deve ritornare true. & 
+ \checkmark \\
+ \hline
+ 67.1& 
+ Creazione di uno user associato ad una segreteria didattica.& 
+ Lo user appartiene ad una segreteria quindi il metodo own\_by\_didactic\_office? deve ritornare true e own\_by\_teacher? false. & 
+ \checkmark \\
+ \hline
+ \end{tabular}
+\end{small}
+\end{center}
+
+\begin{center}
+\textbf{Test su Belong}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id caso di prova} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline
+ 69.1& 
+ Creazione di un oggetto di tipo Belong che associa un curriculum ad un insegnamento già associati.& 
+ Esistendo già l'associazione, l'istanza non deve essere salvata.&
+ \checkmark \\
+ \hline
+\end{tabular}
+\end{small}
+\end{center}
+
 \subsubsection{Functional Tests}
 Nello sviluppo di un'applicazione tramite il framework Rails, i test funzionali (functional tests) sono specifici per la verifica degli elementi appartenenti alla componente Controller. Dato che gli unit tests sono stati effettuati tramite istanze reali, il team QuiXoft ha scelto di utilizzare la strategia dei Mock objects per la verifica delle azioni presenti nei controller.
 
@@ -133,6 +1026,520 @@ class SessionsControllerTest < ActionController::TestCase
   end
 end
 \end{verbatim}
+
+Di seguito sono riportate le tabelle che riassumono la campagna di test delle classi appartenenti al componente controller. 
+Dato il gran numero di test effettuati(186 tests) si elencheranno solo i più significativi.
+
+\newpage
+\begin{center}
+\textbf{Test su BuildingsController}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline
+da 1 a 5&
+Un utente non autentificato(guest) richiede l'esecuzione di azioni riservate ad utenti con privilegi.&
+L'utente dev'essere indirizzato alla pagina di login.&
+\checkmark \\
+\hline
+\hline
+7&
+Un utente autentificato con privilegio di modificare edifici richiede l'esecuzione dell'azione \verb|new| .&
+L'utente dev'essere indirizzato alla pagina di creazione edificio.&
+\checkmark \\
+\hline
+8&
+Lo stesso tipo di utente del test 7 richiede l'esecuzione dell'azione \verb|edit| .&
+L'utente dev'essere indirizzato alla pagina di modifica dei dati relativi ad un edificio.&
+\checkmark \\
+\hline
+9&
+Lo stesso tipo di utente del test 7 crea correttamente un edificio.&
+L'utente dev'essere indirizzato alla pagina di amministazione edifici.&
+\checkmark \\
+\hline
+da 10 a 11&
+Lo stesso tipo di utente del test 7 tenta di creare un edificio con attributi non validi.&
+L'utente non dev'essere indirizzato, deve rimanere nella pagina di creazione edificio.&
+\checkmark \\
+\hline
+12&
+Lo stesso tipo di utente del test 7 modifica correttamente un edificio.&
+L'utente dev'essere indirizzato alla pagina di amministazione edifici.&
+\checkmark \\
+\hline
+13&
+Lo stesso tipo di utente del test 7 tenta di modificare un edificio con attributi non validi.&
+L'utente non dev'essere indirizzato, deve rimanere nella pagina di creazione edificio.&
+\checkmark \\
+\hline
+14&
+Lo stesso tipo di utente del test 7 elimina correttamente un edificio.&
+L'utente dev'essere indirizzato alla pagina di amministrazione edifici.& 
+\checkmark \\
+\hline
+da 15 a 20&
+Un utente autentificato privo del privilegio di modificare edifici richiede l'esecuzione di azioni riservate ad utenti che ne siano in possesso.&
+L'utente dev'essere indirizzato alla pagina principale.&
+\checkmark \\
+\hline
+\end{tabular}
+\end{small}
+
+
+\newpage
+\begin{center}
+\textbf{Test su ClassroomsController }
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline 
+\hline
+ da 21 a 32 e da 47 a 51& 
+ Un utente non autenticato(guest) richiede l'esecuzione di azioni riservate ad utenti con privilegi. & 
+ Il guest deve essere indirizzato alla pagina di login. & 
+ \checkmark \\
+ \hline \hline
+ 33& 
+ Un utente autenticato con il privilegio di poter modificare le aule richiede l'esecuzione dell'azione new.& 
+ L'utente deve essere indirizzato alla pagina di creazione di un'aula. & 
+ \checkmark \\
+ \hline
+ 35& 
+ Lo stesso tipo di utente del test 33 crea correttamente una classe.& 
+ L'utente deve essere indirizzato alla pagina di amministazione aule. & 
+ \checkmark \\
+ \hline
+ 36& 
+ Lo stesso tipo di utente del test 33 crea una classe con attributi non validi.& 
+ L'utente non deve essere indirizzato ma rimanere nella pagina di creazione della classe.& 
+ \checkmark \\
+ \hline
+ 37& 
+ Lo stesso tipo di utente del test 33 modifica correttamente una classe.& 
+ L'utente deve essere indirizzato alla pagina di amministazione aule. & 
+ \checkmark \\
+ \hline
+ 38& 
+ Lo stesso tipo di utente del test 33 modifica una classe con attributi non validi.& 
+ L'utente non deve essere indirizzato ma rimanere nella pagina di creazione della classe.&
+ \checkmark \\
+ \hline
+ 39& 
+ Lo stesso tipo di utente del test 33 elimina una classe.& 
+ L'utente deve essere indirizzato alla pagina di amministazione aule.&
+ \checkmark \\
+ \hline
+ 44& 
+ Lo stesso tipo di utente del test 33 crea un vincolo associato ad una determinata classe.& 
+ Deve essere renderizzata la pagina di modifica aule.&
+ \checkmark \\
+ \hline
+ 45& 
+ Lo stesso tipo di utente del test 33 elimina un vincolo associato ad una determinata classe.& 
+ Deve essere renderizzata la pagina di modifica aule.&
+ \checkmark \\
+ \hline
+ \end{tabular}
+\end{small}
+\end{center}
+
+\newpage
+\textbf{Test su CurriculumsController}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline
+\hline
+da 51 a 58&
+Un utente non autentificato(guest) richiede l'esecuzione di azioni riservate ad utenti con privilegi.&
+L'utente dev'essere indirizzato alla pagina di login.&
+\checkmark \\
+\hline
+\hline
+59&
+Un utente autentificato con privilegio di modificare curricula richiede l'esecuzione dell'azione \verb|new| .&
+L'utente dev'essere indirizzato alla pagina di creazione curriculum.&
+\checkmark \\
+\hline
+60&
+Lo stesso tipo di utente del test 59 richiede l'esecuzione dell'azione \verb|edit| .&
+L'utente dev'essere indirizzato alla pagina di modifica dei dati relativi ad un curriculum.&
+\checkmark \\
+\hline
+61&
+Lo stesso tipo di utente del test 59 crea correttamente un curriculum.&
+L'utente dev'essere indirizzato alla pagina di amministazione curricula.&
+\checkmark \\
+\hline
+62&
+Lo stesso tipo di utente del test 59 tenta di creare un curriculum con attributi non validi.&
+L'utente non dev'essere indirizzato, deve rimanere nella pagina di creazione curriculum.&
+\checkmark \\
+\hline
+63&
+Lo stesso tipo di utente del test 59 modifica correttamente un curriculum.&
+L'utente dev'essere indirizzato alla pagina di amministazione curricula.&
+\checkmark \\
+\hline
+64&
+Lo stesso tipo di utente del test 59 tenta di modificare un curriculum con attributi non validi.&
+L'utente non dev'essere indirizzato, deve rimanere nella pagina di modifica curriculum.&
+\checkmark \\
+\hline
+65&
+Lo stesso tipo di utente del test 59 richiede l'esecuzione dell'azione \verb|edit_teachings| .&
+L'utente dev'essere indirizzato alla pagina di amministrazione degli insegnamenti di un curriculum.&
+\checkmark \\
+\hline
+da 66 a 68&
+Lo stesso tipo di utente del test 59 modifica gli insegnamenti di un curriculum.&
+L'utente dev'essere indirizzato alla pagina di amministrazione degli insegnamenti di un curriculum.&
+\checkmark \\
+\hline
+69&
+Lo stesso tipo di utente del test 59 elimina correttamente un curriculum.&
+L'utente dev'essere indirizzato alla pagina di amministrazione curricula.&
+\checkmark \\
+\hline
+\hline
+da 74 a 80&
+Un utente autentificato privo del privilegio di modificare curricula richiede l'esecuzione di azioni riservate ad utenti che ne siano in possesso.&
+L'utente dev'essere indirizzato alla pagina principale.&
+\checkmark \\
+\hline
+\end{tabular}
+\end{small}
+
+\newpage
+\begin{center}
+\textbf{Test su GraduateCoursesController }
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline \hline 
+ da 81 a 86& 
+ Un utente non autenticato(guest) richiede l'esecuzione di azioni riservate ad utenti con privilegi. & 
+ Il guest deve essere indirizzato alla pagina di login. & 
+ \checkmark \\
+ \hline \hline
+ 91 e 93& 
+ Un utente di tipo segreteria(privilegio "didactic\_office\_required") crea correttamente un corso di laurea.& 
+ L'utente deve essere indirizzato alla pagina di amministrazione dei corsi di laurea. & 
+ \checkmark \\
+ \hline
+ 92 e 94& 
+ Lo stesso tipo di utente del test 91 crea un corso di laurea con attributi non validi.& 
+ L'utente deve essere indirizzato alla pagina di amministrazione dei corsi di laurea riportando un errore nella creazione.& 
+ \checkmark \\
+ \hline \hline
+ 95& 
+ Un utente autenticato con il privilegio di modificare i corsi di laurea("manage\_graduate\_courses\_ required") ne modifica uno.& 
+ L'utente deve essere indirizzato alla pagina di amministrazione dei corsi di laurea riportando un messaggio di avvenuta modifica.& 
+ \checkmark \\
+ \hline
+ 96& 
+ Lo stesso tipo di utente del test 95 modifica un suo corso di laurea invalidando qualche attributo.& 
+ Deve essere renderizzata la pagina di modifica corso di laurea riportando quali errori son stati commessi. & 
+ \checkmark \\
+ \hline \hline
+ 97& 
+ Un utente autenticato con i privilegi "manage\_graduate\_courses\_ required" e "didactic\_office\_required" elimina un suo corso di laurea.& 
+ L'utente deve essere indirizzato alla pagine di amministrazione del corso di laurea.&
+ \checkmark \\
+ \hline \hline
+ 98& 
+ Lo stesso tipo di utente del test 95 tenta di modificare un corso di laurea che non gli appartiene.& 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "Non puoi modificare questo corso di laurea".&
+ \checkmark \\
+ \hline
+\end{tabular}
+\end{small}
+\end{center}
+
+\begin{center}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\
+\hline \hline
+100& 
+ Lo stesso tipo di utente del test 97 tenta di eliminare un corso di laurea che non gli appartiene.& 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "Non puoi modificare questo corso di laurea".&
+ \checkmark \\
+ \hline
+ 102& 
+ Uno user che non è segreteria didattica(quindi non ha il privilegio "didactic\_office\_required") tenta di creare un nuovo corso di laurea.& 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "Non possiedi i privilegi per effettuare questa operazione".&
+ \checkmark \\
+ \hline
+ 103& 
+ Uno user che non è segreteria didattica(quindi non ha il privilegio "didactic\_office\_required") tenta di eliminare un corso di laurea.& 
+ Lo stesso del test 102.&
+ \checkmark \\
+ \hline
+ 106& 
+ Uno user che non possiede il privilegio di modifica dei corsi di laurea(quindi non ha il privilegio "manage\_graduate\_courses\_ required") tenta di modificare un corso di laurea.& 
+ Lo stesso del test 102.&
+ \checkmark \\
+ \hline
+\end{tabular}
+\end{small}
+\end{center}
+
+\newpage
+\textbf{Test su SessionsController}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline
+\hline
+108&
+Un utente non autentificato(guest) richiede l'esecuzione dell'azione \verb|new| .&
+L'utente non dev'essere indirizzato, deve rimanere nella pagina di login.&
+\checkmark \\
+\hline
+109&
+Un utente non autentificato(guest) inserisce correttamente username e password.&
+L'utente dev'essere indirizzato alla pagina principale.&
+\checkmark \\
+\hline
+110&
+Un utente non autentificato(guest) inserisce username e/o password scorretti.&
+L'utente non dev'essere indirizzato, deve rimanere nella pagina di login.&
+\checkmark \\
+\hline
+\hline
+111&
+Un utente autentificato richiede l'esecuzione dell'azione \verb|destroy| .&
+L'utente dev'essere indirizzato alla pagina di login.&
+\checkmark \\
+\hline
+\end{tabular}
+\end{small}
+
+\newpage
+\begin{center}
+\textbf{Test su TeachersController }
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline \hline 
+ 115 & 
+ Un docente attiva correttamente il proprio user. & 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "Account attivato correttamente". & 
+ \checkmark \\
+ \hline
+ 116& 
+ Attivazione di un account già esistente& 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "L'utente non esiste od è già attivo".& 
+ \checkmark \\
+ \hline \hline
+ 122& 
+ Un utente autenticato con il privilegio di modificare docenti("manage\_teachers\_required") ne invita uno.& 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "Docente invitato con successo".& 
+ \checkmark \\
+ \hline
+ 126& 
+ Un utente autenticato con il privilegio di modificare privilegi("manage\_capabilities\_required") ne aggiunge uno ad un docente.& 
+ L'utente deve essere indirizzato alla pagina di modifica privilegi.& 
+ \checkmark \\
+ \hline
+ 128& 
+ Un utente dello stesso tipo del test 122 assegna ad un docente un corso di laurea.& 
+ L'utente deve essere indirizzato alla pagina di modifica corsi di laurea.& 
+ \checkmark \\
+ \hline
+ 129& 
+ Un utente dello stesso tipo del test 122 tenta di associare un docente che non appartiene a nessun suo corso di laurea ad un altro corso di laurea.& 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "Questo docente non appartiene a nessun tuo corso di laurea".&
+ \checkmark \\
+ \hline
+ 130& 
+ Lo stesso tipo di utente del test 126 tenta di modificare i privilegi di un docente che non appartiene a nessun suo corso di laurea.& 
+ Lo stesso del test 129.&
+ \checkmark \\
+ \hline
+ 131& 
+ Lo stesso tipo di utente del test 126 tenta di modificare i privilegi di un docente che non appartiene a nessun suo corso di laurea.& 
+ Lo stesso del test 129.&
+ \checkmark \\
+ \hline
+\end{tabular}
+\end{small}
+\end{center}
+
+\begin{center}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline \hline 
+133& 
+ Uno user autenticato come docente(privilegio same\_teacher\_required) crea una preferenza valida.& 
+ Deve essere renderizzata la pagina di modifica preferenza riportando nell'elenco quella appena creata.&
+ \checkmark \\
+ \hline
+ 134& 
+ Lo stesso tipo di user del test 133 crea un vincolo valido.& 
+ Deve essere renderizzata la pagina di modifica vincolo riportando nell'elenco quello appena creata.&
+ \checkmark \\
+ \hline
+ 135& 
+ Lo stesso tipo di user del test 133 elimina una preferenza.& 
+ Deve essere renderizzata la pagina di modifica preferenza eliminando nell'elenco quella appena cancellata.&
+ \checkmark \\
+ \hline
+ 136& 
+ Lo stesso tipo di user del test 133 elimina un vincolo.& 
+ Deve essere renderizzata la pagina di modifica vincolo eliminando nell'elenco quello appena cancellato.&
+ \checkmark \\
+ \hline
+ 140& 
+ Lo stesso tipo di user del test 133 modifica i propri dati personali.& 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "Dati personali aggiornati correttamente".&
+ \checkmark \\
+ \hline
+ da 142 a 145& 
+ Uno user autenticato senza il privilegio di modifica docenti(manage\_teachers\_ required) richiede l'esecuzione di azioni che ne richiedono il possesso.& 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "Non possiedi i privilegi per effettuare questa operazione".&
+ \checkmark \\
+ \hline
+ da 146 a 147& 
+ Uno user autenticato senza il privilegio di modifica privilegi(manage\_capabilities\_ required) richiede l'esecuzione di azioni che ne richiedono il possesso.& 
+ L'utente deve essere indirizzato alla pagina principale riportando il seguente messaggio: "Non possiedi i privilegi per effettuare questa operazione".&
+ \checkmark \\
+ \hline
+\end{tabular}
+\end{small}
+\end{center}
+
+\newpage
+\textbf{Test su TeachingsController}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline
+\hline
+da 151 a 159&
+Un utente non autentificato(guest) richiede l'esecuzione di azioni riservate ad utenti con privilegi.&
+L'utente dev'essere indirizzato alla pagina di login.&
+\checkmark \\
+\hline
+\hline
+161&
+Un utente autentificato con privilegio di modificare insegnamenti richiede l'esecuzione dell'azione \verb|new| .&
+L'utente dev'essere indirizzato alla pagina di creazione insegnamento.&
+\checkmark \\
+\hline
+162&
+Lo stesso tipo di utente del test 161 richiede l'esecuzione dell'azione \verb|edit| .&
+L'utente dev'essere indirizzato alla pagina di modifica dei dati relativi ad un insegnamento.&
+\checkmark \\
+\hline
+163&
+Lo stesso tipo di utente del test 161 crea correttamente un insegnamento.&
+L'utente dev'essere indirizzato alla pagina di selezione docente.&
+\checkmark \\
+\hline
+164&
+Lo stesso tipo di utente del test 161 tenta di creare un insegnamento con attributi non validi.&
+L'utente non dev'essere indirizzato, deve rimanere nella pagina di creazione insegnamento.&
+\checkmark \\
+\hline
+165&
+Lo stesso tipo di utente del test 161 richiede l'esecuzione dell'azione \verb|select_teacher| .&
+L'utente dev'essere indirizzato alla pagina di selezione docente.&
+\checkmark \\
+\hline
+166&
+Lo stesso tipo di utente del test 161 assegna correttamente un docente ad un insegnamento.&
+L'utente dev'essere indirizzato alla pagina di amministrazione insegnamenti.&
+\checkmark \\
+\hline
+167&
+Lo stesso tipo di utente del test 161 non assegna correttamente un docente ad un insegnamento.&
+L'utente non dev'essere indirizzato, deve rimanere nella pagina di selezione docente.&
+\checkmark \\
+\hline
+168&
+Lo stesso tipo di utente del test 161 modifica correttamente un insegnamento.&
+L'utente dev'essere indirizzato alla pagina di amministazione insegnamenti.&
+\checkmark \\
+\hline
+\end{tabular}
+\end{small}
+
+\newpage
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+169&
+Lo stesso tipo di utente del test 161 tenta di modificare un insegnamento con attributi non validi.&
+L'utente non dev'essere indirizzato, deve rimanere nella pagina di modifica insegnamento.&
+\checkmark \\
+\hline
+170&
+Lo stesso tipo di utente del test 161 elimina correttamente un insegnamento.&
+L'utente dev'essere indirizzato alla pagina di amministrazione insegnamenti.&
+\checkmark \\
+\hline
+\hline
+da 174 a 181&
+Un utente autentificato privo del privilegio di modificare curricula richiede l'esecuzione di azioni riservate ad utenti che ne siano in possesso.&
+L'utente dev'essere indirizzato alla pagina principale.&
+\checkmark \\
+\hline
+\hline
+\end{tabular}
+\end{small}
+
+\newpage
+\textbf{Test su UsersController}
+\begin{small}
+\begin{tabular}[t]{|p{2.0cm}|p{4.0cm}|p{4.0cm}|c|}
+\hline
+\textsc{Id test} & \textsc{Descrizione} & \textsc{Obiettivo} & \textsc{Esito}\\ 
+\hline
+\hline
+da 182 a 183&
+Un utente non autentificato(guest) richiede l'esecuzione di azioni riservate ad utenti autentificati.&
+L'utente dev'essere indirizzato alla pagina di login.&
+\checkmark \\
+\hline
+\hline
+184&
+Un utente autentificato richiede l'esecuzione dell'azione \verb|edit| .&
+L'utente viene indirizzato alla pagina di modifica password.&
+\checkmark \\
+\hline
+185&
+Un utente autentificato modifica correttamente la password.&
+L'utente viene indirizzato alla pagine principale.&
+\checkmark \\
+\hline
+186&
+Un utente autentificato non modifica correttamente la password.&
+L'utente non viene indirizzato, deve rimanere nella pagina di modifica password.&
+\checkmark \\
+\hline
+187&
+Un utente autentificato richiede l'esecuzione dell'azione \verb|destroy| .&
+L'utente viene indirizzato alla pagina di login.&
+\checkmark \\
+\hline
+\end{tabular}
+\end{small}
+\end{center}
+
+
 \subsection{Metriche}
 Il progetto `Sigeol`, al termine della fase di programmazione, è stato testato con numerosi strumenti dedicati a Ruby on Rails con lo scopo di generare delle metriche precise che indichino il livello qualitativo del codice prodotto dal team QuiXoft.
 
