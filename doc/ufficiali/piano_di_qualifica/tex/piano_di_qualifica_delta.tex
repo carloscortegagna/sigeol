@@ -143,6 +143,8 @@ Nei capitoli seguenti saranno analizzate una ad una tutte le metriche utilizzate
 Lo strumento Rcov è stato usato per misurare la copertura dei test sul codice. Il team QuiXoft utilizzerà la metrica C0, ovvero sarà controllata la copertura di ogni istruzione, e quindi di ogni riga di codice dell'intero progetto.
 
 La situazione di copertura dei test sul codice è riportato nel file \textit{coverage.pdf} allegato al presente documento.
+
+\begin{large}INSERIRE I RISULTATI DI RCOV\end{large}
 \subsubsection{Flay}
 Qualsiasi progetto Rails dovrebbe seguire il più possibile il principio DRY: Don't Repeat Yourself.
 Anche se questo deve essere inteso come principio generale, dovremmo anche evitare di avere ripetizioni all’interno del medesimo file.
@@ -150,6 +152,9 @@ Anche se questo deve essere inteso come principio generale, dovremmo anche evita
 Flay permette di tenere sotto controllo le duplicazioni, analizzando le “similarità strutturali” (branch, cicli, etc) presenti nel codice: se due parti di codice sono simili allora potrebbero essere buone candidate per un refactoring.
 
 Il risultato di tale metrica di analisi si può consultare nel file \textit{flay.html} allegato al presente documento.
+
+Analizzando i risultati si possono notare numerose ripetizioni: la maggior parte non sono tuttavia evitabili, in quanto diversi metodi all'interno degli stessi controller hanno un redirect alla stessa pagina, e per forza di cose il codice che effettua il redirect deve essere ripetuto.
+Nonostante ciò, la quantità di ripetizioni non è stata ritenuta preoccupante dai membri del team QuiXoft, ne sono stati rilevati eventuali problemi per la futura manutenzione del codice.
 \subsubsection{Flog}
 Lo strumento Flog applica una metrica ABC al codice del progetto `Sigeol` al fine di misurarne la complessità.
 La metrica ABC misura la distanza euclidea dall’origine nello spazio tridimensionale formato da:
@@ -161,10 +166,53 @@ La metrica ABC misura la distanza euclidea dall’origine nello spazio tridimens
 Più il codice risulta “lineare” minore sarà il valore di tale metrica ad esso applicato (e tenderà ad essere più gestibile). Al contrario, nel caso di codice ricco di cicli, sottocicli e diversi branch, mostrerebbe un valore elevato, indicando un codice, almeno in teoria, più soggetto a bachi.
 
 Il risultato di tale metrica di analisi si può consultare nel file \textit{flog.html} allegato al presente documento.
+
+La seguente tabella, messa a disposizione degli sviluppatori di Flog, indica la scala di valori con cui misurare la bontà dei risultati, prendendo in esame il punteggio per metodo (seconda colonna del file allegato):
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textsc{Punteggio} & \textsc{Risultato} \\
+\hline
+\hline
+\textit{0 - 10} & Ottimo  \\
+\hline
+\textit{11 - 20} & Buono  \\
+\hline
+\textit{21 - 40} & Abbastanza buono (da valutare un possibile refactoring)  \\
+\hline
+\textit{41 - 60} & Accettabile ma sconsigliato  \\
+\hline
+\textit{60 - 100} & Pericoloso  \\
+\hline
+\textit{100 o più} & Non accettabile  \\
+\hline
+\end{tabular}
+\end{center}
+Osservando i risultati ottenuti, si può notare che solamente 2 classi rientrano nella fascia 21-40, mentre tutte le altre possono considerarsi buone o ottime. Le 2 classi imputate sono teacher\_controller e classroom\_controller: ne è stato valutato un refactoring, ma si è deciso di mantenerle cosi come sono in quanto la loro complessità è stata ritenuta perfettamente accettabile dai membri del team QuiXoft.
 \subsubsection{Saikuro}
 Saikuro è uno strumento per misurare la complessità ciclomatica, metrica strutturale relativa al flusso di controllo di un programma che rappresenta la sua complessità logica, cioè lo sforzo per realizzarlo e comprenderlo.
 
 Il risultato di tale metrica di analisi si può consultare nel file \textit{saikuro.html} allegato al presente documento.
+
+La seguente tabella indica la scala di punteggi con cui valutare i risultati ottenuti:
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textsc{Punteggio} & \textsc{Risultato} \\
+\hline
+\hline
+\textit{0 - 10} & Ottimo  \\
+\hline
+\textit{11 - 20} & Buono  \\
+\hline
+\textit{21 - 40} & Sufficiente  \\
+\hline
+\textit{41 o più} & Insufficiente  \\
+\hline
+\end{tabular}
+\end{center}
+Esaminando il file allegato, si può notare come tutti i metodi rientrino nelle prime 2 categorie, indicando una limitata complessità ciclomatica, a tutto vantaggio della facilità di gestione e di manutenzione del codice del progetto SIGEOL.
 \subsubsection{Reek}
 Reek è uno strumeto di analisi del codice che ci dice se e dove compaiono pattern “sospetti”, come ad esempio:
 \begin{itemize}
@@ -188,10 +236,15 @@ Roodi è l’acronimo di “Ruby Object Oriented Design Inferometer”. E’ uno
  \item lunghezza dei metodi
 \end{itemize}
 Il risultato di tale metrica di analisi si può consultare nel file \textit{roodi.html} allegato al presente documento.
+
+Roodi segnala parecchi metodi con lunghezza superiore alle 20 righe: il team QuiXoft ha ritenuto che tale valore sia piuttosto limitante, e per questo ha dato un peso relativamente basso a tale segnalazione. Il numero di righe per metodo non supera mai comunque le 40 righe, valore ritenuto un ottimo compromesso per quanto riguarda la leggibilità e la manutenibilità del codice.
 \subsubsection{Churn}
 Churn tiene traccia dei file soggetti a maggiori modifiche. Un file il cui contenuto cambia spesso è un sintomo di probabile necessità di refactoring: forse è necessario rivedere le entità definite, oppure introdurre un diverso design pattern.
 Churn inferisce i cambiamenti attraverso l’analisi dei log dei Subversion.
 
 Il risultato di tale metrica di analisi si può consultare nel file \textit{churn.html} allegato al presente documento.
+
+Anche in questo caso il teacher\_controller risulta essere il file modificato più volte: il numero delle modifiche resta comunque accettabile, ed è giustificato dalla notevole complessità delle operazioni che tale controller è tenuto a gestire.
+Tutti gli altri file sono stati limitatamente modificati, indice di una corretta progettazione.
 \modifiche
 \end{document}
