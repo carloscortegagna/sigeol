@@ -1,0 +1,388 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{graphicx}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{eurosym}
+\usepackage[colorlinks=true,linkcolor=black]{hyperref}
+
+% \renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.6pt}
+% impostazione dello stile per le pagine interne del documento
+\lhead{\leftmark}
+\chead{}
+\rhead{\includegraphics[scale=0.15]{logo.png} }
+\lfoot{Piano di Progetto (Delta)}
+\cfoot{}
+\rfoot{\thepage \ di \pageref{LastPage}}
+% ridefinizione dello stile plain per il frontespizio
+\fancypagestyle{plain}{
+\fancyhf
+}
+% impostazione dello stile per l'indice
+\fancypagestyle{indice}{
+\lhead{\leftmark}
+\chead{}
+\rhead{\includegraphics[scale=0.15]{logo.png}}
+\lfoot{Piano di Progetto (Delta)}
+\cfoot{}
+\rfoot{}
+}
+\headheight = 46pt
+%definizione del comando "\modfiche" per la creazione del diario delle modifiche
+\newcommand{\modifiche}
+{
+\newpage
+\begin{center}
+\textbf{Diario delle modifiche} \\
+\bigskip
+\begin{tabular}{|c|c|p{0.62\textwidth}|}
+\hline
+\textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
+\hline
+\hline
+\textit{10-06-2009} & Delta & Stesura e approvazione del Piano di Progetto Delta\\
+\hline
+\end{tabular}
+\end{center}
+}
+%definizione del comando "\info" per la creazione delle informazioni del documento
+\newcommand{\info} {
+\bigskip
+\begin{tabbing}
+	\hspace*{0.3\textwidth} \= \hspace*{0.5\textwidth} \kill
+	\parbox{0.3\textwidth}{\textbf{Verifica: }} \> \parbox{0.5\textwidth}{Alberti Andrea} \\
+	\parbox{0.3\textwidth}{\textbf{Approvazione: }} \> \parbox{0.5\textwidth}{Freo Matteo} \\
+	\parbox{0.3\textwidth}{\textbf{Stato: }} \> \parbox{0.5\textwidth}{Formale} \\
+	\parbox{0.3\textwidth}{\textbf{Uso: }} \> \parbox{0.5\textwidth}{Esterno} \\
+	\parbox{0.3\textwidth}{\textbf{Distribuzione: }} \> \parbox{0.5\textwidth}{QuiXoft} \\
+	\> \parbox{0.5\textwidth}{Rossi Francesca} \\
+	\> \parbox{0.5\textwidth}{Vardanega Tullio} \\
+	\> \parbox{0.5\textwidth}{Conte Renato} \\
+\end{tabbing}
+}
+%definizione del comando "\frontespizio" per la creazione del frontespizio
+\newcommand{\frontespizio} {
+\thispagestyle{plain}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Progetto \\ Delta}}
+\author{Redazione: Beggiato Andrea}
+\maketitle
+\medskip
+\begin{center}
+\includegraphics[scale=0.5]{logo.png} \\
+\textit{quixoft.sol@gmail.com}
+\end{center}
+\medskip
+\info
+\begin{center}
+\textbf{Sommario} \\
+Aggiornamento del Piano di Progetto \textit{SIGEOL}, contenente solamente le modifiche rispetto al documento consegnato alla Revisione di Qualifica.
+\end{center}
+\newpage
+}
+%definizione del comando "\indice" per la creazione dell'indice
+\newcommand{\indice} {
+\thispagestyle{indice}
+\tableofcontents
+\newpage
+}
+\pagestyle{fancy}
+\begin{document}
+\frontespizio
+\indice
+\setcounter{page}{1}
+\section{Introduzione}
+\subsection{Scopo del documento}
+Data la scarsa esperienza del team QuiXoft il Piano di Progetto è stato rivisto e rimodellato in corso d'opera.
+Lo scopo del presente documento è di notificare gli aggiornamenti che sono stati apportati rispetto al documento consegnato alla precedente revisione offrendo un confronto fra il preventivo ed il consuntivo delle ore di lavoro e dei costi del progetto.
+\section{Fasi di progetto}
+\subsubsection{Analisi}
+Sono di seguito prese in esame le ore effettivamente consuntivate e a metro di confronto le ore preventivate per la fase di Analisi:
+
+\bigskip \bigskip
+\begin{large}\textbf{Consuntivo:}\end{large}
+\newline
+A fianco di ogni ruolo sono riportate, tra parentesi, le ore svolte per ogni mansione di ogni membro del team:
+\\
+\begin{center}
+\begin{tabular}{|c||c|c|}
+\hline
+\textsc{Componenti} & \textsc{Analisi [1]} & \textsc{Analisi [2]} \\ \hline \hline
+Barberio Mattia & An(21) & Res(9) \\ \hline
+Beggiato Andrea & An(18) & Ver(12) \\ \hline
+Freo Matteo & Ver(12) & An(18) \\ \hline
+Grosselle Alessandro & Amm(10) & An(23) \\ \hline
+Scarpa Davide & An(23) & Amm(10) \\ \hline
+Scortegagna Carlo & Res(9) & An(21) \\ \hline
+Alberti Andrea & Res(3)/Amm(2)/Ver(7) & An(18) \\ \hline
+\end{tabular}
+\end{center}
+
+\bigskip \bigskip
+\begin{large}\textbf{Preventivo e confronto:}\end{large}
+\newline
+Durante la fase di analisi il Verificatore e l'Analista hanno avuto un ruolo chiave nello sviluppo del progetto.
+Come si nota confrontando i dati riportati in seguito, c'è stata la necessità di attribuire più ore di lavoro al Verificatore a discapito dei ruoli di Amministratore e Responsabile, che in questa fase erano stati stimati più necessari di quanto in realtà è avvenuto.
+\\
+\begin{center}
+\begin{tabular}{|c||c|c|}
+\hline
+\textsc{Componenti} & \textsc{Analisi [1]} & \textsc{Analisi [2]} \\ \hline \hline
+Barberio Mattia & An(20) & Res(11) \\ \hline
+Beggiato Andrea & An(20) & Ver(10) \\ \hline
+Freo Matteo & Ver(10) & An(20) \\ \hline
+Grosselle Alessandro & Amm(13,5) & An(20) \\ \hline
+Scarpa Davide & An(20) & Amm(13,5) \\ \hline
+Scortegagna Carlo & Res(10) & An(20) \\ \hline
+Alberti Andrea & Res(4)/Amm(3)/Ver(3) & An(20) \\ \hline
+\end{tabular}
+\end{center}
+\bigskip
+\subsubsection{Progettazione}
+Si riportano gli schemi di attribuzione e di rotazione dei ruoli durante la fase di Progettazione.
+
+\bigskip \bigskip
+\begin{large}\textbf{Consuntivo:}\end{large}
+\newline
+A fianco di ogni ruolo sono riportate, tra parentesi, le ore effettivamente svolte in ogni ruolo di ogni componente del team:
+\\
+\begin{center}
+\begin{tabular}{|c||c|c|}
+\hline
+\textsc{Componenti} & \textsc{Progettazione [1]} & \textsc{Progettazione [2]} \\ \hline \hline
+Barberio Mattia & Prog(20) & Ver(14) \\ \hline
+Beggiato Andrea & Amm(3)/Ver(11) & Prog(20) \\ \hline
+Freo Matteo & Prog(21) & Res(4)/Ver(13) \\ \hline
+Grosselle Alessandro & Ver(22) & Prog(19) \\ \hline
+Scarpa Davide & Res(6)/Ver(9) & Prog(18) \\ \hline
+Scortegagna Carlo & Prog(19) & Amm(8,5) \\ \hline
+Alberti Andrea & Res(2)/Amm(5,5) & Prog(20) \\ \hline
+\end{tabular}
+\end{center}
+
+\bigskip \bigskip
+\begin{large}\textbf{Preventivo e confronto:}\end{large}
+\newline
+Durante questa fase il Progettista ha avuto un ruolo chiave nello sviluppo rispetto a quanto preventivato. Come si nota dai dati riportati in seguito a metro di confronto, c'è stata la necessità di attribuire più ore di lavoro al Progettista a discapito dei ruoli di Amministratore e Responsabile, che in questa fase erano stati stimati più necessari di quanto in realtà è avvenuto.
+
+Si riporta ora lo schema di attribuzione dei ruoli con le ore inizialmente preventivate:
+\\
+\begin{center}
+\begin{tabular}{|c||c|c|}
+\hline
+\textsc{Componenti} & \textsc{Progettazione [1]} & \textsc{Progettazione [2]} \\ \hline \hline
+Barberio Mattia & Prog(18) & Ver(14) \\ \hline
+Beggiato Andrea & Amm(4)/Ver(11) & Prog(19) \\ \hline
+Freo Matteo & Prog(19) & Res(5)/Ver(13) \\ \hline
+Grosselle Alessandro & Ver(22) & Prog(19) \\ \hline
+Scarpa Davide & Res(7)/Ver(9) & Prog(18) \\ \hline
+Scortegagna Carlo & Prog(18) & Amm(9,5) \\ \hline
+Alberti Andrea & Res(3)/Amm(6,5) & Prog(18) \\ \hline
+\end{tabular}
+\end{center}
+\bigskip
+
+\subsubsection{Realizzazione}
+Si riportano in seguito gli schemi di attribuzione e di rotazione dei ruoli durante la fase di Realizzazione. La rotazione dei ruoli è avvenuta il giorno 02/03/2009.
+
+\bigskip \bigskip
+\begin{large}\textbf{Consuntivo:}\end{large}
+\newline
+A fianco di ogni ruolo sono riportate, tra parentesi, le ore effettivamente svolte da ogni membro del team in ogni ruolo:
+\\
+\begin{center}
+\begin{tabular}{|c||c|c|}
+\hline
+\textsc{Componenti} & \textsc{Realizzazione [1]} & \textsc{Realizzazione [2]} \\ \hline \hline
+Barberio Mattia & Progr(15) & Amm(8,5)/Ver(8,5) \\ \hline
+Beggiato Andrea & Progr(16) & Res(5)/Amm(5,5)/Progr(6,5) \\ \hline
+Freo Matteo & Amm(8,5) & Progr(17,5)/Res(2) \\ \hline
+Grosselle Alessandro & Res(5) & Progr(17) \\ \hline
+Scarpa Davide & Progr(17) & Ver(13) \\ \hline
+Scortegagna Carlo & Ver(22) & Progr(17,5) \\ \hline
+Alberti Andrea & Progr(17) & Ver(20)/Progr(1,5) \\ \hline
+\end{tabular}
+\end{center}
+
+\bigskip \bigskip
+\begin{large}\textbf{Preventivo e confronto:}\end{large}
+\newline
+Durante la prima parte della fase di Realizzazione il Programmatore ha necessitato di alcune ore in più rispetto a quanto previsto, come si nota dai dati riportati in seguito.
+
+Anche in questa fase sono state attribuite meno ore ai ruoli di Amministratore e Responsabile, che sono stati meno necessari di quanto preventivato.
+
+Anche durante la seconda fase di Realizzazione il Programmatore ha avuto bisogno di ore in più rispetto a quanto preventivato. Esse sono state aggiunte senza problemi in quanto si è rivelato meno utile il responsabile che ha quindi avuto una diminuzione di ore attribuite. Inoltre il costo delle ore già utilizzate era al di sotto del preventivo. E' stato quindi possibile aggiungere senza problemi ulteriori ore di lavoro al programmatore.
+
+Si riporta ora lo schema di attribuzione dei ruoli con le ore preventive per quanto riguarda la fase di Realizzazione.
+\\
+\begin{center}
+\begin{tabular}{|c||c|c|}
+\hline
+\textsc{Componenti} & \textsc{Realizzazione [1]} & \textsc{Realizzazione [2]} \\ \hline \hline
+Barberio Mattia & Progr(15) & Amm(8,5)/Ver(10) \\ \hline
+Beggiato Andrea & Progr(16) & Res(7)/Amm(5,5)/Progr(3) \\ \hline
+Freo Matteo & Amm(9,5) & Progr(16)/Res(2) \\ \hline
+Grosselle Alessandro & Res(7) & Progr(14) \\ \hline
+Scarpa Davide & Progr(16) & Ver(12) \\ \hline
+Scortegagna Carlo & Ver(22) & Progr(16) \\ \hline
+Alberti Andrea & Progr(16) & Ver(20) \\ \hline
+\end{tabular}
+\end{center}
+\bigskip
+\subsection{Riassunto delle ore}
+\bigskip
+\subsubsection{Consuntivo}
+Dai dati consuntivati riguardanti le fasi appena elencate è possibile stilare la seguente tabella riassuntiva, che mostra la suddivisione del carico di lavoro per ogni componente del team QuiXoft, diviso per ruolo.
+
+Si può altresi notare, osservando la colonna ''Totale'', che il carico di lavoro personale che ogni componente del team ha svolto durante lo sviluppo del progetto è compreso fra le 85 e le 105 ore, in pieno rispetto del vincolo consultabile al punto 2.2.1.
+\\
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|c|c||c|}
+\hline
+\textsc{Componenti} & \textsc{Res} & \textsc{Amm} & \textsc{An} & \textsc{Prog} & \textsc{Ver} & \textsc{Progr} & \textsc{Totale}\\
+\hline \hline
+BM & 9 & 8,5 & 21 & 20 & 22.5 & 15 & 96 \\ \hline
+BA & 5 & 8,5 & 18 & 20 & 23 & 22,5 & 97 \\ \hline
+FM & 6 & 8,5 & 18 & 21 & 25 & 17,5 & 96 \\ \hline
+GA & 5 & 10 & 23 & 19 & 22 & 17 & 96 \\ \hline
+SD & 6 & 10 & 23 & 18 & 22 & 17 & 96 \\ \hline
+SC & 9 & 8,5 & 21 & 19 & 22 & 17,5 & 97 \\ \hline
+AA & 5 & 7,5 & 18 & 20 & 27 & 18,5 & 96 \\ \hline
+\end{tabular}
+\end{center}
+
+
+Risulta anche utile valutare le ore che ogni ruolo ha avuto assegnate durante le varie fasi del progetto: ciò può dimostrare il peso e l'importanza dei vari ruoli nello sviluppo del progetto software ''SIGEOL''.
+
+La seguente tabella rappresenta appunto le ore che ogni ruolo ha svolto in ogni periodo, il totale di ore per fase e il numero totale di ore che il team QuiXoft ha impiegato per sviluppare completamente il progetto.
+\\
+\begin{center}
+\begin{tabular}{|c||c|c|c||c|}
+\hline
+\textsc{Componenti}& \textsc{Analisi} & \textsc{Progettazione} & \textsc{Realizzazione} & \textsc{Tot.} \\ \hline \hline
+Responsabile & 21 & 12 & 12 & 45 \\ \hline
+Amministratore & 22 & 17 & 22,5 & 61,5 \\ \hline
+Analista & 142 & 0 & 0 & 142 \\ \hline
+Progettista & 0 & 137 & 0 & 137 \\ \hline
+Programmatore & 0 & 0 & 125 & 125 \\ \hline
+Verificatore & 31 & 69 & 63,5 & 163,5 \\ \hline \hline
+\textsc{Totale} & 216 & 235 & 223 & 674 \\ \hline
+\end{tabular}
+\end{center}
+\bigskip
+\subsubsection{Preventivo e confronto}
+Risulta utile prendere le tabelle riassuntive del preventivo stimato inizialmente come metro di confronto, subito qui in seguito.
+\\
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|c|c||c|}
+\hline
+\textsc{Componenti} & \textsc{Res} & \textsc{Amm} & \textsc{An} & \textsc{Prog} & \textsc{Ver} & \textsc{Progr} & \textsc{Totale}\\
+\hline \hline
+BM & 11 & 8,5 & 20 & 18 & 24 & 15 & 96,5 \\ \hline
+BA & 7 & 9,5 & 20 & 19 & 21 & 19 & 95,5 \\ \hline
+FM & 7 & 9,5 & 20 & 19 & 23 & 16 & 94,5 \\ \hline
+GA & 7 & 13,5 & 20 & 19 & 22 & 14 & 95,5 \\ \hline
+SD & 7 & 13,5 & 20 & 18 & 21 & 16 & 95,5 \\ \hline
+SC & 10 & 9,5 & 20 & 18 & 22 & 16 & 95,5 \\ \hline
+AA & 7 & 9,5 & 20 & 18 & 23 & 16 & 93,5 \\ \hline
+\end{tabular}
+\end{center}
+\bigskip
+\begin{center}
+\begin{tabular}{|c||c|c|c||c|}
+\hline
+\textsc{Componenti}& \textsc{Analisi} & \textsc{Progettazione} & \textsc{Realizzazione} & \textsc{Tot.} \\ \hline \hline
+Responsabile & 25 & 15 & 16 & 56 \\ \hline
+Amministratore & 30 & 20 & 23,5 & 73,5 \\ \hline
+Analista & 140 & 0 & 0 & 140 \\ \hline
+Progettista & 0 & 129 & 0 & 129 \\ \hline
+Programmatore & 0 & 0 & 112 & 112 \\ \hline
+Verificatore & 23 & 69 & 64 & 156 \\ \hline \hline
+\textsc{Totale} & 218 & 233 & 215,5 & 666,5 \\ \hline
+\end{tabular}
+\end{center}
+
+
+Dalla visione di queste tabelle confrontate con le precedenti si può notare che i ruoli di Responsabile e Amministratore sono stati leggermente sovrastimati in fase di preventivo, sono stati invece leggermente sottostimati i ruoli di Verificatore, Progettista e Programmatore. Questa stima errata è dovuta essenzialmente alla scarsa esperienza del team in progetti del genere. La stima iniziale non si è comunque discostata di molto dalla realtà dei fatti.
+\bigskip
+\section{Conto economico}
+\subsection{Conto economico reale}
+Nel proseguire dello sviluppo del progetto sono state variate, come illustrato nelle precedenti sezioni del presente documento, le ore utilizzate dai vari membri del team e dai vari ruoli previsti.
+
+Ciò ha portato ai dati riportati di seguito, che illustrano i costi sostenuti dal team QuiXoft per l'intera realizzazione del progetto:
+\\
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|c|c||c|}
+\hline
+\textsc{Componenti} & \textsc{Res} & \textsc{Amm} & \textsc{An} & \textsc{Prog} & \textsc{Ver} & \textsc{Progr} & \textsc{Totale}\\
+\hline \hline
+BM & 270 & 170 & 525 & 440 & 360 & 240 & 2005 \\ \hline
+BA & 150 & 170 & 450 & 440 & 368 & 360 & 1938 \\ \hline
+FM & 180 & 170 & 450 & 462 & 400 & 280 & 1942 \\ \hline
+GA & 150 & 200 & 575 & 418 & 352 & 272 & 1967  \\ \hline
+SD & 180 & 200 & 575 & 396 & 352 & 272 & 1975 \\ \hline
+SC & 270 & 170 & 525 & 418 & 352 & 280 & 2015 \\ \hline
+AA & 150 & 150 & 450 & 440 & 432 & 296 & 1918 \\ \hline
+\end{tabular}
+\end{center}
+\bigskip
+Il costo totale sostenuto per lo sviluppo dell'intero progetto è quindi di 13760\euro. E' stato quindi rispettato il budget economico preventivato.
+
+Si può redigere inoltre la seguente tabella, che mostra i costi reali (in \euro) per ruolo in relazione alle varie fasi del progetto.
+\begin{center}
+\begin{tabular}{|c||c|c|c||c|}
+\hline
+\textsc{Componenti}& \textsc{Analisi} & \textsc{Progettazione} & \textsc{Realizzazione} & \textsc{Tot.} \\ \hline \hline
+Responsabile & 630 & 360 & 360 & 1350 \\ \hline
+Amministratore & 440 & 340 & 450 & 1230 \\ \hline
+Analista & 3550 & 0 & 0 & 3550 \\ \hline
+Progettista & 0 & 3014 & 0 & 3014 \\ \hline
+Programmatore & 0 & 0 & 2000 & 2000 \\ \hline
+Verificatore & 496 & 1104 & 1016 & 2616 \\ \hline \hline
+\textsc{Totale} & 5116 & 4818 & 3826 & 13760 \\ \hline
+\end{tabular}
+\end{center}
+\newpage
+\subsection{Preventivo dei costi}
+La tabella sottostante illustra le stime iniziali sui costi (in \euro) di ogni componente del team in relazione al ruolo ricoperto.
+
+Emerge un peso economico pressochè identico tra i vari membri del team QuiXoft al termine di tutte le fasi di sviluppo.
+\bigskip
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|c|c||c|}
+\hline
+\textsc{Componenti} & \textsc{Res} & \textsc{Amm} & \textsc{An} & \textsc{Prog} & \textsc{Ver} & \textsc{Progr} & \textsc{Totale}\\
+\hline \hline
+BM & 330 & 170 & 500 & 396 & 384 & 240 & 2020 \\ \hline
+BA & 210 & 190 & 500 & 418 & 336 & 304 & 1958 \\ \hline
+FM & 210 & 190 & 500 & 418 & 368 & 256 & 1942 \\ \hline
+GA & 210 & 270 & 500 & 418 & 352 & 224 & 1974 \\ \hline
+SD & 210 & 270 & 500 & 396 & 336 & 256 & 1968 \\ \hline
+SC & 300 & 190 & 500 & 396 & 352 & 256 & 1994 \\ \hline
+AA & 210 & 190 & 500 & 396 & 368 & 256 & 1920 \\ \hline
+\end{tabular}
+\end{center}
+\bigskip
+Sempre come confronto la seguente tabella con i costi stimati per ruolo in relazione alle varie fasi di progetto:
+
+\begin{center}
+\begin{tabular}{|c||c|c|c||c|}
+\hline
+\textsc{Componenti}& \textsc{Analisi} & \textsc{Progettazione} & \textsc{Realizzazione} & \textsc{Tot.} \\ \hline \hline
+Responsabile & 750 & 450 & 480 & 1680 \\ \hline
+Amministratore & 600 & 400 & 470 & 1470 \\ \hline
+Analista & 3500 & 0 & 0 & 3500 \\ \hline
+Progettista & 0 & 2838 & 0 & 2838 \\ \hline
+Programmatore & 0 & 0 & 1792 & 1792 \\ \hline
+Verificatore & 368 & 1104 & 1024 & 2496 \\ \hline \hline
+\textsc{Totale} & 5218 & 4792 & 3766 & 13776 \\ \hline
+\end{tabular}
+\end{center}
+Si può notare da questo confronto che grazie ad un risparmio economico rispetto al preventivo dei ruoli di Responsabile ed Amministratore si è andata a colmare una sottostima dei ruoli di Progettista, Programmatore e verificatore senza uscire dal preventivo di costo fissato con il committente di 13760\euro.
+\modifiche
+\end{document}
