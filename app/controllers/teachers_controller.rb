@@ -514,7 +514,7 @@ end
     redirect_to(administration_teachers_url)
   end
 
-=begin #### metodo per trasformare un vincolo in una preferenza...mi sa che è meglio lasciarlo stare, sorgono un sacco di casini se lo si usa....meglio cancellare direttamente il vincolo
+=begin   metodo per trasformare un vincolo in una preferenza...mi sa che è meglio lasciarlo stare, sorgono un sacco di casini se lo si usa....meglio cancellare direttamente il vincolo
   def transform_constraint_in_preference
     teacher = Teacher.find(params[:teacher])
     constraint_to_transform_in_preference = TemporalConstraint.find(params[:constraint_id])
@@ -528,27 +528,16 @@ end
        preferences << TemporalConstraint.find(id.constraint_id)
       end
     end
-    redirect_to(timetabfghles_url)
-    t = TemporalConstraint.new(:description=>"Preferenza docente: " + teacher.name + " " + teacher.surname,
-        :isHard=>1,:startHour=>constraint_to_transform_in_preference.startHour,
-        :endHour=>constraint_to_transform_in_preference.endHour,:day=>constraint_to_transform_in_preference.day)
-    
-    teacher_graduate_courses = teacher.user.graduate_courses
-    if t.save
-      preferences.each do |p|
-        p.isHard = p.isHard + 1
-        p.save
-      end
-      constraint_to_transform_in_preference.destroy
-      for c in teacher_graduate_courses #devo creare un record in constraint_owner per ogni graduate_course del teacher
-        co=ConstraintsOwner.new
-        co.constraint=t
-        co.graduate_course=GraduateCourse.find(c.id)
-        co.owner = teacher
-        co.save
-      end
+
+    preferences.each do |p|
+      p.isHard = p.isHard + 1
+      p.save
     end
     
+    constraint_to_transform_in_preference.isHard = 1
+    constraint_to_transform_in_preference.description = "Preferenza docente: " + teacher.name + " " + teacher.surname
+    constraint_to_transform_in_preference.save
+    redirect_to(administration_teachers_url)
   end
 =end
   
