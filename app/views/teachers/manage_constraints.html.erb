@@ -15,9 +15,11 @@
           <td><%=h constraint.startHour.to_s(:time) %></td>
           <td><%=h constraint.endHour.to_s(:time) %></td>
           <td><%=h constraint.description %></td>
-          <td><% form_remote_tag :url => destroy_constraint_teacher_path(@teacher,:constraint_id => constraint.id) do %>
-            <%= submit_tag "Rimuovi" %>
-          <% end %></td>
+          <td>
+          <%= link_to(image_tag("/images/delete.png"), destroy_constraint_from_manage_constraints_teacher_path(:constraint_id => constraint.id),
+            :title => "Elimina definitivamente il vincolo dal sistema SIGEOL",
+            :confirm => "Sei sicuro di voler eliminare definitivamente il vincolo dal sistema SIGEOL?") %>
+          </td>
         </tr>
     <% end %>
     </table>

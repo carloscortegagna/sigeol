@@ -508,6 +508,12 @@ end
     end
   end
 
+  def destroy_constraint_from_manage_constraints
+    constraint_to_destroy = TemporalConstraint.find(params[:constraint_id])
+    constraint_to_destroy.destroy
+    redirect_to(administration_teachers_url)
+  end
+
 =begin #### metodo per trasformare un vincolo in una preferenza...mi sa che è meglio lasciarlo stare, sorgono un sacco di casini se lo si usa....meglio cancellare direttamente il vincolo
   def transform_constraint_in_preference
     teacher = Teacher.find(params[:teacher])

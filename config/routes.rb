@@ -33,6 +33,7 @@ ActionController::Routing::Routes.draw do |map|
                                        :edit_constraints => :get, :edit_preferences => :get, :manage_constraints => :get,
                                        :create_constraint => :post, :create_preference => :post,
                                        :destroy_constraint => :post, :destroy_preference => :post,
+                                       :destroy_constraint_from_manage_constraints => :get,
                                        :teacher_preference_priority_up => :post,
                                        :teacher_preference_priority_down => :post}
                                        
