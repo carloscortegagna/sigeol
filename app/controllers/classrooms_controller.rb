@@ -59,7 +59,7 @@ class ClassroomsController < ApplicationController
     respond_to do |format|
       if @classroom.save
         @classroom.graduate_courses << @current_user.graduate_courses
-        flash[:notice] = 'Classroom was successfully created.'
+        flash[:notice] = "Inserimento della nuova aula avvenuto con successo"
         format.html { redirect_to(administration_classrooms_url) }
         format.js{render(:update) {|page| page.redirect_to :action => 'administration'}}
       else
@@ -76,7 +76,7 @@ class ClassroomsController < ApplicationController
 
     respond_to do |format|
       if @classroom.update_attributes(params[:classroom])
-        flash[:notice] = 'Classroom was successfully updated.'
+        flash[:notice] = "Aggiornamento dell'aula avvenuto con successo"
         format.html { redirect_to(administration_classrooms_url) }
         format.js{render(:update) {|page| page.redirect_to :action => 'administration'}}
       else

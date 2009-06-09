@@ -1,6 +1,7 @@
 <tr>
-  <td class="list_table_first_item"><%= link_to curriculum_admin.name, curriculum_path(curriculum_admin) %></td>
+  <td class="list_table_first_item"><%= curriculum_admin.name %></td>
   <td><%= link_to image_tag("/images/Amministrazione.jpg"), edit_curriculum_path(curriculum_admin), :title => "Modifica i dati" %></td>
-  <td><%= link_to image_tag("/images/delete.png"), curriculum_admin, :method => :delete, :title => "Elimina definitivamente dal sistema" %></td>
+  <td><%= link_to image_tag("/images/delete.png"), curriculum_admin, :method => :delete, :title => "Elimina definitivamente dal sistema",
+          :confirm => "Sei sicuro di voler eliminare definitivamente il curriculum dal sistema SIGEOL?" %></td>
   <td><%= link_to image_tag("/images/teaching.jpeg"), edit_teachings_curriculum_path(curriculum_admin), :title => "Gestisci gli insegnamenti" %></td>
 </tr>

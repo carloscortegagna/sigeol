@@ -16,17 +16,6 @@ class CurriculumsController < ApplicationController
 
   before_filter :same_graduate_course_required, :only => [:edit, :update, :edit_teachings, :update_teachings]
 
-  # GET /curriculums/1
-  # GET /curriculums/1.xml
-  def show
-    @curriculum = Curriculum.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @curriculum.to_xml(:except =>[:created_at, :updated_at, :id, :graduate_course_id]) } # show xml
-    end
-  end
-
   # GET /curriculums/new
   # GET /curriculums/new.xml
   def new

@@ -8,9 +8,9 @@
   <% end %>
   <td class="list_table_first_item"><%= link_to teaching_admin.name, teaching_path(teaching_admin) %></td>
   <td><%= link_to image_tag("/images/Amministrazione.jpg"), edit_teaching_path(teaching_admin) %></td>
-  <td><%= link_to image_tag("/images/delete.png"), teaching_admin, :method => :delete %></td>
+  <td><%= link_to image_tag("/images/delete.png"), teaching_admin, :method => :delete,
+          :confirm => "Sei sicuro di voler eliminare definitivamente l'insegnamento dal sistema SIGEOL?" %></td>
   <td><%= link_to image_tag("/images/Docente.jpg"), select_teacher_teaching_path(teaching_admin), :title => title %></td>
   <td><%= docente %>
   </td>
-  <!--<span></span>-->
 </tr>

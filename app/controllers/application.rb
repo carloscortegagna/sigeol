@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
         if session[:user_id]
           @current_user = User.find(session[:user_id])
         else
-          flash[:notice] = "Effettuare il login"
+          flash[:notice] = "Si prega di effettuare il login"
           redirect_to new_session_url
         end
       end

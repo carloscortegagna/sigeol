@@ -82,7 +82,7 @@ class GraduateCoursesController < ApplicationController
 
     respond_to do |format|
       if @graduate_course.update_attributes(params[:graduate_course])
-        flash[:notice] = 'GraduateCourse was successfully updated.'
+        flash[:notice] = 'Corso di laurea aggiornato con successo'
         format.html { redirect_to(@graduate_course) }
         format.js{render(:update) {|page| page.redirect_to(@graduate_course)}}
       else

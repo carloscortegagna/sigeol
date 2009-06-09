@@ -136,7 +136,7 @@ class TeachingsController < ApplicationController
 
     respond_to do |format|
       if @teaching.update_attributes(params[:teaching])
-        flash[:notice] = 'Teaching was successfully updated.'
+        flash[:notice] = 'Insegnamento aggiornato con successo'
         format.html { redirect_to(@teaching) }
         format.js{render(:update) {|page| page.redirect_to(@teaching)}}
       else
