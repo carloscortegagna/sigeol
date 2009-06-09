@@ -31,24 +31,16 @@
         <servlet-class>sigeol.SchedulerServlet</servlet-class>
         <init-param>
             <param-name>input-itc-path</param-name>
-            <param-value>/WEB-INF/itc/input/</param-value>
+            <param-value>/itc/input/</param-value>
         </init-param>
         <init-param>
             <param-name>output-itc-path</param-name>
-            <param-value>/WEB-INF/itc/output/</param-value>
+            <param-value>/itc/output/</param-value>
         </init-param>
         <init-param>
             <param-name>url-client</param-name>
             <param-value>http://localhost:8080/sigeol</param-value>
-        </init-param>
-         <init-param>
-            <param-name>mail</param-name>
-            <param-value>barraemme@gmail.com</param-value>
-        </init-param>
-         <init-param>
-            <param-name>password</param-name>
-            <param-value>qwerty</param-value>
-        </init-param>
+        </init-param>         
         <load-on-startup>2</load-on-startup>
     </servlet>
     <servlet-mapping>
