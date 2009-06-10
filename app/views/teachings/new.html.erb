@@ -36,10 +36,6 @@
     <% end %>
   </p>
   <p>
-    Opzionale:
-    <%= check_box_tag "optional" %>
-  </p>
-  <p>
     Anno <br/>
     <%= select_tag "year" , options_from_collection_for_select(@year, "year", "year") %>
   </p>
