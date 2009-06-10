@@ -506,6 +506,13 @@ end
         @constraints << TemporalConstraint.find(c_id.constraint_id)
       end
     end
+    @preferences = []
+    for p_id in teacher_constraint_ids do
+      if TemporalConstraint.find(p_id.constraint_id).isHard != 0
+        @preferences << TemporalConstraint.find(p_id.constraint_id)
+      end
+    end
+    @preferences = @preferences.sort_by { |c| c[:isHard] }
   end
 
   def destroy_constraint_from_manage_constraints
@@ -514,7 +521,7 @@ end
     redirect_to(administration_teachers_url)
   end
 
-=begin   metodo per trasformare un vincolo in una preferenza...mi sa che è meglio lasciarlo stare, sorgono un sacco di casini se lo si usa....meglio cancellare direttamente il vincolo
+# metodo per trasformare un vincolo in una preferenza
   def transform_constraint_in_preference
     teacher = Teacher.find(params[:teacher])
     constraint_to_transform_in_preference = TemporalConstraint.find(params[:constraint_id])
@@ -539,7 +546,6 @@ end
     constraint_to_transform_in_preference.save
     redirect_to(administration_teachers_url)
   end
-=end
   
   private
 

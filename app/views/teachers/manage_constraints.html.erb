@@ -1,7 +1,8 @@
 <h1>Modifica del docente <%= show_teacher(@teacher)  %></h1>
+<hr>
 <p>
     <% if @constraints.size != 0 %>
-      <h4>Vincoli inseriti dal docente:</h4>
+      <h4>Vincoli temporali di non disponibilità inseriti dal docente:</h4>
       <table id="manageable_constraints">
         <tr>
           <th>Giorno</th>
@@ -20,10 +21,37 @@
             :title => "Elimina definitivamente il vincolo dal sistema SIGEOL",
             :confirm => "Sei sicuro di voler eliminare definitivamente il vincolo dal sistema SIGEOL?") %>
           </td>
+           <td>
+          <%= link_to(image_tag("/images/arrow_down.gif"), transform_constraint_in_preference_teacher_path(:constraint_id => constraint.id, :teacher => @teacher),
+            :title => "Trasforma definitivamente il vincolo in preferenza",
+            :confirm => "Sei sicuro di voler trasformare definitivamente il vincolo in una preferenza?") %>
+          </td>
         </tr>
     <% end %>
     </table>
   <% else %>
     <h4>Il docente non ha inserito nessun vincolo</h4>
+  <% end %>
+</p>
+<hr>
+<p>
+  <% if @preferences.size != 0 %>
+  <h4>Preferenze temporali di non disponibilità inserite dal docente:</h4>
+  <table id="manageable_constraints">
+    <tr>
+      <th>Giorno</th>
+      <th>Ora inizio</th>
+      <th>Ora fine</th>
+    </tr>
+    <% @preferences.each do |preference| %>
+    <tr id='<%= preference.id %>'>
+      <td><%= from_id_to_dayname(preference.day) %></td>
+      <td><%=h preference.startHour.to_s(:time) %></td>
+      <td><%=h preference.endHour.to_s(:time) %></td>
+    </tr>
+    <% end %>
+  </table>
+  <% else %>
+    <h4>Il docente non ha inserito nessuna preferenza</h4>
   <% end %>
 </p>
