@@ -28,7 +28,7 @@
 class TeachersController < ApplicationController
   skip_before_filter :login_required, :only => [:index, :show, :pre_activate, :activate]
   before_filter :manage_teachers_required, :only => [:new, :create, :administration, :edit_graduate_courses,
-                                                     :update_graduate_courses, :manage_constraints]
+                                                     :update_graduate_courses, :manage_constraints,:transform_constraint_in_preference,:destroy_constraint_from_manage_constraints]
   before_filter :manage_capabilities_required, :only => [:edit_capabilities, :update_capabilities]
   before_filter :same_graduate_course_required, :only => [:edit_graduate_courses, :update_graduate_courses,
                                                           :edit_capabilities, :update_capabilities]
@@ -254,7 +254,7 @@ end
                 :conditions => ["specified_type = 'Teacher' AND users.password is NOT null AND graduate_courses.id IN (?)",ids])
 
     # lista degli users che non hanno ancora completato la registrazione
-    @not_active_users = User.find(:all, :include => :graduate_courses,
+    @not_active_users = User.find(:all, :include =>:graduate_courses,
                 :conditions => ["users.password IS null AND graduate_courses.id IN (?)",ids])
   end
   
@@ -535,12 +535,10 @@ end
        preferences << TemporalConstraint.find(id.constraint_id)
       end
     end
-
     preferences.each do |p|
       p.isHard = p.isHard + 1
       p.save
     end
-    
     constraint_to_transform_in_preference.isHard = 1
     constraint_to_transform_in_preference.description = "Preferenza docente: " + teacher.name + " " + teacher.surname
     constraint_to_transform_in_preference.save
