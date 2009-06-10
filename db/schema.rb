@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090605145111) do
+ActiveRecord::Schema.define(:version => 20090610105109) do
 
   create_table "academic_organizations", :force => true do |t|
     t.string   "name"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(:version => 20090605145111) do
     t.integer  "building_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "lab"
   end
 
   add_index "classrooms", ["building_id"], :name => "fk_classrooms_building_id"
