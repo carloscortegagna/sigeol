@@ -158,8 +158,5 @@ class User < ActiveRecord::Base
   def calculate_digest #:doc:
     ran = self.random.to_s
     self.digest = Digest::SHA1.hexdigest(self.mail+ran) unless attribute_present?("digest")
-    if ENV['RAILS_ENV'] == "development"
-      puts self.digest
     end
-  end
 end

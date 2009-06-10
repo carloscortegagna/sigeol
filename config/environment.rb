@@ -80,11 +80,11 @@ ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.
     merge!(:default => '%d/%m/%Y')
 
 ValidatesTimeliness::Formats.remove_us_formats
-ActionMailer::Base.default_url_options[:host] = CONFIG['host']
-if CONFIG['authentication'] == 'plain'
+ActionMailer::Base.default_url_options[:host] = CONFIG['mail']['host']
+if CONFIG['mail']['authentication'] == 'plain'
   #ActionMailer::Base.smtp.settings = {:authentication => :plain}
 end
-if CONFIG['authentication'] == 'login'
+if CONFIG['mail']['authentication'] == 'login'
   #ActionMailer::Base.smtp.settings = {:authentication => :login}
 end
 ActionMailer::Base.smtp_settings = {
