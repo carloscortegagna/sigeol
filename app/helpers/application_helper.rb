@@ -35,12 +35,8 @@ module ApplicationHelper
     amm_link = []
     teacher_link = []
     final_link = []
-    didactic_office_link = []
     if (user.own_by_didactic_office?)
-      didactic_office_link << {:name => "Nuovo corso", :url => url_for(:controller => "graduate_courses", :action => "new")}
-    end
-    if (didactic_office_link)
-      final_link << {:cat => "Segreteria", :link => didactic_office_link}
+      amm_link << {:name => "Nuovo corso", :url => url_for(:controller => "graduate_courses", :action => "new")}
     end
     amm_link << {:name => "Cambio psw", :url => url_for(:controller => "users", :action => "edit", :id => user.id)}
     if (user.manage_teachers?)
