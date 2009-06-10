@@ -14,6 +14,10 @@
     <span class="warning "id="errors_capacity"> <%=  @classroom.errors.on(:capacity) %></span>
   </p>
   <p>
+    Laboratorio:<br />
+    <%= check_box_tag "lab" %>
+  </p>
+  <p>
     <%= f.label "*Edificio:" %><br />
     <%= select_tag "classroom[building_id]" , options_from_collection_for_select(@buildings, "id", "name") %>
     <span class="warning "id="errors_building"> <%=  @classroom.errors.on(:building_id) %></span>

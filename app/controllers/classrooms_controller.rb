@@ -55,6 +55,9 @@ class ClassroomsController < ApplicationController
   # POST /classrooms
   def create
     @classroom = Classroom.new(params[:classroom])
+    optional = false
+    optional = true if params[:lab]
+    @classroom.lab = optional
 
     respond_to do |format|
       if @classroom.save
