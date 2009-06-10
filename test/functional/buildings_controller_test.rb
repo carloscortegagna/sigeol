@@ -20,21 +20,21 @@ class BuildingsControllerTest < ActionController::TestCase
   test "Guest usa Administration" do  #Redirect alla pagina di login
     get :administration
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
   #ID = 3
   test "Guest usa New" do  #Redirect alla pagina di login
      get :new
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
   #ID = 4
   test "Guest usa Edit" do  #Redirect alla pagina di login
      get :edit ,:id=>:a_id
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
   #ID = 5

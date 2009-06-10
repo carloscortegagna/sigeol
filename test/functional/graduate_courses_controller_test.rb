@@ -12,42 +12,42 @@ class GraduateCoursesControllerTest < ActionController::TestCase
   test "Guest usa administration" do
     get :administration
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
  # ID = 82
   test "Guest usa new" do 
     get :new
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
  # ID = 83
   test "Guest usa edit" do
     get :edit, :id=>:an_id
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
  # ID = 84
   test "Guest usa create" do
     post :create
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
  # ID = 85
   test "Guest usa update" do
      put :update, :id=>:an_id
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
  # ID = 86
   test "Guest usa destroy" do
      delete :destroy, :id=>:an_id
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
  # ID = 87
@@ -156,7 +156,7 @@ class GraduateCoursesControllerTest < ActionController::TestCase
      @request.session[:user_id] = :an_id
      gc.stubs(:update_attributes).returns(true)
     put :update,:id=>:an_id
-    assert_equal flash[:notice], 'GraduateCourse was successfully updated.'
+    assert_equal flash[:notice], 'Corso di laurea aggiornato con successo'
   end
 
  # ID = 96

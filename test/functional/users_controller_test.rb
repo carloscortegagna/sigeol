@@ -15,14 +15,14 @@ include UsersHelper
     get :edit,:id=>:an_id
     show_not_active_users(User.new)
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
   #ID = 183
   test"Guest usa update"do
     put :update,:id=>:an_id
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
   #ID = 184

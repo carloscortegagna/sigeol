@@ -36,49 +36,49 @@ class TeachingsControllerTest < ActionController::TestCase
     get :administration
     login_form
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
   #ID = 154
   test "Guest usa New" do
     get :new
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
   #ID = 155
   test"Guest usa create"do
     get :create
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
   #ID = 156
   test"Guest usa select_teacher"do
     get :select_teacher, :id=>:an_id
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
   #ID = 157
   test"Guest usa assign_teacher"do
       put :assign_teacher,:id=>:an_id,:teacher_id=>:a_teacher_id
       assert_redirected_to new_session_url
-      assert_equal "Effettuare il login" , flash[:notice]
+      assert_equal "Si prega di effettuare il login" , flash[:notice]
     end
 
   #ID = 158
   test"Guest usa update"do
       put :update,:id=>:an_id
       assert_redirected_to new_session_url
-      assert_equal "Effettuare il login" , flash[:notice]
+      assert_equal "Si prega di effettuare il login" , flash[:notice]
     end
 
   #ID = 159
   test"Guest usa destroy"do
       delete :destroy,:id=>:an_id
       assert_redirected_to new_session_url
-      assert_equal "Effettuare il login" , flash[:notice]
+      assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
   #ID = 160
@@ -115,6 +115,8 @@ class TeachingsControllerTest < ActionController::TestCase
     t = Teaching.new
     t.stubs(:id=>:an_id,:name=>:a_name)
     Teaching.stubs(:find).with(:an_id).returns(t)
+     period = Period.new(:year=>2,:subperiod=>2)
+     t.stubs(:period).returns(period)
     @request.session[:user_id] = :an_id
     get :edit,:id=>:an_id
     assert_response :success
@@ -194,11 +196,12 @@ class TeachingsControllerTest < ActionController::TestCase
      gc  = GraduateCourse.new(:id=>:an_id,:name=>:a_name,:duration=>:a_duration)
     GraduateCourse.stubs(:find).returns([gc])
      teaching = Teaching.new
-    @request.session[:user_id] = :an_id
+     @request.session[:user_id] = :an_id
     Teaching.stubs(:find).with(:an_id).returns(teaching)
     teaching.stubs(:update_attributes).returns(true)
+    Period.stubs(:find_by_subperiod_and_year).returns(Period.new(:year=>2,:subperiod=>2))
     put :update,:id=>:an_id
-   assert_equal  flash[:notice], 'Teaching was successfully updated.'
+   assert_equal  flash[:notice], 'Insegnamento aggiornato con successo'
    assert_redirected_to(teaching)
   end
 
@@ -207,9 +210,11 @@ class TeachingsControllerTest < ActionController::TestCase
      gc  = GraduateCourse.new(:id=>:an_id,:name=>:a_name,:duration=>:a_duration)
     GraduateCourse.stubs(:find).returns([gc])
      teaching = Teaching.new
+     period = Period.new(:year=>2,:subperiod=>2)
     @request.session[:user_id] = :an_id
     Teaching.stubs(:find).with(:an_id).returns(teaching)
     teaching.stubs(:update_attributes).returns(false)
+    teaching.stubs(:period).returns(period)
     put :update,:id=>:an_id
    assert_template 'edit'
   end
@@ -330,6 +335,9 @@ class TeachingsControllerTest < ActionController::TestCase
     assert_redirected_to timetables_url
   end
 
+  test "manage constraints"do
+    
+  end
   private
        def render(a)
          a = "Sigeol"

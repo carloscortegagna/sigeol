@@ -14,57 +14,55 @@ class CurriculumsControllerTest < ActionController::TestCase
     curriculum=Curriculum.new
     curriculum.stubs(:id=>:an_id,:name=>:a_name)
     Curriculum.stubs(:find).with(:an_id).returns(curriculum)
-    get :show, :id=>:an_id
-    assert_template 'show'
-  end
+   end
   
   #ID 52
   test "Guest usa New" do
     get :new
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
   #ID 53
   test "Guest usa edit" do
     get :edit, :id=>:an_id
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
   #ID 54
   test"Guest usa create" do
     post :create, :curriculum=>{:name=>:a_name}
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
   #ID 55
   test"Guest usa update" do
     put :update, :id=>:an_id
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
   #ID 56
   test"Guest usa edit_teachings" do
         get :edit_teachings, :id=>:an_id
       assert_redirected_to new_session_url
-      assert_equal "Effettuare il login" , flash[:notice]
+      assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
   #ID 57
   test"Guest usa update_teachings"do
     put :update_teachings, :id=>:an_id, :teaching_id=>:another_id
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
  end
   
   #ID 58
   test"Guest usa destroy" do
     delete :destroy, :id=>:an_id
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
   #ID 59

@@ -31,7 +31,7 @@ class ClassroomsControllerTest < ActionController::TestCase
   test "Guest usa new" do  #Redirect alla pagina di login
     get :new
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
  # ID = 23
@@ -62,7 +62,7 @@ class ClassroomsControllerTest < ActionController::TestCase
   test "Guest usa Administration" do  #Redirect alla pagina di login
     get :administration
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
  # ID = 28
@@ -120,7 +120,7 @@ class ClassroomsControllerTest < ActionController::TestCase
         @request.session[:user_id]=:an_id
         Classroom.any_instance.stubs(:save).returns(true)
         post :create, :classroom=>{:name=>"a_name"}
-        assert_equal flash[:notice] ,  'Classroom was successfully created.'
+        assert_equal flash[:notice] ,  'Inserimento della nuova aula avvenuto con successo'
         assert_redirected_to  administration_classrooms_url
     end
 
@@ -139,7 +139,7 @@ class ClassroomsControllerTest < ActionController::TestCase
         Classroom.stubs(:find).with(:an_id).returns(classroom)
         classroom.stubs(:update_attributes).returns(true)
         put :update, :id=>:an_id
-        assert_equal flash[:notice], 'Classroom was successfully updated.'
+        assert_equal flash[:notice], 'Aggiornamento dell\'aula avvenuto con successo'
         assert_redirected_to administration_classrooms_url
     end
 

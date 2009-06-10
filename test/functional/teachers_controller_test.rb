@@ -103,14 +103,14 @@ include ApplicationHelper
   test "Guest usa administration" do  #Redirect alla pagina di login
     get :administration
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
  # ID = 120
   test "Guest usa new" do  #Redirect alla pagina di login
     get :new
     assert_redirected_to new_session_url
-    assert_equal "Effettuare il login" , flash[:notice]
+    assert_equal "Si prega di effettuare il login" , flash[:notice]
   end
 
  # ID = 121
@@ -568,6 +568,46 @@ end
     assert_equal flash[:error], "Non puoi modificare un utente diverso dal tuo"
     assert_redirected_to timetables_url
   end
+
+  test"User usa manage_constraints"do
+    @request.session[:user_id] = :an_id
+    @user.stubs(:manage_teachers?).returns(true)
+    t =Teacher.new(:name=>"nome",:surname=>"surname")
+    t.stubs(:id).returns(:an_id)
+    Teacher.stubs(:find).returns(t)
+    c = ConstraintsOwner.new
+    c.stubs(:constraint_id).returns(:an_id)
+    c2 = ConstraintsOwner.new(:constraint_id=>:another_id)
+    c2.stubs(:constraint_id).returns(:another_id)
+    ConstraintsOwner.stubs(:find).returns([c,c2])
+    t = TemporalConstraint.new(:isHard=>0,:startHour=>"9:30",:endHour=>"11:30")
+    TemporalConstraint.stubs(:find).with(:an_id).returns(t)
+    TemporalConstraint.stubs(:find).with(:another_id).returns(TemporalConstraint.new(:isHard=>1,:startHour=>"9:30",:endHour=>"11:30"))
+    get :manage_constraints, :id=>:an_id
+    assert_response :success
+    TemporalConstraint.stubs(:find).returns(TemporalConstraint.new(:isHard=>1,:startHour=>"9:30",:endHour=>"11:30"))
+    post :destroy_constraint_from_manage_constraints, :id=>:an_id
+    assert_redirected_to administration_teachers_url
+  end
+
+  test "User usa transform_constraint_in_preference" do
+    @request.session[:user_id] = :an_id
+    @user.stubs(:manage_teachers?).returns(true)
+    t =Teacher.new(:name=>"nome",:surname=>"surname")
+    t.stubs(:id).returns(:an_id)
+    Teacher.stubs(:find).returns(t)
+    c = ConstraintsOwner.new
+    c.stubs(:constraint_id).returns(:an_id)
+    c2 = ConstraintsOwner.new(:constraint_id=>:another_id)
+    c2.stubs(:constraint_id).returns(:another_id)
+    ConstraintsOwner.stubs(:find).returns([c,c2])
+    t = TemporalConstraint.new(:id=>:an_id,:isHard=>1,:startHour=>"10:30",:endHour=>"11:30")
+   TemporalConstraint.stubs(:find).returns(t)
+    get :transform_constraint_in_preference, :id=>:an_id,:constraint_id=>:an_id
+    assert_redirected_to administration_teachers_url
+  end
+
+
   private
        def render(a)
          a = "Sigeol"
