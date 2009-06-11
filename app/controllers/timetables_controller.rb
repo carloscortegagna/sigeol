@@ -206,7 +206,6 @@ class TimetablesController < ApplicationController
       |http| http.request(req)
     }
     #controllo del codice di errore
-    puts res
     case res
       when Net::HTTPSuccess, Net::HTTPRedirection
       # OK
@@ -224,7 +223,10 @@ class TimetablesController < ApplicationController
   #metodo per la segnalazione di avvio calcolo algoritmo
   #chiamato dalla servlet via get
   def notify
-    if start
+    graduate_course = GraduateCourse.find(params[:graduate_course])
+    subperiod = params[:subperiod].to_i
+    year = params[:year]
+    if start(graduate_course,subperiod,year)
       head :ok
     else
       head :unavailable
@@ -235,7 +237,15 @@ class TimetablesController < ApplicationController
   #eseguito dalla servlet via get
   def done
     #prendi valore course e effettuta operazione di finalizzazione
-    @timetable = Timetable.find(params[:id])
+    params[:input_file]
+    gs = GraduateCourse.find(params[:graduate_course])
+    year = params[:year]
+    subperiod = params[:subperiod]
+    filename = "test.out"
+    File.open(filename, "wb") do |f|
+      f.write(params[:input_file].read)
+    end
+    process_file(gs, year, subperiod, filename)
     if true
     head :ok
     else
@@ -244,23 +254,25 @@ class TimetablesController < ApplicationController
   end
 
   #eseguito dalla GUI
-  def start(gs,subperiod)
+  def start(gs,subperiod, year)
     done = false
     #prepara il file di input
-    create_input_file(gs,subperiod)
+    filename = create_input_file(gs,subperiod)
+    file = File.open(filename,"rb")
+    post = Hash.new
+    post["op"] = "dj"
+    post["graduate_course"] = gs.id
+    post["year"] = year
+    post["subperiod"] = subperiod
+    post["input_file"] = file
+    mp = Multipart::MultipartPost.new
+    query, headers = mp.prepare_query(post)
+    file.close
+    file.delete
     #URL della servlet
-    url = URI.parse('http://localhost/middleman/scheduler.do')
+    url = URI.parse(CONFIG['servlet']['address'])
     #impostazione del metodo POST
-    req = Net::HTTP::Post.new(url.path)
-    #parametri di autenticazione
-    #req.basic_auth 'jack', 'pass'
-    #dati da inviare op = DoJob
-    #TODO prelevare corso, creare file input, scegliere un valore di timeout
-    req.set_form_data({'op'=>'dj','course'=>'', 'inputfile'=>'','timeout'=>''}, ';')
-    #connessione alla servlet
-    res = Net::HTTP.start(url.host, url.port) {
-      |http| http.request(req)
-    }
+    res = post_form(url, query, headers)
     #controllo del codice di errore
     case res
       when Net::HTTPSuccess, Net::HTTPRedirection
@@ -346,13 +358,14 @@ class TimetablesController < ApplicationController
     end
     periods = calculate_periods(gs)
     rooms = graduate_course.classrooms
-    File.open("input"+self.name+".ctt", "w") do |f|
-      f.puts "Name: " + self.name
+    filename = "input"+subperiod+"-"+gs.name+".ctt"
+    File.open(filename, "w") do |f|
+      f.puts "Name: " + gs.name
       f.puts "Courses: " + (teachings.size + doppi).to_s
       f.puts "Rooms: " + (rooms.size).to_s
       f.puts "Days: 5"
       f.puts "Periods_per_day: " + (periods.size).to_s
-      f.puts "Curricula: " + (curricula.size * self.duration).to_s
+      f.puts "Curricula: " + (curricula.size * gs.duration).to_s
       f.puts "Constraints: 100"
       f.puts "\n"
       f.puts "COURSES:"
@@ -396,6 +409,7 @@ class TimetablesController < ApplicationController
       f.puts "ROOM_CONSTRAINT:"
       print_room_constraints(f, rooms, periods)
     end
+    filename
   end
 
   def print_courses(teachings, f)
@@ -557,8 +571,34 @@ class TimetablesController < ApplicationController
     end
     t
   end
-end
 
+  def process_file(graduate_course, year, subper, file_name)
+    g = GraduateCourse.find(graduate_course)
+    academic_year = year
+    subperiod = subper
+    timetables = Array.new
+    for i in 1..g.duration
+      p = Period.find_by_year_and_subperiod(i,subperiod)
+      timetables << g.timetables.find(:first, :conditions => ["period_id = ? AND year = ?", p, academic_year])
+    end
+    File.open(file_name, "r") do |f|
+      while line = f.gets
+        if line != "UNSATISFIED PREFERENCES:"
+          a = line.scan(/\w+/)
+          teaching = Teaching.find(a[0].to_i)
+          classroom = Classroom.find(a[2].to_i)
+          periods = calculate_periods(g)
+          y = teaching.period.year
+          timetables[y-1].timetable_entries.create(:startTime => periods[a[4].to_i]["start"],
+                                                   :endTime => periods[a[4].to_i]["end"],
+                                                   :day => ((a[3].to_i) +1),
+                                                   :classroom => classroom,
+                                                   :teaching => teaching)
+        end
+      end
+    end
+  end
+end
 # pdf converter
  #def _index
 #   @items = Item.find(:all)
