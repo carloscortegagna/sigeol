@@ -13,7 +13,7 @@ class TimetablesController < ApplicationController
   skip_before_filter :login_required, :only => [:index, :show]
   before_filter :correct_url_parameter ,:only => [:new, :create, :destroy_all]
   before_filter :only_one_group_of_timetable, :only => [:new, :create]
-  protect_from_forgery :only => [:create, :update, :destroy, :show, :index, :new, :edit]
+  protect_from_forgery :except => [:notify, :done]
   def index
     @timetables = Timetable.find(:all)
 
@@ -34,6 +34,7 @@ class TimetablesController < ApplicationController
 
   def create
     graduate_course = GraduateCourse.find(params[:graduate_course])
+    exp_date = nil
     unless (params[:duration])
       flash[:error] = "Durata non inserita"
       error = true
@@ -72,21 +73,24 @@ class TimetablesController < ApplicationController
         Timetable.transaction do
           destroy_old_contraints(graduate_course.id)
           for i in 1..5
-            graduate_course.constraints << TemporalConstraint.create(:description=>"Orario delle lezioni",
+            temporal = TemporalConstraint.create(:description=>"Orario delle lezioni",
                 :isHard=>0,:startHour=>"00:00",:endHour=>params[:start_hour1],:day=>i)
+            graduate_course.constraints << temporal
           end
           for i in 1..5
-            graduate_course.constraints << TemporalConstraint.create(:description=>"Orario delle lezioni",
+            temporal = TemporalConstraint.create!(:description=>"Orario delle lezioni",
                 :isHard=>0,:startHour=>params[:end_hour1],:endHour=>"23:59",:day=>i)
+            graduate_course.constraints << temporal
           end
-          if (params[:start_hour2] and params[:end_hour2])
+          if (start2 and end2)
             for i in 1..5
-              graduate_course.constraints << TemporalConstraint.create(:description=>"Pausa delle lezioni",
+              temporal = TemporalConstraint.create!(:description=>"Pausa delle lezioni",
                   :isHard=>0,:startHour=>params[:start_hour2],:endHour=>params[:end_hour2],:day=>i)
+              graduate_course.constraints << temporal
             end
           end
           for i in 1..5
-            graduate_course.constraints << QuantityConstraint.create(:description => "Durata delle lezioni",
+            graduate_course.constraints << QuantityConstraint.create!(:description => "Durata delle lezioni",
                    :isHard => 0, :quantity => params[:duration].to_i)
           end
           exp_date = graduate_course.expiry_dates.find(:first, :conditions => {:period => params[:subperiod]})
@@ -98,10 +102,16 @@ class TimetablesController < ApplicationController
                                      params[:range][:"expiry_date(2i)"].to_i,
                                      params[:range][:"expiry_date(3i)"].to_i)
           exp_date.save
-          for i in 1..graduate_course.academic_organization.number
+          for i in 1..graduate_course.duration
             period = Period.find_by_year_and_subperiod(i,params[:subperiod])
             graduate_course.timetables.create(:period => period, :year => params[:year], :isPublic => false)
           end
+        end
+        unless (schedule(params[:subperiod], params[:year],graduate_course, exp_date))
+          error = true
+          destroy_old_contraints(graduate_course.id)
+          exp_date.detroy
+          flash[:error] = "Richiesta alla servlet fallita. Riprovare"
         end
       end
     end
@@ -121,11 +131,11 @@ class TimetablesController < ApplicationController
 
   def destroy_all
     gs = GraduateCourse.find(params[:graduate_course])
-    for i in 1..gs.academic_organization.number
+    for i in 1..gs.duration
       period = Period.find_by_year_and_subperiod(i,params[:subperiod])
       t = Timetable.find(:first,
       :conditions => ["graduate_course_id = ? AND period_id = ? AND year = ?", gs.id, period, params[:year]])
-      t.delete
+      t.destroy
     end
     respond_to do |format|
       format.html { redirect_to administration_timetables_url }
@@ -164,7 +174,7 @@ class TimetablesController < ApplicationController
 
   #metodo usato nella creazione di una nuova istanza di schedulazione
   #chiamato dalla gui
-  def schedule
+  def schedule(subperiod,year,gs,expiry_date)
     #URL della servlet
     url = URI.parse(CONFIG['servlet']['address'])
     #impostazione del metodo POST
@@ -172,7 +182,24 @@ class TimetablesController < ApplicationController
     #parametri di autenticazione
     #req.basic_auth 'jack', 'pass'
     #dati da inviare op = ScheduleJob
-    req.set_form_data({'op'=>'sj', 'course'=>'corso', 'date'=>'data_scheduling'}, ';')
+    data = expiry_date.date
+    day = data.day.to_i
+    if day < 10
+      day = "0" + day.to_s
+    else
+      day = day.to_s
+    end
+    month = data.mon.to_i
+    if month < 10
+      month = "0" + month.to_s
+    else
+      month = month.to_s
+    end
+    date = day + "-" + month + "-" + data.year.to_s
+    req.set_form_data({'op'=>'sj', 'graduate_course' => gs.id.to_s,
+                       'year' => year,
+                       'subperiod' => subperiod.to_s,
+                       'date'=> date}, ';')
     #connessione alla servlet
     res = Net::HTTP.new(url.host, url.port).start {
       |http| http.request(req)
@@ -181,10 +208,13 @@ class TimetablesController < ApplicationController
     case res
       when Net::HTTPSuccess, Net::HTTPRedirection
       # OK
+      return true
       when Net::HTTPNotAcceptable
       #parametri non corretti.. riportare alla form
+      return false
       else
       #errore connessione.. riprovare
+      return false
     end
   end
   
@@ -212,10 +242,10 @@ class TimetablesController < ApplicationController
   end
 
   #eseguito dalla GUI
-  def start
+  def start(gs,subperiod)
     done = false
     #prepara il file di input
-
+    create_input_file(gs,subperiod)
     #URL della servlet
     url = URI.parse('http://localhost/middleman/scheduler.do')
     #impostazione del metodo POST
@@ -300,6 +330,231 @@ class TimetablesController < ApplicationController
         c.destroy
       end
     end
+
+    def create_input_file(gs, subp)
+    graduate_course = gs
+    subperiod = subp
+    curricula = graduate_course.curriculums
+    doppi = 0
+    teachings = find_teachings(subperiod,gs)
+    teachings.each do |t|
+      if (t.labHours.to_i) > 0
+        doppi = doppi + 1
+      end
+    end
+    periods = calculate_periods(gs)
+    rooms = graduate_course.classrooms
+    File.open("input"+self.name+".ctt", "w") do |f|
+      f.puts "Name: " + self.name
+      f.puts "Courses: " + (teachings.size + doppi).to_s
+      f.puts "Rooms: " + (rooms.size).to_s
+      f.puts "Days: 5"
+      f.puts "Periods_per_day: " + (periods.size).to_s
+      f.puts "Curricula: " + (curricula.size * self.duration).to_s
+      f.puts "Constraints: 100"
+      f.puts "\n"
+      f.puts "COURSES:"
+      print_courses(teachings,f)
+      f.puts "\n"
+      f.puts "ROOMS:"
+      rooms.each do |r|
+        if r.lab == false
+          type = "TEO"
+        else
+          type = "LAB"
+        end
+        f.puts r.id.to_s + " " + r.capacity.to_s + " " + type
+      end
+      f.puts "\n"
+      f.puts "CURRICULA:"
+      for i in 1..graduate_course.duration
+        curricula.each do |c|
+          curriculum_id = c.id.to_s + "-" + i.to_s
+          t = find_teachings_by_curriculum(subperiod,c.id,i,gs)
+          cont = 0
+          course_list = String.new
+          t.each do |k|
+            course_list << " " + k.id.to_s + "-teo"
+            cont += 1
+            if k.labHours > 0
+              cont +=1
+              course_list << " " + k.id.to_s + "-lab"
+            end
+          end
+          f.puts curriculum_id + " " + cont.to_s + course_list
+        end
+      end
+      f.puts "\n"
+      f.puts "UNAVAILABILITY_CONSTRAINTS:"
+      print_constraints(f, teachings, periods)
+      f.puts "\n"
+      f.puts "PREFERENCES:"
+      print_preferences(f, teachings, periods)
+      f.puts "\n"
+      f.puts "ROOM_CONSTRAINT:"
+      print_room_constraints(f, rooms, periods)
+    end
+  end
+
+  def print_courses(teachings, f)
+    teachings.each do |t|
+        if t.teacher
+          teacher = t.teacher.id.to_s
+        else
+          teacher = "nil"
+        end
+          hours = t.classHours
+          group = ((hours.to_f)/2).ceil
+          group = 5 if group > 5
+          if t.studentsNumber
+            student = t.studentsNumber.to_s
+          else
+            student = 0.to_s
+          end
+        if t.labHours > 0
+          hours_l = t.labHours
+          group_l = ((hours_l.to_f)/2).ceil
+          group_l = 5 if group_l > 5
+          f.puts t.id.to_s + "-lab " + teacher + " " + hours_l.to_s + " " + group_l.to_s +
+                " " + student + " LAB"
+        end
+        f.puts t.id.to_s + "-teo " + teacher + " " + hours.to_s + " " + group.to_s +
+                " " + student + " TEO"
+      end
+  end
+
+  def print_room_constraints(file,rooms, periods)
+    rooms.each do |r|
+      constraints = r.temporal_constraints.find(:all, :conditions => ["isHard = 0"])
+      constraints.each do |c|
+        slots = compute_slots(c.startHour, c.endHour, periods)
+        slots.each do |s|
+          file.puts r.id.to_s + " " + (c.day - 1).to_s + " " + s.to_s
+        end
+      end
+    end
+  end
+  def print_constraints(file, teachings, periods)
+    teachings.each do |t|
+      teacher = t.teacher
+      unless teacher == nil
+        constraints = teacher.temporal_constraints.find(:all, :conditions => ["isHard = 0"])
+        constraints.each do |c|
+          slots = compute_slots(c.startHour, c.endHour, periods)
+          slots.each do |s|
+            file.puts t.id.to_s + " " + (c.day - 1).to_s + " " + s.to_s
+          end
+        end
+      end
+    end
+  end
+
+  def print_preferences(file, teachings, periods)
+    teachers = Array.new
+    teachings.each do |teaching|
+      teachers << teaching.teacher
+    end
+    teachers.uniq!
+    teachers.each do |teacher|
+      unless teacher == nil
+        preferences = teacher.temporal_constraints.find(:all, :conditions => ["isHard != 0"])
+        preferences.each do |p|
+          slots = compute_slots(p.startHour, p.endHour, periods)
+          slots.each do |s|
+            file.puts teacher.id.to_s + " " + (p.day - 1).to_s + " " + s.to_s + " " + p.isHard.to_s
+          end
+        end
+      end
+    end
+  end
+  def compute_slots(startHour,endHour,periods)
+    slots = Array.new
+    periods.each do |p|
+      t1 = p["start"]
+      t2 = p["end"]
+      unless ((startHour <= t1 && endHour <= t1) || (endHour >= t2 && startHour >= t2 ))
+        slots << periods.index(p)
+      end
+    end
+    slots
+  end
+
+  def calculate_periods (gs)
+    g = gs
+    first_constraint = g.temporal_constraints.find(:all,
+              :conditions => ["description = ? AND startHour = ?","Orario delle lezioni", "00:00"])
+    last_constraint = g.temporal_constraints.find(:all,
+              :conditions => ["description = ? AND endHour = ?","Orario delle lezioni", "23:59"])
+    pause_constraint = g.temporal_constraints.find(:all,
+              :conditions => ["description = ?","Pausa delle lezioni"])
+    duration = g.quantity_constraints.find(:first,
+                :conditions => ["description = ?", "Durata delle lezioni"])
+      t1 = Time.parse((first_constraint[0].endHour).to_s)
+      t2 = Time.parse((last_constraint[0].startHour).to_s)
+      period = (t2-t1)/((duration.quantity)*60)
+      t1_pause = nil
+      t2_pause = nil
+      unless pause_constraint.empty?
+        t1_pause = Time.parse((pause_constraint[0].startHour).to_s)
+        t2_pause = Time.parse((pause_constraint[0].endHour).to_s)
+      end
+      if pause_constraint.empty?
+        periods = Array.new
+        periods[0] = Hash.new
+        periods[0]["start"] = t1
+        periods[0]["end"] = t1 + (duration.quantity)*60
+        for i in 1..Integer(period-1)
+          periods[i] = Hash.new
+          periods[i]["start"] = periods[i-1]["end"]
+          periods[i]["end"] = periods[i]["start"] + (duration.quantity)*60
+        end
+      else
+        periods = Array.new
+        periods[0] = Hash.new
+        periods[0]["start"] = t1
+        periods[0]["end"] = t1 + (duration.quantity)*60
+        p = (t1_pause - t1)/((duration.quantity)*60)
+        for i in 1..Integer(p-1)
+          periods[i] = Hash.new
+          periods[i]["start"] = periods[i-1]["end"]
+          periods[i]["end"] = periods[i]["start"] + (duration.quantity)*60
+        end
+        p1 = (t2 - t2_pause)/((duration.quantity)*60)
+        periods[p] = Hash.new
+        periods[p]["start"] = t2_pause
+        periods[p]["end"] = t2_pause + (duration.quantity)*60
+        for i in Integer(p+1)..Integer(p+p1-1)
+          periods[i] = Hash.new
+          periods[i]["start"] = periods[i-1]["end"]
+          periods[i]["end"] = periods[i]["start"] + (duration.quantity)*60
+        end
+      end
+      periods
+  end
+
+  def find_teachings(subperiod,gs)
+    g = gs
+    t = Array.new
+    for i in 1..g.duration
+      p = Period.find_by_year_and_subperiod(i,subperiod)
+      ts = Teaching.find(:all, :include => [:curriculums, :teacher], :conditions => ["period_id = ?", p])
+      ts.each do |te|
+        t << te
+      end
+    end
+    t
+  end
+
+  def find_teachings_by_curriculum(subperiod, curriculum, year,gs)
+    g = gs
+    t = Array.new
+    p = Period.find_by_year_and_subperiod(year,subperiod)
+    ts = Teaching.find(:all, :include => [:curriculums, :teacher], :conditions => ["period_id = ? AND curriculums.id = ?", p, curriculum])
+    ts.each do |te|
+      t << te
+    end
+    t
+  end
 end
 
 # pdf converter
