@@ -1,10 +1,10 @@
-#=QuiXoft - Progetto ”SIGEOL”
+#=QuiXoft - Progetto SIGEOL
 #NOME FILE:: timetables.controller.rb
 #AUTORE:: Barbiero Mattia
 #DATA CREAZIONE:: 13/02/2009
 #REGISTRO DELLE MODIFICHE::
-# 13/02/2009 aggiunto il controller per timetables. L'home page del progetto è l'index di questo controller
-
+# 13/02/2009 aggiunto il controller per timetables. L'home page del progetto e' l'index di questo controller
+#
 
 require 'net/http'
 require 'net/https'

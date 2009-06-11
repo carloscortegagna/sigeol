@@ -1,8 +1,7 @@
-#=QuiXoft - Progetto ”SIGEOL”
+#=QuiXoft - Progetto SIGEOL
 #NOME FILE:: boolean_constraint.rb
-#VERSIONE:: 1.0.0
 #AUTORE:: Grosselle Alessandro
-#DATA CREAZIONE:: 16/02/09
+#DATA CREAZIONE:: 16/02/2009
 #REGISTRO DELLE MODIFICHE::
 #
 # 13/03/2009 validates_numericality_of :isHard

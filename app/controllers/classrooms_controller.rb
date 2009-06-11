@@ -1,9 +1,9 @@
-#=QuiXoft - Progetto ”SIGEOL”
+#=QuiXoft - Progetto SIGEOL
 #NOME FILE:: classrooms_controller.rb
 #AUTORE:: Carlo Scortegagna
 #DATA CREAZIONE:: 13/02/2009
 #REGISTRO DELLE MODIFICHE::
-# 21/05/2009 Riga 77: Commentata; questo perchè se si re-inizializza la variabile @classroom perdo gli errori associati.
+# 21/05/2009 Riga 77: Commentata; questo perche' se si re-inizializza la variabile @classroom perdo gli errori associati.
 #
 # 20/05/2009 Aggiunto sia su create che su update le istruzioni necessarie per renderizzare il contenuto con js:
 #  format.js{render(:update) {|page| page.redirect_to :action => 'administration'}}
@@ -16,31 +16,35 @@
 
 
 class ClassroomsController < ApplicationController
+
+  # metodi che non devono essere sottoposti al filtro login_required, in quanto di pubblico accesso
+  # tutti gli altri metodi non esplicitamente elencati verranno sottoposti al filtro login_required
   skip_before_filter :login_required, :only => :show
+
+  # tutti i metodi sono sottoposti al filtro manage_buildings_required, ad eccezione di quelli elencati nel paramentro :except
   before_filter :manage_classrooms_required, :except => :show
 
-  # GET /classrooms/1
+  # Inizializza le variabili d'istanza @classroom e @building per la vista show.
   def show
     @classroom = Classroom.find(params[:id])
     @building = Building.find(@classroom.building_id)
-    
     respond_to do |format|
       format.html # show.html.erb
       format.xml { render :xml => @classroom.to_xml(:include => :building, :except =>[:created_at, :updated_at]) } # show xml
     end
   end
 
-  # GET /classrooms/new
+  # Crea 1 nuova variabili d'istanza vuota (@classroom) e inizializza la variabile d'istanza @classroom per la vista new.
   def new
     @classroom = Classroom.new
     @buildings = Building.find(:all)
-
     respond_to do |format|
       format.html # new.html.erb
     end
   end
 
-  # GET /classrooms/1/edit
+  # Inizializza le variabili d'istanza @classroom, @buildings, @graduate_courses,
+  # @graduate_courses_associati e @graduate_courses_non_associati per la vista edit.
   def edit
     @classroom = Classroom.find(params[:id])
     @buildings = Building.find(:all)
@@ -52,13 +56,14 @@ class ClassroomsController < ApplicationController
     @graduate_courses_non_associati = @graduate_courses - @graduate_courses_associati
   end
 
-  # POST /classrooms
+  # Salva una nuova classroom nel sistema, caratterizzata dai parametri contenuti in params[:classroom].
+  # In caso di esito positivo associa l'aula ai graduate_course dell'utente loggato e viene fatto un redirect alla vista administration di classroom.
+  # In caso di problemi nel salvataggio, viene riproposta la vista new e vengono segnalati gli eventuali errori.
   def create
     @classroom = Classroom.new(params[:classroom])
     optional = false
     optional = true if params[:lab]
     @classroom.lab = optional
-
     respond_to do |format|
       if @classroom.save
         @classroom.graduate_courses << @current_user.graduate_courses
@@ -73,10 +78,12 @@ class ClassroomsController < ApplicationController
     end
   end
 
-  # PUT /classrooms/1
+  # Aggiorna i campi della classroom oggetto di invocazione.
+  # In caso di esito positivo viene fatto un redirect alla vista administration di classroom.
+  # In caso di problemi nel salvataggio, viene riproposta la vista edit, vengono inizializzate le variabili 
+  # necessarie a tale vista e vengono segnalati gli eventuali errori.
   def update
     @classroom = Classroom.find(params[:id])
-
     respond_to do |format|
       if @classroom.update_attributes(params[:classroom])
         flash[:notice] = "Aggiornamento dell'aula avvenuto con successo"
@@ -84,7 +91,6 @@ class ClassroomsController < ApplicationController
         format.js{render(:update) {|page| page.redirect_to :action => 'administration'}}
       else
         @buildings = Building.find(:all)
-        #@classroom = Classroom.find(params[:id])
         ids = @current_user.graduate_course_ids
         @graduate_courses = GraduateCourse.find(ids)
         @graduate_courses_associati = GraduateCourse.find(:all, :include => {:classrooms => :graduate_courses},
@@ -97,21 +103,25 @@ class ClassroomsController < ApplicationController
     end
   end
 
-  # DELETE /classrooms/1
+  # Elimina definitivamente dal DB la classroom oggetto di invocazione.
+  # Dopo la distruzione viene fatto un redirect alla vista administration di classroom.
   def destroy
     @classroom = Classroom.find(params[:id])
     @classroom.destroy
-
     respond_to do |format|
       flash[:notice] = 'Aula eliminata'
       format.html { redirect_to(administration_classrooms_url) }
     end
   end
 
+  # Inizializza la variabile d'istanza @classrooms per la vista administration
   def administration
     @classrooms = Classroom.find(:all)
   end
 
+  # Rimuove l'associazione dalla classroom oggetto di invocazione al graduate_course passato come parametro (params[:graduate_course_canc])
+  # nel caso tale classe non fosse più messa a disposizione di quel determinato corso di laurea.
+  # Al termine dell'operazione viene fatto un redirect alla vista edit, in cui vengono anche segnalati gli eventuali errori
   def remove_classroom_graduate_course
     if request.post? && params[:graduate_course_canc]
       graduate_course_to_remove = GraduateCourse.find(params[:graduate_course_canc])
@@ -120,20 +130,23 @@ class ClassroomsController < ApplicationController
         graduate_course_to_remove.classrooms.delete(classroom_to_modify)
       end
     end
-      respond_to do |format|
-        @classroom = Classroom.find(params[:id])
-        @buildings = Building.find(:all)
-        ids = @current_user.graduate_course_ids
-        @graduate_courses = GraduateCourse.find(ids)
-        @graduate_courses_associati = GraduateCourse.find(:all, :include => {:classrooms => :graduate_courses},
-                               :conditions => ["classrooms_graduate_courses.graduate_course_id IN (?)
-                                   AND classrooms_graduate_courses.classroom_id IN (?)", ids, @classroom.id])
-        @graduate_courses_non_associati = @graduate_courses - @graduate_courses_associati
-        format.html { render :action => "edit" }
-        format.js{}
-       end
+    respond_to do |format|
+      @classroom = Classroom.find(params[:id])
+      @buildings = Building.find(:all)
+      ids = @current_user.graduate_course_ids
+      @graduate_courses = GraduateCourse.find(ids)
+      @graduate_courses_associati = GraduateCourse.find(:all, :include => {:classrooms => :graduate_courses},
+                             :conditions => ["classrooms_graduate_courses.graduate_course_id IN (?)
+                                 AND classrooms_graduate_courses.classroom_id IN (?)", ids, @classroom.id])
+      @graduate_courses_non_associati = @graduate_courses - @graduate_courses_associati
+      format.html { render :action => "edit" }
+      format.js{}
     end
+  end
 
+  # Crea un associazione tra la classroom oggetto di invocazione e il graduate_course passato come parametro (params[:graduate_course_add])
+  # nel caso fosse necessario mettere tale classe a disposizione di quel determinato corso di laurea.
+  # Al termine dell'operazione viene fatto un redirect alla vista edit, in cui vengono anche segnalati gli eventuali errori
   def add_classroom_graduate_course
     if request.post? && params[:graduate_course_add]
       classroom_to_modify = Classroom.find(params[:id])
@@ -154,6 +167,7 @@ class ClassroomsController < ApplicationController
        end
     end
 
+  # Inizializza le variabili d'istanza @classroom e @constraints per la vista edit_constraints.
   def edit_constraints
     @classroom = Classroom.find(params[:id])
     classroom_constraint_ids = ConstraintsOwner.find(:all,
@@ -164,7 +178,8 @@ class ClassroomsController < ApplicationController
     end
   end
 
-  # creazione e salvataggio nel DB di un nuovo vincolo temporale
+  # Crea un nuovo temporal_constraints per la classroom oggetto di invocazione.
+  # Al termine dell'operazione viene fatto un redirect alla vista edit_constraints, con la segnalazione degli eventuali errori avvenuti.
   def create_constraint
     if request.post?
       classroom = Classroom.find(params[:id])
@@ -172,10 +187,9 @@ class ClassroomsController < ApplicationController
       t = TemporalConstraint.new(:description=>"Vincolo di indisponibilità aula: " + classroom.name,
         :isHard=>0,:startHour=>params[:start_hour],:endHour=>params[:end_hour],:day=>day_nr)
       if t.save
-        classroom.constraints << t
+        classroom.constraints << t # associo il nuovo vincolo con l'aula
         classroom.save
       end
-
       respond_to do |format|
         @classroom = Classroom.find(params[:id])
         @constraint= t
@@ -192,11 +206,11 @@ class ClassroomsController < ApplicationController
     end
   end
 
-  # action per eliminare un vicolo temporale assegnato all'aula
+  # Elimina definitivamente dal DB il temporal_constraints passato come paramentro (params[:constraint_id]).
+  # Al termine dell'operazione viene fatto un redirect alla vista edit_constraints, con la segnalazione degli eventuali errori avvenuti
   def destroy_constraint
     constraint_to_destroy = TemporalConstraint.find(params[:constraint_id])
     constraint_to_destroy.destroy
-
     respond_to do |format|
         @constraint = constraint_to_destroy
         #parte originale.. forse utilizzabile dal clock

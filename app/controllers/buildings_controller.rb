@@ -1,4 +1,4 @@
-#=QuiXoft - Progetto ”SIGEOL”
+#=QuiXoft - Progetto SIGEOL
 #NOME FILE:: buildings_controller.rb
 #AUTORE:: Carlo Scortegagna
 #DATA CREAZIONE:: 13/02/2009
@@ -16,9 +16,15 @@
 
 
 class BuildingsController < ApplicationController
+
+  # metodi che non devono essere sottoposti al filtro login_required, in quanto di pubblico accesso
+  # tutti gli altri metodi non esplicitamente elencati verranno sottoposti al filtro login_required
   skip_before_filter :login_required, :only => [:index, :show]
+
+  # tutti i metodi sono sottoposti al filtro manage_buildings_required, ad eccezione di quelli elencati nel paramentro :except
   before_filter :manage_buildings_required, :except => [:index, :show]
 
+  # metodo che inizializza le variabili d'istanza @buildings e @classrooms per la vista index
   def index
     @buildings = (Building.find(:all)).sort_by { |b| b[:name] }
     @classrooms = Classroom.find(:all)
@@ -26,13 +32,14 @@ class BuildingsController < ApplicationController
       format.html
       format.xml { render :xml => @buildings.to_xml(:include => :classrooms, :except =>[:created_at, :updated_at]) } # index xml
     end
-    #respond_to { |format| format.js}
   end
 
+  # metodo che inizializza la variabile d'istanza @buildings per la vista administration
   def administration
     @buildings = Building.find(:all)
   end
 
+  # metodo che inizializza le variabili d'istanza @building, @building_classrooms e @address per la vista show
   def show
     @building = Building.find(params[:id])
     @building_classrooms = Classroom.find(:all, :conditions => { :building_id => params[:id] }) #lista delle aule di quell'edificio
@@ -43,6 +50,7 @@ class BuildingsController < ApplicationController
     end
   end
 
+  # metodo che crea 2 nuove variabili d'istanza (@building e @address) per la vista new
   def new
     @building = Building.new
     @address = Address.new
@@ -51,13 +59,16 @@ class BuildingsController < ApplicationController
     end
   end
 
-  # GET /buildings/1/edit
+  # metodo che inizializza le variabili d'istanza @building e @address per la vista edit
   def edit
     @building = Building.find(params[:id])
     @address = Address.find(@building.address_id)
   end
 
-  # POST /buildings
+  # Salva un nuovo building e il suo relativo address nel sistema, caratterizzati rispettivamente dai
+  # parametri contenuti in params[:building] e in params[:address].
+  # In caso di esito positivo viene fatto un redirect alla vista administration di building.
+  # In caso di problemi nel salvataggio, viene riproposta la vista new e vengono segnalati gli eventuali errori.
   def create
     @building = Building.new(params[:building])
     @address = Address.new(params[:address])
@@ -73,7 +84,7 @@ class BuildingsController < ApplicationController
           format.html { redirect_to :action => 'administration' }
           format.js{render(:update) {|page| page.redirect_to :action => 'administration'}}
         else
-          Address.find(@building.address_id).destroy #cancello l'address salvato nel DB, non è puntato da nessun building
+          Address.find(@building.address_id).destroy #cancello l'address salvato nel DB, non e' puntato da nessun building
           format.html { render :action => "new" }
           format.js{}
         end
@@ -84,6 +95,9 @@ class BuildingsController < ApplicationController
     end
   end
 
+  # Metodo che aggiorna i campi dato dell'edificio oggetto di invocazione nel sistema, insieme al suo indirizzo.
+  # In caso di esito positivo viene fatto un redirect alla vista administration di building.
+  # In caso di problemi nel'aggiornamento, viene riproposta la vista edit e vengono segnalati gli eventuali errori.
   def update
     @building = Building.find(params[:id]) #edificio da modificare
     @address = Address.find(@building.address_id) #relativo indirizzo da modificare
@@ -103,11 +117,12 @@ class BuildingsController < ApplicationController
     end
   end
 
+  # Metodo che elimina definitivamente dal DB l'edificio oggetto di invocazione e il suo indirizzo.
+  # Dopo la distruzione viene fatto un redirect alla vista administration di building.
   def destroy
     @building = Building.find(params[:id])
     Address.find(@building.address_id).destroy #distruzione dell'indirizzo relativo al building da cancellare
     @building.destroy
-
     respond_to do |format|
       format.html { redirect_to :action => 'administration' }
     end

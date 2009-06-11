@@ -1,4 +1,4 @@
-#=QuiXoft - Progetto ”SIGEOL”
+#=QuiXoft - Progetto SIGEOL
 #NOME FILE:: teachings.controller.rb
 #AUTORE:: Scortegagna Carlo
 #DATA CREAZIONE:: 13/02/2009
@@ -17,6 +17,7 @@ class TeachingsController < ApplicationController
   before_filter :same_graduate_course_required, :only => [:edit, :update, :destroy,
                                                           :select_teacher, :assign_teacher]
 
+  # Inizializza le variabili d'istanza @teachings e @graduate_courses per la vista index.
   def index
     @teachings = Teaching.find(:all)
     @graduate_courses = GraduateCourse.find(:all, :include => :curriculums)
@@ -35,8 +36,7 @@ class TeachingsController < ApplicationController
     end
   end
 
-  # GET /teachings/1
-  # GET /teachings/1.xml
+  # Inizializza le variabili d'istanza @teaching e @teacher per la vista show.
   def show
     @teaching = Teaching.find(params[:id])
     @teacher = nil
@@ -49,6 +49,7 @@ class TeachingsController < ApplicationController
     end
   end
 
+  # Inizializza la variabile d'istanza @graduate_courses per la vista administration.
   def administration
     @graduate_courses = @current_user.graduate_courses
     @graduate_courses.each do |g|
@@ -62,20 +63,19 @@ class TeachingsController < ApplicationController
     end
   end
   
-  # GET /teachings/new
-  # GET /teachings/new.xml
+  # Crea 1 nuova variabili d'istanza vuota (@teaching) e inizializza le variabili d'istanza @graduate_courses,
+  # @year e @subperiod per la vista new.
   def new
     @teaching = Teaching.new
     @graduate_courses = @current_user.graduate_courses
     @year = Period.find(:all, :select => "DISTINCT year")
     @subperiod = Period.find(:all, :select => "DISTINCT subperiod")
-
     respond_to do |format|
       format.html # new.html.erb
     end
   end
 
-  # GET /teachings/1/edit
+  # Inizializza le variabili d'istanza @teaching, @period, @year e @subperiod per la vista edit.
   def edit
     @teaching = Teaching.find(params[:id])
     @period = @teaching.period
@@ -83,8 +83,10 @@ class TeachingsController < ApplicationController
     @subperiod = Period.find(:all, :select => "DISTINCT subperiod",:conditions=> ["subperiod !=  #{@period.subperiod}"])
   end
 
-  # POST /teachings
-  # POST /teachings.xml
+  # Salva un nuovo teaching nel sistema, caratterizzata dai parametri contenuti in params[:teaching].
+  # In caso di esito positivo viene fatto un redirect alla vista select_teacher per permettere la scelta di un teacher
+  # da associare all'insegnamento appena creato.
+  # In caso di problemi nel salvataggio, viene riproposta la vista new e vengono segnalati gli eventuali errori.
   def create
     @teaching = Teaching.new(params[:teaching])
     if params[:curriculum_id]
@@ -112,6 +114,9 @@ class TeachingsController < ApplicationController
     end
   end
 
+  # Inizializza le variabili d'istanza @teaching e @teachers per la vista select_teacher.
+  # Se al teaching oggetto della chiamata era gia' associato un teacher, quest'ultimo viene disassociato per permettere
+  # la scelta di un nuovo docente.
   def select_teacher
     @teaching = Teaching.find(params[:id])
     ids = @current_user.graduate_course_ids
@@ -120,6 +125,8 @@ class TeachingsController < ApplicationController
     @teachers.delete(@teaching.teacher)
   end
 
+  # Assegna il teacher passato come parametro (params[:teacher_id]) al teaching oggetto della chiamata (params[:id])
+  # Se l'operazione va a buon fine viene fatto un redirect alla vista administration, altrimenti viene nuovamente proposta la vista select_teacher
   def assign_teacher
     @teacher = Teacher.find(params[:teacher_id])
     @teaching = Teaching.find(params[:id])
@@ -132,8 +139,10 @@ class TeachingsController < ApplicationController
     end
   end
   
-  # PUT /teachings/1
-  # PUT /teachings/1.xml
+  # Aggiorna i campi del teaching oggetto di invocazione.
+  # In caso di esito positivo viene fatto un redirect alla vista administration di cteachings.
+  # In caso di problemi nel salvataggio, viene riproposta la vista edit, vengono inizializzate le variabili
+  # necessarie a tale vista e vengono segnalati gli eventuali errori.
   def update
     @teaching = Teaching.find(params[:id])
     @period = @teaching.period
@@ -144,8 +153,8 @@ class TeachingsController < ApplicationController
     respond_to do |format|
       if @teaching.update_attributes(params[:teaching])
         flash[:notice] = 'Insegnamento aggiornato con successo'
-        format.html { redirect_to(@teaching) }
-        format.js{render(:update) {|page| page.redirect_to(@teaching)}}
+        format.html { redirect_to administration_teachings_url }
+        format.js{render(:update) {|page| page.redirect_to(administration_teachings_url)}}
       else
         @graduate_courses = @current_user.graduate_courses
         @year = Period.find(:all, :select => "DISTINCT year")
@@ -156,11 +165,10 @@ class TeachingsController < ApplicationController
     end
   end
 
-  # cancellazione di un insegnamento
+  # Effettua la cancellazione definitiva dal DB del teaching passato come parametro (params[:id]).
   def destroy
     @teaching = Teaching.find(params[:id])
     @teaching.destroy
-
     respond_to do |format|
       format.html { redirect_to(administration_teachings_url) }
     end
@@ -168,6 +176,8 @@ class TeachingsController < ApplicationController
 
   private
 
+  # Controlla che lo User attualmente loggato possa effettivamente gestire il teaching passato come parametro (params[:id]).
+  # In caso negativo, viene fatto un redirect all'index di timetables e viene segnalato l'errore.
   def same_graduate_course_required
     ids = @current_user.graduate_course_ids
     graduate_course = GraduateCourse.find(:all, :include => {:curriculums => :teachings},

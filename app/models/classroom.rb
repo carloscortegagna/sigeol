@@ -1,18 +1,17 @@
-#=QuiXoft - Progetto ”SIGEOL”
+#=QuiXoft - Progetto SIGEOL
 #NOME FILE:: classroom.rb
-#VERSIONE:: 1.0.0
 #AUTORE:: Grosselle Alessandro
-#DATA CREAZIONE:: 16/02/09
+#DATA CREAZIONE:: 16/02/2009
 #REGISTRO DELLE MODIFICHE::
-# 28/04/09 Approvazione del responsabile
+# 28/04/2009 Approvazione del responsabile
 #
-# 10/03/09 Aggiunta dell'associazione polimorfa has_many :constraints
+# 10/03/2009 Aggiunta dell'associazione polimorfa has_many :constraints
 #
-# 22/02/09 Piccola correzione all'espressione regolare che valida il nome dell'aula
+# 22/02/2009 Piccola correzione all'espressione regolare che valida il nome dell'aula
 #
-# 17/02/09 Aggiunta delle validazioni e dell'associazione polimorfa
+# 17/02/2009 Aggiunta delle validazioni e dell'associazione polimorfa
 #
-# 16/02/09 Prima stesura
+# 16/02/2009 Prima stesura
 #
 #Rappresentazione di un aula. Ad essa possono essere associati dei vincoli, degli elementi di una
 #tabella oraria (_Timetable_entry_), almeno un corso di laurea(_Graduate_course_) ed un solo

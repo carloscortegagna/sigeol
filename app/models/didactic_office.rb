@@ -1,14 +1,13 @@
-#=QuiXoft - Progetto ”SIGEOL”
+#=QuiXoft - Progetto SIGEOL
 #NOME FILE:: didactic_office.rb
-#VERSIONE:: 1.0.0
 #AUTORE:: Grosselle Alessandro
-#DATA CREAZIONE:: 12/02/09
+#DATA CREAZIONE:: 12/02/2009
 #REGISTRO DELLE MODIFICHE::
-# 29/04/09 Approvazione del responsabile
+# 29/04/2009 Approvazione del responsabile
 # 
-# 22/02/09 Aggiunta del metodo before_destroy
+# 22/02/2009 Aggiunta del metodo before_destroy
 #
-# 16/02/09 Prima stesura
+# 16/02/2009 Prima stesura
 #
 #Rappresentazione di una segreteria didattica. Utilizzato per la creazione dello _User_ associato ad una segreteria didattica.
 

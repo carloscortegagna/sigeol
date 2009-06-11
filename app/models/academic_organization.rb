@@ -1,16 +1,15 @@
-#=QuiXoft - Progetto ”SIGEOL”
+#=QuiXoft - Progetto SIGEOL
 #NOME FILE:: academic_organization.rb
-#VERSIONE:: 1.0.0
 #AUTORE:: Grosselle Alessandro
-#DATA CREAZIONE:: 16/02/09
+#DATA CREAZIONE:: 16/02/2009
 #REGISTRO DELLE MODIFICHE::
-# 20/04/09 Approvazione del responsabile
+# 20/04/2009 Approvazione del responsabile
 #
-# 26/02/09 Aggiunta validates_uniqueness_of :name
+# 26/02/2009 Aggiunta validates_uniqueness_of :name
 #
-# 18/02/09 Aggiunta validates_numericality_of :number
+# 18/02/2009 Aggiunta validates_numericality_of :number
 #
-# 16/02/09 Prima stesura
+# 16/02/2009 Prima stesura
 #
 #Rappresentazione dell'organizzazione accademica di un corso di laurea. Al momento dell'installazione
 #del sistema sono presenti le organizzazioni "Semestrale", "Trimestrale" e "Bimestrale".

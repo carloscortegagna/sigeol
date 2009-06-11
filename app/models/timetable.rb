@@ -1,16 +1,15 @@
-#=QuiXoft - Progetto ”SIGEOL”
+#=QuiXoft - Progetto SIGEOL
 #NOME FILE:: timetable.rb
-#VERSIONE:: 1.0.0
 #AUTORE:: Grosselle Alessandro
-#DATA CREAZIONE:: 16/02/09
+#DATA CREAZIONE:: 16/02/2009
 #REGISTRO DELLE MODIFICHE::
-# 27/04/09 Approvazione del responsabile
+# 27/04/2009 Approvazione del responsabile
 #
-# 10/03/09 Modifica del metodo validates_inclusion_of :isPublic e aggiunta del metodo correct_year
+# 10/03/2009 Modifica del metodo validates_inclusion_of :isPublic e aggiunta del metodo correct_year
 #
-# 20/02/09 Aggiunta delle validazioni
+# 20/02/2009 Aggiunta delle validazioni
 #
-# 16/02/09 Prima stesura
+# 16/02/2009 Prima stesura
 #
 #Rappresentazione della tabella oraria. Comprende il corso di laurea di appartenenza, il periodo di competenza
 #e l'anno accademico di riferimento.

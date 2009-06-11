@@ -1,18 +1,17 @@
-#=QuiXoft - Progetto ”SIGEOL”
+#=QuiXoft - Progetto SIGEOL
 #NOME FILE:: belong.rb
-#VERSIONE:: 1.0.0
 #AUTORE:: Grosselle Alessandro
-#DATA CREAZIONE:: 16/02/09
+#DATA CREAZIONE:: 16/02/2009
 #REGISTRO DELLE MODIFICHE::
-# 28/04/09 Approvazione del responsabile
+# 28/04/2009 Approvazione del responsabile
 #
-# 03/03/09 Aggiunta validates_inclusion_of :isOptional
+# 03/03/2009 Aggiunta validates_inclusion_of :isOptional
 #
-# 20/02/09 Aggiunta del metodo after_destroy
+# 20/02/2009 Aggiunta del metodo after_destroy
 #
-# 18/02/09 Aggiunta delle validazioni
+# 18/02/2009 Aggiunta delle validazioni
 #
-# 16/02/09 Prima stesura
+# 16/02/2009 Prima stesura
 #
 #Rappresentazione dell'associazione tra insegnamenti(_Teaching_) e curricula (_Curriculum_).
 

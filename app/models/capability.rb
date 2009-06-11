@@ -1,18 +1,17 @@
-#=QuiXoft - Progetto ”SIGEOL”
+#=QuiXoft - Progetto SIGEOL
 #NOME FILE:: capability.rb
-#VERSIONE:: 1.0.0
 #AUTORE:: Grosselle Alessandro
-#DATA CREAZIONE:: 16/02/09
+#DATA CREAZIONE:: 16/02/2009
 #REGISTRO DELLE MODIFICHE::
-# 28/04/09 Approvazione del responsabile
+# 28/04/2009 Approvazione del responsabile
 #
-# 26/02/09 L'attributo name non può avere più di 30 caratteri
+# 26/02/2009 L'attributo name non può avere più di 30 caratteri
 #
-# 22/02/09 Piccola correzione all'espressione regolare che valida il nome
+# 22/02/2009 Piccola correzione all'espressione regolare che valida il nome
 #
-# 17/02/09 Aggiunta delle validazioni
+# 17/02/2009 Aggiunta delle validazioni
 #
-# 16/02/09 Prima stesura
+# 16/02/2009 Prima stesura
 #
 #Rappresentazione di un privilegio che può essere posseduto da un utente (_User_).
 #Le diverse tipologie di privilegi sono:
