@@ -6,6 +6,6 @@
 <% if @teacher == nil %>
   Non è stato ancora assegnato un docente a quest'insegnamento
 <% else %>
-  <h3 style="margin-top:3.5em">Docente assegnato:</h3>
-    <%= link_to @teacher.surname + " " + @teacher.name, teacher_path(@teacher) %> <br>
+  <p><strong>Docente assegnato:</strong>
+    <%= link_to @teacher.surname + " " + @teacher.name, teacher_path(@teacher) %> </p>
 <% end %>

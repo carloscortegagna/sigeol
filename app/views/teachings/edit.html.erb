@@ -1,10 +1,10 @@
-<h3>Modifica insegnamento</h3>
+<h1>Modifica insegnamento</h1>
 
 <% remote_form_for(@teaching) do |f| %>
   <fieldset>
   <legend> Insegnamento: </legend>
    <p>
-    <%= f.label '*Nome:' %><br />
+    <%= f.label 'Nome: *' %><br />
     <%= f.text_field :name %>
     <span class="warning" id="errors_name"><%= @teaching.errors.on(:name) %> </span>
   </p>
@@ -33,19 +33,18 @@
     <%= check_box_tag "optional" %>
   </p>
   <p>
-    Anno <br/>
+    Anno:<br />
     <%= select_tag "year" , "<option>#{@period.year}</option>, #{options_from_collection_for_select(@year, "year", "year")}" %>
   </p>
     <p>
-    Periodo <br/>
+    Periodo:<br />
     <%= select_tag "subperiod" , "<option>#{@period.subperiod}</option>,#{options_from_collection_for_select(@subperiod, "subperiod", "subperiod")}" %>
     <span class="warning" id="errors_period"><%= @teaching.errors.on(:period) %></span>
   </p>
-  <p>
-   (*) = campi obbligatori
-   </p>
+  <p>* campi obbligatori</p>
   </fieldset>
    <p>
-    <%= f.submit "Aggiorna" %>
+    <%= f.submit "Salva modifiche" %>
    </p>
  <% end %>
+<p><%= link_to "Indietro", :back %></p>

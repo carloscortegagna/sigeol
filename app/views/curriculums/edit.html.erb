@@ -4,20 +4,19 @@
 <legend>Curriculum:</legend>
 <% remote_form_for(@curriculum) do |f| %>
   <p>
-    <%= f.label '*Nome del Curriculum:' %><br />
+    <%= f.label 'Nome: *' %><br />
     <%= f.text_field :name %>
     <span id="errors_name"class="warning"><%=  @curriculum.errors.on(:name) %></span>
   </p>
   <p>
-    <%= f.label '*Corso di Laurea associato:' %><br />
+    <%= f.label 'Corso di Laurea associato: *' %><br />
      <%= select_tag "curriculum[graduate_course_id]" , options_from_collection_for_select(@graduate_courses, "id", "name", @curriculum.graduate_course_id) %>
      <span id="errors_graduate_course"class="warning"><%=  @curriculum.errors.on(:graduate_course_id) %></span>
   </p>
-  <p>
-   (*) = campi obbligatori
-   </p>
+  <p>* campi obbligatori</p>
   </fieldset>
    <p>
-    <%= f.submit "Aggiorna" %>
+    <%= f.submit "Salva modifiche" %>
   </p>
 <% end %>
+<p><%= link_to "Indietro", :back %></p>

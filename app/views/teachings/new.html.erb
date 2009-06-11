@@ -1,10 +1,10 @@
-<h3>Nuovo insegnamento</h3>
+<h1>Nuovo insegnamento</h1>
 
 <% remote_form_for(@teaching) do |f| %>
   <fieldset> 
   <legend> Insegnamento: </legend>
   <p>
-    <%= f.label "*Nome:" %><br />
+    <%= f.label "Nome: *" %><br />
     <%= f.text_field :name %>
     <span class="warning" id="errors_name"><%= @teaching.errors.on(:name) %> </span>
   </p>
@@ -29,26 +29,25 @@
     <span class="warning" id="errors_studentsNumber"><%= @teaching.errors.on(:studentsNumber) %> </span>
   </p>
   <p>
-    Curriculum <br/>
+    Curriculum:<br />
     <%= select_tag "curriculum_id" , option_groups_from_collection_for_select(@graduate_courses, :curriculums, "name", "id", "name") %>
     <% if @graduate_courses.size == 0 %>
        <span class="warning" id="errors_curriculums">Deve essere associato ad un curriculum </span>
     <% end %>
   </p>
   <p>
-    Anno <br/>
+    Anno:<br />
     <%= select_tag "year" , options_from_collection_for_select(@year, "year", "year") %>
   </p>
     <p>
-    Periodo <br/>
+    Periodo:<br />
     <%= select_tag "subperiod" , options_from_collection_for_select(@subperiod, "subperiod", "subperiod") %>
     <span class="warning" id="errors_period"><%= @teaching.errors.on(:period) %></span>
   </p>
-  <p>
-   (*) = campi obbligatori
-   </p>
+  <p>* campi obbligatori</p>
   </fieldset>
   <p>
     <%= f.submit "Crea" %>
   </p>
   <% end %>
+<p><%= link_to "Indietro", :back %></p>

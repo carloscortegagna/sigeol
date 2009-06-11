@@ -3,23 +3,22 @@
   <legend>Corso di laurea:</legend>
 <% remote_form_for(@graduate_course) do |f| %>
   <p>
-    <%= f.label '*Nome del Corso di Laurea:' %><br />
+    <%= f.label 'Nome: *' %><br />
     <%= f.text_field :name %>
     <span id="errors_name" class="warning"><%=  @graduate_course.errors.on(:name) %></span>
   </p>
   <p>
-    <%= f.label '*Durata in anni:' %><br />
+    <%= f.label 'Durata in anni: *' %><br />
     <%= select_tag "graduate_course[duration]", "<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>" %>
   </p>
   <p>
      <%= f.label "*Organizzazione Accademica:" %><br />
      <%= select_tag "graduate_course[academic_organization_id]" , options_from_collection_for_select(@academic_organization, "id", "name", @graduate_course.academic_organization_id) %>
   </p>
-  <p>
-   (*) = campi obbligatori
-   </p>
+  <p>* campi obbligatori</p>
   </fieldset>
    <p>
-    <%= f.submit "Aggiorna" %>
+    <%= f.submit "Salva modifiche" %>
   </p>
   <% end %>
+<p><%= link_to "Indietro", :back %></p>

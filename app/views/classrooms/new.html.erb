@@ -4,7 +4,7 @@
   <fieldset>
   <legend>Aula:</legend>
   <p>
-    <%= f.label "*Nome" %><br />
+    <%= f.label "Nome: *" %><br />
     <%= f.text_field :name %>
     <span class="warning "id="errors_name"> <%=  @classroom.errors.on(:name) %></span>
   </p>
@@ -18,13 +18,11 @@
     <%= check_box_tag "lab" %>
   </p>
   <p>
-    <%= f.label "*Edificio:" %><br />
+    <%= f.label "Edificio: *" %><br />
     <%= select_tag "classroom[building_id]" , options_from_collection_for_select(@buildings, "id", "name") %>
     <span class="warning "id="errors_building"> <%=  @classroom.errors.on(:building_id) %></span>
   </p>
-   <p>
-   (*) = campi obbligatori
-   </p>
+   <p>* campi obbligatori</p>
   </fieldset>
   <p>
     <%= f.submit "Crea" %>

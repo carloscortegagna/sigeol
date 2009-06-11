@@ -14,7 +14,7 @@
  <fieldset>
    <legend>Aula:</legend>
  <p>
-    <%= f.label '*Nome:' %><br />
+    <%= f.label 'Nome: *' %><br />
     <%= f.text_field :name %>
     <span id="errors_name" class="warning"> <%=  @classroom.errors.on(:name) %></span>
   </p>
@@ -24,13 +24,11 @@
     <span id="errors_capacity"> <%=  @classroom.errors.on(:capacity) %></span>
   </p>
   <p>
-     <%= f.label "*Edificio:" %><br />
+     <%= f.label "Edificio: *" %><br />
      <%= select_tag "classroom[building_id]" , options_from_collection_for_select(@buildings, "id", "name", @classroom.building_id) %>
      <span class="warning "id="errors_building"> <%=  @classroom.errors.on(:building_id) %></span>
   </p>
-   <p>
-   (*) = campi obbligatori
-   </p>
+   <p>* campi obbligatori</p>
   </fieldset>
   <p>
     <%= f.submit "Salva modifiche" %>
@@ -46,7 +44,7 @@
 <br />
   <ul id="graduate_courses" >
     <% for graduate_course in @graduate_courses_associati %>
-     <li id="<%=graduate_course.id%>" style="font-size:1em">
+     <li id="<%=graduate_course.id%>">
     <%= show_graduate_course(graduate_course) %>
     </li>
      <% end %>
@@ -74,3 +72,4 @@
       <% end %>
     </div>
   </p>
+  <p><%= link_to "Indietro", :back %></p>

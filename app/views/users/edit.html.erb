@@ -1,7 +1,7 @@
 <h1>Cambio password</h1>
   <% remote_form_for :user, :url => {:action => :update}, :html=> {:method => :put} do |f| %>
   <p>
-      <div class="lbl_userEdit"><%= label_tag '*Password attuale:' %></div>
+      <div class="lbl_userEdit"><%= label_tag 'Password attuale: *' %></div>
       <div class="txt_userEdit"><%= password_field_tag 'old_password' %>
       <span class="warning" id="old_password_errors">
         <% if @old_password != 1%>
@@ -10,12 +10,12 @@
      </span></div>
     </p>
     <p>
-      <div class="lbl_userEdit"><%= f.label '*Nuova password:' %></div>
+      <div class="lbl_userEdit"><%= f.label 'Nuova password: *' %></div>
       <div class="txt_userEdit"><%= f.password_field :password %>
       <span class="warning" id="password_errors"> <%= @current_user.errors.on(:password) %> </span></div>
     </p>
     <p>
-      <div class="lbl_userEdit"><%= label_tag '*Conferma nuova password:' %></div>
+      <div class="lbl_userEdit"><%= label_tag 'Conferma nuova password: ' %></div>
       <div class="txt_userEdit"><%= password_field_tag 'repeat_password' %>
       <span class="warning" id="password_errors_bis">
         <% if @repeat_password != 1%>

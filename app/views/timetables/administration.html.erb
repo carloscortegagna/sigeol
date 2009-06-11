@@ -1,7 +1,7 @@
 <h1>Amministrazione tabelle orarie</h1>
 <% @timetables.each do |k, v| %>
   <div class="first_div">
-    <%= k.name %>
+    <h3><%= k.name %></h3>
     <% v.each do |key, value| %>
       <%= key %>
       <table>

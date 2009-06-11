@@ -14,7 +14,7 @@
            <%= show_teaching(t) %>
           </td>
           <td>
-           <%= link_to image_tag("/images/togli.gif"), update_teachings_curriculum_path(@curriculum,:t_to_remove => t.id),
+           <%= link_to image_tag("/images/delete.png"), update_teachings_curriculum_path(@curriculum,:t_to_remove => t.id),
                :method => :delete, :title => "Rimuovi l'insegnamento dal curriculum" %>
           </td>
         </tr>

@@ -1,5 +1,4 @@
 <h1>Insegnamenti</h1>
-<!--
 <% @graduate_courses.each do |g| %> 
   <h3><%= g.name %></h3>
   <ul>
@@ -8,51 +7,3 @@
     <% end %>
   </ul>
 <% end %>
--->
-<% sql = "SELECT t.name, p.subperiod, p.year FROM teachings t inner join periods p on t.period_id=p.id ORDER BY p.year, p.subperiod, t.name;" %>
-<% a = {} %>
-<% i = 0 %>
-<% ActiveRecord::Base.connection.execute(sql).each do |b| %>
-  <% a[i]=b %>
-  <% i += 1%>
-<% end %>
-<% numero_periodi = {} %>
-<% numero_periodi[0] = 1 %>
-<% numero_anni = {} %>
-<% numero_anni[0] = 1 %>
-<% i = 0 %>
-<% i_p = 0 %>
-<% i_a = 0 %>
-<% while i < a.size-1 %>
-  <% if a[i][1].to_i == a[i+1][1].to_i %>
-    <% numero_periodi[i_p]+=1 %>
-  <% else %>
-    <% i_p+=1 %>
-    <% numero_periodi[i_p]=1 %>
-  <% end %>
-  <% if a[i][2].to_i == a[i+1][2].to_i %>
-    <% numero_anni[i_a]+=1 %>
-  <% else %>
-    <% i_a+=1 %>
-    <% numero_anni[i_a]=1 %>
-  <% end %>
-  <% i+=1 %>
-<% end %>
-<% i = 0 %>
-<table border="1">
-  <tr>
-    <th>Numero Periodo</th>
-    <th>Quante volte compare</th>
-    <th>Numero anno</th>
-    <th>Quante volte compare</th>
-  </tr>
-<% while i < a.size %>
-  <tr>
-    <td><% i+1 %></td>
-    <td><% numero_periodi[i] %></td>
-    <td><% i+1 %></td>
-    <td><% numero_anni[i] %></td>
-  </tr>
-  <% i += 1 %>
-<% end %>
-</table>

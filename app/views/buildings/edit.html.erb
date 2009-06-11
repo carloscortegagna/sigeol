@@ -2,14 +2,14 @@
 
 <% remote_form_for(@building) do |f| %>
   <p>
-    <%= f.label '*Nome:' %><br />
+    <%= f.label 'Nome: *' %><br />
     <%= f.text_field :name %>
     <span id="errors_name" class="warning"> <%= @building.errors.on(:name) %></span>
   </p>
   <fieldset>
     <legend>Indirizzo:</legend>
     <% fields_for :address do |a| %>
-      <%= f.label '*Città:' %><br/>
+      <%= f.label 'Città: *' %><br/>
       <%= a.text_field :city %>
       <span id="errors_city" class="warning"> <%=  @address.errors.on(:city) %></span>
      <p>
@@ -22,15 +22,15 @@
       <% end %>
       <span id="errors_telephone" class="warning"> <%=  @address.errors.on(:telephone) %></span>
      </p>
-      <%= f.label '*Via:' %><br/>
+      <%= f.label 'Via: *' %><br/>
       <%= a.text_field :street %>
       <span id="errors_street" class="warning"> <%=  @address.errors.on(:street) %></span>
     <% end %>
-    <p>
-   (*) = campi obbligatori
-   </p>
+    <p><strong>Nota:</strong> per accedere correttamente alle funzioni di Google Maps, per la ricerca dell'indirizzo, scrivere nel campo "via" l'indirizzo completo. Esempio: via Tiziano Aspetti 2<br />
+   Nel caso in cui ancora non trovi l'indirizzo corretto, mettere nel campo "città" anche la provincia tra parentesi. Esempio: Padova (PD)</p>
     </fieldset>
+    <p>* campi obbligatori</p>
   <p>
-    <%= f.submit "Aggiorna" %>
+    <%= f.submit "Salva modifiche" %>
   </p>
 <% end %>

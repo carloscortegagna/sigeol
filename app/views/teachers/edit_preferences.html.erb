@@ -38,7 +38,7 @@
         <%= image_submit_tag "/images/delete.png", :title => "Elimina la preferenza" %>
     <% end %></td>
     <td>
-      <% if constraint != @constraints[0] %>
+      <% if constraint.isHard != 1 %>
         <% form_remote_tag :url => teacher_preference_priority_up_teacher_path(:teacher_id => @teacher.id,:constraint_id => constraint.id) do %>
           <%= image_submit_tag "/images/up.gif", :title => "Aumenta la priorità della preferenza" %>
         <% end %>

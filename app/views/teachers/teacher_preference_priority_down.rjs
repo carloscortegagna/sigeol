@@ -8,6 +8,21 @@ if @already_down
 else
   if @constraint_up && @constraint_down
     page.remove @constraint_down.id
+    if (@constraint_up.isHard == 1)
+      page.replace_html @constraint_up.id, :inline => ""+
+    "<td><%= from_id_to_dayname(@constraint_up.day) %></td>" +
+    "<td><%=h @constraint_up.startHour.to_s(:time) %></td>" +
+    "<td><%=h @constraint_up.endHour.to_s(:time) %></td>" +
+    "<td><% form_remote_tag :url => destroy_preference_teacher_path(@teacher,:constraint_id => @constraint_up.id) do %>" +
+        "<%= image_submit_tag '/images/delete.png', :title => 'Elimina la preferenza' %>" +
+    "<% end %></td>" +
+    "<td><%= image_tag '/images/up_disabled.gif' %></td>" +
+    "<td>
+        <% form_remote_tag :url => teacher_preference_priority_down_teacher_path(:teacher_id => @teacher.id,:constraint_id => @constraint_up.id) do %>" +
+        "<%= image_submit_tag '/images/down.gif', :title => 'Diminuisci la priorità della preferenza' %>
+        <% end %>
+    </td>" , :layout => false
+    end
     page.insert_html :after, @constraint_up.id, :inline => "<tr id='<%= @constraint_down.id %>'>" +
     "<td><%= from_id_to_dayname(@constraint_down.day) %></td>" +
     "<td><%=h @constraint_down.startHour.to_s(:time) %></td>" +
@@ -15,12 +30,11 @@ else
     "<td><% form_remote_tag :url => destroy_preference_teacher_path(@teacher,:constraint_id => @constraint_down.id) do %>" +
         "<%= image_submit_tag '/images/delete.png', :title => 'Elimina la preferenza' %>" +
     "<% end %></td>" +
-    "<td><% if 2 != 0 %>
+    "<td>
         <% form_remote_tag :url => teacher_preference_priority_up_teacher_path(:teacher_id => @teacher.id,:constraint_id => @constraint_down.id) do %>" +
         "<%= image_submit_tag '/images/up.gif', :title => 'Aumenta la priorità della preferenza' %>
-        <% end %><% else %>
-        <%= image_tag '/images/up_disabled.gif' %>
-    <% end %></td>" +
+        <% end %>
+    </td>" +
     "<td><% form_remote_tag :url => teacher_preference_priority_down_teacher_path(:teacher_id => @teacher.id,:constraint_id => @constraint_down.id) do %>" +
         "<%= image_submit_tag '/images/down.gif', :title => 'Diminuisci la priorità della preferenza' %>" +
     "<% end %></td>" +
