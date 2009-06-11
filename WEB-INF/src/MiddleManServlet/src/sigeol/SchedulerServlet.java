@@ -103,14 +103,18 @@ public class SchedulerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //HttpSession session = request.getSession(true);
         //if(!session.isNew())
+        System.out.println("FAI POST-----");
         String operation = request.getParameter("op");
+        System.out.println("POST PARAMETRI operation:"+operation+" request:"+request.getQueryString());
         if (operation == null) {
             response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
             Logger.getLogger(SchedulerServlet.class.getName()).log(Level.SEVERE, null, "Error: operation null");
             return;
         }
         //Schedule Job
-        if (operation.compareTo("sj") == 0) {
+        if (operation  .compareTo("sj") == 0) {
+            System.out.println("FAI SCHEDULAZIONE-----");
+
             // creazione schedulazione job algoritmo
             scheduleAlgortihmJob(request, response);
         } else {
@@ -149,12 +153,12 @@ public class SchedulerServlet extends HttpServlet {
             // lettura file configurazione servlet
             ServletConfig cfg = getServletConfig();
             String url_client = cfg.getInitParameter("url-client");
-            String mail = cfg.getInitParameter("mail");
-            String password = cfg.getInitParameter("password");
-
+            
             // recupero parametri del POST
-            String course = request.getParameter("course");
+            String course = request.getParameter("graduate_course");
             String sdate = request.getParameter("date");
+            String year = request.getParameter("year");
+            String subperiod = request.getParameter("subperiod");
             System.out.println("receiving from POST: " + course + " -- " + sdate);
             // conversione data da String a Date
             java.util.Date date = null;
@@ -175,8 +179,8 @@ public class SchedulerServlet extends HttpServlet {
                 System.out.println("created job_" + course + " listener_job");
                 jobDetail.getJobDataMap().put("url_client", url_client);
                 jobDetail.getJobDataMap().put("course", course);
-                jobDetail.getJobDataMap().put("mail", mail);
-                jobDetail.getJobDataMap().put("password", password);
+                jobDetail.getJobDataMap().put("year", year);
+                jobDetail.getJobDataMap().put("subperiod", subperiod);
                 // rendiamo il job recovarable
                 jobDetail.setRequestsRecovery(true);
                 // rendiamo il job persistente
@@ -222,9 +226,7 @@ public class SchedulerServlet extends HttpServlet {
         String input_path = cfg.getInitParameter("input-itc-path");
         String output_path = cfg.getInitParameter("output-itc-path");
         String url_client = cfg.getInitParameter("url-client");
-        String mail = cfg.getInitParameter("mail");
-        String password = cfg.getInitParameter("password");
-        try {
+       try {
             String saveFile = null;
             // salvataggio del file con i parametri del corso
             ServletFileUpload upload = new ServletFileUpload();
@@ -273,9 +275,7 @@ public class SchedulerServlet extends HttpServlet {
                 jobDetail.getJobDataMap().put("output_file", output_path);
                 jobDetail.getJobDataMap().put("url_client", url_client);
                 jobDetail.getJobDataMap().put("timeout", timeout);
-                jobDetail.getJobDataMap().put("mail", mail);
-                jobDetail.getJobDataMap().put("password", password);
-                // rendiamo il job ripristinabile
+               // rendiamo il job ripristinabile
                 jobDetail.setRequestsRecovery(true);
                 jobDetail.setVolatility(false);
                 // ritardo di 30s all'avvio del job

@@ -110,7 +110,7 @@ class TimetablesController < ApplicationController
         unless (schedule(params[:subperiod], params[:year],graduate_course, exp_date))
           error = true
           destroy_old_contraints(graduate_course.id)
-          exp_date.detroy
+          exp_date.destroy
           flash[:error] = "Richiesta alla servlet fallita. Riprovare"
         end
       end
@@ -199,12 +199,14 @@ class TimetablesController < ApplicationController
     req.set_form_data({'op'=>'sj', 'graduate_course' => gs.id.to_s,
                        'year' => year,
                        'subperiod' => subperiod.to_s,
-                       'date'=> date}, ';')
+                       'date'=> date}, '&')
+    
     #connessione alla servlet
     res = Net::HTTP.new(url.host, url.port).start {
       |http| http.request(req)
     }
     #controllo del codice di errore
+    puts res
     case res
       when Net::HTTPSuccess, Net::HTTPRedirection
       # OK

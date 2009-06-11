@@ -80,10 +80,13 @@ public class AlgorithmJob implements Job {
         
         // utilizzo dell'algoritmo
         try {
-            File outfile = ItcSolver.start(inFileName, outFileName, timeout, null);
-                  
+            File outfile = ItcSolver.start(inFileName, outFileName, timeout, null);                  
             sendResult(outfile, URLName,course);
-        } catch (Exception e) {            
+            
+            File sInputFile = new File(inFileName);
+            sInputFile.delete();
+            outfile.delete();
+        } catch (Exception e) {
             Logger.getLogger(AlgorithmJob.class.getName()).log(Level.SEVERE, null, "Errore algorithm job: "+e.toString());
             return;
         }
@@ -171,6 +174,8 @@ public class AlgorithmJob implements Job {
                 responseCode = conn.getResponseCode();
                
             }
+
+
             System.out.println(URLName+"/timetables"+"/done"+"responseCode "+responseCode);
 
             // chiude gli stream
@@ -182,6 +187,7 @@ public class AlgorithmJob implements Job {
             Logger.getLogger(AlgorithmJob.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(AlgorithmJob.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
+
     }
 }

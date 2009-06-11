@@ -46,9 +46,7 @@ public class AlgorithmJobTest extends TestCase {
             jobDetail.getJobDataMap().put("output_file", webinf.getCanonicalPath() + "/itc/output/");
             jobDetail.getJobDataMap().put("timeout", "50");
             jobDetail.getJobDataMap().put("url_client", "http://localhost:8080/sigeol");
-            jobDetail.getJobDataMap().put("mail", "barraemme@math.unipd.it");
-            jobDetail.getJobDataMap().put("password", "qwerty");
-
+            
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.SECOND, 5);
             //JobExecutionContext context = new JobExecutionContext();

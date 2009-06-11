@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
 
+import java.util.Enumeration;
+import java.util.Hashtable;
 import net.sf.cpsolver.ifs.solution.Solution;
 import net.sf.cpsolver.ifs.solution.SolutionListener;
 import net.sf.cpsolver.ifs.solver.Solver;
@@ -335,14 +337,24 @@ public class ItcSolver {
        
         try {
             if (init(inputFile,outputFile, timeout, seed)) {
-                solve();                
+               Solution s = solve();
+                ItcModel m = (ItcModel)s.getModel();
+                Hashtable hash = m.getInfo();
+
+                //controllo Assigned variables: 100.00%
+                String result = String.valueOf(hash.get("Assigned variables"));
+                if(result.indexOf("100.00%") == -1)
+                    sOutputFile=null;
+
             }
         } catch (Exception e) {
             e.printStackTrace();
             sLog.error("Unable to solve problem, reason: "+e.getMessage(),e);
         }
+       
         if(sOutputFile!=null)
             return sOutputFile;
+        
         return null;
     }
 

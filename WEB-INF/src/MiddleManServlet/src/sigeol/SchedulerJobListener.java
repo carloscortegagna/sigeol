@@ -70,6 +70,8 @@ public class SchedulerJobListener implements Job {
             JobDataMap data = context.getJobDetail().getJobDataMap();
             String course = data.getString("course");
             String URLName = data.getString("url_client");
+            String year = data.getString("year");
+            String subperiod = data.getString("subperiod");
             System.out.println("executing job_" + course + " ...");
             URL url ;
             HttpURLConnection con ;
@@ -86,7 +88,8 @@ public class SchedulerJobListener implements Job {
                     } catch (InterruptedException ex) {
                         Logger.getLogger(AlgorithmJob.class.getName()).log(Level.SEVERE, null, ex);
                     }
-              */  con = (HttpURLConnection) url.openConnection();
+              */
+                con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod("POST");
                 con.setRequestProperty("course", course);
                 con.setReadTimeout(0);
