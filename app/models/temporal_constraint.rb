@@ -48,8 +48,8 @@ class TemporalConstraint < ActiveRecord::Base
   #Confronta l'orario di fine con quello iniziale del vincolo temporale, e se il primo risulta maggiore del secondo,
   #aggiunge un messaggio all'oggetto +errors+, contenente gli errori di validazione.
   def is_correct_time? #:doc:
-   if(self.startHour && self.endHour && (self.endHour<=>self.startHour)==-1)
-     errors.add([:starHour,:endHour],"Attenzione l'ora di inizio è piu grande dell'ora di fine")
+   if(self.startHour && self.endHour && ( (self.startHour > self.endHour) || (self.startHour == self.endHour)))
+     errors.add([:starHour,:endHour],"Attenzione: l'ora di fine deve essere maggiore dell'ora di inizio")
    end
   end
  end
