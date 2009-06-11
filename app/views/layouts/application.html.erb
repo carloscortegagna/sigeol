@@ -12,13 +12,14 @@
   <meta name="language" content="italian it" />
   <%= stylesheet_link_tag 'style' %>
   <%= stylesheet_link_tag 'form' %>
-  <%= stylesheet_link_tag 'ui.core' %>
-  <%= stylesheet_link_tag 'ui.theme' %>
+  <!--<%= stylesheet_link_tag 'ui.core' %>-->
+  <!--<%= stylesheet_link_tag 'ui.theme' %>-->
   <%= javascript_include_tag :defaults %>
   </head>
 <body>
   <div id="header">
     <span title="Università degli studi di Padova" id="unipd-logo"></span>
+    <span id="centerer"></span>
     <h1 id="title">SIGEOL</h1>
     <h4 id="subtitle">SIstema per la GEstione dell'Orario di Lezione</h4>
   </div>
@@ -55,7 +56,16 @@
         <% end -%>
         <% end %>
         <% if (session[:user_id]) %>
-          <%= link_to 'Logout', session_path, :method => :delete, :id => "logout"%>
+          <p style="margin-bottom:2.5em">
+            <% u = User.find(session[:user_id]) %>
+            <% if u.specified_type.eql?("DidacticOffice") %>
+              <span style="font-variant:small-caps;font-weight:bold"><%= "Segreteria" %></span>
+            <% else %>
+              <% t = Teacher.find(u.specified_id) %>
+              <span style="font-variant:small-caps;font-weight:bold"><%= t.name %> <%= t.surname %></span>
+            <% end %>
+            (<%= link_to 'Logout', session_path, :method => :delete, :id => "logout", :style => "display:inline"%>)
+          </p>
         <% end %>
         <%= user_sidebar %>
       </div>

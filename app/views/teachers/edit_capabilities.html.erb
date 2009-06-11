@@ -1,4 +1,4 @@
-<h1>Modifica del docente <%= show_teacher(@teacher)  %></h1>
+<h1>Modifica del docente <%= @teacher.name %> <%= @teacher.surname %></h1>
 <p>
   <% if @manageable_capabilities.size == 0 %>
     <h4 id="manageable_capabilities_header">Nessun privilegio posseduto</h4>

@@ -6,7 +6,7 @@ if @constraint && @constraint.id
     "<td><%=h @constraint.endHour.to_s(:time) %></td>" +
     "<td><%=h @constraint.description %></td>" +
     "<td><% form_remote_tag :url => destroy_constraint_teacher_path(@teacher,:constraint_id => @constraint.id) do %>" +
-        "<%= submit_tag 'Rimuovi' %>" +
+        "<%= image_submit_tag '/images/delete.png', :title => 'Elimina il vincolo' %>" +
     "<% end %></td>" +
   "</tr>", :layout => false
   #page.visual_effect :grow , @constraint.id
@@ -17,7 +17,7 @@ if @constraint && @constraint.id
   page.replace_html 'errors_description', ''
   page.replace_html 'errors_others', ''
 
-  page.replace_html 'message', 'Sei stato/a dichiarato/a non disponibile nei seguenti periodi:'
+  page.replace_html 'message', 'Hai dichiarato di non essere disponibile nei seguenti periodi:'
 
 else
 

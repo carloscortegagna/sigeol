@@ -7,7 +7,7 @@ if @constraint && @constraint.id
     "    <td><%=h @constraint.startHour.to_s(:time) %></td>" +
     "    <td><%=h @constraint.endHour.to_s(:time) %></td>" +
     "    <td><% form_remote_tag :url => destroy_constraint_classroom_path(@classroom,:constraint_id => @constraint.id) do %>" +
-    "        <%= submit_tag 'Rimuovi' %>" +
+    "        <%= image_submit_tag '/images/delete.png', :title => 'Elimina il vincolo' %>" +
     "    <% end %></td>" +
     "  </tr>" , :layout => false
   #page.visual_effect :grow , @constraint.id

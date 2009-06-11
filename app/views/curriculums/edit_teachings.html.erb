@@ -1,23 +1,25 @@
-<div>
+  <h1> Insegnamenti presenti nel curriculum:</h1>
   <% if @curriculum.teachings.empty? %>
-    <p>
-    <h3> Nessun insegnamento è presente nel curriculum</h3>
-    </p>
+    <p>Nessun insegnamento presente.</p>
   <% else %>
-    <h3> Insegnamenti presenti: </h3>
     <p/>
-    <% @curriculum.teachings.each do |t|  %>
-      <table>
+    <table class="list_table">
       <tr>
-        <td>
-         <%= show_teaching(t) %>
-        </td>
-        <td>
-         <%= link_to "Rimuovi", update_teachings_curriculum_path(@curriculum,:t_to_remove => t.id), :method => :delete %>
-        </td>
+        <th>Nome</th>
+        <th>Opzioni</th>
       </tr>
-      </table>
-    <% end %>
+      <% @curriculum.teachings.each do |t|  %>
+        <tr>
+          <td>
+           <%= show_teaching(t) %>
+          </td>
+          <td>
+           <%= link_to image_tag("/images/togli.gif"), update_teachings_curriculum_path(@curriculum,:t_to_remove => t.id),
+               :method => :delete, :title => "Rimuovi l'insegnamento dal curriculum" %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
   <% end %>
   <p/>
   <% if @teachings.size != 0 %>
@@ -30,4 +32,3 @@
     </p>
     <% end %>
   <% end %>
-</div>

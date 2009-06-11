@@ -1,5 +1,7 @@
 <p>
   <%= link_to graduate_course_admin.name, graduate_course_path(graduate_course_admin), :class => "list_title" %>
   <span><%= link_to image_tag("/images/Amministrazione.jpg"), edit_graduate_course_path(graduate_course_admin), :title => "Modifica i dati" %></span>
-  <span><%= link_to image_tag("/images/delete.png"), graduate_course_admin, :method => :delete, :title => "Elimina definitivamente dal sistema" %></span>
+  <span><%= link_to image_tag("/images/delete.png"), graduate_course_admin,
+            :method => :delete, :title => "Elimina definitivamente dal sistema",
+            :confirm => "Sei sicuro di voler eliminare il corso di laurea definitivamente? In questo modo verranno eliminati anche tutti i relativi curricula" %></span>
 </p>

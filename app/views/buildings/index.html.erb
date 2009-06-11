@@ -8,18 +8,29 @@
       <input type="hidden" name="hl" value="it" />
     </form>
   </h3>
-  <table class="list_table">
-    <tr>
-      <th>Nome aula</th>
-      <th>Capacità</th>
-    </tr>
-    <% for c in @classrooms %>
-      <% if b.id == c.building_id %>
-        <tr>
-          <td><%=h c.name %></td>
-          <td><%=h c.capacity %></td>
-        </tr>
-      <% end %>
+  <% esito = 0 %>
+  <% @classrooms.each do |c| %>
+    <% if c.building_id == b.id %>
+      <% esito = 1 %>
+      <% break %>
     <% end %>
-  </table>
+  <% end %>
+  <% if esito == 1 %>
+    <table class="list_table">
+      <tr>
+        <th>Nome aula</th>
+        <th>Capacità</th>
+      </tr>
+      <% for c in @classrooms %>
+        <% if b.id == c.building_id %>
+          <tr>
+            <td><%=h c.name %></td>
+            <td><%=h c.capacity %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  <% else %>
+    <p>L'edificio non possiede aule al momento.</p>
+  <% end %>
 <% end %>

@@ -50,6 +50,13 @@ table {
     width:81px;
 }
 
+#header #centerer {
+    display:block;
+    float:right;
+    height:79px;
+    width:81px;
+}
+
 #header #title {
     text-align:center;
     vertical-align:bottom;
@@ -86,8 +93,8 @@ a:hover {
 #navigation li {
     display:inline;
     list-style:none;
-    margin-left:2em;
-    margin-right:2em;
+    margin-left:5%;
+    margin-right:5%;
 }
 
 #path {
@@ -201,10 +208,6 @@ a:hover {
 .list_table_first_item {
     text-align:left;
     width:15em;
-}
-
-.inner_menu li {
-    list-style-type:none;
 }
 
 .plus_less {

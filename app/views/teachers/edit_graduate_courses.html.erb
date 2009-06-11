@@ -1,4 +1,4 @@
-<h1>Modifica del docente <%= show_teacher(@teacher)%></h1>
+<h1>Modifica del docente <%= @teacher.name %> <%= @teacher.surname %></h1>
 <p>
   <% if @manageable_graduate_courses.size == 0 %>
     <p id="manageable_graduate_courses_header">Nessun corso di laurea associato</p>

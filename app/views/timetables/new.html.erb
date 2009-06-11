@@ -1,4 +1,4 @@
-<h3>Creazione dell' orario del periodo <%= params[:subperiod]%> anno accademico <%= params[:year]%> </h3>
+<h1>Creazione dell'orario del periodo <%= params[:subperiod]%> anno accademico <%= params[:year]%> </h1>
 <% form_tag(:action => :create, :graduate_course => params[:graduate_course], :subperiod => params[:subperiod], :year => params[:year]) do %>
    Data di scadenza:
    <%= date_select("range", "expiry_date", :order => [:day,:month, :year], :start_year => Time.now.year, :use_month_names => TimetablesHelper::MONTHS_NAMES) %>

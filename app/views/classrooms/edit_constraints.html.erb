@@ -9,26 +9,28 @@
 </script>
 
 
-<h3>Modifica dei vincoli di non disponibilità per l'aula "<%=h @classroom.name %>"</h3>
+<h1>Modifica dei vincoli di non disponibilità per l'aula <%=h @classroom.name %></h1>
 <hr>
 
 <% if @constraints.size == 0 %>
   <p id="message">Non sono ancora stati impostati vincoli per quest'aula.</p>
-  <table id="manageable_constraints" style="display:none">
+  <table id="manageable_constraints" style="display:none" class="list_table">
     <tr>
       <th>Giorno</th>
       <th>Ora inizio</th>
       <th>Ora fine</th>
+      <th>Opzioni</th>
     </tr>
   </table>
 <% else %>
   <p id="message">L'aula è stata dichiarata non disponibile nei seguenti periodi:</p>
 
-<table id="manageable_constraints">
+<table id="manageable_constraints" class="list_table">
   <tr>
     <th>Giorno</th>
     <th>Ora inizio</th>
     <th>Ora fine</th>
+    <th>Opzioni</th>
   </tr>
 <% @constraints.each do |constraint| %>
   <tr id='<%= constraint.id %>'>
@@ -36,7 +38,7 @@
     <td><%=h constraint.startHour.to_s(:time) %></td>
     <td><%=h constraint.endHour.to_s(:time) %></td>
     <td><% form_remote_tag :url => destroy_constraint_classroom_path(@classroom,:constraint_id => constraint.id) do %>
-        <%= submit_tag "Rimuovi" %>
+        <%= image_submit_tag "/images/delete.png", :title => "Elimina il vincolo" %>
     <% end %></td>
   </tr>
 <% end %>

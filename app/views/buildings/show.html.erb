@@ -1,20 +1,24 @@
---------------------------------------------------
-<p>
-Nome: <%=h @building.name %> <br />
-Città: <%=h @address.city %> <br />
-Indirizzo: <%= @address.street %> <br />
-Telefono: <%= @address.telephone %> <br />
-</p>
---------------------------------------------------
-<br><br>
-<% if @building_classrooms.empty? %>
-  Non sono state registrate aule per questo edificio
-<% else %>
-  Aule: <br><br>
-  <% for c in @building_classrooms %> 
-    <%=h c.name %> (<%=h c.capacity %> posti)<br>
-  <% end %>
+<h1><%=h @building.name %></h1>
+<p><strong>Città:</strong> <%=h @address.city %></p>
+<p><strong>Indirizzo:</strong> <%= @address.street %></p>
+<% if !(@address.telephone.eql?(""))  %>
+  <p><strong>Telefono:</strong> <%= @address.telephone %></p>
 <% end %>
-<br><br>
---------------------------------------------------
-<br><br>
+<p>
+  <% if @building_classrooms.empty? %>
+    Non sono state registrate aule per questo edificio
+  <% else %>
+    <h3>Aule:</h3>
+    <table class="list_table">
+      <tr>
+        <th>Nome</th>
+        <th>Capacità</th>
+      </tr>
+      <% for c in @building_classrooms %>
+        <tr>
+          <td><%=h c.name %></td><td><%=h c.capacity %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</p>

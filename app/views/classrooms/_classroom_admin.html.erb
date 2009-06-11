@@ -1,6 +1,6 @@
 <tr>
 <td class="list_table_first_item"><%= link_to classroom_admin.name, classroom_path(classroom_admin), :class => "titoloLista", :title => "Riepilogo" %></td>
 <td><%= link_to image_tag("/images/Amministrazione.jpg"), edit_classroom_path(classroom_admin), :title => "Modifica i dati" %></td>
-<td><%= link_to image_tag("/images/delete.png"), classroom_admin, :method => :delete, :title => "Elimina definitivamente dal sistema" %></td>
+<td><%= link_to image_tag("/images/delete.png"), classroom_admin, :method => :delete, :title => "Elimina definitivamente dal sistema", :confirm => "Sei sicuro di voler eliminare l'aula?" %></td>
 <td><%= link_to image_tag("/images/disponibilita.png"), edit_constraints_classroom_path(classroom_admin), :title => "Gestisci le disponibilità e le prenotazioni" %></td>
 </tr>

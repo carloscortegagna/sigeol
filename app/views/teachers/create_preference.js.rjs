@@ -7,14 +7,25 @@ if @constraint && @constraint.id
     "<td><%=h @constraint.startHour.to_s(:time) %></td>" +
     "<td><%=h @constraint.endHour.to_s(:time) %></td>" +
     "<td><% form_remote_tag :url => destroy_preference_teacher_path(@teacher,:constraint_id => @constraint.id) do %>" +
-        "<%= submit_tag 'Rimuovi' %>" +
+        "<%= image_submit_tag '/images/delete.png', :title => 'Elimina la preferenza' %>" +
     "<% end %></td>" +
-    "<td><% form_remote_tag :url => teacher_preference_priority_up_teacher_path(:teacher_id => @teacher.id,:constraint_id => @constraint.id) do %>" +
-        "<%= submit_tag 'Su' %>" +
-    "<% end %></td>" +
-    "<td><% form_remote_tag :url => teacher_preference_priority_down_teacher_path(:teacher_id => @teacher.id,:constraint_id => @constraint.id) do %>" +
-        "<%= submit_tag 'Giu' %>"+
-    "<% end %></td>" +
+    "<td><% if constraint != @constraints[0] %>
+        <% form_remote_tag :url => teacher_preference_priority_up_teacher_path(:teacher_id => @teacher.id,:constraint_id => constraint.id) do %>
+          <%= image_submit_tag '/images/up.gif', :title => 'Aumenta la priorità della preferenza' %>
+        <% end %>
+      <% else %>
+        <%= image_tag '/images/up_disabled.gif' %>
+      <% end %>
+    </td>
+    <td>
+      <% if constraint != @constraints[@constraints.size-1] %>
+        <% form_remote_tag :url => teacher_preference_priority_down_teacher_path(:teacher_id => @teacher.id,:constraint_id => constraint.id) do %>
+          <%= image_submit_tag '/images/down.gif', :title => 'Diminuisci la priorità della preferenza' %>
+        <% end %>
+      <% else %>
+        <%= image_tag '/images/down_disabled.gif' %>
+      <% end %>
+    </td>" +
   "</tr>", :layout => false
   #page.visual_effect :grow , @constraint.id
   page.visual_effect :highlight , @constraint.id, :color=> "green"

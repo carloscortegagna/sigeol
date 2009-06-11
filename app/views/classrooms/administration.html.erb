@@ -5,17 +5,28 @@
   <% @buildings = Building.find(:all, :order => "name") %>
   <% @buildings.each do |b| %>
     <h3><%=h b.name %></h3>
-    <table class="list_table">
-      <tr>
-        <th>Nome</th>
-        <th colspan="3">Opzioni</th>
-      </tr>
-      <% @classrooms.each do |g| %>
-        <% if g.building_id == b.id %>
-          <%= show_classroom_admin(g) %>
-        <% end %>
+    <% esito = 0 %>
+    <% @classrooms.each do |c| %>
+      <% if c.building_id == b.id %>
+        <% esito = 1 %>
+        <% break %>
       <% end %>
-    </table>
+    <% end %>
+    <% if esito == 1 %>
+      <table class="list_table">
+        <tr>
+          <th>Nome</th>
+          <th colspan="3">Opzioni</th>
+        </tr>
+        <% @classrooms.each do |g| %>
+          <% if g.building_id == b.id %>
+            <%= show_classroom_admin(g) %>
+          <% end %>
+        <% end %>
+      </table>
+    <% else %>
+      <p>L'edificio non possiede aule al momento.</p>
+    <% end %>
   <% end %>
 <% end %>
 <h3>Inserimento nuova aula</h3>

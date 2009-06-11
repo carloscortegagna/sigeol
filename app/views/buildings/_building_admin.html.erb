@@ -1,5 +1,5 @@
 <tr>
   <td class="list_table_first_item"><%= link_to building_admin.name, building_path(building_admin), :class => "titoloLista" %></td>
   <td><%= link_to image_tag("/images/Amministrazione.jpg"), edit_building_path(building_admin), :title => "Modifica i dati" %></td>
-  <td><%= link_to image_tag("/images/delete.png"), building_admin, :method => :delete, :title => "Elimina definitivamente dal sistema" %></td>
+  <td><%= link_to image_tag("/images/delete.png"), building_admin, :method => :delete, :title => "Elimina definitivamente dal sistema", :confirm => "Sei sicuro di voler eliminare l'edificio? In questo modo verranno eliminate anche tutte le aule al suo interno" %></td>
 </tr>

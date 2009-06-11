@@ -1,14 +1,15 @@
-<h1>Modifica del docente <%= show_teacher(@teacher)  %></h1>
+<h1>Modifica del docente <%= @teacher.name %> <%= @teacher.surname %></h1>
 <hr>
 <p>
     <% if @constraints.size != 0 %>
       <h4>Vincoli temporali di non disponibilità inseriti dal docente:</h4>
-      <table id="manageable_constraints">
+      <table id="manageable_constraints" class="list_table">
         <tr>
           <th>Giorno</th>
           <th>Ora inizio</th>
           <th>Ora fine</th>
           <th>Motivazione</th>
+          <th colspan="2">Opzioni</th>
         </tr>
       <% @constraints.each do |constraint| %>
         <tr id='<%= constraint.id %>'>
@@ -37,7 +38,7 @@
 <p>
   <% if @preferences.size != 0 %>
   <h4>Preferenze temporali di non disponibilità inserite dal docente:</h4>
-  <table id="manageable_constraints">
+  <table id="manageable_constraints" class="list_table">
     <tr>
       <th>Giorno</th>
       <th>Ora inizio</th>
