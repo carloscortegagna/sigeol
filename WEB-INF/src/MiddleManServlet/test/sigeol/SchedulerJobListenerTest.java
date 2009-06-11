@@ -43,7 +43,10 @@ public class SchedulerJobListenerTest extends TestCase {
             jobDetail = new JobDetail("jobListener_test", "listener_job", SchedulerJobListener.class);
             jobDetail.getJobDataMap().put("course", "1");
             jobDetail.getJobDataMap().put("url_client", "http://localhost:8080/sigeol");
-
+            jobDetail.getJobDataMap().put("course", "1");
+            jobDetail.getJobDataMap().put("year", "2008/09");
+            jobDetail.getJobDataMap().put("subperiod", "2");
+            
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.SECOND, 5);
             //JobExecutionContext context = new JobExecutionContext();

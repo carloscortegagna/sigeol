@@ -103,17 +103,15 @@ public class SchedulerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //HttpSession session = request.getSession(true);
         //if(!session.isNew())
-        System.out.println("FAI POST-----");
         String operation = request.getParameter("op");
-        System.out.println("POST PARAMETRI operation:"+operation+" request:"+request.getQueryString());
         if (operation == null) {
             response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
             Logger.getLogger(SchedulerServlet.class.getName()).log(Level.SEVERE, null, "Error: operation null");
             return;
         }
         //Schedule Job
-        if (operation  .compareTo("sj") == 0) {
-            System.out.println("FAI SCHEDULAZIONE-----");
+        if (operation.compareTo("sj") == 0) {
+          
 
             // creazione schedulazione job algoritmo
             scheduleAlgortihmJob(request, response);
@@ -164,18 +162,19 @@ public class SchedulerServlet extends HttpServlet {
             java.util.Date date = null;
             String pattern = "dd-MM-yyyy";
             SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-            if (sdf.parse(sdate) != null) {
+            /*DA RIPRISTINARE
+             if (sdf.parse(sdate) != null) {
                 long time = sdf.parse(sdate).getTime();
                 date = new java.sql.Date(time);
-            } else {
+            } else {*/
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.SECOND, 30);
                 date = cal.getTime();
-            }
+            //}
             // aggiunta dell'evento nello scheduler
             if (course != null) {
                 // creazione del job da schedulare
-                JobDetail jobDetail = new JobDetail("jobListener_" + course, "listener_job", SchedulerJobListener.class);
+                JobDetail jobDetail = new JobDetail("jobListener_" + course+year+subperiod, "listener_job", SchedulerJobListener.class);
                 System.out.println("created job_" + course + " listener_job");
                 jobDetail.getJobDataMap().put("url_client", url_client);
                 jobDetail.getJobDataMap().put("course", course);
@@ -187,7 +186,7 @@ public class SchedulerServlet extends HttpServlet {
                 jobDetail.setVolatility(false);
                 // creazione trigger
                 SimpleTrigger trigger = new SimpleTrigger();
-                trigger.setName("triggerListener_" + course);
+                trigger.setName("triggerListener_" + course+year+subperiod);
                 trigger.setGroup("listener_trigger");
                 trigger.setJobGroup("algorithm");
                 trigger.setStartTime(date);
@@ -260,29 +259,36 @@ public class SchedulerServlet extends HttpServlet {
             }
 
             // recupero parametri del corso
-            String course = request.getParameter("course");
+            String course = request.getParameter("graduate_course");
+            String year = request.getParameter("year");
+            String subperiod = request.getParameter("subperiod");
+
             String timeout = null;
 
             // creazione evento di esecuzione istantanea del job
             if (course != null) {
                 timeout = request.getParameter("timeout");
                 if (timeout == null) {
-                    timeout = "10";
+                    timeout = "50";
                 }
                 // assegnazione dei parametri al job
-                JobDetail jobDetail = new JobDetail("job_" + course, "algorithm_job", AlgorithmJob.class);
+                JobDetail jobDetail = new JobDetail("job_" + course+year+subperiod, "algorithm_job", AlgorithmJob.class);
                 jobDetail.getJobDataMap().put("input_file", saveFile);
                 jobDetail.getJobDataMap().put("output_file", output_path);
                 jobDetail.getJobDataMap().put("url_client", url_client);
                 jobDetail.getJobDataMap().put("timeout", timeout);
-               // rendiamo il job ripristinabile
+               jobDetail.getJobDataMap().put("year", year);
+               jobDetail.getJobDataMap().put("subperiod", subperiod);
+                jobDetail.getJobDataMap().put("course", course);
+
+                // rendiamo il job ripristinabile
                 jobDetail.setRequestsRecovery(true);
                 jobDetail.setVolatility(false);
                 // ritardo di 30s all'avvio del job
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.SECOND, 30);
                 // creazione trigger
-                SimpleTrigger trigger = new SimpleTrigger("trigger_" + course, "algoritm_trigger", cal.getTime());
+                SimpleTrigger trigger = new SimpleTrigger("trigger_" + course+year+subperiod, "algoritm_trigger", cal.getTime());
                 try {
                     // creazione schedulazione
                     scheduler.scheduleJob(jobDetail, trigger);

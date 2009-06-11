@@ -72,16 +72,14 @@ public class AlgorithmJob implements Job {
     public void execute(JobExecutionContext context) throws JobExecutionException {
         // recupero parametri passati al job 
         JobDataMap data = context.getJobDetail().getJobDataMap();
-        String course = data.getString("course");
         String inFileName = data.getString("input_file");
         String outFileName = data.getString("output_file");
-        String URLName = data.getString("url_client");
         String timeout = data.getString("timeout");
         
         // utilizzo dell'algoritmo
         try {
             File outfile = ItcSolver.start(inFileName, outFileName, timeout, null);                  
-            sendResult(outfile, URLName,course);
+            sendResult(outfile, context);
             
             File sInputFile = new File(inFileName);
             sInputFile.delete();
@@ -105,7 +103,13 @@ public class AlgorithmJob implements Job {
      *          Nome del corso
      */
     @SuppressWarnings("static-access")
-    private void sendResult(File outFileName, String URLName, String course) {
+    private void sendResult(File outFileName, JobExecutionContext context) {
+        JobDataMap data = context.getJobDetail().getJobDataMap();
+        String course = data.getString("course");
+        String URLName = data.getString("url_client");
+        String year = data.getString("year");
+        String subperiod = data.getString("subperiod");
+
         FileInputStream fileInputStream = null;
         try {
             int responseCode = HttpURLConnection.HTTP_UNAVAILABLE;
@@ -147,7 +151,7 @@ public class AlgorithmJob implements Job {
                 conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
                 dos = new DataOutputStream(conn.getOutputStream());
                 dos.writeBytes(twoHyphens + boundary + lineEnd);
-                dos.writeBytes("Content-Disposition: form-data; name=\"upload\";" + " filename=\"" + outfile.getName() + "\"" + lineEnd);
+                dos.writeBytes("Content-Disposition: form-data; name=\"input_file\";" + " filename=\"" + outfile.getName() + "\"" + lineEnd);
                 dos.writeBytes(lineEnd);
                 // crea buffer di dimensioni massime
                 bytesAvailable = fileInputStream.available();
@@ -161,12 +165,21 @@ public class AlgorithmJob implements Job {
                     bufferSize = Math.min(bytesAvailable, maxBufferSize);
                     bytesRead = fileInputStream.read(buffer, 0, bufferSize);
                 }
+
                 // conclude la creazione del form multipart
                 dos.writeBytes(lineEnd);
                 dos.writeBytes(twoHyphens + boundary + lineEnd);
-                dos.writeBytes("Content-Disposition: form-data; name=\"course\"" + lineEnd);
+                dos.writeBytes("Content-Disposition: form-data; name=\"graduate_course\"" + lineEnd);
                 dos.writeBytes(lineEnd);
                 dos.writeBytes(course + lineEnd);
+                dos.writeBytes(twoHyphens + boundary + lineEnd);
+                dos.writeBytes("Content-Disposition: form-data; name=\"year\"" + lineEnd);
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(year + lineEnd);
+                dos.writeBytes(twoHyphens + boundary + lineEnd);
+                dos.writeBytes("Content-Disposition: form-data; name=\"subperiod\"" + lineEnd);
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(subperiod + lineEnd);
                 dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
                 
                 dos.flush();

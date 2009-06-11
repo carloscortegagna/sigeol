@@ -31,6 +31,7 @@ import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
+
 /**
  * <p>
  * <code>SchedulerJobListener</code> si occupa di segnalare all'applicazione
@@ -75,7 +76,8 @@ public class SchedulerJobListener implements Job {
             System.out.println("executing job_" + course + " ...");
             URL url ;
             HttpURLConnection con ;
-            
+            DataOutputStream    printout;
+
             int responseCode = HttpURLConnection.HTTP_UNAVAILABLE;
             
             url = new URL(URLName+"/timetables/notify");
@@ -91,7 +93,20 @@ public class SchedulerJobListener implements Job {
               */
                 con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod("POST");
-                con.setRequestProperty("course", course);
+                con.setDoInput (true);
+                // Let the RTS know that we want to do output.
+                con.setDoOutput (true);
+                // No caching, we want the real thing.
+                con.setUseCaches (false);
+                // Specify the content type.
+                con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                // Send POST output.
+                printout = new DataOutputStream (con.getOutputStream ());
+                String content = "graduate_course=" + URLEncoder.encode (course) +
+                "&year=" + URLEncoder.encode (year)+"&subperiod=" + URLEncoder.encode (subperiod);
+                printout.writeBytes (content);
+                printout.flush ();
+                printout.close ();
                 con.setReadTimeout(0);
                 responseCode = con.getResponseCode();
             }

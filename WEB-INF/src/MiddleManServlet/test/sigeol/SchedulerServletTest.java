@@ -86,8 +86,10 @@ public class SchedulerServletTest extends BasicServletTestCaseAdapter
          String pattern = "dd-MM-yyyy";
          SimpleDateFormat sdf = new SimpleDateFormat(pattern);
          addRequestParameter("op", "sj");
-         addRequestParameter("course", "test");
+         addRequestParameter("graduate_course", "1");
          addRequestParameter("date",sdf.format(cal.getTime()));
+         addRequestParameter("year", "2008/09");
+         addRequestParameter("subperiod","1");
 
          doPost();
          WebMockObjectFactory s =this.getWebMockObjectFactory();
@@ -102,8 +104,10 @@ public class SchedulerServletTest extends BasicServletTestCaseAdapter
       */
      public void testServletDJOperation() throws Exception{
          addRequestParameter("op", "dj");
-         addRequestParameter("course", "1");
+         addRequestParameter("graduate_course", "1");
          addRequestParameter("timeout", "15");
+         addRequestParameter("year", "2008/09");
+         addRequestParameter("subperiod","1");
          File testfile = new File("test.ctt");
                 //FileInputStream fileInputStream = new FileInputStream(outfile);
          WebMockObjectFactory s =this.getWebMockObjectFactory();   

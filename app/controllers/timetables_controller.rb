@@ -10,7 +10,7 @@ require 'net/http'
 require 'net/https'
 
 class TimetablesController < ApplicationController
-  skip_before_filter :login_required, :only => [:index, :show]
+  skip_before_filter :login_required , :only => [:index, :show, :notify, :done]
   before_filter :correct_url_parameter ,:only => [:new, :create, :destroy_all]
   before_filter :only_one_group_of_timetable, :only => [:new, :create]
   protect_from_forgery :except => [:notify, :done]
@@ -264,15 +264,15 @@ class TimetablesController < ApplicationController
     post["graduate_course"] = gs.id
     post["year"] = year
     post["subperiod"] = subperiod
-    post["input_file"] = file
-    mp = Multipart::MultipartPost.new
+    post["inputfile"] = file
+    mp = TimetablesHelper::MultipartPost.new
     query, headers = mp.prepare_query(post)
     file.close
-    file.delete
+    #file.delete
     #URL della servlet
     url = URI.parse(CONFIG['servlet']['address'])
     #impostazione del metodo POST
-    res = post_form(url, query, headers)
+    res = TimetablesHelper::post_form(url, query, headers)
     #controllo del codice di errore
     case res
       when Net::HTTPSuccess, Net::HTTPRedirection
@@ -280,7 +280,9 @@ class TimetablesController < ApplicationController
       done = true
       when Net::HTTPNotAcceptable
       #parametri non corretti.. riportare alla form
+          done = false
       else
+        done = false
       #errore connessione.. riprovare
     end
     return done
@@ -358,7 +360,7 @@ class TimetablesController < ApplicationController
     end
     periods = calculate_periods(gs)
     rooms = graduate_course.classrooms
-    filename = "input"+subperiod+"-"+gs.name+".ctt"
+    filename = "input"+subperiod.to_s+"-"+gs.name+".ctt"
     File.open(filename, "w") do |f|
       f.puts "Name: " + gs.name
       f.puts "Courses: " + (teachings.size + doppi).to_s

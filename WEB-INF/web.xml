@@ -31,11 +31,11 @@
         <servlet-class>sigeol.SchedulerServlet</servlet-class>
         <init-param>
             <param-name>input-itc-path</param-name>
-            <param-value>/itc/input/</param-value>
+            <param-value>/WEB-INF/itc/input/</param-value>
         </init-param>
         <init-param>
             <param-name>output-itc-path</param-name>
-            <param-value>/itc/output/</param-value>
+            <param-value>/WEB-INF/itc/output/</param-value>
         </init-param>
         <init-param>
             <param-name>url-client</param-name>
