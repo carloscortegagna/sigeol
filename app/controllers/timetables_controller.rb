@@ -11,8 +11,9 @@ require 'net/https'
 
 class TimetablesController < ApplicationController
   skip_before_filter :login_required , :only => [:index, :show, :notify, :done]
-  before_filter :correct_url_parameter ,:only => [:new, :create, :destroy_all]
+  before_filter :correct_url_parameter ,:only => [:new, :create, :destroy_all, :publicize_all_timetables]
   before_filter :only_one_group_of_timetable, :only => [:new, :create]
+  before_filter :manage_timetables_required, :except [:index,:show, :notify, :done]
   protect_from_forgery :except => [:notify, :done]
   def index
     @timetables = Timetable.find(:all)
@@ -138,6 +139,7 @@ class TimetablesController < ApplicationController
       t.destroy
     end
     respond_to do |format|
+      flash[:notice] = "Tabelle orarie eliminate con successo"
       format.html { redirect_to administration_timetables_url }
     end
   end
@@ -169,6 +171,21 @@ class TimetablesController < ApplicationController
           @timetables[g][TimetablesHelper::current_year][i] = nil
         end
       end
+    end
+  end
+
+  def publicize_all_timetables
+    gs = GraduateCourse.find(params[:graduate_course])
+    for i in 1..gs.duration
+      period = Period.find_by_year_and_subperiod(i,params[:subperiod])
+      t = Timetable.find(:first,
+      :conditions => ["graduate_course_id = ? AND period_id = ? AND year = ?", gs.id, period, params[:year]])
+      t.isPublic = true
+      t.save
+    end
+    respond_to do |format|
+      flash[:notice] = "Orario pubblicato con successo"
+      format.html { redirect_to administration_timetables_url }
     end
   end
 

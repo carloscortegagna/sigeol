@@ -55,6 +55,21 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Filtro da applicare a tutte quelle operazioni che richiedono il possesso della capability manage_timetables
+  # Il filtro non permette l'accesso ed effettua un redirect all'index di timetables se:
+  # - non e' loggato nessun utente
+  # - l'utente loggato non e' ancora attivo
+  # - l'utente loggato non possiede la capability manage_teachers
+  def manage_timetables_required
+    if @current_user == nil || !@current_user.active? || !@current_user.manage_timetables?
+      flash[:error] = "Non possiedi i privilegi per effettuare questa operazione"
+      redirect_to timetables_url
+    end
+      flash[:error] = "Non possiedi i privilegi per effettuare questa operazione"
+      redirect_to timetables_url
+    end
+  end
+
   # Filtro da applicare a tutte quelle operazioni che richiedono il possesso della capability manage_capabilities
   # Il filtro non permette l'accesso ed effettua un redirect all'index di timetables se:
   # - non e' loggato nessun utente
