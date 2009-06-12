@@ -234,15 +234,9 @@ class ClassroomsController < ApplicationController
       in_use = false
       name = nil;
       graduate_courses.each do |g|
-        timetables = g.timetables
-        timetables.each do |t|
-          if t.timetable_entries.empty?
-            in_use = true
-            name = g.name
-            break
-          end
-        end
-        if in_use
+        if g.timetables_in_generation?
+          in_use = true
+          name = g.name
           break
         end
       end

@@ -56,4 +56,70 @@ class GraduateCourse < ActiveRecord::Base
   def before_validation
    self.name=first_upper(self.name)
   end
+
+  def timetables_in_generation?
+    total_subperiod = self.academic_organization.number
+    for k in 1..total_subperiod
+      date = self.expiry_dates.find_by_period(k)
+      for i in 1..self.duration
+        p = Period.find_by_year_and_subperiod(i,k)
+        t = self.timetables.find(:all, :conditions => ["period_id = ?", p.id])
+        t.each do |timet|
+          if timet.timetable_entries.empty?
+            if date.date <= DateTime.now
+              return true
+            end
+          end
+        end
+      end
+    end
+    return false
+  end
+
+  def timetables_in_schedulation?
+    total_subperiod = self.academic_organization.number
+    for k in 1..total_subperiod
+      date = self.expiry_dates.find_by_period(k)
+      for i in 1..self.duration
+        p = Period.find_by_year_and_subperiod(i,k)
+        t = self.timetables.find(:all, :conditions => ["period_id = ?", p.id])
+        t.each do |timet|
+          if timet.timetable_entries.empty?
+            if date.date > DateTime.now
+              return true
+            end
+          end
+        end
+      end
+    end
+    return false
+  end
+
+  def timetables_in_schedulation_specific?(subperiod, academic_year)
+    date = self.expiry_dates.find_by_period(subperiod)
+    for i in 1..self.duration
+      p = Period.find_by_year_and_subperiod(i,subperiod)
+      t = self.timetables.find(:first, :conditions => ["period_id = ? AND year = ?", p.id, academic_year])
+      if t && t.timetable_entries.empty?
+        if date.date > DateTime.now
+          return true
+        end
+      end
+    end
+    return false
+  end
+
+  def timetables_in_generation_specific?(subperiod, academic_year)
+    date = self.expiry_dates.find_by_period(subperiod)
+    for i in 1..self.duration
+      p = Period.find_by_year_and_subperiod(i,subperiod)
+      t = self.timetables.find(:first, :conditions => ["period_id = ? AND year = ?", p.id, academic_year])
+      if t && t.timetable_entries.empty?
+        if date.date <= DateTime.now
+          return true
+        end
+      end
+    end
+    return false
+  end
  end

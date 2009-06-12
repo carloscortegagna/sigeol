@@ -9,25 +9,27 @@
           <tr>
             <td><%= period %></td>
             <% if timetables %>
-              <% in_generazione = false %>
               <% public = false %>
-              <% timetables.each do |t|%>
-                <% if t.isPublic %>
-                  <% public = true %>
-                <% end%>
-                <% if t.timetable_entries.empty? %>
-                  <td>In generazione . . .</td>
-                  <% in_generazione = true %>
-                  <% break %>
-                <% else %>
+              <% complete = true %>
+              <% if graduate_course.timetables_in_generation_specific?(period, year) %>
+                <% complete = false %>
+                <td>In generazione . . .</td>
+              <% end %>
+              <% if graduate_course.timetables_in_schedulation_specific?(period, year) %>
+                <% complete = false %>
+                <td>In programmazione</td>
+              <% end %>
+              <% if complete %>
+                <% timetables.each do |t|%>
+                  <% if t.isPublic %>
+                    <% public = true %>
+                  <% end%>
                   <td><%= link_to "Anno " + t.period.year.to_s, t %></td>
                 <% end %>
-              <% end %>
-              <% unless in_generazione %>
                 <td><%= link_to "Elimina", destroy_all_timetables_path(:year => year, :subperiod => period, :graduate_course => graduate_course.id), :method => :delete %></td>
-              <% end %>
-              <% unless public %>
-                <td><%= link_to "Rendi pubblico", publicize_all_timetables_path(:year => year, :subperiod => period, :graduate_course => graduate_course.id), :method => :post %></td>
+                <% unless public %>
+                  <td><%= link_to "Rendi pubblico", publicize_all_timetables_path(:year => year, :subperiod => period, :graduate_course => graduate_course.id), :method => :post %></td>
+                <% end %>
               <% end %>
             <% else %>
               <td><%= link_to "Genera", :action => :new, :subperiod => period, :graduate_course => graduate_course.id, :year => year%></td>
