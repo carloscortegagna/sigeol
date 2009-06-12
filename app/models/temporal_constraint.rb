@@ -40,11 +40,25 @@ class TemporalConstraint < ActiveRecord::Base
                      
   validate :is_correct_time?
 
-  validate :is_unique_constraint?
-
+  #Aggiunge all'oggetto +errors+, contentente gli errori di validazioni, un messaggio se esite già un'indisponibilità
+   #con lo stesso periodo dell'oggetto d'invocazione nel database.
+  def is_unique_constraint?(owner) #:doc:
+    temporal = TemporalConstraint.find(:all,:conditions=>
+        ["startHour = (?) AND endHour = (?) AND day = (?)",self.startHour, self.endHour, self.day]
+    )
+    if !temporal.empty?
+   temporal.each do |t|
+     if self != t && t.owners.first == owner
+       errors.add_to_base("Nel periodo indicato è già presente una indisponibilità")
+       self.destroy
+       return false
+     end
+   end
+ end
+  return true
+end
 
   private
-
   #Confronta l'orario di fine con quello iniziale del vincolo temporale, e se il primo risulta maggiore del secondo,
   #aggiunge un messaggio all'oggetto +errors+, contenente gli errori di validazione.
   def is_correct_time? #:doc:
@@ -53,14 +67,3 @@ class TemporalConstraint < ActiveRecord::Base
    end
   end
  end
-
-   #Aggiunge all'oggetto +errors+, contentente gli errori di validazioni, un messaggio se esite già un'indisponibilità
-   #con lo stesso periodo dell'oggetto d'invocazione nel database.
-  def is_unique_constraint? #:doc:
-  unless ((self.description == "Orario delle lezioni") || (self.description == "Pausa delle lezioni"))
-    t = TemporalConstraint.find_by_startHour_and_endHour_and_day(self.startHour, self.endHour, self.day)
-    if t && t.id != self.id
-       errors.add_to_base("Nel periodo indicato è già presente una indisponibilità")
-    end
-  end
-end
