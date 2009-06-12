@@ -77,7 +77,12 @@
     <span id="errors_description" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:description])%><% end %></span>
   </p>
   <p>
-    <br><span id="errors_others" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:starHour,:endHour])%><% end %></span>
+    <br><span id="errors_others" class="warning">
+        <% if (@constraint) %>
+          <% if (@error_unique)%> <%=@constraint.errors.on([:base])%>
+          <%else %> <%=@constraint.errors.on([:starHour,:endHour])%> <% end %>
+        <% end %>
+      </span>
   </p>
   <br><p id="submit_docEditConstr"><%= submit_tag "Aggiungi vincolo" %></p>
 <% end %>

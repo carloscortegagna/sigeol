@@ -1,4 +1,4 @@
-if @constraint && @constraint.id
+if @constraint && !@error_unique
   page.show 'manageable_constraints'
   page.insert_html :bottom, 'manageable_constraints', :inline => "<tr id='<%= @constraint.id %>'>" +
     "<td><%= from_id_to_dayname(@constraint.day) %></td>" +
