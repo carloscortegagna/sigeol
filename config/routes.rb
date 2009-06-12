@@ -44,7 +44,8 @@ ActionController::Routing::Routes.draw do |map|
                                 :collection => {:administration => :get,
                                                 :destroy_all => :delete,
                                                 :notify => :post,
-                                                :done => :post
+                                                :done => :post,
+                                                :publicize_all => :post
                                 }
 
   map.resources :temporal_constraints

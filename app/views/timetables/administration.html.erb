@@ -27,7 +27,7 @@
                 <td><%= link_to "Elimina", destroy_all_timetables_path(:year => year, :subperiod => period, :graduate_course => graduate_course.id), :method => :delete %></td>
               <% end %>
               <% unless public %>
-                <td><%= link_to "Rendi pubblico", publicize_all_timetables_path(:year => year, :subperiod => period, :graduate_course => graduate_course.id), :method => :delete %></td>
+                <td><%= link_to "Rendi pubblico", publicize_all_timetables_path(:year => year, :subperiod => period, :graduate_course => graduate_course.id), :method => :post %></td>
               <% end %>
             <% else %>
               <td><%= link_to "Genera", :action => :new, :subperiod => period, :graduate_course => graduate_course.id, :year => year%></td>

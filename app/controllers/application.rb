@@ -65,10 +65,7 @@ class ApplicationController < ActionController::Base
       flash[:error] = "Non possiedi i privilegi per effettuare questa operazione"
       redirect_to timetables_url
     end
-      flash[:error] = "Non possiedi i privilegi per effettuare questa operazione"
-      redirect_to timetables_url
-    end
-  end
+   end
 
   # Filtro da applicare a tutte quelle operazioni che richiedono il possesso della capability manage_capabilities
   # Il filtro non permette l'accesso ed effettua un redirect all'index di timetables se:
