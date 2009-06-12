@@ -52,8 +52,8 @@ class GraduateCoursesController < ApplicationController
   # Salva un nuovo graduate_course nel sistema, caratterizzata dai parametri contenuti in params[:graduate_course].
   # In caso di esito positivo associa il graduate_course all'utente al momento loggato.
   # - Se params[:unico] e' true si genera automaticamente un unico curriculum per il corso di laurea appena creato
-  # - Se params[:unico] e' false viene fatto un redirect alla vista new_curriculum di curriculums, in cui sarà possibile creare uno o più
-  # curricula per il corso di laurea appena creato.
+  # - Se params[:unico] e' false viene fatto un redirect alla vista new_curriculum di curriculums, in cui sarà
+  #   possibile creare uno o più curricula per il corso di laurea appena creato.
   # In caso di problemi nel salvataggio, viene riproposta la vista new e vengono segnalati gli eventuali errori.
   def create
     @graduate_course = GraduateCourse.new(params[:graduate_course])
