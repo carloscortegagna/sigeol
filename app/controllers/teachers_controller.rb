@@ -380,19 +380,13 @@ class TeachersController < ApplicationController
       end
       t = TemporalConstraint.new(:description=>"Preferenza docente: " + teacher.name + " " + teacher.surname,
         :isHard=>preference_value,:startHour=>params[:start_hour],:endHour=>params[:end_hour],:day=>day_nr)
-      teacher_graduate_courses = teacher.user.graduate_courses
+      @constraint = t
       if t.save
-        for c in teacher_graduate_courses #devo creare un record in constraint_owner per ogni graduate_course del teacher
-          co=ConstraintsOwner.new
-          co.constraint=t
-          co.graduate_course=GraduateCourse.find(c.id)
-          co.owner = teacher
-          co.save
-        end
+        teacher.constraints << t
+          @error_unique = !t.is_unique_constraint?(teacher)
       end
       respond_to do |format|
         @teacher = teacher
-        @constraint = t
         format.html { edit_preferences
                       render :action => "edit_preferences"
         }

@@ -84,7 +84,12 @@ Per inserire una nuova preferenza:
     <span id="errors_end" class="warning"><% if (@constraint) %> <%=@constraint.errors.on(:endHour)%><% end %></span>
   </p>
  <p>
-    <br><span id="errors_others" class="warning"><% if (@constraint) %> <%=@constraint.errors.on([:starHour,:endHour])%><% end %></span>
+    <br><span id="errors_others" class="warning">
+         <% if (@constraint) %>
+          <% if (@error_unique)%> <%=@constraint.errors.on([:base])%>
+          <%else %> <%=@constraint.errors.on([:starHour,:endHour])%> <% end %>
+        <% end %>
+    </span>
   </p>
   <p id="submit_docEditPref"><%= submit_tag "Aggiungi preferenza" %></p>
 <% end %>
