@@ -28,10 +28,6 @@
     <%= f.text_field :studentsNumber, :size=> 4 %>
     <span class="warning" id="errors_studentsNumber"><%= @teaching.errors.on(:studentsNumber) %> </span>
   </p>
-   <p>
-    Opzionale:
-    <%= check_box_tag "optional" %>
-  </p>
   <p>
     Anno:<br />
     <%= select_tag "year" , "<option>#{@period.year}</option>, #{options_from_collection_for_select(@year, "year", "year")}" %>
