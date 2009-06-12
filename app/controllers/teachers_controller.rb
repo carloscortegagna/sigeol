@@ -34,6 +34,7 @@ class TeachersController < ApplicationController
                                                           :edit_capabilities, :update_capabilities]
   before_filter :same_teacher_required, :only => [:edit, :update_personal_data, :edit_constraints, :edit_preferences,
                                                           :create_constraint, :destroy_constraint]
+  before_filter :teacher_in_use, :only => [:edit_constraints, :edit_preferences,:create_constraint, :destroy_constraint]
 
   # Inizializza la variabile d'istanza @teachers per la vista index.
   def index
@@ -592,5 +593,23 @@ class TeachersController < ApplicationController
       redirect_to timetables_url
     end
   end
-  
+
+  def teacher_in_use
+    teacher = Teacher.find(params[:id])
+    user = teacher.user
+    graduate_courses = user.graduate_courses
+    in_use = false
+    name = nil
+    graduate_courses.each do |g|
+      if g.timetables_in_generation?
+        in_use = true
+        name = g.name
+        break
+      end
+    end
+    if in_use
+      flash[:error] = "Non è possibile modificare le preferenze ed i vincoli in quanto è in corso la generazione dell'orario per il corso di laurea " +name
+      redirect_to timetables_url
+    end
+  end
 end

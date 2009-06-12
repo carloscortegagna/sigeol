@@ -232,7 +232,7 @@ class ClassroomsController < ApplicationController
       classroom = Classroom.find(params[:id])
       graduate_courses = classroom.graduate_courses
       in_use = false
-      name = nil;
+      name = nil
       graduate_courses.each do |g|
         if g.timetables_in_generation?
           in_use = true
