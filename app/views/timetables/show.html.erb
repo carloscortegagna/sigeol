@@ -24,6 +24,23 @@
         <% i = i + 1 %>
 <% end  %>
 </table>
+
+<p>
+<% teachings_vector = Array.new  %>
+ <% @timetable_entries.each do |c| %>
+    <% c.each do |t| %>
+      <% if t %>
+        <% teachings_vector << t.teaching %>
+        <% end  %>
+    <% end  %>
+  <% end  %>
+  <h3> Insegnamenti</h3>
+  <ul>
+  <% teachings_vector.uniq!.each do |v| %>
+    <li> <%= v.name  %> è tenuto da: <%= link_to v.teacher.surname + " " + v.teacher.name, teacher_path(v.teacher) %> </li>
+   <% end  %>
+  </ul>
+</p>
 <p>
 <%= link_to "Indietro", :back %>
 </p>
