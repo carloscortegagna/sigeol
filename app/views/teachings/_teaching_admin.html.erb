@@ -7,9 +7,9 @@
     <% docente = "Nessun docente assegnato" %>
   <% end %>
   <td class="list_table_first_item"><%= link_to teaching_admin.name, teaching_path(teaching_admin) %></td>
-  <td><%= link_to image_tag("/images/Amministrazione.jpg"), edit_teaching_path(teaching_admin) %></td>
+  <td><%= link_to image_tag("/images/Amministrazione.jpg"), edit_teaching_path(teaching_admin), :title => "Modifica i dati" %></td>
   <td><%= link_to image_tag("/images/delete.png"), teaching_admin, :method => :delete,
-          :confirm => "Sei sicuro di voler eliminare l'insegnamento definitivamente?" %></td>
+          :confirm => "Sei sicuro di voler eliminare l'insegnamento definitivamente?", :title => "Elimina definitivamente" %></td>
   <td><%= link_to image_tag("/images/Docente.jpg"), select_teacher_teaching_path(teaching_admin), :title => title %></td>
   <td><%= docente %>
   </td>
