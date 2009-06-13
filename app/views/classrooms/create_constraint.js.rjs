@@ -1,4 +1,4 @@
-if @constraint && @constraint.id
+if @constraint && @constraint.id && !@error_unique
   if @constraints.size == 1
     page.show 'manageable_constraints'
   end

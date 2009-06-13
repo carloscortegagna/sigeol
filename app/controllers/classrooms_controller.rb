@@ -186,13 +186,16 @@ class ClassroomsController < ApplicationController
       day_nr = from_dayname_to_id(params[:selected_day])
       t = TemporalConstraint.new(:description=>"Vincolo di indisponibilità aula: " + classroom.name,
         :isHard=>0,:startHour=>params[:start_hour],:endHour=>params[:end_hour],:day=>day_nr)
+      @constraint = t
       if t.save
         classroom.constraints << t # associo il nuovo vincolo con l'aula
-        classroom.save
+        @error_unique = !t.is_unique_constraint?(classroom)
+        #classroom.save
       end
+
       respond_to do |format|
         @classroom = Classroom.find(params[:id])
-        @constraint= t
+        #@constraint= t
         #parte originale.. forse utilizzabile dal clock
         classroom_constraint_ids = ConstraintsOwner.find(:all,
             :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Classroom' AND owner_id = (?)", params[:id]], :select => ['constraint_id'])
