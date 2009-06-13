@@ -481,7 +481,7 @@ class TeachersController < ApplicationController
       end
     end
     constraints = constraints.sort_by { |c| c[:isHard] }
-    max_priority = constraints.size
+    @max_priority = constraints.size
     if constraint_to_move_down.isHard == max_priority #la preferenza è l'ultima, non devo fare niente
       already_down = true
     else
