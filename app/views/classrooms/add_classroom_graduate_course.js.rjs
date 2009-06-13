@@ -1,16 +1,28 @@
 page.replace_html 'message', 'Quest\'aula è a disposizione dei seguenti corsi di laurea:'
-gc= GraduateCourse.find(params[:graduate_course_add])
+@gc= GraduateCourse.find(params[:graduate_course_add])
 page.visual_effect :highlight, 'graduate', :color=>"red", :duration=>"0.7"
-page.insert_html :top,'graduate_courses', "<li id='#{gc.id}>"+show_graduate_course(gc)+"</li>"
-page.remove 'graduate_course_add'
-page.insert_html :before,'add',:inline=>"<%= select_tag 'graduate_course_add' , options_from_collection_for_select(@graduate_courses_non_associati, 'id', 'name') %>"
-page.remove 'graduate_course_canc'
-page.insert_html :top,'remove',:inline=>"<%= select_tag 'graduate_course_canc' , options_from_collection_for_select(@graduate_courses_associati, 'id', 'name') %>"
+page.insert_html :top,'graduate_courses', :inline=>"<tr id='<%= @gc.id %>'>"+
+        "<td class='list_table_first_item'>"+
+        "<%= @gc.name %>"+
+        "</td>"+
+        "<td>"+
+          "<% form_remote_tag :url => {:controller => 'classrooms', :action => 'remove_classroom_graduate_course'}do %>"+
+            "<%= hidden_field_tag 'graduate_course_canc', @gc.id %>"+
+            "<%= image_submit_tag '/images/togli.gif', :title => 'Rimuovi il corso di laurea dalla lista' %>"+
+          "<% end %>"+
+        "</td>"+
+      "</tr>"
 
+#page.remove 'graduate_course_add'
+#page.insert_html :before,'add',:inline=>"<%= select_tag 'graduate_course_add' , options_from_collection_for_select(@graduate_courses_non_associati, 'id', 'name') %>"
+#page.remove 'graduate_course_canc'
+#page.insert_html :top,'remove',:inline=>"<%= select_tag 'graduate_course_canc' , options_from_collection_for_select(@graduate_courses_associati, 'id', 'name') %>"
+
+page.toggle params[:graduate_course_add]+"_remove"
 if(@graduate_courses_non_associati.size == 0)
-  page.toggle 'add_form'
+  page.insert_html :before, "graduate_courses_aggiungibili", :inline=>"<p id='graduate_courses_non_associati_message'>Non ci sono corsi aggiungibili.</p>"
 end
 
-if(@graduate_courses_associati.size == 1)
-  page.toggle 'remove_form'
-end
+#if(@graduate_courses_associati.size == 1)
+#  page.toggle 'remove_form'
+#end

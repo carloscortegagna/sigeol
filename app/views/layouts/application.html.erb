@@ -37,17 +37,13 @@
         <% if (!session[:user_id]) %>
         <h4>Login</h4>
         <% form_tag(session_path, :id => "form_layout") do -%>
-          <p>
-            <div class="lbl_layout"><label for="mail">mail:</label></div>
-            <div class="txt_layout">
-              <input type="text" name="mail" style="width:7.5em" />
-            </div>
+          <p style="text-align:left">
+            <label for="mail">Mail:</label>
+            <input type="text" name="mail" />
           </p>
-          <p>
-            <div class="lbl_layout"><label for="password">pass:</label></div>
-            <div class="txt_layout">
-              <input type="password" name="password" style="width:7.5em" />
-            </div>
+          <p style="text-align:left">
+            <label for="password">Password:</label>
+              <input type="password" name="password" />
           </p>
           <p>
             <%= submit_tag 'Log in' %>

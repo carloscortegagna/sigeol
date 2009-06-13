@@ -36,40 +36,44 @@
 <% end %>
 
  <% if @graduate_courses_associati.size == 0 %>
-  <span id="message">L'aula non è a disposizione di nessun corso di laurea</span>
+  <h4 id="message">L'aula non è a disposizione di nessun corso di laurea.</h4>
   <% else %>
- <span id="message">Quest'aula è a disposizione dei seguenti corsi di laurea:</span>
+ <h4 id="message">Quest'aula è a disposizione dei seguenti corsi di laurea:</h4>
  <% end %>
  
-<br />
-  <ul id="graduate_courses" >
+  <table id="graduate_courses" >
     <% for graduate_course in @graduate_courses_associati %>
-     <li id="<%=graduate_course.id%>">
-    <%= show_graduate_course(graduate_course) %>
-    </li>
+      <tr id="<%=graduate_course.id%>">
+        <td class="list_table_first_item">
+          <%= graduate_course.name %>
+        </td>
+        <td>
+          <% form_remote_tag :url => {:controller => 'classrooms', :action => 'remove_classroom_graduate_course'}do %>
+            <%= hidden_field_tag "graduate_course_canc", graduate_course.id %>
+            <%= image_submit_tag '/images/togli.gif', :title => "Rimuovi il corso di laurea dalla lista" %>
+          <% end %>
+        </td>
+      </tr>
      <% end %>
-     </ul>
+  </table>
 
-  <div id="remove_form">
-    <% form_remote_tag :url => {:controller => 'classrooms', :action => 'remove_classroom_graduate_course'}do %>
-        <label for="graduate_course_canc"><strong>Rimuovi</strong> un corso di laurea dalla lista:</label>
-        <%= select_tag "graduate_course_canc" , options_from_collection_for_select(@graduate_courses_associati, "id", "name") %>
-        <span id="remove">
-        <%= image_submit_tag '/images/togli.gif', :title => "Rimuovi il corso di laurea dalla lista", :class => "plus_less" %>
-       </span>
-     <% end %>
-  </div>
-
-    
   <p>
-    <div id="add_form">
-      <% form_remote_tag :url => {:controller => 'classrooms', :action => 'add_classroom_graduate_course'}do %>
-      <label for="graduate_course_add"><strong>Aggiungi</strong> un corso di laurea alla lista:</label>
-      <%= select_tag "graduate_course_add" , options_from_collection_for_select(@graduate_courses_non_associati, "id", "name") %>
-      <span id="add">
-      <%= image_submit_tag '/images/aggiungi.gif', :title => "Aggiungi il corso di laurea alla lista", :class => "plus_less" %>
-      </span>
+    <h4>Corsi di laurea non associati all'aula:</h4>
+    <% if @graduate_courses_non_associati.size == 0 %>
+      <p id="graduate_courses_non_associati_message">Non ci sono corsi aggiungibili.</p>
+    <% end %>
+    <table id="graduate_courses_aggiungibili">
+      <% @graduate_courses_non_associati.each do |gcna| %>
+        <tr id="<%= gcna.id %>_remove">
+          <td class="list_table_first_item"><%= gcna.name %></td>
+          <td>
+            <% form_remote_tag :url => {:controller => 'classrooms', :action => 'add_classroom_graduate_course'}do %>
+              <%= hidden_field_tag "graduate_course_add", gcna.id %>
+              <%= image_submit_tag '/images/aggiungi.gif', :title => "Aggiungi il corso di laurea alla lista", :class => "plus_less" %>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
-    </div>
+    </table>
   </p>
   <p><%= link_to "Indietro", :back %></p>
