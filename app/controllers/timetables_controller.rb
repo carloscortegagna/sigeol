@@ -15,6 +15,7 @@ class TimetablesController < ApplicationController
   before_filter :only_one_group_of_timetable, :only => [:new, :create]
   before_filter :manage_timetables_required, :except => [:index,:show, :notify, :done]
   protect_from_forgery :except => [:notify, :done]
+
   def index
     @timetables = Timetable.find(:all)
 
@@ -26,10 +27,12 @@ class TimetablesController < ApplicationController
 
   def show
     @timetable = Timetable.find(params[:id])
+    @timetable_entries = @timetable.timetable_entries
+    @timetable_entries = @timetable_entries.sort_by {|c| c[:startTime, :day] }
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @timetable.to_xml }
+      format.html
+      format.xml  { render :xml => @timetable.to_xml(:include => :timetable_entries) }
     end
   end
 

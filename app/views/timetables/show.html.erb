@@ -1,0 +1,25 @@
+<h1>Orario</h1>
+
+<table class="list_table">
+  <tr>
+    <th></th>
+    <th><%=  from_id_to_dayname(1) %></th>
+    <th><%=  from_id_to_dayname(2) %></th>
+    <th><%=  from_id_to_dayname(3) %></th>
+    <th><%=  from_id_to_dayname(4) %></th>
+    <th><%=  from_id_to_dayname(5) %></th>
+  </tr>
+  <% @timetable_entries.each do |c| %>
+    <tr>
+      <td> <%= c.startTime.hour.to_s + ":" + c.startTime.min.to_s %> </td>
+  <td> <%= c.startTime %> </td> 
+  <td> <%= c.startTime %> </td> 
+  <td> <%= c.startTime %> </td> 
+  <td> <%= c.startTime %> </td> 
+  <td> <%= c.startTime %> </td> 
+    </tr>
+<% end  %>
+</table>
+<p>
+<%= link_to "Indietro", :back %>
+</p>

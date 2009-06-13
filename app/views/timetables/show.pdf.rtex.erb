@@ -1,12 +1,3 @@
-<%#
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-%>
-
-<%= "_index.pdf.rtex" %>
-
-
-
 \documentclass[a4paper,10pt]{article}
 
 \usepackage{array}
@@ -15,16 +6,9 @@
 \arrayrulecolor{blue}
 
 \thispagestyle{empty}
-
-
-
 \begin{document}
 \begin{center}
 \textbf{Orario} \\
-  \section*{Items}
-  \begin{itemize}
-    <%= render :partial => @timetables %>
-  \end{itemize}
 \end{center}
 \bigskip
 \begin{center}
@@ -32,7 +16,8 @@
 \hline
 \textsc{} & \textsc{Lunedi} & \textsc{Martedi} & \textsc{Mercoledi} & \textsc{Giovedi} & \textsc{Venerdi}\\
 \hline \hline
-9.30 & informatica & informatica & informatica & informatica & informatica \\
+  <% @timetables_entries.each do |c| %>
+    <%= c.startTime %>   <% end  %> & informatica & informatica & informatica & informatica & informatica \\
 & lum250 & lum250 & lum250 & lum250 & lum250 \\ \hline
 10.30 & matematica & matematica & matematica & matematica & matematica \\
 & lum250 & lum250 & lum250 & lum250 & lum250 \\ \hline
