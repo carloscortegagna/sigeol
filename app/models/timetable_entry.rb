@@ -42,13 +42,4 @@ class TimetableEntry < ActiveRecord::Base
      errors.add([:starTime,:endTime],"Attenzione l'ora di inizio è piu grande dell'ora di fine")
    end
  end
-
- #Aggiunge all'oggetto +errors+, contentente gli errori di validazioni, un messaggio se essite già un elemento uguale
- #all'oggetto d'invocazione nel database.
-  def unique? #:doc:
-    t=TimetableEntry.find_by_startTime_and_endTime_and_day_and_timetable_id_and_classroom_id(self.startTime,self.endTime,self.day,self.timetable_id,self.classroom_id)
-    if t && t.id!=self.id
-     errors.add_to_base("riga già presente")
-    end
-  end
 end

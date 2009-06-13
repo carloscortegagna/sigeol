@@ -9,7 +9,7 @@
     <span class="warning" id="errors_name"><%= @teaching.errors.on(:name) %> </span>
   </p>
   <p>
-    <%= f.label "CFU:" %><br />
+    <%= f.label "CFU:*" %><br />
     <%= f.text_field :CFU, :size => 2 %>
     <span class="warning" id="errors_cfu"><%= @teaching.errors.on(:CFU) %> </span>
   </p>
