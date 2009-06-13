@@ -28,8 +28,7 @@ class TimetablesController < ApplicationController
   def show
     @timetable = Timetable.find(params[:id])
     @timetable_entries = @timetable.timetable_entries
-    @timetable_entries = @timetable_entries.sort_by {|c| c[:startTime, :day] }
-
+    @timetable_entries = @timetable_entries.sort_by {|c| c[:startTime] }
     respond_to do |format|
       format.html
       format.xml  { render :xml => @timetable.to_xml(:include => :timetable_entries) }

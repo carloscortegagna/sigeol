@@ -1,18 +1,52 @@
+<!-- ptTimeSelect files below -->
+<%= stylesheet_link_tag 'jquery.ptTimeSelect.css' %>
+<%= javascript_include_tag 'jquery.ptTimeSelect.js' %>
+<script type="text/javascript">
+  $(function(){
+    $('#start_hour1').ptTimeSelect({hoursLabel: "Ore", minutesLabel: "Minuti", setButtonLabel: "Seleziona", onFocusDisplay: false, popupImage: "<IMG SRC='/stylesheets/images/ptTimeSelect_clock.png'"});
+    $('#end_hour1').ptTimeSelect({hoursLabel: "Ore", minutesLabel: "Minuti", setButtonLabel: "Seleziona", onFocusDisplay: false, popupImage: "<IMG SRC='/stylesheets/images/ptTimeSelect_clock.png'"});
+    $('#start_hour2').ptTimeSelect({hoursLabel: "Ore", minutesLabel: "Minuti", setButtonLabel: "Seleziona", onFocusDisplay: false, popupImage: "<IMG SRC='/stylesheets/images/ptTimeSelect_clock.png'"});
+    $('#end_hour2').ptTimeSelect({hoursLabel: "Ore", minutesLabel: "Minuti", setButtonLabel: "Seleziona", onFocusDisplay: false, popupImage: "<IMG SRC='/stylesheets/images/ptTimeSelect_clock.png'"});
+});
+</script>
+
+
 <h1>Creazione dell'orario del periodo <%= params[:subperiod]%> anno accademico <%= params[:year]%> </h1>
 <% form_tag(:action => :create, :graduate_course => params[:graduate_course], :subperiod => params[:subperiod], :year => params[:year]) do %>
-   Data di scadenza:
-   <%= date_select("range", "expiry_date", :order => [:day,:month, :year], :start_year => Time.now.year, :use_month_names => TimetablesHelper::MONTHS_NAMES) %>
-   <br/>
-   Orario di lezione
-   <%= text_field_tag "start_hour1", nil, :maxlength => 5, :size => 10 %>
-   <%= text_field_tag "end_hour1", nil, :maxlength => 5, :size => 10 %>
-   <br/>
-   Orario della pausa(facoltativo)
-   <%= text_field_tag "start_hour2", nil, :maxlength => 5, :size => 10 %>
-   <%= text_field_tag "end_hour2", nil, :maxlength => 5, :size => 10 %>
-   <br/>
-   Durata di una lezione (in minuti)
-   <%= text_field_tag "duration", nil, :maxlength => 5, :size => 10 %>
-   <%= submit_tag "Crea" %>
+  <p>
+    <div class="lbl_timetblsNew"><%= label_tag "Data di scadenza: *" %></div>
+    <div class="txt_timetblsNew">
+      <%= date_select("range", "expiry_date", :order => [:day,:month, :year], :start_year => Time.now.year, :use_month_names => TimetablesHelper::MONTHS_NAMES) %>
+    </div>
+  </p>
+  <fieldset style="padding:1em;margin-top:1em;">
+    <legend>Orario di lezione:</legend>
+    <div class="lbl_timetblsNew"><%= label_tag "Ora di inizio: *" %></div>
+    <div style="margin-left:17.8em">
+      <%= text_field_tag "start_hour1", nil, :maxlength => 5, :size => 10 %>
+    </div>
+    <div class="lbl_timetblsNew"><%= label_tag "Ora di fine: *" %></div>
+    <div style="margin-left:17.8em">
+      <%= text_field_tag "end_hour1", nil, :maxlength => 5, :size => 10 %>
+    </div>
+  </fieldset>
+  <fieldset style="padding:1em;margin:1em 0;">
+    <legend>Orario della pausa:</legend>
+    <div class="lbl_timetblsNew"><%= label_tag "Ora di inizio:" %></div>
+    <div style="margin-left:17.8em">
+      <%= text_field_tag "start_hour2", nil, :maxlength => 5, :size => 10 %>
+    </div>
+    <div class="lbl_timetblsNew"><%= label_tag "Ora di fine:" %></div>
+    <div style="margin-left:17.8em">
+      <%= text_field_tag "end_hour2", nil, :maxlength => 5, :size => 10 %>
+    </div>
+  </fieldset>
+  <p>
+    <div class="lbl_timetblsNew"><%= label_tag "Durata di una lezione (in minuti): *" %></div>
+    <div class="txt_timetblsNew">
+      <%= text_field_tag "duration", nil, :maxlength => 5, :size => 10 %>
+    </div>
+  </p>
+  <p style="margin:2em 0">* campi obbligatori</p>
+  <p><%= submit_tag "Crea" %></p>
 <%end%>
-
