@@ -25,9 +25,14 @@ class CurriculumsController < ApplicationController
   # Crea 1 nuova variabili d'istanza vuota (@@curriculum) e inizializza la variabile d'istanza @graduate_courses per la vista new.
   def new
     @curriculum = Curriculum.new
-    graduate_course = GraduateCourse.find_by_name((flash[:notice]).from(46))
-    @graduate_courses = @current_user.graduate_courses - [graduate_course]
-    @graduate_courses = [graduate_course]+@graduate_courses
+    puts params[:graduate_course]
+    if params[:graduate_course]
+      graduate_course = GraduateCourse.find(params[:graduate_course])
+      @graduate_courses = @current_user.graduate_courses - [graduate_course]
+      @graduate_courses = [graduate_course]+@graduate_courses
+    else
+      @graduate_courses = @current_user.graduate_courses 
+    end
     respond_to do |format|
       format.html # new.html.erb
     end

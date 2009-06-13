@@ -74,8 +74,8 @@ class GraduateCoursesController < ApplicationController
           end
         else
           flash[:notice] = "Inserire un curriculum per il corso di laurea #{@graduate_course.name}"
-          format.html { redirect_to new_curriculum_url}
-          format.js{render(:update) {|page| page.redirect_to new_curriculum_url}}
+          format.html { redirect_to new_curriculum_url(:graduate_course=> @graduate_course.id)}
+          format.js{render(:update) {|page| page.redirect_to new_curriculum_url(:graduate_course=> @graduate_course.id)}}
         end
       else
         @academic_organization = AcademicOrganization.find(:all)
