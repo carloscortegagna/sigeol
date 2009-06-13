@@ -1,5 +1,4 @@
-<h1>Orario</h1>
-
+<h1>Orario <%= @timetable.graduate_course.name  %> <%= @timetable.period.year.to_s + "° anno" %></h1>
 <table class="list_table">
   <tr>
     <th></th>
@@ -9,15 +8,20 @@
     <th><%=  from_id_to_dayname(4) %></th>
     <th><%=  from_id_to_dayname(5) %></th>
   </tr>
+  <% i = 0  %>
   <% @timetable_entries.each do |c| %>
-    <tr>
-      <td> <%= c.startTime.hour.to_s + ":" + c.startTime.min.to_s %> </td>
-  <td> <%= c.startTime %> </td> 
-  <td> <%= c.startTime %> </td> 
-  <td> <%= c.startTime %> </td> 
-  <td> <%= c.startTime %> </td> 
-  <td> <%= c.startTime %> </td> 
-    </tr>
+      <tr>
+      <td> <%= (@min_startTime+(i*@duration)).hour.to_s + ":" + (@min_startTime+(i*@duration)).min.to_s %> </td>
+     <% c.each do |t| %>
+         <td>
+          <%  if t  %>
+             <%= link_to t.teaching.name, teaching_path(t.teaching) %><br/>
+              <%= t.classroom.name %>
+            <%  end %>
+          </td>
+      <%  end %>
+      </tr>
+        <% i = i + 1 %>
 <% end  %>
 </table>
 <p>

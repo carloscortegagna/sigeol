@@ -27,8 +27,25 @@ class TimetablesController < ApplicationController
 
   def show
     @timetable = Timetable.find(params[:id])
-    @timetable_entries = @timetable.timetable_entries
-    @timetable_entries = @timetable_entries.sort_by {|c| c[:startTime] }
+    table_entries = @timetable.timetable_entries.find(:all, :order=>"startTime ASC, day ASC")
+    @min_startTime = table_entries.first.startTime
+    @duration = table_entries.first.endTime - @min_startTime
+    max_startTime = table_entries.last.startTime
+    rows = (((max_startTime - @min_startTime) / @duration) + 1).to_i
+    @timetable_entries = Array.new
+    for i in 0..(rows-1)
+      @timetable_entries[i] = Array.new
+    end
+    @timetable_entries.each do |t|
+      for j in 0..4
+        t[j] = nil
+      end
+    end
+    table_entries.each do |t|
+      column = ((t.startTime - @min_startTime)/ @duration).to_i
+      row = (t.day - 1).to_i
+      @timetable_entries [column][row] = t
+    end
     respond_to do |format|
       format.html
       format.xml  { render :xml => @timetable.to_xml(:include => :timetable_entries) }
