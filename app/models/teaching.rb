@@ -22,7 +22,7 @@ class Teaching < ActiveRecord::Base
 
  has_many :belongs, :dependent => :destroy
  has_many :curriculums, :through => :belongs
- has_many :timetable_entries, :dependent => :destroy
+ has_many :timetable_entries, :dependent => :nullify
  belongs_to :period
  belongs_to :teacher
   
@@ -40,24 +40,28 @@ class Teaching < ActiveRecord::Base
  #validazioni :CFU,:classHours,:labHours,:studentsNumber,
  validates_numericality_of :CFU,
                            :only_integer => true,
-                           :greater_than_or_equal_to => 0,
+                           :greater_than_or_equal_to =>1,
                            :less_than_or_equal_to => 20,
-                           :allow_nil=>true,
-                           :message=>"Il numero deve essere compreso tra 0 e 20"
+                           :message=>"Il numero deve essere compreso tra 1 e 20"
 
- validates_numericality_of :labHours,:classHours,
+ validates_numericality_of :classHours,
+                           :only_integer => true,
+                           :greater_than_or_equal_to => 1,
+                           :less_than_or_equal_to => 50,
+                           :message => "Il numero deve essere compreso tra 1 e 50"
+
+  validates_numericality_of :labHours,
                            :only_integer => true,
                            :greater_than_or_equal_to => 0,
                            :less_than_or_equal_to => 50,
-                           :allow_nil => true,
-                           :message => "Il numero deve essere compreso tra 0 e 50"
+                           :message => "Il numero deve essere compreso tra 1 e 50"
 
  validates_numericality_of :studentsNumber,
                            :only_integer => true,
                            :greater_than_or_equal_to => 0,
                            :less_than_or_equal_to => 1000,
-                           :allow_nil => true,
                            :message => "Il numero deve essere compreso tra 0 e 1000"
+                         
  validates_associated :teacher,
                       :message => "Il teacher associato non è valido"
 
