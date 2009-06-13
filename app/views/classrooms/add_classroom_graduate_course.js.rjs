@@ -22,6 +22,9 @@ page.toggle params[:graduate_course_add]+"_remove"
 if(@graduate_courses_non_associati.size == 0)
   page.insert_html :before, "graduate_courses_aggiungibili", :inline=>"<p id='graduate_courses_non_associati_message'>Non ci sono corsi aggiungibili.</p>"
 end
+ page.visual_effect :highlight , @gc.id, :color=> "green"
+
+
 
 #if(@graduate_courses_associati.size == 1)
 #  page.toggle 'remove_form'

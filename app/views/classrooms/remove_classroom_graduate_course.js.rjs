@@ -15,7 +15,10 @@
 # end
 
 @gcc = GraduateCourse.find(params[:graduate_course_canc])
-page.remove params[:graduate_course_canc]
+page.visual_effect :fade , params[:graduate_course_canc], :duration=>"0.5"
+page.delay(0.5) do
+    page.remove params[:graduate_course_canc]
+end
 if @graduate_courses_associati.size == 0
   page.replace_html "message", "L'aula non è a disposizione di nessun corso di laurea."
 end
