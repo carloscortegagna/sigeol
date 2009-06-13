@@ -162,7 +162,7 @@ class ClassroomsController < ApplicationController
                                :conditions => ["classrooms_graduate_courses.graduate_course_id IN (?)
                                    AND classrooms_graduate_courses.classroom_id IN (?)", ids, @classroom.id])
         @graduate_courses_non_associati = @graduate_courses - @graduate_courses_associati
-        format.html { render :action => "edit" }
+        #format.html { render :action => "edit" }
         format.js{}
        end
     end
