@@ -1,124 +1,71 @@
-Name: Fis0506-1
-Courses: 30
-Rooms: 6
+Name: Informatica
+Courses: 10
+Rooms: 4
 Days: 5
-Periods_per_day: 6
-Curricula: 14
-Constraints: 53
+Periods_per_day: 10
+Curricula: 6
+Constraints: 100
 
 COURSES:
-c0001 t000 6 4 130 Lab
-c0002 t001 6 4 75 Teo
-c0004 t002 7 3 117 Teo
-c0005 t003 3 3 75 Teo
-c0014 t004 1 1 65 Teo
-c0015 t005 8 3 65 Teo
-c0016 t006 7 3 65 Teo
-c0017 t007 2 2 65 Teo
-c0024 t008 4 3 55 Teo
-c0025 t009 8 3 55 Teo
-c0078 t010 5 4 55 Teo
-c0030 t011 5 4 20 Teo
-c0031 t012 5 4 11 Teo
-c0032 t013 1 1 31 Teo
-c0033 t014 6 4 31 Teo
-c0057 t015 5 4 2 Teo
-c0058 t016 5 4 2 Teo
-c0059 t017 6 4 7 Teo
-c0061 t018 6 4 6 Teo
-c0062 t019 5 4 10 Teo
-c0063 t020 6 4 8 Teo
-c0064 t020 6 4 6 Teo
-c0065 t021 6 4 5 Teo
-c0066 t008 6 4 14 Teo
-c0067 t022 5 4 7 Teo
-c0068 t023 6 4 9 Teo
-c0069 t007 6 4 7 Teo
-c0070 t002 6 4 4 Teo
-c0071 t001 6 4 10 Teo
-c0072 t003 6 4 9 Teo
+1-lab 1 10 5 1000 LAB
+1-teo 1 10 5 1000 TEO
+2-teo 2 5 3 100 TEO
+3-lab 4 7 4 1000 LAB
+3-teo 4 10 5 1000 TEO
+4-teo 3 10 5 0 TEO
+5-teo 6 6 3 1000 TEO
+6-lab 6 3 2 10 LAB
+6-teo 6 7 4 10 TEO
+7-teo 5 2 1 10 TEO
 
 ROOMS:
-B	200 Lab
-C	100 Teo
-E	9 Teo
-F	30 Teo
-G	20 Teo
-S	30 Teo
+2 100 LAB
+3 1000 TEO
+4 1000 LAB
+5 1000 TEO
 
 CURRICULA:
-q000  4 c0001 c0002 c0004 c0005 
-q001  4 c0014 c0015 c0016 c0017 
-q002  4 c0024 c0025 c0001 c0078 
-q003  3 c0030 c0032 c0033 
-q004  3 c0031 c0032 c0033 
-q005  3 c0070 c0066 c0072 
-q006  2 c0057 c0059 
-q007  2 c0061 c0062 
-q008  3 c0065 c0059 c0072 
-q009  4 c0063 c0064 c0066 c0071 
-q010  3 c0058 c0063 c0068 
-q011  3 c0069 c0067 c0068 
-q012  1 c0004 
-q013  3 c0062 c0066 c0071 
+1-1 5 1-teo 1-lab 2-teo 3-teo 3-lab
+3-1 3 1-teo 1-lab 2-teo
+1-2 4 4-teo 5-teo 6-teo 6-lab
+3-2 1 5-teo
+1-3 1 7-teo
+3-3 1 7-teo
 
 UNAVAILABILITY_CONSTRAINTS:
-c0001 4 0
-c0001 4 1
-c0001 4 2
-c0001 4 3
-c0001 4 4
-c0001 4 5
-c0004 0 0
-c0004 0 1
-c0004 0 2
-c0004 0 3
-c0004 0 4
-c0004 0 5
-c0024 3 0
-c0024 3 1
-c0024 3 2
-c0024 3 3
-c0024 3 4
-c0024 3 5
-c0025 2 2
-c0025 2 3
-c0025 2 4
-c0025 2 5
-c0025 3 0
-c0025 3 1
-c0025 3 2
-c0025 3 3
-c0025 3 4
-c0025 3 5
-c0033 3 2
-c0033 3 3
-c0033 3 4
-c0033 3 5
-c0033 4 0
-c0033 4 1
-c0033 4 2
-c0033 4 3
-c0033 4 4
-c0033 4 5
-c0071 0 0
-c0071 0 1
-c0071 0 2
-c0071 1 0
-c0071 1 1
-c0071 1 2
-c0071 2 0
-c0071 2 1
-c0071 2 2
-c0071 3 0
-c0071 3 1
-c0071 3 2
-c0071 4 0
-c0071 4 1
-c0071 4 2
+1 0 2
+1 0 3
+1 0 4
+1 0 1
+1 0 2
+4 4 0
+4 4 1
 
 PREFERENCES:
+1 0 4 1
+1 0 6 2
+1 0 2 4
+1 0 3 4
+1 0 4 4
+1 0 5 4
+1 0 6 4
+1 2 0 3
+1 2 1 3
+1 2 2 3
+3 0 7 2
+3 2 7 1
 
 ROOM_CONSTRAINT:
+2 1 1
+2 1 2
+2 1 3
+2 1 4
+3 0 1
+3 0 2
+3 0 3
+3 0 4
+3 0 5
+3 0 6
+3 0 7
 
 END.
