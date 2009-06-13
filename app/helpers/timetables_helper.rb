@@ -49,7 +49,7 @@ module TimetablesHelper
   end
   class MultipartPost
     BOUNDARY = 'tarsiers-rule0000'
-    HEADER = {"Content-type" => "multipart/form-data, boundary=" + BOUNDARY + " "}
+    HEADER = {"Content-type" => "multipart/form-data; boundary=" + BOUNDARY + " "}
 
     def prepare_query (params)
       fp = []

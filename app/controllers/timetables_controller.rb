@@ -278,7 +278,7 @@ class TimetablesController < ApplicationController
     done = false
     #prepara il file di input
     filename = create_input_file(gs,subperiod)
-    file = File.open(filename,"rb")
+    file = File.open("/tmp1/"+filename,"r")
     post = Hash.new
     post["op"] = "dj"
     post["graduate_course"] = gs.id
@@ -308,7 +308,7 @@ class TimetablesController < ApplicationController
     return done
   end
 
-  private
+  #private
     def correct_url_parameter
       errors = false;
       unless params[:graduate_course] && params[:subperiod] && params[:year]
@@ -381,7 +381,7 @@ class TimetablesController < ApplicationController
     periods = calculate_periods(gs)
     rooms = graduate_course.classrooms
     filename = "input"+subperiod.to_s+"-"+gs.name+".ctt"
-    File.open(filename, "w") do |f|
+    f = File.new("/tmp1/"+filename, "w")
       f.puts "Name: " + gs.name
       f.puts "Courses: " + (teachings.size + doppi).to_s
       f.puts "Rooms: " + (rooms.size).to_s
@@ -430,7 +430,7 @@ class TimetablesController < ApplicationController
       f.puts "\n"
       f.puts "ROOM_CONSTRAINT:"
       print_room_constraints(f, rooms, periods)
-    end
+    f.close
     filename
   end
 
