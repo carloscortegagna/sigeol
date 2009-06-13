@@ -2,7 +2,9 @@ if request.delete?
   if  @graduate_course &&  @graduate_course.id
 
     page.visual_effect :fade ,  @graduate_course.id, :duration=>"0.5"
-    page.remove  @graduate_course.id
+    page.delay(0.5) do
+      page.remove @graduate_course.id
+    end
 
     page.insert_html :bottom, 'selectable_graduate_courses', :inline => "<tr id='<%=  @graduate_course.id %>'>" +
       "<td><%=h  @graduate_course.name %></td>" +
@@ -11,7 +13,7 @@ if request.delete?
       "<% end %></td>"+
     "</tr>", :layout => false
     #page.visual_effect :grow , @capability.id
-    page.visual_effect :highlight ,  @graduate_course.id
+    #page.visual_effect :highlight ,  @graduate_course.id
     #cleanup errori precedenti
     page.replace_html 'errors_destroy', ''
     page.replace_html 'errors_add', ''

@@ -2,7 +2,9 @@ if request.delete?
   if @capability && @capability.id
 
     page.visual_effect :fade , @capability.id, :duration=>"0.5"
-    page.remove @capability.id
+    page.delay(0.5) do
+      page.remove @capability.id
+    end
 
     page.insert_html :bottom, 'selectable_capabilities', :inline => "<tr id='<%= @capability.id %>'>" +
       "<td class='list_table_first_item'><%=h @capability.name %></td>" +
