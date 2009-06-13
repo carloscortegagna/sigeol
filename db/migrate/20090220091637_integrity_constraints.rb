@@ -18,8 +18,6 @@ class IntegrityConstraints < ActiveRecord::Migration
     fk :timetables,:graduate_course_id,:graduate_courses
     #vincoli sulla tabella timetables_entries
     fk :timetable_entries,:timetable_id,:timetables
-    fk :timetable_entries,:classroom_id,:classrooms
-    fk :timetable_entries,:teaching_id,:teachings
     #vincoli sulla tabella capabilities_users
     fk :capabilities_users,:user_id,:users,2
     fk :capabilities_users,:capability_id,:capabilities,2
@@ -49,8 +47,6 @@ class IntegrityConstraints < ActiveRecord::Migration
     drop_fk :timetables,:graduate_course_id
     #vincoli sulla tabella timetables_entries
     drop_fk :timetable_entries,:timetable_id
-    drop_fk :timetable_entries,:classroom_id
-    drop_fk :timetable_entries,:teaching_id
     #vincoli sulla tabella capabilities_users
     drop_fk :capabilities_users,:user_id
     drop_fk :capabilities_users,:capability_id

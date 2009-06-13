@@ -29,7 +29,6 @@ class TimetableEntry < ActiveRecord::Base
                           :greater_than_or_equal_to => 1,
                           :less_than_or_equal_to => 5,
                           :message => "Attenzione il numero deve essere compreso tra 0 e 1000"
-  validate :unique?
   validate :is_correct_time?
                     
 
