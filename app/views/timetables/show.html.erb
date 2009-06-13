@@ -15,8 +15,16 @@
      <% c.each do |t| %>
          <td>
           <%  if t  %>
+            <% if t.teaching %>
              <%= link_to t.teaching.name, teaching_path(t.teaching) %><br/>
+             <%  else %>
+                 (insegnamento non presente)<br/>
+             <%  end %>
+             <% if t.classroom %>
               <%= t.classroom.name %>
+              <%  else %>
+                 (aula non presente)
+              <%  end %>
             <%  end %>
           </td>
       <%  end %>
@@ -37,8 +45,12 @@
   <h3> Insegnamenti</h3>
   <ul>
   <% teachings_vector.uniq!.each do |v| %>
+    <% if v.teacher %>
     <li> <%= v.name  %> è tenuto da: <%= link_to v.teacher.surname + " " + v.teacher.name, teacher_path(v.teacher) %> </li>
-   <% end  %>
+    <% else  %>
+    <li> <%= v.name  %> non ha alcun docente assegnato </li>
+  <% end  %>
+    <% end  %>
   </ul>
 </p>
 <p>
