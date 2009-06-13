@@ -216,7 +216,7 @@ class TimetablesController < ApplicationController
     end
     date = day + "-" + month + "-" + data.year.to_s
     req.set_form_data({'op'=>'sj', 'graduate_course' => gs.id.to_s,
-                       'year' => year,
+                       #'year' => year,
                        'subperiod' => subperiod.to_s,
                        'date'=> date}, '&')
     
@@ -245,8 +245,9 @@ class TimetablesController < ApplicationController
     graduate_course = GraduateCourse.find(params[:graduate_course])
     subperiod = params[:subperiod].to_i
     year = params[:year]
-    if start(graduate_course,subperiod,year)
+    if true
       head :ok
+      start(graduate_course,subperiod,year)
     else
       head :unavailable
     end
@@ -256,15 +257,15 @@ class TimetablesController < ApplicationController
   #eseguito dalla servlet via get
   def done
     #prendi valore course e effettuta operazione di finalizzazione
-    params[:input_file]
+    puts params[:inputfile]
     gs = GraduateCourse.find(params[:graduate_course])
     year = params[:year]
     subperiod = params[:subperiod]
     filename = "test.out"
-    File.open(filename, "wb") do |f|
-      f.write(params[:input_file].read)
+    File.open("/tmp1/"+filename, "w") do |f|
+      f.write(params[:inputfile].read)
     end
-    process_file(gs, year, subperiod, filename)
+    process_file(gs, year, subperiod, "/tmp1/"+filename)
     if true
     head :ok
     else
@@ -429,6 +430,8 @@ class TimetablesController < ApplicationController
       f.puts "\n"
       f.puts "ROOM_CONSTRAINT:"
       print_room_constraints(f, rooms, periods)
+      f.puts "\n"
+      f.puts "END."
     f.close
     filename
   end
@@ -479,7 +482,10 @@ class TimetablesController < ApplicationController
         constraints.each do |c|
           slots = compute_slots(c.startHour, c.endHour, periods)
           slots.each do |s|
-            file.puts t.id.to_s + " " + (c.day - 1).to_s + " " + s.to_s
+            if t.labHours > 0
+              file.puts t.id.to_s + "-lab" + " " + (c.day - 1).to_s + " " + s.to_s
+            end
+              file.puts t.id.to_s + "-teo" + " " + (c.day - 1).to_s + " " + s.to_s
           end
         end
       end
