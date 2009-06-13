@@ -16,7 +16,7 @@
  */
 package sigeol;
 
-import java.io.FileOutputStream;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -29,16 +29,17 @@ import java.util.Calendar;
 import org.quartz.impl.StdSchedulerFactory;
 import java.text.*;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.fileupload.FileItemIterator;
-import org.apache.commons.fileupload.FileItemStream;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
@@ -86,7 +87,7 @@ public class SchedulerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println("<HTML><head><title>Sigeol Servlet</title></head><BODY BGCOLOR=\"#7F7FFF\"><H1 ALIGN=CENTER>SIGEOL</H1> <br/><h2>Scheduler servlet !</h2></BODY></HTML>");
+        out.println("<HTML><head><title>Sigeol Servlet</title></head><BODY BGCOLOR=\"#CCCCFF\"><H1 ALIGN=CENTER>SIGEOL</H1> <br/><h2>Scheduler servlet <br>Installazione effettuata con successo!</h2></BODY></HTML>");
         out.close();        
     }
 
@@ -103,29 +104,20 @@ public class SchedulerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //HttpSession session = request.getSession(true);
         //if(!session.isNew())
-        String operation = request.getParameter("op");
-        if (operation == null) {
-            response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
-            Logger.getLogger(SchedulerServlet.class.getName()).log(Level.SEVERE, null, "Error: operation null");
-            return;
-        }
-        //Schedule Job
-        if (operation.compareTo("sj") == 0) {
-          
-
-            // creazione schedulazione job algoritmo
-            scheduleAlgortihmJob(request, response);
+        boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+        if (isMultipart){
+            initAlgortihmJob(request, response);
         } else {
-            // controllo POST multipart
-            boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-            //Do Job
-            if (operation.compareTo("dj") == 0 && isMultipart) // inizializzazione e avvio job algoritmo
-            {
-                initAlgortihmJob(request, response);
-            } else {
+             String operation = request.getParameter("op");
+             if (operation == null) {
                 response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
-                Logger.getLogger(SchedulerServlet.class.getName()).log(Level.SEVERE, null, "Error: operation "+operation+" not valid");
-           }
+                Logger.getLogger(SchedulerServlet.class.getName()).log(Level.SEVERE, null, "Error: operation null");
+                return;
+             }
+             if (operation.compareTo("sj") == 0) {
+            // creazione schedulazione job algoritmo
+                scheduleAlgortihmJob(request, response);
+            }
         }
     }
 
@@ -157,20 +149,18 @@ public class SchedulerServlet extends HttpServlet {
             String sdate = request.getParameter("date");
             String year = request.getParameter("year");
             String subperiod = request.getParameter("subperiod");
-            System.out.println("receiving from POST: " + course + " -- " + sdate);
             // conversione data da String a Date
             java.util.Date date = null;
             String pattern = "dd-MM-yyyy";
             SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-            /*DA RIPRISTINARE
-             if (sdf.parse(sdate) != null) {
+            if (sdate != null && sdf.parse(sdate) != null) {
                 long time = sdf.parse(sdate).getTime();
                 date = new java.sql.Date(time);
-            } else {*/
+            } else {
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.SECOND, 30);
                 date = cal.getTime();
-            //}
+            }
             // aggiunta dell'evento nello scheduler
             if (course != null) {
                 // creazione del job da schedulare
@@ -216,57 +206,66 @@ public class SchedulerServlet extends HttpServlet {
      * @param request servlet request
      * @param response servlet response
      */
-    private void initAlgortihmJob(HttpServletRequest request, HttpServletResponse response) {
+    private void initAlgortihmJob(HttpServletRequest request, HttpServletResponse response)  {
         Scheduler scheduler = getScheduler(request);
-
+        System.out.println("init algo");
         // lettura file configurazione servlet
         ServletConfig cfg = getServletConfig();
-
+        // recupero parametri del corso
+        String op="";
+        String course="";
+        String year="";
+        String subperiod="";
         String input_path = cfg.getInitParameter("input-itc-path");
         String output_path = cfg.getInitParameter("output-itc-path");
         String url_client = cfg.getInitParameter("url-client");
        try {
             String saveFile = null;
             // salvataggio del file con i parametri del corso
-            ServletFileUpload upload = new ServletFileUpload();
-            FileItemIterator iter = upload.getItemIterator(request);
-            
+            // Create a factory for disk-based file items
+            DiskFileItemFactory factory = new DiskFileItemFactory();
+
+            // Set factory constraints
+            factory.setSizeThreshold(DiskFileItemFactory.DEFAULT_SIZE_THRESHOLD);
+
+            factory.setRepository(new File(this.getServletContext().getRealPath("/")));
+
+            ServletFileUpload upload = new ServletFileUpload(factory);
+            List  items = upload.parseRequest(request);
+            Iterator iter = items.iterator();
+
+            //FileItemIterator iter = upload.getItemIterator(request);
             while (iter.hasNext()) {
-                FileItemStream item = iter.next();
-                String name = item.getFieldName();
-                if (name.equals("inputfile") && !item.isFormField()) {
+                FileItem item = (FileItem)iter.next();
+
+                if (item.isFormField())
+                {
+                    String name = item.getFieldName();
+                    if (name.equals("op") )
+                        op = item.getString();
+                    if (name.equals("graduate_course") )
+                        course = item.getString();
+                    if (name.equals("year") )
+                        year=item.getString();
+                    if (name.equals("subperiod"))
+                        subperiod = item.getString();
+                }
+                if (!(item.isFormField()))
+                {
                     DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-HH_mm_ss");
                     Date date = new java.util.Date();
                     String datetime = dateFormat.format(date);
-                    saveFile = input_path + datetime + "_" + item.getName();
-
-                    byte[] buffer = new byte[4 * 1024];
-
-                    FileOutputStream fileStream = new FileOutputStream(this.getServletContext().getRealPath("/") + saveFile);
-                    InputStream stream = item.openStream();
-                    int len = 0;
-                    while (true) {
-                        len = stream.read(buffer);
-                        if (len < 0) {
-                            break;
-                        }
-                        fileStream.write(buffer, 0, len);
-                    }
-                    stream.close();
-                    fileStream.flush();
-                    fileStream.close();
+                    saveFile = input_path + datetime + "_" + subperiod+course+".ctt";
+                    saveFile= this.getServletContext().getRealPath("/")+saveFile;
+                    File uploadedFile = new File(saveFile);
+                    item.write(uploadedFile);
                 }
             }
-
-            // recupero parametri del corso
-            String course = request.getParameter("graduate_course");
-            String year = request.getParameter("year");
-            String subperiod = request.getParameter("subperiod");
-
+            
             String timeout = null;
 
             // creazione evento di esecuzione istantanea del job
-            if (course != null) {
+            if (!course.equals("")) {
                 timeout = request.getParameter("timeout");
                 if (timeout == null) {
                     timeout = "50";
@@ -274,11 +273,11 @@ public class SchedulerServlet extends HttpServlet {
                 // assegnazione dei parametri al job
                 JobDetail jobDetail = new JobDetail("job_" + course+year+subperiod, "algorithm_job", AlgorithmJob.class);
                 jobDetail.getJobDataMap().put("input_file", saveFile);
-                jobDetail.getJobDataMap().put("output_file", output_path);
+                jobDetail.getJobDataMap().put("output_file", this.getServletContext().getRealPath("/")+output_path);
                 jobDetail.getJobDataMap().put("url_client", url_client);
                 jobDetail.getJobDataMap().put("timeout", timeout);
-               jobDetail.getJobDataMap().put("year", year);
-               jobDetail.getJobDataMap().put("subperiod", subperiod);
+                jobDetail.getJobDataMap().put("year", year);
+                jobDetail.getJobDataMap().put("subperiod", subperiod);
                 jobDetail.getJobDataMap().put("course", course);
 
                 // rendiamo il job ripristinabile
@@ -299,8 +298,7 @@ public class SchedulerServlet extends HttpServlet {
                 }
                 // invio risposta di esecuzione job
                 response.setStatus(HttpServletResponse.SC_GONE);
-                System.out.println("job: " + course + " created. \n Start time: " + trigger.getStartTime().toString());
-
+                
             } else // invio risposta di errore
             {
                 response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);

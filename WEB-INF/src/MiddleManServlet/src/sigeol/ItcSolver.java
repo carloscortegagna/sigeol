@@ -338,24 +338,19 @@ public class ItcSolver {
         try {
             if (init(inputFile,outputFile, timeout, seed)) {
                Solution s = solve();
-                ItcModel m = (ItcModel)s.getModel();
-                Hashtable hash = m.getInfo();
-
+                //ItcModel m = (ItcModel)s.getModel();
+                //Hashtable hash = m.getInfo();
                 //controllo Assigned variables: 100.00%
-                String result = String.valueOf(hash.get("Assigned variables"));
-                if(result.indexOf("100.00%") == -1)
-                    sOutputFile=null;
-
+                //String result = String.valueOf(hash.get("Assigned variables"));
+                //if(result.indexOf("100.00%") == -1)
+                   // sOutputFile=null;
             }
         } catch (Exception e) {
             e.printStackTrace();
             sLog.error("Unable to solve problem, reason: "+e.getMessage(),e);
-        }
-       
-        if(sOutputFile!=null)
+        }finally{
             return sOutputFile;
-        
-        return null;
+        }
     }
 
 }

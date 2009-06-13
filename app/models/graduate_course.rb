@@ -66,6 +66,9 @@ class GraduateCourse < ActiveRecord::Base
         t = self.timetables.find(:all, :conditions => ["period_id = ?", p.id])
         t.each do |timet|
           if timet.timetable_entries.empty?
+        unless date
+          return false
+        end
             if date.date <= DateTime.now
               return true
             end
@@ -85,6 +88,9 @@ class GraduateCourse < ActiveRecord::Base
         t = self.timetables.find(:all, :conditions => ["period_id = ?", p.id])
         t.each do |timet|
           if timet.timetable_entries.empty?
+          unless date
+            return false
+          end
             if date.date > DateTime.now
               return true
             end
@@ -101,6 +107,9 @@ class GraduateCourse < ActiveRecord::Base
       p = Period.find_by_year_and_subperiod(i,subperiod)
       t = self.timetables.find(:first, :conditions => ["period_id = ? AND year = ?", p.id, academic_year])
       if t && t.timetable_entries.empty?
+      unless date
+          return false
+      end
         if date.date > DateTime.now
           return true
         end
@@ -115,6 +124,9 @@ class GraduateCourse < ActiveRecord::Base
       p = Period.find_by_year_and_subperiod(i,subperiod)
       t = self.timetables.find(:first, :conditions => ["period_id = ? AND year = ?", p.id, academic_year])
       if t && t.timetable_entries.empty?
+        unless date
+          return false
+        end
         if date.date <= DateTime.now
           return true
         end

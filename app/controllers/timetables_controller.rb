@@ -201,24 +201,25 @@ class TimetablesController < ApplicationController
     #parametri di autenticazione
     #req.basic_auth 'jack', 'pass'
     #dati da inviare op = ScheduleJob
-    data = expiry_date.date
-    day = data.day.to_i
-    if day < 10
-      day = "0" + day.to_s
-    else
-      day = day.to_s
-    end
-    month = data.mon.to_i
-    if month < 10
-      month = "0" + month.to_s
-    else
-      month = month.to_s
-    end
-    date = day + "-" + month + "-" + data.year.to_s
+#    data = expiry_date.date
+#    day = data.day.to_i
+#    if day < 10
+#      day = "0" + day.to_s
+#    else
+#      day = day.to_s
+#    end
+#    month = data.mon.to_i
+#    if month < 10
+#      month = "0" + month.to_s
+#    else
+#      month = month.to_s
+#    end
+#    date = day + "-" + month + "-" + data.year.to_s
     req.set_form_data({'op'=>'sj', 'graduate_course' => gs.id.to_s,
-                       #'year' => year,
+                       'year' => year,
                        'subperiod' => subperiod.to_s,
-                       'date'=> date}, '&')
+                       #'date'=> date
+                       }, '&')
     
     #connessione alla servlet
     res = Net::HTTP.new(url.host, url.port).start {
@@ -257,15 +258,14 @@ class TimetablesController < ApplicationController
   #eseguito dalla servlet via get
   def done
     #prendi valore course e effettuta operazione di finalizzazione
+    string_file = params[:inputfile].read
     puts params[:inputfile]
+    puts string_file.class
+    puts string_file
     gs = GraduateCourse.find(params[:graduate_course])
     year = params[:year]
     subperiod = params[:subperiod]
-    filename = "test.out"
-    File.open("/tmp1/"+filename, "w") do |f|
-      f.write(params[:inputfile].read)
-    end
-    process_file(gs, year, subperiod, "/tmp1/"+filename)
+    process_file(gs, year, subperiod, string_file)
     if true
     head :ok
     else
@@ -599,7 +599,7 @@ class TimetablesController < ApplicationController
     t
   end
 
-  def process_file(graduate_course, year, subper, file_name)
+  def process_file(graduate_course, year, subper, string_file)
     g = GraduateCourse.find(graduate_course)
     academic_year = year
     subperiod = subper
@@ -608,20 +608,21 @@ class TimetablesController < ApplicationController
       p = Period.find_by_year_and_subperiod(i,subperiod)
       timetables << g.timetables.find(:first, :conditions => ["period_id = ? AND year = ?", p, academic_year])
     end
-    File.open(file_name, "r") do |f|
-      while line = f.gets
-        if line != "UNSATISFIED PREFERENCES:"
+      string_file.each_line do |line|
+        if line != "UNSATISFIED PREFERENCES:\n"
+          puts "Linea" + line
           a = line.scan(/\w+/)
+          puts "Teaching id " + a[0]
           teaching = Teaching.find(a[0].to_i)
           classroom = Classroom.find(a[2].to_i)
           periods = calculate_periods(g)
+          puts "Period " + periods.to_s
           y = teaching.period.year
           timetables[y-1].timetable_entries.create(:startTime => periods[a[4].to_i]["start"],
                                                    :endTime => periods[a[4].to_i]["end"],
                                                    :day => ((a[3].to_i) +1),
                                                    :classroom => classroom,
                                                    :teaching => teaching)
-        end
       end
     end
   end

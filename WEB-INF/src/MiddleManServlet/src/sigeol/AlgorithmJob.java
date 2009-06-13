@@ -79,11 +79,18 @@ public class AlgorithmJob implements Job {
         // utilizzo dell'algoritmo
         try {
             File outfile = ItcSolver.start(inFileName, outFileName, timeout, null);                  
+            if(outfile==null)
+                outfile = new File(outFileName+"error.out");
+            else{
+                String csv = outfile.getName();
+                csv.replace("out", "csv");
+                File csvoutfile = new File(outFileName+csv);
+                //csvoutfile.delete();
+            }
             sendResult(outfile, context);
-            
             File sInputFile = new File(inFileName);
             sInputFile.delete();
-            outfile.delete();
+            //outfile.delete();
         } catch (Exception e) {
             Logger.getLogger(AlgorithmJob.class.getName()).log(Level.SEVERE, null, "Errore algorithm job: "+e.toString());
             return;
@@ -146,12 +153,13 @@ public class AlgorithmJob implements Job {
                 // cache disabilitata
                 conn.setUseCaches(false);
                 // utilizzo metodo POST
+                conn.setReadTimeout(0);
                 conn.setRequestMethod("POST");
                 conn.setRequestProperty("Connection", "Keep-Alive");
                 conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
                 dos = new DataOutputStream(conn.getOutputStream());
                 dos.writeBytes(twoHyphens + boundary + lineEnd);
-                dos.writeBytes("Content-Disposition: form-data; name=\"input_file\";" + " filename=\"" + outfile.getName() + "\"" + lineEnd);
+                dos.writeBytes("Content-Disposition: form-data; name=\"inputfile\";" + " filename=\"" + outfile.getName() + "\"" + lineEnd);
                 dos.writeBytes(lineEnd);
                 // crea buffer di dimensioni massime
                 bytesAvailable = fileInputStream.available();
@@ -164,6 +172,7 @@ public class AlgorithmJob implements Job {
                     bytesAvailable = fileInputStream.available();
                     bufferSize = Math.min(bytesAvailable, maxBufferSize);
                     bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+
                 }
 
                 // conclude la creazione del form multipart
@@ -189,7 +198,7 @@ public class AlgorithmJob implements Job {
             }
 
 
-            System.out.println(URLName+"/timetables"+"/done"+"responseCode "+responseCode);
+            System.out.println(URLName+"/timetables"+"/done"+": responseCode "+responseCode);
 
             // chiude gli stream
                 fileInputStream.close();
