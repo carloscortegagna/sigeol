@@ -11,16 +11,16 @@
   <% i = 0  %>
   <% @timetable_entries.each do |c| %>
       <tr>
-      <td> <%= (@min_startTime+(i*@duration)).hour.to_s + ":" + (@min_startTime+(i*@duration)).min.to_s %> </td>
+      <td> <%= (@min_startTime+(i*@duration)).hour.to_s + ":" + (@min_startTime+(i*@duration)).min.to_s %> <br/> <%= (@min_startTime+((i+1)*@duration)).hour.to_s + ":" + (@min_startTime+((i+1)*@duration)).min.to_s %> </td>
      <% c.each do |t| %>
          <td>
           <%  if t  %>
-            <% if t.teaching %>
+            <% if t.teaching && t.teaching.id %>
              <%= link_to t.teaching.name, teaching_path(t.teaching) %><br/>
              <%  else %>
                  (insegnamento non presente)<br/>
              <%  end %>
-             <% if t.classroom %>
+             <% if t.classroom && t.classroom.id %>
               <%= t.classroom.name %>
               <%  else %>
                  (aula non presente)

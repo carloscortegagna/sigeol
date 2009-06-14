@@ -8,33 +8,63 @@
 \thispagestyle{empty}
 \begin{document}
 \begin{center}
-\textbf{Orario} \\
+\textbf{Orario <%= @timetable.graduate_course.name  %> <%= @timetable.period.year.to_s + "° anno" %>} \\
 \end{center}
 \bigskip
 \begin{center}
 \begin{tabular}{|c||c|c|c|c|c|c||c|}
 \hline
-\textsc{} & \textsc{Lunedi} & \textsc{Martedi} & \textsc{Mercoledi} & \textsc{Giovedi} & \textsc{Venerdi}\\
+\textsc{} & \textsc{<%=  from_id_to_dayname(1) %>} & \textsc{<%=  from_id_to_dayname(2) %>} & \textsc{<%=  from_id_to_dayname(3) %>} & \textsc{<%=  from_id_to_dayname(4) %>} & \textsc{<%=  from_id_to_dayname(5) %>}\\
 \hline \hline
- hh & informatica & informatica & informatica & informatica & informatica \\
-& lum250 & lum250 & lum250 & lum250 & lum250 \\ \hline
-10.30 & matematica & matematica & matematica & matematica & matematica \\
-& lum250 & lum250 & lum250 & lum250 & lum250 \\ \hline
-11.30 & informatica & informatica & informatica & informatica & informatica \\
-& lum250 & lum250 & lum250 & lum250 & lum250 \\ \hline
-12.30 & matematica & matematica & matematica & matematica & matematica \\
-& lum250 & lum250 & lum250 & lum250 & lum250 \\ \hline
-13.30 & informatica & informatica & informatica & informatica & informatica \\
-& lum250 & lum250 & lum250 & lum250 & lum250 \\ \hline
-14.30 & matematica & matematica & matematica & matematica & matematica \\
-& lum250 & lum250 & lum250 & lum250 & lum250 \\ \hline
-15.30 & informatica & informatica & informatica & informatica & informatica \\
-& lum250 & lum250 & lum250 & lum250 & lum250 \\ \hline
-16.30 & matematica & matematica & matematica & matematica & matematica \\
-& lum250 & lum250 & lum250 & lum250 & lum250 \\ \hline
-17.30 & informatica & informatica & informatica & informatica & informatica \\
-& lum250 & lum250 & lum250 & lum250 & lum250 \\ \hline
+<% i = 0  %>
+  <% @timetable_entries.each do |c| %>
+\begin{tabular}{c}
+ <%= (@min_startTime+(i*@duration)).hour.to_s + ":" + (@min_startTime+(i*@duration)).min.to_s %> \\  <%= (@min_startTime+((i+1)*@duration)).hour.to_s + ":" + (@min_startTime+((i+1)*@duration)).min.to_s %> 
+\end{tabular}
+      <% c.each do |t| %>
+          &
+         \begin{tabular}{c}
+         <%  if t  %>
+            <% if t.teaching && t.teaching.id %>
+               <%= t.teaching.name %>
+            <%  else %>
+                 (insegnamento non presente)
+            <%  end %>
+            \\
+            <% if t.classroom && t.classroom.id %>
+                <%= t.classroom.name %>
+            <%  else %>
+                (aula non presente)
+            <%  end %>
+         <%  end %>
+\end{tabular}
+      <%  end %>
+\\ \hline
+        <% i = i + 1 %>
+<% end  %>
+ 
 \end{tabular}
 \end{center}
+<p>
+<% teachings_vector = Array.new  %>
+ <% @timetable_entries.each do |c| %>
+    <% c.each do |t| %>
+      <% if t %>
+        <% teachings_vector << t.teaching %>
+        <% end  %>
+    <% end  %>
+  <% end  %>
+  <h3> Insegnamenti</h3>
+  <ul>
+  <% teachings_vector.uniq!.each do |v| %>
+    <% if v.teacher %>
+    <li> <%= v.name  %> è tenuto da: <%= link_to v.teacher.surname + " " + v.teacher.name, teacher_path(v.teacher) %> </li>
+    <% else  %>
+    <li> <%= v.name  %> non ha alcun docente assegnato </li>
+  <% end  %>
+    <% end  %>
+  </ul>
+</p>
+<p>
 
 \end{document}
