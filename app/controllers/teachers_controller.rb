@@ -95,7 +95,8 @@ class TeachersController < ApplicationController
       @teacher.user.graduate_courses << (@graduate_course)
     end
     respond_to do |format|
-      format.html {edit_graduate_courses render :action => "edit_graduate_courses"}
+      format.html {edit_graduate_courses
+                  render :action => "edit_graduate_courses"}
       format.js {edit_graduate_courses}
     end
   end
@@ -115,7 +116,8 @@ class TeachersController < ApplicationController
       @teacher.user.capabilities << (@capability)
     end
     respond_to do |format|
-      format.html { edit_capabilities render :action => "edit_capabilities"}             
+      format.html { edit_capabilities
+                    render :action => "edit_capabilities"}
       format.js {edit_capabilities}
     end
   end
@@ -336,7 +338,8 @@ class TeachersController < ApplicationController
     respond_to do |format|
       @constraint = constraint_to_destroy
       #necessario per controllo `size` su js
-      format.html { edit_constraints render :action => "edit_constraints"}
+      format.html { edit_constraints
+                    render :action => "edit_constraints"}
       format.js { edit_constraints }
     end
   end
@@ -386,7 +389,6 @@ class TeachersController < ApplicationController
           @error_unique = !t.is_unique_constraint?(teacher)
       end
       respond_to do |format|
-        @teacher = teacher
         format.html { edit_preferences
                       render :action => "edit_preferences"
         }
@@ -458,11 +460,10 @@ class TeachersController < ApplicationController
       @constraint_up = c1
       @constraint_down = c2
       @already_up = already_up
-      @teacher = Teacher.find(params[:teacher_id])
       format.html { edit_preferences
                     render :action => "edit_preferences"
       }
-      format.js{}
+      format.js{edit_preferences}
     end
   end
 
@@ -481,7 +482,7 @@ class TeachersController < ApplicationController
       end
     end
     constraints = constraints.sort_by { |c| c[:isHard] }
-    @max_priority = constraints.size
+    max_priority = constraints.size
     if constraint_to_move_down.isHard == max_priority #la preferenza è l'ultima, non devo fare niente
       already_down = true
     else
@@ -498,11 +499,10 @@ class TeachersController < ApplicationController
       @constraint_up = c2
       @constraint_down = c1
       @already_down = already_down
-      @teacher = Teacher.find(params[:teacher_id])
       format.html { edit_preferences
                     render :action => "edit_preferences"
       }
-      format.js{}
+      format.js{edit_preferences}
     end
   end
 
