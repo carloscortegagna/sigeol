@@ -45,7 +45,13 @@
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
 \hline
-\textit{04-06-2009} & Delta & Aggiunte le descrizioni dei tool di misurazione delle metriche  \\
+\textit{14-06-2009} & Delta & Approvazione del Responsabile \\
+\hline
+\textit{20-05-2009} & Delta & Aggiunte le descrizioni dei tool di misurazione delle metriche  \\
+\hline
+\textit{10-05-2009} & Delta & Aggiunti i risultati dell'analisi dei requisiti di qualità  \\
+\hline
+\textit{27-04-2009} & Delta & Aggiunte le descrizioni e i rusultati dei test di unità e dei test funzionali  \\
 \hline
 \end{tabular}
 \end{center}
@@ -69,7 +75,7 @@
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
 \title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Piano di Qualifica \\ (Delta)}}
-\author{Redazione: Carlo Scortegagna, Barbiero Mattia}
+\author{Redazione: Carlo Scortegagna, Grosselle Alessandro}
 \maketitle
 \medskip
 \begin{center}
@@ -102,7 +108,7 @@ Lo scopo del presente documento è di notificare gli aggiornamenti che sono stat
 Tali modifiche rappresentano il proseguimento delle attività di verifica e validazione del materiale prodotto e la descrizione degli \underline{ambienti di prova} e di \underline{collaudo}.
 \section{Resoconto delle attività di verifica}
 Ogni risultato ottenuto dalle attività di verifica, validazione e qualifica dovrà essere attentamente elencato in questa sezione, in modo da assicurare che tutti i problemi e le relative soluzioni siano tracciate per garantire la massima qualità possibile del prodotto finale.
-\subsection{Tracciamento componenti - requisiti}
+
 
 \subsection{Dettaglio delle verifiche tramite test}
 Per l'esecuzione delle attività di verifica tramite test verranno utilizzati i moduli e le classi rese disponibili dal framework Rails, e più precisamente ogni test di unità dovrà estendere la classe ActiveSupport::TestCase ed ogni test funzionale dovrà estendere la classe ActionController::TestCase.
@@ -1539,6 +1545,97 @@ L'utente viene indirizzato alla pagina di login.&
 \end{small}
 \end{center}
 
+\newpage
+\subsection{Requisiti di Qualità}
+In fase di Analisi dei Requisiti era stato definito, in collaborazione con il Committente, un insieme di requisiti di qualità che il prodotto avrebbe dovuto avere per essere considerato soddisfacente.
+
+Tali requisiti, al termine della fase di realizzazione, sono stati ampiamente verificati tramite prove empiriche. Al termine di tale fase, si è potuto constatare che sia i requisiti di qualità obbligatori sia quelli desiderabili sono stati soddisfatti in pieno.
+
+Vengono elencati qui di seguito i risultati emersi sui requisiti obbligatori:
+
+\begin{center}
+\begin{tabular}{|p{0.25\textwidth}|p{0.75\textwidth}|}
+\hline
+\textsc{Requisito} & \textsc{Risultato} \\
+\hline
+\hline
+\textit{RQO0: Accessibilità del sistema} & Il sito internet del progetto è di facile consutazione, i testi sono chiari e non ambigui, 
+	ha una disposizione coerente e lineare dei contenuti e dell'interfaccia grafica. Il sito è inoltre consultabile senza alcuna 
+	problematica con qualsiasi browser e utilizzando uno qualsiasi tra i sistemi operativi in grado di gestire la navigazione
+	su internet: è stato infatti approfonditamente testato su vari sistemi operativi (Windows, Linux/Unix/MacOS in varie versioni)
+	e con svariati browser (Firefox, Safari, Opera, Chrome, Interner Explorer, Netscape), dando sempre pieno accesso ai contenuti
+	e completa navigabilità. Tutto il sito inoltre utilizza un codice semanticamente corretto, logico e validato secondo i parametri del W3C. \\
+\hline
+\textit{RQO1: Garanzie sull’integrità dei dati} & I test sul model in combinazione con le prove empiriche effettuate indicano l'assenza di 
+	problematiche per quanto riguarda il salvataggio e l'integrità dei dati. Le modifiche ai dati memorizzati in modo persistente nel database
+	sono possibili solamente agli utenti che hanno effettuato correttamente il login e che possiedono i relativi privilegi di modifica:
+	tutti gli altri utenti non hanno alcuna possibilità di accedere o modificare i dati, rendendo la loro memorizzazione sicura da azioni esterne. \\
+\hline
+\textit{RQO2: Gestione in sicurezza degli account} & La gestione degli account è possibile solamente per gli utenti che hanno effettuato correttamente
+	il login e che hanno i relativi privilegi. Le password sono salvate nel database tramite l'algoritmo crittografico di hash SHA1, assicurando 
+	l'assenza di possibili login senza conoscere la password originariamente scelta dall'utente. La complessità di tale algoritmo rende inoltre
+	praticamente impossibile il ricavo della password a partire dall'hash memorizzato nel database. \\
+\hline
+\end{tabular}
+\end{center}
+
+\newpage
+\begin{center}
+\begin{tabular}{|p{0.25\textwidth}|p{0.75\textwidth}|}
+\hline
+\textsc{Requisito} & \textsc{Risultato} \\
+\hline
+\hline
+\textit{RQO3: Manutenibilità del sistema} & Il progetto è costruito in maniera modulare, permettendo la modifica di una o più parti senza variare
+	le sezioni che non necessitavano di aggiornamenti. Il codice è commentato, ordinato e di facile consultazione, permettendo un'agevole modifica 
+	dei sorgeti. La documentazione fornita insieme al prodotto permette una facile comprensione di tutte le sue parti, anche quelle più 'tecniche`.  \\
+\hline
+\textit{RQO4: Interfaccia utente semplice e intuitiva} & L'interfaccia grafica del sito è pulita e di facile consultazione. E' stata privilegiata la
+	semplicità a scapito della pomposità grafica, in quanto si tratta di un sito di consultazione e generazione di informazioni e non un servizio che deve ad ogni costo stupire per il suo aspetto grafico. \\
+\hline
+\textit{RQO5 Presenza di manuali d’uso, di installazione, configurazione e manutenzione del sistema} & In allegato al prodotto finale si possono trovare
+	il manuali d'uso per i docenti, il manuale d'uso per la segreteria, il manuale di installazione e tutta la documentazione tecnica per permettere
+	un agevole manutenzione del sistema. Tali documenti sono scritti in modo da essere di facile consultazione e comprensione, e sono adatti ad
+	utenti con un qualsiasi livello di formazione informatica.  \\
+\hline
+\textit{RQO6: Il prodotto dovrà essere consegnato assieme ad un ambiente di prova per verificarne il corretto funzionamento} & Al momento della
+	consegna del prodotto finale, sanno presenti all'interno del sistema un insieme di dati che permetteranno subito la generazione di un
+	orario, per valutare istantaneamente le caratteristiche del prodotto senza dover inserire da zero un insieme di dati. Inoltre gli account
+	della segreteria e del presidente del CCS saranno già creati al momento della consegna, per permettere subito il login e la valutazione
+	del prodotto. Le password di tali account saranno di default e saranno comunicate al momento della consegna: sarà poi possibile cambiare
+	le password dall'interno del sistema.  \\
+\hline
+\end{tabular}
+\end{center}
+
+\newpage
+I seguenti risultati sono stati invece ottenuti analizzando i requisiti di qualità desiderabili:
+
+\begin{center}
+\begin{tabular}{|p{0.25\textwidth}|p{0.75\textwidth}|}
+\hline
+\textsc{Requisito} & \textsc{Risultato} \\
+\hline
+\hline
+\textit{RQD0: Portabilità del sistema} & Il prodotto SIGEOL può essere eseguito su un qualsiasi personal computer connesso ad Internet che abbia
+	installato tutti i componenti elencati nel Manuale di Installazione. Tali componenti sono messi a disposizione dai rispettivi sviluppatori
+	sia per sistemi operativi Windows sia per sistemi operativi Unix/Linux, sia a 32 bit sia a 64 bit. Si può quindi facilmente verificare
+	che il prodotto è portabile ed installabile su una gran varietà di personal computer diversi. Nel Manuale di Installazione si fa 
+	riferimento all'installazione del prodotto in ambiente Linux (consigliato), ma è altresì possibile installarlo in altri sistemi operativi
+	consultando di volta in volta i siti internet degli sviluppatori dei vari componenti necessari.\\
+\hline
+\textit{RQD1: Completa interoperabilità dei dati memorizzati e trattati} & I dati relativi al sistema SIGEOL sono memorizzati permanentemente 
+	in un database MySql: tali dati sono esportabili per essere usati in un qualsiasi altro database, o importabili da un'altra base dati.
+	E' anche disponibile, per ogni vista HTML, la relativa vista XML, che permette di utilizzare i dati generati dal sistema per un qualsiasi
+	altro applicativo che possa averne bisogno. La combinazione di queste due caratteristiche garantisce la completa interoperabilità sia dei
+	dati memorizzati nel database sia dei dati generati dal sistema.   \\
+\hline
+\textit{RQD2 Pagine scritte in XHTML e CSS dovranno essere validate tramite strumenti forniti dal consorzio W3C} & Ogni pagina HTML del prodotto 
+	è validata dinamicamente dai plugin messi a disposizione dal consorzio W3C, garantendo la piena accessibilità del sito e la 
+	conformità con gli standard del consorzio.  \\
+\hline
+\end{tabular}
+\end{center}
 
 \subsection{Metriche}
 Il progetto `Sigeol`, al termine della fase di programmazione, è stato testato con numerosi strumenti dedicati a Ruby on Rails con lo scopo di generare delle metriche precise che indichino il livello qualitativo del codice prodotto dal team QuiXoft.
@@ -1547,11 +1644,14 @@ E' stato scelto di utilizzare Metric\_Fu 1.0.2, raccolta di gemme per Ruby on Ra
 
 Nei capitoli seguenti saranno analizzate una ad una tutte le metriche utilizzate:
 \subsubsection{Rcov}
-Lo strumento Rcov è stato usato per misurare la copertura dei test sul codice. Il team QuiXoft utilizzerà la metrica C0, ovvero sarà controllata la copertura di ogni istruzione, e quindi di ogni riga di codice dell'intero progetto.
+Lo strumento Rcov è stato usato per misurare la copertura dei test sul codice. Il team QuiXoft utilizzerà la metrica C0, ovvero sarà controllata la copertura di ogni istruzione, e quindi di ogni riga di codice.
 
 La situazione di copertura dei test sul codice è riportato nel file \textit{coverage.pdf} allegato al presente documento.
 
-\begin{large}INSERIRE I RISULTATI DI RCOV\end{large}
+Come si può notare dal file allegato, i test scritti per il progetto SIGEOL coprono il 100\% del codice presente nei controller e nei model.
+Tale dato, al contrario di ciò che si è portati a pensare, non è indice di assenza totale di errori nel codice, ma assicura il fatto che ogni eventuale cambiamento al codice presente non può modificare il comportamento e i risultati dell'esecuzione dell'applicazione senza generare un risultato negativo dei test.
+
+Un'eventuale variazione di funzionalità o eventuali errori causati da una modifica non corretta del codice è quindi istantaneamente segnalata dal fallimento di uno o più test, permettendo di correggere subito l'errore. Ciò permette una facile, veloce ed efficiente manutenzione dell'applicazione.
 \subsubsection{Flay}
 Qualsiasi progetto Rails dovrebbe seguire il più possibile il principio DRY: Don't Repeat Yourself.
 Anche se questo deve essere inteso come principio generale, dovremmo anche evitare di avere ripetizioni all’interno del medesimo file.
