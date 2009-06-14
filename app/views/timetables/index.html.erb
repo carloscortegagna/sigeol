@@ -29,7 +29,8 @@
                     <td><%= period %></td>
                     <td><%=  t.period.year.to_s %></td>
                     <td><%= link_to image_tag("/images/html.gif"), t, :title => "Visualizza l'orario in formato html" %></td>
-                    <td>da settare-><%= link_to image_tag("/images/pdf.png"), t, :title => "Visualizza l'orario in formato pdf",:format=>:pdf %></td>
+                    <td><%= link_to image_tag("/images/pdf.png"), {:action => "show", :id => t.id, :format => :pdf}, :title => "Visualizza l'orario in formato pdf" %></td>
+                    <td><%= link_to image_tag("/images/pdf.png"), {:action => "show", :id => t.id, :format => :xml}%></td>
                   </tr>
                 <% end %>
               <% end %>
