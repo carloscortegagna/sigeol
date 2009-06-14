@@ -43,11 +43,7 @@ class TimetablesController < ApplicationController
     end
   end
 
-    def pdf_export
-    @timetables = Timetable.find(1)
-  end
-
-  def show
+   def show
     @timetable = Timetable.find(params[:id])
     table_entries = @timetable.timetable_entries.find(:all, :order=>"startTime ASC, day ASC")
     @min_startTime = table_entries.first.startTime
