@@ -545,6 +545,7 @@ class TeachersController < ApplicationController
     teacher_constraint_ids = ConstraintsOwner.find(:all,
           :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Teacher' AND owner_id = (?)", params[:teacher]],
           :select => ['constraint_id'], :group => 'constraint_id')
+    TeacherMailer.deliver_constraint_in_preference(@current_user,teacher.user,constraint_to_transform_in_preference)
     preferences = []
     for id in teacher_constraint_ids do
       if TemporalConstraint.find(id.constraint_id).isHard != 0

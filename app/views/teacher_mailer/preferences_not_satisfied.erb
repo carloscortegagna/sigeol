@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content='text/html; charset=iso-8859-1' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>SIGEOL: Vincolo convertito in preferenza</h1>
+    <p>
+      Per poter generare lo schema d'orario è stato necessario convertire il vincolo:
+      <table border="1">
+        <tr>
+          <th>Ora inizio</th>
+          <th>Ora fine</th>
+          <th>Giorno</th>
+          <th>Motivazione</th>
+        </tr>
+        <tr>
+          <td><%=  (@constraint.startHour).to_s(:time)%></td>
+          <td><%=  (@constraint.endHour).to_s(:time)%></td>
+          <td><%=  @day %></td>
+          <td><%=  @constraint.description%></td>
+          </tr>
+          </table>
+    </p>
+    <p>
+       Distinti saluti, <br />
+       <% if @current_user.specified_type == 'DidacticOffice' %>
+         <%= "Segreteria didattica" %>
+       <%  else %>
+         <%= @current_user.specified.name+" "+@current_user.specified.surname %>
+        <% end %>
+    </p>
+  </body>
+</html>

@@ -14,7 +14,7 @@
     <span class="warning" id="errors_cfu"><%= @teaching.errors.on(:CFU) %> </span>
   </p>
   <p>
-    <%= f.label "Ore settimanali in aula:" %><br />
+    <%= f.label "Ore settimanali in aula:*" %><br />
     <%= f.text_field :classHours, :size => 2 %>
     <span class="warning" id="errors_classHours"><%= @teaching.errors.on(:classHours) %> </span>
   </p>
