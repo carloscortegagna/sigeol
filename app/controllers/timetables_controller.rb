@@ -90,6 +90,7 @@ class TimetablesController < ApplicationController
       end1 = Time.parse(params[:end_hour1])
       start2 = nil
       end2 = nil
+      now = false
       unless (params[:start_hour2] and params[:end_hour2])
         start2 = Time.parse(params[:start_hour2])
         end2 = Time.parse(params[:end_hour2])
@@ -110,6 +111,15 @@ class TimetablesController < ApplicationController
       end
       unless (error)
         Timetable.transaction do
+          exp_date = graduate_course.expiry_dates.find(:first, :conditions => {:period => params[:subperiod]})
+          unless exp_date
+            exp_date = graduate_course.expiry_dates.build()
+          end
+          exp_date.period = params[:subperiod]
+          exp_date.date = Date.civil(params[:range][:"expiry_date(1i)"].to_i,
+                                     params[:range][:"expiry_date(2i)"].to_i,
+                                     params[:range][:"expiry_date(3i)"].to_i)
+          now = exp_date.save
           destroy_old_contraints(graduate_course.id)
           for i in 1..5
             temporal = TemporalConstraint.create(:description=>"Orario delle lezioni",
@@ -132,25 +142,19 @@ class TimetablesController < ApplicationController
             graduate_course.constraints << QuantityConstraint.create!(:description => "Durata delle lezioni",
                    :isHard => 0, :quantity => params[:duration].to_i)
           end
-          exp_date = graduate_course.expiry_dates.find(:first, :conditions => {:period => params[:subperiod]})
-          unless exp_date
-            exp_date = graduate_course.expiry_dates.build()
-          end
-          exp_date.period = params[:subperiod]
-          exp_date.date = Date.civil(params[:range][:"expiry_date(1i)"].to_i,
-                                     params[:range][:"expiry_date(2i)"].to_i,
-                                     params[:range][:"expiry_date(3i)"].to_i)
-          exp_date.save
           for i in 1..graduate_course.duration
             period = Period.find_by_year_and_subperiod(i,params[:subperiod])
             graduate_course.timetables.create(:period => period, :year => params[:year], :isPublic => false)
           end
         end
+        unless now
+          exp_date = nil
+        end
         unless (schedule(params[:subperiod], params[:year],graduate_course, exp_date))
-          error = true
-          destroy_old_contraints(graduate_course.id)
-          exp_date.destroy
-          flash[:error] = "Richiesta alla servlet fallita. Riprovare"
+         error = true
+         destroy_old_contraints(graduate_course.id)
+         exp_date.destroy
+         flash[:error] = "Richiesta alla servlet fallita. Riprovare"
         end
       end
     end
@@ -237,27 +241,35 @@ class TimetablesController < ApplicationController
     #parametri di autenticazione
     #req.basic_auth 'jack', 'pass'
     #dati da inviare op = ScheduleJob
-#    data = expiry_date.date
-#    day = data.day.to_i
-#    if day < 10
-#      day = "0" + day.to_s
-#    else
-#      day = day.to_s
-#    end
-#    month = data.mon.to_i
-#    if month < 10
-#      month = "0" + month.to_s
-#    else
-#      month = month.to_s
-#    end
-#    date = day + "-" + month + "-" + data.year.to_s
-    req.set_form_data({'op'=>'sj', 'graduate_course' => gs.id.to_s,
-                       'year' => year,
-                       'subperiod' => subperiod.to_s,
-                       #'date'=> date
-                       }, '&')
-    
+    if expiry_date
+      data = expiry_date.date
+      day = data.day.to_i
+      if day < 10
+        day = "0" + day.to_s
+      else
+        day = day.to_s
+      end
+      month = data.mon.to_i
+      if month < 10
+        month = "0" + month.to_s
+      else
+        month = month.to_s
+      end
+      date = day + "-" + month + "-" + data.year.to_s
+      req.set_form_data({'op'=>'sj', 'graduate_course' => gs.id.to_s,
+                         'year' => year,
+                         'subperiod' => subperiod.to_s,
+                         'date'=> date,
+                         'timeout' => CONFIG['servlet']['timeout']
+                         }, '&')
+    else
+      req.set_form_data({'op'=>'sj', 'graduate_course' => gs.id.to_s,
+                         'year' => year,
+                         'subperiod' => subperiod.to_s,
+                         'timeout' => CONFIG['servlet']['timeout']
+                         }, '&')
     #connessione alla servlet
+    end
     res = Net::HTTP.new(url.host, url.port).start {
       |http| http.request(req)
     }
@@ -634,15 +646,23 @@ class TimetablesController < ApplicationController
     subperiod = subper
     timetables = Array.new
     timetable_entries = Array.new
+    teachers = Array.new
     errors = false
+    change = false
+    teaching_in_error = nil
     periods = calculate_periods(g)
     for i in 1..g.duration
       p = Period.find_by_year_and_subperiod(i,subperiod)
       timetables << g.timetables.find(:first, :conditions => ["period_id = ? AND year = ?", p.id, academic_year])
     end
-      string_file.each_line do |line|
-        if line != "UNSATISFIED PREFERENCES:\n"
-          a = line.scan(/\w+/)
+    string_file.each_line do |line|
+      if line != "UNSATISFIED PREFERENCES:\n" && !change
+      a = line.scan(/\w+/)
+        if a.size == 2
+          teaching_in_error = Teaching.find(a[0].to_i)
+          errors = true
+          break
+        end
           teaching = Teaching.find(a[0].to_i)
           classroom = Classroom.find(a[2].to_i)
           y = teaching.period.year
@@ -652,20 +672,37 @@ class TimetablesController < ApplicationController
           end_time  = end_time + ":" + periods[a[4].to_i]["end"].min.to_s
           timetable = timetables[y-1]
           timetable_entries << TimetableEntry.new(:startTime => start_time,
-                                                   :endTime => end_time,
-                                                   :day => ((a[3].to_i) +1),
-                                                   :classroom => classroom,
-                                                   :teaching => teaching,
-                                                   :timetable => timetable)
-        else
-          puts "PREFERENZE"
-      end
-      unless errors
-        timetable_entries.each do |te|
-          te.save
-        end
+                                                  :endTime => end_time,
+                                                  :day => ((a[3].to_i) +1),
+                                                  :classroom => classroom,
+                                                  :teaching => teaching,
+                                                  :timetable => timetable)
       else
-        puts "PORCA MADONNA"
+        change = true
+        if line != "UNSATISFIED PREFERENCES:\n"
+          puts "PREFERENZE"
+          a = line.scan(/\w+/)
+          teachers << Teacher.find(a[0])
+        end
+      end
+    end
+    unless errors
+      timetable_entries.each do |te|
+        te.save
+      end
+      teachers.uniq!
+      teachers.each do |teacher|
+        puts "Mando mail preferenze a " + teacher.name
+      end
+    else
+      timetables.each do |timet|
+        timet.destroy
+      end
+      cap = Capability.find_by_name("Gestione schemi d'orario")
+      receivers = g.users.find(:all, :include => :capabilities, :conditions => ["capabilities.id = ?", cap.id])
+      receivers.each do |r|
+        puts "Mando mail a " + r.mail
+        TeacherMailer.deliver_suggestion_timetables(r, g, teaching_in_error)
       end
     end
   end

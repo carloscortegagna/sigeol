@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content='text/html; charset=iso-8859-1' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Errore nella generazione dell'orario</h1>
+    <p>
+      La generazione dell'orario per il corso di laurea in <%= @graduate_course.name %> è stata impossibile per la presenza di troppi vincoli.
+      Per risolvere il problema controllare i seguenti punti:
+      <ul>
+        <li>
+          Ridurre i vincoli temporali del docente <%= @teacher.complete_name %>
+        </li>
+        <li>
+          Aumentare la durata giornaliera delle lezioni
+        </li>
+        <li>
+          Aumentare il numero di aule
+        </li>
+        <li>
+          Controllare i vincoli temporali delle seguenti aule
+          <ul>
+            <% @graduate_course.classrooms.each do |c| %>
+              <li>
+                <%= c.name %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+      <p>
+        Successivamente inviare una nuova richiesta di generazione dell'orario.
+      </p>
+    <p>
+       Distinti saluti.
+    </p>
+  </body>
+</html>
