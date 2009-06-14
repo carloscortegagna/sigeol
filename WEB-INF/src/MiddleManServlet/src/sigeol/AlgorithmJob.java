@@ -85,12 +85,12 @@ public class AlgorithmJob implements Job {
                 String csv = outfile.getName();
                 csv.replace("out", "csv");
                 File csvoutfile = new File(outFileName+csv);
-                //csvoutfile.delete();
+                csvoutfile.delete();
             }
             sendResult(outfile, context);
             File sInputFile = new File(inFileName);
             sInputFile.delete();
-            //outfile.delete();
+            outfile.delete();
         } catch (Exception e) {
             Logger.getLogger(AlgorithmJob.class.getName()).log(Level.SEVERE, null, "Errore algorithm job: "+e.toString());
             return;
@@ -129,7 +129,7 @@ public class AlgorithmJob implements Job {
             int bytesAvailable;
             int bufferSize;
             byte[] buffer;
-            int retry = 3;
+            int retry = 1;
             int maxBufferSize = 1 * 1024 * 1024;
             File outfile = outFileName;
             fileInputStream = new FileInputStream(outfile);
@@ -137,7 +137,7 @@ public class AlgorithmJob implements Job {
             HttpURLConnection con ;
 
             url = new URL(URLName+"/timetables/done");
-            for (int i = 0; i < retry && (responseCode != HttpURLConnection.HTTP_OK); i++) {
+            for (int i = 0; i < retry ; i++) {
                 /*if(i>0)
                     try {
                         Thread.currentThread().sleep(10000*i);
