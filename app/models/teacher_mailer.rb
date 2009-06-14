@@ -19,6 +19,7 @@ class TeacherMailer < ActionMailer::Base
     from       sender.mail
     sent_on    Time.now
     content_type "text/html"
-    body       :url => url
+    body       :url => url, :teacher => receiver, :current_user => sender
+
   end
 end
