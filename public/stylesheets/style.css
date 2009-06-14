@@ -280,5 +280,15 @@ a img {
 }
 
 .labor {
-    background :#111111;
+    background :#ddd;
+}
+
+#lab_legend {
+    display:block;
+    float:left;
+    width:1em;
+    height:1em;
+    background :#ddd;
+    border:1px solid black;
+    margin-left:0.2em;
 }

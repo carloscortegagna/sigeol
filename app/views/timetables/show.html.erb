@@ -13,7 +13,7 @@
       <tr>
       <td> <%= (@min_startTime+(i*@duration)).hour.to_s + ":" + (@min_startTime+(i*@duration)).min.to_s %> <br/> <%= (@min_startTime+((i+1)*@duration)).hour.to_s + ":" + (@min_startTime+((i+1)*@duration)).min.to_s %> </td>
      <% c.each do |t| %>
-       <%  if t && t.classroom && t.classroom.id && t.classroom.isLab  %>
+       <%  if t && t.classroom && t.classroom.id && t.classroom.lab  %>
          <td class="labor">
        <% else %>
          <td>
@@ -46,6 +46,7 @@
         <% end  %>
     <% end  %>
   <% end  %>
+  <p><span id="lab_legend"></span>&nbsp;: ore di laboratorio</p>
   <h3> Insegnamenti</h3>
   <ul>
   <% teachings_vector.uniq!.each do |v| %>

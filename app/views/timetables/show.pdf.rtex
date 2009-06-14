@@ -23,6 +23,9 @@
 \end{tabular}
       <% c.each do |t| %>
           &
+<%  if t && t.classroom && t.classroom.id && t.classroom.lab  %>
+\cellcolor[gray]{0.9}
+<%  end %>
          \begin{tabular}{c}
          <%  if t  %>
             <% if t.teaching && t.teaching.id %>
@@ -41,8 +44,7 @@
       <%  end %>
 \\ \hline
         <% i = i + 1 %>
-<% end  %>
- 
+<% end  %> 
 \end{tabular}
 \end{center}
 <% teachings_vector = Array.new  %>
@@ -53,9 +55,10 @@
         <% end  %>
     <% end  %>
   <% end  %>
-\bigskip
-\bigskip
-\bigskip
+\begin{tabular}{c}
+\cellcolor[gray]{0.9}
+\end{tabular}
+: ore di laboratorio \\ \\ \\ \\
 \textbf{Insegnamenti} \\
 \begin{itemize}
   <% teachings_vector.uniq!.each do |v| %>
