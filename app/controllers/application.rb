@@ -153,4 +153,14 @@ class ApplicationController < ActionController::Base
   day_nr
  end
 
+ def from_id_to_dayname(id)
+   day_name=case id
+      when 1 then "Lunedi"
+      when 2 then "Martedi"
+      when 3 then "Mercoledi"
+      when 4 then "Giovedi"
+      when 5 then "Venerdi"
+   end
+   day_name
+ end
 end
