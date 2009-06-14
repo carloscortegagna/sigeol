@@ -15,6 +15,7 @@ class TimetablesController < ApplicationController
   before_filter :correct_url_parameter ,:only => [:new, :create, :destroy_all, :publicize_all_timetables]
   before_filter :only_one_group_of_timetable, :only => [:new, :create]
   before_filter :manage_timetables_required, :except => [:index,:show, :notify, :done]
+  before_filter :required_teachings_for_each_year_in_period, :only => [:new, :create]
   protect_from_forgery :except => [:notify, :done]
 
   def index
@@ -61,11 +62,11 @@ class TimetablesController < ApplicationController
   def create
     graduate_course = GraduateCourse.find(params[:graduate_course])
     exp_date = nil
-    unless (params[:duration])
+    if (params[:duration] == "")
       flash[:error] = "Durata non inserita"
       error = true
     end
-    unless (params[:start_hour2] and params[:end_hour2])
+    if (params[:start_hour2] != "" and params[:end_hour2] != "")
       if ((params[:start_hour2] > params[:end_hour2]) or (params[:start_hour1] > params[:start_hour2]) or
           (params[:end_hour1] < params[:end_hour2]))
         flash[:error] = "La combinazione tra le ore di pausa e quelle di lezione è errata"
@@ -280,20 +281,13 @@ class TimetablesController < ApplicationController
   #metodo per la segnalazione del calcolo dell'algoritmo eseguito
   #eseguito dalla servlet via get
   def done
+    head :ok
     #prendi valore course e effettuta operazione di finalizzazione
     string_file = params[:inputfile].read
-    puts params[:inputfile]
-    puts string_file.class
-    puts string_file
     gs = GraduateCourse.find(params[:graduate_course])
     year = params[:year]
     subperiod = params[:subperiod]
     process_file(gs, year, subperiod, string_file)
-    if true
-    head :ok
-    else
-    head :unavailable
-    end
   end
 
   #eseguito dalla GUI
@@ -331,7 +325,7 @@ class TimetablesController < ApplicationController
     return done
   end
 
-  #private
+  private
     def correct_url_parameter
       errors = false;
       unless params[:graduate_course] && params[:subperiod] && params[:year]
@@ -627,26 +621,66 @@ class TimetablesController < ApplicationController
     academic_year = year
     subperiod = subper
     timetables = Array.new
+    timetable_entries = Array.new
+    errors = false
+    periods = calculate_periods(g)
     for i in 1..g.duration
       p = Period.find_by_year_and_subperiod(i,subperiod)
-      timetables << g.timetables.find(:first, :conditions => ["period_id = ? AND year = ?", p, academic_year])
+      timetables << g.timetables.find(:first, :conditions => ["period_id = ? AND year = ?", p.id, academic_year])
     end
       string_file.each_line do |line|
         if line != "UNSATISFIED PREFERENCES:\n"
-          puts "Linea" + line
           a = line.scan(/\w+/)
-          puts "Teaching id " + a[0]
           teaching = Teaching.find(a[0].to_i)
           classroom = Classroom.find(a[2].to_i)
-          periods = calculate_periods(g)
-          puts "Period " + periods.to_s
           y = teaching.period.year
-          timetables[y-1].timetable_entries.create(:startTime => periods[a[4].to_i]["start"],
-                                                   :endTime => periods[a[4].to_i]["end"],
+          start_time = periods[a[4].to_i]["start"].hour.to_s
+          start_time  = start_time + ":" + periods[a[4].to_i]["start"].min.to_s
+          end_time = periods[a[4].to_i]["end"].hour.to_s
+          end_time  = end_time + ":" + periods[a[4].to_i]["end"].min.to_s
+          timetable = timetables[y-1]
+          timetable_entries << TimetableEntry.new(:startTime => start_time,
+                                                   :endTime => end_time,
                                                    :day => ((a[3].to_i) +1),
                                                    :classroom => classroom,
-                                                   :teaching => teaching)
+                                                   :teaching => teaching,
+                                                   :timetable => timetable)
+        else
+          puts "PREFERENZE"
       end
+      unless errors
+        timetable_entries.each do |te|
+          te.save
+        end
+      else
+        puts "PORCA MADONNA"
+      end
+    end
+  end
+
+  def required_teachings_for_each_year_in_period
+    errors = false
+    curriculum_name = nil
+    g = GraduateCourse.find(params[:graduate_course])
+    subperiod = params[:subperiod].to_i
+    for i in 1..g.duration
+      p = Period.find_by_year_and_subperiod(i,subperiod)
+      g.curriculums.each do |c|
+        teachings = c.teachings.find(:all, :conditions => ["period_id = ?",p])
+        if teachings.empty?
+          curriculum_name = c.name
+          errors = true
+          break
+        end
+      end
+      if errors
+        break
+      end
+    end
+    if errors
+      flash[:error] = "Non è possibile richiedere la generazione dell'orario in quanto non
+                      esistono insegnamenti nel curriculum " +curriculum_name
+      redirect_to administration_timetables_url
     end
   end
 end
