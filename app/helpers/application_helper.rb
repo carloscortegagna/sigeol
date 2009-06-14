@@ -20,6 +20,7 @@ module ApplicationHelper
   def login_form
     render :partial => "shared/login_form"
   end
+  
   def standard_sidebar
     render(:partial => "shared/standard_sidebar")
   end
@@ -38,7 +39,7 @@ module ApplicationHelper
     if (user.own_by_didactic_office?)
       amm_link << {:name => "Nuovo corso", :url => url_for(:controller => "graduate_courses", :action => "new")}
     end
-    amm_link << {:name => "Cambio psw", :url => url_for(:controller => "users", :action => "edit", :id => user.id)}
+    amm_link << {:name => "Cambio password", :url => url_for(:controller => "users", :action => "edit", :id => user.id)}
     if (user.manage_teachers?)
       amm_link << {:name => "Docenti", :url => url_for(:controller => "teachers", :action => "administration")}
     end

@@ -1,4 +1,6 @@
 <h1>Cambio password</h1>
+<hr/>
+<br/>
   <% remote_form_for :user, :url => {:action => :update}, :html=> {:method => :put} do |f| %>
   <p>
       <div class="lbl_userEdit"><%= label_tag 'Password attuale: *' %></div>
@@ -24,6 +26,7 @@
      </span></div>
    </p>
    <p>* campi obbligatori</p>
+   <br/>
     <p>
       <%= f.submit "Cambia password" %>
     </p>

@@ -1,5 +1,6 @@
 <h1>Modifica dei dati personali</h1>
-
+<hr/>
+<br/>
 <% form_remote_tag(:url=> update_personal_data_teacher_path, :html => {:id => "form_docEdit"}) do %>
    <p>
     <% tmp = "" %>
@@ -7,7 +8,7 @@
       <% tmp = @user.address.city %>
     <% end %>
       <div class="lbl_docEdit">
-        <%= label_tag('city', "Città:", :class => "formLabel") %>
+        <%= label_tag('city', "Città: *", :class => "formLabel") %>
       </div>
       <div class="txt_docEdit">
         <%= text_field_tag("city", tmp) %>
@@ -33,13 +34,15 @@
       <% tmp = @user.address.street %>
     <% end %>
     <div class="lbl_docEdit">
-      <%= label_tag('street', "Indirizzo:", :class => "formLabel") %>
+      <%= label_tag('street', "Indirizzo: *", :class => "formLabel") %>
     </div>
     <div class="txt_docEdit">
       <%= text_field_tag("street", tmp) %>
       <span class="warning" id="street_errors"> <%=  (@user.address).errors.on(:street) %> </span>
     </div>
   </p>
+  <p>* campi obbligatori</p>
+  <br/>
   <p>
     <%= submit_tag "Salva modifiche" %>
   </p>
