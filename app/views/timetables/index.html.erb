@@ -1,5 +1,28 @@
-<h1>Home</h1>
-<br /><br />
-Pagina principale di consultazione degli orari, questa pagina verrà usata come Home per il sito.
-<br /><br />
-Da fare una lista dei Corsi di Laurea, dei curriculum e poi degli anni.
+<h1>Visualizzazione tabelle orarie</h1>
+<% @timetables.each do |graduate_course, years| %>
+    <h3><%= graduate_course.name %></h3>
+    <% years.each do |year, periods| %>
+      <%= year %>
+      <table class="list_table">
+        <tr>
+          <th>Periodo</th>
+          <th>Anno</th>
+          <th colspan="2">Opzioni</th>
+        </tr>
+        <% periods.each do |period, timetables| %>
+          <% if timetables %>
+            <% timetables.each do |t|%>
+              <% if t.isPublic %>
+                <tr>
+                  <td><%= period %></td>
+                  <td><%=  t.period.year.to_s %></td>
+                  <td><%= link_to image_tag("/images/html.gif"), t, :title => "Visualizza l'orario in formato html" %></td>
+                  <td>da settare-><%= link_to image_tag("/images/pdf.png"), t, :title => "Visualizza l'orario in formato pdf",:format=>:pdf %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          <% end %>
+        <%end%>
+      </table>
+    <% end %>
+<% end %>
