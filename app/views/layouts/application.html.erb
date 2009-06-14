@@ -39,11 +39,11 @@
         <% form_tag(session_path, :id => "form_layout") do -%>
           <p style="text-align:left">
             <label for="mail">Mail:</label>
-            <input type="text" name="mail" />
+            <input type="text" name="mail" class="txt_login"/>
           </p>
           <p style="text-align:left">
             <label for="password">Password:</label>
-              <input type="password" name="password" />
+              <input type="password" name="password" class="txt_login" />
           </p>
           <p>
             <%= submit_tag 'Log in' %>
