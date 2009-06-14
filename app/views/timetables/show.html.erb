@@ -13,7 +13,11 @@
       <tr>
       <td> <%= (@min_startTime+(i*@duration)).hour.to_s + ":" + (@min_startTime+(i*@duration)).min.to_s %> <br/> <%= (@min_startTime+((i+1)*@duration)).hour.to_s + ":" + (@min_startTime+((i+1)*@duration)).min.to_s %> </td>
      <% c.each do |t| %>
+       <%  if t && t.classroom && t.classroom.id && t.classroom.isLab  %>
+         <td class="labor">
+       <% else %>
          <td>
+       <% end %>
           <%  if t  %>
             <% if t.teaching && t.teaching.id %>
              <%= link_to t.teaching.name, teaching_path(t.teaching) %><br/>

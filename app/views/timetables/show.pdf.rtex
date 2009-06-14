@@ -8,7 +8,7 @@
 \thispagestyle{empty}
 \begin{document}
 \begin{center}
-\textbf{Orario <%= @timetable.graduate_course.name  %> <%= @timetable.period.year.to_s + "° anno" %>} \\
+\section*{Orario <%= @timetable.graduate_course.name  %> <%= @timetable.period.year.to_s + "° anno" %>} \\
 \end{center}
 \bigskip
 \begin{center}
@@ -45,7 +45,6 @@
  
 \end{tabular}
 \end{center}
-<p>
 <% teachings_vector = Array.new  %>
  <% @timetable_entries.each do |c| %>
     <% c.each do |t| %>
@@ -54,17 +53,18 @@
         <% end  %>
     <% end  %>
   <% end  %>
-  <h3> Insegnamenti</h3>
-  <ul>
+\bigskip
+\bigskip
+\bigskip
+\textbf{Insegnamenti} \\
+\begin{itemize}
   <% teachings_vector.uniq!.each do |v| %>
     <% if v.teacher %>
-    <li> <%= v.name  %> è tenuto da: <%= link_to v.teacher.surname + " " + v.teacher.name, teacher_path(v.teacher) %> </li>
+    \item <%= v.name  %> è tenuto da: <%= v.teacher.surname + " " + v.teacher.name %> \\
     <% else  %>
-    <li> <%= v.name  %> non ha alcun docente assegnato </li>
+    \item <%= v.name  %> non ha alcun docente assegnato \\
   <% end  %>
     <% end  %>
-  </ul>
-</p>
-<p>
+\end{itemize}
 
 \end{document}
