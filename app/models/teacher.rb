@@ -24,7 +24,7 @@ class Teacher < ActiveRecord::Base
 
   has_many :constraints, :dependent=> :destroy
   has_one :user, :as => :specified
-  has_many :teachings
+  has_many :teachings, :dependent=> :nullify
 
   #validazioni attributo :name e :surname
   validates_presence_of :name, :surname,

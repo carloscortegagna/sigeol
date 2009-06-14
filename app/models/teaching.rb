@@ -54,7 +54,7 @@ class Teaching < ActiveRecord::Base
                            :only_integer => true,
                            :greater_than_or_equal_to => 0,
                            :less_than_or_equal_to => 50,
-                           :message => "Il numero deve essere compreso tra 1 e 50"
+                           :message => "Il numero deve essere compreso tra 0 e 50"
 
  validates_numericality_of :studentsNumber,
                            :only_integer => true,
