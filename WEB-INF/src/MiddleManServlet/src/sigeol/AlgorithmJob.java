@@ -83,7 +83,8 @@ public class AlgorithmJob implements Job {
                 outfile = new File(outFileName+"error.out");
             else{
                 String csv = outfile.getName();
-                csv.replace("out", "csv");
+                System.out.println(csv);
+                csv = csv.replace("out", "csv");
                 File csvoutfile = new File(outFileName+csv);
                 csvoutfile.delete();
             }
