@@ -8,7 +8,7 @@
 });
 </script>
 
-<h1>Preferenze di non disponibilità.</h1>
+<h1>Preferenze di non disponibilità</h1>
 <hr/>
 <% if @constraints.size == 0 %>
   <p id="message">Al momento non hai impostato preferenze.</p>
@@ -38,21 +38,13 @@
         <%= image_submit_tag "/images/delete.png", :title => "Elimina la preferenza" %>
     <% end %></td>
     <td>
-      <% if constraint.isHard != 1 %>
-        <% form_remote_tag :url => teacher_preference_priority_up_teacher_path(:teacher_id => @teacher.id,:constraint_id => constraint.id) do %>
-          <%= image_submit_tag "/images/up.gif", :title => "Aumenta la priorità della preferenza" %>
-        <% end %>
-      <% else %>
-        <%= image_tag "/images/up_disabled.gif" %>
+      <% form_remote_tag :url => teacher_preference_priority_up_teacher_path(:teacher_id => @teacher.id,:constraint_id => constraint.id) do %>
+        <%= image_submit_tag "/images/up.gif", :title => "Aumenta la priorità della preferenza" %>
       <% end %>
     </td>
     <td>
-      <% if constraint != @constraints[@constraints.size-1] %>
-        <% form_remote_tag :url => teacher_preference_priority_down_teacher_path(:teacher_id => @teacher.id,:constraint_id => constraint.id) do %>
-          <%= image_submit_tag "/images/down.gif", :title => "Diminuisci la priorità della preferenza" %>
-        <% end %>
-      <% else %>
-        <%= image_tag "/images/down_disabled.gif" %>
+      <% form_remote_tag :url => teacher_preference_priority_down_teacher_path(:teacher_id => @teacher.id,:constraint_id => constraint.id) do %>
+        <%= image_submit_tag "/images/down.gif", :title => "Diminuisci la priorità della preferenza" %>
       <% end %>
     </td>
   </tr>
