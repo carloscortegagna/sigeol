@@ -96,4 +96,14 @@ module ApplicationHelper
    end
    day_name
  end
+
+ def singolar_academic_organization(id)
+   name=case id
+      when "Semestri" then "semestre"
+      when "Trimestri" then "trimestre"
+      when "Quadrimestri" then "quadrimestre"
+   end
+   name
+ end
+
 end

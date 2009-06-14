@@ -49,4 +49,25 @@ include ApplicationHelper
     content_type "text/html"
     body :teacher => teaching_in_error.teacher, :graduate_course => graduate_course
   end
+
+  def preferences_not_satisfied(teacher,timetables)
+    gc = (timetables.first).graduate_course
+    didactic_office = (gc.users).find(:first,:conditions=>["specified_type = 'DidacticOffice'"])
+    academic_organization = singolar_academic_organization(gc.academic_organization.name)
+    entries_array = []
+    days_array = []
+    timetables.each do |t|
+      entries_array += (t.timetable_entries).find(:all,:include=> {:teaching => :timetable_entries},:conditions => ["teachings.teacher_id = (?)", teacher.id])
+    end
+   entries_array.each do |e|
+     days_array += [from_id_to_dayname(e.day)]
+   end
+   subject    'SIGEOL: Preferenze non soddisfatte'
+    recipients teacher.user.mail
+    from       didactic_office.mail
+    sent_on    Time.now
+    content_type "text/html"
+    body  :teacher => teacher, :sender => didactic_office, :entries => entries_array, :graduate_course => gc,
+              :days => days_array, :period => (timetables.first).period.subperiod, :organization => academic_organization
+  end
 end
