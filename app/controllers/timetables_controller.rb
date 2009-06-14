@@ -19,11 +19,27 @@ class TimetablesController < ApplicationController
   protect_from_forgery :except => [:notify, :done]
 
   def index
-    @timetables = Timetable.find(:all)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @timetables.to_xml }
+        @graduate_courses = GraduateCourse.find(:all, :include => :timetables)
+    @timetables = Hash.new
+    @graduate_courses.each do |g|
+      @timetables[g] = Hash.new
+      last_year = nil
+      g.timetables.group_by(&:year).each do |y, t|
+        @timetables[g][y] = Hash.new
+        last_year = y.to_s
+        for i in 1..g.academic_organization.number
+          timet = g.timetables.find(:all, :include => :period,
+                                    :conditions => ["timetables.year = ? AND periods.subperiod = ?", y, i])
+          @timetables[g][y][i] = timet unless timet.empty?
+          @timetables[g][y][i] = nil if timet.empty?
+        end
+      end
+      if last_year != TimetablesHelper::current_year
+        @timetables[g][TimetablesHelper::current_year] = Hash.new
+        for i in 1..g.academic_organization.number
+          @timetables[g][TimetablesHelper::current_year][i] = nil
+        end
+      end
     end
   end
 
