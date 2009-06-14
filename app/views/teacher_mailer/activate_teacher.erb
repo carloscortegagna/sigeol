@@ -6,10 +6,19 @@
   <body>
     <h1>Invito ad utilizzare il sistema SIGEOL</h1>
     <p>
-      Per attivare il tuo account segui il link sottostante
+      E' stato invitato ad iscriversi al software per la gestione dell'orario di lezione a uso del CCS di <%=  @teacher.graduate_courses.first.name %>.<br />
+      Per attivare il suo account segui il link sottostante:
     </p>
     <p>
       <%= link_to @url, @url %>
+    </p>
+    <p>
+       Distinti saluti, <br />
+       <% if @current_user.specified_type == 'DidacticOffice' %>
+         <%= "Segreteria didattica" %>
+       <%  else %>
+         <%= @current_user.specified.name+" "+@current_user.specified.surname %>
+        <% end %>
     </p>
   </body>
 </html>
