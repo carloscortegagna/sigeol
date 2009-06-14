@@ -47,6 +47,7 @@ ActionController::Routing::Routes.draw do |map|
                                                 :done => :post,
                                                 :publicize_all => :post
                                 }
+  map.connect '*path', :controller => 'timetables', :action => 'not_found'
 
   map.resources :temporal_constraints
   

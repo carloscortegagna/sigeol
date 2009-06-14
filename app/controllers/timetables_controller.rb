@@ -11,13 +11,18 @@ require 'net/https'
 require 'mime/types'
 
 class TimetablesController < ApplicationController
-  skip_before_filter :login_required , :only => [:index, :show, :notify, :done]
+  skip_before_filter :login_required , :only => [:index, :show, :notify, :done, :not_found]
   before_filter :correct_url_parameter ,:only => [:new, :create, :destroy_all, :publicize_all_timetables]
   before_filter :only_one_group_of_timetable, :only => [:new, :create]
-  before_filter :manage_timetables_required, :except => [:index,:show, :notify, :done]
+  before_filter :manage_timetables_required, :except => [:index,:show, :notify, :done, :not_found]
   before_filter :required_teachings_for_each_year_in_period, :only => [:new, :create]
   protect_from_forgery :except => [:notify, :done]
 
+
+  def not_found
+    flash[:error] = "La pagina richiesta non esiste"
+    redirect_to timetables_url
+  end
   def index
         @graduate_courses = GraduateCourse.find(:all, :include => :timetables)
     @timetables = Hash.new
