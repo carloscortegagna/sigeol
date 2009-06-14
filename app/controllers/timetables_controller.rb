@@ -8,6 +8,7 @@
 
 require 'net/http'
 require 'net/https'
+require 'mime/types'
 
 class TimetablesController < ApplicationController
   skip_before_filter :login_required , :only => [:index, :show, :notify, :done]
@@ -23,6 +24,10 @@ class TimetablesController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @timetables.to_xml }
     end
+  end
+
+    def pdf_export
+    @timetables = Timetable.find(1)
   end
 
   def show
@@ -49,6 +54,7 @@ class TimetablesController < ApplicationController
     respond_to do |format|
       format.html
       format.xml  { render :xml => @timetable.to_xml(:include => :timetable_entries) }
+      format.pdf
     end
   end
 

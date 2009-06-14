@@ -16,8 +16,7 @@
 \hline
 \textsc{} & \textsc{Lunedi} & \textsc{Martedi} & \textsc{Mercoledi} & \textsc{Giovedi} & \textsc{Venerdi}\\
 \hline \hline
-  <% @timetables_entries.each do |c| %>
-    <%= c.startTime %>   <% end  %> & informatica & informatica & informatica & informatica & informatica \\
+ hh & informatica & informatica & informatica & informatica & informatica \\
 & lum250 & lum250 & lum250 & lum250 & lum250 \\ \hline
 10.30 & matematica & matematica & matematica & matematica & matematica \\
 & lum250 & lum250 & lum250 & lum250 & lum250 \\ \hline
