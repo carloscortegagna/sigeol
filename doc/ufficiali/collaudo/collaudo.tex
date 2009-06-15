@@ -1,0 +1,55 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{graphicx}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[italian]{babel}
+
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.6pt}
+% impostazione dello stile per le pagine interne del documento
+\fancypagestyle{plain} {
+\lhead{\textit{15 Giugno 2008}}
+\chead{}
+\rhead{\includegraphics[scale=0.15]{logo.png} }
+\lfoot{Specifiche per il collaudo}
+\cfoot{}
+\rfoot{\thepage \ di \pageref{LastPage}}
+}
+\headheight = 46pt
+\title{Specifiche per il collaudo}
+\author{Scortegagna Carlo}
+\date{15 Giugno 2008}
+\pagestyle{plain}
+\begin{document}
+\maketitle
+\section{Scopo del documento}
+Il presente documento ha lo scopo di illustrare innanzitutto le necessità e le esigenze del team QuiXoft perchè il collaudo del prodotto SIGEOL, previsto per le ore 15:45 del giorno 17/06/2009, avvenga in modo corretto e senza intralci.
+
+Saranno in seguito spiegate brevemente le fasi che comporranno effettivamente il collaudo, per dare un idea di massima al committente e agli eventuali altri spettatori di come avverrà la presentazione del prodotto durante la revisione.
+\bigskip
+\section{Esigenze logistiche}
+La presentazione verrà fatta con un personal computer in nostro possesso. Sarà necessario un proiettore per permettere alle persone presenti di assistere alle operazioni.
+
+Per verificare l'effettivo funzionamento degli inviti via e-mail, dovrà essere presente una connessione ad Internet.
+Tale connessione dovrà avere la porta 25 aperta, per permettere l'invio delle e-mail tramite SMTP.
+
+In caso di assenza di connessione, tale funzionalità verrà comunque simu\-lata localmente.
+\bigskip
+\section{Scaletta della presentazione}
+La presentazione avrà una durata di circa 45 minuti, durante i quali saranno illustrate dai membri del team QuiXoft tutte le caratteristiche del prodotto SIGEOL.
+
+Al termine della presentazione, sarà dato ampio spazio ai commenti e alle domande del committente e delle eventuali altre persone presenti.
+
+La presentazione si comporrà principalmente di 4 fasi distinte:
+\begin{itemize}
+ \item \textbf{Installazione dell'applicazione:} nonostante il personal computer utilizzato per il collaudo abbia già pre-installata l'applicazione, verrà fatta una breve dimostrazione su come installare il prodotto e tutti i componenti necessari, per facilitarne i successivi utilizzi.
+ \item \textbf{Inserimento dei dati:} verranno mostrati ed eseguiti tutti i passaggi per popolare l'applicazione dei dati necessari alla generazione dell'orario delle lezioni. La prima parte simulerà le operazioni riservate alla segreteria didattica, mentre la seconda parte di questa fase simulerà l'utilizzo del sistema da parte di un docente invitato.
+ \item \textbf{Generazione dell'orario delle lezioni:} al termine dell'inserimento dei dati, verrà mostrato un orario precedentemente generato per illustrarne la consultazione pubblica, la generazione del file Pdf e la gestione amministrativa degli orari generati. Sarà altresi data la possibilità di generare un nuovo orario delle lezioni con i dati inseriti durante la fase precedente della presentazione. Si ricorda che tale genera\-zione non è istantanea, in quanto l'algoritmo di calcolo impiega del tempo per calcolare ed ottimizzare l'orario delle lezioni. Si calcola che entro la fine della revisione il nuovo orario potrà essere consultato dalle persone presenti.
+ \item \textbf{Visualizzazioni pubbliche:} saranno per finire illustrate le pagine di pubblico accesso del sisitema SIGEOL, raggiungibili da qualsiasi utente, anche senza aver effettuato il login. 
+\end{itemize}
+\end{document}
