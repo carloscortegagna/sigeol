@@ -246,7 +246,7 @@ I dati personali inseriti in fase di registrazione possono essere cambiati in og
 
 \begin{center}
 	\includegraphics[scale=0.5]{images/dati_personali.jpg}\\ 
-	\textbf{fig. 4.2.3.1} Form di registrazione docenti\\
+	\textbf{fig. 4.2.3.1} Form di modifica dei dati personali\\
 \end{center}
 \bigskip
 
@@ -287,7 +287,7 @@ I campi dato da completare nel momento dell'inserimento di un nuovo vincolo sono
  \item scelta dell'intervallo orario: andranno scelti un orario di inizio o un orario di fine del periodo di indisponibilità. E' possibile sia l'inserimento manuale (in tal caso l'orario va inserito nel formato HH:MM) sia l'inserimento grafico, cliccando sull'icona dell'orologio.
  \item motivazione: è obbligatorio inserire una sintetica motivazione dell'indisponibilità. E' possibile usare indistintamente caratteri, simboli o numeri.
 \end{itemize}
-Al termine dell'inserimento di tutti i dati è sufficiente premere il pulsante `Aggiungi vincolo` per memorizzare il vincolo all'interno del sitema SIGEOL: d'ora in poi tale vincolo verrà rispettato nel calcolo dell'orario delle lezioni.
+Al termine dell'inserimento di tutti i dati è sufficiente premere il pulsante `Aggiungi vincolo` per memorizzare il vincolo all'interno del sistema SIGEOL: d'ora in poi tale vincolo verrà rispettato nel calcolo dell'orario delle lezioni.
 
 \subsubsection{Gestione preferenze}
 La pagina di inserimento delle preferenze, raggiungibile seguendo il link `Preferenze`, permette di inserire degli intervalli temporali in cui il docente preferisce non tenere una lezione.
@@ -330,7 +330,32 @@ Per una lista completa di tali errori, per le possibili cause e per le eventuali
 \newpage
 \section{Appendice}
 \subsection{Messaggi di errore e loro significato}
+A seguire una lista di possibili errori, comprensiva di una sintetica descrizione:
+\begin{center}
+\begin{tabular}{|p{0.3\textwidth}|p{0.7\textwidth}|}
+\hline
+\textsc{Errore} & \textsc{Descrizione} \\
+\hline
+\hline
+\textit{Errore 404: pagina non trovata} & L'indirizzo a cui si sta tentando di accedere non esiste oppure è stato cancellato. Il web server 
+	risponde visualizzando una pagina del sito SIGEOL notificando l'errore. Questo errore può succedere se si tenda di accedere al sistema
+	SIGEOL da un link esterno che punta ad una pagina non più esitente, oppure se si completa o si inserisce a mano l'indirizzo 
+	nella barra degli indirizzi del browser commettendo degli errori di battitura o omettendo parti di indirizzo necessarie. Per
+	evitare il sollevarsi di questo errore, si prega di utilizzare solamente i link messi a disposizione all'interno del sito SIGEOL, i quali
+	puntano sempre e comunque a pagine web esistenti. 
 
+	Per risolvere il problema, è sufficiente seguire il link `Indietro` per tornare all'ultima pagina valida visitata. \\
+\hline
+\textit{Connection Refused} & Si è verificato un problema di connessione tra il sistema SIGEOL e la servlet che gestisce la generazione dell'orario.
+
+	Per risolvere il problema si prega di contattare gli amministratori dell'infrastruttura di rete oppure gli amministratori del sistema SIGEOL. \\
+\hline
+\textit{Errore 500: Internal Server Error} & Si è verificato un problema con il web server o con il DBMS. 
+
+Per risolvere il problema si prega di contattare gli amministratori dell'infrastruttura di rete oppure gli amministratori del sistema SIGEOL. \\
+\hline
+\end{tabular}
+\end{center}
 \subsection{Glossario}
 \flushleft \Huge A \bigskip
 \hrule
