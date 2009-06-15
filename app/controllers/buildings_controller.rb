@@ -23,6 +23,7 @@ class BuildingsController < ApplicationController
 
   # tutti i metodi sono sottoposti al filtro manage_buildings_required, ad eccezione di quelli elencati nel paramentro :except
   before_filter :manage_buildings_required, :except => [:index, :show]
+  before_filter :building_with_classroom_in_use, :only => [:destroy, :edit]
 
   # metodo che inizializza le variabili d'istanza @buildings e @classrooms per la vista index
   def index
@@ -150,5 +151,34 @@ class BuildingsController < ApplicationController
       format.html { redirect_to :action => 'administration' }
     end
   end
+  private
 
+  def building_with_classroom_in_use
+    notfound = false
+    errors = false
+    name = nil
+    building = Building.find(params[:id]) rescue notfound = true
+    unless notfound
+      (building.classrooms).each do |c|
+        c.graduate_courses.each do |g|
+          if g.timetables_in_generation?
+            name = g.name
+            errors = true;
+            break
+          end
+        end
+        if errors
+          break
+        end
+      end
+      if errors
+        flash[:error] = "Non è possibile modificare questo edificio in quanto almeno una delle sue aule è in uso per la generazione dell'orario per il corso di laurea " +name
+       redirect_to administration_buildings_url
+      end
+    else
+      redirect_to :controller => 'timetables', :action => 'not_found'
+    end
+  end
+  
+  
 end
