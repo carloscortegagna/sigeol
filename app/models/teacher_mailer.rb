@@ -33,7 +33,6 @@ include ApplicationHelper
   end
 
   def suggestion_timetables(receiver, graduate_course, teaching_in_error)
-    puts "MANDIAMO"
     sender = nil
     graduate_course.users.each do |u|
       if u.specified_type == "DidacticOffice"
@@ -71,10 +70,10 @@ include ApplicationHelper
               :days => days_array, :period => (timetables.first).period.subperiod, :organization => academic_organization
   end
 
-  def timetable_calculate_is_started(receiver, timetable)
-     didactic_office = (timetable.graduate_course.users).find(:first,:conditions=>["specified_type = 'DidacticOffice'"])
-    gc =  timetable.graduate_course
-    period = timetable.period
+  def timetable_calculate_is_started(receiver, graduate_course,p)
+     didactic_office = (graduate_course.users).find(:first,:conditions=>["specified_type = 'DidacticOffice'"])
+    gc =  graduate_course
+    period = p
     academic_organization = singolar_academic_organization(gc.academic_organization.name)
     subject    'SIGEOL:  Schema d\'orario in generazione.'
     recipients receiver.mail
@@ -84,10 +83,10 @@ include ApplicationHelper
     body  :receiver => receiver, :graduate_course => gc, :period => period, :organization => academic_organization
   end
 
-  def timetable_calculate_is_ended(receiver, timetable)
-     didactic_office = (timetable.graduate_course.users).find(:first,:conditions=>["specified_type = 'DidacticOffice'"])
-    gc =  timetable.graduate_course
-    period = timetable.period
+  def timetable_calculate_is_ended(receiver,graduate_course,p)
+     didactic_office = (graduate_course.users).find(:first,:conditions=>["specified_type = 'DidacticOffice'"])
+    gc =  graduate_course
+    period = p
     academic_organization = singolar_academic_organization(gc.academic_organization.name)
     subject    'SIGEOL:  Generazione schema d\'orario conclusa.'
     recipients receiver.mail
