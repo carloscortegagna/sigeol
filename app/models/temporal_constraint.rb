@@ -49,7 +49,11 @@ class TemporalConstraint < ActiveRecord::Base
     if !temporal.empty?
    temporal.each do |t|
      if self != t && t.owners.first == owner
-       errors.add_to_base("Nel periodo indicato è già presente una indisponibilità")
+        if t.isHard == 0
+         errors.add_to_base("Nel periodo indicato è già presente un VINCOLO")
+        else
+         errors.add_to_base("Nel periodo indicato è già presente una PREFERENZA")
+       end
        self.destroy
        return false
      end
