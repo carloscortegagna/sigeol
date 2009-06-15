@@ -24,7 +24,7 @@ class TimetablesController < ApplicationController
     redirect_to timetables_url
   end
   def index
-        @graduate_courses = GraduateCourse.find(:all, :include => :timetables)
+    @graduate_courses = GraduateCourse.find(:all, :include => :timetables)
     @timetables = Hash.new
     @graduate_courses.each do |g|
       @timetables[g] = Hash.new
@@ -71,7 +71,7 @@ class TimetablesController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.xml  { render :xml => @timetable.to_xml(:include => :timetable_entries) }
+      format.xml  { render :xml => @timetable.to_xml(:include => :timetable_entries, :except =>[:created_at, :updated_at]) }
       format.pdf
     end
   end
