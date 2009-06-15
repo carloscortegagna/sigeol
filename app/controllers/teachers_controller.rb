@@ -182,8 +182,7 @@ class TeachersController < ApplicationController
           if params[:graduate_course_id]
             user.graduate_courses << GraduateCourse.find(params[:graduate_course_id])
           end
-          flash[:notice] = "Docente re-invitato con successo"
-          TeacherMailer.deliver_reactivate_teacher(@current_user, user)
+          flash[:notice] = "Docente invitato con successo"
           format.html{redirect_to new_teacher_url}
           format.js{render(:update) {|page| page.redirect_to new_teacher_url}}
         else
