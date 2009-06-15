@@ -4,11 +4,12 @@
     <meta content='text/html; charset=iso-8859-1' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1> SIGEOL: Preferenze non soddisfatte</h1>
+    <h1> SIGEOL: Preferenze non soddisfatte</h1> <br /> <br />
     <p>
-      Spett.le <%=  @teacher.complete_name %>, <br/>
-      Con la presente si informa che alcune preferenze non sono state soddisfatte.<br/> 
+      Spett.le <%=  @teacher.complete_name %>, <br /> <br />
+      Con la presente la informiamo che alcune sue preferenze non sono state soddisfatte.<br />
       Di seguito sono riportati gli orari previsti per gli insegnamenti di sua competenza del corso di laurea di <%= @graduate_course.name %> del <%= @period %>° <%= @organization %>
+      <br/> <p/> 
       <table border="1">
         <tr>
           <th>Ora inizio</th>
@@ -27,7 +28,7 @@
          <% end %>
           </tr>
           </table>
-    </p>
+    </p> <br /><br />
     <p>
        Distinti saluti, <br />
        Segreteria didattica

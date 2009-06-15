@@ -70,4 +70,31 @@ include ApplicationHelper
     body  :teacher => teacher, :sender => didactic_office, :entries => entries_array, :graduate_course => gc,
               :days => days_array, :period => (timetables.first).period.subperiod, :organization => academic_organization
   end
+
+  def timetable_calculate_is_started(receiver, timetable)
+     didactic_office = (timetable.graduate_course.users).find(:first,:conditions=>["specified_type = 'DidacticOffice'"])
+    gc =  timetable.graduate_course
+    period = timetable.period
+    academic_organization = singolar_academic_organization(gc.academic_organization.name)
+    subject    'SIGEOL:  Schema d\'orario in generazione.'
+    recipients receiver.mail
+    from       didactic_office.mail
+    sent_on    Time.now
+    content_type "text/html"
+    body  :receiver => receiver, :graduate_course => gc, :period => period, :organization => academic_organization
+  end
+
+  def timetable_calculate_is_ended(receiver, timetable)
+     didactic_office = (timetable.graduate_course.users).find(:first,:conditions=>["specified_type = 'DidacticOffice'"])
+    gc =  timetable.graduate_course
+    period = timetable.period
+    academic_organization = singolar_academic_organization(gc.academic_organization.name)
+    subject    'SIGEOL:  Generazione schema d\'orario conclusa.'
+    recipients receiver.mail
+    from       didactic_office.mail
+    sent_on    Time.now
+    content_type "text/html"
+    body  :receiver => receiver, :graduate_course => gc, :period => period, :organization => academic_organization
+  end
+
 end
