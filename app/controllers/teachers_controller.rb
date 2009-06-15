@@ -38,7 +38,14 @@ class TeachersController < ApplicationController
 
   # Inizializza la variabile d'istanza @teachers per la vista index.
   def index
-    @graduate_course = GraduateCourse.find(:all).sort_by { |g| g[:name] }
+    @graduate_courses = GraduateCourse.find(:all, :include => :users,
+                :conditions => ["specified_type = 'Teacher' AND users.password is NOT null"])
+    @teachers = Array.new
+    @graduate_courses.each do |g|
+      g.users.each do |u|
+        @teachers << u.specified
+      end
+    end
     respond_to do |format|
       format.html
       format.xml { render :xml => @teachers.to_xml(:except =>[:created_at, :updated_at]) }

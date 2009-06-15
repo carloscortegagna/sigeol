@@ -1,13 +1,11 @@
 <h3>Docenti divisi per corso di laurea</h3>
-<% @graduate_course.each do |g| %>
+<% @graduate_courses.each do |g| %>
   <%  if g.users.size != 0 %>
     <h4> <%= g.name %> </h4>
     <ul>
       <% (g.users).each do |u|%>
-        <% if u.specified_type = "Teacher" %>
-      <li>  <%= link_to u.specified.surname + " " + u.specified.name, teacher_path(u.specified) %> </li>
+      <li>  <%= link_to u.specified.complete_name, teacher_path(u.specified) %> </li>
        <% end %>
-     <% end %>
      <% end %>
     </ul>
 <% end %>
