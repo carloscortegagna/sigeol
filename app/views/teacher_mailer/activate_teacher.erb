@@ -6,7 +6,13 @@
   <body>
     <h1>Invito ad utilizzare il sistema SIGEOL</h1>
     <p>
-      E' stato invitato ad iscriversi al software per la gestione dell'orario di lezione a uso del CCS di <%=  @teacher.graduate_courses.first.name %>.<br />
+      E' stato invitato ad iscriversi al software per la gestione dell'orario di lezione
+<%if @teacher.graduate_courses.first != nil %> 
+    a uso del CCS  di
+<%=  @teacher.graduate_courses.first.name %>
+<%  else %>
+ .
+<% end %> .<br />
       Per attivare il suo account segua il link sottostante:
     </p>
     <p>
