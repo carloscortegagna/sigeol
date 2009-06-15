@@ -102,7 +102,15 @@ end
       flash[:error] = "Durata non inserita"
       error = true
     end
-    if (params[:start_hour2] != "" and params[:end_hour2] != "")
+    if (params[:start_hour1] >= params[:end_hour1])
+      flash[:error] = "La combinazione delle ore di lezione è errata"
+      error = true
+    end
+    if (params[:start_hour1] == "" && params[:end_hour1] == "")
+      flash[:error] = "Orario delle lezioni non inserito"
+      error = true
+    end
+    if (params[:start_hour2] != "" && params[:end_hour2] != "")
       if ((params[:start_hour2] > params[:end_hour2]) or (params[:start_hour1] > params[:start_hour2]) or
           (params[:end_hour1] < params[:end_hour2]))
         flash[:error] = "La combinazione tra le ore di pausa e quelle di lezione è errata"
@@ -115,7 +123,7 @@ end
       start2 = nil
       end2 = nil
       now = false
-      unless (params[:start_hour2] and params[:end_hour2])
+      if (params[:start_hour2] != "" and params[:end_hour2] != "")
         start2 = Time.parse(params[:start_hour2])
         end2 = Time.parse(params[:end_hour2])
       end
@@ -178,6 +186,11 @@ end
          error = true
          destroy_old_contraints(graduate_course.id)
          exp_date.destroy
+         for i in 1..graduate_course.duration
+            period = Period.find_by_year_and_subperiod(i,params[:subperiod])
+            timet = graduate_course.timetables.find_by_period_and_year(period, params[:year])
+            timet.destroy
+         end
          flash[:error] = "Richiesta alla servlet fallita. Riprovare"
         end
       end
@@ -283,14 +296,12 @@ end
       req.set_form_data({'op'=>'sj', 'graduate_course' => gs.id.to_s,
                          'year' => year,
                          'subperiod' => subperiod.to_s,
-                         'date'=> date,
-                         'timeout' => CONFIG['servlet']['timeout']
+                         'date'=> date
                          }, '&')
     else
       req.set_form_data({'op'=>'sj', 'graduate_course' => gs.id.to_s,
                          'year' => year,
-                         'subperiod' => subperiod.to_s,
-                         'timeout' => CONFIG['servlet']['timeout']
+                         'subperiod' => subperiod.to_s
                          }, '&')
     #connessione alla servlet
     end
@@ -350,6 +361,7 @@ end
     post["year"] = year
     post["subperiod"] = subperiod
     post["inputfile"] = file
+    post['timeout'] = CONFIG['servlet']['timeout']
     mp = TimetablesHelper::MultipartPost.new
     query, headers = mp.prepare_query(post)
     file.close
@@ -420,7 +432,7 @@ end
       graduate_course = GraduateCourse.find(gs_id)
       orario_lezioni = (graduate_course.temporal_constraints).find_all_by_description("Orario delle lezioni")
       pausa_lezioni = (graduate_course.temporal_constraints).find_all_by_description("Pausa delle lezioni")
-      duarata_lezioni = (graduate_course.quantity_constraints).find_all_by_description("Duarata delle lezioni")
+      duarata_lezioni = (graduate_course.quantity_constraints).find_all_by_description("Durata delle lezioni")
       orario_lezioni.each do |c|
         c.destroy
       end
@@ -675,10 +687,15 @@ end
     change = false
     teaching_in_error = nil
     periods = calculate_periods(g)
+    periods.each do |per|
+      puts "PERIOD START:" + per["start"].to_s
+      puts "PERIOD END:" + per["end"].to_s
+    end
     for i in 1..g.duration
       p = Period.find_by_year_and_subperiod(i,subperiod)
       timetables << g.timetables.find(:first, :conditions => ["period_id = ? AND year = ?", p.id, academic_year])
     end
+    puts string_file
     string_file.each_line do |line|
       if line != "UNSATISFIED PREFERENCES:\n" && !change
       a = line.scan(/\w+/)
@@ -691,9 +708,21 @@ end
           classroom = Classroom.find(a[2].to_i)
           y = teaching.period.year
           start_time = periods[a[4].to_i]["start"].hour.to_s
-          start_time  = start_time + ":" + periods[a[4].to_i]["start"].min.to_s
+          minute = periods[a[4].to_i]["start"].min
+          if minute < 10
+            minute = "0" + minute.to_s
+          else
+            minute = minute.to_s
+          end
+          start_time  = start_time + ":" + minute
           end_time = periods[a[4].to_i]["end"].hour.to_s
-          end_time  = end_time + ":" + periods[a[4].to_i]["end"].min.to_s
+          minute = periods[a[4].to_i]["end"].min
+          if minute < 10
+            minute = "0" + minute.to_s
+          else
+            minute = minute.to_s
+          end
+          end_time  = end_time + ":" + minute
           timetable = timetables[y-1]
           timetable_entries << TimetableEntry.new(:startTime => start_time,
                                                   :endTime => end_time,
@@ -711,12 +740,13 @@ end
       end
     end
     unless errors
+      puts "ENTRO"
       timetable_entries.each do |te|
         te.save
       end
       teachers.uniq!
       teachers.each do |teacher|
-        puts "Mando mail preferenze a " + teacher.name
+        TeacherMailer.deliver_preferences_not_satisfied(teacher, timetables)
       end
     else
       timetables.each do |timet|
@@ -725,7 +755,6 @@ end
       cap = Capability.find_by_name("Gestione schemi d'orario")
       receivers = g.users.find(:all, :include => :capabilities, :conditions => ["capabilities.id = ?", cap.id])
       receivers.each do |r|
-        puts "Mando mail a " + r.mail
         TeacherMailer.deliver_suggestion_timetables(r, g, teaching_in_error)
       end
     end
