@@ -332,6 +332,12 @@ end
     if true
       head :ok
       start(graduate_course,subperiod,year)
+      cap = Capability.find_by_name("Gestione schemi d'orario")
+      puts "INIZIATO"
+      receivers = graduate_course.users.find(:all, :include => :capabilities, :conditions => ["capabilities.id = ?", cap.id])
+      receivers.each do |r|
+        TeacherMailer.deliver_timetable_calculate_is_started(r,graduate_course,params[:subperiod].to_i)
+      end
     else
       head :unavailable
     end
@@ -347,6 +353,11 @@ end
     year = params[:year]
     subperiod = params[:subperiod]
     process_file(gs, year, subperiod, string_file)
+    cap = Capability.find_by_name("Gestione schemi d'orario")
+    receivers = graduate_course.users.find(:all, :include => :capabilities, :conditions => ["capabilities.id = ?", cap.id])
+    receivers.each do |r|
+      TeacherMailer.deliver_timetable_calculate_is_ended(r,gs,params[:subperiod].to_i)
+    end
   end
 
   #eseguito dalla GUI
@@ -361,7 +372,7 @@ end
     post["year"] = year
     post["subperiod"] = subperiod
     post["inputfile"] = file
-    post['timeout'] = CONFIG['servlet']['timeout']
+    #post['timeout'] = CONFIG['servlet']['timeout']
     mp = TimetablesHelper::MultipartPost.new
     query, headers = mp.prepare_query(post)
     file.close
@@ -740,7 +751,6 @@ end
       end
     end
     unless errors
-      puts "ENTRO"
       timetable_entries.each do |te|
         te.save
       end
