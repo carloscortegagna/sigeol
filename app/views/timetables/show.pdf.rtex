@@ -11,7 +11,7 @@
 \section*{Orario <%= @timetable.graduate_course.name  %> <%= @timetable.period.year.to_s + "° anno" %>} \\
 \end{center}
 \bigskip
-\begin{center}
+\begin{left}
 \begin{tabular}{|c||c|c|c|c|c|c||c|}
 \hline
 \textsc{} & \textsc{<%=  from_id_to_dayname(1) %>} & \textsc{<%=  from_id_to_dayname(2) %>} & \textsc{<%=  from_id_to_dayname(3) %>} & \textsc{<%=  from_id_to_dayname(4) %>} & \textsc{<%=  from_id_to_dayname(5) %>}\\
@@ -58,7 +58,7 @@
         <% i = i + 1 %>
 <% end  %> 
 \end{tabular}
-\end{center}
+\end{left}
 <% teachings_vector = Array.new  %>
  <% @timetable_entries.each do |c| %>
     <% c.each do |t| %>
