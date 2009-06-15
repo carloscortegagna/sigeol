@@ -96,5 +96,4 @@ include ApplicationHelper
     content_type "text/html"
     body  :receiver => receiver, :graduate_course => gc, :period => period, :organization => academic_organization
   end
-
 end
