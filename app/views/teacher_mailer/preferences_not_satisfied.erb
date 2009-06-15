@@ -4,15 +4,33 @@
     <meta content='text/html; charset=iso-8859-1' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1> SIGEOL:  Attivazione nuova password.</h1> <br /> <br />
+    <h1> SIGEOL: Preferenze non soddisfatte</h1>
     <p>
-      alve alessandro.grosselle
-      E' stata richiesta una nuova password per l'account del sistema SIGEOL. Se non hai effettuato questa richiesta ignorala e, se per caso dovesse ripresentarsi, contatta l'amministratore del forum.
-      Per utilizzare la nuova password è necessario attivarla, semplicemente cliccando sul link seguente.
-      http://quixoft.forumup.it/profile.php?mode=activate&u=5&act_key=b3020524088b74263
-      Se l'operazione andrà a buon fine potrete connettervi al nostro forum utilizzando laseguente password:
-      Password: 38566408
-      ATTENZIONE assicuratevi di effettuare il login dopo aver cliccato il link, una volta effettuata il login potrete modificare la password nel profilo utente. Per qualsiasi dubbio contattate pure l'Amministratore.
-      <br/>
+      Spett.le <%=  @teacher.complete_name %>, <br/>
+      Con la presente si informa che alcune preferenze non sono state soddisfatte.<br/> 
+      Di seguito sono riportati gli orari previsti per gli insegnamenti di sua competenza del corso di laurea di <%= @graduate_course.name %> del <%= @period %>° <%= @organization %>
+      <table border="1">
+        <tr>
+          <th>Ora inizio</th>
+          <th>Ora fine</th>
+          <th>Giorno</th>
+          <th>Corso d'insegnamento</th>
+        </tr>
+        <tr>
+          <% i = 0 %>
+          <% @entries.each do |e| %>
+          <td><%=  (e.startTime).to_s(:time)%></td>
+          <td><%=  (e.endTime).to_s(:time)%></td>
+          <td><%=  @days[i] %></td>
+          <% i+=1 %>
+          <td><%=  e.teaching.name%></td>
+         <% end %>
+          </tr>
+          </table>
+    </p>
+    <p>
+       Distinti saluti, <br />
+       Segreteria didattica
+    </p>
   </body>
 </html>
