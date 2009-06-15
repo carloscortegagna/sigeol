@@ -306,7 +306,35 @@ class TeachersController < ApplicationController
       if TemporalConstraint.find(id.constraint_id).isHard == 0
         @constraints << TemporalConstraint.find(id.constraint_id)
       end
-    end  
+    end
+    # Aggiunta parte per mostrare l'expirydate #
+    total_graduate_courses = @current_user.graduate_courses
+    teacher = Teacher.find(params[:id])
+    teacher_graduate_courses = teacher.user.graduate_courses
+    @manageable_graduate_courses = total_graduate_courses & teacher_graduate_courses
+    @expiry_dates = []
+    @number_of_real_expiry_dates = 0
+    @manageable_graduate_courses.each do |mgc|
+      exp_date = ExpiryDate.find(:all, :conditions => {:graduate_course_id => mgc.id})
+      if exp_date.empty? == false
+        first_exp_date = exp_date.first
+        first_exp_date = nil
+        exp_date = exp_date.sort_by { |k| k['date'] }
+        exp_date.each do |ed|
+          if ed.date >= Date.today()
+            first_exp_date = ed
+            break
+          end
+        end
+        @expiry_dates << first_exp_date
+        if first_exp_date != nil
+          @number_of_real_expiry_dates += 1
+        end
+      else
+        @expiry_dates << nil
+      end
+    end
+    # Fine parte expirydate #
   end
 
   # Crea un nuovo temporal_constraints (vincolo) per il teacher loggato caratterizzato dal parametro params[:id].
@@ -358,6 +386,34 @@ class TeachersController < ApplicationController
       end
     end
     @constraints = @constraints.sort_by { |c| c[:isHard] }
+    # Aggiunta parte per mostrare l'expirydate #
+    total_graduate_courses = @current_user.graduate_courses
+    teacher = Teacher.find(params[:id])
+    teacher_graduate_courses = teacher.user.graduate_courses
+    @manageable_graduate_courses = total_graduate_courses & teacher_graduate_courses
+    @expiry_dates = []
+    @number_of_real_expiry_dates = 0
+    @manageable_graduate_courses.each do |mgc|
+      exp_date = ExpiryDate.find(:all, :conditions => {:graduate_course_id => mgc.id})
+      if exp_date.empty? == false
+        first_exp_date = exp_date.first
+        first_exp_date = nil
+        exp_date = exp_date.sort_by { |k| k['date'] }
+        exp_date.each do |ed|
+          if ed.date >= Date.today()
+            first_exp_date = ed
+            break
+          end
+        end
+        @expiry_dates << first_exp_date
+        if first_exp_date != nil
+          @number_of_real_expiry_dates += 1
+        end
+      else
+        @expiry_dates << nil
+      end
+    end
+    # Fine parte expirydate #
   end
 
   # Crea un nuovo temporal_constraints (preferenza) per il teacher loggato caratterizzato dal parametro params[:id].

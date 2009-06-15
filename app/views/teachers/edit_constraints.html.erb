@@ -9,6 +9,20 @@
 </script>
 
 <h1>Vincoli di non disponibilità</h1>
+<% if @number_of_real_expiry_dates != 0 %>
+  <h4>Prossime date limite per l'inserimento dei vincoli</h4>
+  <table>
+    <% i = 0 %>
+    <% @expiry_dates.each do |ed| %>
+      <% if ed != nil %>
+        <tr>
+          <td><%= GraduateCourse.find(ed.graduate_course_id).name %>:</td>
+          <td><%= ed.date %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+<% end %>
 <hr />
 <% if @constraints.size == 0 %>
   <p id="message">Al momento non hai impostato vincoli.</p>

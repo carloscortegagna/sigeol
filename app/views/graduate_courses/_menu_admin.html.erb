@@ -1,4 +1,13 @@
 <p>
-  <%= link_to image_tag("/images/laurea.gif"), new_graduate_course_path, :title => "Inserisci un nuovo corso di laurea" %>
-  <%= link_to image_tag("/images/curriculum.gif"), new_curriculum_path, :title => "Inserisci un nuovo curriculum" %>
+  <div style="height:4em">
+  <div style="display:block;float:left;margin-right:2em">
+    <%= link_to image_tag("/images/laurea.gif"), new_graduate_course_path, :title => "Inserisci un nuovo corso di laurea", :style => "display:block;text-align:center" %>
+    <h6 style="text-align:center;margin-top:-1em">CORSO DI LAUREA</h6>
+  </div>
+  <span>&nbsp;&nbsp;&nbsp;</span>
+  <div style="display:block;float:left;margin:0;padding:0">
+    <%= link_to image_tag("/images/laurea.gif"), new_curriculum_path, :title => "Inserisci un nuovo curriculum", :style => "display:block;text-align:center;margin-top:-1.2em" %>
+    <h6 style="text-align:center;margin-top:-1em">CURRICULUM</h6>
+  </div>
+  </div>
 </p>

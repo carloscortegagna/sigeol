@@ -1,15 +1,15 @@
-<h3>Creazione dell'account docente <%=h @user.mail%></h3>
+<h1>Creazione dell'account docente <%=h @user.mail%></h1>
 
 <% remote_form_for @user, :url => {:action => :activate, :digest => params[:digest]}, :html => {:method => :post, :id => "form_docPreActiv"} do |f| %>
    <p>
-    <div class="lbl_docPreActiv"><%= label_tag '*password:' %></div>
+    <div class="lbl_docPreActiv"><%= label_tag 'Password: *' %></div>
     <div class ="pswd_docPreActiv"><%= f.password_field :password %>
     <span class="warning" id="password_errors"><%= @user.errors.on(:password) %> </span>
     </div>
   </p>
   <p>
-    <div class="lbl_docPreActiv"><%= label_tag '*Conferma password:' %></div>
-    <div class="pswd_docPreActiv"><%= password_field_tag 'repeat_password' %>
+    <div class="lbl_docPreActiv"><%= label_tag 'Conferma password: *' %></div>
+    <div class="pswd_docPreActiv"><%= password_field_tag 'repeat_password', '', :size => 30 %>
     <span class="warning" id="password_errors_bis"><% if @repeat_password != 1 %> Attenzione non coincide <%  end %>
     </span>
     </div>
@@ -18,25 +18,22 @@
     <legend>Dati personali:</legend>
     <% fields_for :teacher, @user.specified do |field| %>
   <p>
-    <div class="lbl_docPreActiv"><%= label_tag '*Nome:' %></div>
+    <div class="lbl_docPreActiv"><%= label_tag 'Nome: *' %></div>
     <div class="txt_docPreActiv"><%= field.text_field :name %>
     <span class="warning" id="name_errors"><%= (@user.specified).errors.on(:name) %> </span></div>
   </p>
   <p>
-    <div class="lbl_docPreActiv"><%= label_tag '*Cognome:' %></div>
+    <div class="lbl_docPreActiv"><%= label_tag 'Cognome: *' %></div>
     <div class="txt_docPreActiv"><%= field.text_field :surname %>
     <span class="warning" id="surname_errors"><%= (@user.specified).errors.on(:surname) %> </span></div>
   </p>
   <% end %>
-  <p>
-   (*) = campi obbligatori
-   </p>
   </fieldset>
   <fieldset>
     <legend>Indirizzo:</legend>
     <% fields_for :address, @user.address do |field| %>
     <p>
-      <div class="lbl_docPreActiv"><%= label_tag '*Città:' %></div>
+      <div class="lbl_docPreActiv"><%= label_tag 'Città: *' %></div>
       <div class="txt_docPreActiv"><%= field.text_field :city %>
       <span class="warning" id="city_errors"><%= (@user.address).errors.on(:city) %> </span></div>
     </p>
@@ -46,15 +43,13 @@
       <span class="warning" id="telephone_errors"><%= (@user.address).errors.on(:telephone) %> </span></div>
    </p>
     <p>
-      <div class="lbl_docPreActiv"><%= label_tag '*Via:' %></div>
+      <div class="lbl_docPreActiv"><%= label_tag 'Via: *' %></div>
       <div class="txt_docPreActiv"><%= field.text_field :street %>
       <span class="warning" id="street_errors"><%= (@user.address).errors.on(:street) %> </span></div>
     </p>
     <% end %>
-    <p>
-   (*) = campi obbligatori
-   </p>
   </fieldset>
+  <p>* campi obbligatori</p>
     <% #  hidden_field_tag 'digest', params[:digest]  %>
   <p>
     <%= submit_tag "Crea account" %>

@@ -1,4 +1,6 @@
 <h1>Lista dei docenti iscritti al SIGEOL</h1>
+<ul>
 <% for t in @teachers do %>
-  <p><%= link_to t.surname + " " + t.name, teacher_path(t) %></p>
+  <li style="padding-bottom:1em"><%= link_to t.surname + " " + t.name, teacher_path(t) %></li>
 <% end %>
+</ul>
