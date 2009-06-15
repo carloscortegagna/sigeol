@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Manuale Utente - Docente v0.4.1}
+\lfoot{Manuale Utente - Docente v1.0.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Manuale Utente v0.4.1}
+\lfoot{Manuale Utente v1.0.0}
 \cfoot{}
 \rfoot{}
 }
@@ -44,6 +44,10 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{15-06-2009} & 1.0.0 & Approvazione del responsabile\\
+\hline
+\textit{10-04-2009} & 0.5.0 & Aggiunti gli screenshot delle sezioni riguardanti i vincoli e le preferenze\\
 \hline
 \textit{06-03-2009} & 0.4.1 & Correzioni varie e approvazione del Responsabile\\
 \hline
@@ -76,7 +80,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Manuale Utente - Docente\\ v0.4.1}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Manuale Utente - Docente\\ v1.0.0}}
 \author{Redazione: Scortegagna Carlo}
 \maketitle
 \medskip
@@ -113,10 +117,9 @@ L'utilizzo del progetto software SIGEOL è previsto da 3 differenti tipologie d'
 \bigskip
 Le funzionalità offerte ai visitatori sono solamente di consultazione di informazioni: possono consultare lo schema d'orario dei diversi corsi di laurea, possono accedere alle informazioni relative ai docenti, alle aule, agli edifici, agli insegnamenti, ecc...
 
-Tali funzioni sono state ritenute talmente di immediato utilizzo ed esenti da possibili problematiche che il team QuiXoft ha ritenuto superflua la redazione di un manuale utente dedicato ai visitatori.
-E' stata presa questa decisione anche meditando sul largo numero di utenti visitatori che accederanno al progetto SIGEOL: una così grande diffusione di un eventuale manuale utente dedicato a loro sarebbe stata infattibile.
+Dato il largo numero di utenti visitatori che accederanno al progetto SIGEOL, la diffusione di un eventuale manuale utente dedicato a loro risulterebbe piuttosto scomoda.
 
-Le operazioni dedicate solamente ai visitatori saranno invece ampiamente commentate e descritte proprio all'interno dell'interfaccia grafica, per facilitare la consultazione delle varie informazioni ai visitatori senza che questi debbano leggere un eventuale manuale utente.
+Le operazioni dedicate solamente ai visitatori saranno quindi ampiamente commentate e descritte proprio all'interno dell'interfaccia grafica, per facilitare la consultazione delle varie informazioni ai visitatori senza che questi debbano leggere un eventuale manuale utente.
 
 \bigskip \bigskip
 Data la gran diversità delle operazioni accessibili dalle due rimanenti tipologie d'utenza, saranno redatti due distinti manuali utente: i docenti dovranno consultare il documento \textsc{Manuale Utente Docente}, la segreteria didattica invece dovrà consultare il \textsc{Manuale Utente Segreteria Didattica}.
@@ -181,39 +184,40 @@ Una volta effettuato il login con l'indirizzo email e la password scelta in fase
 \end{itemize}
 Le funzioni appena elencate saranno accuratamente illustrate nel proseguire del presente documento.
 \subsection{Interfaccia grafica}
-Allo stato attuale, il progetto è funzionante e testato in ogni sua parte.
-Nonostante ciò, il layout grafico che andrà utilizzato nella versione finale del prodotto non è ancora stata sviluppato: è presente solamente un interfaccia grafica di prova, per testare e valutare le varie funzionalità del progetto.
+L'aspetto grafico del sito internet è pensato per essere il più semplice ed intuitivo possibile. Potrà però accadere che il committente, a seguito dell'accettazione del prodotto, richieda delle modifiche superficiali al layout o all'aspetto grafico delle pagine (colori, caratteri, ecc...), per adeguarsi allo stile delle pagine internet già in suo possesso o per adattarsi ai suoi gusti.
 
-L'aspetto grafico che il sito internet assumerà al momento del suo rilascio verrà deciso in collaborazione con il Committente, per adeguarsi allo stile delle pagine internet già in suo possesso o per adattarsi ai suoi gusti.
-
-Il \underline{template} attuale è da ritenersi quindi esclusivamente temporaneo e, di conseguenza, le immagini consultabili all'interno del presente documento non hanno velleità di essere definitive, ma andranno aggiornate al momento della scelta dell'aspetto grafico definitivo del sito internet.
+Il \underline{template} attuale è da ritenersi passibile di variazioni e, di conseguenza, le immagini consultabili all'interno del presente documento potranno non rappresentare esattamente l'aspetto reale del sito Internet. Le possibile modifiche saranno comunque solamente estetiche: le funzionalità e i dati da inserire saranno identici.
 \section{Istruzioni per l'uso}
 \subsection{Descrizione funzionale}
 \subsubsection{Pagina Principale}
-La pagina principale del prodotto SIGEOL presenta la possibilità di consultare tutte le informazioni pubbliche. Il numero e il raggruppamento dei link a tali pagine verrà deciso al momento della scelta dell'aspetto grafico definitivo del sito internet.
+La pagina principale del prodotto SIGEOL mostra gli orari delle lezioni per tutti i corsi di laurea gestiti dal sistema, raggruppati per anno e per periodo. E' possibile consultare tali orari via browser oppure è possibile generare un file in formato Pdf per il salvataggio o per la stampa.
 
-Sarà inoltre presente un link che porta alla pagina di login, in cui si potranno inserire il proprio indirizzo email e la propria password per accedere alle aree e alle funzioni private riservate ai docenti.
-\subsubsection{Pagina di Login}
+Seguendo i link presenti in alto sotto il titolo, è possibile consultare tutte le informazioni pubbliche. E' possibile visualizzare le informazioni relative a:
+\begin{itemize}
+ \item Docenti registrati al sistema e relativi dati personali (link 'Docenti')
+ \item Edifici e aule gestiti dal sistema, con indirizzi e mappe per raggiungerli (link 'Strutture')
+ \item Insegnamenti gestiti, divisi per corso di laurea (link 'Insegnamenti')
+\end{itemize}
+
+E' inoltre sempre possibile ritornare alla pagina principale di consultazione degli orari seguendo il link 'Home'.
+
+Sul lato sinistro del sito si trova la form di login, in cui si potranno inserire il proprio indirizzo email e la propria password per accedere alle aree e alle funzioni private riservate ai docenti.
+\subsection{Azioni richieste/permesse}
+Ogni capitolo di questa sezione si riferisce ad una particolare funzione che il sistema SIGEOL mette a disposizione dei docenti.
+\subsubsection{Form di Login}
 
 \begin{center}
 	\includegraphics[scale=0.5]{images/login.jpg}\\
-	\textbf{fig. 4.1.2.1} Form di login\\
+	\textbf{fig. 4.2.1.1} Form di login\\
 \end{center}
 
-La pagina di login, come si vede in figura 4.1.2.1, offre la possibiltà agli utenti come la segreteria didattica o i docenti di inserire il proprio username (corrispondente all'indirizzo email) e la relativa password per poter accedere alle funzioni private messe a loro disposizione.
+La form di login, come si vede in figura 4.2.1.1, offre la possibiltà agli utenti come la segreteria didattica o i docenti di inserire il proprio username (corrispondente all'indirizzo email) e la relativa password per poter accedere alle funzioni private messe a loro disposizione.
 
 In caso di login corretto verrà visualizzata nuovamente la pagina principale del prodotto SIGEOL, con in più i link a tutte le funzioni private accessibili.
-In caso di errore nell'inserimento dell'indirizzo email o della password verrà visualizzato un messaggio di notifica di tale errore, come in figura 4.1.2.2.
+In caso di errore nell'inserimento dell'indirizzo email o della password verrà visualizzato un messaggio di notifica di tale errore.
 Sarà immediatamente possibile reinserire i dati corretti e ritentare il login.
 
-\begin{center}
-	\includegraphics[scale=0.5]{images/login_errato.jpg}\\
-	\textbf{fig. 4.1.2.2} Form dopo un login errato\\
-\end{center}
-
 Le funzioni accessibili alle due tipologie di utenti appena citate sono diametralmente opposte: nei successivi capitoli del presente documento verranno quindi solamente illustrate le funzioni dedicate ai docenti.
-\subsection{Azioni richieste/permesse}
-Ogni capitolo di questa sezione si riferisce ad una particolare funzione che il sistema SIGEOL mette a disposizione dei docenti.
 \subsubsection{Registazione docente}
 Prima di poter effettuare il login e accedere alle funzionalità riservate, è necessario che ogni docente si registri al sistema SIGEOL.
 
@@ -221,12 +225,13 @@ Non è possibile registrarsi al sistema senza essere stati preventivamente invit
 
 \begin{center}
 	\includegraphics[scale=0.5]{images/registrazione_docente.jpg}\\ 
-	\textbf{fig. 4.2.1.1} Form di registrazione docenti\\
+	\textbf{fig. 4.2.2.1} Form di registrazione docenti\\
 \end{center}
 
-L'unica modalità per completare la registrazione è seguire il link che verrà spedito alla casella di posta elettronica di ogni docente invitato dalla segreteria didattica. Questo link porta alla form illustrata in figura 4.2.1.1, in cui si dovranno inserire i seguenti dati:
+L'unica modalità per completare la registrazione è seguire il link che verrà spedito alla casella di posta elettronica di ogni docente invitato dalla segreteria didattica. Questo link porta alla form illustrata in figura 4.2.2.1, in cui si dovranno inserire i seguenti dati:
 \begin{itemize}
  \item password: non deve essere vuota e deve contenere come minimo 6 numeri o caratteri, sia maiuscoli sia miniscoli. Da notare che uno stesso carattere maiuscolo e minuscolo è considerato differente dal sistema: si prega quindi di prestare attenzione al momento della scelta della password.
+ \item conferma password: deve essere riscritta esattamente la password scelta nel campo precedente, per evitare problemi dovuti a errori di battitura.
  \item nome: deve semplicemente essere composto da caratteri.
  \item cognome: segue le stesse regole relative al nome.
  \item città: il nome della città deve essere composto solamente da caratteri o spazi. La lunghezza massima è fissata in 30 caratteri.
@@ -237,34 +242,30 @@ Una volta inseriti correttamente tutti i dati richiesti, è sufficiente premere 
 
 D'ora in poi sarà possibile accedere al sistema SIGEOL completando il login con il proprio indirizzo e-mail e la password appena scelta.
 \subsubsection{Modifica dei dati personali}
-I dati personali inseriti in fase di registrazione possono essere cambiati in ogni momento seguendo il link `Modifica dati personali`, visibile e accessibile solamente dopo aver effettuato con successo il login.
+I dati personali inseriti in fase di registrazione possono essere cambiati in ogni momento seguendo il link `Dati personali`, visibile e accessibile solamente dopo aver effettuato con successo il login.
 
-I dati che è possibile aggiornare sono gli stessi inseriti in fase di registrazione, eccezion fatta per la password, che ha a disposizione una funzione di aggiornamento dedicata. Le regole da seguire per il completamento dei campi sono le stesse sopra illustrate per la funzionalità di registrazione.
+\begin{center}
+	%\includegraphics[scale=0.5]{images/dati_personali.jpg}\\ 
+	\textbf{fig. 4.2.3.1} Form di registrazione docenti\\
+\end{center}
+
+I dati che è possibile aggiornare, come mostrato in figura 4.2.3.1, sono gli stessi inseriti in fase di registrazione, eccezion fatta per la password, che ha a disposizione una funzione di aggiornamento dedicata. Le regole da seguire per il completamento dei campi sono le stesse sopra illustrate per la funzionalità di registrazione.
 \subsubsection{Cambio Password}
-La pagina di cambio password permette semplicemente di modificare la password del proprio \underline{account}.
+La pagina di cambio password permette semplicemente di modificare la password del proprio \underline{account}. E' raggiungibile seguendo il link `Cambio password` presente nella barra laterale.
 
-La procedura è particolarmente semplice: è sufficiente inserire la nuova password e premere il pulsante `Cambio Password`, come illustrato in figura 4.2.3.1.
+La procedura è particolarmente semplice: è sufficiente inserire esattamente la password vecchia, inserire la nuova password e la sua conferma e, per finire, premere il pulsante `Cambio Password`, come illustrato in figura 4.2.4.1.
 
 \begin{center}
 	\includegraphics[scale=0.5]{images/cambio_password.jpg}\\
-	\textbf{fig. 4.2.3.1} Form di cambio password\\
+	\textbf{fig. 4.2.4.1} Form di cambio password\\
 \end{center}
 
-\subsubsection{Inserimento vincoli e preferenze}
-La pagina di inserimento vincoli e preferenze permette di inserire degli intervalli temporali in cui il docente non può tenere una lezione oppure preferisce non tenere una lezione. La differenza tra i due casi viene dettagliatamente spiegata nelle sezioni a seguire.
+\subsubsection{Inserimento vincoli}
+La pagina di inserimento vincoli, raggiungibile seguendo il link `Vincoli`, permette di inserire degli intervalli temporali in cui il docente non può tenere una lezione.
 
-Tale pagina contiene una lista dei vincoli e delle preferenze inseriti precedentemente dal docente, che potranno essere modificati o cancellati selezionando rispettivamente i link `Modifica` o `Elimina` presenti a fianco di ogni vincolo e di ogni preferenza.
+Tale pagina, visibile in figura 4.2.5.1, contiene una lista dei vincoli inseriti precedentemente dal docente, che potranno essere eventualmente cancellati selezionando il link caratterizzato dalla X rossa, presente a fianco di ogni vincolo.
 
-Oltre alla sopracitata lista, nella pagina è notificata anche una data entro la qualche è obbligatorio aver inserito tutti i propri vincoli e preferenze: scaduta questa data, opportunamente fissata dalla segreteria didattica prima dell'inizio di un nuovo periodo di lezione, non sarà più possibile inserire nuovi vincoli.
-
-Tale data verrà aggiornata nel momento in cui la segreteria deciderà di riaprire la possibilità di inserimento di vincoli e preferenze per il periodo successivo.
-
-Da notare che i vincoli e le preferenze inserite in un periodo precedente rimarranno memorizzati anche per il periodo successivo: se non fossero più validi o non fossero più necessari, è sufficiente eliminarli o modificarli.
-
-Sono messe anche a disposizione le due funzionalità `Nuovo Vincolo` e `Nuova Preferenza`, illustrate qui di seguito.
-\newline \newline \newline
-\begin{large}\textbf{Inserimento nuovo vincolo:}\end{large}
-\newline \newline
+La pagina dà inoltre la possibilità di inserire un nuovo vincolo di indisponibilità.
 Un docente è tenuto ad inserire un vincolo di indisponibilità qualcora, per validi motivi, in qualche determinato giorno o in qualche determinata ora non potesse assolutamente tenere delle lezioni per gli insegnamenti a lui assegnati.
 
 I vincoli inseriti all'interno del sistema SIGEOL verranno automaticamente accettati e categoricamente rispettati nel calcolo dell'orario delle lezioni.
@@ -275,25 +276,32 @@ Al momento dell'inserimento, i vincoli devono essere dotati di un opportuna moti
 I campi dato da completare nel momento dell'inserimento di un nuovo vincolo sono:
 \begin{itemize}
  \item scelta del giorno della settimana, tramite menu a tendina.
- \item scelta dell'intervallo orario: se l'indisponibilità dura tutto la giornata si prega di selezionare l'opzione `Tutto il giorno`, altrimenti è necessario selezionare l'ora di inizio e l'ora di fine dell'indisponibilità.
+ \item scelta dell'intervallo orario: andranno scelti un orario di inizio o un orario di fine del periodo di indisponibilità. E' possibile sia l'inserimento manuale (in tal caso l'orario va inserito nel formato HH:MM) sia l'inserimento grafico, cliccando sull'icona dell'orologio.
  \item motivazione: è obbligatorio inserire una sintetica motivazione dell'indisponibilità. E' possibile usare indistintamente caratteri, simboli o numeri.
 \end{itemize}
-Al termine dell'inserimento di tutti i dati è sufficiente premere il pulsante `Salva` per memorizzare il vincolo all'interno del sitema SIGEOL: d'ora in poi tale vincolo verrà rispettato nel calcolo dell'orario delle lezioni.
-\newline \newline \newline
-\begin{large}\textbf{Inserimento nuova preferenza:}\end{large}
-\newline \newline
+Al termine dell'inserimento di tutti i dati è sufficiente premere il pulsante `Aggiungi vincolo` per memorizzare il vincolo all'interno del sitema SIGEOL: d'ora in poi tale vincolo verrà rispettato nel calcolo dell'orario delle lezioni.
+
+\subsubsection{Inserimento preferenze}
+La pagina di inserimento delle preferenze, raggiungibile seguendo il link `Preferenze`, permette di inserire degli intervalli temporali in cui il docente preferisce non tenere una lezione.
+
+Tale pagina, visibile in figura 4.2.6.1, contiene una lista delle preferenze inserite precedentemente dal docente, che potranno essere eventualmente cancellati selezionando il link caratterizzato dalla X rossa, presente a fianco di ogni vincolo.
+
+Le preferenze sono presentate in ordine di piorità decrescente: tramite le frecce verdi presenti a fianco, è comunque possibile spostare in alto le preferenze più importanti e in basso quelle meno importanti. L'algoritmo di calcolo dell'orario di lezione darà maggior peso alle preferenze con priorità più alta.
+
+La pagina dà inoltre la possibilità di inserire una nuova preferenza di indisponibilità.
 Un docente è tenuto ad inserire una preferenza nel caso abbia dei giorni o degli orari in cui preferisce non tenere delle lezioni: la differenza rispetto ai vincoli è che questi ultimi vengono sicuramente rispettati nel calcolo dell'orario, mentre le preferenze vengono rispettate solamente nel caso non ci siano altri fattori con priorità maggiore ad intralciarle.
 
 E' possibile inserire quante più preferenze si vogliono, senza la necessità di inserire una motivazione.
+Le nuovo preferenze inserite avranno priorità più bassa rispetto a quelle già presenti.
 
-Si raccomanda all'utente di meditare bene se un proprio periodo di indisponibilità sia un vincolo o sia una preferenza, e di limitare al massimo l'utilizzo della sopra illustrata funzionalità di `Inserimento nuovo vincolo`, per non limitare troppo le disponibilità degli altri docenti e non rendere difficoltosa la generazione di un orario di lezione che soddisfi le esigenze di tutti.
+Si raccomanda all'utente di meditare bene se un proprio periodo di indisponibilità sia un vincolo o sia una preferenza, e di limitare al massimo l'utilizzo della sopra illustrata funzionalità di `Inserimento vincoli`, per non limitare troppo le disponibilità degli altri docenti e non rendere difficoltosa la generazione di un orario di lezione che soddisfi le esigenze di tutti.
 
 I campi dato da completare nel momento dell'inserimento di una nuova preferenza sono:
 \begin{itemize}
  \item scelta del giorno della settimana, tramite menu a tendina.
- \item scelta dell'intervallo orario: se l'indisponibilità dura tutto la giornata si prega di selezionare l'opzione `Tutto il giorno`, altrimenti è necessario selezionare l'ora di inizio e l'ora di fine dell'indisponibilità.
+ \item scelta dell'intervallo orario: andranno scelti un orario di inizio o un orario di fine del periodo di indisponibilità. E' possibile sia l'inserimento manuale (in tal caso l'orario va inserito nel formato HH:MM) sia l'inserimento grafico, cliccando sull'icona dell'orologio.
 \end{itemize}
-Al termine dell'inserimento di tutti i dati è sufficiente premere il pulsante `Salva` per memorizzare la preferenza all'interno del sitema SIGEOL.
+Al termine dell'inserimento di tutti i dati è sufficiente premere il pulsante `Aggiungi preferenza` per memorizzare la preferenza all'interno del sistema SIGEOL.
 
 \subsection{Errori probabili e cause possibili}
 L'inserimento dei dati nelle varie form da parte della segreteria didattica è seguito passo passo dal sistema SIGEOL: ogni dato è controllato e validato prima di essere salvato in modo persistente.
@@ -303,9 +311,12 @@ La segnalazione degli errori avverrà in seguito alla pressione del pulsante di 
 
 Per non andare incontro a segnalazioni continue di errori è necessario seguire le linee guida indicate nella sezione `Azioni richieste - permesse` del presente documento, di volta in volta consultando la sottosezione relativa alla funzionalità che si sta usando.
 
-Si è deciso di non elencare tutti i possibili messaggi d'errore, in quanto tali messaggi sono talmente chiari e autoesplicativi da non necessitare di ulteriori definizioni.
+Oltre a segnalazioni per inserimenti errati o campi dato non completati, è possibile che si verifichino errori più gravi per cause non dipendenti dall'utente che sta usando il sistema in quel momento.
+Per una lista completa di tali errori, per le possibili cause e per le eventuali soluzioni si prega di consultare la sezione `Messaggi di errore e loro significato` presente in appendice al presente documento.
 \newpage
 \section{Appendice}
+\subsection{Messaggi di errore e loro significato}
+
 \subsection{Glossario}
 \flushleft \Huge A \bigskip
 \hrule
