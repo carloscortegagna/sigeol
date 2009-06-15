@@ -18,9 +18,7 @@ if @constraint && @constraint.id
             "<%= image_submit_tag '/images/up.gif', :title => 'Aumenta la priorità della preferenza' %>" +
           "<% end %>" +
         "<% else  %>" +
-           "<% form_remote_tag :url => teacher_preference_priority_up_teacher_path(:teacher_id => @teacher.id,:constraint_id => @constraint_before_this.id) do %>" +
             "<%= image_submit_tag '/images/up_disabled.gif', :title => 'Non è possibile aumentare la priorità della preferenza' %>" +
-          "<% end %>" +
         "<% end %>" +
       "</td>" +
       "<td>" +
@@ -29,9 +27,7 @@ if @constraint && @constraint.id
             "<%= image_submit_tag '/images/down.gif', :title => 'Diminuisci la priorità della preferenza' %>" +
           "<% end %>" +
         "<% else %>" +
-          "<% form_remote_tag :url => teacher_preference_priority_down_teacher_path(:teacher_id => @teacher.id,:constraint_id => @constraint_before_this.id) do %>" +
             "<%= image_submit_tag '/images/down_disabled.gif', :title => 'Non è possibile diminuire la priorità della preferenza' %>" +
-          "<% end %>" +
         "<% end %>" +
       "</td>" +
       "</tr>", :layout => false
@@ -56,9 +52,7 @@ if @constraint && @constraint.id
             "<%= image_submit_tag '/images/up.gif', :title => 'Aumenta la priorità della preferenza' %>" +
           "<% end %>" +
         "<% else  %>" +
-            "<% form_remote_tag :url => teacher_preference_priority_up_teacher_path(:teacher_id => @teacher.id,:constraint_id => @constraint_after_this.id) do %>" +
             "<%= image_submit_tag '/images/up_disabled.gif', :title => 'Non è possibile aumentare la priorità della preferenza' %>" +
-          "<% end %>" +
         "<% end %>" +
       "</td>" +
       "<td>" +
@@ -67,9 +61,7 @@ if @constraint && @constraint.id
             "<%= image_submit_tag '/images/down.gif', :title => 'Diminuisci la priorità della preferenza' %>" +
           "<% end %>" +
         "<% else %>" +
-          "<% form_remote_tag :url => teacher_preference_priority_down_teacher_path(:teacher_id => @teacher.id,:constraint_id => @constraint_after_this.id) do %>" +
             "<%= image_submit_tag '/images/down_disabled.gif', :title => 'Non è possibile diminuire la priorità della preferenza' %>" +
-          "<% end %>" +
         "<% end %>" +
       "</td>" +
       "</tr>", :layout => false
