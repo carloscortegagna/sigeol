@@ -82,6 +82,8 @@ namespace :install do
     if user_didactic_office.save! && address.save! && presidente_css.save! && user_presidente_css.save! && graduate_course.save!
       user_didactic_office.graduate_courses << graduate_course
       user_presidente_css.graduate_courses << graduate_course
+      user_didactic_office.capabilities << Capability.find(:all)
+      user_presidente.capabilities << Capability.find(:all)
       puts "------------------------------"
       puts "SETUP COMPLETATO CON SUCCESSO"
       puts "------------------------------"
