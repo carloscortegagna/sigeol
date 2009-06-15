@@ -46,7 +46,11 @@ class TimetablesController < ApplicationController
         end
       end
     end
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @graduate_courses.to_xml(:include  => :timetables, :except =>[:created_at, :updated_at]) }
   end
+end
 
    def show
     @timetable = Timetable.find(params[:id])
