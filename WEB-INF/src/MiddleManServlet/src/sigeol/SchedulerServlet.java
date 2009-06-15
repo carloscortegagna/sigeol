@@ -250,8 +250,10 @@ public class SchedulerServlet extends HttpServlet {
                         year=item.getString();
                     if (name.equals("subperiod"))
                         subperiod = item.getString();
-                    if (name.equals("timeout"))
+                    if (name.equals("timeout")){
                         timeout = item.getString();
+                        System.out.println("time: "+timeout);
+                    }
                 }
                 if (!(item.isFormField()))
                 {
@@ -269,9 +271,9 @@ public class SchedulerServlet extends HttpServlet {
 
             // creazione evento di esecuzione istantanea del job
             if (!course.equals("")) {
-                if (timeout == null) {
+                if (timeout == null) 
                     timeout = "50";
-                }
+                System.out.println("time: "+timeout);
                 // assegnazione dei parametri al job
                 JobDetail jobDetail = new JobDetail("job_" + course+year+subperiod, "algorithm_job", AlgorithmJob.class);
                 jobDetail.getJobDataMap().put("input_file", saveFile);
