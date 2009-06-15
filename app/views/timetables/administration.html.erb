@@ -19,10 +19,10 @@
                 <tr>
                 <td><%= period %></td>
                 <td><%= image_tag "generating.gif", :style=>"padding-top:1px" %>&nbsp;&nbsp;in generazione . . .</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td><%= image_tag "html_disabled.gif" %></td>
+                <td><%= image_tag "pdf_disabled.png" %></td>
+                <td><%= image_tag "world_disabled.gif" %></td>
+                <td><%= image_tag "delete_disabled.png" %></td>
                 </tr>
               <% end %>
               <% if graduate_course.timetables_in_schedulation_specific?(period, year) %>
@@ -30,10 +30,10 @@
                 <tr>
                 <td><%= period %></td>
                 <td><%= image_tag "orologio.jpg", :style=>"padding-top:1px" %>&nbsp;&nbsp;in programmazione</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td><%= image_tag "html_disabled.gif" %></td>
+                <td><%= image_tag "pdf_disabled.png" %></td>
+                <td><%= image_tag "world_disabled.gif" %></td>
+                <td><%= image_tag "delete_disabled.png" %></td>
                 </tr>
               <% end %>
               <% if complete %>
@@ -63,10 +63,10 @@
             <tr>
               <td><%= period %></td>
               <td><%= image_tag "wand.gif" %>&nbsp;&nbsp;<%= link_to "Genera", :action => :new, :subperiod => period, :graduate_course => graduate_course.id, :year => year %></td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
+              <td><%= image_tag "html_disabled.gif" %></td>
+              <td><%= image_tag "pdf_disabled.png" %></td>
+              <td><%= image_tag "world_disabled.gif" %></td>
+              <td><%= image_tag "delete_disabled.png" %></td>
             </tr>
             <% end %>
         <% end %>
