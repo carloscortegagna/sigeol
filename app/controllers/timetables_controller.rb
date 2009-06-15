@@ -22,8 +22,7 @@ class TimetablesController < ApplicationController
   def not_found
   end
   def index
-    @graduate_courses = GraduateCourse.find(:all, :include => :timetables)
-    @graduate_courses = @graduate_courses.sort_by { |gr| gr['name'] }
+    @graduate_courses = GraduateCourse.find(:all, :include => :timetables, :order => "name ASC")
     @timetables = Hash.new
     @graduate_courses.each do |g|
       @timetables[g] = Hash.new
