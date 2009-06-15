@@ -10,14 +10,22 @@
 });
 </script>
 
-
-<h1>Creazione dell'orario del periodo <%= params[:subperiod]%> anno accademico <%= params[:year]%> </h1>
+<h1>Corso di laurea:  <%= GraduateCourse.find(params[:graduate_course]).name %></h1>
+<h3>Creazione dell'orario del periodo <%= params[:subperiod]%> per l'anno accademico <%= params[:year]%> </h3>
+<hr>
 <% form_tag(:action => :create, :graduate_course => params[:graduate_course], :subperiod => params[:subperiod], :year => params[:year]) do %>
   <p>
     <div class="lbl_timetblsNew"><%= label_tag "Data di scadenza: *" %></div>
     <div class="txt_timetblsNew">
       <%= date_select("range", "expiry_date", :order => [:day,:month, :year], :start_year => Time.now.year, :use_month_names => TimetablesHelper::MONTHS_NAMES) %>
     </div>
+    <br/>
+    <ul>
+      <li>Nel caso si desideri generare l'orario immediatamente dopo il completamento dei campi a seguire, si prega di inserire la data odierna.</li>
+      <li>Nel caso si desideri posticipare la generazione dell'orario, si prega di inserire una data maggiore di quella odierna. Gli utenti avranno
+      tempo fino alla data inserita per salvare nel sistema SIGEOL i loro vincoli e le loro preferenze temporali; al raggiungimento della data
+      prescelta, l'orario delle lezioni verrà generato automaticamente, senza necessità di altre azioni. </li>
+    </ul>
   </p>
   <fieldset style="padding:1em;margin-top:1em;">
     <legend>Orario di lezione:</legend>
