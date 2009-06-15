@@ -1,6 +1,13 @@
-<h1>Lista dei docenti iscritti al SIGEOL</h1>
-<ul>
-<% for t in @teachers do %>
-  <li style="padding-bottom:1em"><%= link_to t.surname + " " + t.name, teacher_path(t) %></li>
+<h3>Docenti divisi per corso di laurea</h3>
+<% @graduate_course.each do |g| %>
+  <%  if g.users.size != 0 %>
+    <h4> <%= g.name %> </h4>
+    <ul>
+      <% (g.users).each do |u|%>
+        <% if u.specified_type = "Teacher" %>
+      <li>  <%= link_to u.specified.surname + " " + u.specified.name, teacher_path(u.specified) %> </li>
+       <% end %>
+     <% end %>
+     <% end %>
+    </ul>
 <% end %>
-</ul>

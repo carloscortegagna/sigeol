@@ -38,10 +38,7 @@ class TeachersController < ApplicationController
 
   # Inizializza la variabile d'istanza @teachers per la vista index.
   def index
-    @teachers = []
-    if(Teacher.find(:all).size != 0)
-     @teachers = (Teacher.find(:all, :conditions => ['name != "" AND surname != ""'], :order => "surname ASC"))
-    end
+    @graduate_course = GraduateCourse.find(:all).sort_by { |g| g[:name] }
     respond_to do |format|
       format.html
       format.xml { render :xml => @teachers.to_xml(:except =>[:created_at, :updated_at]) }
@@ -185,7 +182,8 @@ class TeachersController < ApplicationController
           if params[:graduate_course_id]
             user.graduate_courses << GraduateCourse.find(params[:graduate_course_id])
           end
-          flash[:notice] = "Docente invitato con successo"
+          flash[:notice] = "Docente re-invitato con successo"
+          TeacherMailer.deliver_reactivate_teacher(@current_user, user)
           format.html{redirect_to new_teacher_url}
           format.js{render(:update) {|page| page.redirect_to new_teacher_url}}
         else
