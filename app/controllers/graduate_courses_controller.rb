@@ -17,6 +17,7 @@ class GraduateCoursesController < ApplicationController
   before_filter :manage_graduate_courses_required, :only => [:administration, :edit, :update, :destroy]
   before_filter :didactic_office_required, :only => [:new, :create, :destroy]
   before_filter :same_graduate_course_required, :only => [:edit, :update, :destroy]
+  before_filter :graduate_course_in_use, :only => [:edit, :destroy]
 
   # Inizializza la variabile d'istanza @graduate_courses per la vista administration
   def administration
@@ -146,5 +147,12 @@ class GraduateCoursesController < ApplicationController
       redirect_to :controller => 'timetables', :action => 'not_found'
     end
   end
-  
+
+  def graduate_course_in_use
+    gc = GraduateCourse.find(params[:id])
+    if gc.timetables_in_generation?
+      flash[:error] = "Non è possibile modificare il corso di laurea in quanto è in corso la generazione dell'orario per il corso di laurea "
+      redirect_to administration_graduate_courses_url
+    end
+  end
 end
