@@ -23,7 +23,8 @@ class ClassroomsController < ApplicationController
 
   # tutti i metodi sono sottoposti al filtro manage_buildings_required, ad eccezione di quelli elencati nel paramentro :except
   before_filter :manage_classrooms_required, :except => :show
-  before_filter :classroom_in_use, :only => [:destroy, :edit_constraints, :destroy_constraints, :create_constraints ]
+  before_filter :classroom_in_use, :only => [:destroy, :edit_constraints, :destroy_constraints, :create_constraints,
+                                             :edit, :update, :remove_classroom_graduate_course, :add_classroom_graduate_course]
   # Inizializza le variabili d'istanza @classroom e @building per la vista show.
   def show
     notfound = false
@@ -278,8 +279,6 @@ class ClassroomsController < ApplicationController
             break
           end
         end
-      end
-      unless notfound
         if in_use
           flash[:error] = "Non è possibile modificare quest'aula in quanto è in uso per la generazione dell'orario per il corso di laurea " +name
           redirect_to administration_classrooms_url
