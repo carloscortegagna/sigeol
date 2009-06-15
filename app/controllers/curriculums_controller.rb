@@ -22,6 +22,8 @@ class CurriculumsController < ApplicationController
   # i metodi elencati nel paramentro :only sono sottoposti al filtro same_graduate_course_required
   before_filter :same_graduate_course_required, :only => [:edit, :update, :edit_teachings, :update_teachings]
 
+  before_filter :curriculum_in_use, :only => [:destroy, :edit, :edit_teachings]
+
   # Crea 1 nuova variabili d'istanza vuota (@@curriculum) e inizializza la variabile d'istanza @graduate_courses per la vista new.
   def new
     @curriculum = Curriculum.new
@@ -163,5 +165,20 @@ class CurriculumsController < ApplicationController
       redirect_to :controller => 'timetables', :action => 'not_found'
     end
   end
-  
+
+  def curriculum_in_use
+    notfound = false
+    name = nil
+    curriculum = Curriculum.find(params[:id]) rescue notfound = true
+    unless notfound
+        g = curriculum.graduate_course
+          if g.timetables_in_generation?
+            name = g.name
+            flash[:error] = "Non è possibile modificare questo curriculum in quanto è in uso per la generazione dell'orario per il corso di laurea " +name
+            redirect_to administration_graduate_courses_url
+        end
+     else
+      redirect_to :controller => 'timetables', :action => 'not_found'
+    end
+  end
 end
