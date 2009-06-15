@@ -1,0 +1,4233 @@
+<html>
+<head>
+	<title>Saikuro Results</title>
+	<style>
+	body {
+	background-color: #efefef;
+	margin: 20px;
+	padding: 0;
+	font: 12px verdana, arial, helvetica;
+}
+
+table {
+	border-collapse: collapse;
+	border: 1px solid #666;
+	background: #fff;
+	margin-bottom: 20px;	
+}
+
+	table tr.light {
+	 	background: #fff;
+	}
+
+	table tr.dark {
+		background: #f9f9f9;
+	}
+
+	table td, table th {
+		padding: 4px 10px;
+		font-size: 13px;
+	}
+	table th {
+		text-align: center;
+		color: #fc0;
+		background: #336;		
+		font-weight: bold;
+		border: #d0d0d0 1px solid;
+	}
+
+	table td {
+		border: #d0d0d0 1px solid;
+	}
+	
+		table td.score {
+			text-align: right;
+		}	
+
+.warning {
+	background: yellow;
+}
+.rcov_code td {
+  border-bottom: 1px solid #ddd ;
+  padding: 0;
+  margin: 0;
+}
+.rcov_code tr {
+  border: 0px;
+  padding:0px;
+  margin: 0px;
+}
+.rcov_code pre {
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+.rcov_run {}
+.rcov_not_run {
+  background-color: #d88;
+}
+	
+	</style>
+</head>
+
+<body>
+  <h1>Saikuro Results</h1>
+  <p><a href='http://saikuro.rubyforge.org/'>Saikuro</a> analyzes ruby code for cyclomatic complexity.</p>
+
+  <h2>Analyzed Methods</h2>
+    <table>
+      <tr>
+        <th>Method Name</th>
+        <th>Complexity</th>
+        <th># Lines</th>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#create</td>
+        <td>18</td>
+        <td>41</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#activate</td>
+        <td>17</td>
+        <td>33</td>
+      </tr>
+      
+      <tr>
+        <td>GraduateCoursesController#create</td>
+        <td>16</td>
+        <td>28</td>
+      </tr>
+      
+      <tr>
+        <td>BuildingsController#create</td>
+        <td>12</td>
+        <td>24</td>
+      </tr>
+      
+      <tr>
+        <td>ApplicationHelper#link</td>
+        <td>12</td>
+        <td>47</td>
+      </tr>
+      
+      <tr>
+        <td>TeachingsController#create</td>
+        <td>11</td>
+        <td>25</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#create_preference</td>
+        <td>10</td>
+        <td>42</td>
+      </tr>
+      
+      <tr>
+        <td>UsersController#update</td>
+        <td>10</td>
+        <td>23</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#update_personal_data</td>
+        <td>9</td>
+        <td>21</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#destroy_preference</td>
+        <td>9</td>
+        <td>30</td>
+      </tr>
+      
+      <tr>
+        <td>BuildingsController#update</td>
+        <td>9</td>
+        <td>17</td>
+      </tr>
+      
+      <tr>
+        <td>CurriculumsController#update</td>
+        <td>8</td>
+        <td>14</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#teacher_preference_priority_down</td>
+        <td>8</td>
+        <td>42</td>
+      </tr>
+      
+      <tr>
+        <td>CurriculumsController#create</td>
+        <td>8</td>
+        <td>13</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#teacher_preference_priority_up</td>
+        <td>8</td>
+        <td>40</td>
+      </tr>
+      
+      <tr>
+        <td>ClassroomsController#update</td>
+        <td>8</td>
+        <td>20</td>
+      </tr>
+      
+      <tr>
+        <td>TeachingsController#update</td>
+        <td>8</td>
+        <td>13</td>
+      </tr>
+      
+      <tr>
+        <td>ClassroomsController#create</td>
+        <td>8</td>
+        <td>15</td>
+      </tr>
+      
+      <tr>
+        <td>GraduateCoursesController#update</td>
+        <td>8</td>
+        <td>14</td>
+      </tr>
+      
+      <tr>
+        <td>TimetablesController#update</td>
+        <td>7</td>
+        <td>13</td>
+      </tr>
+      
+      <tr>
+        <td>TimetablesController#create</td>
+        <td>7</td>
+        <td>13</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#update_graduate_courses</td>
+        <td>7</td>
+        <td>20</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#create_constraint</td>
+        <td>7</td>
+        <td>28</td>
+      </tr>
+      
+      <tr>
+        <td>ClassroomsController#create_constraint</td>
+        <td>7</td>
+        <td>25</td>
+      </tr>
+      
+      <tr>
+        <td>ApplicationController#from_dayname_to_id</td>
+        <td>6</td>
+        <td>10</td>
+      </tr>
+      
+      <tr>
+        <td>TeachingsController#index</td>
+        <td>6</td>
+        <td>16</td>
+      </tr>
+      
+      <tr>
+        <td>ClassroomsController#remove_classroom_graduate_course</td>
+        <td>6</td>
+        <td>19</td>
+      </tr>
+      
+      <tr>
+        <td>ApplicationHelper#from_id_to_dayname</td>
+        <td>6</td>
+        <td>9</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#update_capabilities</td>
+        <td>6</td>
+        <td>17</td>
+      </tr>
+      
+      <tr>
+        <td>ClassroomsController#destroy_constraint</td>
+        <td>5</td>
+        <td>17</td>
+      </tr>
+      
+      <tr>
+        <td>ClassroomsController#add_classroom_graduate_course</td>
+        <td>5</td>
+        <td>17</td>
+      </tr>
+      
+      <tr>
+        <td>CurriculumsController#update_teachings</td>
+        <td>5</td>
+        <td>21</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#destroy_constraint</td>
+        <td>4</td>
+        <td>16</td>
+      </tr>
+      
+      <tr>
+        <td>TeachingsController#administration</td>
+        <td>4</td>
+        <td>11</td>
+      </tr>
+      
+      <tr>
+        <td>ApplicationController#login_required</td>
+        <td>4</td>
+        <td>11</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#edit_preferences</td>
+        <td>4</td>
+        <td>12</td>
+      </tr>
+      
+      <tr>
+        <td>TimetablesController#destroy</td>
+        <td>4</td>
+        <td>8</td>
+      </tr>
+      
+      <tr>
+        <td>BuildingsController#index</td>
+        <td>4</td>
+        <td>8</td>
+      </tr>
+      
+      <tr>
+        <td>TimetablesController#schedule</td>
+        <td>4</td>
+        <td>22</td>
+      </tr>
+      
+      <tr>
+        <td>TimetablesController#start</td>
+        <td>4</td>
+        <td>28</td>
+      </tr>
+      
+      <tr>
+        <td>TeachingsController#show</td>
+        <td>4</td>
+        <td>10</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#index</td>
+        <td>4</td>
+        <td>9</td>
+      </tr>
+      
+      <tr>
+        <td>Belong#unique_curriculum_id_and_teaching_id?</td>
+        <td>3</td>
+        <td>7</td>
+      </tr>
+      
+      <tr>
+        <td>ClassroomsController#show</td>
+        <td>3</td>
+        <td>8</td>
+      </tr>
+      
+      <tr>
+        <td>GraduateCoursesController#show</td>
+        <td>3</td>
+        <td>7</td>
+      </tr>
+      
+      <tr>
+        <td>Timetable#correct_year</td>
+        <td>3</td>
+        <td>10</td>
+      </tr>
+      
+      <tr>
+        <td>BuildingsController#show</td>
+        <td>3</td>
+        <td>8</td>
+      </tr>
+      
+      <tr>
+        <td>ExpiryDate#is_correct_date?</td>
+        <td>3</td>
+        <td>7</td>
+      </tr>
+      
+      <tr>
+        <td>Teaching#check_durata?</td>
+        <td>3</td>
+        <td>13</td>
+      </tr>
+      
+      <tr>
+        <td>MigrationHelper#fk</td>
+        <td>3</td>
+        <td>10</td>
+      </tr>
+      
+      <tr>
+        <td>BuildingsController#destroy</td>
+        <td>3</td>
+        <td>8</td>
+      </tr>
+      
+      <tr>
+        <td>ClassroomsController#destroy</td>
+        <td>3</td>
+        <td>8</td>
+      </tr>
+      
+      <tr>
+        <td>CurriculumsController#show</td>
+        <td>3</td>
+        <td>7</td>
+      </tr>
+      
+      <tr>
+        <td>User#calculate_digest</td>
+        <td>3</td>
+        <td>6</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#edit_constraints</td>
+        <td>3</td>
+        <td>11</td>
+      </tr>
+      
+      <tr>
+        <td>User#before_destroy</td>
+        <td>3</td>
+        <td>8</td>
+      </tr>
+      
+      <tr>
+        <td>TimetablesController#new</td>
+        <td>3</td>
+        <td>7</td>
+      </tr>
+      
+      <tr>
+        <td>TimetablesController#show</td>
+        <td>3</td>
+        <td>7</td>
+      </tr>
+      
+      <tr>
+        <td>CurriculumsController#destroy</td>
+        <td>3</td>
+        <td>7</td>
+      </tr>
+      
+      <tr>
+        <td>ApplicationHelper#first_upper</td>
+        <td>3</td>
+        <td>3</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#show</td>
+        <td>3</td>
+        <td>8</td>
+      </tr>
+      
+      <tr>
+        <td>TimetablesController#index</td>
+        <td>3</td>
+        <td>7</td>
+      </tr>
+      
+      <tr>
+        <td>TeachingsController#destroy</td>
+        <td>3</td>
+        <td>7</td>
+      </tr>
+      
+      <tr>
+        <td>GraduateCoursesController#destroy</td>
+        <td>3</td>
+        <td>7</td>
+      </tr>
+      
+      <tr>
+        <td>SessionsController#new</td>
+        <td>2</td>
+        <td>4</td>
+      </tr>
+      
+      <tr>
+        <td>CurriculumsController#new</td>
+        <td>2</td>
+        <td>6</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#pre_activate</td>
+        <td>2</td>
+        <td>7</td>
+      </tr>
+      
+      <tr>
+        <td>TemporalConstraint#is_correct_time?</td>
+        <td>2</td>
+        <td>4</td>
+      </tr>
+      
+      <tr>
+        <td>ApplicationController#didactic_office_required</td>
+        <td>2</td>
+        <td>5</td>
+      </tr>
+      
+      <tr>
+        <td>ApplicationController#manage_teachings_required</td>
+        <td>2</td>
+        <td>5</td>
+      </tr>
+      
+      <tr>
+        <td>ApplicationController#manage_buildings_required</td>
+        <td>2</td>
+        <td>5</td>
+      </tr>
+      
+      <tr>
+        <td>ApplicationController#manage_classrooms_required</td>
+        <td>2</td>
+        <td>5</td>
+      </tr>
+      
+      <tr>
+        <td>ApplicationController#manage_graduate_courses_required</td>
+        <td>2</td>
+        <td>5</td>
+      </tr>
+      
+      <tr>
+        <td>ApplicationController#manage_capabilities_required</td>
+        <td>2</td>
+        <td>5</td>
+      </tr>
+      
+      <tr>
+        <td>ApplicationController#manage_teachers_required</td>
+        <td>2</td>
+        <td>5</td>
+      </tr>
+      
+      <tr>
+        <td>#is_unique_constraint?</td>
+        <td>2</td>
+        <td>5</td>
+      </tr>
+      
+      <tr>
+        <td>Period#unique_subperiod_year?</td>
+        <td>2</td>
+        <td>4</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#same_graduate_course_required</td>
+        <td>2</td>
+        <td>9</td>
+      </tr>
+      
+      <tr>
+        <td>ApplicationHelper#user_sidebar</td>
+        <td>2</td>
+        <td>5</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#same_teacher_required</td>
+        <td>2</td>
+        <td>5</td>
+      </tr>
+      
+      <tr>
+        <td>ClassroomsController#new</td>
+        <td>2</td>
+        <td>7</td>
+      </tr>
+      
+      <tr>
+        <td>Classroom#unique_building_classroom?</td>
+        <td>2</td>
+        <td>5</td>
+      </tr>
+      
+      <tr>
+        <td>CurriculumsController#same_graduate_course_required</td>
+        <td>2</td>
+        <td>7</td>
+      </tr>
+      
+      <tr>
+        <td>ClassroomsController#edit_constraints</td>
+        <td>2</td>
+        <td>8</td>
+      </tr>
+      
+      <tr>
+        <td>TeachingsController#new</td>
+        <td>2</td>
+        <td>9</td>
+      </tr>
+      
+      <tr>
+        <td>TeachingsController#assign_teacher</td>
+        <td>2</td>
+        <td>10</td>
+      </tr>
+      
+      <tr>
+        <td>TeachingsController#same_graduate_course_required</td>
+        <td>2</td>
+        <td>8</td>
+      </tr>
+      
+      <tr>
+        <td>User#encrypt_password</td>
+        <td>2</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>TimetableEntry#unique?</td>
+        <td>2</td>
+        <td>5</td>
+      </tr>
+      
+      <tr>
+        <td>TimetableEntry#is_correct_time?</td>
+        <td>2</td>
+        <td>4</td>
+      </tr>
+      
+      <tr>
+        <td>Timetable#unique?</td>
+        <td>2</td>
+        <td>5</td>
+      </tr>
+      
+      <tr>
+        <td>UsersController#same_user_required</td>
+        <td>2</td>
+        <td>5</td>
+      </tr>
+      
+      <tr>
+        <td>TimetablesController#notify</td>
+        <td>2</td>
+        <td>6</td>
+      </tr>
+      
+      <tr>
+        <td>TimetablesController#done</td>
+        <td>2</td>
+        <td>8</td>
+      </tr>
+      
+      <tr>
+        <td>SessionsController#create</td>
+        <td>2</td>
+        <td>10</td>
+      </tr>
+      
+      <tr>
+        <td>BuildingsController#new</td>
+        <td>2</td>
+        <td>6</td>
+      </tr>
+      
+      <tr>
+        <td>GraduateCoursesController#new</td>
+        <td>2</td>
+        <td>6</td>
+      </tr>
+      
+      <tr>
+        <td>Belong#after_destroy</td>
+        <td>2</td>
+        <td>4</td>
+      </tr>
+      
+      <tr>
+        <td>Curriculum#unique_curriculum_graduate_course?</td>
+        <td>2</td>
+        <td>5</td>
+      </tr>
+      
+      <tr>
+        <td>GraduateCoursesController#same_graduate_course_required</td>
+        <td>2</td>
+        <td>5</td>
+      </tr>
+      
+      <tr>
+        <td>Curriculum#delete_last_teaching</td>
+        <td>2</td>
+        <td>4</td>
+      </tr>
+      
+      <tr>
+        <td>User#self.authenticate</td>
+        <td>1</td>
+        <td>4</td>
+      </tr>
+      
+      <tr>
+        <td>User#manage_teachers?</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>GraduateCoursesController#edit</td>
+        <td>1</td>
+        <td>3</td>
+      </tr>
+      
+      <tr>
+        <td>Curriculum#before_validation</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>BuildingsController#edit</td>
+        <td>1</td>
+        <td>3</td>
+      </tr>
+      
+      <tr>
+        <td>GraduateCoursesController#administration</td>
+        <td>1</td>
+        <td>3</td>
+      </tr>
+      
+      <tr>
+        <td>SessionsController#destroy</td>
+        <td>1</td>
+        <td>5</td>
+      </tr>
+      
+      <tr>
+        <td>MigrationHelper#constraint_name</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>MigrationHelper#drop_fk</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>UsersController#edit</td>
+        <td>1</td>
+        <td>4</td>
+      </tr>
+      
+      <tr>
+        <td>Teaching#before_validation</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>BuildingsController#administration</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>CurriculumsController#edit</td>
+        <td>1</td>
+        <td>3</td>
+      </tr>
+      
+      <tr>
+        <td>TimetablesController#edit</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>GraduateCoursesHelper#menu_admin</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>GraduateCoursesHelper#show_graduate_course_admin</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>GraduateCoursesHelper#show_graduate_course</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>User#own_by_didactic_office?</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>BuildingsHelper#menu_admin</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>BuildingsHelper#show_building_admin</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>CurriculumsController#edit_teachings</td>
+        <td>1</td>
+        <td>6</td>
+      </tr>
+      
+      <tr>
+        <td>TeachingsController#select_teacher</td>
+        <td>1</td>
+        <td>6</td>
+      </tr>
+      
+      <tr>
+        <td>BuildingsHelper#show_building</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>TeachingsController#edit</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>User#own_by_teacher?</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>ClassroomsHelper#menu_admin</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>ClassroomsHelper#show_classroom_admin</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>ClassroomsHelper#show_classroom</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>Teacher#before_validation</td>
+        <td>1</td>
+        <td>3</td>
+      </tr>
+      
+      <tr>
+        <td>Teacher#before_destroy</td>
+        <td>1</td>
+        <td>3</td>
+      </tr>
+      
+      <tr>
+        <td>User#manage_graduate_courses?</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>Teacher#complete_name</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>Classroom#before_validation</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>ClassroomsController#administration</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>User#manage_capabilities?</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>TeachingsHelper#menu_admin</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>TeachingsHelper#show_teaching_admin</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>ClassroomsController#edit</td>
+        <td>1</td>
+        <td>8</td>
+      </tr>
+      
+      <tr>
+        <td>ApplicationHelper#login_form</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>TeachingsHelper#show_teaching</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>ApplicationHelper#standard_sidebar</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>User#manage_timetables?</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersHelper#menu_admin</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersHelper#show_teacher_admin</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersHelper#show_teacher</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>User#manage_buildings?</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>CurriculumsHelper#show_curriculum_admin</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>CurriculumsHelper#show_curriculum</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>User#manage_classrooms?</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>User#manage_teachings?</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#administration</td>
+        <td>1</td>
+        <td>12</td>
+      </tr>
+      
+      <tr>
+        <td>Building#before_validation</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>User#active?</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>UsersHelper#show_not_active_users</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#edit</td>
+        <td>1</td>
+        <td>4</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#destroy</td>
+        <td>1</td>
+        <td>8</td>
+      </tr>
+      
+      <tr>
+        <td>GraduateCourse#before_validation</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#new</td>
+        <td>1</td>
+        <td>3</td>
+      </tr>
+      
+      <tr>
+        <td>DidacticOffice#before_destroy</td>
+        <td>1</td>
+        <td>3</td>
+      </tr>
+      
+      <tr>
+        <td>AcademicOrganization#before_validation</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#edit_capabilities</td>
+        <td>1</td>
+        <td>7</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersController#edit_graduate_courses</td>
+        <td>1</td>
+        <td>7</td>
+      </tr>
+      
+      <tr>
+        <td>Address#before_validation</td>
+        <td>1</td>
+        <td>3</td>
+      </tr>
+      
+      <tr>
+        <td>TeacherMailer#activate_teacher</td>
+        <td>1</td>
+        <td>8</td>
+      </tr>
+      
+    </table>
+
+
+
+  <h2>Analyzed Classes</h2>
+    <table>
+      <tr>
+        <th>Class Name</th>
+        <th>Complexity</th>
+        <th># Lines</th>
+      </tr>
+      
+      <tr>
+        <td>TeachersController</td>
+        <td>129</td>
+        <td>492</td>
+      </tr>
+      
+      <tr>
+        <td>ClassroomsController</td>
+        <td>51</td>
+        <td>190</td>
+      </tr>
+      
+      <tr>
+        <td>TeachingsController</td>
+        <td>44</td>
+        <td>156</td>
+      </tr>
+      
+      <tr>
+        <td>TimetablesController</td>
+        <td>40</td>
+        <td>154</td>
+      </tr>
+      
+      <tr>
+        <td>GraduateCoursesController</td>
+        <td>36</td>
+        <td>100</td>
+      </tr>
+      
+      <tr>
+        <td>BuildingsController</td>
+        <td>35</td>
+        <td>98</td>
+      </tr>
+      
+      <tr>
+        <td>CurriculumsController</td>
+        <td>33</td>
+        <td>122</td>
+      </tr>
+      
+      <tr>
+        <td>ApplicationHelper</td>
+        <td>25</td>
+        <td>89</td>
+      </tr>
+      
+      <tr>
+        <td>ApplicationController</td>
+        <td>24</td>
+        <td>85</td>
+      </tr>
+      
+      <tr>
+        <td>User</td>
+        <td>19</td>
+        <td>151</td>
+      </tr>
+      
+      <tr>
+        <td>UsersController</td>
+        <td>13</td>
+        <td>46</td>
+      </tr>
+      
+      <tr>
+        <td>Belong</td>
+        <td>5</td>
+        <td>38</td>
+      </tr>
+      
+      <tr>
+        <td>Curriculum</td>
+        <td>5</td>
+        <td>48</td>
+      </tr>
+      
+      <tr>
+        <td>SessionsController</td>
+        <td>5</td>
+        <td>28</td>
+      </tr>
+      
+      <tr>
+        <td>MigrationHelper</td>
+        <td>5</td>
+        <td>22</td>
+      </tr>
+      
+      <tr>
+        <td>Timetable</td>
+        <td>5</td>
+        <td>44</td>
+      </tr>
+      
+      <tr>
+        <td>TimetableEntry</td>
+        <td>4</td>
+        <td>37</td>
+      </tr>
+      
+      <tr>
+        <td>Teaching</td>
+        <td>4</td>
+        <td>75</td>
+      </tr>
+      
+      <tr>
+        <td>ClassroomsHelper</td>
+        <td>3</td>
+        <td>11</td>
+      </tr>
+      
+      <tr>
+        <td>BuildingsHelper</td>
+        <td>3</td>
+        <td>10</td>
+      </tr>
+      
+      <tr>
+        <td>Teacher</td>
+        <td>3</td>
+        <td>39</td>
+      </tr>
+      
+      <tr>
+        <td>GraduateCoursesHelper</td>
+        <td>3</td>
+        <td>12</td>
+      </tr>
+      
+      <tr>
+        <td>Classroom</td>
+        <td>3</td>
+        <td>50</td>
+      </tr>
+      
+      <tr>
+        <td>ExpiryDate</td>
+        <td>3</td>
+        <td>32</td>
+      </tr>
+      
+      <tr>
+        <td>TeachingsHelper</td>
+        <td>3</td>
+        <td>12</td>
+      </tr>
+      
+      <tr>
+        <td>TeachersHelper</td>
+        <td>3</td>
+        <td>12</td>
+      </tr>
+      
+      <tr>
+        <td>Period</td>
+        <td>2</td>
+        <td>29</td>
+      </tr>
+      
+      <tr>
+        <td>CurriculumsHelper</td>
+        <td>2</td>
+        <td>7</td>
+      </tr>
+      
+      <tr>
+        <td>TemporalConstraint</td>
+        <td>2</td>
+        <td>38</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>2</td>
+        <td>5</td>
+      </tr>
+      
+      <tr>
+        <td>Address</td>
+        <td>1</td>
+        <td>41</td>
+      </tr>
+      
+      <tr>
+        <td>TeacherMailer</td>
+        <td>1</td>
+        <td>12</td>
+      </tr>
+      
+      <tr>
+        <td>AcademicOrganization</td>
+        <td>1</td>
+        <td>36</td>
+      </tr>
+      
+      <tr>
+        <td>Building</td>
+        <td>1</td>
+        <td>26</td>
+      </tr>
+      
+      <tr>
+        <td>UsersHelper</td>
+        <td>1</td>
+        <td>4</td>
+      </tr>
+      
+      <tr>
+        <td>DidacticOffice</td>
+        <td>1</td>
+        <td>9</td>
+      </tr>
+      
+      <tr>
+        <td>GraduateCourse</td>
+        <td>1</td>
+        <td>41</td>
+      </tr>
+      
+      <tr>
+        <td>SessionHelper</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td>ConstraintsOwner</td>
+        <td>0</td>
+        <td>8</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td>Capability</td>
+        <td>0</td>
+        <td>15</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td>BooleanConstraint</td>
+        <td>0</td>
+        <td>15</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td>QuantityConstraint</td>
+        <td>0</td>
+        <td>18</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td>TimetablesHelper</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      
+    </table>
+
+
+  <h2>Analyzed Files</h2>
+  
+    
+        
+    
+        
+          <h3>teachers_controller.rb</h3>
+          <h4>Class : TeachersController</h4>
+          <h5>Total complexity : 129</h5>
+          <h5>Total lines : 492</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#create
+                </td>
+                <td>
+                  18 
+                </td>
+                <td>
+                  41
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#activate
+                </td>
+                <td>
+                  17 
+                </td>
+                <td>
+                  33
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#create_preference
+                </td>
+                <td>
+                  10 
+                </td>
+                <td>
+                  42
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#destroy_preference
+                </td>
+                <td>
+                  9 
+                </td>
+                <td>
+                  30
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#update_personal_data
+                </td>
+                <td>
+                  9 
+                </td>
+                <td>
+                  21
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#teacher_preference_priority_up
+                </td>
+                <td>
+                  8 
+                </td>
+                <td>
+                  40
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#teacher_preference_priority_down
+                </td>
+                <td>
+                  8 
+                </td>
+                <td>
+                  42
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#update_graduate_courses
+                </td>
+                <td>
+                  7 
+                </td>
+                <td>
+                  20
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#create_constraint
+                </td>
+                <td>
+                  7 
+                </td>
+                <td>
+                  28
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#update_capabilities
+                </td>
+                <td>
+                  6 
+                </td>
+                <td>
+                  17
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#index
+                </td>
+                <td>
+                  4 
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#edit_preferences
+                </td>
+                <td>
+                  4 
+                </td>
+                <td>
+                  12
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#destroy_constraint
+                </td>
+                <td>
+                  4 
+                </td>
+                <td>
+                  16
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#show
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#edit_constraints
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#same_graduate_course_required
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#pre_activate
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#same_teacher_required
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#new
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#destroy
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#edit_capabilities
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#edit_graduate_courses
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#edit
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersController#administration
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  12
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>classrooms_controller.rb</h3>
+          <h4>Class : ClassroomsController</h4>
+          <h5>Total complexity : 51</h5>
+          <h5>Total lines : 190</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  ClassroomsController#create
+                </td>
+                <td>
+                  8 
+                </td>
+                <td>
+                  15
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ClassroomsController#update
+                </td>
+                <td>
+                  8 
+                </td>
+                <td>
+                  20
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ClassroomsController#create_constraint
+                </td>
+                <td>
+                  7 
+                </td>
+                <td>
+                  25
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ClassroomsController#remove_classroom_graduate_course
+                </td>
+                <td>
+                  6 
+                </td>
+                <td>
+                  19
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ClassroomsController#destroy_constraint
+                </td>
+                <td>
+                  5 
+                </td>
+                <td>
+                  17
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ClassroomsController#add_classroom_graduate_course
+                </td>
+                <td>
+                  5 
+                </td>
+                <td>
+                  17
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ClassroomsController#destroy
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ClassroomsController#show
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ClassroomsController#edit_constraints
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ClassroomsController#new
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ClassroomsController#edit
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ClassroomsController#administration
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>teachings_controller.rb</h3>
+          <h4>Class : TeachingsController</h4>
+          <h5>Total complexity : 44</h5>
+          <h5>Total lines : 156</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachingsController#create
+                </td>
+                <td>
+                  11 
+                </td>
+                <td>
+                  25
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachingsController#update
+                </td>
+                <td>
+                  8 
+                </td>
+                <td>
+                  13
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachingsController#index
+                </td>
+                <td>
+                  6 
+                </td>
+                <td>
+                  16
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachingsController#administration
+                </td>
+                <td>
+                  4 
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachingsController#show
+                </td>
+                <td>
+                  4 
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachingsController#destroy
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachingsController#assign_teacher
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachingsController#new
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachingsController#same_graduate_course_required
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachingsController#select_teacher
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachingsController#edit
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>timetables_controller.rb</h3>
+          <h4>Class : TimetablesController</h4>
+          <h5>Total complexity : 40</h5>
+          <h5>Total lines : 154</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  TimetablesController#update
+                </td>
+                <td>
+                  7 
+                </td>
+                <td>
+                  13
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TimetablesController#create
+                </td>
+                <td>
+                  7 
+                </td>
+                <td>
+                  13
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TimetablesController#start
+                </td>
+                <td>
+                  4 
+                </td>
+                <td>
+                  28
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TimetablesController#schedule
+                </td>
+                <td>
+                  4 
+                </td>
+                <td>
+                  22
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TimetablesController#destroy
+                </td>
+                <td>
+                  4 
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TimetablesController#show
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TimetablesController#new
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TimetablesController#index
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TimetablesController#done
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TimetablesController#notify
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TimetablesController#edit
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>graduate_courses_controller.rb</h3>
+          <h4>Class : GraduateCoursesController</h4>
+          <h5>Total complexity : 36</h5>
+          <h5>Total lines : 100</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  GraduateCoursesController#create
+                </td>
+                <td>
+                  16 
+                </td>
+                <td>
+                  28
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  GraduateCoursesController#update
+                </td>
+                <td>
+                  8 
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  GraduateCoursesController#destroy
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  GraduateCoursesController#show
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  GraduateCoursesController#same_graduate_course_required
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  GraduateCoursesController#new
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  GraduateCoursesController#edit
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  GraduateCoursesController#administration
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>buildings_controller.rb</h3>
+          <h4>Class : BuildingsController</h4>
+          <h5>Total complexity : 35</h5>
+          <h5>Total lines : 98</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  BuildingsController#create
+                </td>
+                <td>
+                  12 
+                </td>
+                <td>
+                  24
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  BuildingsController#update
+                </td>
+                <td>
+                  9 
+                </td>
+                <td>
+                  17
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  BuildingsController#index
+                </td>
+                <td>
+                  4 
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  BuildingsController#destroy
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  BuildingsController#show
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  BuildingsController#new
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  BuildingsController#administration
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  BuildingsController#edit
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>curriculums_controller.rb</h3>
+          <h4>Class : CurriculumsController</h4>
+          <h5>Total complexity : 33</h5>
+          <h5>Total lines : 122</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  CurriculumsController#update
+                </td>
+                <td>
+                  8 
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  CurriculumsController#create
+                </td>
+                <td>
+                  8 
+                </td>
+                <td>
+                  13
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  CurriculumsController#update_teachings
+                </td>
+                <td>
+                  5 
+                </td>
+                <td>
+                  21
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  CurriculumsController#show
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  CurriculumsController#destroy
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  CurriculumsController#same_graduate_course_required
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  CurriculumsController#new
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  CurriculumsController#edit
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  CurriculumsController#edit_teachings
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>application_helper.rb</h3>
+          <h4>Class : ApplicationHelper</h4>
+          <h5>Total complexity : 25</h5>
+          <h5>Total lines : 89</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  ApplicationHelper#link
+                </td>
+                <td>
+                  12 
+                </td>
+                <td>
+                  47
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ApplicationHelper#from_id_to_dayname
+                </td>
+                <td>
+                  6 
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ApplicationHelper#first_upper
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ApplicationHelper#user_sidebar
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ApplicationHelper#login_form
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ApplicationHelper#standard_sidebar
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>application.rb</h3>
+          <h4>Class : ApplicationController</h4>
+          <h5>Total complexity : 24</h5>
+          <h5>Total lines : 85</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  ApplicationController#from_dayname_to_id
+                </td>
+                <td>
+                  6 
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ApplicationController#login_required
+                </td>
+                <td>
+                  4 
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ApplicationController#manage_teachings_required
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ApplicationController#manage_buildings_required
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ApplicationController#didactic_office_required
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ApplicationController#manage_graduate_courses_required
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ApplicationController#manage_capabilities_required
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ApplicationController#manage_teachers_required
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ApplicationController#manage_classrooms_required
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>user.rb</h3>
+          <h4>Class : User</h4>
+          <h5>Total complexity : 19</h5>
+          <h5>Total lines : 151</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  User#calculate_digest
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  User#before_destroy
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  User#encrypt_password
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  User#manage_capabilities?
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  User#own_by_teacher?
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  User#manage_graduate_courses?
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  User#own_by_didactic_office?
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  User#manage_timetables?
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  User#manage_buildings?
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  User#manage_classrooms?
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  User#manage_teachings?
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  User#manage_teachers?
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  User#self.authenticate
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  User#active?
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>users_controller.rb</h3>
+          <h4>Class : UsersController</h4>
+          <h5>Total complexity : 13</h5>
+          <h5>Total lines : 46</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  UsersController#update
+                </td>
+                <td>
+                  10 
+                </td>
+                <td>
+                  23
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  UsersController#same_user_required
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  UsersController#edit
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+          <h3>migration_helper.rb</h3>
+          <h4>Class : MigrationHelper</h4>
+          <h5>Total complexity : 5</h5>
+          <h5>Total lines : 22</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  MigrationHelper#fk
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  MigrationHelper#drop_fk
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  MigrationHelper#constraint_name
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>curriculum.rb</h3>
+          <h4>Class : Curriculum</h4>
+          <h5>Total complexity : 5</h5>
+          <h5>Total lines : 48</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  Curriculum#delete_last_teaching
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Curriculum#unique_curriculum_graduate_course?
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Curriculum#before_validation
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>belong.rb</h3>
+          <h4>Class : Belong</h4>
+          <h5>Total complexity : 5</h5>
+          <h5>Total lines : 38</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  Belong#unique_curriculum_id_and_teaching_id?
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Belong#after_destroy
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>sessions_controller.rb</h3>
+          <h4>Class : SessionsController</h4>
+          <h5>Total complexity : 5</h5>
+          <h5>Total lines : 28</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  SessionsController#new
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  SessionsController#create
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  SessionsController#destroy
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>timetable.rb</h3>
+          <h4>Class : Timetable</h4>
+          <h5>Total complexity : 5</h5>
+          <h5>Total lines : 44</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  Timetable#correct_year
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Timetable#unique?
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>teaching.rb</h3>
+          <h4>Class : Teaching</h4>
+          <h5>Total complexity : 4</h5>
+          <h5>Total lines : 75</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  Teaching#check_durata?
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  13
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Teaching#before_validation
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>timetable_entry.rb</h3>
+          <h4>Class : TimetableEntry</h4>
+          <h5>Total complexity : 4</h5>
+          <h5>Total lines : 37</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  TimetableEntry#unique?
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TimetableEntry#is_correct_time?
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+          <h3>graduate_courses_helper.rb</h3>
+          <h4>Class : GraduateCoursesHelper</h4>
+          <h5>Total complexity : 3</h5>
+          <h5>Total lines : 12</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  GraduateCoursesHelper#show_graduate_course
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  GraduateCoursesHelper#show_graduate_course_admin
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  GraduateCoursesHelper#menu_admin
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+          <h3>buildings_helper.rb</h3>
+          <h4>Class : BuildingsHelper</h4>
+          <h5>Total complexity : 3</h5>
+          <h5>Total lines : 10</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  BuildingsHelper#show_building
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  BuildingsHelper#show_building_admin
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  BuildingsHelper#menu_admin
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+          <h3>classrooms_helper.rb</h3>
+          <h4>Class : ClassroomsHelper</h4>
+          <h5>Total complexity : 3</h5>
+          <h5>Total lines : 11</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  ClassroomsHelper#show_classroom
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ClassroomsHelper#show_classroom_admin
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  ClassroomsHelper#menu_admin
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>teacher.rb</h3>
+          <h4>Class : Teacher</h4>
+          <h5>Total complexity : 3</h5>
+          <h5>Total lines : 39</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  Teacher#complete_name
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Teacher#before_destroy
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Teacher#before_validation
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>classroom.rb</h3>
+          <h4>Class : Classroom</h4>
+          <h5>Total complexity : 3</h5>
+          <h5>Total lines : 50</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  Classroom#unique_building_classroom?
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Classroom#before_validation
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+          <h3>teachings_helper.rb</h3>
+          <h4>Class : TeachingsHelper</h4>
+          <h5>Total complexity : 3</h5>
+          <h5>Total lines : 12</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachingsHelper#show_teaching
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachingsHelper#show_teaching_admin
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachingsHelper#menu_admin
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+          <h3>teachers_helper.rb</h3>
+          <h4>Class : TeachersHelper</h4>
+          <h5>Total complexity : 3</h5>
+          <h5>Total lines : 12</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersHelper#show_teacher
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersHelper#show_teacher_admin
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeachersHelper#menu_admin
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>expiry_date.rb</h3>
+          <h4>Class : ExpiryDate</h4>
+          <h5>Total complexity : 3</h5>
+          <h5>Total lines : 32</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  ExpiryDate#is_correct_date?
+                </td>
+                <td>
+                  3 
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>period.rb</h3>
+          <h4>Class : Period</h4>
+          <h5>Total complexity : 2</h5>
+          <h5>Total lines : 29</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  Period#unique_subperiod_year?
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+          <h3>curriculums_helper.rb</h3>
+          <h4>Class : CurriculumsHelper</h4>
+          <h5>Total complexity : 2</h5>
+          <h5>Total lines : 7</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  CurriculumsHelper#show_curriculum
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  CurriculumsHelper#show_curriculum_admin
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+          <h3>temporal_constraint.rb</h3>
+          <h4>Class : </h4>
+          <h5>Total complexity : 2</h5>
+          <h5>Total lines : 5</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  #is_unique_constraint?
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+        
+          <h3>temporal_constraint.rb</h3>
+          <h4>Class : TemporalConstraint</h4>
+          <h5>Total complexity : 2</h5>
+          <h5>Total lines : 38</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  TemporalConstraint#is_correct_time?
+                </td>
+                <td>
+                  2 
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>building.rb</h3>
+          <h4>Class : Building</h4>
+          <h5>Total complexity : 1</h5>
+          <h5>Total lines : 26</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  Building#before_validation
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+          <h3>users_helper.rb</h3>
+          <h4>Class : UsersHelper</h4>
+          <h5>Total complexity : 1</h5>
+          <h5>Total lines : 4</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  UsersHelper#show_not_active_users
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>graduate_course.rb</h3>
+          <h4>Class : GraduateCourse</h4>
+          <h5>Total complexity : 1</h5>
+          <h5>Total lines : 41</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  GraduateCourse#before_validation
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>didactic_office.rb</h3>
+          <h4>Class : DidacticOffice</h4>
+          <h5>Total complexity : 1</h5>
+          <h5>Total lines : 9</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  DidacticOffice#before_destroy
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>academic_organization.rb</h3>
+          <h4>Class : AcademicOrganization</h4>
+          <h5>Total complexity : 1</h5>
+          <h5>Total lines : 36</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  AcademicOrganization#before_validation
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>address.rb</h3>
+          <h4>Class : Address</h4>
+          <h5>Total complexity : 1</h5>
+          <h5>Total lines : 41</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  Address#before_validation
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+          <h3>teacher_mailer.rb</h3>
+          <h4>Class : TeacherMailer</h4>
+          <h5>Total complexity : 1</h5>
+          <h5>Total lines : 12</h5>
+          <table>
+              <tr>
+                <th>Method</th>
+                <th>Complexity</th>
+                <th># Lines</th>
+              </tr>
+            
+              <tr>
+                <td>
+                  TeacherMailer#activate_teacher
+                </td>
+                <td>
+                  1 
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+            
+          </table> 
+        
+    
+ 
+    
+        
+    
+        
+    
+ 
+    
+        
+    
+        
+    
+ 
+    
+        
+    
+        
+    
+ 
+    
+        
+    
+        
+    
+ 
+    
+        
+    
+ 
+    
+        
+    
+ 
+
+	<p>Generated on Thu Jun 04 16:19:06 +0200 2009</p>	
+</body>
+</html>
+
