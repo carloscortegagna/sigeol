@@ -45,7 +45,8 @@ ActionController::Routing::Routes.draw do |map|
                                                 :destroy_all => :delete,
                                                 :notify => :post,
                                                 :done => :post,
-                                                :publicize_all => :post
+                                                :publicize_all => :post,
+                                                :not_found => :get
                                 }
   map.connect '*path', :controller => 'timetables', :action => 'not_found'
 

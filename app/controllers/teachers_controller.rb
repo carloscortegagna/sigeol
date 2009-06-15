@@ -50,12 +50,19 @@ class TeachersController < ApplicationController
 
   # Inizializza le variabili d'istanza @teacher e @user per la vista show.
   def show
-    @teacher = Teacher.find(params[:id])
-    @user = User.find(:first, :include => :address,
-            :conditions => ["specified_type = 'Teacher' AND specified_id = (?)", params[:id]])
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml { render :xml => @user.to_xml(:include => [:address], :except =>[:created_at, :updated_at, :digest, :password, :random]) }
+    notfound = false
+    @teacher = Teacher.find(params[:id]) rescue notfound = true
+    unless notfound
+      @user = User.find(:first, :include => :address,
+              :conditions => ["specified_type = 'Teacher' AND specified_id = (?)", params[:id]])
+    end
+      respond_to do |format|
+        format.html {
+          if notfound
+            redirect_to :controller => 'timetables', :action => 'not_found'
+          end
+          }
+        format.xml { render :xml => @user.to_xml(:include => [:address], :except =>[:created_at, :updated_at, :digest, :password, :random]) }
     end
   end
 

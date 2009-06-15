@@ -20,11 +20,10 @@ class TimetablesController < ApplicationController
 
 
   def not_found
-    flash[:error] = "La pagina richiesta non esiste"
-    redirect_to timetables_url
   end
   def index
     @graduate_courses = GraduateCourse.find(:all, :include => :timetables)
+    @graduate_courses = @graduate_courses.sort_by { |gr| gr['name'] }
     @timetables = Hash.new
     @graduate_courses.each do |g|
       @timetables[g] = Hash.new
