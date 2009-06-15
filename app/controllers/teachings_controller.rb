@@ -38,14 +38,27 @@ class TeachingsController < ApplicationController
 
   # Inizializza le variabili d'istanza @teaching e @teacher per la vista show.
   def show
-    @teaching = Teaching.find(params[:id])
-    @teacher = nil
-    if @teaching.teacher_id != nil
-      @teacher = Teacher.find(@teaching.teacher_id)
+    notfound = false
+    @teaching = Teaching.find(params[:id]) rescue notfound = true
+    unless notfound
+      @teacher = nil
+      if @teaching.teacher_id != nil
+        @teacher = Teacher.find(@teaching.teacher_id)
+      end
     end
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @teaching.to_xml(:except =>[:created_at, :updated_at, :id, :period_id, :teacher_id]) }
+      format.html {
+          if notfound
+            redirect_to :controller => 'timetables', :action => 'not_found'
+          end
+          }
+      format.xml  {
+          if notfound
+            redirect_to :controller => 'timetables', :action => 'not_found'
+          else
+            render :xml => @teaching.to_xml(:except =>[:created_at, :updated_at, :id, :period_id, :teacher_id])
+          end
+      }
     end
   end
 
@@ -77,10 +90,20 @@ class TeachingsController < ApplicationController
 
   # Inizializza le variabili d'istanza @teaching, @period, @year e @subperiod per la vista edit.
   def edit
-    @teaching = Teaching.find(params[:id])
-    @period = @teaching.period
-    @year = Period.find(:all, :select => "DISTINCT year", :conditions=> ["year !=  #{@period.year} "])
-    @subperiod = Period.find(:all, :select => "DISTINCT subperiod",:conditions=> ["subperiod !=  #{@period.subperiod}"])
+    notfound = false
+    @teaching = Teaching.find(params[:id]) rescue notfound = true
+    unless notfound
+      @period = @teaching.period
+      @year = Period.find(:all, :select => "DISTINCT year", :conditions=> ["year !=  #{@period.year} "])
+      @subperiod = Period.find(:all, :select => "DISTINCT subperiod",:conditions=> ["subperiod !=  #{@period.subperiod}"])
+    end
+    respond_to do |format|
+      format.html {
+          if notfound
+            redirect_to :controller => 'timetables', :action => 'not_found'
+          end
+          }
+    end
   end
 
   # Salva un nuovo teaching nel sistema, caratterizzata dai parametri contenuti in params[:teaching].
@@ -183,7 +206,7 @@ class TeachingsController < ApplicationController
     graduate_course = GraduateCourse.find(:all, :include => {:curriculums => :teachings},
                                           :conditions => ["graduate_courses.id IN (?) AND teachings.id = ?", ids, params[:id]])
     unless graduate_course.size != 0
-      flash[:error] = "Questo insegnamento non appartiane a nessun tuo corso di laurea"
+      flash[:error] = "Questo insegnamento non appartiene a nessun tuo corso di laurea"
       redirect_to timetables_url
     end
   end

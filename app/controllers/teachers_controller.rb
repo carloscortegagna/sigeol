@@ -62,7 +62,13 @@ class TeachersController < ApplicationController
             redirect_to :controller => 'timetables', :action => 'not_found'
           end
           }
-        format.xml { render :xml => @user.to_xml(:include => [:address], :except =>[:created_at, :updated_at, :digest, :password, :random]) }
+        format.xml {
+          if notfound
+            redirect_to :controller => 'timetables', :action => 'not_found'
+          else
+            render :xml => @user.to_xml(:include => [:address], :except =>[:created_at, :updated_at, :digest, :password, :random])
+          end
+        }
     end
   end
 

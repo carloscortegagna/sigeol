@@ -40,8 +40,18 @@ class CurriculumsController < ApplicationController
 
   # Inizializza le variabili d'istanza @curriculum e @graduate_courses per la vista edit.
   def edit
-    @curriculum = Curriculum.find(params[:id])
-    @graduate_courses = @current_user.graduate_courses
+    notfound = false
+    @curriculum = Curriculum.find(params[:id]) rescue notfound = true
+    unless notfound
+      @graduate_courses = @current_user.graduate_courses
+    end
+    respond_to do |format|
+        format.html {
+          if notfound
+            redirect_to :controller => 'timetables', :action => 'not_found'
+          end
+          }
+    end
   end
 
   # Salva un nuovo curriculum nel sistema, caratterizzato dai paramentri contenuti in params[:curriculum].
@@ -82,13 +92,22 @@ class CurriculumsController < ApplicationController
 
   # Inizializza le variabili d'istanza @curriculum e @teachings per la vista edit_teachings.
   def edit_teachings
-    @curriculum = Curriculum.find(params[:id])
-    id = @curriculum.graduate_course.id
-    @teachings = Teaching.find(:all, :include => {:curriculums => :graduate_course},
+    notfound = false
+    @curriculum = Curriculum.find(params[:id]) rescue notfound = true
+    unless notfound
+      id = @curriculum.graduate_course.id
+      @teachings = Teaching.find(:all, :include => {:curriculums => :graduate_course},
                                   :conditions => ["graduate_courses.id = ?", id])
-    @teachings = @teachings - @curriculum.teachings
+      @teachings = @teachings - @curriculum.teachings
+    end
+    respond_to do |format|
+        format.html {
+          if notfound
+            redirect_to :controller => 'timetables', :action => 'not_found'
+          end
+          }
+    end
   end
-
   # Gestisce le assegnazioni dei teachings al curriculum passato come parametro (params[:id]).
   # Vengono gestiti distintamente 2 casi:
   # - Se la chiamata al metodo e' di tipo put, viene assegnato l'insegnamento identificato dal parametro params[:teaching_id] al curriculum in oggetto.
@@ -132,11 +151,16 @@ class CurriculumsController < ApplicationController
   # Controlla che lo User attualmente loggato sia effettivamente colui che ha creato il curriculum passato come parametro (params[:id]).
   # In caso negativo, viene fatto un redirect all'index di timetables e viene segnalato l'errore.
   def same_graduate_course_required
+      notfound = false
     ids = @current_user.graduate_course_ids
-    curriculum = Curriculum.find(params[:id])
+    curriculum = Curriculum.find(params[:id]) rescue notfound = true
+    unless notfound
     unless (ids.include?(curriculum.graduate_course_id))
       flash[:error] = "Questo curriculum non appartiene a nessun tuo corso di laurea"
       redirect_to timetables_url
+    end
+    else
+      redirect_to :controller => 'timetables', :action => 'not_found'
     end
   end
   

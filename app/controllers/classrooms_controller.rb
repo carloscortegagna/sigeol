@@ -26,11 +26,24 @@ class ClassroomsController < ApplicationController
   before_filter :classroom_in_use, :only => [:destroy, :edit_constraints, :destroy_constraints, :create_constraints ]
   # Inizializza le variabili d'istanza @classroom e @building per la vista show.
   def show
-    @classroom = Classroom.find(params[:id])
-    @building = Building.find(@classroom.building_id)
+    notfound = false
+    @classroom = Classroom.find(params[:id]) rescue notfound = true
+    unless notfound
+      @building = Building.find(@classroom.building_id)
+    end
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml { render :xml => @classroom.to_xml(:include => :building, :except =>[:created_at, :updated_at]) } # show xml
+      format.html {
+          if notfound
+            redirect_to :controller => 'timetables', :action => 'not_found'
+          end
+          }
+      format.xml { 
+        if notfound
+            redirect_to :controller => 'timetables', :action => 'not_found'
+        else
+          render :xml => @classroom.to_xml(:include => :building, :except =>[:created_at, :updated_at])
+        end
+      } # show xml
     end
   end
 
@@ -46,14 +59,24 @@ class ClassroomsController < ApplicationController
   # Inizializza le variabili d'istanza @classroom, @buildings, @graduate_courses,
   # @graduate_courses_associati e @graduate_courses_non_associati per la vista edit.
   def edit
-    @classroom = Classroom.find(params[:id])
-    @buildings = Building.find(:all)
-    ids = @current_user.graduate_course_ids
-    @graduate_courses = GraduateCourse.find(ids)
-    @graduate_courses_associati = GraduateCourse.find(:all, :include => {:classrooms => :graduate_courses},
+    notfound = false
+    @classroom = Classroom.find(params[:id]) rescue notfound = true
+    unless notfound
+      @buildings = Building.find(:all)
+      ids = @current_user.graduate_course_ids
+      @graduate_courses = GraduateCourse.find(ids)
+      @graduate_courses_associati = GraduateCourse.find(:all, :include => {:classrooms => :graduate_courses},
                                :conditions => ["classrooms_graduate_courses.graduate_course_id IN (?)
                                    AND classrooms_graduate_courses.classroom_id IN (?)", ids, @classroom.id])
-    @graduate_courses_non_associati = @graduate_courses - @graduate_courses_associati
+      @graduate_courses_non_associati = @graduate_courses - @graduate_courses_associati
+    end
+    respond_to do |format|
+      format.html {
+          if notfound
+            redirect_to :controller => 'timetables', :action => 'not_found'
+          end
+          }
+    end
   end
 
   # Salva una nuova classroom nel sistema, caratterizzata dai parametri contenuti in params[:classroom].
@@ -169,12 +192,22 @@ class ClassroomsController < ApplicationController
 
   # Inizializza le variabili d'istanza @classroom e @constraints per la vista edit_constraints.
   def edit_constraints
-    @classroom = Classroom.find(params[:id])
-    classroom_constraint_ids = ConstraintsOwner.find(:all,
-      :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Classroom' AND owner_id = (?)", params[:id]], :select => ['constraint_id'])
-    @constraints = []
-    for id in classroom_constraint_ids do
-      @constraints << TemporalConstraint.find(id.constraint_id)
+    notfound = false
+    @classroom = Classroom.find(params[:id]) rescue notfound = true
+    unless notfound
+     classroom_constraint_ids = ConstraintsOwner.find(:all,
+       :conditions => ["constraint_type = 'TemporalConstraint' AND owner_type = 'Classroom' AND owner_id = (?)", params[:id]], :select => ['constraint_id'])
+     @constraints = []
+     for id in classroom_constraint_ids do
+       @constraints << TemporalConstraint.find(id.constraint_id)
+     end
+    end
+    respond_to do |format|
+        format.html {
+          if notfound
+            redirect_to :controller => 'timetables', :action => 'not_found'
+          end
+          }
     end
   end
 
@@ -232,20 +265,27 @@ class ClassroomsController < ApplicationController
   private
 
     def classroom_in_use
-      classroom = Classroom.find(params[:id])
-      graduate_courses = classroom.graduate_courses
-      in_use = false
-      name = nil
-      graduate_courses.each do |g|
-        if g.timetables_in_generation?
-          in_use = true
-          name = g.name
-          break
+      notfound = false
+      classroom = Classroom.find(params[:id]) rescue notfound = true
+      unless notfound
+        graduate_courses = classroom.graduate_courses
+        in_use = false
+        name = nil
+        graduate_courses.each do |g|
+          if g.timetables_in_generation?
+            in_use = true
+            name = g.name
+            break
+          end
         end
       end
-      if in_use
-        flash[:error] = "Non è possibile modificare quest'aula in quanto è in uso per la generazione dell'orario per il corso di laurea " +name
-        redirect_to administration_classrooms_url
+      unless notfound
+        if in_use
+          flash[:error] = "Non è possibile modificare quest'aula in quanto è in uso per la generazione dell'orario per il corso di laurea " +name
+          redirect_to administration_classrooms_url
+        end
+      else
+        redirect_to :controller => 'timetables', :action => 'not_found'
       end
     end
 end

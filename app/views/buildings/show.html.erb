@@ -1,4 +1,11 @@
-<h1><%=h @building.name %></h1>
+<h1>
+  <%=h @building.name %>
+  <form action="http://maps.google.com/maps" method="get" style="display:inline" target="_blank">
+    <%= image_submit_tag "/images/maps.gif", :title => "Cerca l'indirizzo con Google Maps", :style => "padding:1em 0 0 1em" %>
+    <input type="hidden" name="q" value="<%= @building.address.street %> <%= @building.address.city %>" />
+    <input type="hidden" name="hl" value="it" />
+  </form>
+</h1>
 <p><strong>Città:</strong> <%=h @address.city %></p>
 <p><strong>Indirizzo:</strong> <%= @address.street %></p>
 <% if !(@address.telephone.eql?(""))  %>

@@ -41,13 +41,26 @@ class BuildingsController < ApplicationController
 
   # metodo che inizializza le variabili d'istanza @building, @building_classrooms e @address per la vista show
   def show
-    @building = Building.find(params[:id])
-    @building_classrooms = Classroom.find(:all, :conditions => { :building_id => params[:id] }) #lista delle aule di quell'edificio
-    @address = Address.find(@building.address_id)
+    notfound = false
+    @building = Building.find(params[:id]) rescue notfound = true
+    unless notfound
+     @building_classrooms = Classroom.find(:all, :conditions => { :building_id => params[:id] }) #lista delle aule di quell'edificio
+     @address = Address.find(@building.address_id)
+     end
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml { render :xml => @building.to_xml(:include =>[:address, :classrooms], :except =>[:created_at, :updated_at, :id, :building_id, :address_id]) } # show xml
-    end
+      format.html {
+          if notfound
+            redirect_to :controller => 'timetables', :action => 'not_found'
+          end
+          }
+      format.xml {
+          if notfound
+            redirect_to :controller => 'timetables', :action => 'not_found'
+          else
+            render :xml => @building.to_xml(:include =>[:address, :classrooms], :except =>[:created_at, :updated_at, :id, :building_id, :address_id])  # show xml
+          end
+          }
+      end
   end
 
   # metodo che crea 2 nuove variabili d'istanza (@building e @address) per la vista new
@@ -61,8 +74,18 @@ class BuildingsController < ApplicationController
 
   # metodo che inizializza le variabili d'istanza @building e @address per la vista edit
   def edit
-    @building = Building.find(params[:id])
-    @address = Address.find(@building.address_id)
+    notfound = false
+    @building = Building.find(params[:id]) rescue notfound = true
+    unless notfound
+     @address = Address.find(@building.address_id)
+    end
+    respond_to do |format|
+        format.html {
+          if notfound
+            redirect_to :controller => 'timetables', :action => 'not_found'
+          end
+          }
+    end
   end
 
   # Salva un nuovo building e il suo relativo address nel sistema, caratterizzati rispettivamente dai

@@ -26,11 +26,17 @@ class GraduateCoursesController < ApplicationController
 
   # Inizializza la variabile d'istanza @graduate_course e @academic_organization per la vista show
   def show
-    @graduate_course = GraduateCourse.find(params[:id])
-    @academic_organization = AcademicOrganization.find(@graduate_course.academic_organization_id)
+    notfound = false
+    @graduate_course = GraduateCourse.find(params[:id]) rescue notfound = true
+    unless notfound
+      @academic_organization = AcademicOrganization.find(@graduate_course.academic_organization_id)
+    end
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml { render :xml => @graduate_course.to_xml }
+      format.html {
+          if notfound
+            redirect_to :controller => 'timetables', :action => 'not_found'
+          end
+          }
     end
   end
 
@@ -45,8 +51,18 @@ class GraduateCoursesController < ApplicationController
 
   # Inizializza le variabili d'istanza @graduate_course e @academic_organization per la vista edit.
   def edit
-    @graduate_course = GraduateCourse.find(params[:id])
-    @academic_organization = AcademicOrganization.find(:all)
+    notfound = false
+    @graduate_course = GraduateCourse.find(params[:id]) rescue notfound = true
+    unless notfound
+      @academic_organization = AcademicOrganization.find(:all)
+    end
+    respond_to do |format|
+      format.html {
+          if notfound
+            redirect_to :controller => 'timetables', :action => 'not_found'
+          end
+          }
+    end
   end
 
   # Salva un nuovo graduate_course nel sistema, caratterizzata dai parametri contenuti in params[:graduate_course].
@@ -119,9 +135,15 @@ class GraduateCoursesController < ApplicationController
   # Controlla che lo User attualmente loggato sia effettivamente colui che ha creato il graduate_course passato come parametro (params[:id]).
   # In caso negativo, viene fatto un redirect all'index di timetables e viene segnalato l'errore.
   def same_graduate_course_required
-    if (!@current_user.graduate_courses.find(params[:id]))
-      flash[:error] = "Non puoi modificare questo corso di laurea"
-      redirect_to timetables_url
+    notfound = false
+    gc = @current_user.graduate_courses.find(params[:id]) rescue notfound = true
+    unless notfound
+      if (!gc)
+        flash[:error] = "Non puoi modificare questo corso di laurea"
+        redirect_to timetables_url
+      end
+    else
+      redirect_to :controller => 'timetables', :action => 'not_found'
     end
   end
   

@@ -2,11 +2,6 @@
 <% for b in @buildings do %>
   <h3>
     <%= link_to b.name, building_path(b) %>
-    <form action="http://maps.google.com/maps" method="get" style="display:inline" target="_blank">
-      <%= image_submit_tag "/images/maps.gif", :title => "Cerca l'indirizzo con Google Maps", :style => "padding:1em 0 0 1em" %>
-      <input type="hidden" name="q" value="<%= b.address.street %> <%= b.address.city %> Veneto Italia" />
-      <input type="hidden" name="hl" value="it" />
-    </form>
   </h3>
   <% esito = 0 %>
   <% @classrooms.each do |c| %>

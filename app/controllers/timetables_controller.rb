@@ -51,30 +51,47 @@ class TimetablesController < ApplicationController
 end
 
    def show
-    @timetable = Timetable.find(params[:id])
-    table_entries = @timetable.timetable_entries.find(:all, :order=>"startTime ASC, day ASC")
-    @min_startTime = table_entries.first.startTime
-    @duration = table_entries.first.endTime - @min_startTime
-    max_startTime = table_entries.last.startTime
-    rows = (((max_startTime - @min_startTime) / @duration) + 1).to_i
-    @timetable_entries = Array.new
-    for i in 0..(rows-1)
-      @timetable_entries[i] = Array.new
-    end
-    @timetable_entries.each do |t|
-      for j in 0..4
-        t[j] = nil
+    notfound = false
+    @timetable = Timetable.find(params[:id]) rescue notfound = true
+    unless notfound
+      table_entries = @timetable.timetable_entries.find(:all, :order=>"startTime ASC, day ASC")
+      @min_startTime = table_entries.first.startTime
+      @duration = table_entries.first.endTime - @min_startTime
+      max_startTime = table_entries.last.startTime
+      rows = (((max_startTime - @min_startTime) / @duration) + 1).to_i
+      @timetable_entries = Array.new
+      for i in 0..(rows-1)
+        @timetable_entries[i] = Array.new
+      end
+      @timetable_entries.each do |t|
+        for j in 0..4
+          t[j] = nil
+        end
+      end
+      table_entries.each do |t|
+        column = ((t.startTime - @min_startTime)/ @duration).to_i
+        row = (t.day - 1).to_i
+        @timetable_entries [column][row] = t
       end
     end
-    table_entries.each do |t|
-      column = ((t.startTime - @min_startTime)/ @duration).to_i
-      row = (t.day - 1).to_i
-      @timetable_entries [column][row] = t
-    end
     respond_to do |format|
-      format.html
-      format.xml  { render :xml => @timetable.to_xml(:include => :timetable_entries, :except =>[:created_at, :updated_at]) }
-      format.pdf
+      format.html {
+          if notfound
+            redirect_to :controller => 'timetables', :action => 'not_found'
+          end
+          }
+      format.xml  {
+        if notfound
+          redirect_to :controller => 'timetables', :action => 'not_found'
+        else
+          render :xml => @timetable.to_xml(:include => :timetable_entries, :except =>[:created_at, :updated_at])
+        end
+      }
+      format.pdf  {
+          if notfound
+            redirect_to :controller => 'timetables', :action => 'not_found'
+          end
+        }
     end
   end
 
