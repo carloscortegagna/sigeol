@@ -18,7 +18,7 @@
               <% complete = true %>
               <% if graduate_course.timetables_in_generation_specific?(period, year) %>
                 <% complete = false %>
-                <td><%= image_tag "generating.gif" %>&nbsp;&nbsp;in generazione . . .</td>
+                <td><%= image_tag "generating.gif", :style=>"padding-top:1px" %>&nbsp;&nbsp;in generazione . . .</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -26,7 +26,7 @@
               <% end %>
               <% if graduate_course.timetables_in_schedulation_specific?(period, year) %>
                 <% complete = false %>
-                <td>In programmazione</td>
+                <td><%= image_tag "programming.gif", :style=>"padding-top:1px" %>&nbsp;&nbsp;in programmazione</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -49,7 +49,7 @@
                 <td><%= link_to image_tag("/images/delete.png"), destroy_all_timetables_path(:year => year, :subperiod => period, :graduate_course => graduate_course.id), :method => :delete, :title => "Elimina lo schema d'orario", :confirm=>"Sei sicuro di voler eliminare definitivamente lo schema d'orario generato?" %></td>
               <% end %>
             <% else %>
-              <td style="vertical-align:middle"><%= image_tag "wand.gif" %>&nbsp;&nbsp;<%= link_to "Genera", :action => :new, :subperiod => period, :graduate_course => graduate_course.id, :year => year%></td>
+              <td><%= image_tag "wand.gif" %>&nbsp;&nbsp;<%= link_to "Genera", :action => :new, :subperiod => period, :graduate_course => graduate_course.id, :year => year %></td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
