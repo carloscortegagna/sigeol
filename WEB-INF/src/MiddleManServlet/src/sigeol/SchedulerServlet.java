@@ -216,6 +216,7 @@ public class SchedulerServlet extends HttpServlet {
         String course="";
         String year="";
         String subperiod="";
+        String timeout = null;
         String input_path = cfg.getInitParameter("input-itc-path");
         String output_path = cfg.getInitParameter("output-itc-path");
         String url_client = cfg.getInitParameter("url-client");
@@ -249,6 +250,8 @@ public class SchedulerServlet extends HttpServlet {
                         year=item.getString();
                     if (name.equals("subperiod"))
                         subperiod = item.getString();
+                    if (name.equals("timeout"))
+                        timeout = item.getString();
                 }
                 if (!(item.isFormField()))
                 {
@@ -262,11 +265,10 @@ public class SchedulerServlet extends HttpServlet {
                 }
             }
             
-            String timeout = null;
+            
 
             // creazione evento di esecuzione istantanea del job
             if (!course.equals("")) {
-                timeout = request.getParameter("timeout");
                 if (timeout == null) {
                     timeout = "50";
                 }

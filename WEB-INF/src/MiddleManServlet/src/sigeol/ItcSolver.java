@@ -337,6 +337,7 @@ public class ItcSolver {
        
         try {
             if (init(inputFile,outputFile, timeout, seed)) {
+                System.out.println("timeout: "+timeout);
                Solution s = solve();
                 //ItcModel m = (ItcModel)s.getModel();
                 //Hashtable hash = m.getInfo();
