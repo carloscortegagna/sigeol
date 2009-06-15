@@ -136,7 +136,6 @@ Sia prima sia dopo aver effettuato il login, sono sempre disponibili anche le fu
 Il presente manuale descrive brevemente le parti pubbliche del progetto (vedi sezione `Descrizione Generale`) e si focalizza in seguito sulle funzionalità private dedicate ai docenti (sezione `Azioni Richieste - Permesse`).
 
 Saranno illustrate e descritte tutte le possibili operazioni effettuabili, con l'aiuto di \underline{screenshot} qualora ve ne fosse la necessità.
-Per non appesantire troppo la lettura e la consultazione del presente manuale utente, alcune funzionalità che il team QuiXoft ha ritenuto di facile comprensione non sono accompagnate da screenshot.
 
 Proseguendo con la lettura, saranno elencati i vari errori a cui si potrà andare incontro utilizzando il progetto SIGEOL, e le eventuali soluzioni per porvi rimedio.
 
@@ -205,13 +204,13 @@ Sul lato sinistro del sito si trova la form di login, in cui si potranno inserir
 \subsection{Azioni richieste/permesse}
 Ogni capitolo di questa sezione si riferisce ad una particolare funzione che il sistema SIGEOL mette a disposizione dei docenti.
 \subsubsection{Form di Login}
+La form di login, come si vede in figura 4.2.1.1, offre la possibiltà agli utenti come la segreteria didattica o i docenti di inserire il proprio username (corrispondente all'indirizzo email) e la relativa password per poter accedere alle funzioni private messe a loro disposizione.
 
 \begin{center}
 	\includegraphics[scale=0.5]{images/login.jpg}\\
 	\textbf{fig. 4.2.1.1} Form di login\\
 \end{center}
-
-La form di login, come si vede in figura 4.2.1.1, offre la possibiltà agli utenti come la segreteria didattica o i docenti di inserire il proprio username (corrispondente all'indirizzo email) e la relativa password per poter accedere alle funzioni private messe a loro disposizione.
+\bigskip
 
 In caso di login corretto verrà visualizzata nuovamente la pagina principale del prodotto SIGEOL, con in più i link a tutte le funzioni private accessibili.
 In caso di errore nell'inserimento dell'indirizzo email o della password verrà visualizzato un messaggio di notifica di tale errore.
@@ -227,6 +226,7 @@ Non è possibile registrarsi al sistema senza essere stati preventivamente invit
 	\includegraphics[scale=0.5]{images/registrazione_docente.jpg}\\ 
 	\textbf{fig. 4.2.2.1} Form di registrazione docenti\\
 \end{center}
+\bigskip
 
 L'unica modalità per completare la registrazione è seguire il link che verrà spedito alla casella di posta elettronica di ogni docente invitato dalla segreteria didattica. Questo link porta alla form illustrata in figura 4.2.2.1, in cui si dovranno inserire i seguenti dati:
 \begin{itemize}
@@ -245,22 +245,24 @@ D'ora in poi sarà possibile accedere al sistema SIGEOL completando il login con
 I dati personali inseriti in fase di registrazione possono essere cambiati in ogni momento seguendo il link `Dati personali`, visibile e accessibile solamente dopo aver effettuato con successo il login.
 
 \begin{center}
-	%\includegraphics[scale=0.5]{images/dati_personali.jpg}\\ 
+	\includegraphics[scale=0.5]{images/dati_personali.jpg}\\ 
 	\textbf{fig. 4.2.3.1} Form di registrazione docenti\\
 \end{center}
+\bigskip
 
 I dati che è possibile aggiornare, come mostrato in figura 4.2.3.1, sono gli stessi inseriti in fase di registrazione, eccezion fatta per la password, che ha a disposizione una funzione di aggiornamento dedicata. Le regole da seguire per il completamento dei campi sono le stesse sopra illustrate per la funzionalità di registrazione.
 \subsubsection{Cambio Password}
 La pagina di cambio password permette semplicemente di modificare la password del proprio \underline{account}. E' raggiungibile seguendo il link `Cambio password` presente nella barra laterale.
 
-La procedura è particolarmente semplice: è sufficiente inserire esattamente la password vecchia, inserire la nuova password e la sua conferma e, per finire, premere il pulsante `Cambio Password`, come illustrato in figura 4.2.4.1.
+La procedura è particolarmente semplice: è sufficiente inserire esattamente la password vecchia, inserire la nuova password e la sua conferma e, per finire, premere il pulsante `Cambia Password`, come illustrato in figura 4.2.4.1.
 
 \begin{center}
 	\includegraphics[scale=0.5]{images/cambio_password.jpg}\\
 	\textbf{fig. 4.2.4.1} Form di cambio password\\
 \end{center}
+\bigskip
 
-\subsubsection{Inserimento vincoli}
+\subsubsection{Gestione vincoli}
 La pagina di inserimento vincoli, raggiungibile seguendo il link `Vincoli`, permette di inserire degli intervalli temporali in cui il docente non può tenere una lezione.
 
 Tale pagina, visibile in figura 4.2.5.1, contiene una lista dei vincoli inseriti precedentemente dal docente, che potranno essere eventualmente cancellati selezionando il link caratterizzato dalla X rossa, presente a fianco di ogni vincolo.
@@ -270,6 +272,12 @@ Un docente è tenuto ad inserire un vincolo di indisponibilità qualcora, per va
 
 I vincoli inseriti all'interno del sistema SIGEOL verranno automaticamente accettati e categoricamente rispettati nel calcolo dell'orario delle lezioni.
 Nel caso il sistema non riesca a generare l'orario delle lezioni rispettando tutti i vincoli inseriti da tutti i docenti, sarà compito della segreteria didattica o del presidente del CCS rilassare uno o più vincoli, o chiedere ai rispettivi docenti di modificare o eliminare un determinato vincolo.
+
+\begin{center}
+	\includegraphics[scale=0.5]{images/vincoli_docente.jpg}\\
+	\textbf{fig. 4.2.5.1} Pagina di gestione dei vincoli temporali di indisponibilità\\
+\end{center}
+\bigskip
 
 Al momento dell'inserimento, i vincoli devono essere dotati di un opportuna motivazione, che sarà consultabile dalla segreteria didattica e dal presidente del CCS per valutarne la validità.
 
@@ -281,8 +289,14 @@ I campi dato da completare nel momento dell'inserimento di un nuovo vincolo sono
 \end{itemize}
 Al termine dell'inserimento di tutti i dati è sufficiente premere il pulsante `Aggiungi vincolo` per memorizzare il vincolo all'interno del sitema SIGEOL: d'ora in poi tale vincolo verrà rispettato nel calcolo dell'orario delle lezioni.
 
-\subsubsection{Inserimento preferenze}
+\subsubsection{Gestione preferenze}
 La pagina di inserimento delle preferenze, raggiungibile seguendo il link `Preferenze`, permette di inserire degli intervalli temporali in cui il docente preferisce non tenere una lezione.
+
+\begin{center}
+	\includegraphics[scale=0.5]{images/preferenze_docente.jpg}\\
+	\textbf{fig. 4.2.6.1} Pagina di gestione delle preferenze temporali di indisponibilità\\
+\end{center}
+\bigskip
 
 Tale pagina, visibile in figura 4.2.6.1, contiene una lista delle preferenze inserite precedentemente dal docente, che potranno essere eventualmente cancellati selezionando il link caratterizzato dalla X rossa, presente a fianco di ogni vincolo.
 
@@ -304,14 +318,14 @@ I campi dato da completare nel momento dell'inserimento di una nuova preferenza 
 Al termine dell'inserimento di tutti i dati è sufficiente premere il pulsante `Aggiungi preferenza` per memorizzare la preferenza all'interno del sistema SIGEOL.
 
 \subsection{Errori probabili e cause possibili}
-L'inserimento dei dati nelle varie form da parte della segreteria didattica è seguito passo passo dal sistema SIGEOL: ogni dato è controllato e validato prima di essere salvato in modo persistente.
+L'inserimento dei dati nelle varie form da parte dei docenti è seguito passo passo dal sistema SIGEOL: ogni dato è controllato e validato prima di essere salvato in modo persistente.
 
 E' pertanto difficile, se non impossibile, inserire dati errati senza che questo venga segnalato.
 La segnalazione degli errori avverrà in seguito alla pressione del pulsante di invio dei dati: verrà quindi visualizzata nuovamente la form da cui si era partiti, con in più la segnalazione dell'errore. Sarà quindi sufficiente correggere il dato che ha generato l'errore e premere nuovamente il pulsante di invio dei dati (che potrà essere `Salva`, `Salva Modifiche` o altro, in base alla form su cui si sta lavorando).
 
 Per non andare incontro a segnalazioni continue di errori è necessario seguire le linee guida indicate nella sezione `Azioni richieste - permesse` del presente documento, di volta in volta consultando la sottosezione relativa alla funzionalità che si sta usando.
 
-Oltre a segnalazioni per inserimenti errati o campi dato non completati, è possibile che si verifichino errori più gravi per cause non dipendenti dall'utente che sta usando il sistema in quel momento.
+Oltre a segnalazioni per inserimenti errati o campi dato non completati, è possibile che si verifichino errori più gravi per cause non dipendenti dall'utente che sta usando il sistema in quel momento, dovuti per esempio all'infrastruttura di rete o a problemi hardware dei personal computer impiegati.
 Per una lista completa di tali errori, per le possibili cause e per le eventuali soluzioni si prega di consultare la sezione `Messaggi di errore e loro significato` presente in appendice al presente documento.
 \newpage
 \section{Appendice}
