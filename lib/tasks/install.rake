@@ -1,7 +1,7 @@
 namespace :install do
   desc "Creazione di una nuova segreteria, un nuovo presidente del CCS ed un nuovo corso di laurea"
   task(:setup_db => :environment) do
-    confirm = "SI"
+    confirm = "NO"
     didactic_office_mail = nil
     didactic_office_password = nil
     presidente_mail = nil
@@ -14,7 +14,7 @@ namespace :install do
     gs_name = nil
     gs_academic_organization = nil
     gs_duration = nil
-    while (confirm.eql?("SI"))
+    while (!confirm.eql?("SI"))
       print "Inserisci l'indirizzo e-mail della nuova segreteria: "
       didactic_office_mail = STDIN.gets.chomp
       print "\n"
