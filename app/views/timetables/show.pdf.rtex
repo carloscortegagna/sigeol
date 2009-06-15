@@ -18,8 +18,20 @@
 \hline \hline
 <% i = 0  %>
   <% @timetable_entries.each do |c| %>
+ <% minuti = (@min_startTime+(i*@duration)).min.to_i %>
+        <% if minuti < 10 %>
+          <% minuti="0"+minuti.to_s %>
+        <% else %>
+          <% minuti=minuti.to_s %>
+        <% end %>
+        <% minutii = (@min_startTime+((i+1)*@duration)).min.to_i %>
+        <% if minutii < 10 %>
+          <% minutii="0"+minutii.to_s %>
+        <% else %>
+          <% minutii = minutii.to_s %>
+        <% end %>
 \begin{tabular}{c}
- <%= (@min_startTime+(i*@duration)).hour.to_s + ":" + (@min_startTime+(i*@duration)).min.to_s %> \\  <%= (@min_startTime+((i+1)*@duration)).hour.to_s + ":" + (@min_startTime+((i+1)*@duration)).min.to_s %> 
+ <%= (@min_startTime+(i*@duration)).hour.to_s + ":" + minuti %> \\  <%= (@min_startTime+((i+1)*@duration)).hour.to_s + ":" + minutii %>
 \end{tabular}
       <% c.each do |t| %>
           &
