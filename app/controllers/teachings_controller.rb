@@ -16,7 +16,6 @@ class TeachingsController < ApplicationController
   before_filter :manage_teachings_required, :except => [:index, :show]
   before_filter :same_graduate_course_required, :only => [:edit, :update, :destroy,
                                                           :select_teacher, :assign_teacher]
-
   # Inizializza le variabili d'istanza @teachings e @graduate_courses per la vista index.
   def index
     @teachings = Teaching.find(:all)

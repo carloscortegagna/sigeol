@@ -34,7 +34,7 @@ class TeachersController < ApplicationController
                                                           :edit_capabilities, :update_capabilities]
   before_filter :same_teacher_required, :only => [:edit, :update_personal_data, :edit_constraints, :edit_preferences,
                                                           :create_constraint, :destroy_constraint]
-  before_filter :teacher_in_use, :only => [:edit_constraints, :edit_preferences,:create_constraint, :destroy_constraint]
+  before_filter :teacher_in_use, :only => [:edit_constraints, :edit_preferences,:create_constraint, :destroy_constraint, :destroy, :edit_graduate_courses, :manage_constraints]
 
   # Inizializza la variabile d'istanza @teachers per la vista index.
   def index
