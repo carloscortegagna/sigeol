@@ -372,7 +372,7 @@ end
     post["year"] = year
     post["subperiod"] = subperiod
     post["inputfile"] = file
-    #post['timeout'] = CONFIG['servlet']['timeout']
+    post['timeout'] = CONFIG['servlet']['timeout']
     mp = TimetablesHelper::MultipartPost.new
     query, headers = mp.prepare_query(post)
     file.close
@@ -698,15 +698,10 @@ end
     change = false
     teaching_in_error = nil
     periods = calculate_periods(g)
-    periods.each do |per|
-      puts "PERIOD START:" + per["start"].to_s
-      puts "PERIOD END:" + per["end"].to_s
-    end
     for i in 1..g.duration
       p = Period.find_by_year_and_subperiod(i,subperiod)
       timetables << g.timetables.find(:first, :conditions => ["period_id = ? AND year = ?", p.id, academic_year])
     end
-    puts string_file
     string_file.each_line do |line|
       if line != "UNSATISFIED PREFERENCES:\n" && !change
       a = line.scan(/\w+/)
