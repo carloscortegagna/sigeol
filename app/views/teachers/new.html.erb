@@ -8,6 +8,7 @@
         <%= @teacher.errors.on(:mail) %>
      </span>
   </p>
+  <% if @graduate_courses.size != 0 %>
   <p>
     <%= label_tag 'graduate_course_id', 'Corso di laurea: *' %>
     <%= select_tag "graduate_course_id", options_from_collection_for_select(@graduate_courses, "id", "name") %>
@@ -15,6 +16,7 @@
         <%= @teacher.errors.on(:graduate_courses) %>
      </span>
   </p>
+  <%  end %>
   <p><strong>Nota:</strong> nel caso il docente appartenga a più corsi di laurea sceglierne uno per l'invito, sarà comunque possibile modificare le associazioni in seguito.</p>
   <p>* campi obbligatori</p>
   <p>
