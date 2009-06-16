@@ -16,16 +16,16 @@
           <th>Giorno</th>
           <th>Corso d'insegnamento</th>
         </tr>
-        <tr>
           <% i = 0 %>
           <% @entries.each do |e| %>
-          <td><%=  (e.startTime).to_s(:time)%></td>
-          <td><%=  (e.endTime).to_s(:time)%></td>
-          <td><%=  @days[i] %></td>
+          <tr>
+          <td><%=h e.startTime.to_s(:time) %></td>
+          <td><%=h e.endTime.to_s(:time) %></td>
+          <td><%=h @days[i] %></td>
+          <td><%=h e.teaching.name%></td>
           <% i+=1 %>
-          <td><%=  e.teaching.name%></td>
-         <% end %>
           </tr>
+         <% end %>
           </table>
     </p>
     <p>

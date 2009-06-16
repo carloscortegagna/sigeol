@@ -56,7 +56,7 @@ include ApplicationHelper
     entries_array = []
     days_array = []
     timetables.each do |t|
-      entries_array += (t.timetable_entries).find(:all,:include=> {:teaching => :timetable_entries},:conditions => ["teachings.teacher_id = (?)", teacher.id])
+      entries_array += (t.timetable_entries).find(:all,:include=> [:teaching],:conditions => ["teachings.teacher_id = (?)", teacher.id], :order=>"startTime ASC, day ASC")
     end
    entries_array.each do |e|
      days_array += [from_id_to_dayname(e.day)]
@@ -84,7 +84,7 @@ include ApplicationHelper
   end
 
   def timetable_calculate_is_ended(receiver,graduate_course,p)
-     didactic_office = (graduate_course.users).find(:first,:conditions=>["specified_type = 'DidacticOffice'"])
+    didactic_office = (graduate_course.users).find(:first,:conditions=>["specified_type = 'DidacticOffice'"])
     gc =  graduate_course
     period = p
     academic_organization = singolar_academic_organization(gc.academic_organization.name)

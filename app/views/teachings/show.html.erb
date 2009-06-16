@@ -3,6 +3,8 @@
 <p><strong>Ore settimanali in aula:</strong> <%= @teaching.classHours %></p>
 <p><strong>Ore settimanali in laboratorio:</strong> <%= @teaching.labHours %></p>
 <p><strong>Numero di studenti stimato:</strong> <%=h @teaching.studentsNumber %></p>
+<p><strong>Periodo:</strong> <%=h @teaching.period.subperiod %></p>
+<p><strong>Anno:</strong> <%=h @teaching.period.year %></p>
 <% if @teacher == nil %>
   Non è stato ancora assegnato un docente a quest'insegnamento
 <% else %>

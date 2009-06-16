@@ -351,12 +351,12 @@ end
     string_file = params[:inputfile].read
     gs = GraduateCourse.find(params[:graduate_course])
     year = params[:year]
-    subperiod = params[:subperiod]
+    subperiod = params[:subperiod].to_i
     process_file(gs, year, subperiod, string_file)
     cap = Capability.find_by_name("Gestione schemi d'orario")
-    receivers = graduate_course.users.find(:all, :include => :capabilities, :conditions => ["capabilities.id = ?", cap.id])
+    receivers = gs.users.find(:all, :include => :capabilities, :conditions => ["capabilities.id = ?", cap.id])
     receivers.each do |r|
-      TeacherMailer.deliver_timetable_calculate_is_ended(r,gs,params[:subperiod].to_i)
+      TeacherMailer.deliver_timetable_calculate_is_ended(r,gs,subperiod)
     end
   end
 
@@ -365,7 +365,8 @@ end
     done = false
     #prepara il file di input
     filename = create_input_file(gs,subperiod)
-    file = File.open("/tmp1/"+filename,"r")
+    root = RAILS_ROOT
+    file = File.open(root +"/tmp/"+filename,"r")
     post = Hash.new
     post["op"] = "dj"
     post["graduate_course"] = gs.id
@@ -376,7 +377,6 @@ end
     mp = TimetablesHelper::MultipartPost.new
     query, headers = mp.prepare_query(post)
     file.close
-    #file.delete
     #URL della servlet
     url = URI.parse(CONFIG['servlet']['address'])
     #impostazione del metodo POST
@@ -393,6 +393,7 @@ end
         done = false
       #errore connessione.. riprovare
     end
+    File.delete(root +"/tmp/"+filename)
     return done
   end
 
@@ -469,7 +470,8 @@ end
     periods = calculate_periods(gs)
     rooms = graduate_course.classrooms
     filename = "input"+subperiod.to_s+"-"+gs.name+".ctt"
-    f = File.new("/tmp1/"+filename, "w")
+    root = RAILS_ROOT
+    f = File.new(root +"/tmp/"+filename, "w")
       f.puts "Name: " + gs.name
       f.puts "Courses: " + (teachings.size + doppi).to_s
       f.puts "Rooms: " + (rooms.size).to_s
