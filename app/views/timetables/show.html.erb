@@ -1,4 +1,4 @@
-<h1>Orario <%= @timetable.graduate_course.name  %> <%= @timetable.period.year.to_s + "° anno" %></h1>
+<h1>Orario <%= @timetable.graduate_course.name  %> <%= @timetable.period.year.to_s + "° anno" %> <%= @timetable.period.subperiod.to_s + "° periodo" %></h1>
 <table class="list_table">
   <tr>
     <th></th>
