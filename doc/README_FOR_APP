@@ -1,3 +1,4 @@
-SIGEOL è un sistema per la generazione automatica degli orari delle lezioni per i corsi di laurea universitari.
-La seguente documentazione si riferisce alla parte amministrativa e gestionale per la raccolta delle informazioni
-che verranno successivamente inviate ad un algoritmo che effettuerà il calcolo degli orari.
+SIGEOL è un sistema per la generazione automatica degli orari delle lezione per i corsi di laurea universitari.
+La presente documentazione fornisce descrizione di tutte le classi, i moduli ed i metodi presenti nella sezione
+amministrativa e gestionale per la raccolta delle informazioni che successivamente verranno inviate ad un
+algoritmo per la generazione.
