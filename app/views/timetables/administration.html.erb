@@ -50,6 +50,8 @@
                     <td rowspan="<%= timetables.size %>">
                       <% if !public %>
                         <%= link_to image_tag("/images/world.gif"), publicize_all_timetables_path(:year => year, :subperiod => period, :graduate_course => graduate_course.id), :method => :post, :title => "Rendi pubblico lo schema d'orario" %>
+                      <% else %>
+                        <%= image_tag("/images/world_disabled.gif") %>
                       <% end %>
                     </td>
                     <td rowspan="<%= timetables.size %>">
