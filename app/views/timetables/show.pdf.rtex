@@ -1,18 +1,22 @@
-\documentclass[a4paper,10pt]{article}
+\documentclass{amsart}
 
+\usepackage[margin=0.5in]{geometry}
 \usepackage{array}
 \usepackage{color}
 \usepackage{colortbl}
 \arrayrulecolor{blue}
+\usepackage{tabularx}
 
 \thispagestyle{empty}
 \begin{document}
 \begin{center}
-\section*{Orario <%= @timetable.graduate_course.name  %> <%= @timetable.period.year.to_s + "° anno" %>} \\
+\textbf{Orario <%= @timetable.graduate_course.name  %> <%= @timetable.period.year.to_s + "° anno" %>} \\
 \end{center}
 \bigskip
-\begin{left}
-\begin{tabular}{|c||c|c|c|c|c|c||c|}
+\bigskip
+\bigskip
+\begin{small}
+\begin{tabular}{|p{2cm}||p{3cm}|p{3cm}|p{3cm}|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
 \hline
 \textsc{} & \textsc{<%=  from_id_to_dayname(1) %>} & \textsc{<%=  from_id_to_dayname(2) %>} & \textsc{<%=  from_id_to_dayname(3) %>} & \textsc{<%=  from_id_to_dayname(4) %>} & \textsc{<%=  from_id_to_dayname(5) %>}\\
 \hline \hline
@@ -23,13 +27,13 @@
           <% minuti="0"+minuti.to_s %>
         <% else %>
           <% minuti=minuti.to_s %>
-        <% end %>
+        <% end-%>
         <% minutii = (@min_startTime+((i+1)*@duration)).min.to_i %>
         <% if minutii < 10 %>
           <% minutii="0"+minutii.to_s %>
         <% else %>
           <% minutii = minutii.to_s %>
-        <% end %>
+        <% end-%>
 \begin{tabular}{c}
  <%= (@min_startTime+(i*@duration)).hour.to_s + ":" + minuti %> \\  <%= (@min_startTime+((i+1)*@duration)).hour.to_s + ":" + minutii %>
 \end{tabular}
@@ -37,28 +41,27 @@
           &
 <%  if t && t.classroom && t.classroom.id && t.classroom.lab  %>
 \cellcolor[gray]{0.9}
-<%  end %>
-         \begin{tabular}{c}
+<%  end-%>
+        \begin{tabular}{p{3cm}}
          <%  if t  %>
             <% if t.teaching && t.teaching.id %>
                <%= t.teaching.name %>
             <%  else %>
                  (insegnamento non presente)
-            <%  end %>
-            \\
+            <%end-%>
             <% if t.classroom && t.classroom.id %>
                 <%= t.classroom.name %>
             <%  else %>
                 (aula non presente)
-            <%  end %>
-         <%  end %>
-\end{tabular}
-      <%  end %>
+            <%end-%>
+         <%end-%>
+        \end{tabular}
+      <%end-%>
 \\ \hline
-        <% i = i + 1 %>
-<% end  %> 
+        <% i = i + 1%>
+<% end-%>
 \end{tabular}
-\end{left}
+\end{small}
 <% teachings_vector = Array.new  %>
  <% @timetable_entries.each do |c| %>
     <% c.each do |t| %>
@@ -67,6 +70,7 @@
         <% end  %>
     <% end  %>
   <% end  %>
+\bigskip
 \begin{tabular}{c}
 \cellcolor[gray]{0.9}
 \end{tabular}
