@@ -16,7 +16,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png} }
-\lfoot{Manuale Installazione v0.2.0}
+\lfoot{Manuale Installazione v1.0.0}
 \cfoot{}
 \rfoot{\thepage \ di \pageref{LastPage}}
 % ridefinizione dello stile plain per il frontespizio
@@ -28,7 +28,7 @@
 \lhead{\leftmark}
 \chead{}
 \rhead{\includegraphics[scale=0.15]{logo.png}}
-\lfoot{Manuale Installazione v0.2.0}
+\lfoot{Manuale Installazione v1.0.0}
 \cfoot{}
 \rfoot{}
 }
@@ -44,6 +44,8 @@
 \hline
 \textsc{Data} & \textsc{Versione} & \textsc{Modifica} \\
 \hline
+\hline
+\textit{15-06-2009} & 1.0.0 & Approvazione del responsabile\\
 \hline
 \textit{14-06-2009} & 0.2.0 & Stesura manuale\\
 \hline
@@ -70,7 +72,7 @@
 %definizione del comando "\frontespizio" per la creazione del frontespizio
 \newcommand{\frontespizio} {
 \thispagestyle{plain}
-\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Manuale Installazione\\ v0.2.0}}
+\title{\begin{Huge}\textsc{Progetto SIGEOL}\end{Huge} \\ \textit{Manuale Installazione\\ v1.0.0}}
 \author{Redazione: Barbiero Mattia}
 \maketitle
 \medskip
@@ -136,9 +138,6 @@ Il presente manuale descrive brevemente la parte relativa all'installazione dell
 
 Saranno illustrate e descritte le principali modalità di installazione del prodotto sul \underline{web server} Glassfish.
 
-<DA togliere>
-Proseguendo con la lettura, saranno elencati i vari errori a cui si potrà andare incontro installando l'applicazione SIGEOL, e le eventuali soluzioni per porvi rimedio.
-
 Il manuale termina con un Glossario, contenente la spiegazione di alcuni termini usati nel corso di questo documento.
 I termini che possiedono una descrizione all'interno del Glossario saranno riconoscibili perchè presentano una \underline{sottolineatura}.
 
@@ -160,11 +159,12 @@ Le segnalazioni saranno prese in considerazione il prima possibile e i problemi 
  \item JRuby 1.1.5+ 
 \end{itemize}
 \bigskip
-\section{Installazione da pacchetto Glassfish\_Sigeol}
-Estrarre il contenuto del file compresso nella cartella di destinazione scelta.
-Eseguire il file start-server.sh da terminale per far partire il \underline{web server} con l'applicazione
+\section{Installazione da pacchetto Glassfish\_Sigeol.zip}
+Estrarre il contenuto del file compresso nella cartella di destinazione scelta.\\
+Assicurarsi di avere il server MySql in esecuzione e correttamente configurato.\\
+Eseguire il file install.sh da terminale per far partire l'installazione del \underline{web server} con l'applicazione
 
-\section{Installazione da pacchetto Sigeol}
+\section{Installazione da pacchetto Sigeol+Middleman.zip}
 \subsection{Installazione veloce di Glassfish v3}
 \begin{enumerate}
  \item Seleziona la directory dove installare Glassfish
@@ -225,45 +225,62 @@ L'installazione di JRuby viene effettuata dalla GlassFish Update Center GUI.
 E' possibile vedere un dettagliato screencast sull'installazione all'indirizzo  \url{http://blogs.sun.com/arungupta/entry/screencast_web_9_jruby_on}, in alternativa visitare l'indirizzo \url{http://wiki.updatecenter.java.net/Wiki.jsp?page=GettingStarted}.
 
 \newpage
-\section{Installare l'applicazione Sigeol}
-In questa sezione verrà illustrato come pubblicare l'applicazione nel \underline{web server} precedentemente installato.
-\subsection{Creazione dominio per l'applicazione} 
-Con la creazione di un dominio verrà preparato lo spazio necessario per l'\underline{hosting} dell'applicazione sigeol.
-
-In questo documento, il nome del dominio che verrà scelto per l'installazione sarà considerata \textit{as-domain}.
-
-\verb|[as-install/bin/asadmin create-domain --adminport 4848 as-domain|
-\subsection{\underline{Deploying} automatico dell'applicazione}
-Per utilizzare il \underline{deployment} automatico, copiare l'applicazione in \url{as-install/domains/as-domain/autodeploy} 
-
-Glassfish automaticamente rileverà ed eseguirà l'applicazione Sigeol.
-\subsection{Undeploy dell'applicazione}
-
-Usa il comando \textit{cd} per posizionarsi sulla cartella autodeploy del dominio relativo all'applicazione.
-
-\verb|cd as-install/domains/domain-name/autodeploy|
-
-Usa il comando \textit{rm} per eliminare l'applicazione.
-
-\verb|rm -R sigeol|
 \section{Configurazione dell'applicazione Sigeol}
 Come già detto in precedenza sono previste più modalità di installazione dell'applicazione.
 Ora verranno illustrate le configurazioni per ogni modalità di utilizzo.
 \subsection{Modalita default}
+L'applicazione verrà installata su singolo \underline{server}.
+\subsubsection{Installare l'applicazione Sigeol}
+In questa sezione verranno illustrate due diverse modalità di pubblicazione dell'applicazione nel \underline{web server} precedentemente installato.
+\begin{description}
+ \item[Creazione dominio per l'applicazione] 
+Con la creazione di un dominio verrà preparato lo spazio necessario per l'\underline{hosting} dell'applicazione sigeol.
+
+In questo documento, il nome del dominio che verrà scelto per l'installazione sarà considerata \textit{as-domain}.
+
+Eseguire da terminale:\\
+\verb|[as-install/bin/asadmin create-domain --adminport 4848 as-domain|
+Estrarre il pacchetto Sigeol\_Middleman.zip in \url{as-install/domains/as-domain/applications} 
+
+Eseguire da terminale:\\
+\verb|[as-install/bin/asadmin start-domain as-domain|\\
+\verb|[as-install/bin/asadmin deploy --path as-install/domains/as-domain/applications/sigeol|
+
+\item[\underline{Deploying} automatico dell'applicazione]
+Per utilizzare il \underline{deployment} automatico, estrarre il pacchetto Sigeol\_Middleman.zip  in \url{as-install/domains/as-domain/autodeploy} 
+
+Glassfish automaticamente rileverà ed eseguirà l'applicazione Sigeol.
+\end{description}
+
+\subsubsection{Configurazione applicativo Sigeol}
+
+Nel file \url{sigeol/config/config.yml} modificare le impostazioni relative alla configurazione dell'email per l'inoltro dei messaggi ed i dettagli per la comunicazione con la servlet:\\
+\verb|mail:|\\
+\verb|  tls: | modalità tls (true o false)\\
+\verb|  address: | indirizzo del server smtp (esempio: smtp.google.com)\\
+\verb|  port: | porta del server smtp (esempio: 578)\\
+\verb|  domain: | dominio del server smtp (esempio: sigeol.com)\\
+\verb|  authentication: | tipo di autenticazione (esempio: plain)\\
+\verb|  user_name: | nome utente di accesso alla casella di posta\\
+\verb|  password: | password di accesso alla casella di posta\\
+\verb|  host: | url base del web server (esempio: www.sigeol.it)\\
+
+\verb|servlet:|
+\verb| address: | url della servlet (esempio: \url{http://www.sigeol.it/middleman/scheduler.do}
+\verb| timeout: | tempo massimo di generazione degli orari in secondi (esempio: 1800)
+
 \subsubsection{Configurazione database}
 Nel file \url{sigeol/config/database.yml} modificare le impostazioni relative al database utilizzato dall'applicazione Sigeol come riportato in seguito:\\
 \verb|production:| \\
-\verb|  adapter: jdbc |\\
-\verb|  driver: com.mysql.jdbc.Driver |\\
-\verb|  url:| path relativo al database Sigeol (es: \verb|jdbc:mysql://localhost:3306/sigeol_production|)\\
+\verb|  adapter: jdbcmysql |\\
+\verb|  database: | nome database Sigeol (es: \verb|sigeol_development|)\\
 \verb|  encoding: utf8 |\\
-\verb|  pool: 5 |\\
 \verb|  username: |username di accesso al database\\
 \verb|  password: |password di accesso al database\\
 \verb|  host: |host contenente il database (es: \verb|localhost|)
 \\
-Creare inoltre un database MySql ed utilizzare il file scheduler\_tables.sql presente in \url{sigeol/WEB-INF/} per definirne la struttura. 
-Per maggiori informazioni sulla creazione dei database MySql visitare il sito \url{http:\\www.mysql.it}.   
+Assicurarsi di aver installato Jruby e di aver il server MySql in esecuzione e correttamente configurato.\\
+Copiare il file install\_standalone.sh nella cartella contenente il server ed eseguirlo
 
 Modificare poi le seguenti righe nel file \url{sigeol/WEB-INF/classes/sigeol_quartz.properties} dove sono presenti le impostazioni per il modulo MiddleMan:\\
 \verb|org.quartz.dataSource.myDS.URL = | path relativo al database MiddleMan (es: \verb|jdbc:mysql://localhost:3306/sigeol_scheduler|)\\
@@ -273,7 +290,7 @@ Modificare poi le seguenti righe nel file \url{sigeol/WEB-INF/classes/sigeol_qua
 (nel caso in cui l'applicazione Sigeol e il modulo MiddleMan condividano lo stesso database, i valori dei rispettivi campi saranno gli stessi)
 
 \subsubsection{Configurazione modulo MiddleMan}
-Infine modificare le cartelle di destinazione dei file generati dall'algoritmo presenti nel file \url{sigeol/WEB-INF/web.xml}:
+Modificare le cartelle di destinazione dei file generati dall'algoritmo presenti nel file \url{sigeol/WEB-INF/web.xml}:
 \verb|<param-name>input-itc-path</param-name>|\\
 \verb|<param-value>|path cartella contentente file di input (es: \url{/WEB-INF/itc/input/})\verb|</param-value>|\\
 \verb|<param-name>output-itc-path</param-name>|\\
@@ -282,28 +299,68 @@ Importante!\\
 Assicurarsi che le cartelle abbiano i permessi in lettura e scrittura per l'applicazione Sigeol.
 
 \subsection{Modalità distribuita}
+\subsubsection{Installare l'applicazione Sigeol e Middleman}
+In questa sezione verranno illustrate due diverse modalità di pubblicazione dell'applicazione nei \underline{web server} precedentemente installato (Sigeol e Middleman).
+\begin{description}
+ \item[Creazione dominio per l'applicazione]
+Con la creazione di un dominio verrà preparato lo spazio necessario per l'\underline{hosting} dell'applicazione sigeol.
+
+In questo documento, il nome del dominio che verrà scelto per l'installazione sarà considerata \textit{as-domain}.
+Le seguenti procedure dovranno essere eseguite su entrambi i \textit{server} utilizzati.
+
+Eseguire da terminale:\\
+\verb|[as-install/bin/asadmin create-domain --adminport 4848 as-domain|
+Estrarre il pacchetto Sigeol.zip e Middleman.zip in \url{as-install/domains/as-domain/applications} dei rispettivi \textit{server} 
+
+Eseguire da terminale:\\
+\verb|[as-install/bin/asadmin start-domain as-domain|\\
+\verb|[as-install/bin/asadmin deploy --path as-install/domains/as-domain/applications/sigeol|
+
+\item[\underline{Deploying} automatico dell'applicazione]
+Per utilizzare il \underline{deployment} automatico, estrarre il pacchetto Sigeol.zip e Middleman.zip  in \url{as-install/domains/as-domain/autodeploy} dei rispettivi \textit{server}. 
+
+Glassfish automaticamente rileverà ed eseguirà l'applicazione Sigeol e Middleman.
+\end{description}
+
 \subsubsection{Configurazione database \underline{server} Sigeol}
 Nel file \url{sigeol/config/database.yml} modificare le impostazioni relative al database utilizzato dall'applicazione Sigeol come riportato in seguito:\\
 \verb|production:| \\
-\verb|  adapter: jdbc |\\
-\verb|  driver: com.mysql.jdbc.Driver |\\
-\verb|  url:| path relativo al database Sigeol (es: \verb|jdbc:mysql://localhost:3306/sigeol_production|)\\
+\verb|  adapter: jdbcmysql |\\
+\verb|  database: | nome database Sigeol (es: \verb|sigeol_development|)\\
 \verb|  encoding: utf8 |\\
-\verb|  pool: 5 |\\
 \verb|  username: |username di accesso al database\\
 \verb|  password: |password di accesso al database\\
 \verb|  host: |host contenente il database (es: \verb|localhost|)
 
+\subsubsection{Configurazione applicativo Sigeol}
+
+Nel file \url{sigeol/config/config.yml} modificare le impostazioni relative alla configurazione dell'email per l'inoltro dei messaggi ed i dettagli per la comunicazione con la servlet:\\
+\verb|mail:|\\
+\verb|  tls: | modalità tls (true o false)\\
+\verb|  address: | indirizzo del server smtp (esempio: smtp.google.com)\\
+\verb|  port: | porta del server smtp (esempio: 578)\\
+\verb|  domain: | dominio del server smtp (esempio: sigeol.com)\\
+\verb|  authentication: | tipo di autenticazione (esempio: plain)\\
+\verb|  user_name: | nome utente di accesso alla casella di posta\\
+\verb|  password: | password di accesso alla casella di posta\\
+\verb|  host: | url base del web server (esempio: www.sigeol.it)\\
+
+\verb|servlet:|
+\verb| address: | url della servlet (esempio: \url{http://www.sigeol.it/middleman/scheduler.do}
+\verb| timeout: | tempo massimo di generazione degli orari in secondi (esempio: 1800)
+
+Copiare il file install\_sigeol.sh nella cartella contenente il server ed eseguirlo.
+
+
+
 \subsubsection{Configurazione database \underline{server} MiddleMan}
 
-Creare un database MySql ed utilizzare il file scheduler\_tables.sql presente in \url{sigeol/WEB-INF/} per definirne la struttura. 
-Per maggiori informazioni sulla creazione dei database MySql visitare il sito \url{http:\\www.mysql.it}.   
+Copiare il file install\_middleman.sh nella cartella contenente il server ed eseguirlo.
 
 Modificare poi le seguenti righe nel file \url{sigeol/WEB-INF/classes/sigeol_quartz.properties} dove sono presenti le impostazioni per il modulo MiddleMan:\\
 \verb|org.quartz.dataSource.myDS.URL = | path relativo al database MiddleMan (es: \verb|jdbc:mysql://localhost:3306/sigeol_scheduler|)\\
 \verb|org.quartz.dataSource.myDS.user = |username di accesso al database\\
 \verb|org.quartz.dataSource.myDS.password = |password di accesso al database\\
-
 
 \subsubsection{Configurazione modulo MiddleMan}
 Infine modificare le cartelle di destinazione dei file generati dall'algoritmo presenti nel file \url{sigeol/WEB-INF/web.xml}:\\
