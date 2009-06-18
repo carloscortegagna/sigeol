@@ -6,8 +6,10 @@
 \usepackage{colortbl}
 \arrayrulecolor{blue}
 \usepackage{tabularx}
-
+\usepackage{fancyheadings}
 \thispagestyle{empty}
+
+
 \begin{document}
 \begin{center}
 \textbf{Orario <%= @timetable.graduate_course.name  %> <%= @timetable.period.year.to_s + " anno" %> <%= @timetable.period.subperiod.to_s + " periodo" %>} \\
